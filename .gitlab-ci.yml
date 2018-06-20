@@ -12,5 +12,6 @@ run unit test:
     policy: pull
   script:
     - yarn test
+    - docker info 
     - docker build -t redpelicans/cm .
 
