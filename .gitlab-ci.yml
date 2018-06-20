@@ -1,5 +1,6 @@
 stages:
   - unit-test
+  - build-image
 
 image: node:latest
 
@@ -12,6 +13,12 @@ run unit test:
     policy: pull
   script:
     - yarn test
+
+build docker image:
+  stage: build-image
+  script:
     - docker info 
     - docker build -t redpelicans/cm .
+  tags:
+    - docker
 
