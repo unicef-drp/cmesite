@@ -13,6 +13,8 @@ run unit test:
     policy: pull
   script:
     - yarn test
+  tags:
+    - docker
 
 build docker image:
   stage: build-image
@@ -20,5 +22,5 @@ build docker image:
     - docker info 
     - docker build -t redpelicans/cm .
   tags:
-    - docker
+    - rp3
 
