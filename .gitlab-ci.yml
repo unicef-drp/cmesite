@@ -28,7 +28,7 @@ build and push docker image:
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
   script:
-    - docker build -t $CONTAINER_TEST_IMAGE .
+    - docker build --pull --no-cache -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   only:
     - develop
@@ -47,4 +47,6 @@ pull and run development docker image:
     - develop
   tags:
     - rp3
+  environment:
+    name: test
 
