@@ -1,8 +1,12 @@
 stages:
   - unit-test
 
+image: node:latest
+
 run unit test:
   stage: unit-test
+  before_script:
+    - yarn
   cache:
     untracked: true
     policy: pull
