@@ -1,14 +1,15 @@
 stages:
   - unit-test
-  - build-image
+  - build-dev-image
+  - run-dev-image
 
 image: node:latest
 
 variables:
-  CI_DEBUG_TRACE: "true"
+  #CI_DEBUG_TRACE: "true"
   CONTAINER_TEST_IMAGE: redpelicans/cm:$CI_COMMIT_SHA
-  CONTAINER_STAGING_IMAGE: redpelicans/cm:$CI_COMMIT_SHA
-  CONTAINER_RELEASE_IMAGE: redpelicans/cm:latest
+  #CONTAINER_STAGING_IMAGE: redpelicans/cm:$CI_COMMIT_SHA
+  #CONTAINER_RELEASE_IMAGE: redpelicans/cm:latest
 
 run unit test:
   stage: unit-test
@@ -23,12 +24,25 @@ run unit test:
     - docker
 
 build and push docker image:
-  stage: build-image
+  stage: build-dev-image
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
   script:
     - docker build -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
+  only:
+    - develop
+  tags:
+    - rp3
+
+pull and run devlopment docker image:
+  stage: run-dev-image
+  before_script:
+    - docker login -u ebasley -p $HUB_DOCKER_PWD
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker rm -f $CONTAINER_TEST_IMAGE
+    - docker run --name cm-dev --restart=always -p 5050:80 --env 'constraint:node==rp3' -d $CONTAINER_TEST_IMAGE
   only:
     - develop
   tags:
