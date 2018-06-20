@@ -1,0 +1,11 @@
+stages:
+  - unit-test
+
+run unit test:
+  stage: unit-test
+  cache:
+    untracked: true
+    policy: pull
+  script:
+    - yarn test
+

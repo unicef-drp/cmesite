@@ -2,8 +2,6 @@ FROM node:latest
 
 RUN apt-get update && apt-get install -y git vim-tiny
 
-RUN npm install -g yarn
-
 ENV HOME /root
 
 RUN mkdir -p ~/.ssh
@@ -19,5 +17,6 @@ WORKDIR /cm
 RUN git checkout develop
 RUN yarn
 RUN yarn build
+RUN yarn global add serve
 EXPOSE 80
-CMD npx serve -s build
+CMD npx serve -s build -l 80
