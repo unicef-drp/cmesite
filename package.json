@@ -45,7 +45,9 @@
     "reselect": "^3.0.1",
     "style-loader": "^0.21.0",
     "styled-components": "^3.1.6",
-    "url-loader": "^1.0.1"
+    "sw-precache-webpack-plugin": "^0.11.5",
+    "url-loader": "^1.0.1",
+    "webpack-manifest-plugin": "^2.0.3"
   },
   "scripts": {
     "precommit": "lint-staged",

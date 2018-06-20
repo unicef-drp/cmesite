@@ -6,12 +6,18 @@ RUN npm install -g yarn
 
 ENV HOME /root
 
-RUN git clone https://github.com/redpelicans/peep2.git /peep
-WORKDIR /peep
+RUN mkdir -p ~/.ssh
+RUN ssh-keyscan -H gitlab.com >> ~/.ssh/known_hosts
+RUN echo 'host gitlab.com' >> ~/.ssh/config
+RUN echo '     identityfile /root/.ssh/gitlab' >> ~/.ssh/config
+ADD etc/gitlab /root/.ssh/
+RUN chmod 600 /root/.ssh/*
+
+
+RUN git clone git@gitlab.com:eric-basley/childmortality.git /cm
+WORKDIR /cm
 RUN git checkout develop
 RUN yarn
 RUN yarn build
-RUN yarn srv:dist
-
 EXPOSE 80
-CMD yarn srv:run
+CMD npx serve -s build
