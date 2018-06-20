@@ -24,8 +24,8 @@ run unit test:
 
 build and push docker image:
  stage: build-image
- before_script:
-  - docker login -u redpelicans -p $CI_JOB_TOKEN
+  before_script:
+    - docker login -u redpelicans -p $CI_JOB_TOKEN
   script:
     - docker build -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
