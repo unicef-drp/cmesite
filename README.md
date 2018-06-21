@@ -19,5 +19,5 @@ $ docker ps | grep mysql
 $ docker exec -it mysql.1.x0r052489isx530a0d6lz8ssx bash
 # mysql -u root -p
 mysql> create database cmdev;
-``
+```
 
