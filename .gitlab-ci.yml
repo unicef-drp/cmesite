@@ -7,9 +7,9 @@ image: node:latest
 
 variables:
   #CI_DEBUG_TRACE: "true"
-  CONTAINER_TEST_IMAGE: redpelicans/cm:$CI_COMMIT_SHA
-  #CONTAINER_STAGING_IMAGE: redpelicans/cm:$CI_COMMIT_SHA
-  #CONTAINER_RELEASE_IMAGE: redpelicans/cm:latest
+  CONTAINER_TEST_IMAGE: ebasley/cm:$CI_COMMIT_SHA
+  #CONTAINER_STAGING_IMAGE: ebasley/cm:$CI_COMMIT_SHA
+  #CONTAINER_RELEASE_IMAGE: ebasley/cm:latest
 
 run unit test:
   stage: unit-test
