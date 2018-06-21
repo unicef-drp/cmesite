@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app | containers | App | styles should match snapshot 1`] = `
+Object {
+  "container": Object {},
+  "root": Object {
+    "backgroundColor": [Function],
+    "height": "100%",
+    "overflowX": "hidden",
+    "overflowY": "scroll",
+    "paddingTop": [Function],
+    "width": "100%",
+  },
+}
+`;

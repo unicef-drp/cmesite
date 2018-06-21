@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app | containers | App | constants should match snapshot 1`] = `
+Object {
+  "DEFAULT_LOCALE": "en",
+  "PREFIX": "@@drsa-web-app/",
+  "PROD_ENV": "prd",
+}
+`;
