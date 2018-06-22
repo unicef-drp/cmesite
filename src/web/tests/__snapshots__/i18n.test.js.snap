@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app | i18n should  1`] = `
+Object {
+  "en": Object {},
+}
+`;

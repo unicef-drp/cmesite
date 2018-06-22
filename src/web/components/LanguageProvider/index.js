@@ -8,6 +8,5 @@ export const mapStateToProps = createStructuredSelector({
   locale: getLocale,
 });
 
-const enhance = compose(connect(mapStateToProps, null));
-
+export const enhance = compose(connect(mapStateToProps, null));
 export default enhance(component);

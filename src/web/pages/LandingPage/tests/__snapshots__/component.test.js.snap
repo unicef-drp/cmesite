@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app | pages | LandingPage | component render should match snapshot 1`] = `
+<div>
+  <FormattedMessage
+    defaultMessage="this is PAGE1112221"
+    id="page1.welcome"
+    values={Object {}}
+  />
+  <li>
+    <Post
+      key="1"
+      post={
+        Object {
+          "content": Object {
+            "rendered": "rendered",
+          },
+          "id": 1,
+        }
+      }
+    />
+  </li>
+</div>
+`;

@@ -2,14 +2,14 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Component from '../component';
 
-describe('app | App | component', () => {
+const props = {
+  posts: [{ id: 1, content: { rendered: 'rendered' } }],
+};
+
+describe('app | pages | LandingPage | component', () => {
   describe('render', () => {
-    it('should be defined', () => {
-      const wrapper = shallow(<Component />);
-      expect(wrapper).toBeDefined();
-    });
     it('should match snapshot', () => {
-      const wrapper = shallow(<Component />);
+      const wrapper = shallow(<Component {...props} />);
       expect(wrapper).toMatchSnapshot();
     });
   });

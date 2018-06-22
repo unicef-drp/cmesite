@@ -1,12 +1,12 @@
 import { compose, toPairs, map, find, prop } from 'ramda';
+import LandingPage from './pages/LandingPage/Loadable';
 import Page2 from './pages/Page2/Loadable';
-import Page1 from './pages/Page1/Loadable';
 
 const routes = {
-  PAGE1: {
+  LANDIN_PAGE: {
     path: '/',
     exact: true,
-    component: Page1,
+    component: LandingPage,
     default: true,
   },
   PAGE2: {
