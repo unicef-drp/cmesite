@@ -1,3 +1,5 @@
 import wp from './wp';
 import language from './language';
-export default { wp, language };
+import core from './core';
+
+export default { wp, language, core };

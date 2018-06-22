@@ -1,8 +1,7 @@
 import { compose, lifecycle } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-
-import { getLocale } from '../../selectors/language';
+import { getPosts } from '../../selectors/wp';
 import component from './component';
 
 export function componentDidMount() {
@@ -10,7 +9,7 @@ export function componentDidMount() {
 }
 
 export const mapStateToProps = createStructuredSelector({
-  locale: getLocale,
+  posts: getPosts,
 });
 
 export const enhance = compose(
