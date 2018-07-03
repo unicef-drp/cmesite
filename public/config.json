@@ -1,0 +1,6 @@
+{
+  "wp": {
+    "apiUrl": "http://rp3.redpelicans.com:8080/wp-json/wp/v2"
+  },
+  "language": "en"
+}

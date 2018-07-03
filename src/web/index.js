@@ -11,20 +11,22 @@ import configureStore from './store/configureStore';
 import ducks from './ducks';
 import wpApi from './api/wp';
 import { getWPApiUrl } from './selectors/wp';
+import loadConfig from './config';
 
-const preloadedState = JSON.parse(window.__PRELOADED_STATE__);
-const store = configureStore(preloadedState);
-const history = createBrowserHistory();
-const ROOT = (
-  <Provider store={store}>
-    <LanguageProvider messages={translationMessages}>
-      <Router history={history}>
-        <App store={store} />
-      </Router>
-    </LanguageProvider>
-  </Provider>
-);
+loadConfig().then(config => {
+  const store = configureStore(config);
+  const history = createBrowserHistory();
+  const ROOT = (
+    <Provider store={store}>
+      <LanguageProvider messages={translationMessages}>
+        <Router history={history}>
+          <App store={store} />
+        </Router>
+      </LanguageProvider>
+    </Provider>
+  );
 
-wpApi.config({ endpoint: getWPApiUrl(store.getState()) });
-ReactDOM.render(ROOT, document.getElementById('root'));
-store.dispatch(ducks.wp.actions.loadPosts());
+  wpApi.config({ endpoint: getWPApiUrl(store.getState()) });
+  ReactDOM.render(ROOT, document.getElementById('root'));
+  store.dispatch(ducks.wp.actions.loadPosts());
+});
