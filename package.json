@@ -54,6 +54,7 @@
     "webpack-manifest-plugin": "^2.0.3"
   },
   "scripts": {
+    "start:mock": "DEBUG=farso* farso-server --config src/mock/farso.config.js",
     "precommit": "lint-staged",
     "eslint-check":
       "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
@@ -91,6 +92,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.6.1",
     "eslint-plugin-standard": "^3.0.1",
+    "farso": "^1.1.0",
     "husky": "^0.14.3",
     "jest-styled-components": "^5.0.1",
     "lint-staged": "^7.0.5",
