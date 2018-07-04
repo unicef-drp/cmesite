@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createRootReducer from '../reducers';
 
-const configureStore = initialState => {
+const configureStore = (initialState = {}) => {
   const middlewares = [thunk, createLogger];
   return createStore(
     createRootReducer(),

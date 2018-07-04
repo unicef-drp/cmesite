@@ -1,12 +1,12 @@
-import { compose } from 'recompose';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { getLocale } from '../../selectors/language';
+import { compose, withProps, mapProps } from 'recompose';
+import { pathOr, omit } from 'ramda';
+import withConfig from '../../hocs/config';
 import component from './component';
 
-export const mapStateToProps = createStructuredSelector({
-  locale: getLocale,
-});
-
-export const enhance = compose(connect(mapStateToProps, null));
+const DEFAULT_LOCALE = 'en';
+export const enhance = compose(
+  withConfig(),
+  withProps(pathOr({ locale: DEFAULT_LOCALE }, ['config', 'language'])),
+  mapProps(omit(['config'])),
+);
 export default enhance(component);
