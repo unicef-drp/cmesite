@@ -1,14 +1,16 @@
 stages:
   - unit-test
-  - build-dev-image
-  - run-dev-image
+  - build-test-image
+  - run-test-image
+  - build-staging-image
+  - run-staging-image
 
 image: node:latest
 
 variables:
   #CI_DEBUG_TRACE: "true"
   CONTAINER_TEST_IMAGE: ebasley/cm:$CI_COMMIT_SHA
-  #CONTAINER_STAGING_IMAGE: ebasley/cm:$CI_COMMIT_SHA
+  CONTAINER_STAGING_IMAGE: ebasley/cm:$CI_COMMIT_SHA
   #CONTAINER_RELEASE_IMAGE: ebasley/cm:latest
 
 run unit test:
@@ -23,8 +25,8 @@ run unit test:
   tags:
     - docker
 
-build and push docker image:
-  stage: build-dev-image
+build and push test docker image:
+  stage: build-test-image
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
   script:
@@ -35,18 +37,45 @@ build and push docker image:
   tags:
     - rp3
 
-pull and run development docker image:
-  stage: run-dev-image
+pull and run test docker image:
+  stage: run-test-image
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
   script:
     - docker pull $CONTAINER_TEST_IMAGE
-    - docker rm -f cm-dev || true
-    - docker run --name cm-dev --restart=always -p 5050:80 --env 'constraint:node==rp3' -d $CONTAINER_TEST_IMAGE
+    - docker rm -f cm-test || true
+    - docker run --name cm-test --restart=always -p 5050:80 -v /opt/cm/etc/config.test.json:/cm/build/config.json --env 'constraint:node==rp3' -d $CONTAINER_TEST_IMAGE
   only:
     - develop
   tags:
     - rp3
   environment:
     name: test
+
+build and push staging docker image:
+  stage: build-staging-image
+  before_script:
+    - docker login -u ebasley -p $HUB_DOCKER_PWD
+  script:
+    - docker build --pull --no-cache -t $CONTAINER_STAGING_IMAGE .
+    - docker push $CONTAINER_STAGING_IMAGE
+  only:
+    - master
+  tags:
+    - rp3
+
+pull and run staging docker image:
+  stage: run-staging-image
+  before_script:
+    - docker login -u ebasley -p $HUB_DOCKER_PWD
+  script:
+    - docker pull $CONTAINER_STAGING_IMAGE
+    - docker rm -f cm-staging || true
+    - docker run --name cm-staging --restart=always -p 5151:80 -v /opt/cm/etc/config.staging.json:/cm/build/config.json --env 'constraint:node==rp3' -d $CONTAINER_STAGING_IMAGE
+  only:
+    - master
+  tags:
+    - rp3
+  environment:
+    name: staging
 
