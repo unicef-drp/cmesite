@@ -44,3 +44,13 @@ Install plugins:
 * WP REST API
 * Custom Post Type UI
 * Advanced Custom Fields
+
+
+### Docker
+
+Docker images are built and deployed with gitlab CI/CD (see .gitlab-ci.yml)
+
+** CARE to update `rp3@root:/opt/cm/etc/config.*.json` when /public/config.json is updated**
+
+
+
