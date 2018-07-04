@@ -13,16 +13,6 @@ On rp3 run:
 # mkdir /opt/mysql-data
 #  docker run --restart=always --name=mysql -v /opt/mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=pasdire -d mysql:5.7
 ```
-
-Create a database:
-
-```
-$ docker ps | grep mysql
-$ docker exec -it mysql bash
-# mysql -u root -p
-mysql> create database cmdev;
-```
-
 Connect to Mysql:
 
 ```
@@ -36,8 +26,14 @@ mysql> show databases;
 ### Wordpress
 
 ```
-# docker run --name=wordpress --restart=always --link mysql:mysql -p 8080:80  -d wordpress
-# docker run --name=wordpress-staging --restart=always --link mysql:mysql -p 9090:80  -d wordpress
+# docker run --name=wordpress-test --restart=always --link mysql:mysql -p 8080:80  -e WORDPRESS_DB_NAME=wpdev -d wordpress
+# docker run --name=wordpress-staging --restart=always --link mysql:mysql -p 8585:80 -e WORDPRESS_DB_NAME=wpstg -d wordpress
+```
+
+Launch your browser to `http://rp3.redpelicans.com:8080` for `test`, `http://rp3.redpelicans.com:8585` for `staging`.
+```
+  Username: root
+  Password: p******
 ```
 
 Install plugins:
@@ -52,6 +48,10 @@ Install plugins:
 Docker images are built and deployed with gitlab CI/CD (see .gitlab-ci.yml)
 
 ** CARE to update `rp3@root:/opt/cm/etc/config.*.json` when /public/config.json is updated**
+
+### Jira
+
+https://redpelicans.atlassian.net
 
 
 

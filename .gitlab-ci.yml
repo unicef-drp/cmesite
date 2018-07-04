@@ -30,7 +30,7 @@ build and push test docker image:
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
   script:
-    - docker build --pull --no-cache -t $CONTAINER_TEST_IMAGE .
+    - docker build --pull --no-cache -t $CONTAINER_TEST_IMAGE -f Dockerfile.test .
     - docker push $CONTAINER_TEST_IMAGE
   only:
     - develop
@@ -57,7 +57,7 @@ build and push staging docker image:
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
   script:
-    - docker build --pull --no-cache -t $CONTAINER_STAGING_IMAGE .
+    - docker build --pull --no-cache -t $CONTAINER_STAGING_IMAGE -f Dockerfile.staging .
     - docker push $CONTAINER_STAGING_IMAGE
   only:
     - master
