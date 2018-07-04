@@ -37,6 +37,7 @@ mysql> show databases;
 
 ```
 # docker run --name=wordpress --restart=always --link mysql:mysql -p 8080:80  -d wordpress
+# docker run --name=wordpress-staging --restart=always --link mysql:mysql -p 9090:80  -d wordpress
 ```
 
 Install plugins:
