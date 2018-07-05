@@ -41,6 +41,7 @@ Install plugins:
 * WP REST API
 * Custom Post Type UI
 * Advanced Custom Fields
+* Only Rest API
 
 
 ### Docker
