@@ -16,6 +16,7 @@
     "chalk": "^2.3.0",
     "classnames": "^2.2.5",
     "compression": "^1.7.0",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "date-fns": "^1.28.5",
     "debug": "^3.1.0",
@@ -59,10 +60,10 @@
     "eslint-check":
       "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "lint": "eslint src --color",
-    "wtest": "NODE_ENV=test node scripts/test.js --env=jsdom",
-    "test": "NODE_ENV=test jest --env=jsdom --detectOpenHandles",
-    "start": "NODE_ENV=development node scripts/start.js",
-    "build": "NODE_ENV=production node scripts/build.js",
+    "wtest": "cross-env NODE_ENV=test node scripts/test.js --env=jsdom",
+    "test": "cross-env NODE_ENV=test jest --env=jsdom --detectOpenHandles",
+    "start": "cross-env NODE_ENV=development node scripts/start.js",
+    "build": "cross-env NODE_ENV=production node scripts/build.js",
     "bundle:stats":
       "NODE_ENV=production webpack -p --config ./config/webpack.config.prod.js --profile --json > stats.json",
     "bundle:analyse":
