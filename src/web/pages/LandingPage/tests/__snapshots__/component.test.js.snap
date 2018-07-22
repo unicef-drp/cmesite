@@ -3,11 +3,7 @@
 exports[`app | pages | LandingPage | component render should match snapshot 1`] = `
 <div>
   <withProps(Header) />
-  <FormattedMessage
-    defaultMessage="hello world"
-    id="page1.welcome"
-    values={Object {}}
-  />
+  <Splash />
   <ul>
     <Post
       key="1"
