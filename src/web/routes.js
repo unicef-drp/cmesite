@@ -3,7 +3,7 @@ import LandingPage from './pages/LandingPage/Loadable';
 import Page2 from './pages/Page2/Loadable';
 
 const routes = {
-  LANDIN_PAGE: {
+  LANDING_PAGE: {
     path: '/',
     exact: true,
     component: LandingPage,
@@ -11,6 +11,11 @@ const routes = {
   },
   PAGE2: {
     path: '/page2',
+    exact: true,
+    component: Page2,
+  },
+  PAGE3: {
+    path: '/page3',
     exact: true,
     component: Page2,
   },
