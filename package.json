@@ -117,9 +117,9 @@
     "verbose": true,
     "coverageDirectory": "./coverage/",
     "collectCoverageFrom": ["src/**/*.js", "!src/**/*.test.{js,jsx}"],
-    "testPathIgnorePatterns": ["utils"],
+    "testPathIgnorePatterns": ["utils", "configureStore.test"],
     "setupFiles": ["<rootDir>/config/polyfills.js"],
-    "testMatch": ["<rootDir>/src/**/tests/**/*.test.js?(x)"],
+    "testRegex": "src/.*\\.test\\.js$",
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
@@ -127,7 +127,6 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },

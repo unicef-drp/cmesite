@@ -2,12 +2,13 @@
 
 exports[`app | pages | LandingPage | component render should match snapshot 1`] = `
 <div>
+  <withProps(Header) />
   <FormattedMessage
-    defaultMessage="this is PAGE1112221"
+    defaultMessage="hello world"
     id="page1.welcome"
     values={Object {}}
   />
-  <li>
+  <ul>
     <Post
       key="1"
       post={
@@ -19,6 +20,6 @@ exports[`app | pages | LandingPage | component render should match snapshot 1`]
         }
       }
     />
-  </li>
+  </ul>
 </div>
 `;

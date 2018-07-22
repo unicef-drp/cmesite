@@ -5,6 +5,7 @@ import Component from '../component';
 const props = {
   messages: {},
   locale: 'en',
+  routes: [{ name: 1 }],
 };
 
 describe('app | Header | component', () => {

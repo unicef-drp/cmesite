@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app | Header | component render should match snapshot 1`] = `
+<React.Fragment>
+  <WithStyles(AppBar)
+    color="default"
+    position="static"
+  >
+    <WithStyles(Toolbar)>
+      <styled.img
+        src="unicef-logo.png"
+      />
+      <WithStyles(Typography)
+        color="inherit"
+        variant="title"
+      >
+        <FormattedMessage
+          defaultMessage="Child Motality Estimates"
+          id="header.title"
+          values={Object {}}
+        />
+      </WithStyles(Typography)>
+    </WithStyles(Toolbar)>
+  </WithStyles(AppBar)>
+  <WithStyles(AppBar)
+    position="static"
+  >
+    <WithStyles(Toolbar)>
+      <WithStyles(Button)
+        color="inherit"
+        key="1"
+      >
+        <FormattedMessage
+          values={Object {}}
+        />
+      </WithStyles(Button)>
+    </WithStyles(Toolbar)>
+  </WithStyles(AppBar)>
+</React.Fragment>
+`;
