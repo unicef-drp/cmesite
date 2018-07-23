@@ -2,23 +2,38 @@
 
 exports[`app | pages | LandingPage | component render should match snapshot 1`] = `
 <div>
-  <FormattedMessage
-    defaultMessage="this is PAGE1112221"
-    id="page1.welcome"
-    values={Object {}}
-  />
-  <li>
-    <Post
-      key="1"
-      post={
-        Object {
-          "content": Object {
-            "rendered": "rendered",
-          },
-          "id": 1,
+  <withProps(Header) />
+  <WithStyles(Component) />
+  <WithStyles(Grid)
+    container={true}
+    justify="center"
+  >
+    <WithStyles(Grid)
+      item={true}
+      md={3}
+      sm={4}
+      xs={10}
+    >
+      <WithStyles(Component)
+        key="1"
+        post={
+          Object {
+            "content": Object {
+              "rendered": "rendered",
+            },
+            "id": 1,
+          }
         }
-      }
-    />
-  </li>
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md={7}
+      sm={6}
+      xs={10}
+    >
+      latest trends... (map)
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
 </div>
 `;

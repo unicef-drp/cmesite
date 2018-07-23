@@ -10,6 +10,7 @@ image: node:latest
 variables:
   #CI_DEBUG_TRACE: "true"
   CONTAINER_TEST_IMAGE: ebasley/cm:$CI_COMMIT_SHA
+  #CONTAINER_STAGING_IMAGE: ebasley/cm:${CI_COMMIT_SHA:0:8}
   CONTAINER_STAGING_IMAGE: ebasley/cm:$CI_COMMIT_SHA
   #CONTAINER_RELEASE_IMAGE: ebasley/cm:latest
 

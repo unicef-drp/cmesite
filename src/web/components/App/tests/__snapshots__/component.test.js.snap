@@ -17,6 +17,12 @@ exports[`app | App | component render should match snapshot 1`] = `
     />
     <Route
       component={[Function]}
+      exact={true}
+      key="/page3"
+      path="/page3"
+    />
+    <Route
+      component={[Function]}
     />
   </Switch>
 </div>

@@ -5,6 +5,8 @@
   "license": "PRIVATE",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^1.4.0",
+    "@material-ui/icons": "^1.1.0",
     "axios": "^0.18.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
@@ -16,6 +18,7 @@
     "chalk": "^2.3.0",
     "classnames": "^2.2.5",
     "compression": "^1.7.0",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "date-fns": "^1.28.5",
     "debug": "^3.1.0",
@@ -28,9 +31,9 @@
     "jest": "^23.2",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.4",
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.6.2",
     "ramda": "^0.25.0",
-    "react": "^16.4.0",
+    "react": "^16.4.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.4.0",
@@ -48,7 +51,7 @@
     "reselect": "^3.0.1",
     "sanitize.css": "^5.0.0",
     "style-loader": "^0.21.0",
-    "styled-components": "^3.1.6",
+    "styled-components": "^3.3.3",
     "sw-precache-webpack-plugin": "^0.11.5",
     "url-loader": "^1.0.1",
     "webpack-manifest-plugin": "^2.0.3"
@@ -59,10 +62,10 @@
     "eslint-check":
       "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "lint": "eslint src --color",
-    "wtest": "NODE_ENV=test node scripts/test.js --env=jsdom",
-    "test": "NODE_ENV=test jest --env=jsdom --detectOpenHandles",
-    "start": "NODE_ENV=development node scripts/start.js",
-    "build": "NODE_ENV=production node scripts/build.js",
+    "wtest": "cross-env NODE_ENV=test node scripts/test.js --env=jsdom",
+    "test": "cross-env NODE_ENV=test jest --env=jsdom --detectOpenHandles",
+    "start": "cross-env NODE_ENV=development node scripts/start.js",
+    "build": "cross-env NODE_ENV=production node scripts/build.js",
     "bundle:stats":
       "NODE_ENV=production webpack -p --config ./config/webpack.config.prod.js --profile --json > stats.json",
     "bundle:analyse":
@@ -114,9 +117,9 @@
     "verbose": true,
     "coverageDirectory": "./coverage/",
     "collectCoverageFrom": ["src/**/*.js", "!src/**/*.test.{js,jsx}"],
-    "testPathIgnorePatterns": ["utils"],
+    "testPathIgnorePatterns": ["utils", "configureStore.test"],
     "setupFiles": ["<rootDir>/config/polyfills.js"],
-    "testMatch": ["<rootDir>/src/**/tests/**/*.test.js?(x)"],
+    "testRegex": "src/.*\\.test\\.js$",
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
@@ -124,7 +127,6 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
