@@ -3,19 +3,33 @@
 exports[`app | pages | LandingPage | component render should match snapshot 1`] = `
 <div>
   <withProps(Header) />
-  <Splash />
-  <ul>
-    <Post
-      key="1"
-      post={
-        Object {
-          "content": Object {
-            "rendered": "rendered",
-          },
-          "id": 1,
+  <WithStyles(Component) />
+  <WithStyles(Grid)
+    container={true}
+    justify="space-around"
+  >
+    <WithStyles(Grid)
+      item={true}
+      xs={3}
+    >
+      <WithStyles(Component)
+        key="1"
+        post={
+          Object {
+            "content": Object {
+              "rendered": "rendered",
+            },
+            "id": 1,
+          }
         }
-      }
-    />
-  </ul>
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      xs={6}
+    >
+      latest trends... (map)
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
 </div>
 `;
