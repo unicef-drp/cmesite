@@ -6,11 +6,13 @@ exports[`app | pages | LandingPage | component render should match snapshot 1`]
   <WithStyles(Component) />
   <WithStyles(Grid)
     container={true}
-    justify="space-around"
+    justify="center"
   >
     <WithStyles(Grid)
       item={true}
-      xs={3}
+      md={3}
+      sm={4}
+      xs={10}
     >
       <WithStyles(Component)
         key="1"
@@ -26,7 +28,9 @@ exports[`app | pages | LandingPage | component render should match snapshot 1`]
     </WithStyles(Grid)>
     <WithStyles(Grid)
       item={true}
-      xs={6}
+      md={7}
+      sm={6}
+      xs={10}
     >
       latest trends... (map)
     </WithStyles(Grid)>

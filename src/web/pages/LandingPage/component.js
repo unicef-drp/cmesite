@@ -4,7 +4,6 @@ import { array } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import styled from 'styled-components';
 import messages from './messages';
 import Header from '../../components/Header';
 import splash from '../../../assets/splash.jpg';
@@ -16,7 +15,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 
-const splashStyles = theme => ({
+const splashStyles = () => ({
   splash: {
     background: `url("${splash}")`,
     height: 400,
@@ -29,11 +28,11 @@ const splashStyles = theme => ({
 const Splash = withStyles(splashStyles)(({ classes }) => (
   <Grid
     container
-    justify="space-around"
+    justify="center"
     alignItems="center"
     className={classes.splash}
   >
-    <Grid item xs={4}>
+    <Grid item md={3} sm={4} xs={10}>
       <Typography variant="display2" className={classes.text}>
         <FormattedMessage {...messages.splashTitle} />
       </Typography>
@@ -41,7 +40,7 @@ const Splash = withStyles(splashStyles)(({ classes }) => (
         <FormattedMessage {...messages.splashDescription} />
       </Typography>
     </Grid>
-    <Grid item xs={5} />
+    <Grid item md={7} sm={6} xs={false} />
   </Grid>
 ));
 
@@ -93,11 +92,11 @@ export const LandingPage = ({ posts }) => (
   <div>
     <Header />
     <Splash />
-    <Grid container justify="space-around">
-      <Grid item xs={3}>
+    <Grid container justify="center">
+      <Grid item md={3} sm={4} xs={10}>
         {getPosts(posts)}
       </Grid>
-      <Grid item xs={6}>
+      <Grid item md={7} sm={6} xs={10}>
         latest trends... (map)
       </Grid>
     </Grid>
