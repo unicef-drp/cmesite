@@ -15,7 +15,6 @@ const splashStyle = theme => ({
     },
   },
   typo: {
-    color: theme.palette.common.white,
     fontWeight: 'bold',
   },
 });
@@ -24,11 +23,15 @@ const Splash = ({ title, description, image, classes }) => (
   <div style={{ background: `url("${image}") no-repeat center` }}>
     <Grid container alignItems="center" className={classes.wrapper}>
       <Grid item xs={12} sm={6} md={4}>
-        <Typography variant="display2" className={classes.typo}>
+        <Typography
+          variant="display2"
+          color="secondary"
+          className={classes.typo}
+        >
           {title}
         </Typography>
         <br />
-        <Typography variant="body2" className={classes.typo}>
+        <Typography variant="body2" color="secondary" className={classes.typo}>
           {description}
         </Typography>
       </Grid>
