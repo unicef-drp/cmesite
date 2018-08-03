@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer | component render should match snapshot 1`] = `
+<Footer
+  classes={
+    Object {
+      "footer": "Footer-footer-1",
+      "links": "Footer-links-2",
+      "logo": "Footer-logo-4",
+      "logos": "Footer-logos-3",
+    }
+  }
+/>
+`;
