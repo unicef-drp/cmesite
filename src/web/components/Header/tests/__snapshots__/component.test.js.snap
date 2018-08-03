@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`app | Header | component render should match snapshot 1`] = `
+exports[`Header | component render should match snapshot 1`] = `
 <Header
   classes={
     Object {
@@ -17,7 +17,5 @@ exports[`app | Header | component render should match snapshot 1`] = `
       },
     ]
   }
->
-  <div />
-</Header>
+/>
 `;

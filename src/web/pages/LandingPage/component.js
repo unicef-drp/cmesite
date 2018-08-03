@@ -1,12 +1,12 @@
 import React from 'react';
-import { map } from 'ramda';
+import { map, times } from 'ramda';
 import { array } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import messages from './messages';
 import Header from '../../components/Header';
 import Splash from '../../components/Splash';
+import Datasets from '../../components/Datasets';
 import Footer from '../../components/Footer';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -16,6 +16,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 
+/*
 const postStyles = () => ({
   card: {
     margin: '20px 0',
@@ -57,8 +58,8 @@ const Post = withStyles(postStyles)(({ post, classes }) => (
     </CardActions>
   </Card>
 ));
-
-const getPosts = map(post => <Post key={post.id} post={post} />);
+*/
+//const getPosts = map(post => <Post key={post.id} post={post} />);
 
 export const LandingPage = ({ posts }) => (
   <div>
@@ -78,6 +79,18 @@ export const LandingPage = ({ posts }) => (
       </Grid>
     </Grid>
   */}
+    <Datasets
+      title="Global Datasets"
+      updatedAt="today or yesterday"
+      datasets={times(
+        n => ({
+          id: n,
+          name: 'Estimates of under-five, infant and neonatal mortality',
+          description: 'Estimates',
+        }),
+        10,
+      )}
+    />
     <Footer />
   </div>
 );

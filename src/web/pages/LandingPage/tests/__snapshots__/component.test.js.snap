@@ -20,6 +20,64 @@ exports[`app | pages | LandingPage | component render should match snapshot 1`]
       />
     }
   />
+  <WithStyles(Datasets)
+    datasets={
+      Array [
+        Object {
+          "description": "Estimates",
+          "id": 0,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+        Object {
+          "description": "Estimates",
+          "id": 1,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+        Object {
+          "description": "Estimates",
+          "id": 2,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+        Object {
+          "description": "Estimates",
+          "id": 3,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+        Object {
+          "description": "Estimates",
+          "id": 4,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+        Object {
+          "description": "Estimates",
+          "id": 5,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+        Object {
+          "description": "Estimates",
+          "id": 6,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+        Object {
+          "description": "Estimates",
+          "id": 7,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+        Object {
+          "description": "Estimates",
+          "id": 8,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+        Object {
+          "description": "Estimates",
+          "id": 9,
+          "name": "Estimates of under-five, infant and neonatal mortality",
+        },
+      ]
+    }
+    title="Global Datasets"
+    updatedAt="today or yesterday"
+  />
   <WithStyles(Footer) />
 </div>
 `;
