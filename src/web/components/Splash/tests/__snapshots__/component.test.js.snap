@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Splash | component render should match snapshot 1`] = `
+<Splash
+  classes={
+    Object {
+      "typo": "Splash-typo-2",
+      "wrapper": "Splash-wrapper-1",
+    }
+  }
+/>
+`;
