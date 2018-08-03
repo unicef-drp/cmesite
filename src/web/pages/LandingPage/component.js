@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import messages from './messages';
 import Header from '../../components/Header';
-import splash from '../../../assets/splash.jpg';
+import Splash from '../../components/Splash';
+import Footer from '../../components/Footer';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -14,35 +15,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-
-const splashStyles = () => ({
-  splash: {
-    background: `url("${splash}")`,
-    height: 400,
-  },
-  text: {
-    color: 'white',
-  },
-});
-
-const Splash = withStyles(splashStyles)(({ classes }) => (
-  <Grid
-    container
-    justify="center"
-    alignItems="center"
-    className={classes.splash}
-  >
-    <Grid item md={3} sm={4} xs={10}>
-      <Typography variant="display2" className={classes.text}>
-        <FormattedMessage {...messages.splashTitle} />
-      </Typography>
-      <Typography variant="subheading" className={classes.text}>
-        <FormattedMessage {...messages.splashDescription} />
-      </Typography>
-    </Grid>
-    <Grid item md={7} sm={6} xs={false} />
-  </Grid>
-));
 
 const postStyles = () => ({
   card: {
@@ -91,7 +63,12 @@ const getPosts = map(post => <Post key={post.id} post={post} />);
 export const LandingPage = ({ posts }) => (
   <div>
     <Header />
-    <Splash />
+    <Splash
+      title={<FormattedMessage {...messages.title} />}
+      description={<FormattedMessage {...messages.description} />}
+      image={require('../../../assets/splash.jpg')}
+    />
+    {/*
     <Grid container justify="center">
       <Grid item md={3} sm={4} xs={10}>
         {getPosts(posts)}
@@ -100,6 +77,8 @@ export const LandingPage = ({ posts }) => (
         latest trends... (map)
       </Grid>
     </Grid>
+  */}
+    <Footer />
   </div>
 );
 

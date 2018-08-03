@@ -2,38 +2,24 @@
 
 exports[`app | pages | LandingPage | component render should match snapshot 1`] = `
 <div>
-  <withProps(Header) />
-  <WithStyles(Component) />
-  <WithStyles(Grid)
-    container={true}
-    justify="center"
-  >
-    <WithStyles(Grid)
-      item={true}
-      md={3}
-      sm={4}
-      xs={10}
-    >
-      <WithStyles(Component)
-        key="1"
-        post={
-          Object {
-            "content": Object {
-              "rendered": "rendered",
-            },
-            "id": 1,
-          }
-        }
+  <withProps(WithStyles(Header)) />
+  <WithStyles(Splash)
+    description={
+      <FormattedMessage
+        defaultMessage="CME Info is a web portal containing all available data and the latest child mortality estimates for each country based on the research of the UN Inter-agency Group for Child Mortality Estimation."
+        id="splash.description"
+        values={Object {}}
       />
-    </WithStyles(Grid)>
-    <WithStyles(Grid)
-      item={true}
-      md={7}
-      sm={6}
-      xs={10}
-    >
-      latest trends... (map)
-    </WithStyles(Grid)>
-  </WithStyles(Grid)>
+    }
+    image="splash.jpg"
+    title={
+      <FormattedMessage
+        defaultMessage="CME Info"
+        id="splash.title"
+        values={Object {}}
+      />
+    }
+  />
+  <WithStyles(Footer) />
 </div>
 `;

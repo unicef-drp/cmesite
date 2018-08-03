@@ -1,12 +1,12 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  splashTitle: {
-    id: 'landing.splash.title',
-    defaultMessage: 'Short description',
+  title: {
+    id: 'splash.title',
+    defaultMessage: 'CME Info',
   },
-  splashDescription: {
-    id: 'landing.splash.description',
+  description: {
+    id: 'splash.description',
     defaultMessage:
       'CME Info is a web portal containing all available data and the latest child mortality estimates for each country based on the research of the UN Inter-agency Group for Child Mortality Estimation.',
   },
