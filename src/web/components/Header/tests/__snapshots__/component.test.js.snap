@@ -1,64 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`app | Header | component render should match snapshot 1`] = `
-<React.Fragment>
-  <WithStyles(AppBar)
-    color="default"
-    position="static"
-  >
-    <WithStyles(Grid)
-      container={true}
-      justify="center"
-    >
-      <WithStyles(Grid)
-        item={true}
-        xs={10}
-      >
-        <WithStyles(Toolbar)
-          disableGutters={true}
-        >
-          <styled.img
-            src="unicef-logo.png"
-          />
-          <WithStyles(Typography)
-            color="primary"
-            variant="title"
-          >
-            <FormattedMessage
-              defaultMessage="Child Motality Estimates"
-              id="header.title"
-              values={Object {}}
-            />
-          </WithStyles(Typography)>
-        </WithStyles(Toolbar)>
-      </WithStyles(Grid)>
-    </WithStyles(Grid)>
-  </WithStyles(AppBar)>
-  <WithStyles(AppBar)
-    position="sticky"
-  >
-    <WithStyles(Grid)
-      container={true}
-      justify="center"
-    >
-      <WithStyles(Grid)
-        item={true}
-        xs={10}
-      >
-        <WithStyles(Toolbar)
-          disableGutters={true}
-        >
-          <WithStyles(Button)
-            color="inherit"
-            key="1"
-          >
-            <FormattedMessage
-              values={Object {}}
-            />
-          </WithStyles(Button)>
-        </WithStyles(Toolbar)>
-      </WithStyles(Grid)>
-    </WithStyles(Grid)>
-  </WithStyles(AppBar)>
-</React.Fragment>
+<Header
+  classes={
+    Object {
+      "logo": "Header-logo-2",
+      "toolbar": "Header-toolbar-1",
+    }
+  }
+  locale="en"
+  messages={Object {}}
+  routes={
+    Array [
+      Object {
+        "name": 1,
+      },
+    ]
+  }
+>
+  <div />
+</Header>
 `;
