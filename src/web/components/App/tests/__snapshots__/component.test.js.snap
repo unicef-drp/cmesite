@@ -12,14 +12,26 @@ exports[`app | App | component render should match snapshot 1`] = `
     <Route
       component={[Function]}
       exact={true}
-      key="/page2"
-      path="/page2"
+      key="/data"
+      path="/data"
     />
     <Route
       component={[Function]}
       exact={true}
-      key="/page3"
-      path="/page3"
+      key="/reports"
+      path="/reports"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      key="/methods"
+      path="/methods"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      key="/about"
+      path="/about"
     />
     <Route
       component={[Function]}
