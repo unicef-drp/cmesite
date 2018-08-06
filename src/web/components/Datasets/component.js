@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import DescriptionIcon from '@material-ui/icons/Description';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-const datasetsStyle = theme => ({
+const style = theme => ({
   wrapper: {
     backgroundColor: theme.palette.primary.main,
     padding: theme.spacing.unit * 4,
@@ -66,4 +66,4 @@ Datasets.defaultProps = {
   datasets: [],
 };
 
-export default withStyles(datasetsStyle)(Datasets);
+export default withStyles(style)(Datasets);

@@ -13,7 +13,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import unigmeLogo from '../../../assets/unicef-logo.png';
 
-const headerStyle = theme => ({
+const style = theme => ({
   toolbar: {
     paddingLeft: theme.spacing.unit * 10,
     paddingRight: theme.spacing.unit * 10,
@@ -67,4 +67,4 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(headerStyle)(Header);
+export default withStyles(style)(Header);

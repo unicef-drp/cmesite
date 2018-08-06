@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-const splashStyle = theme => ({
+const style = theme => ({
   wrapper: {
     height: 350,
     paddingLeft: theme.spacing.unit * 12,
@@ -46,4 +46,4 @@ Splash.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(splashStyle)(Splash);
+export default withStyles(style)(Splash);

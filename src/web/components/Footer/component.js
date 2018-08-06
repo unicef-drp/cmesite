@@ -10,7 +10,7 @@ import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
 import wboLogo from '../../../assets/wbo-black-logo.png';
 
-const footerStyle = theme => ({
+const style = theme => ({
   footer: {
     padding: theme.spacing.unit * 2,
     paddingLeft: theme.spacing.unit * 10,
@@ -79,4 +79,4 @@ Footer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(footerStyle)(Footer);
+export default withStyles(style)(Footer);
