@@ -85,8 +85,14 @@ export const LandingPage = ({ posts }) => (
       datasets={times(
         n => ({
           id: n,
-          name: 'Estimates of under-five, infant and neonatal mortality',
-          description: 'Estimates',
+          name:
+            n === 4
+              ? 'Estimates of under-five, infant and neonatal mortality Estimates of under-five, infant and neonatal mortality'
+              : 'Estimates of under-five, infant and neonatal mortality',
+          description:
+            n === 4
+              ? 'Estimates of under-five, infant and neonatal mortality'
+              : 'Estimates',
         }),
         10,
       )}

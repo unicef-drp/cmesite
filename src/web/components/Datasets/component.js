@@ -6,6 +6,12 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import DescriptionIcon from '@material-ui/icons/Description';
 import withStyles from '@material-ui/core/styles/withStyles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const style = theme => ({
   wrapper: {
@@ -18,15 +24,26 @@ const style = theme => ({
       paddingRight: theme.spacing.unit * 2,
     },
   },
-  datasets: {
+  list: {
     paddingTop: theme.spacing.unit * 2,
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     flexWrap: 'wrap',
   },
-  button: {
-    color: theme.palette.common.white,
-    textTransform: 'none',
+  item: {
+    width: 500,
+    [theme.breakpoints.only('md')]: {
+      width: 360,
+    },
+    [theme.breakpoints.only('sm')]: {
+      width: 500,
+    },
+    [theme.breakpoints.only('xs')]: {
+      width: 360,
+    },
+  },
+  icon: {
+    color: theme.palette.secondary.main,
   },
 });
 
@@ -38,20 +55,19 @@ const Datasets = ({ classes, title, updatedAt, datasets }) => (
     <Typography variant="body2" color="secondary" align="center">
       {updatedAt}
     </Typography>
-    <div className={classes.datasets}>
+    <List className={classes.list} dense>
       {map(({ id, name, description }) => (
-        <div key={id}>
-          <Button color="inherit" size="small" className={classes.button}>
-            <DescriptionIcon
-              className={classNames(classes.leftIcon, classes.iconSmall)}
-            />
-            <Typography variant="caption" color="secondary" align="left">
-              {name}:&nbsp;{description}
-            </Typography>
-          </Button>
-        </div>
+        <ListItem key={id} button className={classes.item}>
+          <ListItemIcon>
+            <DescriptionIcon className={classes.icon} />
+          </ListItemIcon>
+          <ListItemText
+            primary={`${name}: ${description}`}
+            primaryTypographyProps={{ color: 'secondary' }}
+          />
+        </ListItem>
       ))(datasets)}
-    </div>
+    </List>
   </div>
 );
 

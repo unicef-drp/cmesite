@@ -44,9 +44,9 @@ exports[`app | pages | LandingPage | component render should match snapshot 1`]
           "name": "Estimates of under-five, infant and neonatal mortality",
         },
         Object {
-          "description": "Estimates",
+          "description": "Estimates of under-five, infant and neonatal mortality",
           "id": 4,
-          "name": "Estimates of under-five, infant and neonatal mortality",
+          "name": "Estimates of under-five, infant and neonatal mortality Estimates of under-five, infant and neonatal mortality",
         },
         Object {
           "description": "Estimates",
