@@ -7,6 +7,7 @@ import messages from './messages';
 import Header from '../../components/Header';
 import Splash from '../../components/Splash';
 import Datasets from '../../components/Datasets';
+import Reports from '../../components/Reports';
 import Footer from '../../components/Footer';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -95,6 +96,22 @@ export const LandingPage = ({ posts }) => (
               : 'Estimates',
         }),
         10,
+      )}
+    />
+    <Reports
+      title="Reports and papers"
+      reports={times(
+        n => ({
+          id: n,
+          name: 'Levels & Trends in Child Mortality Report 2017',
+          thumbnail: {
+            id: n,
+            altText: 'Levels & Trends in Child Mortality Report 2017',
+            sourceUrl:
+              'https://image.slidesharecdn.com/unicefannualreport2013web2june2014-2-140603103534-phpapp01/95/unicef-annual-report-2013-1-638.jpg?cb=1401791818',
+          },
+        }),
+        3,
       )}
     />
     <Footer />

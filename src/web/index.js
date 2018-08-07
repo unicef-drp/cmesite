@@ -19,16 +19,16 @@ import loadConfig from './config';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: '#69c6ff',
-      main: '#0096ff',
-      dark: '#0069cb',
+      light: '#E1ECF8',
+      main: '#3282DA',
+      dark: '#0B3B57',
       contrastText: '#fff',
     },
     secondary: {
       light: '#fff',
       main: '#fff',
-      dark: '#ccc',
-      contrastText: '#0069cb',
+      dark: '#DEDEDF',
+      contrastText: '#0B3B57',
     },
   },
 });

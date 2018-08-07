@@ -78,6 +78,40 @@ exports[`app | pages | LandingPage | component render should match snapshot 1`]
     title="Global Datasets"
     updatedAt="today or yesterday"
   />
+  <WithStyles(Reports)
+    reports={
+      Array [
+        Object {
+          "id": 0,
+          "name": "Levels & Trends in Child Mortality Report 2017",
+          "thumbnail": Object {
+            "altText": "Levels & Trends in Child Mortality Report 2017",
+            "id": 0,
+            "sourceUrl": "https://image.slidesharecdn.com/unicefannualreport2013web2june2014-2-140603103534-phpapp01/95/unicef-annual-report-2013-1-638.jpg?cb=1401791818",
+          },
+        },
+        Object {
+          "id": 1,
+          "name": "Levels & Trends in Child Mortality Report 2017",
+          "thumbnail": Object {
+            "altText": "Levels & Trends in Child Mortality Report 2017",
+            "id": 1,
+            "sourceUrl": "https://image.slidesharecdn.com/unicefannualreport2013web2june2014-2-140603103534-phpapp01/95/unicef-annual-report-2013-1-638.jpg?cb=1401791818",
+          },
+        },
+        Object {
+          "id": 2,
+          "name": "Levels & Trends in Child Mortality Report 2017",
+          "thumbnail": Object {
+            "altText": "Levels & Trends in Child Mortality Report 2017",
+            "id": 2,
+            "sourceUrl": "https://image.slidesharecdn.com/unicefannualreport2013web2june2014-2-140603103534-phpapp01/95/unicef-annual-report-2013-1-638.jpg?cb=1401791818",
+          },
+        },
+      ]
+    }
+    title="Reports and papers"
+  />
   <WithStyles(Footer) />
 </div>
 `;
