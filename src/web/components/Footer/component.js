@@ -25,23 +25,12 @@ const style = theme => ({
       justifyContent: 'center',
     },
   },
-  links: {
+  item: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-    [theme.breakpoints.down('xs')]: {
-      justifyContent: 'center',
-    },
-  },
-  logos: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    flexWrap: 'wrap',
-    [theme.breakpoints.down('xs')]: {
-      justifyContent: 'center',
-    },
+    flexGrow: 1,
   },
   logo: {
     height: 30,
@@ -54,14 +43,14 @@ const style = theme => ({
 
 const Footer = ({ classes }) => (
   <footer className={classes.footer}>
-    <div className={classes.logos}>
+    <div className={classes.item}>
       <img src={unigmeLogo} className={classes.logo} />
       <img src={unicefLogo} className={classes.logo} />
       <img src={whoLogo} className={classes.logo} />
       <img src={unLogo} className={classes.logo} />
       <img src={wboLogo} className={classes.logo} />
     </div>
-    <div className={classes.links}>
+    <div className={classes.item}>
       <Button className={classes.button}>
         <FormattedMessage {...messages.about} />
       </Button>
