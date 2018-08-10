@@ -1,4 +1,3 @@
-import 'sanitize.css/sanitize.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
@@ -15,7 +14,6 @@ import ducks from './ducks';
 import wpApi from './api/wp';
 import loadConfig from './config';
 
-// https://material.io/tools/color/#!/?view.left=0&view.right=1&primary.color=0096FF&secondary.color=ffffff&primary.text.color=ffffff&secondary.text.color=0096ff
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -56,5 +54,6 @@ loadConfig().then(config => {
 
   wpApi.config({ endpoint });
   ReactDOM.render(ROOT, document.getElementById('root'));
+  store.dispatch(ducks.wp.actions.loadTags());
   store.dispatch(ducks.wp.actions.loadPosts());
 });

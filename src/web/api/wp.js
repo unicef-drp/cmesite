@@ -1,16 +1,38 @@
 import axios from 'axios';
-import { map, fromPairs, prop, compose, toPairs, forEach } from 'ramda';
+import { map, fromPairs, prop, compose, toPairs, forEach, join } from 'ramda';
 
 let globalConfig = { debug: true };
 const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
 
-const getPosts = () => axios.get(endPoint(`/posts?_embed`)).then(prop('data'));
+const postFields = join(',')([
+  'id',
+  'title',
+  'content',
+  'modified_gmt',
+  'tags',
+  'acf',
+]);
+const getPosts = () =>
+  axios
+    .get(
+      endPoint(
+        `/posts?fields=${postFields}&order=asc&orderBy=modified&per_page=100`,
+      ),
+    )
+    .then(prop('data'));
 
-const config = config => (globalConfig = { ...globalConfig, ...config }); // eslint-disable-line no-shadow
+const getTags = () =>
+  axios
+    .get(endPoint(`/tags?&fields=${join(',')(['id', 'name'])}`))
+    .then(prop('data'));
+
+/* eslint-disable-line no-shadow */
+const config = config => (globalConfig = { ...globalConfig, ...config });
 
 const methods = {
   config,
   getPosts,
+  getTags,
 };
 
 const error = method => () => {

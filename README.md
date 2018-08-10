@@ -41,6 +41,7 @@ Installed plugins:
 * Only Rest API
 * ACF to REST (expose custom fields to REST API)
 * Filter Fields (filter fields to have only useful data through API)
+* Tuxedo Big File Uploads (handle size upload limit)
 
 ### Docker
 
