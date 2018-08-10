@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map } from 'ramda';
+import { map, path, isNil } from 'ramda';
+import { format } from 'date-fns';
 import Typography from '@material-ui/core/Typography';
 import DescriptionIcon from '@material-ui/icons/Description';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -8,6 +9,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 const style = theme => ({
   wrapper: {
@@ -43,33 +46,48 @@ const style = theme => ({
   },
 });
 
-const Datasets = ({ classes, title, updatedAt, datasets }) => (
+const Datasets = ({ classes, updatedAt, datasets }) => (
   <div className={classes.wrapper}>
     <Typography variant="display1" color="secondary" align="center">
-      {title}
+      <FormattedMessage {...messages.title} />
     </Typography>
     <Typography variant="body2" color="secondary" align="center">
-      {updatedAt}
+      <FormattedMessage {...messages.updatedAt} />
+      {' - '}
+      {format(updatedAt, 'DD MMMM YYYY', { locale: 'en' })}
     </Typography>
     <List className={classes.list} dense>
-      {map(({ id, name, description }) => (
-        <ListItem key={id} button className={classes.item}>
-          <ListItemIcon>
-            <DescriptionIcon className={classes.icon} />
-          </ListItemIcon>
-          <ListItemText
-            primary={`${name}: ${description}`}
-            primaryTypographyProps={{ color: 'secondary' }}
-          />
-        </ListItem>
-      ))(datasets)}
+      {map(dataset => {
+        const file = path(['acf', 'file'])(dataset);
+        if (isNil(file)) return null;
+        return (
+          <ListItem
+            key={dataset.id}
+            button
+            component="a"
+            className={classes.item}
+            target="_blank"
+            href={dataset.acf.file.url}
+            download
+          >
+            <ListItemIcon>
+              <DescriptionIcon className={classes.icon} />
+            </ListItemIcon>
+            <ListItemText
+              primary={`${path(['title', 'rendered'])(dataset)}: ${
+                dataset.acf.file.description
+              }`}
+              primaryTypographyProps={{ color: 'secondary' }}
+            />
+          </ListItem>
+        );
+      })(datasets)}
     </List>
   </div>
 );
 
 Datasets.propTypes = {
   classes: PropTypes.object.isRequired,
-  title: PropTypes.string,
   updatedAt: PropTypes.string,
   datasets: PropTypes.array,
 };
