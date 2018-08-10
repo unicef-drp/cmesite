@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { path } from 'ramda';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 const style = theme => ({
   wrapper: {
-    height: 350,
+    height: 400,
     paddingLeft: theme.spacing.unit * 12,
     paddingRight: theme.spacing.unit * 12,
     [theme.breakpoints.down('xs')]: {
@@ -19,20 +20,30 @@ const style = theme => ({
   },
 });
 
-const Splash = ({ title, description, image, classes }) => (
-  <div style={{ background: `url("${image}") no-repeat center` }}>
+const Splash = ({ splash, classes }) => (
+  <div
+    style={{
+      background: `url("${path(['acf', 'image', 'url'])(
+        splash,
+      )}") no-repeat center`,
+    }}
+  >
     <Grid container alignItems="center" className={classes.wrapper}>
       <Grid item xs={12} sm={6} md={4}>
         <Typography
           variant="display2"
           color="secondary"
           className={classes.typo}
+          paragraph
         >
-          {title}
+          {path(['title', 'rendered'])(splash)}
         </Typography>
-        <br />
         <Typography variant="body2" color="secondary" className={classes.typo}>
-          {description}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: path(['content', 'rendered'])(splash),
+            }}
+          />
         </Typography>
       </Grid>
     </Grid>
@@ -40,9 +51,7 @@ const Splash = ({ title, description, image, classes }) => (
 );
 
 Splash.propTypes = {
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  image: PropTypes.string.isRequired,
+  splash: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
