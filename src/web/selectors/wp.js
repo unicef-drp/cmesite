@@ -1,5 +1,68 @@
-import { prop, propOr } from 'ramda';
+import {
+  prop,
+  propOr,
+  filter,
+  contains,
+  pipe,
+  take,
+  indexBy,
+  isNil,
+  identity,
+  ifElse,
+  last,
+  head,
+  equals,
+} from 'ramda';
 import { createSelector } from 'reselect';
 
+// should be in config
+const SPLASH_TAGNAME = 'splash';
+const NEWS_TAGNAME = 'news';
+const NEWS_LIMIT = 2;
+const REPORT_TAGNAME = 'report';
+const REPORT_LIMIT = 3;
+const DATASET_TAGNAME = 'dataset';
+
+const getTaggedPosts = (tagName, limit) => (tags, posts) => {
+  const tag = prop(tagName)(tags);
+  if (isNil(tag)) return [];
+  return pipe(
+    filter(pipe(prop('tags'), contains(prop('id')(tag)))),
+    ifElse(
+      () => isNil(limit),
+      identity,
+      ifElse(() => equals(1, limit), head, take(limit)),
+    ),
+  )(posts);
+};
+
 export const getWP = prop('wp');
+export const getTags = createSelector(
+  getWP,
+  pipe(propOr([], 'tags'), indexBy(prop('name'))),
+);
 export const getPosts = createSelector(getWP, propOr([], 'posts'));
+export const getNews = createSelector(
+  getTags,
+  getPosts,
+  getTaggedPosts(NEWS_TAGNAME, NEWS_LIMIT),
+);
+export const getReports = createSelector(
+  getTags,
+  getPosts,
+  getTaggedPosts(REPORT_TAGNAME, REPORT_LIMIT),
+);
+export const getDatasets = createSelector(
+  getTags,
+  getPosts,
+  getTaggedPosts(DATASET_TAGNAME),
+);
+export const getDatasetsUpdatedAt = createSelector(
+  getDatasets,
+  pipe(last, prop('modified_gmt')),
+);
+export const getSplash = createSelector(
+  getTags,
+  getPosts,
+  getTaggedPosts(SPLASH_TAGNAME, 1),
+);
