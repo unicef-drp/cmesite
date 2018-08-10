@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import R from 'ramda';
+import { map, isNil, path } from 'ramda';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -38,7 +38,7 @@ const style = theme => ({
     width: 320,
   },
   media: {
-    paddingLeft: '30%',
+    paddingLeft: '35%',
     width: 0,
   },
   action: {
@@ -50,30 +50,44 @@ const style = theme => ({
   },
 });
 
-const Reports = ({ classes, title, reports }) => (
+const Reports = ({ classes, reports }) => (
   <div className={classes.wrapper}>
     <Typography variant="display1" align="center" className={classes.typo}>
-      {title}
+      <FormattedMessage {...messages.title} />
     </Typography>
     <div className={classes.container}>
-      {R.map(report => (
-        <Card key={report.id} className={classes.card} elevation={0}>
-          <CardMedia
-            className={classes.media}
-            image={report.thumbnail.sourceUrl}
-            title={report.thumbnail.altText}
-          />
-          <CardContent>
-            <Typography variant="body2" className={classes.typo} paragraph>
-              {report.name}
-            </Typography>
-            <Button variant="outlined" color="primary" size="small">
-              <DescriptionIcon />
-              English
-            </Button>
-          </CardContent>
-        </Card>
-      ))(reports)}
+      {map(report => {
+        const image = path(['acf', 'image'])(report);
+        const file = path(['acf', 'file'])(report);
+        return (
+          <Card key={report.id} className={classes.card} elevation={0}>
+            {isNil(image) ? null : (
+              <CardMedia
+                className={classes.media}
+                image={report.acf.image.url}
+                title={report.acf.image.alt}
+              />
+            )}
+            <CardContent>
+              <Typography variant="body2" className={classes.typo} paragraph>
+                {path(['title', 'rendered'])(report)}
+              </Typography>
+              {isNil(file) ? null : (
+                <Button
+                  color="primary"
+                  target="_blank"
+                  size="small"
+                  href={report.acf.file.url}
+                  download
+                >
+                  <DescriptionIcon />
+                  {report.acf.file.description}
+                </Button>
+              )}
+            </CardContent>
+          </Card>
+        );
+      })(reports)}
     </div>
     <div className={classes.action}>
       <Button variant="contained" color="primary">
@@ -85,7 +99,6 @@ const Reports = ({ classes, title, reports }) => (
 
 Reports.propTypes = {
   classes: PropTypes.object.isRequired,
-  title: PropTypes.string,
   reports: PropTypes.array,
 };
 
