@@ -17,9 +17,4 @@ describe('web | selectors | wp', () => {
     const res = state.wp.posts;
     expect(getPosts(state)).toEqual(res);
   });
-
-  it('should getPostsByTag', () => {
-    const res = init(state.wp.posts);
-    expect(getPostsByTag(1)(state)).toEqual(res);
-  });
 });

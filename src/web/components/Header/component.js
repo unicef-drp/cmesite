@@ -9,6 +9,7 @@ import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import unigmeLogo from '../../../assets/unicef-logo.png';
@@ -52,7 +53,12 @@ const Header = ({ routes, classes }) => (
       <AppBar position="sticky">
         <Toolbar disableGutters className={classes.toolbar}>
           {map(route => (
-            <Button color="inherit" key={prop('name')(route)}>
+            <Button
+              color="inherit"
+              key={prop('name')(route)}
+              component={Link}
+              to={prop('path')(route)}
+            >
               <FormattedMessage {...prop(prop('name')(route))(messages)} />
             </Button>
           ))(routes)}
