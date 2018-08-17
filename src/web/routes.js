@@ -1,6 +1,8 @@
 import { compose, toPairs, map, find, prop } from 'ramda';
 import Home from './pages/Home/Loadable';
+import Data from './pages/Data/Loadable';
 import Reports from './pages/Reports/Loadable';
+import Methods from './pages/Methods/Loadable';
 import About from './pages/About/Loadable';
 
 const routes = {
@@ -13,7 +15,7 @@ const routes = {
   data: {
     path: '/data',
     exact: true,
-    component: Home,
+    component: Data,
   },
   reports: {
     path: '/reports',
@@ -23,7 +25,7 @@ const routes = {
   methods: {
     path: '/methods',
     exact: true,
-    component: Home,
+    component: Methods,
   },
   about: {
     path: '/about',

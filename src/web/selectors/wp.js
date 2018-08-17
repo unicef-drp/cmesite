@@ -24,6 +24,7 @@ const REPORT_LIMIT = 3;
 const DATASET_TAGNAME = 'dataset';
 const ABOUT_TAGNAME = 'about';
 const FOCUS_TAGNAME = 'focus';
+const METHOD_TAGNAME = 'method';
 
 const getTaggedPosts = (tagName, limit) => (tags, posts) => {
   const tag = prop(tagName)(tags);
@@ -77,4 +78,9 @@ export const getFocuses = createSelector(
   getTags,
   getPosts,
   getTaggedPosts(FOCUS_TAGNAME),
+);
+export const getMethod = createSelector(
+  getTags,
+  getPosts,
+  getTaggedPosts(METHOD_TAGNAME, 1),
 );

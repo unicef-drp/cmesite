@@ -50,6 +50,7 @@ const style = theme => ({
   },
   logo: {
     height: 40,
+    margin: theme.spacing.unit,
   },
   focus: {
     display: 'flex',
