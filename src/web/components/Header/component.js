@@ -12,6 +12,7 @@ import { withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import { allRoutes, getPath } from '../../routes';
 import unigmeLogo from '../../../assets/unicef-logo.png';
 
 const style = theme => ({
@@ -32,7 +33,7 @@ const style = theme => ({
   },
 });
 
-const Header = ({ routes, classes }) => (
+const Header = ({ classes, selectedName }) => (
   <React.Fragment>
     <AppBar position="sticky" color="default">
       <Toolbar disableGutters className={classes.toolbar}>
@@ -57,11 +58,12 @@ const Header = ({ routes, classes }) => (
               color="inherit"
               key={prop('name')(route)}
               component={Link}
-              to={prop('path')(route)}
+              to={getPath(route)}
+              disabled={selectedName === prop('name')(route)}
             >
               <FormattedMessage {...prop(prop('name')(route))(messages)} />
             </Button>
-          ))(routes)}
+          ))(allRoutes)}
         </Toolbar>
       </AppBar>
     </Hidden>
@@ -69,8 +71,8 @@ const Header = ({ routes, classes }) => (
 );
 
 Header.propTypes = {
-  routes: PropTypes.array,
   classes: PropTypes.object.isRequired,
+  selectedName: PropTypes.string,
 };
 
 export default withStyles(style)(Header);

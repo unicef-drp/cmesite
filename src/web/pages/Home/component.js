@@ -25,9 +25,9 @@ const style = theme => ({
   },
 });
 
-export const Home = ({ classes }) => (
+export const Page = ({ classes }) => (
   <React.Fragment>
-    <Header />
+    <Header selectedName="home" />
     <Splash />
     <Grid container className={classes.wrapper}>
       <Grid item xs={12} sm={6} md={3}>
@@ -49,13 +49,13 @@ export const Home = ({ classes }) => (
       </Grid>
     </Grid>
     <Datasets />
-    <Reports />
+    <Reports isHome />
     <Footer />
   </React.Fragment>
 );
 
-Home.propTypes = {
+Page.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(Home);
+export default withStyles(style)(Page);

@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'header.title',
     defaultMessage: 'Child Mortality Estimates',
   },
+  home: {
+    id: 'route.home',
+    defaultMessage: 'Home',
+  },
   data: {
     id: 'route.data',
     defaultMessage: 'Data',
