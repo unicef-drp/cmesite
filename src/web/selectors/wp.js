@@ -22,6 +22,8 @@ const NEWS_LIMIT = 2;
 const REPORT_TAGNAME = 'report';
 const REPORT_LIMIT = 3;
 const DATASET_TAGNAME = 'dataset';
+const ABOUT_TAGNAME = 'about';
+const FOCUS_TAGNAME = 'focus';
 
 const getTaggedPosts = (tagName, limit) => (tags, posts) => {
   const tag = prop(tagName)(tags);
@@ -65,4 +67,14 @@ export const getSplash = createSelector(
   getTags,
   getPosts,
   getTaggedPosts(SPLASH_TAGNAME, 1),
+);
+export const getAbout = createSelector(
+  getTags,
+  getPosts,
+  getTaggedPosts(ABOUT_TAGNAME, 1),
+);
+export const getFocuses = createSelector(
+  getTags,
+  getPosts,
+  getTaggedPosts(FOCUS_TAGNAME),
 );

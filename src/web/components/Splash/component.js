@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 const style = theme => ({
   wrapper: {
-    height: 400,
+    height: 350,
     paddingLeft: theme.spacing.unit * 12,
     paddingRight: theme.spacing.unit * 12,
     [theme.breakpoints.down('xs')]: {
