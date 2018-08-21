@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import 'typeface-montserrat';
+import 'typeface-open-sans';
 import LanguageProvider from './components/LanguageProvider';
 import ConfigContext from './components/ConfigContext';
 import App from './components/App';
@@ -15,6 +17,15 @@ import wpApi from './api/wp';
 import loadConfig from './config';
 
 const theme = createMuiTheme({
+  typography: {
+    fontFamily: "'open sans'",
+    title: {
+      fontFamily: "'montserrat'",
+    },
+    display1: {
+      fontFamily: "'montserrat'",
+    },
+  },
   palette: {
     primary: {
       light: '#E1ECF8',

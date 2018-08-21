@@ -15,9 +15,6 @@ const style = theme => ({
       paddingRight: theme.spacing.unit * 2,
     },
   },
-  typo: {
-    fontWeight: 'bold',
-  },
 });
 
 const Splash = ({ splash, classes }) => (
@@ -30,15 +27,10 @@ const Splash = ({ splash, classes }) => (
   >
     <Grid container alignItems="center" className={classes.wrapper}>
       <Grid item xs={12} sm={6} md={4}>
-        <Typography
-          variant="display2"
-          color="secondary"
-          className={classes.typo}
-          paragraph
-        >
+        <Typography variant="display2" color="secondary" paragraph>
           {path(['title', 'rendered'])(splash)}
         </Typography>
-        <Typography variant="body2" color="secondary" className={classes.typo}>
+        <Typography variant="body2" color="secondary">
           <span
             dangerouslySetInnerHTML={{
               __html: path(['content', 'rendered'])(splash),
