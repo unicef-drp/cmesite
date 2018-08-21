@@ -60,14 +60,20 @@ const News = ({ classes, news }) => (
               <Typography variant="body2" paragraph>
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: 'test',
+                    __html: path(['content', 'rendered'])(post),
                   }}
                 />
               </Typography>
             </CardContent>
           </Card>
         );
-      })(news)}
+      })([
+        {
+          id: 1,
+          title: { rendered: 'title' },
+          content: { rendered: 'content' },
+        },
+      ])}
     </div>
   </div>
 );
