@@ -60,7 +60,7 @@ const News = ({ classes, news }) => (
               <Typography variant="body2" paragraph>
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: path(['content', 'rendered'])(post),
+                    __html: 'test',
                   }}
                 />
               </Typography>
