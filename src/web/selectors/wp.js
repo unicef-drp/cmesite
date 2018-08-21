@@ -52,7 +52,14 @@ export const getPosts = createSelector(getWP, propOr([], 'posts'));
 export const getNews = createSelector(
   getTags,
   getPosts,
-  getTaggedPosts(NEWS_TAGNAME, NEWS_LIMIT),
+  () => [
+    {
+      id: 1,
+      title: { rendered: 'title' },
+      content: { rendered: 'content' },
+    },
+  ],
+  //getTaggedPosts(NEWS_TAGNAME, NEWS_LIMIT),
 );
 export const getReports = createSelector(
   getTags,

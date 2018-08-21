@@ -67,13 +67,7 @@ const News = ({ classes, news }) => (
             </CardContent>
           </Card>
         );
-      })([
-        {
-          id: 1,
-          title: { rendered: 'title' },
-          content: { rendered: 'content' },
-        },
-      ])}
+      })(news)}
     </div>
   </div>
 );
