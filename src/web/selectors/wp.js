@@ -12,25 +12,29 @@ import {
   last,
   head,
   equals,
+  reject,
 } from 'ramda';
 import { createSelector } from 'reselect';
 
 // should be in config
 const SPLASH_TAGNAME = 'splash';
 const NEWS_TAGNAME = 'news';
-const NEWS_LIMIT = 2;
 const REPORT_TAGNAME = 'report';
-const REPORT_LIMIT = 3;
 const DATASET_TAGNAME = 'dataset';
 const ABOUT_TAGNAME = 'about';
 const FOCUS_TAGNAME = 'focus';
 const METHOD_TAGNAME = 'method';
+const FEATURED_TAGNAME = 'featured';
+const NEWS_LIMIT = 2;
 
-const getTaggedPosts = (tagName, limit) => (tags, posts) => {
+const hasTag = tag => pipe(prop('tags'), contains(prop('id')(tag)));
+const getTaggedPosts = (tagName, limit, antiTagName) => (tags, posts) => {
   const tag = prop(tagName)(tags);
+  const antiTag = prop(antiTagName)(tags);
   if (isNil(tag)) return [];
   return pipe(
-    filter(pipe(prop('tags'), contains(prop('id')(tag)))),
+    ifElse(() => isNil(antiTag), identity, reject(hasTag(antiTag))),
+    filter(hasTag(tag)),
     ifElse(
       () => isNil(limit),
       identity,
@@ -53,7 +57,17 @@ export const getNews = createSelector(
 export const getReports = createSelector(
   getTags,
   getPosts,
-  getTaggedPosts(REPORT_TAGNAME, REPORT_LIMIT),
+  getTaggedPosts(REPORT_TAGNAME),
+);
+export const getFeaturedReports = createSelector(
+  getTags,
+  getReports,
+  getTaggedPosts(FEATURED_TAGNAME),
+);
+export const getMethodReports = createSelector(
+  getTags,
+  getReports,
+  getTaggedPosts(METHOD_TAGNAME),
 );
 export const getDatasets = createSelector(
   getTags,
@@ -82,5 +96,5 @@ export const getFocuses = createSelector(
 export const getMethod = createSelector(
   getTags,
   getPosts,
-  getTaggedPosts(METHOD_TAGNAME, 1),
+  getTaggedPosts(METHOD_TAGNAME, 1, REPORT_TAGNAME),
 );

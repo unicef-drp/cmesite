@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 import Splash from '../../components/Splash';
 import News from '../../components/News';
 import Datasets from '../../components/Datasets';
-import Reports from '../../components/Reports';
+import { FeaturedReports } from '../../components/Reports';
 import Footer from '../../components/Footer';
 
 // temp
@@ -49,7 +49,7 @@ export const Page = ({ classes }) => (
       </Grid>
     </Grid>
     <Datasets />
-    <Reports isHome />
+    <FeaturedReports />
     <Footer />
   </React.Fragment>
 );

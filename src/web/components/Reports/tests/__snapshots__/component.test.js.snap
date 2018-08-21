@@ -8,10 +8,10 @@ exports[`Reports | component render should match snapshot 1`] = `
       "card": "Reports-card-4",
       "container": "Reports-container-3",
       "content": "Reports-content-6",
-      "homeCard": "Reports-homeCard-5",
-      "homeContent": "Reports-homeContent-7",
-      "homeWrapper": "Reports-homeWrapper-2",
       "media": "Reports-media-8",
+      "secondaryCard": "Reports-secondaryCard-5",
+      "secondaryContent": "Reports-secondaryContent-7",
+      "secondaryWrapper": "Reports-secondaryWrapper-2",
       "typo": "Reports-typo-10",
       "wrapper": "Reports-wrapper-1",
     }

@@ -25,7 +25,7 @@ const style = theme => ({
       paddingRight: theme.spacing.unit * 2,
     },
   },
-  homeWrapper: {
+  secondaryWrapper: {
     backgroundColor: theme.palette.secondary.dark,
   },
   container: {
@@ -45,7 +45,7 @@ const style = theme => ({
     width: 320,
     minHeight: 180,
   },
-  homeCard: {
+  secondaryCard: {
     border: 'none',
     backgroundColor: theme.palette.secondary.dark,
     margin: 0,
@@ -54,7 +54,7 @@ const style = theme => ({
   content: {
     backgroundColor: theme.palette.secondary.main,
   },
-  homeContent: {
+  secondaryContent: {
     backgroundColor: theme.palette.secondary.dark,
   },
   media: {
@@ -71,9 +71,11 @@ const style = theme => ({
   },
 });
 
-const Reports = ({ classes, reports, isHome }) => (
+const Reports = ({ classes, reports, isSecondary }) => (
   <div
-    className={classNames(classes.wrapper, { [classes.homeWrapper]: isHome })}
+    className={classNames(classes.wrapper, {
+      [classes.secondaryWrapper]: isSecondary,
+    })}
   >
     <Typography variant="display1" align="center" className={classes.typo}>
       <FormattedMessage {...messages.title} />
@@ -85,7 +87,9 @@ const Reports = ({ classes, reports, isHome }) => (
         return (
           <Card
             key={report.id}
-            className={classNames(classes.card, { [classes.homeCard]: isHome })}
+            className={classNames(classes.card, {
+              [classes.secondaryCard]: isSecondary,
+            })}
             elevation={0}
           >
             {isNil(image) ? null : (
@@ -97,7 +101,7 @@ const Reports = ({ classes, reports, isHome }) => (
             )}
             <CardContent
               className={classNames(classes.content, {
-                [classes.homeContent]: isHome,
+                [classes.secondaryContent]: isSecondary,
               })}
             >
               <Typography variant="body2" className={classes.typo} paragraph>
@@ -120,7 +124,7 @@ const Reports = ({ classes, reports, isHome }) => (
         );
       })(reports)}
     </div>
-    {isHome ? (
+    {isSecondary ? (
       <div className={classes.action}>
         <Button
           variant="contained"
@@ -138,7 +142,7 @@ const Reports = ({ classes, reports, isHome }) => (
 Reports.propTypes = {
   classes: PropTypes.object.isRequired,
   reports: PropTypes.array,
-  isHome: PropTypes.bool,
+  isSecondary: PropTypes.bool,
 };
 
 Reports.defaultProps = {
