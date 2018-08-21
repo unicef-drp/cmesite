@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app | pages | LandingPage | component render should match snapshot 1`] = `
+<Page
+  classes={
+    Object {
+      "wrapper": "Page-wrapper-1",
+    }
+  }
+  posts={
+    Array [
+      Object {
+        "content": Object {
+          "rendered": "rendered",
+        },
+        "id": 1,
+      },
+    ]
+  }
+/>
+`;

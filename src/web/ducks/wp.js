@@ -3,15 +3,16 @@ import wpApi from '../api/wp';
 
 export const LOADING_POSTS = 'CM/WP/LOADING_POSTS';
 export const POSTS_LOADED = 'CM/WP/POSTS_LOADED';
-export const types = { LOADING_POSTS, POSTS_LOADED };
+export const LOADING_TAGS = 'CM/WP/LOADING_TAGS';
+export const TAGS_LOADED = 'CM/WP/TAGS_LOADED';
+export const types = { LOADING_POSTS, POSTS_LOADED, LOADING_TAGS, TAGS_LOADED };
 
 const reducer = (state = {}, action = {}) => {
   switch (action.type) {
     case POSTS_LOADED:
-      return {
-        ...state,
-        posts: action.posts,
-      };
+      return { ...state, posts: action.posts };
+    case TAGS_LOADED:
+      return { ...state, tags: action.tags };
     default:
       return state;
   }
@@ -52,8 +53,13 @@ export const loadPosts = () => dispatch => {
   );
 };
 
-const actions = {
-  loadPosts,
+export const loadTags = () => dispatch => {
+  dispatch({ type: LOADING_TAGS });
+  return requestWP(dispatch, { method: 'getTags' }).then(tags =>
+    dispatch({ type: TAGS_LOADED, tags }),
+  );
 };
+
+const actions = { loadPosts, loadTags };
 
 export default { reducer, actions };

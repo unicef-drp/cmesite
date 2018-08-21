@@ -3,14 +3,26 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'header.title',
-    defaultMessage: 'Child Motality Estimates',
+    defaultMessage: 'Child Mortality Estimates',
   },
-  PAGE2: {
+  home: {
+    id: 'route.home',
+    defaultMessage: 'Home',
+  },
+  data: {
     id: 'route.data',
     defaultMessage: 'Data',
   },
-  PAGE3: {
+  reports: {
     id: 'route.reports',
     defaultMessage: 'Reports',
+  },
+  methods: {
+    id: 'route.methods',
+    defaultMessage: 'Methods',
+  },
+  about: {
+    id: 'route.about',
+    defaultMessage: 'About',
   },
 });
