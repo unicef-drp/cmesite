@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Header from '../../components/Header';
 import Splash from '../../components/Splash';
-import News from '../../components/News';
+// import News from '../../components/News';
 import Datasets from '../../components/Datasets';
 import { FeaturedReports } from '../../components/Reports';
 import Footer from '../../components/Footer';
@@ -30,9 +30,7 @@ export const Page = ({ classes }) => (
     <Header routeName="home" />
     <Splash />
     <Grid container className={classes.wrapper}>
-      <Grid item xs={12} sm={6} md={3}>
-        <News />
-      </Grid>
+      <Grid item xs={12} sm={6} md={3} />
       <Grid item xs={12} sm={6} md={9}>
         <div
           style={{

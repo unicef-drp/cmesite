@@ -58,7 +58,11 @@ const News = ({ classes, news }) => (
                 {path(['title', 'rendered'])(post)}
               </Typography>
               <Typography variant="body2" paragraph>
-                test
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: 'test',
+                  }}
+                />
               </Typography>
             </CardContent>
           </Card>
