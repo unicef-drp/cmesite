@@ -27,7 +27,7 @@ const style = theme => ({
 
 export const Page = ({ classes }) => (
   <React.Fragment>
-    <Header selectedName="home" />
+    <Header routeName="home" />
     <Splash />
     <Grid container className={classes.wrapper}>
       <Grid item xs={12} sm={6} md={3}>

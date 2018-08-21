@@ -8,7 +8,7 @@ import BlurOnIcon from '@material-ui/icons/BlurOn';
 
 export const Page = () => (
   <React.Fragment>
-    <Header selectedName="data" />
+    <Header routeName="data" />
     <div
       style={{
         height: 300,

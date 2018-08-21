@@ -5,7 +5,7 @@ import Footer from '../../components/Footer';
 
 export const Page = () => (
   <React.Fragment>
-    <Header selectedName="reports" />
+    <Header routeName="reports" />
     <Reports />
     <Footer />
   </React.Fragment>

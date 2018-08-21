@@ -6,7 +6,7 @@ import Footer from '../../components/Footer';
 
 export const Page = () => (
   <React.Fragment>
-    <Header selectedName="methods" />
+    <Header routeName="methods" />
     <Method />
     <Reports isHome />
     <Footer />

@@ -33,7 +33,7 @@ const style = theme => ({
   },
 });
 
-const Header = ({ classes, selectedName }) => (
+const Header = ({ classes, routeName }) => (
   <React.Fragment>
     <AppBar position="sticky" color="default">
       <Toolbar disableGutters className={classes.toolbar}>
@@ -59,7 +59,7 @@ const Header = ({ classes, selectedName }) => (
               key={prop('name')(route)}
               component={Link}
               to={getPath(route)}
-              disabled={selectedName === prop('name')(route)}
+              disabled={routeName === prop('name')(route)}
             >
               <FormattedMessage {...prop(prop('name')(route))(messages)} />
             </Button>
@@ -72,7 +72,7 @@ const Header = ({ classes, selectedName }) => (
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  selectedName: PropTypes.string,
+  routeName: PropTypes.string,
 };
 
 export default withStyles(style)(Header);
