@@ -51,7 +51,7 @@ const Splash = ({ splash, classes }) => (
 );
 
 Splash.propTypes = {
-  splash: PropTypes.object.isRequired,
+  splash: PropTypes.object,
   classes: PropTypes.object.isRequired,
 };
 

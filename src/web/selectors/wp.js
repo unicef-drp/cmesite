@@ -31,7 +31,7 @@ const hasTag = tag => pipe(prop('tags'), contains(prop('id')(tag)));
 const getTaggedPosts = (tagName, limit, antiTagName) => (tags, posts) => {
   const tag = prop(tagName)(tags);
   const antiTag = prop(antiTagName)(tags);
-  if (isNil(tag)) return [];
+  if (isNil(tag)) return isNil(limit) ? [] : null;
   return pipe(
     ifElse(() => isNil(antiTag), identity, reject(hasTag(antiTag))),
     filter(hasTag(tag)),
