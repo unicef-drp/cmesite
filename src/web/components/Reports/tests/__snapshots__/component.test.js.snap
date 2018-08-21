@@ -4,11 +4,15 @@ exports[`Reports | component render should match snapshot 1`] = `
 <Reports
   classes={
     Object {
-      "action": "Reports-action-5",
-      "card": "Reports-card-3",
-      "container": "Reports-container-2",
-      "media": "Reports-media-4",
-      "typo": "Reports-typo-6",
+      "action": "Reports-action-9",
+      "card": "Reports-card-4",
+      "container": "Reports-container-3",
+      "content": "Reports-content-6",
+      "homeCard": "Reports-homeCard-5",
+      "homeContent": "Reports-homeContent-7",
+      "homeWrapper": "Reports-homeWrapper-2",
+      "media": "Reports-media-8",
+      "typo": "Reports-typo-10",
       "wrapper": "Reports-wrapper-1",
     }
   }
