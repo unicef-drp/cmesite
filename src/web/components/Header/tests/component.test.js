@@ -8,14 +8,10 @@ const props = {
   routes: [{ name: 1 }],
 };
 
-describe('app | Header | component', () => {
+describe('Header | component', () => {
   describe('render', () => {
     it('should match snapshot', () => {
-      const root = (
-        <Component {...props}>
-          <div />
-        </Component>
-      );
+      const root = <Component {...props} />;
 
       const wrapper = shallow(root);
       expect(wrapper).toMatchSnapshot();

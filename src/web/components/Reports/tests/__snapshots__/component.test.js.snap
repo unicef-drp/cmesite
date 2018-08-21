@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reports | component render should match snapshot 1`] = `
+<Reports
+  classes={
+    Object {
+      "action": "Reports-action-9",
+      "card": "Reports-card-4",
+      "container": "Reports-container-3",
+      "content": "Reports-content-6",
+      "media": "Reports-media-8",
+      "secondaryCard": "Reports-secondaryCard-5",
+      "secondaryContent": "Reports-secondaryContent-7",
+      "secondaryWrapper": "Reports-secondaryWrapper-2",
+      "typo": "Reports-typo-10",
+      "wrapper": "Reports-wrapper-1",
+    }
+  }
+  reports={Array []}
+/>
+`;

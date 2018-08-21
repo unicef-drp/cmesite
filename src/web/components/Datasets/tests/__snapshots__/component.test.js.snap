@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Datasets | component render should match snapshot 1`] = `
+<Datasets
+  classes={
+    Object {
+      "icon": "Datasets-icon-4",
+      "item": "Datasets-item-3",
+      "list": "Datasets-list-2",
+      "wrapper": "Datasets-wrapper-1",
+    }
+  }
+  datasets={Array []}
+/>
+`;
