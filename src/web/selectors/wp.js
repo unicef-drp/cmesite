@@ -32,7 +32,7 @@ const getTaggedPosts = (tagName, limit, antiTagName) => (tags, posts) => {
   const tag = prop(tagName)(tags);
   const antiTag = prop(antiTagName)(tags);
   if (isNil(tag)) return isNil(limit) ? [] : null;
-  return pipe(
+  const ret = pipe(
     ifElse(() => isNil(antiTag), identity, reject(hasTag(antiTag))),
     filter(hasTag(tag)),
     ifElse(
@@ -41,6 +41,11 @@ const getTaggedPosts = (tagName, limit, antiTagName) => (tags, posts) => {
       ifElse(() => equals(1, limit), head, take(limit)),
     ),
   )(posts);
+  console.log(ret);
+  console.debug(tagName, limit, antiTagName);
+  console.table(tags);
+  console.table(posts);
+  return ret;
 };
 
 export const getWP = prop('wp');
@@ -52,7 +57,11 @@ export const getPosts = createSelector(getWP, propOr([], 'posts'));
 export const getNews = createSelector(
   getTags,
   getPosts,
-  getTaggedPosts(NEWS_TAGNAME, NEWS_LIMIT),
+  (tags, posts) => {
+    console.debug(tags, posts);
+    return getTaggedPosts(NEWS_TAGNAME, NEWS_LIMIT)(tags, posts);
+  },
+  //getTaggedPosts(NEWS_TAGNAME, NEWS_LIMIT),
 );
 export const getReports = createSelector(
   getTags,
