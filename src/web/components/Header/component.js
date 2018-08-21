@@ -8,6 +8,10 @@ import Button from '@material-ui/core/Button';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -33,42 +37,74 @@ const style = theme => ({
   },
 });
 
-const Header = ({ classes, routeName }) => (
-  <React.Fragment>
-    <AppBar position="sticky" color="default">
-      <Toolbar disableGutters className={classes.toolbar}>
-        <img src={unigmeLogo} className={classes.logo} />
+class Header extends React.Component {
+  state = { isDrawerOpen: false };
+
+  handleOpen = () => this.setState({ isOpen: true });
+  handleClose = () => this.setState({ isOpen: false });
+
+  render = () => {
+    const { classes, routeName } = this.props;
+
+    return (
+      <React.Fragment>
+        <AppBar position="sticky" color="default">
+          <Toolbar disableGutters className={classes.toolbar}>
+            <img src={unigmeLogo} className={classes.logo} />
+            <Hidden xsDown>
+              <Typography variant="title" color="primary">
+                <FormattedMessage {...messages.title} />
+              </Typography>
+            </Hidden>
+            <Hidden smUp>
+              <IconButton color="primary" onClick={this.handleOpen}>
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
+          </Toolbar>
+        </AppBar>
         <Hidden xsDown>
-          <Typography variant="title" color="primary">
-            <FormattedMessage {...messages.title} />
-          </Typography>
+          <AppBar position="sticky">
+            <Toolbar disableGutters className={classes.toolbar}>
+              {map(route => (
+                <Button
+                  color="inherit"
+                  key={prop('name')(route)}
+                  component={Link}
+                  to={getPath(route)}
+                  disabled={routeName === prop('name')(route)}
+                >
+                  <FormattedMessage {...prop(prop('name')(route))(messages)} />
+                </Button>
+              ))(allRoutes)}
+            </Toolbar>
+          </AppBar>
         </Hidden>
-        <Hidden smUp>
-          <IconButton color="primary">
-            <MenuIcon />
-          </IconButton>
-        </Hidden>
-      </Toolbar>
-    </AppBar>
-    <Hidden xsDown>
-      <AppBar position="sticky">
-        <Toolbar disableGutters className={classes.toolbar}>
-          {map(route => (
-            <Button
-              color="inherit"
-              key={prop('name')(route)}
-              component={Link}
-              to={getPath(route)}
-              disabled={routeName === prop('name')(route)}
-            >
-              <FormattedMessage {...prop(prop('name')(route))(messages)} />
-            </Button>
-          ))(allRoutes)}
-        </Toolbar>
-      </AppBar>
-    </Hidden>
-  </React.Fragment>
-);
+        <Drawer
+          open={this.state.isOpen}
+          onClose={this.handleClose}
+          anchor="top"
+        >
+          <List component="nav">
+            {map(route => (
+              <ListItem
+                button
+                key={prop('name')(route)}
+                component={Link}
+                to={getPath(route)}
+                disabled={routeName === prop('name')(route)}
+              >
+                <ListItemText>
+                  <FormattedMessage {...prop(prop('name')(route))(messages)} />
+                </ListItemText>
+              </ListItem>
+            ))(allRoutes)}
+          </List>
+        </Drawer>
+      </React.Fragment>
+    );
+  };
+}
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
