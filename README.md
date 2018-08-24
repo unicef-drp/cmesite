@@ -14,7 +14,7 @@ Linked to `develop` branch.
 
 #### Wordpress
 
-Available on (http://staging.wp.cme.redpelicans.com)[http://staging.wp.cme.redpelicans.com]
+Available on [http://staging.wp.cme.redpelicans.com](http://staging.wp.cme.redpelicans.com)
 
 ```
   Username: root
