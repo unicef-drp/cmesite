@@ -83,7 +83,7 @@ cme-config-staging   1         6m
 
 ```
 
-Delte one:
+Delete one:
 
 ```
 $ kubectl delete configmaps cme-config-qa
