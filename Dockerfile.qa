@@ -14,7 +14,7 @@ RUN chmod 600 /root/.ssh/*
 
 RUN git clone git@gitlab.com:eric-basley/childmortality.git /cm
 WORKDIR /cm
-RUN git checkout develop
+RUN git checkout master
 RUN yarn
 RUN yarn build
 RUN yarn global add serve

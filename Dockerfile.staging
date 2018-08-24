@@ -1,22 +1,18 @@
 FROM node:latest
 
-RUN apt-get update && apt-get install -y git vim-tiny
+RUN mkdir -p /cme
+WORKDIR /cme
 
-ENV HOME /root
-
-RUN mkdir -p ~/.ssh
-RUN ssh-keyscan -H gitlab.com >> ~/.ssh/known_hosts
-RUN echo 'host gitlab.com' >> ~/.ssh/config
-RUN echo '     identityfile /root/.ssh/gitlab' >> ~/.ssh/config
-ADD etc/gitlab /root/.ssh/
-RUN chmod 600 /root/.ssh/*
-
-
-RUN git clone git@gitlab.com:eric-basley/childmortality.git /cm
-WORKDIR /cm
-RUN git checkout master
+COPY .eslint* package.json yarn.lock /cme/
 RUN yarn
+
+COPY config /cme/config
+COPY public /cme/public
+COPY scripts /cme/scripts
+COPY src /cme/src
+
 RUN yarn build
 RUN yarn global add serve
+
 EXPOSE 80
 CMD npx serve -s build -l 80
