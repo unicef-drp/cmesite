@@ -1,39 +1,55 @@
 # Childmortality
 
-## Initial Install
 
-### Services
 
-### Mysql
+## CI/CD
 
-On rp3 run:
-```
-# mkdir /opt/mysql-data
-#  docker run --restart=always --name=mysql -v /opt/mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=pasdire -d mysql:5.7
-```
 
-Connect to Mysql:
-```
-# docker exec -it mysql bash
-mysql# mysql -u root -p
-Enter password:
-mysql> show databases;
-```
+Deplyed on `kube-rp` both on `staging` and `qa envs.
 
-### Wordpress
 
-```
-# docker run --name=wordpress-test --restart=always --link mysql:mysql -p 8080:80  -e WORDPRESS_DB_NAME=wpdev -d wordpress
-# docker run --name=wordpress-staging --restart=always --link mysql:mysql -p 8585:80 -e WORDPRESS_DB_NAME=wpstg -d wordpress
-```
+### Staging env
 
-Launch your browser to `http://rp3.redpelicans.com:8080` for `test`, `http://rp3.redpelicans.com:8585` for `staging`.
+Linked to `develop` branch. 
+
+#### Wordpress
+
+Available on (http://staging.wp.cme.redpelicans.com)[http://staging.wp.cme.redpelicans.com]
+
 ```
   Username: root
   Password: p******
 ```
 
-Installed plugins:
+#### CME Site
+
+Available on (http://staging.cme.redpelicans.com)[http://staging.cme.redpelicans.com]
+
+
+### QA env
+
+Linked to `master` branch. 
+
+#### Wordpress
+
+Available on (http://qa.wp.cme.redpelicans.com)[http://qa.wp.cme.redpelicans.com]
+
+```
+  Username: root
+  Password: p******
+```
+
+#### CME Site
+
+Available on (http://qa.cme.redpelicans.com)[http://qa.cme.redpelicans.com]
+
+
+## Setup
+
+### Wordpress
+
+
+#### Plugins
 
 * WordPress REST API (Version 2)
 * Custom Post Type UI (add custom REST resources)
@@ -43,11 +59,6 @@ Installed plugins:
 * WP REST API - filter fields (filter fields to have only useful data through API)
 * Tuxedo Big File Uploads (handle size upload limit)
 
-### Docker
-
-Docker images are built and deployed with gitlab CI/CD (see .gitlab-ci.yml)
-
-** CARE to update `rp3@root:/opt/cm/etc/config.*.json` when /public/config.json is updated**
 
 ### Jira
 
