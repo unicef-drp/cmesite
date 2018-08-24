@@ -35,12 +35,12 @@ Launch your browser to `http://rp3.redpelicans.com:8080` for `test`, `http://rp3
 
 Installed plugins:
 
-* WP REST API
+* WordPress REST API (Version 2)
 * Custom Post Type UI (add custom REST resources)
 * Advanced Custom Fields (add custom fields to WP/custom resources)
-* Only Rest API
+* Only Rest API by Braad Martin
 * ACF to REST (expose custom fields to REST API)
-* Filter Fields (filter fields to have only useful data through API)
+* WP REST API - filter fields (filter fields to have only useful data through API)
 * Tuxedo Big File Uploads (handle size upload limit)
 
 ### Docker
