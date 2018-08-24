@@ -23,7 +23,7 @@ Available on [http://staging.wp.cme.redpelicans.com](http://staging.wp.cme.redpe
 
 #### CME Site
 
-Available on (http://staging.cme.redpelicans.com)[http://staging.cme.redpelicans.com]
+Available on [http://staging.cme.redpelicans.com](http://staging.cme.redpelicans.com)
 
 
 ### QA env
@@ -32,7 +32,7 @@ Linked to `master` branch.
 
 #### Wordpress
 
-Available on (http://qa.wp.cme.redpelicans.com)[http://qa.wp.cme.redpelicans.com]
+Available on [http://qa.wp.cme.redpelicans.com](http://qa.wp.cme.redpelicans.com)
 
 ```
   Username: root
@@ -41,7 +41,7 @@ Available on (http://qa.wp.cme.redpelicans.com)[http://qa.wp.cme.redpelicans.com
 
 #### CME Site
 
-Available on (http://qa.cme.redpelicans.com)[http://qa.cme.redpelicans.com]
+Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
 
 
 ## Setup
