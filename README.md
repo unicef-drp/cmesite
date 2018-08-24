@@ -48,7 +48,6 @@ Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
 
 ### Wordpress
 
-
 #### Plugins
 
 * WordPress REST API (Version 2)
@@ -58,6 +57,38 @@ Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
 * ACF to REST (expose custom fields to REST API)
 * WP REST API - filter fields (filter fields to have only useful data through API)
 * Tuxedo Big File Uploads (handle size upload limit)
+
+### Kubernetes
+
+#### ConfigMap
+
+2 ConfigMaps are used to mount `config.json` in containers. Because there is yet no way to update them they are not managed in CI/CD pipelines.
+
+
+First create `ConfigMap` for all envs:
+
+```
+$ kubectl create configmap cme-config-staging --from-file=config=params/staging.json
+$ kubectl create configmap cme-config-qa --from-file=config=params/qa.json
+```
+
+
+List them:
+
+```
+$ kubectl get configmaps
+NAME                 DATA      AGE
+cme-config-qa        1         6m
+cme-config-staging   1         6m
+
+```
+
+Delte one:
+
+```
+$ kubectl delete configmaps cme-config-qa
+
+```
 
 
 ### Jira
