@@ -12,7 +12,7 @@ Linked to `develop` branch.
 
 #### Wordpress
 
-Available on [http://staging.wp.cme.redpelicans.com](http://staging.wp.cme.redpelicans.com)
+Available on [http://staging.wp.cme.redpelicans.com/wp-admin](http://staging.wp.cme.redpelicans.com/wp-admin)
 
 ```
   Username: root
@@ -30,7 +30,7 @@ Linked to `master` branch.
 
 #### Wordpress
 
-Available on [http://qa.wp.cme.redpelicans.com](http://qa.wp.cme.redpelicans.com)
+Available on [http://qa.wp.cme.redpelicans.com/wp-admin](http://qa.wp.cme.redpelicans.com/wp-admin)
 
 ```
   Username: root
