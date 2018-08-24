@@ -28,7 +28,7 @@ build and push staging docker image:
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
   script:
-    - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile.staging .
+    - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile .
     - docker push $CONTAINER_IMAGE
   only:
     - develop
@@ -51,7 +51,7 @@ build and push qa docker image:
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
   script:
-    - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile.qa .
+    - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile .
     - docker tag $CONTAINER_IMAGE $LATEST_CONTAINER_IMAGE
     - docker push $CONTAINER_IMAGE
     - docker push $LATEST_CONTAINER_IMAGE
