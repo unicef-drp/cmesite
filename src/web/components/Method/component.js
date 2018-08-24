@@ -21,7 +21,6 @@ const style = theme => ({
   },
   image: {
     width: '100%',
-    height: '100%',
   },
 });
 
@@ -40,10 +39,10 @@ const Method = ({ method, classes }) => {
             }}
           />
         </Typography>
+        {isNil(image) ? null : (
+          <img className={classes.image} src={image.url} alt={image.alt} />
+        )}
       </Grid>
-      {isNil(image) ? null : (
-        <img className={classes.image} src={image.url} alt={image.alt} />
-      )}
     </Grid>
   );
 };

@@ -1,28 +1,35 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Data from '../../components/Data';
 
-// temp
-import Avatar from '@material-ui/core/Avatar';
-import BlurOnIcon from '@material-ui/icons/BlurOn';
+const style = () => ({
+  root: {
+    // sticky footer -> https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/
+    display: 'flex',
+    height: '100vh',
+    flexDirection: 'column',
+  },
+  wrapper: {
+    // sticky footer -> https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/
+    flex: '1 0 auto',
+  },
+});
 
-export const Page = () => (
-  <React.Fragment>
+export const Page = ({ classes }) => (
+  <div className={classes.root}>
     <Header routeName="data" />
-    <div
-      style={{
-        height: 300,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Avatar>
-        <BlurOnIcon />
-      </Avatar>
+    <div className={classes.wrapper}>
+      <Data />
     </div>
     <Footer />
-  </React.Fragment>
+  </div>
 );
 
-export default Page;
+Page.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(style)(Page);
