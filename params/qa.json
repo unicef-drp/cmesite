@@ -1,6 +1,6 @@
 {
   "wp": {
-    "endpoint": "http://rp5.redpelicans.com:9091/wp-json/wp/v2"
+    "endpoint": "http://qa.wp.cme.redpelicans.com/wp-json/wp/v2"
   },
   "language": {
     "locale": "en"
