@@ -35,7 +35,7 @@ build and push staging docker image:
   only:
     - develop
   tags:
-    - docker 
+    - kube-rp 
 
 run staging:
   stage: run-staging-image
