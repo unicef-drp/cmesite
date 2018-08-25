@@ -1,3 +1,32 @@
+const dimensions = [
+  {
+    id: 'RATES',
+    label: 'Mortality rate',
+    values: [
+      { id: 1, label: 'Under-five mortality rate' },
+      { id: 2, label: 'Infant mortality rate', isSelected: true },
+      { id: 3, label: 'Neonatal mortality' },
+      { id: 4, label: 'Mortality rate among children aged 5-14' },
+    ],
+  },
+  {
+    id: 'SEX',
+    label: 'Sex',
+    values: [
+      { id: 1, label: 'Male' },
+      { id: 2, label: 'Female', isSelected: true },
+    ],
+  },
+  {
+    id: 'TYPE',
+    label: 'Type of data',
+    values: [
+      { id: 1, label: 'Estimates', isSelected: true },
+      { id: 2, label: 'Source data' },
+    ],
+  },
+];
+
 const splash = {
   id: 1,
   title: { rendered: 'title of the splash' },
@@ -61,4 +90,5 @@ module.exports = {
   report,
   dataset,
   splash,
+  dimensions,
 };

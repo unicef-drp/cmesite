@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
+import Popper from '@material-ui/core/Popper';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 
 const suggestions = [
@@ -53,12 +54,9 @@ const suggestions = [
 }));
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    height: 250,
-  },
   input: {
     display: 'flex',
+    padding: 0,
   },
   valueContainer: {
     display: 'flex',
@@ -90,9 +88,6 @@ const styles = theme => ({
   },
   paper: {
     marginTop: theme.spacing.unit,
-  },
-  divider: {
-    height: theme.spacing.unit * 2,
   },
 });
 
@@ -211,27 +206,37 @@ const components = {
   NoOptionsMessage,
   Placeholder,
   SingleValue,
-  MultiValue,
+  //MultiValue,
   ValueContainer,
-  Menu,
+  //Menu,
 };
 
-export const CountrySelector = ({ classes, theme }) => (
-  <Select
-    classes={classes}
-    styles={{
-      input: base => ({
-        ...base,
-        color: theme.palette.text.primary,
-      }),
-    }}
-    options={suggestions}
-    components={components}
-    //value={this.state.single}
-    //onChange={this.handleChange('single')}
-    placeholder="Search a country (start with a)"
-  />
-);
+class CountrySelector extends React.Component {
+  state = {
+    single: null,
+  };
+
+  handleChange = name => value => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  render() {
+    const { classes, theme } = this.props;
+
+    return (
+      <Select
+        classes={classes}
+        options={suggestions}
+        components={components}
+        value={this.state.single}
+        onChange={this.handleChange('single')}
+        placeholder="Search a country (start with a)"
+      />
+    );
+  }
+}
 
 CountrySelector.propTypes = {
   classes: PropTypes.object.isRequired,

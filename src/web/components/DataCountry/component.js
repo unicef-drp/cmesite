@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CountrySelector from '../CountrySelector';
 import DataDimensions from '../DataDimensions';
+import DataTitle from '../DataTitle';
 
 const style = theme => ({});
 
@@ -16,7 +17,7 @@ const DataCountry = ({ classes }) => (
       <DataDimensions />
     </Grid>
     <Grid item xs={8}>
-      main
+      <DataTitle />
     </Grid>
   </Grid>
 );

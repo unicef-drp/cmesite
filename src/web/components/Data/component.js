@@ -14,6 +14,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataCountry from '../DataCountry';
+import DataNotes from '../DataNotes';
 
 // temp
 import Avatar from '@material-ui/core/Avatar';
@@ -48,73 +49,76 @@ const tabs = [
 ];
 
 const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
-  <div className={classes.wrapper}>
-    <AppBar position="static" color="default">
-      <Tabs
-        value={activeTab}
-        onChange={(event, value) => changeActiveTab(value)}
-        indicatorColor="primary"
-        textColor="primary"
-        fullWidth
+  <React.Fragment>
+    <div className={classes.wrapper}>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={activeTab}
+          onChange={(event, value) => changeActiveTab(value)}
+          indicatorColor="primary"
+          textColor="primary"
+          fullWidth
+        >
+          {map(tab => (
+            <Tab
+              key={tab.key}
+              label={
+                <Typography variant="body2" className={classes.tabTypo}>
+                  <FormattedMessage {...messages[tab.key]} />
+                </Typography>
+              }
+              icon={tab.icon}
+              classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
+            />
+          ))(tabs)}
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={activeTab}
+        onChangeIndex={index => changeActiveTab(index)}
       >
-        {map(tab => (
-          <Tab
-            key={tab.key}
-            label={
-              <Typography variant="body2" className={classes.tabTypo}>
-                <FormattedMessage {...messages[tab.key]} />
-              </Typography>
-            }
-            icon={tab.icon}
-            classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
-          />
-        ))(tabs)}
-      </Tabs>
-    </AppBar>
-    <SwipeableViews
-      axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-      index={activeTab}
-      onChangeIndex={index => changeActiveTab(index)}
-    >
-      <DataCountry />
-      <div
-        style={{
-          height: 300,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar>
-          <BlurOnIcon />
-        </Avatar>
-      </div>
-      <div
-        style={{
-          height: 300,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar>
-          <BlurOnIcon />
-        </Avatar>
-      </div>
-      <div
-        style={{
-          height: 300,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar>
-          <BlurOnIcon />
-        </Avatar>
-      </div>
-    </SwipeableViews>
-  </div>
+        <DataCountry />
+        <div
+          style={{
+            height: 300,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar>
+            <BlurOnIcon />
+          </Avatar>
+        </div>
+        <div
+          style={{
+            height: 300,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar>
+            <BlurOnIcon />
+          </Avatar>
+        </div>
+        <div
+          style={{
+            height: 300,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar>
+            <BlurOnIcon />
+          </Avatar>
+        </div>
+      </SwipeableViews>
+    </div>
+    <DataNotes />
+  </React.Fragment>
 );
 
 Data.propTypes = {
