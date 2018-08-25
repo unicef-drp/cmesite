@@ -27,9 +27,9 @@ build and push staging docker image:
   stage: build-staging-image
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
-    - yarn
+    - /home/gitlab-runner/tools/node/bin/yarn
   script:
-    - yarn build
+    - /home/gitlab-runner/tools/node/bin/yarn build
     - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile.nginx .
     - docker push $CONTAINER_IMAGE
   only:
