@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map } from 'ramda';
+import { map, values as rvalues } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -11,7 +11,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { dimensions } from '../../../mock/data';
 
 const styles = theme => ({
   panelRoot: {
@@ -50,11 +49,11 @@ const styles = theme => ({
   },
 });
 
-const DataDimensions = ({ classes }) => (
+const DataDimensions = ({ classes, dimensions, toggleDimensionValue }) => (
   <React.Fragment>
-    {map(({ id, label, values }) => (
+    {map(({ label, values, ...dimension }) => (
       <ExpansionPanel
-        key={id}
+        key={dimension.id}
         defaultExpanded
         classes={{ root: classes.panelRoot }}
       >
@@ -75,7 +74,7 @@ const DataDimensions = ({ classes }) => (
                 key={id}
                 dense
                 button
-                onClick={() => console.log('click')}
+                onClick={() => toggleDimensionValue(dimension.id, id)}
                 className={classes.listItem}
               >
                 <Checkbox
@@ -87,16 +86,18 @@ const DataDimensions = ({ classes }) => (
                 />
                 <ListItemText primary={label} />
               </ListItem>
-            ))(values)}
+            ))(rvalues(values))}
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-    ))(dimensions)}
+    ))(rvalues(dimensions))}
   </React.Fragment>
 );
 
 DataDimensions.propTypes = {
   classes: PropTypes.object.isRequired,
+  dimensions: PropTypes.object.isRequired,
+  toggleDimensionValue: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(DataDimensions);

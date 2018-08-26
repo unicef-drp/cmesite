@@ -1,31 +1,44 @@
-const dimensions = [
-  {
+const dimensions = {
+  COUNTRY: {
+    id: 'COUNTRY',
+    label: 'Countries',
+    values: {
+      au: { id: 'au', label: 'Australia' },
+      be: { id: 'be', label: 'Bermuda' },
+      fr: { id: 'fr', label: 'France', isSelected: true },
+      ja: { id: 'ja', label: 'Japan' },
+    },
+  },
+  RATES: {
     id: 'RATES',
     label: 'Mortality rate',
-    values: [
-      { id: 1, label: 'Under-five mortality rate' },
-      { id: 2, label: 'Infant mortality rate', isSelected: true },
-      { id: 3, label: 'Neonatal mortality' },
-      { id: 4, label: 'Mortality rate among children aged 5-14' },
-    ],
+    values: {
+      ufmr: { id: 'ufmr', label: 'Under-five mortality rate' },
+      imr: { id: 'imr', label: 'Infant mortality rate', isSelected: true },
+      nm: { id: 'nm', label: 'Neonatal mortality' },
+      mraca514: {
+        id: 'mraca514',
+        label: 'Mortality rate among children aged 5-14',
+      },
+    },
   },
-  {
+  SEX: {
     id: 'SEX',
     label: 'Sex',
-    values: [
-      { id: 1, label: 'Male' },
-      { id: 2, label: 'Female', isSelected: true },
-    ],
+    values: {
+      m: { id: 'm', label: 'Male' },
+      f: { id: 'f', label: 'Female', isSelected: true },
+    },
   },
-  {
+  TYPE: {
     id: 'TYPE',
     label: 'Type of data',
-    values: [
-      { id: 1, label: 'Estimates', isSelected: true },
-      { id: 2, label: 'Source data' },
-    ],
+    values: {
+      e: { id: 'e', label: 'Estimates', isSelected: true },
+      sd: { id: 'sd', label: 'Source data' },
+    },
   },
-];
+};
 
 const splash = {
   id: 1,
