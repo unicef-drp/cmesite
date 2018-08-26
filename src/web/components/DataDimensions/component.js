@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, values as rvalues } from 'ramda';
+import { map, addIndex } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -69,13 +69,12 @@ const DataDimensions = ({ classes, dimensions, toggleDimensionValue }) => (
         </ExpansionPanelSummary>
         <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
           <List className={classes.list}>
-            {map(({ id, label, isSelected }) => (
+            {addIndex(map)(({ id, label, isSelected }, index) => (
               <ListItem
                 key={id}
                 dense
                 button
-                onClick={() => toggleDimensionValue(dimension.id, id)}
-                className={classes.listItem}
+                onClick={() => toggleDimensionValue(dimension.index, index)}
               >
                 <Checkbox
                   checked={!!isSelected}
@@ -86,17 +85,17 @@ const DataDimensions = ({ classes, dimensions, toggleDimensionValue }) => (
                 />
                 <ListItemText primary={label} />
               </ListItem>
-            ))(rvalues(values))}
+            ))(values)}
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-    ))(rvalues(dimensions))}
+    ))(dimensions)}
   </React.Fragment>
 );
 
 DataDimensions.propTypes = {
   classes: PropTypes.object.isRequired,
-  dimensions: PropTypes.object.isRequired,
+  dimensions: PropTypes.array.isRequired,
   toggleDimensionValue: PropTypes.func.isRequired,
 };
 

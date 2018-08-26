@@ -6,11 +6,16 @@ import CountrySelector from '../CountrySelector';
 import DataDimensions from '../DataDimensions';
 import DataTitle from '../DataTitle';
 
-const style = theme => ({});
+const style = theme => ({
+  wrapper: {
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  },
+});
 
 const DataCountry = ({ classes }) => (
   <Grid container>
-    <Grid item xs={12}>
+    <Grid item xs={12} className={classes.wrapper}>
       <CountrySelector />
     </Grid>
     <Grid item xs={4}>

@@ -4,7 +4,7 @@ describe('ducks', () => {
   describe('data', () => {
     const { reducer, actions } = data;
     const changeActiveTab = actions.changeActiveTab(1);
-    const toggleDimensionValue = actions.toggleDimensionValue('RATES', 'imr');
+    const toggleDimensionValue = actions.toggleDimensionValue(0, 1);
     describe('actions', () => {
       it('should return changeActiveTab action', () => {
         const expectedAction = { type: types.CHANGE_ACTIVE_TAB, activeTab: 1 };
@@ -14,8 +14,8 @@ describe('ducks', () => {
       it('should return toggleDimensionValue action', () => {
         const expectedAction = {
           type: types.TOGGLE_DIMENSION_VALUE,
-          dimensionId: 'RATES',
-          valueId: 'imr',
+          dimensionIndex: 0,
+          valueIndex: 1,
         };
         expect(toggleDimensionValue).toEqual(expectedAction);
       });
@@ -25,7 +25,7 @@ describe('ducks', () => {
         expect(reducer()).toEqual({
           activeTab: 0,
           isLoadingStructure: false,
-          dimensions: {},
+          dimensions: [],
         });
       });
       it('should handle CHANGE_ACTIVE_TAB case', () => {
@@ -33,32 +33,30 @@ describe('ducks', () => {
       });
       it('should handle TOGGLE_DIMENSION_VALUE case', () => {
         const state = {
-          dimensions: {
-            RATES: {
+          dimensions: [
+            {
               id: 'RATES',
+              index: 0,
               label: 'Mortality rate',
-              values: {
-                ufmr: { id: 'ufmr', label: 'Under-five mortality rate' },
-                imr: { id: 'imr', label: 'Infant mortality rate' },
-              },
+              values: [
+                { id: 'ufmr', label: 'Under-five mortality rate' },
+                { id: 'imr', label: 'Infant mortality rate' },
+              ],
             },
-          },
+          ],
         };
         const extectedState = {
-          dimensions: {
-            RATES: {
+          dimensions: [
+            {
               id: 'RATES',
+              index: 0,
               label: 'Mortality rate',
-              values: {
-                ufmr: { id: 'ufmr', label: 'Under-five mortality rate' },
-                imr: {
-                  id: 'imr',
-                  label: 'Infant mortality rate',
-                  isSelected: true,
-                },
-              },
+              values: [
+                { id: 'ufmr', label: 'Under-five mortality rate' },
+                { id: 'imr', label: 'Infant mortality rate', isSelected: true },
+              ],
             },
-          },
+          ],
         };
         expect(reducer(state, toggleDimensionValue)).toEqual(extectedState);
       });

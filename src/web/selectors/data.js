@@ -3,11 +3,11 @@ import {
   prop,
   always,
   useWith,
-  append,
   identity,
-  omit,
-  pipe,
-  flip,
+  eqBy,
+  find,
+  propEq,
+  reject,
 } from 'ramda';
 
 export const getData = prop('data');
@@ -23,10 +23,10 @@ export const getIsLoadingStructure = createSelector(
 export const getDimensions = createSelector(getData, prop('dimensions'));
 export const getCountryDimension = createSelector(
   getDimensions,
-  prop('COUNTRY'),
+  find(propEq('id', 'COUNTRY')),
 );
 export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,
-  useWith(omit, [pipe(prop('id'), flip(append)([])), identity]),
+  useWith(reject, [eqBy(prop('id')), identity]),
 );

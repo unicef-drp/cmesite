@@ -4,38 +4,38 @@ describe('selectors', () => {
   describe('data', () => {
     const countryDimension = {
       id: 'COUNTRY',
+      index: 0,
       label: 'Countries',
-      values: {
-        au: { id: 'au', label: 'Australia' },
-        fr: { id: 'fr', label: 'France', isSelected: true },
-      },
+      values: [
+        { id: 'au', label: 'Australia' },
+        { id: 'fr', label: 'France', isSelected: true },
+      ],
     };
-    const otherDimensions = {
-      SEX: {
+    const otherDimensions = [
+      {
         id: 'SEX',
+        index: 1,
         label: 'Sex',
-        values: {
-          m: { id: 'm', label: 'Male' },
-          f: { id: 'f', label: 'Female', isSelected: true },
-        },
+        values: [
+          { id: 'm', label: 'Male' },
+          { id: 'f', label: 'Female', isSelected: true },
+        ],
       },
-      TYPE: {
+      {
         id: 'TYPE',
+        index: 2,
         label: 'Type of data',
-        values: {
-          e: { id: 'e', label: 'Estimates', isSelected: true },
-          sd: { id: 'sd', label: 'Source data' },
-        },
+        values: [
+          { id: 'e', label: 'Estimates', isSelected: true },
+          { id: 'sd', label: 'Source data' },
+        ],
       },
-    };
+    ];
     const state = {
       data: {
         activeTab: 0,
         isLoadingStructure: false,
-        dimensions: {
-          [countryDimension.id]: countryDimension,
-          ...otherDimensions,
-        },
+        dimensions: [countryDimension, ...otherDimensions],
       },
     };
     it('should getData', () => {

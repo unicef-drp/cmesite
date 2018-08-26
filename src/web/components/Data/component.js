@@ -22,7 +22,6 @@ import BlurOnIcon from '@material-ui/icons/BlurOn';
 
 const style = theme => ({
   wrapper: {
-    padding: theme.spacing.unit * 4,
     paddingLeft: theme.spacing.unit * 12,
     paddingRight: theme.spacing.unit * 12,
     [theme.breakpoints.down('xs')]: {
@@ -31,7 +30,7 @@ const style = theme => ({
     },
   },
   tabRoot: {
-    minHeight: 64,
+    minHeight: 48,
   },
   tabWrapper: {
     flexDirection: 'row',
@@ -50,73 +49,73 @@ const tabs = [
 
 const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
   <React.Fragment>
-    <div className={classes.wrapper}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={activeTab}
-          onChange={(event, value) => changeActiveTab(value)}
-          indicatorColor="primary"
-          textColor="primary"
-          fullWidth
-        >
-          {map(tab => (
-            <Tab
-              key={tab.key}
-              label={
-                <Typography variant="body2" className={classes.tabTypo}>
-                  <FormattedMessage {...messages[tab.key]} />
-                </Typography>
-              }
-              icon={tab.icon}
-              classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
-            />
-          ))(tabs)}
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeTab}
-        onChangeIndex={index => changeActiveTab(index)}
+    <AppBar position="static" color="default" className={classes.wrapper}>
+      <Tabs
+        value={activeTab}
+        onChange={(event, value) => changeActiveTab(value)}
+        indicatorColor="primary"
+        textColor="primary"
+        fullWidth
       >
+        {map(tab => (
+          <Tab
+            key={tab.key}
+            label={
+              <Typography variant="body2" className={classes.tabTypo}>
+                <FormattedMessage {...messages[tab.key]} />
+              </Typography>
+            }
+            icon={tab.icon}
+            classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
+          />
+        ))(tabs)}
+      </Tabs>
+    </AppBar>
+    <SwipeableViews
+      axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+      index={activeTab}
+      onChangeIndex={index => changeActiveTab(index)}
+    >
+      <div className={classes.wrapper}>
         <DataCountry />
-        <div
-          style={{
-            height: 300,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar>
-            <BlurOnIcon />
-          </Avatar>
-        </div>
-        <div
-          style={{
-            height: 300,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar>
-            <BlurOnIcon />
-          </Avatar>
-        </div>
-        <div
-          style={{
-            height: 300,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar>
-            <BlurOnIcon />
-          </Avatar>
-        </div>
-      </SwipeableViews>
-    </div>
+      </div>
+      <div
+        style={{
+          height: 300,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar>
+          <BlurOnIcon />
+        </Avatar>
+      </div>
+      <div
+        style={{
+          height: 300,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar>
+          <BlurOnIcon />
+        </Avatar>
+      </div>
+      <div
+        style={{
+          height: 300,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar>
+          <BlurOnIcon />
+        </Avatar>
+      </div>
+    </SwipeableViews>
     <DataNotes />
   </React.Fragment>
 );

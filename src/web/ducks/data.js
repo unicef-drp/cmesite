@@ -15,7 +15,7 @@ export const types = {
 const initialState = {
   activeTab: 0,
   isLoadingStructure: false,
-  dimensions: {},
+  dimensions: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -26,9 +26,9 @@ const reducer = (state = initialState, action = {}) => {
       return over(
         lensPath([
           'dimensions',
-          action.dimensionId,
+          action.dimensionIndex,
           'values',
-          action.valueId,
+          action.valueIndex,
           'isSelected',
         ]),
         not,
@@ -52,10 +52,10 @@ export const changeActiveTab = activeTab => ({
   activeTab,
 });
 
-export const toggleDimensionValue = (dimensionId, valueId) => ({
+export const toggleDimensionValue = (dimensionIndex, valueIndex) => ({
   type: TOGGLE_DIMENSION_VALUE,
-  dimensionId,
-  valueId,
+  dimensionIndex,
+  valueIndex,
 });
 
 export const loadStructure = () => dispatch => {
