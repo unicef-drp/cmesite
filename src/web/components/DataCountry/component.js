@@ -20,11 +20,11 @@ const DataCountry = ({ classes }) => (
     <Grid item xs={12} className={classes.wrapper}>
       <CountrySelector />
     </Grid>
-    <Grid item xs={3}>
-      <DataOtherDimensions />
+    <Grid item sm={12} md={3}>
+      <DataOtherDimensions isSide />
       <DataDownloadPanel />
     </Grid>
-    <Grid item xs={9}>
+    <Grid item sm={12} md={9}>
       <DataTitle />
       <DataChart />
     </Grid>

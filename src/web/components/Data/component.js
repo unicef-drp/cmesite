@@ -15,6 +15,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataCountry from '../DataCountry';
 import DataCompare from '../DataCompare';
+import DataDownload from '../DataDownload';
 import DataNotes from '../DataNotes';
 
 // temp
@@ -95,17 +96,8 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
           <BlurOnIcon />
         </Avatar>
       </div>
-      <div
-        style={{
-          height: 300,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar>
-          <BlurOnIcon />
-        </Avatar>
+      <div className={classes.wrapper}>
+        <DataDownload />
       </div>
     </SwipeableViews>
     <DataNotes />
