@@ -3,10 +3,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { prop, map, compose } from 'ramda';
-import { scaleLinear, scaleTime, scaleOrdinal } from 'd3-scale';
-import { select } from 'd3-selection';
-import { line, area } from 'd3-shape';
+import { compose } from 'ramda';
+import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
 import Axis from './axis';
 import Line from './line';
