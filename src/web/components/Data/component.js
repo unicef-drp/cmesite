@@ -14,6 +14,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataCountry from '../DataCountry';
+import DataCompare from '../DataCompare';
 import DataNotes from '../DataNotes';
 
 // temp
@@ -79,17 +80,8 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       <div className={classes.wrapper}>
         <DataCountry />
       </div>
-      <div
-        style={{
-          height: 300,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar>
-          <BlurOnIcon />
-        </Avatar>
+      <div className={classes.wrapper}>
+        <DataCompare />
       </div>
       <div
         style={{
