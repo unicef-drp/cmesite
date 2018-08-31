@@ -77,7 +77,7 @@ export const selectDimensionValue = (dimensionIndex, valueIndex) => ({
 export const loadStructure = () => dispatch => {
   dispatch({ type: LOADING_STRUCTURE });
   return new Promise(resolve => {
-    setTimeout(() => resolve({ dimensions: __dimensions }), 1000);
+    setTimeout(() => resolve({ dimensions: __dimensions }), 100);
   }).then(({ dimensions }) => dispatch({ type: STRUCTURE_LOADED, dimensions }));
 };
 

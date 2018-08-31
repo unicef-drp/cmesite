@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import CountrySelector from '../CountrySelector';
 import DataDimensions from '../DataDimensions';
 import DataTitle from '../DataTitle';
+import DataChart from '../DataChart';
 
 const style = theme => ({
   wrapper: {
@@ -18,11 +19,12 @@ const DataCountry = ({ classes }) => (
     <Grid item xs={12} className={classes.wrapper}>
       <CountrySelector />
     </Grid>
-    <Grid item xs={4}>
+    <Grid item xs={3}>
       <DataDimensions />
     </Grid>
-    <Grid item xs={8}>
+    <Grid item xs={9}>
       <DataTitle />
+      <DataChart />
     </Grid>
   </Grid>
 );

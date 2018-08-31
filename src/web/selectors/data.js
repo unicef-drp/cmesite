@@ -8,6 +8,7 @@ import {
   find,
   propEq,
   reject,
+  times,
 } from 'ramda';
 
 export const getData = prop('data');
@@ -30,3 +31,33 @@ export const getOtherDimensions = createSelector(
   getDimensions,
   useWith(reject, [eqBy(prop('id')), identity]),
 );
+export const getChartData = always([
+  {
+    id: 1,
+    type: 'line',
+    datapoints: times(
+      n => ({ x: new Date(2001 + n, 0, 1), y: n * 4 + 10 }),
+      19,
+    ),
+  },
+  {
+    id: 2,
+    type: 'line',
+    datapoints: [
+      ...times(n => ({ x: new Date(2001 + n, 0, 1), y: n * 2 + 5 }), 8),
+      ...times(n => ({ x: new Date(2009 + n, 0, 1) }), 5),
+      ...times(
+        n => ({ x: new Date(2014 + n, 0, 1), y: n * 2 + 5 + 13 * 2 }),
+        6,
+      ),
+    ],
+  },
+  {
+    id: 1,
+    type: 'area',
+    datapoints: times(n => {
+      if (n === 10 || n === 11) return { x: new Date(2001 + n, 0, 1) };
+      return { x: new Date(2001 + n, 0, 1), y0: n * 3.5 + 2, y1: n * 4.5 + 15 };
+    }, 19),
+  },
+]);
