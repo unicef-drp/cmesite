@@ -1,53 +1,93 @@
 # Childmortality
 
-## Initial Install
+## CI/CD
 
-### Services
 
-### Mysql
+Deplyed on `kube-rp` both on `staging` and `qa envs.
 
-On rp3 run:
-```
-# mkdir /opt/mysql-data
-#  docker run --restart=always --name=mysql -v /opt/mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=pasdire -d mysql:5.7
-```
 
-Connect to Mysql:
-```
-# docker exec -it mysql bash
-mysql# mysql -u root -p
-Enter password:
-mysql> show databases;
-```
+### Staging env
 
-### Wordpress
+Linked to `develop` branch. 
 
-```
-# docker run --name=wordpress-test --restart=always --link mysql:mysql -p 8080:80  -e WORDPRESS_DB_NAME=wpdev -d wordpress
-# docker run --name=wordpress-staging --restart=always --link mysql:mysql -p 8585:80 -e WORDPRESS_DB_NAME=wpstg -d wordpress
-```
+#### Wordpress
 
-Launch your browser to `http://rp3.redpelicans.com:8080` for `test`, `http://rp3.redpelicans.com:8585` for `staging`.
+Available on [http://staging.wp.cme.redpelicans.com/wp-admin](http://staging.wp.cme.redpelicans.com/wp-admin)
+
 ```
   Username: root
   Password: p******
 ```
 
-Installed plugins:
+#### CME Site
 
-* WP REST API
+Available on [http://staging.cme.redpelicans.com](http://staging.cme.redpelicans.com)
+
+
+### QA env
+
+Linked to `master` branch. 
+
+#### Wordpress
+
+Available on [http://qa.wp.cme.redpelicans.com/wp-admin](http://qa.wp.cme.redpelicans.com/wp-admin)
+
+```
+  Username: root
+  Password: p******
+```
+
+#### CME Site
+
+Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
+
+
+## Setup
+
+### Wordpress
+
+#### Plugins
+
+* WordPress REST API (Version 2)
 * Custom Post Type UI (add custom REST resources)
 * Advanced Custom Fields (add custom fields to WP/custom resources)
-* Only Rest API
+* Only Rest API by Braad Martin
 * ACF to REST (expose custom fields to REST API)
-* Filter Fields (filter fields to have only useful data through API)
+* WP REST API - filter fields (filter fields to have only useful data through API)
 * Tuxedo Big File Uploads (handle size upload limit)
 
-### Docker
+### Kubernetes
 
-Docker images are built and deployed with gitlab CI/CD (see .gitlab-ci.yml)
+#### ConfigMap
 
-** CARE to update `rp3@root:/opt/cm/etc/config.*.json` when /public/config.json is updated**
+2 ConfigMaps are used to mount `config.json` in containers. Because there is yet no way to update them they are not managed in CI/CD pipelines.
+
+
+First create `ConfigMap` for all envs:
+
+```
+$ kubectl create configmap cme-config-staging --from-file=config=params/staging.json
+$ kubectl create configmap cme-config-qa --from-file=config=params/qa.json
+```
+
+
+List them:
+
+```
+$ kubectl get configmaps
+NAME                 DATA      AGE
+cme-config-qa        1         6m
+cme-config-staging   1         6m
+
+```
+
+Delete one:
+
+```
+$ kubectl delete configmaps cme-config-qa
+
+```
+
 
 ### Jira
 

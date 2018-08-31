@@ -1,0 +1,8 @@
+{
+  "wp": {
+    "endpoint": "http://staging.wp.cme.redpelicans.com/wp-json/wp/v2"
+  },
+  "language": {
+    "locale": "en"
+  }
+}
