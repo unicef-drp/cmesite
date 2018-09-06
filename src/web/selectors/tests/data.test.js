@@ -34,7 +34,9 @@ describe('selectors', () => {
     const state = {
       data: {
         activeTab: 0,
-        isLoadingStructure: false,
+        isLoadingStructure: true,
+        isDownloadingAllData: true,
+        isDownloadingSelectionData: true,
         dimensions: [countryDimension, ...otherDimensions],
       },
     };

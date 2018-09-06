@@ -1,22 +1,28 @@
 import { not, over, lensPath, assoc, map, addIndex, equals } from 'ramda';
 import { dimensions as __dimensions } from '../../mock/data';
 
+export const FORMATS = ['csv', 'xml'];
+export const SCOPES = ['all', 'selection'];
+
 export const CHANGE_ACTIVE_TAB = 'CM/DATA/CHANGE_ACTIVE_TAB';
 export const TOGGLE_DIMENSION_VALUE = 'CM/DATA/TOGGLE_DIMENSION_VALUE';
 export const SELECT_DIMENSION_VALUE = 'CM/DATA/SELECT_DIMENSION_VALUE';
 export const LOADING_STRUCTURE = 'CM/DATA/LOADING_STRUCTURE';
 export const STRUCTURE_LOADED = 'CM/DATA/STRUCTURE_LOADED';
+export const TOGGLE_DOWNLOADING_DATA = 'CM/DATA/TOGGLE_DOWNLOADING_DATA';
 export const types = {
   CHANGE_ACTIVE_TAB,
   TOGGLE_DIMENSION_VALUE,
   SELECT_DIMENSION_VALUE,
   LOADING_STRUCTURE,
   STRUCTURE_LOADED,
+  TOGGLE_DOWNLOADING_DATA,
 };
 
 const initialState = {
-  activeTab: 0,
+  activeTab: 3,
   isLoadingStructure: false,
+  downloadingData: {},
   dimensions: [],
 };
 
@@ -52,6 +58,12 @@ const reducer = (state = initialState, action = {}) => {
         isLoadingStructure: false,
         dimensions: action.dimensions,
       };
+    case TOGGLE_DOWNLOADING_DATA:
+      return over(
+        lensPath(['downloadingData', `${action.format}.${action.scope}`]),
+        not,
+        state,
+      );
     default:
       return state;
   }
@@ -81,6 +93,20 @@ export const loadStructure = () => dispatch => {
   }).then(({ dimensions }) => dispatch({ type: STRUCTURE_LOADED, dimensions }));
 };
 
-const actions = { changeActiveTab, toggleDimensionValue, selectDimensionValue };
+export const downloadData = ({ format, scope }) => dispatch => {
+  dispatch({ type: TOGGLE_DOWNLOADING_DATA, format, scope });
+  // get selection or set all
+  // use proper http header
+  return new Promise(resolve => {
+    setTimeout(() => resolve(), 2000);
+  }).then(() => dispatch({ type: TOGGLE_DOWNLOADING_DATA, format, scope }));
+};
+
+const actions = {
+  changeActiveTab,
+  toggleDimensionValue,
+  selectDimensionValue,
+  downloadData,
+};
 
 export default { reducer, actions };

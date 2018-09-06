@@ -21,6 +21,10 @@ export const getIsLoadingStructure = createSelector(
   getData,
   prop('isLoadingStructure'),
 );
+export const getDownloadingData = createSelector(
+  getData,
+  prop('downloadingData'),
+);
 export const getDimensions = createSelector(getData, prop('dimensions'));
 export const getCountryDimension = createSelector(
   getDimensions,
