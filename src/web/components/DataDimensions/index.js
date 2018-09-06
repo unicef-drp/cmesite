@@ -17,7 +17,8 @@ const withDimensions = selector =>
     ),
   );
 
-export const DataAllDimensions = withDimensions(getDimensions)(Component);
+export const withAllDimensions = withDimensions(getDimensions);
+export const DataAllDimensions = withAllDimensions(Component);
 export const DataOtherDimensions = withDimensions(getOtherDimensions)(
   Component,
 );

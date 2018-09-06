@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, addIndex } from 'ramda';
+import { map } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
+import DataDimension from '../DataDimension';
 
 const styles = theme => ({
   panelRoot: {
@@ -37,13 +34,6 @@ const styles = theme => ({
   panelDetails: {
     padding: 0,
   },
-  list: {
-    width: '100%',
-  },
-  checkbox: {
-    width: 'initial',
-    height: 'initial',
-  },
   typo: {
     color: theme.palette.primary.dark,
   },
@@ -51,7 +41,7 @@ const styles = theme => ({
 
 const DataDimensions = ({ classes, dimensions, toggleDimensionValue }) => (
   <React.Fragment>
-    {map(({ label, values, ...dimension }) => (
+    {map(({ label, ...dimension }) => (
       <ExpansionPanel
         key={dimension.id}
         defaultExpanded
@@ -68,25 +58,10 @@ const DataDimensions = ({ classes, dimensions, toggleDimensionValue }) => (
           <Typography className={classes.typo}>{label}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
-          <List className={classes.list}>
-            {addIndex(map)(({ id, label, isSelected }, index) => (
-              <ListItem
-                key={id}
-                dense
-                button
-                onClick={() => toggleDimensionValue(dimension.index, index)}
-              >
-                <Checkbox
-                  checked={!!isSelected}
-                  tabIndex={-1}
-                  disableRipple
-                  classes={{ root: classes.checkbox }}
-                  color="primary"
-                />
-                <ListItemText primary={label} />
-              </ListItem>
-            ))(values)}
-          </List>
+          <DataDimension
+            dimension={dimension}
+            toggleDimensionValue={toggleDimensionValue}
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     ))(dimensions)}
