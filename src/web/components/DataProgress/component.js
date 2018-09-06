@@ -7,7 +7,7 @@ const style = theme => ({
   wrapper: {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: theme.spacing.unit * 8,
+    padding: theme.spacing.unit * 8,
   },
 });
 

@@ -20,7 +20,7 @@ export const types = {
 };
 
 const initialState = {
-  activeTab: 3,
+  activeTab: 0,
   isLoadingStructure: false,
   downloadingData: {},
   dimensions: [],
@@ -89,7 +89,7 @@ export const selectDimensionValue = (dimensionIndex, valueIndex) => ({
 export const loadStructure = () => dispatch => {
   dispatch({ type: LOADING_STRUCTURE });
   return new Promise(resolve => {
-    setTimeout(() => resolve({ dimensions: __dimensions }), 100);
+    setTimeout(() => resolve({ dimensions: __dimensions }), 2000);
   }).then(({ dimensions }) => dispatch({ type: STRUCTURE_LOADED, dimensions }));
 };
 
