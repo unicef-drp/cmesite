@@ -115,9 +115,15 @@ const About = ({ about, focuses, classes }) => (
           <img src={unLogo} className={classes.logo} />
           <img src={wboLogo} className={classes.logo} />
         </Grid>
-        <Typography variant="headline" align="center" className={classes.typo}>
-          <FormattedMessage {...messages.focus} />
-        </Typography>
+        <Grid item xs={12} sm={7} md={7}>
+          <Typography
+            variant="headline"
+            align="center"
+            className={classes.typo}
+          >
+            <FormattedMessage {...messages.focus} />
+          </Typography>
+        </Grid>
         <Grid item xs={12} sm={10} md={10} className={classes.section}>
           {map(focus => {
             const image = path(['acf', 'image'])(focus);
