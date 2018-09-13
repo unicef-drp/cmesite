@@ -17,12 +17,15 @@ const style = theme => ({
   },
 });
 
-const Splash = ({ splash, classes }) => (
+const Splash = ({ splash, classes, theme }) => (
   <div
     style={{
-      background: `url("${path(['acf', 'image', 'url'])(
-        splash,
-      )}") no-repeat center`,
+      background: `${theme.palette.primary.main} url("${path([
+        'acf',
+        'image',
+        'url',
+      ])(splash)}") repeat center`,
+      backgroundSize: 'cover',
     }}
   >
     <Grid container alignItems="center" className={classes.wrapper}>
@@ -45,6 +48,7 @@ const Splash = ({ splash, classes }) => (
 Splash.propTypes = {
   splash: PropTypes.object,
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(Splash);
+export default withStyles(style, { withTheme: true })(Splash);
