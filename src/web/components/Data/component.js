@@ -11,6 +11,7 @@ import PlaceIcon from '@material-ui/icons/Place';
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
 import DescriptionIcon from '@material-ui/icons/Description';
 import PublicIcon from '@material-ui/icons/Public';
+import Hidden from '@material-ui/core/Hidden';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataCountry from '../DataCountry';
@@ -63,9 +64,11 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
           <Tab
             key={tab.key}
             label={
-              <Typography variant="body2" className={classes.tabTypo}>
-                <FormattedMessage {...messages[tab.key]} />
-              </Typography>
+              <Hidden smDown>
+                <Typography variant="body2" className={classes.tabTypo}>
+                  <FormattedMessage {...messages[tab.key]} />
+                </Typography>
+              </Hidden>
             }
             icon={tab.icon}
             classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
@@ -77,7 +80,7 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
       index={activeTab}
       onChangeIndex={index => changeActiveTab(index)}
-      animateHeight
+      animateHeight={false}
     >
       <div className={classes.wrapper}>
         <DataCountry />
