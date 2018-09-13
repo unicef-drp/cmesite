@@ -35,6 +35,19 @@ const style = theme => ({
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
   },
+  typo: {
+    color: theme.palette.primary.dark,
+  },
+  titlebar: {
+    backgroundColor: theme.palette.secondary.main,
+  },
+  menubar: {
+    top: theme.spacing.unit * 8,
+  },
+  selectedMenu: {
+    border: `1px solid ${theme.palette.secondary.main}`,
+    color: `${theme.palette.secondary.main}!important`,
+  },
 });
 
 class Header extends React.Component {
@@ -48,11 +61,11 @@ class Header extends React.Component {
 
     return (
       <React.Fragment>
-        <AppBar position="sticky" color="default">
+        <AppBar position="fixed" className={classes.titlebar}>
           <Toolbar disableGutters className={classes.toolbar}>
             <img src={unigmeLogo} className={classes.logo} />
             <Hidden xsDown>
-              <Typography variant="title" color="primary">
+              <Typography variant="title" className={classes.typo}>
                 <FormattedMessage {...messages.title} />
               </Typography>
             </Hidden>
@@ -64,7 +77,7 @@ class Header extends React.Component {
           </Toolbar>
         </AppBar>
         <Hidden xsDown>
-          <AppBar position="sticky">
+          <AppBar position="fixed" className={classes.menubar}>
             <Toolbar disableGutters className={classes.toolbar}>
               {map(route => (
                 <Button
@@ -73,6 +86,7 @@ class Header extends React.Component {
                   component={Link}
                   to={getPath(route)}
                   disabled={routeName === prop('name')(route)}
+                  classes={{ disabled: classes.selectedMenu }}
                 >
                   <FormattedMessage {...prop(prop('name')(route))(messages)} />
                 </Button>

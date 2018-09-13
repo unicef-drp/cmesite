@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Page from '../../components/Page';
 import Header from '../../components/Header';
 import Splash from '../../components/Splash';
 import News from '../../components/News';
@@ -25,8 +26,8 @@ const style = theme => ({
   },
 });
 
-export const Page = ({ classes }) => (
-  <React.Fragment>
+export const HomePage = ({ classes }) => (
+  <Page>
     <Header routeName="home" />
     <Splash />
     <Grid container className={classes.wrapper}>
@@ -51,11 +52,11 @@ export const Page = ({ classes }) => (
     <Datasets />
     <FeaturedReports />
     <Footer />
-  </React.Fragment>
+  </Page>
 );
 
-Page.propTypes = {
+HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(Page);
+export default withStyles(style)(HomePage);

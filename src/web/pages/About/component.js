@@ -1,14 +1,15 @@
 import React from 'react';
+import Page from '../../components/Page';
 import Header from '../../components/Header';
 import About from '../../components/About';
 import Footer from '../../components/Footer';
 
-export const Page = () => (
-  <React.Fragment>
+export const AboutPage = () => (
+  <Page>
     <Header routeName="about" />
     <About />
     <Footer />
-  </React.Fragment>
+  </Page>
 );
 
-export default Page;
+export default AboutPage;

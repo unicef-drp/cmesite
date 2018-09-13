@@ -89,7 +89,7 @@ const About = ({ about, focuses, classes }) => (
       >
         <Grid item xs={12} sm={7} md={7}>
           <Typography
-            variant="display1"
+            variant="headline"
             align="center"
             className={classes.typo}
           >
@@ -115,7 +115,7 @@ const About = ({ about, focuses, classes }) => (
           <img src={unLogo} className={classes.logo} />
           <img src={wboLogo} className={classes.logo} />
         </Grid>
-        <Typography variant="display1" align="center" className={classes.typo}>
+        <Typography variant="headline" align="center" className={classes.typo}>
           <FormattedMessage {...messages.focus} />
         </Typography>
         <Grid item xs={12} sm={10} md={10} className={classes.section}>

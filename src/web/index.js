@@ -22,8 +22,10 @@ const theme = createMuiTheme({
     title: {
       fontFamily: "'montserrat'",
     },
-    display1: {
+    headline: {
       fontFamily: "'montserrat'",
+      textTransform: 'uppercase',
+      fontWeight: 400,
     },
   },
   palette: {

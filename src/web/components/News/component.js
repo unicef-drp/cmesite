@@ -13,7 +13,7 @@ const style = theme => ({
   wrapper: {
     backgroundColor: theme.palette.secondary.main,
     marginTop: theme.spacing.unit * -8,
-    paddingTop: theme.spacing.unit,
+    paddingTop: theme.spacing.unit * 2,
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
   },
@@ -38,7 +38,7 @@ const style = theme => ({
 
 const News = ({ classes, news }) => (
   <div className={classes.wrapper}>
-    <Typography variant="display1" align="center" className={classes.typo}>
+    <Typography variant="headline" align="center" className={classes.typo}>
       <FormattedMessage {...messages.title} />
     </Typography>
     <div className={classes.container}>

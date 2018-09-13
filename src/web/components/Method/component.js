@@ -29,7 +29,7 @@ const Method = ({ method, classes }) => {
   return (
     <Grid container className={classes.wrapper} justify="center">
       <Grid item xs={12} sm={8}>
-        <Typography variant="display1" align="center" className={classes.typo}>
+        <Typography variant="headline" align="center" className={classes.typo}>
           {path(['title', 'rendered'])(method)}
         </Typography>
         <Typography variant="body2" align="center" paragraph>

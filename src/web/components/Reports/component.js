@@ -77,7 +77,7 @@ const Reports = ({ classes, reports, isSecondary }) => (
       [classes.secondaryWrapper]: isSecondary,
     })}
   >
-    <Typography variant="display1" align="center" className={classes.typo}>
+    <Typography variant="headline" align="center" className={classes.typo}>
       <FormattedMessage {...messages.title} />
     </Typography>
     <div className={classes.container}>
