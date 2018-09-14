@@ -9,7 +9,31 @@ import {
   propEq,
   reject,
   times,
+  pathOr,
+  pipe,
+  nth,
+  path,
+  addIndex,
+  reduce,
+  isNil,
+  assoc,
+  toPairs,
+  converge,
+  merge,
+  head,
+  tail,
+  last,
+  split,
+  has,
+  over,
+  append,
+  lensPath,
+  equals,
+  ifElse,
+  concat,
 } from 'ramda';
+import { getLocale } from './language';
+import sdmxData from '../../mock/data/sdmxSingleObsData';
 
 export const getData = prop('data');
 export const getActiveTab = createSelector(getData, prop('activeTab'));
@@ -65,3 +89,126 @@ export const getChartData = always([
     }, 19),
   },
 ]);
+
+// should be in config
+const TYPES = [
+  ['SERIES_NAME', 269, 'ESTMATE'],
+  ['OBS_STATUS', 'IN', 'INCLUDED'],
+  ['OBS_STATUS', 'EX', 'EXCLUDED'],
+];
+const Z = 'SERIES_NAME';
+const X = 'TIME_PERIOD';
+const Y_VARIANTS = [['LOWER_BOUND', 'UPPER_BOUND']];
+
+// should be in utils
+export const getValue = valueIndex => pipe(prop('values'), nth(valueIndex));
+export const getName = locale => path(['name', locale]);
+export const parseArtefact = locale => (valueIndex, artefactIndex) => (
+  artefact,
+  value,
+) => ({
+  id: prop('id', artefact),
+  name: getName(locale)(artefact),
+  index: parseInt(artefactIndex),
+  valueId: prop('id', value),
+  valueName: getName(locale)(value),
+  valueIndex: parseInt(valueIndex),
+});
+export const parseArtefacts = locale => artefacts =>
+  addIndex(reduce)((acc, valueIndex, artefactIndex) => {
+    const artefact = nth(artefactIndex, artefacts);
+    if (isNil(artefact)) return acc;
+    const value = getValue(valueIndex)(artefact);
+    if (isNil(value)) return acc;
+    return assoc(
+      prop('id', artefact),
+      parseArtefact(locale)(valueIndex, artefactIndex)(artefact, value),
+      acc,
+    );
+  }, {});
+export const parseObservationKey = locale => dimensions =>
+  pipe(head, split(':'), parseArtefacts(locale)(dimensions));
+export const parseObservationValue = locale => attributes =>
+  pipe(
+    last,
+    converge(merge, [
+      pipe(head, y => ({ y })),
+      pipe(tail, parseArtefacts(locale)(attributes)),
+    ]),
+  );
+export const parseObservation = locale => (dimensions, attributes) =>
+  converge(merge, [
+    parseObservationKey(locale)(dimensions),
+    parseObservationValue(locale)(attributes),
+  ]);
+const getType = observation =>
+  pipe(
+    find(([id, value]) =>
+      pipe(path([id, 'valueId']), equals(value))(observation),
+    ),
+    ifElse(isNil, identity, last),
+  );
+const getSerieKey = z => useWith(concat, [path([z, 'valueId']), identity]);
+const getX = x =>
+  pipe(path([X, 'valueId']), ifElse(isNil, identity, id => new Date(id)));
+
+export const getSdmxData = always(sdmxData);
+export const getDataStructure = createSelector(
+  getSdmxData,
+  pathOr({}, ['data', 'structure']),
+);
+export const getDataDimensions = createSelector(
+  getDataStructure,
+  pathOr([], ['dimensions', 'observation']),
+);
+export const getDataAttributes = createSelector(
+  getDataStructure,
+  pathOr([], ['attributes', 'observation']),
+);
+export const getDataObservations = createSelector(
+  getSdmxData,
+  pathOr({}, ['data', 'dataSets', 0, 'observations']),
+);
+export const getDataSeries = createSelector(
+  getLocale,
+  getDataDimensions,
+  getDataAttributes,
+  getDataObservations,
+  (locale = 'en', dimensions, attributes, observations) =>
+    pipe(
+      toPairs,
+      reduce((acc, pair) => {
+        const sdmxObservation = parseObservation(locale)(
+          dimensions,
+          attributes,
+        )(pair);
+        const observation = assoc(
+          'x',
+          getX(X)(sdmxObservation),
+          sdmxObservation,
+        );
+
+        const type = getType(observation)(TYPES);
+        if (isNil(type)) return acc;
+
+        const serieKey = getSerieKey(Z)(observation, type);
+
+        if (has(serieKey, acc)) {
+          return over(
+            lensPath([serieKey, 'datapoints']),
+            append(observation),
+            acc,
+          );
+        }
+
+        const serie = {
+          id: serieKey,
+          name: path([Z, 'valueName'], observation),
+          type,
+          datapoints: [observation],
+        };
+
+        return assoc(serieKey, serie, acc);
+      }, {}),
+    )(observations),
+);
