@@ -98,7 +98,7 @@ const TYPES = [
 ];
 const Z = 'SERIES_NAME';
 const X = 'TIME_PERIOD';
-const Y_VARIANTS = [['LOWER_BOUND', 'UPPER_BOUND']];
+//const Y_VARIANTS = [['LOWER_BOUND', 'UPPER_BOUND']];
 
 // should be in utils
 export const getValue = valueIndex => pipe(prop('values'), nth(valueIndex));
@@ -150,7 +150,7 @@ const getType = observation =>
   );
 const getSerieKey = z => useWith(concat, [path([z, 'valueId']), identity]);
 const getX = x =>
-  pipe(path([X, 'valueId']), ifElse(isNil, identity, id => new Date(id)));
+  pipe(path([x, 'valueId']), ifElse(isNil, identity, id => new Date(id)));
 
 export const getSdmxData = always(sdmxData);
 export const getDataStructure = createSelector(

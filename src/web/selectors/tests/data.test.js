@@ -60,7 +60,7 @@ describe('selectors', () => {
     it('should getOtherDimensions', () => {
       expect(selectors.getOtherDimensions(state)).toEqual(otherDimensions);
     });
-    it.only('should getDataSeries', () => {
+    it('should getDataSeries', () => {
       const series = {
         '42INCLUDED': {
           id: '42INCLUDED',

@@ -5,7 +5,11 @@ exports[`Header | component render should match snapshot 1`] = `
   classes={
     Object {
       "logo": "Header-logo-2",
+      "menubar": "Header-menubar-5",
+      "selectedMenu": "Header-selectedMenu-6",
+      "titlebar": "Header-titlebar-4",
       "toolbar": "Header-toolbar-1",
+      "typo": "Header-typo-3",
     }
   }
   locale="en"
