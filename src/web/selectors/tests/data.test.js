@@ -101,7 +101,7 @@ describe('selectors', () => {
                 valueIndex: 0,
               },
               y: 131.55,
-              x: new Date('1987-06'),
+              x: new Date('2006-06'),
               OBS_STATUS: {
                 id: 'OBS_STATUS',
                 name: 'Observation Status',
@@ -153,7 +153,7 @@ describe('selectors', () => {
                 valueIndex: 1,
               },
               y: 131.55,
-              x: new Date('1990-06'),
+              x: new Date('2010-06'),
               OBS_STATUS: {
                 id: 'OBS_STATUS',
                 name: 'Observation Status',

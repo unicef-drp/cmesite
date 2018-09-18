@@ -33,7 +33,7 @@ import {
   concat,
 } from 'ramda';
 import { getLocale } from './language';
-import sdmxData from '../../mock/data/sdmxSingleObsData';
+import sdmxData from '../../mock/data/sdmxRequestData';
 
 export const getData = prop('data');
 export const getActiveTab = createSelector(getData, prop('activeTab'));

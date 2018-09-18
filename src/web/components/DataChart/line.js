@@ -1,29 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { prop, pipe, both } from 'ramda';
-import { line as d3Line } from 'd3-shape';
+import { prop, pipe, both, map, not, addIndex } from 'ramda';
+import {
+  line as d3Line,
+  curveMonotoneX,
+  symbol as d3Symbol,
+  symbolCircle,
+} from 'd3-shape';
 
 class Line extends React.Component {
+  defined = both(prop('x'), prop('y'));
+
   state = {
-    line: d3Line().defined(both(prop('x'), prop('y'))),
+    line: d3Line().defined(this.defined),
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
-    const { xScale, yScale } = nextProps;
+    const { xScale, yScale, hasSymbols } = nextProps;
     let { line } = prevState;
 
-    line.x(pipe(prop('x'), xScale)).y(pipe(prop('y'), yScale));
+    const xScaleGetter = pipe(prop('x'), xScale);
+    const yScaleGetter = pipe(prop('y'), yScale);
 
-    return { ...prevState, line };
+    line
+      .x(xScaleGetter)
+      .y(yScaleGetter)
+      .curve(curveMonotoneX);
+
+    if (not(hasSymbols)) return { ...prevState, line };
+
+    const symbol = d3Symbol()
+      .type(symbolCircle)
+      .size(20)();
+
+    return { ...prevState, line, symbol, xScaleGetter, yScaleGetter };
   };
 
   render = () => (
-    <path
-      d={this.state.line(this.props.data)}
-      className={prop('line')(this.props.classes)}
-      stroke={this.props.color}
-      fill="none"
-    />
+    <React.Fragment>
+      <path
+        d={this.state.line(this.props.data)}
+        className={prop('line')(this.props.classes)}
+        stroke={this.props.color}
+        fill="none"
+      />
+      {this.props.hasSymbols
+        ? addIndex(map)(
+            (d, i) =>
+              this.defined(d) ? (
+                <path
+                  key={i}
+                  d={this.state.symbol}
+                  transform={`translate(${this.state.xScaleGetter(
+                    d,
+                  )},${this.state.yScaleGetter(d)})`}
+                  stroke={this.props.color}
+                  fill={this.props.symbolShape}
+                />
+              ) : null,
+            this.props.data,
+          )
+        : null}
+    </React.Fragment>
   );
 }
 
@@ -33,10 +71,13 @@ Line.propTypes = {
   data: PropTypes.array,
   classes: PropTypes.object,
   color: PropTypes.string,
+  hasSymbols: PropTypes.bool,
+  symbolShape: PropTypes.string,
 };
 
 Line.defaultProps = {
   data: [],
+  symbolShape: 'none',
 };
 
 export default Line;
