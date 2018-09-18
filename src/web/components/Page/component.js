@@ -5,6 +5,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 const style = theme => ({
   wrapper: {
     paddingTop: theme.spacing.unit * 16,
+    [theme.breakpoints.down('xs')]: {
+      paddingTop: theme.spacing.unit * 7,
+    },
   },
 });
 
