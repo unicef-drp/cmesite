@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import 'typeface-montserrat';
 import 'typeface-open-sans';
+import { scaleOrdinal } from 'd3-scale';
 import LanguageProvider from './components/LanguageProvider';
 import ConfigContext from './components/ConfigContext';
 import App from './components/App';
@@ -24,7 +25,7 @@ const theme = createMuiTheme({
     },
     headline: {
       fontFamily: "'montserrat'",
-      textTransform: 'uppercase',
+      textTransform: 'lowercase',
       fontWeight: 400,
     },
   },
@@ -41,6 +42,12 @@ const theme = createMuiTheme({
       dark: '#DEDEDF',
       contrastText: '#0B3B57',
     },
+    chartColorScale: scaleOrdinal().range([
+      '#E6ED46',
+      '#60C9E2',
+      '#DE405C',
+      '#6B3889',
+    ]),
   },
 });
 
