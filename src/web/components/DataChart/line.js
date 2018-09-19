@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { prop, pipe, both, map, not, addIndex } from 'ramda';
-import {
-  line as d3Line,
-  curveMonotoneX,
-  symbol as d3Symbol,
-  symbolCircle,
-} from 'd3-shape';
+import { line as d3Line, curveMonotoneX } from 'd3-shape';
+import { symbolGenerator } from './utils';
 
 class Line extends React.Component {
   defined = both(prop('x'), prop('y'));
@@ -29,11 +25,13 @@ class Line extends React.Component {
 
     if (not(hasSymbols)) return { ...prevState, line };
 
-    const symbol = d3Symbol()
-      .type(symbolCircle)
-      .size(20)();
-
-    return { ...prevState, line, symbol, xScaleGetter, yScaleGetter };
+    return {
+      ...prevState,
+      line,
+      symbol: symbolGenerator(20)(),
+      xScaleGetter,
+      yScaleGetter,
+    };
   };
 
   render = () => (
@@ -55,7 +53,7 @@ class Line extends React.Component {
                     d,
                   )},${this.state.yScaleGetter(d)})`}
                   stroke={this.props.color}
-                  fill={this.props.symbolShape}
+                  fill={this.props.symbolFill}
                 />
               ) : null,
             this.props.data,
@@ -72,7 +70,7 @@ Line.propTypes = {
   classes: PropTypes.object,
   color: PropTypes.string,
   hasSymbols: PropTypes.bool,
-  symbolShape: PropTypes.string,
+  symbolFill: PropTypes.string,
 };
 
 Line.defaultProps = {

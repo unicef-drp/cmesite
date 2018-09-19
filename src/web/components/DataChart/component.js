@@ -4,8 +4,9 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { compose, map, addIndex, prop, values } from 'ramda';
-import { scaleLinear, scaleTime, scaleOrdinal } from 'd3-scale';
+import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
+import { getSymbolFill } from './utils';
 import Axis from './axis';
 import Line from './line';
 import Area from './area';
@@ -45,12 +46,6 @@ export class Chart extends React.Component {
     //contentHeight,
     xScale: scaleTime(),
     yScale: scaleLinear(),
-    colorScale: scaleOrdinal().range([
-      '#E6ED46',
-      '#60C9E2',
-      '#DE405C',
-      '#6B3889',
-    ]),
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
@@ -58,17 +53,19 @@ export class Chart extends React.Component {
 
     const height = nextProps.size.width / 1.77;
 
-    const contentWidth =
-      nextProps.size.width - nextProps.margin.left - nextProps.margin.right;
-    const contentHeight =
-      height - nextProps.margin.top - nextProps.margin.bottom;
+    const contentWidth = Math.floor(
+      nextProps.size.width - nextProps.margin.left - nextProps.margin.right,
+    );
+    const contentHeight = Math.floor(
+      height - nextProps.margin.top - nextProps.margin.bottom,
+    );
 
     xScale
-      .domain([new Date(1970, 2, 1), new Date(2020, 0, 1)])
+      .domain([new Date(2000, 0, 1), new Date(2020, 0, 1)])
       .range([0, contentWidth])
       .nice();
     yScale
-      .domain([0, 400])
+      .domain([0, 100])
       .range([contentHeight, 0])
       .nice();
 
@@ -85,14 +82,8 @@ export class Chart extends React.Component {
   render = () => {
     const { size, margin, data, classes, theme, series } = this.props;
     const { width } = size;
-    const {
-      height,
-      contentWidth,
-      contentHeight,
-      xScale,
-      yScale,
-      colorScale,
-    } = this.state;
+    const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
+    console.log(series);
 
     return (
       <div>
@@ -130,19 +121,21 @@ export class Chart extends React.Component {
               />
             </g>
             <g>
-              {addIndex(map)(
-                (serie, index) => (
+              {addIndex(map)((serie, index) => {
+                const color = theme.palette.chartColorScale(index);
+                return (
                   <Line
                     key={prop('id', serie)}
                     data={prop('datapoints', serie)}
                     xScale={xScale}
                     yScale={yScale}
-                    color={colorScale(index)}
+                    color={color}
                     classes={classes}
+                    hasSymbols //is not main 269
+                    symbolFill={getSymbolFill(prop('type', serie), color)}
                   />
-                ),
-                values(series),
-              )}
+                );
+              }, values(series))}
               <Line
                 data={data[0].datapoints}
                 xScale={xScale}

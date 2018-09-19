@@ -7,11 +7,15 @@ import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadPanel from '../DataDownloadPanel';
 import DataTitle from '../DataTitle';
 import DataChart from '../DataChart';
+import DataLegend from '../DataLegend';
 
 const style = theme => ({
   wrapper: {
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
+  },
+  content: {
+    paddingLeft: theme.spacing.unit * 2, // not RTL
   },
 });
 
@@ -24,9 +28,10 @@ const DataCountry = ({ classes }) => (
       <DataOtherDimensions isSide />
       <DataDownloadPanel />
     </Grid>
-    <Grid item sm={12} md={9}>
+    <Grid item sm={12} md={9} className={classes.content}>
       <DataTitle />
       <DataChart />
+      <DataLegend />
     </Grid>
   </Grid>
 );
