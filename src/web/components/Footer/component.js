@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core';
 import messages from './messages';
-import unigmeLogo from '../../../assets/unicef-logo.png';
+import igmeLogo from '../../../assets/igme-logo.png';
 import unicefLogo from '../../../assets/unicef-black-logo.jpeg';
 import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
@@ -44,7 +44,7 @@ const style = theme => ({
 const Footer = ({ classes }) => (
   <footer className={classes.footer}>
     <div className={classes.item}>
-      <img src={unigmeLogo} className={classes.logo} />
+      <img src={igmeLogo} className={classes.logo} />
       <img src={unicefLogo} className={classes.logo} />
       <img src={whoLogo} className={classes.logo} />
       <img src={unLogo} className={classes.logo} />

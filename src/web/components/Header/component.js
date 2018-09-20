@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { allRoutes, getPath } from '../../routes';
-import unigmeLogo from '../../../assets/unicef-logo.png';
+import igmeLogo from '../../../assets/igme-logo.png';
 
 const style = theme => ({
   toolbar: {
@@ -63,7 +63,7 @@ class Header extends React.Component {
       <React.Fragment>
         <AppBar position="fixed" className={classes.titlebar}>
           <Toolbar disableGutters className={classes.toolbar}>
-            <img src={unigmeLogo} className={classes.logo} />
+            <img src={igmeLogo} className={classes.logo} />
             <Hidden xsDown>
               <Typography variant="title" className={classes.typo}>
                 <FormattedMessage {...messages.title} />

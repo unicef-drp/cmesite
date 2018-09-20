@@ -25,7 +25,7 @@ const theme = createMuiTheme({
     },
     headline: {
       fontFamily: "'montserrat'",
-      textTransform: 'lowercase',
+      textTransform: 'uppercase',
       fontWeight: 400,
     },
   },
