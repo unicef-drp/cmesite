@@ -44,7 +44,7 @@ const DataDimensions = ({ classes, dimensions, toggleDimensionValue }) => (
     {map(({ label, ...dimension }) => (
       <ExpansionPanel
         key={dimension.id}
-        defaultExpanded={false}
+        defaultExpanded
         classes={{ root: classes.panelRoot }}
       >
         <ExpansionPanelSummary
