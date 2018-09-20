@@ -950,6 +950,91 @@
                 "type": "code"
               }
             ]
+          },
+          {
+            "id": "MRY0",
+            "name": {
+              "en": "Mortality Rate Under 1 Year Old"
+            },
+            "description": {
+              "en": "Infant mortality rate"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_INDICATOR_CME(1.0).MRY0",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TMY0T4",
+            "name": {
+              "en": "Total Mortality Under 5 Years Old"
+            },
+            "description": {
+              "en": "Number of deaths among children under 5 years old"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_INDICATOR_CME(1.0).TMY0T4",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TMY5T14",
+            "name": {
+              "en": "Total Mortality 5 to 14 Years Old"
+            },
+            "description": {
+              "en": "Number of deaths among children 5 to 14 years old"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_INDICATOR_CME(1.0).TMY5T14",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TMM0",
+            "name": {
+              "en": "Total Mortality 0 to 28 Days Old"
+            },
+            "description": {
+              "en": "Number of neonatal deaths"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_INDICATOR_CME(1.0).TMM0",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TMY0",
+            "name": {
+              "en": "Total Mortality Under 1 Year Old"
+            },
+            "description": {
+              "en": "Number of infant deaths"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_INDICATOR_CME(1.0).TMY0",
+                "type": "code"
+              }
+            ]
           }
         ]
       },
@@ -1218,6 +1303,4010 @@
                 "rel": "self",
                 "urn":
                   "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).AFG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "AGO",
+            "name": {
+              "en": "Angola"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).AGO",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "AIA",
+            "name": {
+              "en": "Anguilla"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).AIA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ALA",
+            "name": {
+              "en": "Åland Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ALA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ALB",
+            "name": {
+              "en": "Albania"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ALB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "AND",
+            "name": {
+              "en": "Andorra"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).AND",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ANT",
+            "name": {
+              "en": "Netherlands Antilles [former, 1986 to 2010]"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ANT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ARE",
+            "name": {
+              "en": "United Arab Emirates"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ARE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ARG",
+            "name": {
+              "en": "Argentina"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ARG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ARM",
+            "name": {
+              "en": "Armenia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ARM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ASM",
+            "name": {
+              "en": "American Samoa"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ASM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ATA",
+            "name": {
+              "en": "Antarctica"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ATA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ATG",
+            "name": {
+              "en": "Antigua and Barbuda"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ATG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "AUS",
+            "name": {
+              "en": "Australia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).AUS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "AUT",
+            "name": {
+              "en": "Austria"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).AUT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "AZE",
+            "name": {
+              "en": "Azerbaijan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).AZE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BDI",
+            "name": {
+              "en": "Burundi"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BDI",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BEL",
+            "name": {
+              "en": "Belgium"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BEL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BEN",
+            "name": {
+              "en": "Benin"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BEN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BES",
+            "name": {
+              "en": "Bonaire, Sint Eustatius and Saba"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BES",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BFA",
+            "name": {
+              "en": "Burkina Faso"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BFA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BGD",
+            "name": {
+              "en": "Bangladesh"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BGD",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BGR",
+            "name": {
+              "en": "Bulgaria"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BGR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BHR",
+            "name": {
+              "en": "Bahrain"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BHR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BHS",
+            "name": {
+              "en": "Bahamas"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BHS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BIH",
+            "name": {
+              "en": "Bosnia and Herzegovina"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BIH",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BLM",
+            "name": {
+              "en": "Saint Barthélemy"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BLM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BLR",
+            "name": {
+              "en": "Belarus"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BLR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BLZ",
+            "name": {
+              "en": "Belize"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BLZ",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BMU",
+            "name": {
+              "en": "Bermuda"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BMU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BOL",
+            "name": {
+              "en": "Bolivia (Plurinational State of)"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BOL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BRA",
+            "name": {
+              "en": "Brazil"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BRA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BRB",
+            "name": {
+              "en": "Barbados"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BRB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BRN",
+            "name": {
+              "en": "Brunei Darussalam"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BRN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BTN",
+            "name": {
+              "en": "Bhutan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BTN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "BWA",
+            "name": {
+              "en": "Botswana"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).BWA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CAF",
+            "name": {
+              "en": "Central African Republic"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CAF",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CAN",
+            "name": {
+              "en": "Canada"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CAN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CAU_CEN_ASIA",
+            "name": {
+              "en": "Caucasus and Central Asia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CAU_CEN_ASIA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CHE",
+            "name": {
+              "en": "Switzerland"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CHE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CHL",
+            "name": {
+              "en": "Chile"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CHL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CHN",
+            "name": {
+              "en": "China"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CHN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CIV",
+            "name": {
+              "en": "Côte d'Ivoire"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CIV",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CMR",
+            "name": {
+              "en": "Cameroon"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CMR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "COD",
+            "name": {
+              "en": "Democratic Republic of the Congo"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).COD",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "COG",
+            "name": {
+              "en": "Congo"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).COG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "COK",
+            "name": {
+              "en": "Cook Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).COK",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "COL",
+            "name": {
+              "en": "Colombia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).COL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "COM",
+            "name": {
+              "en": "Comoros"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).COM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CPV",
+            "name": {
+              "en": "Cabo Verde"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CPV",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CRI",
+            "name": {
+              "en": "Costa Rica"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CRI",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CUB",
+            "name": {
+              "en": "Cuba"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CUB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CUW",
+            "name": {
+              "en": "Curaçao"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CUW",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CYM",
+            "name": {
+              "en": "Cayman Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CYM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CYP",
+            "name": {
+              "en": "Cyprus"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CYP",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "CZE",
+            "name": {
+              "en": "Czech Republic"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).CZE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "DEU",
+            "name": {
+              "en": "Germany"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).DEU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "DJI",
+            "name": {
+              "en": "Djibouti"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).DJI",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "DMA",
+            "name": {
+              "en": "Dominica"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).DMA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "DNK",
+            "name": {
+              "en": "Denmark"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).DNK",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "DOM",
+            "name": {
+              "en": "Dominican Republic"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).DOM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "DZA",
+            "name": {
+              "en": "Algeria"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).DZA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ECU",
+            "name": {
+              "en": "Ecuador"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ECU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "EGY",
+            "name": {
+              "en": "Egypt"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).EGY",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ERI",
+            "name": {
+              "en": "Eritrea"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ERI",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ESH",
+            "name": {
+              "en": "Western Sahara"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ESH",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ESP",
+            "name": {
+              "en": "Spain"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ESP",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "EST",
+            "name": {
+              "en": "Estonia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).EST",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ETH",
+            "name": {
+              "en": "Ethiopia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ETH",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "FIN",
+            "name": {
+              "en": "Finland"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).FIN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "FJI",
+            "name": {
+              "en": "Fiji"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).FJI",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "FLK",
+            "name": {
+              "en": "Falkland Islands (Malvinas)"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).FLK",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "FRA",
+            "name": {
+              "en": "France"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).FRA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "FRO",
+            "name": {
+              "en": "Faroe Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).FRO",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "FSM",
+            "name": {
+              "en": "Micronesia (Federated States of)"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).FSM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GAB",
+            "name": {
+              "en": "Gabon"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GAB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GBR",
+            "name": {
+              "en": "United Kingdom of Great Britain and Northern Ireland"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GBR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GEO",
+            "name": {
+              "en": "Georgia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GEO",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GGY",
+            "name": {
+              "en": "Guernsey"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GGY",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GHA",
+            "name": {
+              "en": "Ghana"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GHA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GIB",
+            "name": {
+              "en": "Gibraltar"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GIB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GIN",
+            "name": {
+              "en": "Guinea"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GIN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GLP",
+            "name": {
+              "en": "Guadeloupe"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GLP",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GMB",
+            "name": {
+              "en": "Gambia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GMB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GNB",
+            "name": {
+              "en": "Guinea-Bissau"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GNB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GNQ",
+            "name": {
+              "en": "Equatorial Guinea"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GNQ",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GRC",
+            "name": {
+              "en": "Greece"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GRC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GRD",
+            "name": {
+              "en": "Grenada"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GRD",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GRL",
+            "name": {
+              "en": "Greenland"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GRL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GTM",
+            "name": {
+              "en": "Guatemala"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GTM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GUF",
+            "name": {
+              "en": "French Guiana"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GUF",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GUM",
+            "name": {
+              "en": "Guam"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GUM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "GUY",
+            "name": {
+              "en": "Guyana"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).GUY",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "HKG",
+            "name": {
+              "en": "China, Hong Kong Special Administrative Region"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).HKG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "HND",
+            "name": {
+              "en": "Honduras"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).HND",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "HRV",
+            "name": {
+              "en": "Croatia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).HRV",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "HTI",
+            "name": {
+              "en": "Haiti"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).HTI",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "HUN",
+            "name": {
+              "en": "Hungary"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).HUN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "IDN",
+            "name": {
+              "en": "Indonesia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).IDN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ILO_AFR",
+            "name": {
+              "en": "Africa"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ILO_AFR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ILO_ASPA",
+            "name": {
+              "en": "Asia and the Pacific"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ILO_ASPA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ILO_CEEU",
+            "name": {
+              "en": "Central and Eastern Europe"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ILO_CEEU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ILO_MENA",
+            "name": {
+              "en": "Middle East and North Africa"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ILO_MENA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ILO_MIEA",
+            "name": {
+              "en": "Middle East"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ILO_MIEA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ILO_NAM",
+            "name": {
+              "en": "North America"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ILO_NAM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ILO_OTHREG",
+            "name": {
+              "en": "Other regions"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ILO_OTHREG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ILO_WEU",
+            "name": {
+              "en": "Western Europe"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ILO_WEU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "IMN",
+            "name": {
+              "en": "Isle of Man"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).IMN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "IND",
+            "name": {
+              "en": "India"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).IND",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "IRL",
+            "name": {
+              "en": "Ireland"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).IRL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "IRN",
+            "name": {
+              "en": "Iran (Islamic Republic of)"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).IRN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "IRQ",
+            "name": {
+              "en": "Iraq"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).IRQ",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ISL",
+            "name": {
+              "en": "Iceland"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ISL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ISR",
+            "name": {
+              "en": "Israel"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ISR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ITA",
+            "name": {
+              "en": "Italy"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ITA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "JAM",
+            "name": {
+              "en": "Jamaica"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).JAM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "JEY",
+            "name": {
+              "en": "Jersey"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).JEY",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "JOR",
+            "name": {
+              "en": "Jordan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).JOR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "JPN",
+            "name": {
+              "en": "Japan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).JPN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "KAZ",
+            "name": {
+              "en": "Kazakhstan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).KAZ",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "KEN",
+            "name": {
+              "en": "Kenya"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).KEN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "KGZ",
+            "name": {
+              "en": "Kyrgyzstan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).KGZ",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "KHM",
+            "name": {
+              "en": "Cambodia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).KHM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "KIR",
+            "name": {
+              "en": "Kiribati"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).KIR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "KNA",
+            "name": {
+              "en": "Saint Kitts and Nevis"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).KNA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "KOR",
+            "name": {
+              "en": "Republic of Korea"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).KOR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "KWT",
+            "name": {
+              "en": "Kuwait"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).KWT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LAO",
+            "name": {
+              "en": "Lao People's Democratic Republic"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LAO",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LBN",
+            "name": {
+              "en": "Lebanon"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LBN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LBR",
+            "name": {
+              "en": "Liberia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LBR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LBY",
+            "name": {
+              "en": "Libya"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LBY",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LCA",
+            "name": {
+              "en": "Saint Lucia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LCA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LIE",
+            "name": {
+              "en": "Liechtenstein"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LIE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LKA",
+            "name": {
+              "en": "Sri Lanka"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LKA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LSO",
+            "name": {
+              "en": "Lesotho"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LSO",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LTU",
+            "name": {
+              "en": "Lithuania"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LTU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LUX",
+            "name": {
+              "en": "Luxembourg"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LUX",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "LVA",
+            "name": {
+              "en": "Latvia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).LVA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MAC",
+            "name": {
+              "en": "China, Macao Special Administrative Region"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MAC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MAF",
+            "name": {
+              "en": "Saint Martin (French part)"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MAF",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MAR",
+            "name": {
+              "en": "Morocco"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MAR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MCO",
+            "name": {
+              "en": "Monaco"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MCO",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDA",
+            "name": {
+              "en": "Republic of Moldova"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG",
+            "name": {
+              "en": "Madagascar"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_DEVELOPED_REG",
+            "name": {
+              "en": "Developed regions"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_DEVELOPED_REG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_DEVELOPING_REG",
+            "name": {
+              "en": "Developing regions"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_DEVELOPING_REG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_EAS",
+            "name": {
+              "en": "Eastern Asia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_EAS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_EAS_NOCHINA",
+            "name": {
+              "en": "Eastern Asia excluding China"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_EAS_NOCHINA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_ESSEASOCE",
+            "name": {
+              "en": "Eastern Southern South-Eastern Asia and Oceania"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_ESSEASOCE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_LAC",
+            "name": {
+              "en": "Latin America and the Caribbean"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_LAC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_LAC_CAR",
+            "name": {
+              "en": "Caribbean"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_LAC_CAR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_LAC_LA",
+            "name": {
+              "en": "Latin America"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_LAC_LA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_LDC",
+            "name": {
+              "en": "Least developed countries"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_LDC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_LLDC",
+            "name": {
+              "en": "Landlocked developing countries"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_LLDC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_NAFR",
+            "name": {
+              "en": "Northern Africa"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_NAFR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_OCE",
+            "name": {
+              "en": "Oceania"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_OCE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_SAS",
+            "name": {
+              "en": "Southern Asia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_SAS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_SAS_NOINDIA",
+            "name": {
+              "en": "Southern Asia excluding India"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_SAS_NOINDIA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_SEAS",
+            "name": {
+              "en": "South-eastern Asia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_SEAS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_SIDS",
+            "name": {
+              "en": "Small island developing States"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_SIDS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_SSA",
+            "name": {
+              "en": "Sub-Saharan Africa"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_SSA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_WEST_AS",
+            "name": {
+              "en": "Western Asia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_WEST_AS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDG_WORLD",
+            "name": {
+              "en": "World"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDG_WORLD",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MDV",
+            "name": {
+              "en": "Maldives"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MDV",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MEX",
+            "name": {
+              "en": "Mexico"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MEX",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MHL",
+            "name": {
+              "en": "Marshall Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MHL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MKD",
+            "name": {
+              "en": "The former Yugoslav Republic of Macedonia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MKD",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MLI",
+            "name": {
+              "en": "Mali"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MLI",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MLT",
+            "name": {
+              "en": "Malta"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MLT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MMR",
+            "name": {
+              "en": "Myanmar"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MMR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MNE",
+            "name": {
+              "en": "Montenegro"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MNE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MNG",
+            "name": {
+              "en": "Mongolia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MNG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MNP",
+            "name": {
+              "en": "Northern Mariana Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MNP",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MOZ",
+            "name": {
+              "en": "Mozambique"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MOZ",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MRT",
+            "name": {
+              "en": "Mauritania"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MRT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MSR",
+            "name": {
+              "en": "Montserrat"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MSR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MTQ",
+            "name": {
+              "en": "Martinique"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MTQ",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MUS",
+            "name": {
+              "en": "Mauritius"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MUS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MWI",
+            "name": {
+              "en": "Malawi"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MWI",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MYS",
+            "name": {
+              "en": "Malaysia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MYS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MYT",
+            "name": {
+              "en": "Mayotte"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).MYT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NAM",
+            "name": {
+              "en": "Namibia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NAM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NCL",
+            "name": {
+              "en": "New Caledonia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NCL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NER",
+            "name": {
+              "en": "Niger"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NER",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NFK",
+            "name": {
+              "en": "Norfolk Island"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NFK",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NGA",
+            "name": {
+              "en": "Nigeria"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NGA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NIC",
+            "name": {
+              "en": "Nicaragua"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NIC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NIU",
+            "name": {
+              "en": "Niue"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NIU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NLD",
+            "name": {
+              "en": "Netherlands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NLD",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NOR",
+            "name": {
+              "en": "Norway"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NOR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NPL",
+            "name": {
+              "en": "Nepal"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NPL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NRU",
+            "name": {
+              "en": "Nauru"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NRU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "NZL",
+            "name": {
+              "en": "New Zealand"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).NZL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "OMN",
+            "name": {
+              "en": "Oman"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).OMN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "OECD_MBR",
+            "name": {
+              "en": "OECD Member States"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).OECD_MBR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "OECD_DAC",
+            "name": {
+              "en": "DAC Member States"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).OECD_DAC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PAK",
+            "name": {
+              "en": "Pakistan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PAK",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PAN",
+            "name": {
+              "en": "Panama"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PAN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PCN",
+            "name": {
+              "en": "Pitcairn"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PCN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PER",
+            "name": {
+              "en": "Peru"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PER",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PHL",
+            "name": {
+              "en": "Philippines"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PHL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PLW",
+            "name": {
+              "en": "Palau"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PLW",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PNG",
+            "name": {
+              "en": "Papua New Guinea"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PNG",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "POL",
+            "name": {
+              "en": "Poland"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).POL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PRI",
+            "name": {
+              "en": "Puerto Rico"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PRI",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PRK",
+            "name": {
+              "en": "Democratic People's Republic of Korea"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PRK",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PRT",
+            "name": {
+              "en": "Portugal"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PRT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PRY",
+            "name": {
+              "en": "Paraguay"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PRY",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PSE",
+            "name": {
+              "en": "State of Palestine"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PSE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "PYF",
+            "name": {
+              "en": "French Polynesia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).PYF",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "QAT",
+            "name": {
+              "en": "Qatar"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).QAT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "REU",
+            "name": {
+              "en": "Réunion"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).REU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ROU",
+            "name": {
+              "en": "Romania"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ROU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "RUS",
+            "name": {
+              "en": "Russian Federation"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).RUS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "RWA",
+            "name": {
+              "en": "Rwanda"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).RWA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SAU",
+            "name": {
+              "en": "Saudi Arabia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SAU",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SDN",
+            "name": {
+              "en": "Sudan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SDN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SEN",
+            "name": {
+              "en": "Senegal"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SEN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SGP",
+            "name": {
+              "en": "Singapore"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SGP",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SHN",
+            "name": {
+              "en": "Saint Helena"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SHN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SJM",
+            "name": {
+              "en": "Svalbard and Jan Mayen Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SJM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SLB",
+            "name": {
+              "en": "Solomon Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SLB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SLE",
+            "name": {
+              "en": "Sierra Leone"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SLE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SLV",
+            "name": {
+              "en": "El Salvador"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SLV",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SMR",
+            "name": {
+              "en": "San Marino"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SMR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SOM",
+            "name": {
+              "en": "Somalia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SOM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SPM",
+            "name": {
+              "en": "Saint Pierre and Miquelon"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SPM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SRB",
+            "name": {
+              "en": "Serbia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SRB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SSD",
+            "name": {
+              "en": "South Sudan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SSD",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "STP",
+            "name": {
+              "en": "Sao Tome and Principe"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).STP",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SUR",
+            "name": {
+              "en": "Suriname"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SUR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SVK",
+            "name": {
+              "en": "Slovakia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SVK",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SVN",
+            "name": {
+              "en": "Slovenia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SVN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SWE",
+            "name": {
+              "en": "Sweden"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SWE",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SWZ",
+            "name": {
+              "en": "Swaziland"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SWZ",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SXM",
+            "name": {
+              "en": "Sint Maarten (Dutch part)"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SXM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SYC",
+            "name": {
+              "en": "Seychelles"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SYC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "SYR",
+            "name": {
+              "en": "Syrian Arab Republic"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).SYR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TCA",
+            "name": {
+              "en": "Turks and Caicos Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TCA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TCD",
+            "name": {
+              "en": "Chad"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TCD",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TGO",
+            "name": {
+              "en": "Togo"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TGO",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "THA",
+            "name": {
+              "en": "Thailand"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).THA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TJK",
+            "name": {
+              "en": "Tajikistan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TJK",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TKL",
+            "name": {
+              "en": "Tokelau"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TKL",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TKM",
+            "name": {
+              "en": "Turkmenistan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TKM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TLS",
+            "name": {
+              "en": "Timor-Leste"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TLS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TON",
+            "name": {
+              "en": "Tonga"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TON",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TTO",
+            "name": {
+              "en": "Trinidad and Tobago"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TTO",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TUN",
+            "name": {
+              "en": "Tunisia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TUN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TUR",
+            "name": {
+              "en": "Turkey"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TUR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TUV",
+            "name": {
+              "en": "Tuvalu"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TUV",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "TZA",
+            "name": {
+              "en": "United Republic of Tanzania"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).TZA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "UGA",
+            "name": {
+              "en": "Uganda"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).UGA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "UKR",
+            "name": {
+              "en": "Ukraine"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).UKR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "URY",
+            "name": {
+              "en": "Uruguay"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).URY",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "USA",
+            "name": {
+              "en": "United States of America"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).USA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "UZB",
+            "name": {
+              "en": "Uzbekistan"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).UZB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "VAT",
+            "name": {
+              "en": "Holy See"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).VAT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "VCT",
+            "name": {
+              "en": "Saint Vincent and the Grenadines"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).VCT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "VEN",
+            "name": {
+              "en": "Venezuela (Bolivarian Republic of)"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).VEN",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "VGB",
+            "name": {
+              "en": "British Virgin Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).VGB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "VIR",
+            "name": {
+              "en": "United States Virgin Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).VIR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "VNM",
+            "name": {
+              "en": "Viet Nam"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).VNM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "VUT",
+            "name": {
+              "en": "Vanuatu"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).VUT",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_EAP",
+            "name": {
+              "en": "East Asia and Pacific"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_EAP",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_ECA",
+            "name": {
+              "en": "Europe and Central Asia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_ECA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_HIC",
+            "name": {
+              "en": "High income"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_HIC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_LAC",
+            "name": {
+              "en": "Latin America and the Caribbean"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_LAC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_LIC",
+            "name": {
+              "en": "Low income"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_LIC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_LMC",
+            "name": {
+              "en": "Lower middle income"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_LMC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_LMY",
+            "name": {
+              "en": "Low and middle income economies"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_LMY",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_MNA",
+            "name": {
+              "en": "Middle East and North Africa"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_MNA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_SAS",
+            "name": {
+              "en": "South Asia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_SAS",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_SSA",
+            "name": {
+              "en": "Sub-Saharan Africa"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_SSA",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_UMC",
+            "name": {
+              "en": "Upper middle income"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_UMC",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WB_WORLD",
+            "name": {
+              "en": "World"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WB_WORLD",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WLF",
+            "name": {
+              "en": "Wallis and Futuna Islands"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WLF",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WSM",
+            "name": {
+              "en": "Samoa"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WSM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WTO_MBR",
+            "name": {
+              "en": "WTO Member States"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WTO_MBR",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WTO_DEVELOPING",
+            "name": {
+              "en": "WTO Developing Member States"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WTO_DEVELOPING",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "WTO_DEVELOPED",
+            "name": {
+              "en": "WTO Developed Member States"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).WTO_DEVELOPED",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "736",
+            "name": {
+              "en": "Sudan [former]"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).736",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "891",
+            "name": {
+              "en": "Serbia and Montenegro [former]"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).891",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "YEM",
+            "name": {
+              "en": "Yemen"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).YEM",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ZAF",
+            "name": {
+              "en": "South Africa"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ZAF",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ZMB",
+            "name": {
+              "en": "Zambia"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ZMB",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "ZWE",
+            "name": {
+              "en": "Zimbabwe"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_REF_AREA_SDG(1.0).ZWE",
                 "type": "code"
               }
             ]
