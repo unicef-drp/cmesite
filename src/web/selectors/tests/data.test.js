@@ -3,7 +3,7 @@ import * as selectors from '../data';
 describe('selectors', () => {
   describe('data', () => {
     const countryDimension = {
-      id: 'COUNTRY',
+      id: 'REF_AREA',
       index: 0,
       label: 'Countries',
       values: [

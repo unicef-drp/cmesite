@@ -54,7 +54,7 @@ export const getDownloadingData = createSelector(
 export const getDimensions = createSelector(getData, prop('dimensions'));
 export const getCountryDimension = createSelector(
   getDimensions,
-  find(propEq('id', 'COUNTRY')),
+  find(propEq('id', 'REF_AREA')),
 );
 export const getOtherDimensions = createSelector(
   getCountryDimension,
