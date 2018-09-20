@@ -1,5 +1,6 @@
 import { not, over, lensPath, assoc, map, addIndex, equals } from 'ramda';
-import { dimensions as __dimensions } from '../../mock/data';
+import { startRequest, endRequest, requestError } from './core';
+import sdmxApi from '../api/sdmx';
 
 export const FORMATS = ['csv', 'xml'];
 export const SCOPES = ['all', 'selection'];
@@ -86,11 +87,39 @@ export const selectDimensionValue = (dimensionIndex, valueIndex) => ({
   valueIndex,
 });
 
+const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
+  const { method } = ctx;
+  dispatch(startRequest());
+  return sdmxApi(ctx)
+    .then(res => {
+      dispatch(endRequest());
+      return res;
+    })
+    .catch(err => {
+      if (err.response) {
+        const {
+          data: { errorCode: resErrorCode },
+          status,
+        } = err.response;
+        dispatch(
+          requestError({
+            method,
+            errorCode: errorCode || resErrorCode,
+            statusCode: status,
+          }),
+        );
+      } else {
+        dispatch(requestError({ method: ctx.method, errorCode }));
+      }
+      throw err;
+    });
+};
+
 export const loadStructure = () => dispatch => {
   dispatch({ type: LOADING_STRUCTURE });
-  return new Promise(resolve => {
-    setTimeout(() => resolve({ dimensions: __dimensions }), 2000);
-  }).then(({ dimensions }) => dispatch({ type: STRUCTURE_LOADED, dimensions }));
+  return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions =>
+    dispatch({ type: STRUCTURE_LOADED, dimensions }),
+  );
 };
 
 export const downloadData = ({ format, scope }) => dispatch => {
