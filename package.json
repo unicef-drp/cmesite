@@ -127,7 +127,7 @@
     "verbose": true,
     "coverageDirectory": "./coverage/",
     "collectCoverageFrom": ["src/**/*.js", "!src/**/*.test.{js,jsx}"],
-    "testPathIgnorePatterns": ["utils", "configureStore.test"],
+    "testPathIgnorePatterns": ["configureStore.test"],
     "setupFiles": ["<rootDir>/config/polyfills.js"],
     "testRegex": "src/.*\\.test\\.js$",
     "testEnvironment": "jsdom",
