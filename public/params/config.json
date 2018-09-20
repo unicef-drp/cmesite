@@ -2,6 +2,15 @@
   "wp": {
     "endpoint": "http://rp5.redpelicans.com:9090/wp-json/wp/v2"
   },
+  "sdmx": {
+    "endpoint": "http://sdmx.unicef.endpoint",
+    "dataflow": {
+      "id": "CME_DF",
+      "version": "1.0",
+      "agencyId": "UNICEFDRPDAU"
+    },
+    "dimensionIds": ["REF_AREA", "INDICATOR", "SEX"]
+  },
   "language": {
     "locale": "en"
   }
