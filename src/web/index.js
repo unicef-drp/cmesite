@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { prop } from 'ramda';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
@@ -15,6 +16,7 @@ import { translationMessages } from './i18n';
 import configureStore from './store/configureStore';
 import ducks from './ducks';
 import wpApi from './api/wp';
+import sdmxApi from './api/sdmx';
 import loadConfig from './config';
 
 const theme = createMuiTheme({
@@ -52,9 +54,6 @@ const theme = createMuiTheme({
 });
 
 loadConfig().then(config => {
-  const {
-    wp: { endpoint },
-  } = config;
   const store = configureStore();
   const history = createBrowserHistory();
   const ROOT = (
@@ -72,7 +71,8 @@ loadConfig().then(config => {
     </ConfigContext.Provider>
   );
 
-  wpApi.config({ endpoint });
+  wpApi.config(prop('wp')(config));
+  sdmxApi.config(prop('sdmx')(config));
   ReactDOM.render(ROOT, document.getElementById('root'));
   store.dispatch(ducks.wp.actions.loadTags());
   store.dispatch(ducks.wp.actions.loadPosts());
