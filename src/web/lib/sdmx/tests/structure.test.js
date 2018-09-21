@@ -1,5 +1,5 @@
 import sdmxStructure from '../../../../mock/data/sdmxStructure';
-import structureParser from '../structure';
+import { structureParser } from '../';
 
 const dimensionIds = ['REF_AREA', 'INDICATOR', 'SEX'];
 const dimensions = [
@@ -42,8 +42,8 @@ const dimensions = [
   { id: 'TIME_PERIOD', index: 5, position: 6 },
 ];
 
-describe('api', () => {
-  describe('utils', () => {
+describe('lib', () => {
+  describe('sdmx', () => {
     describe('structure', () => {
       it.only('should parse sdmx structure into dimensions', () => {
         expect(

@@ -12,15 +12,19 @@ import {
   join,
   propOr,
 } from 'ramda';
-import structureParser from '../lib/sdmx/structure';
+import { structureParser, dataParser } from '../lib/sdmx';
 import sdmxStructure from '../../mock/data/sdmxStructure';
+import sdmxData from '../../mock/data/sdmxData';
 
 let globalConfig = { debug: true };
+
 const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
+
 const dataflowQuery = (separator = '/', config = globalConfig) => {
   const { agencyId, id, version } = config.dataflow;
   return join(separator, [agencyId, id, version]);
 };
+
 const dataQuery = pipe(
   map(
     pipe(
@@ -32,10 +36,14 @@ const dataQuery = pipe(
   ),
   join('.'),
 );
+
 const configuredStructureParser = (structure, config = globalConfig) =>
   structureParser({ locale: 'en', dimensionIds: config.dimensionIds })(
     structure,
   );
+
+const configuredDataParser = (data, config = globalConfig) =>
+  dataParser({ locale: 'en' })(data);
 
 /*const getStructure = () =>
   axios
@@ -62,7 +70,7 @@ const methods = {
     }),
   getData: ({ dimensions }) =>
     new Promise(resolve => {
-      setTimeout(() => resolve(/*configuredDataParser(sdmxData)*/), 500);
+      setTimeout(() => resolve(configuredDataParser(sdmxData)), 500);
     }),
 };
 
