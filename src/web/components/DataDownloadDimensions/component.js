@@ -23,7 +23,7 @@ const styles = theme => ({
 const DataDownloadDimensions = ({
   classes,
   dimensions,
-  toggleDimensionValue,
+  selectDimensionValue,
 }) => (
   <Grid container className={classes.wrapper} spacing={16}>
     {map(({ label, ...dimension }) => (
@@ -34,7 +34,7 @@ const DataDownloadDimensions = ({
           </CardContent>
           <DataDimension
             dimension={dimension}
-            toggleDimensionValue={toggleDimensionValue}
+            selectDimensionValue={selectDimensionValue}
           />
         </Card>
       </Grid>
@@ -45,7 +45,7 @@ const DataDownloadDimensions = ({
 DataDownloadDimensions.propTypes = {
   classes: PropTypes.object.isRequired,
   dimensions: PropTypes.array.isRequired,
-  toggleDimensionValue: PropTypes.func.isRequired,
+  selectDimensionValue: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(DataDownloadDimensions);
