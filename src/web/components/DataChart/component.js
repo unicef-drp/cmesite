@@ -83,7 +83,6 @@ export class Chart extends React.Component {
     const { size, margin, data, classes, theme, series } = this.props;
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
-    console.log(series);
 
     return (
       <div>

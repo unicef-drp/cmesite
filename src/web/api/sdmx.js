@@ -1,14 +1,14 @@
-import axios from 'axios';
-import { map, fromPairs, compose, toPairs, forEach, always } from 'ramda';
+// import axios from 'axios';
+import { map, fromPairs, compose, toPairs, forEach } from 'ramda';
 import structureParser from '../lib/sdmx/structure';
 import sdmxStructure from '../../mock/data/sdmxStructure';
 
 let globalConfig = { debug: true };
-const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
+/*const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
 const dataflowQuery = (config = globalConfig) => {
   const { agencyId, id, version } = config.dataflow;
   return `${agencyId}/${id}/${version}`;
-};
+};*/
 const configuredStructureParser = (structure, config = globalConfig) =>
   structureParser({ dimensionIds: config.dimensionIds })(structure);
 

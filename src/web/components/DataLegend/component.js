@@ -50,7 +50,7 @@ const DataLegend = ({ classes, theme, series }) => (
         {addIndex(map)(({ id, name, type }, index) => {
           const color = theme.palette.chartColorScale(index);
           return (
-            <ListItem key={id} dense button onClick={() => console.log(id)}>
+            <ListItem key={id} dense button>
               <svg width={SIZE / 2} height={SIZE / 2}>
                 <g>
                   <path
