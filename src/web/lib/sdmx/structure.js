@@ -1,5 +1,4 @@
 import {
-  addIndex,
   always,
   propOr,
   map,
@@ -16,40 +15,43 @@ import {
   has,
   reduce,
   append,
+  converge,
+  values,
+  pick,
+  flatten,
+  addIndex,
 } from 'ramda';
 
-const LANG = 'en';
-const getName = path(['name', LANG]);
+const getName = locale => path(['name', locale]);
 
-const getDimensionName = concepts =>
+const getDimensionName = (locale, concepts) =>
   ifElse(
     pipe(prop('conceptIdentity'), flip(has)(concepts)),
-    pipe(prop('conceptIdentity'), flip(prop)(concepts), getName),
+    pipe(prop('conceptIdentity'), flip(prop)(concepts), getName(locale)),
     prop('id'),
   );
 
-const getDimensions = dimensionIds =>
-  pipe(
-    pathOr(
-      [],
-      [
-        'data',
-        'dataStructures',
-        0,
-        'dataStructureComponents',
-        'dimensionList',
-        'dimensions',
-      ],
-    ),
-    filter(hasId(dimensionIds)),
-  );
+const getDimensions = pipe(
+  pathOr({}, [
+    'data',
+    'dataStructures',
+    0,
+    'dataStructureComponents',
+    'dimensionList',
+  ]),
+  pick(['dimensions', 'timeDimensions']),
+  values,
+  flatten,
+);
 
 const hasId = dimensionIds => pipe(prop('id'), flip(contains)(dimensionIds));
+
+export const filterArtefacts = dimensionIds => filter(hasId(dimensionIds));
 
 const getConcepts = dimensionIds =>
   pipe(
     pathOr([], ['data', 'conceptSchemes', 0, 'concepts']),
-    filter(hasId(dimensionIds)),
+    filterArtefacts(dimensionIds),
     indexBy(path(['links', 0, 'urn'])),
   );
 
@@ -58,7 +60,7 @@ const getCodelists = pipe(
   indexBy(prop('urn')),
 );
 
-const getValues = codelists =>
+const getValues = (locale, codelists) =>
   pipe(
     path(['localRepresentation', 'enumeration']),
     flip(prop)(codelists),
@@ -69,26 +71,33 @@ const getValues = codelists =>
         propOr([], 'codes'),
         map(code => ({
           id: prop('id')(code),
-          label: getName(code),
+          label: getName(locale)(code),
         })),
       ),
     ),
   );
 
-const parser = ({ dimensionIds }) => structure => {
+const parser = ({ locale, dimensionIds }) => structure => {
   const concepts = getConcepts(dimensionIds)(structure);
   const codelists = getCodelists(structure);
 
   return pipe(
-    getDimensions(dimensionIds),
+    getDimensions, // not filtered to preserve index for data query
     addIndex(reduce)(
       (memo, dimension, index) =>
         append(
           {
             id: prop('id', dimension),
             index,
-            label: getDimensionName(concepts)(dimension),
-            values: getValues(codelists)(dimension),
+            position: prop('position', dimension),
+            ...ifElse(
+              hasId(dimensionIds),
+              converge((label, values) => ({ label, values }), [
+                getDimensionName(locale, concepts),
+                getValues(locale, codelists),
+              ]),
+              always({}),
+            )(dimension),
           },
           memo,
         ),

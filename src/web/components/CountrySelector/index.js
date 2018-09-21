@@ -9,12 +9,12 @@ import {
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { getCountryDimension } from '../../selectors/data';
-import { selectDimensionValue } from '../../ducks/data';
+import { changeSelection } from '../../ducks/data';
 import Component from './component';
 
 export const enhance = compose(
   connect(createStructuredSelector({ dimension: getCountryDimension }), {
-    selectDimensionValue,
+    changeSelection: changeSelection('select'),
   }),
   branch(({ dimension }) => isNil(dimension), renderNothing),
   withProps(({ dimension }) => ({
@@ -25,8 +25,8 @@ export const enhance = compose(
     ),
   })),
   withHandlers({
-    handleValue: ({ dimension, selectDimensionValue }) => value =>
-      selectDimensionValue(dimension.index, value.index),
+    handleValue: ({ dimension, changeSelection }) => value =>
+      changeSelection(dimension.index, value.index),
   }),
 );
 

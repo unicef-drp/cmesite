@@ -39,7 +39,7 @@ const styles = theme => ({
   },
 });
 
-const DataDimensions = ({ classes, dimensions, selectDimensionValue }) => (
+const DataDimensions = ({ classes, dimensions, changeSelection }) => (
   <React.Fragment>
     {map(({ label, ...dimension }) => (
       <ExpansionPanel
@@ -60,7 +60,7 @@ const DataDimensions = ({ classes, dimensions, selectDimensionValue }) => (
         <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
           <DataDimension
             dimension={dimension}
-            selectDimensionValue={selectDimensionValue}
+            changeSelection={changeSelection}
           />
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -71,7 +71,7 @@ const DataDimensions = ({ classes, dimensions, selectDimensionValue }) => (
 DataDimensions.propTypes = {
   classes: PropTypes.object.isRequired,
   dimensions: PropTypes.array.isRequired,
-  selectDimensionValue: PropTypes.func.isRequired,
+  changeSelection: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(DataDimensions);

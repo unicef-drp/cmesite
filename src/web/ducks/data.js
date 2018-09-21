@@ -1,6 +1,7 @@
 import { not, over, lensPath, assoc, map, addIndex, equals } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi from '../api/sdmx';
+import { getRawDimensions } from '../selectors/data';
 
 export const FORMATS = ['csv', 'xml'];
 export const SCOPES = ['all', 'selection'];
@@ -10,6 +11,8 @@ export const TOGGLE_DIMENSION_VALUE = 'CM/DATA/TOGGLE_DIMENSION_VALUE';
 export const SELECT_DIMENSION_VALUE = 'CM/DATA/SELECT_DIMENSION_VALUE';
 export const LOADING_STRUCTURE = 'CM/DATA/LOADING_STRUCTURE';
 export const STRUCTURE_LOADED = 'CM/DATA/STRUCTURE_LOADED';
+export const LOADING_DATA = 'CM/DATA/LOADING_DATA';
+export const DATA_LOADED = 'CM/DATA/DATA_LOADED';
 export const TOGGLE_DOWNLOADING_DATA = 'CM/DATA/TOGGLE_DOWNLOADING_DATA';
 export const types = {
   CHANGE_ACTIVE_TAB,
@@ -17,12 +20,15 @@ export const types = {
   SELECT_DIMENSION_VALUE,
   LOADING_STRUCTURE,
   STRUCTURE_LOADED,
+  LOADING_DATA,
+  DATA_LOADED,
   TOGGLE_DOWNLOADING_DATA,
 };
 
 const initialState = {
   activeTab: 0,
   isLoadingStructure: false,
+  isLoadingData: false,
   downloadingData: {},
   dimensions: [],
 };
@@ -58,6 +64,14 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isLoadingStructure: false,
         dimensions: action.dimensions,
+      };
+    case LOADING_DATA:
+      return { ...state, isLoadingData: true };
+    case DATA_LOADED:
+      return {
+        ...state,
+        isLoadingData: false,
+        series: action.series,
       };
     case TOGGLE_DOWNLOADING_DATA:
       return over(
@@ -115,11 +129,30 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
     });
 };
 
+export const changeSelection = type => (
+  dimensionIndex,
+  valueIndex,
+) => dispatch => {
+  if (equals(type, 'toggle'))
+    dispatch(toggleDimensionValue(dimensionIndex, valueIndex));
+  else if (equals(type, 'select'))
+    dispatch(selectDimensionValue(dimensionIndex, valueIndex));
+  dispatch(loadData());
+};
+
 export const loadStructure = () => dispatch => {
   dispatch({ type: LOADING_STRUCTURE });
   return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions =>
     dispatch({ type: STRUCTURE_LOADED, dimensions }),
   );
+};
+
+export const loadData = () => (dispatch, getState) => {
+  dispatch({ type: LOADING_DATA });
+  return requestSDMX(dispatch, {
+    method: 'getData',
+    dimensions: getRawDimensions(getState()),
+  }).then(series => dispatch({ type: DATA_LOADED, series }));
 };
 
 export const downloadData = ({ format, scope }) => dispatch => {

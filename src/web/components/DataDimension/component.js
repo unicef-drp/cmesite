@@ -17,14 +17,14 @@ const styles = () => ({
   },
 });
 
-const DataDimension = ({ classes, dimension, selectDimensionValue }) => (
+const DataDimension = ({ classes, dimension, changeSelection }) => (
   <List className={classes.list}>
     {addIndex(map)(({ id, label, isSelected }, index) => (
       <ListItem
         key={id}
         dense
         button
-        onClick={() => selectDimensionValue(dimension.index, index)}
+        onClick={() => changeSelection(dimension.index, index)}
       >
         <Checkbox
           checked={!!isSelected}
@@ -42,7 +42,7 @@ const DataDimension = ({ classes, dimension, selectDimensionValue }) => (
 DataDimension.propTypes = {
   classes: PropTypes.object.isRequired,
   dimension: PropTypes.object.isRequired,
-  selectDimensionValue: PropTypes.func.isRequired,
+  changeSelection: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(DataDimension);

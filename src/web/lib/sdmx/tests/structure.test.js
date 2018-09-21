@@ -6,6 +6,7 @@ const dimensions = [
   {
     id: 'REF_AREA',
     index: 0,
+    position: 1,
     label: 'Reference Area',
     values: [
       { id: '830', label: 'Channel Islands' },
@@ -17,6 +18,7 @@ const dimensions = [
   {
     id: 'INDICATOR',
     index: 1,
+    position: 2,
     label: 'Indicator',
     values: [
       { id: 'MRY0T4', label: 'Mortality Rate Under 5 Years Old' },
@@ -27,6 +29,7 @@ const dimensions = [
   {
     id: 'SEX',
     index: 2,
+    position: 3,
     label: 'Sex',
     values: [
       { id: 'F', label: 'Female' },
@@ -34,15 +37,18 @@ const dimensions = [
       { id: '_T', label: 'Total' },
     ],
   },
+  { id: 'SERIES_NAME', index: 3, position: 4 },
+  { id: 'SERIES_YEAR', index: 4, position: 5 },
+  { id: 'TIME_PERIOD', index: 5, position: 6 },
 ];
 
 describe('api', () => {
   describe('utils', () => {
     describe('structure', () => {
       it.only('should parse sdmx structure into dimensions', () => {
-        expect(structureParser({ dimensionIds })(sdmxStructure)).toEqual(
-          dimensions,
-        );
+        expect(
+          structureParser({ locale: 'en', dimensionIds })(sdmxStructure),
+        ).toEqual(dimensions);
       });
     });
   });

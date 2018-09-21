@@ -3,13 +3,13 @@ import { compose, branch, renderNothing } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { getDimensions, getOtherDimensions } from '../../selectors/data';
-import { selectDimensionValue } from '../../ducks/data';
+import { changeSelection } from '../../ducks/data';
 import Component from './component';
 
 const withDimensions = selector =>
   compose(
     connect(createStructuredSelector({ dimensions: selector }), {
-      selectDimensionValue,
+      changeSelection: changeSelection('select'),
     }),
     branch(
       ({ dimensions }) => anyPass([isNil, isEmpty])(dimensions),

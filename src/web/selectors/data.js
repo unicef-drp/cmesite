@@ -37,7 +37,19 @@ import {
   length,
 } from 'ramda';
 import { getLocale } from './language';
+import { filterArtefacts } from '../lib/sdmx/structure';
 import data from '../../mock/data/sdmxData';
+
+// should be in config
+const dimensionIds = ['REF_AREA', 'INDICATOR', 'SEX'];
+const TYPES = [
+  ['SERIES_NAME', '269', 'ESTIMATE'],
+  ['OBS_STATUS', 'IN', 'INCLUDED'],
+  ['OBS_STATUS', 'EX', 'EXCLUDED'],
+];
+const Z = 'SERIES_NAME';
+const X = 'TIME_PERIOD';
+//const Y_VARIANTS = [['LOWER_BOUND', 'UPPER_BOUND']];
 
 export const getData = prop('data');
 export const getActiveTab = createSelector(getData, prop('activeTab'));
@@ -49,11 +61,16 @@ export const getIsLoadingStructure = createSelector(
   getData,
   prop('isLoadingStructure'),
 );
+export const getIsLoadingData = createSelector(getData, prop('isLoadingData'));
 export const getDownloadingData = createSelector(
   getData,
   prop('downloadingData'),
 );
-export const getDimensions = createSelector(getData, prop('dimensions'));
+export const getRawDimensions = createSelector(getData, prop('dimensions'));
+export const getDimensions = createSelector(
+  getRawDimensions,
+  filterArtefacts(dimensionIds),
+);
 export const getCountryDimension = createSelector(
   getDimensions,
   find(propEq('id', 'REF_AREA')),
@@ -93,16 +110,6 @@ export const getChartData = always([
     }, 19),
   },
 ]);
-
-// should be in config
-const TYPES = [
-  ['SERIES_NAME', '269', 'ESTIMATE'],
-  ['OBS_STATUS', 'IN', 'INCLUDED'],
-  ['OBS_STATUS', 'EX', 'EXCLUDED'],
-];
-const Z = 'SERIES_NAME';
-const X = 'TIME_PERIOD';
-//const Y_VARIANTS = [['LOWER_BOUND', 'UPPER_BOUND']];
 
 // should be in utils
 export const getValue = valueIndex => pipe(prop('values'), nth(valueIndex));

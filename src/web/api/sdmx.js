@@ -1,25 +1,55 @@
 // import axios from 'axios';
-import { map, fromPairs, compose, toPairs, forEach } from 'ramda';
+import {
+  map,
+  fromPairs,
+  compose,
+  toPairs,
+  forEach,
+  pipe,
+  pluck,
+  propEq,
+  filter,
+  join,
+  propOr,
+} from 'ramda';
 import structureParser from '../lib/sdmx/structure';
 import sdmxStructure from '../../mock/data/sdmxStructure';
 
 let globalConfig = { debug: true };
-/*const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
-const dataflowQuery = (config = globalConfig) => {
+const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
+const dataflowQuery = (separator = '/', config = globalConfig) => {
   const { agencyId, id, version } = config.dataflow;
-  return `${agencyId}/${id}/${version}`;
-};*/
+  return join(separator, [agencyId, id, version]);
+};
+const dataQuery = pipe(
+  map(
+    pipe(
+      propOr([], 'values'),
+      filter(propEq('isSelected', true)),
+      pluck('id'),
+      join('+'),
+    ),
+  ),
+  join('.'),
+);
 const configuredStructureParser = (structure, config = globalConfig) =>
-  structureParser({ dimensionIds: config.dimensionIds })(structure);
+  structureParser({ locale: 'en', dimensionIds: config.dimensionIds })(
+    structure,
+  );
 
 /*const getStructure = () =>
   axios
     .get(
       endPoint(`/dataflow/${dataflowQuery()}/?references=all`),
     )
-    .then();*/
+    .then();
 
-const getData = () => {};
+const getData = (dimensions) =>
+  axios
+    .get(
+      endPoint(`/data/${dataflowQuery(',')}/${dataQuery(dimensions)}/?dimensionAtObservation=AllDimensions`),
+    )
+    .then();*/
 
 /* eslint-disable-line no-shadow */
 const config = config => (globalConfig = { ...globalConfig, ...config });
@@ -30,7 +60,10 @@ const methods = {
     new Promise(resolve => {
       setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 1000);
     }),
-  getData,
+  getData: ({ dimensions }) =>
+    new Promise(resolve => {
+      setTimeout(() => resolve(/*configuredDataParser(sdmxData)*/), 500);
+    }),
 };
 
 const error = method => () => {
