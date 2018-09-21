@@ -33,9 +33,11 @@ import {
   sortBy,
   lensProp,
   map,
+  gte,
+  length,
 } from 'ramda';
 import { getLocale } from './language';
-import factory from '../../mock/data/factory';
+import data from '../../mock/data/sdmxData';
 
 export const getData = prop('data');
 export const getActiveTab = createSelector(getData, prop('activeTab'));
@@ -94,7 +96,7 @@ export const getChartData = always([
 
 // should be in config
 const TYPES = [
-  ['SERIES_NAME', 269, 'ESTIMATE'],
+  ['SERIES_NAME', '269', 'ESTIMATE'],
   ['OBS_STATUS', 'IN', 'INCLUDED'],
   ['OBS_STATUS', 'EX', 'EXCLUDED'],
 ];
@@ -155,7 +157,7 @@ const getSerieKey = z =>
 const getX = x =>
   pipe(path([x, 'valueId']), ifElse(isNil, identity, id => new Date(id)));
 
-export const getSdmxData = always(factory());
+export const getSdmxData = always(data);
 export const getDataStructure = createSelector(
   getSdmxData,
   pathOr({}, ['data', 'structure']),
@@ -192,7 +194,6 @@ export const getDataSeries = createSelector(
         );
 
         const type = getType(observation)(TYPES);
-        console.log(dimensions);
         if (isNil(type)) return acc;
 
         const serieKey = getSerieKey(Z)(observation, type);
@@ -214,6 +215,7 @@ export const getDataSeries = createSelector(
 
         return assoc(serieKey, serie, acc);
       }, {}),
+      reject(pipe(prop('datapoints'), length, gte(1))),
       map(over(lensProp('datapoints'), sortBy(prop('x')))),
     )(observations),
 );

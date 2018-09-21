@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { map, fromPairs, compose, toPairs, forEach, always } from 'ramda';
-import structureParser from './utils/structure';
+import structureParser from '../lib/sdmx/structure';
 import sdmxStructure from '../../mock/data/sdmxStructure';
 
 let globalConfig = { debug: true };

@@ -4584,9 +4584,9 @@
             "roles": ["SERIES_NAME"],
             "values": [
               {
-                "id": "42",
+                "id": "269",
                 "name": {
-                  "en": "DHS Direct Full Birth Histories"
+                  "en": "UN IGME estimate"
                 }
               },
               {
@@ -4662,9 +4662,9 @@
                 }
               },
               {
-                "id": "269",
+                "id": "42",
                 "name": {
-                  "en": "UN IGME estimate"
+                  "en": "DHS Direct Full Birth Histories"
                 }
               },
               {
