@@ -9,7 +9,7 @@ import Component from './component';
 const withDimensions = selector =>
   compose(
     connect(createStructuredSelector({ dimensions: selector }), {
-      changeSelection: changeSelection('select'),
+      changeSelection: changeSelection('toggle'),
     }),
     branch(
       ({ dimensions }) => anyPass([isNil, isEmpty])(dimensions),
