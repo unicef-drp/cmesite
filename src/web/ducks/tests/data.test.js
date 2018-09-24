@@ -35,6 +35,7 @@ describe('ducks', () => {
         expect(reducer()).toEqual({
           activeTab: 0,
           isLoadingStructure: false,
+          isLoadingData: false,
           downloadingData: {},
           dimensions: [],
         });
