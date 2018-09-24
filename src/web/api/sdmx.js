@@ -12,7 +12,7 @@ import {
   //join,
   //propOr,
 } from 'ramda';
-import { structureParser, dataParser } from '../lib/sdmx';
+import { structureParser, dataParser, dataQuery } from '../lib/sdmx';
 import sdmxStructure from '../../mock/data/sdmxStructure';
 import sdmxData from '../../mock/data/sdmxData';
 
@@ -28,21 +28,12 @@ const dataflowQuery = (separator = '/', config = globalConfig) => {
   const { agencyId, id, version } = config.dataflow;
   return join(separator, [agencyId, id, version]);
 };
-
-const dataQuery = pipe(
-  map(
-    pipe(
-      propOr([], 'values'),
-      filter(propEq('isSelected', true)),
-      pluck('id'),
-      join('+'),
-    ),
-  ),
-  join('.'),
-);*/
+*/
 
 const configuredStructureParser = (structure, config = globalConfig) =>
-  structureParser({ locale: config.locale, dimensionIds: config.dimensionIds })(structure);
+  structureParser({ locale: config.locale, dimensionIds: config.dimensionIds })(
+    structure,
+  );
 
 const configuredDataParser = (data, config = globalConfig) =>
   dataParser({ locale: config.locale })(data);
@@ -57,7 +48,7 @@ const configuredDataParser = (data, config = globalConfig) =>
 const getData = (dimensions) =>
   axios
     .get(
-      endPoint(`/data/${dataflowQuery(',')}/${dataQuery(dimensions)}/?dimensionAtObservation=AllDimensions`),
+      endPoint(`/data/${dataflowQuery(',')}/${dataQuery()(dimensions)}/?dimensionAtObservation=AllDimensions`),
     )
     .then();*/
 
