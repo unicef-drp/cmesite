@@ -48,7 +48,8 @@ const X = 'TIME_PERIOD';
 // const Y0 = 'LOWER_BOUND';
 // const Y1 = 'UPPER_BOUND';
 
-const getArtefacts = type => pathOr([], ['data', 'structure', type, 'observation']);
+const getArtefacts = type =>
+  pathOr([], ['data', 'structure', type, 'observation']);
 
 const getObservations = pathOr({}, ['data', 'dataSets', 0, 'observations']);
 
@@ -58,7 +59,9 @@ const getName = locale => path(['name', locale]);
 
 const getType = observation =>
   pipe(
-    find(([id, value]) => pipe(path([id, 'valueId']), equals(value))(observation)),
+    find(([id, value]) =>
+      pipe(path([id, 'valueId']), equals(value))(observation),
+    ),
     ifElse(isNil, identity, last),
   );
 
@@ -68,9 +71,13 @@ const getSerieKey = ids =>
     identity,
   ]);
 
-const getX = x => pipe(path([x, 'valueId']), ifElse(isNil, identity, id => new Date(id)));
+const getX = x =>
+  pipe(path([x, 'valueId']), ifElse(isNil, identity, id => new Date(id)));
 
-const parseArtefact = locale => (valueIndex, artefactIndex) => (artefact, value) => ({
+const parseArtefact = locale => (valueIndex, artefactIndex) => (
+  artefact,
+  value,
+) => ({
   id: prop('id', artefact),
   name: getName(locale)(artefact),
   index: parseInt(artefactIndex),
@@ -98,7 +105,10 @@ const parseObservationKey = locale => dimensions =>
 const parseObservationValue = locale => attributes =>
   pipe(
     last,
-    converge(merge, [pipe(head, y => ({ y })), pipe(tail, parseArtefacts(locale)(attributes))]),
+    converge(merge, [
+      pipe(head, y => ({ y })),
+      pipe(tail, parseArtefacts(locale)(attributes)),
+    ]),
   );
 
 const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
@@ -120,7 +130,8 @@ const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
   )(sdmxObservation);
   const serieKey = getSerieKey([...DIMENSION_IDS, Z])(observation, type);
 
-  if (has(serieKey, acc)) return over(lensPath([serieKey, 'datapoints']), append(observation), acc);
+  if (has(serieKey, acc))
+    return over(lensPath([serieKey, 'datapoints']), append(observation), acc);
 
   const serie = {
     id: serieKey,
@@ -141,7 +152,6 @@ const parser = ({ locale }) => data => {
     getObservations,
     toPairs,
     reduce(reduceObservation(locale, dimensions, attributes), {}),
-    reject(pipe(prop('datapoints'), length, gte(2))),
     map(over(lensProp('datapoints'), sortBy(prop('x')))),
   )(data);
 };
