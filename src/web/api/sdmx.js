@@ -5,20 +5,24 @@ import {
   compose,
   toPairs,
   forEach,
-  pipe,
-  pluck,
-  propEq,
-  filter,
-  join,
-  propOr,
+  //pipe,
+  //pluck,
+  //propEq,
+  //filter,
+  //join,
+  //propOr,
 } from 'ramda';
 import { structureParser, dataParser } from '../lib/sdmx';
 import sdmxStructure from '../../mock/data/sdmxStructure';
 import sdmxData from '../../mock/data/sdmxData';
 
-let globalConfig = { debug: true };
+const mockConfig = {
+  dimensionIds: ['REF_AREA', 'INDICATOR', 'SEX'],
+  locale: 'en',
+};
+let globalConfig = { debug: true, ...mockConfig };
 
-const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
+/*const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
 
 const dataflowQuery = (separator = '/', config = globalConfig) => {
   const { agencyId, id, version } = config.dataflow;
@@ -35,15 +39,13 @@ const dataQuery = pipe(
     ),
   ),
   join('.'),
-);
+);*/
 
 const configuredStructureParser = (structure, config = globalConfig) =>
-  structureParser({ locale: 'en', dimensionIds: config.dimensionIds })(
-    structure,
-  );
+  structureParser({ locale: config.locale, dimensionIds: config.dimensionIds })(structure);
 
 const configuredDataParser = (data, config = globalConfig) =>
-  dataParser({ locale: 'en' })(data);
+  dataParser({ locale: config.locale })(data);
 
 /*const getStructure = () =>
   axios
@@ -68,7 +70,7 @@ const methods = {
     new Promise(resolve => {
       setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 1000);
     }),
-  getData: ({ dimensions }) =>
+  getData: (/*{ dimensions }*/) =>
     new Promise(resolve => {
       setTimeout(() => resolve(configuredDataParser(sdmxData)), 500);
     }),

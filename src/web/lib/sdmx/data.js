@@ -35,7 +35,6 @@ import {
   find,
   values,
   always,
-  tap,
 } from 'ramda';
 
 const DIMENSION_IDS = ['REF_AREA', 'INDICATOR', 'SEX'];
@@ -144,7 +143,6 @@ const parser = ({ locale }) => data => {
     reduce(reduceObservation(locale, dimensions, attributes), {}),
     reject(pipe(prop('datapoints'), length, gte(1))),
     map(over(lensProp('datapoints'), sortBy(prop('x')))),
-    tap(console.log),
   )(data);
 };
 
