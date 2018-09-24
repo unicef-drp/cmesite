@@ -141,7 +141,7 @@ const parser = ({ locale }) => data => {
     getObservations,
     toPairs,
     reduce(reduceObservation(locale, dimensions, attributes), {}),
-    reject(pipe(prop('datapoints'), length, gte(1))),
+    reject(pipe(prop('datapoints'), length, gte(2))),
     map(over(lensProp('datapoints'), sortBy(prop('x')))),
   )(data);
 };

@@ -3,7 +3,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { compose, map, addIndex, prop, values, not } from 'ramda';
+import { compose, map, addIndex, prop, values, not, toLower } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
 import { getSymbolFill } from './utils';
@@ -34,8 +34,16 @@ const style = theme => ({
       display: 'none',
     },
   },
-  line: {
+  estimates: {
     strokeWidth: 2,
+  },
+  included: {
+    strokeWidth: 1,
+    strokeDasharray: '5 5',
+  },
+  excluded: {
+    strokeWidth: 1,
+    strokeDasharray: '5 5',
   },
 });
 
@@ -56,11 +64,11 @@ export class Chart extends React.Component {
     const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
 
     xScale
-      .domain([new Date(1970, 0, 1), new Date(2015, 0, 1)])
+      .domain([new Date(1985, 0, 1), new Date(2016, 0, 1)])
       .range([0, contentWidth])
       .nice();
     yScale
-      .domain([0, 400])
+      .domain([0, 260])
       .range([contentHeight, 0])
       .nice();
 
@@ -113,21 +121,21 @@ export class Chart extends React.Component {
               />
             </g>
             <g>
-              {addIndex(map)((serie, index) => {
-                const isEstimate = prop('isEstimate', serie);
+              {addIndex(map)(({ id, datapoints, type, isEstimate }, index) => {
                 const color = isEstimate
                   ? theme.palette.primary.main
                   : theme.palette.chartColorScale(index);
+                const line = isEstimate ? prop('estimates', classes) : prop(toLower(type), classes);
                 return (
                   <Line
-                    key={prop('id', serie)}
-                    data={prop('datapoints', serie)}
+                    key={id}
+                    data={datapoints}
                     xScale={xScale}
                     yScale={yScale}
                     color={color}
-                    classes={classes}
+                    classes={{ line }}
                     hasSymbols={not(isEstimate)}
-                    symbolFill={getSymbolFill(prop('type', serie), color)}
+                    symbolFill={getSymbolFill(type, color)}
                   />
                 );
               }, values(series))}

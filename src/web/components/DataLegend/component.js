@@ -47,8 +47,10 @@ const DataLegend = ({ classes, theme, series }) => (
     />
     <CardContent className={classes.content}>
       <List className={classes.list}>
-        {addIndex(map)(({ id, name, type }, index) => {
-          const color = theme.palette.chartColorScale(index);
+        {addIndex(map)(({ id, name, type, isEstimate }, index) => {
+          const color = isEstimate
+            ? theme.palette.primary.main
+            : theme.palette.chartColorScale(index);
           return (
             <ListItem key={id} dense button>
               <svg width={SIZE / 2} height={SIZE / 2}>
