@@ -3,7 +3,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { compose, map, addIndex, prop, values } from 'ramda';
+import { compose, map, addIndex, prop, values, not } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
 import { getSymbolFill } from './utils';
@@ -41,9 +41,6 @@ const style = theme => ({
 
 export class Chart extends React.Component {
   state = {
-    //height,
-    //contentWidth,
-    //contentHeight,
     xScale: scaleTime(),
     yScale: scaleLinear(),
   };
@@ -56,16 +53,14 @@ export class Chart extends React.Component {
     const contentWidth = Math.floor(
       nextProps.size.width - nextProps.margin.left - nextProps.margin.right,
     );
-    const contentHeight = Math.floor(
-      height - nextProps.margin.top - nextProps.margin.bottom,
-    );
+    const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
 
     xScale
-      .domain([new Date(2000, 0, 1), new Date(2020, 0, 1)])
+      .domain([new Date(1970, 0, 1), new Date(2015, 0, 1)])
       .range([0, contentWidth])
       .nice();
     yScale
-      .domain([0, 100])
+      .domain([0, 400])
       .range([contentHeight, 0])
       .nice();
 
@@ -80,22 +75,20 @@ export class Chart extends React.Component {
   };
 
   render = () => {
-    const { size, margin, data, classes, theme, series } = this.props;
+    const { size, margin, classes, theme, series, estimates } = this.props;
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
 
     return (
       <div>
         <Typography variant="caption">
-          <span style={{ marginLeft: margin.left }}>
-            Deaths per 1000 live births
-          </span>
+          <span style={{ marginLeft: margin.left }}>Deaths per 1000 live births</span>
         </Typography>
         <svg width={width} height={height}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <g>
               <Area
-                data={data[2].datapoints}
+                data={prop('datapoints', estimates)}
                 xScale={xScale}
                 yScale={yScale}
                 color={theme.palette.secondary.dark}
@@ -121,7 +114,10 @@ export class Chart extends React.Component {
             </g>
             <g>
               {addIndex(map)((serie, index) => {
-                const color = theme.palette.chartColorScale(index);
+                const isEstimate = prop('isEstimate', serie);
+                const color = isEstimate
+                  ? theme.palette.primary.main
+                  : theme.palette.chartColorScale(index);
                 return (
                   <Line
                     key={prop('id', serie)}
@@ -130,26 +126,11 @@ export class Chart extends React.Component {
                     yScale={yScale}
                     color={color}
                     classes={classes}
-                    hasSymbols //is not main 269
+                    hasSymbols={not(isEstimate)}
                     symbolFill={getSymbolFill(prop('type', serie), color)}
                   />
                 );
               }, values(series))}
-              <Line
-                data={data[0].datapoints}
-                xScale={xScale}
-                yScale={yScale}
-                color={theme.palette.primary.main}
-                classes={classes}
-              />
-              <Line
-                data={data[1].datapoints}
-                xScale={xScale}
-                yScale={yScale}
-                color={theme.palette.primary.main}
-                hasSymbols
-                symbolShape="none"
-              />
             </g>
           </g>
         </svg>
@@ -162,6 +143,4 @@ Chart.defaultProps = {
   margin: { top: 10, right: 1, bottom: 20, left: 40 },
 };
 
-export default compose(withStyles(style, { withTheme: true }), withSize())(
-  Chart,
-);
+export default compose(withStyles(style, { withTheme: true }), withSize())(Chart);
