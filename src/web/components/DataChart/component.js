@@ -39,7 +39,6 @@ const style = theme => ({
   },
   included: {
     strokeWidth: 1,
-    strokeDasharray: '5 5',
   },
   excluded: {
     strokeWidth: 1,
@@ -61,7 +60,9 @@ export class Chart extends React.Component {
     const contentWidth = Math.floor(
       nextProps.size.width - nextProps.margin.left - nextProps.margin.right,
     );
-    const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
+    const contentHeight = Math.floor(
+      height - nextProps.margin.top - nextProps.margin.bottom,
+    );
 
     xScale
       .domain([new Date(1985, 0, 1), new Date(2016, 0, 1)])
@@ -90,7 +91,9 @@ export class Chart extends React.Component {
     return (
       <div>
         <Typography variant="caption">
-          <span style={{ marginLeft: margin.left }}>Deaths per 1000 live births</span>
+          <span style={{ marginLeft: margin.left }}>
+            Deaths per 1000 live births
+          </span>
         </Typography>
         <svg width={width} height={height}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
@@ -125,7 +128,9 @@ export class Chart extends React.Component {
                 const color = isEstimate
                   ? theme.palette.primary.main
                   : theme.palette.chartColorScale(index);
-                const line = isEstimate ? prop('estimates', classes) : prop(toLower(type), classes);
+                const line = isEstimate
+                  ? prop('estimates', classes)
+                  : prop(toLower(type), classes);
                 return (
                   <Line
                     key={id}
@@ -151,4 +156,6 @@ Chart.defaultProps = {
   margin: { top: 10, right: 1, bottom: 20, left: 40 },
 };
 
-export default compose(withStyles(style, { withTheme: true }), withSize())(Chart);
+export default compose(withStyles(style, { withTheme: true }), withSize())(
+  Chart,
+);
