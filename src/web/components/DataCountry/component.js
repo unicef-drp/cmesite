@@ -8,6 +8,7 @@ import DataDownloadPanel from '../DataDownloadPanel';
 import DataTitle from '../DataTitle';
 import DataChart from '../DataChart';
 import DataLegend from '../DataLegend';
+import DataContent from '../DataContent';
 
 const style = theme => ({
   wrapper: {
@@ -29,9 +30,11 @@ const DataCountry = ({ classes }) => (
       <DataDownloadPanel />
     </Grid>
     <Grid item sm={12} md={9} className={classes.content}>
-      <DataTitle />
-      <DataChart />
-      <DataLegend />
+      <DataContent>
+        <DataTitle />
+        <DataChart />
+        <DataLegend />
+      </DataContent>
     </Grid>
   </Grid>
 );
