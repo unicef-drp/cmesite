@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import { DataAllDimensions } from '../DataDimensions';
 import DataDownloadPanel from '../DataDownloadPanel';
 import DataChart from '../DataChart';
-import DataContent from '../DataContent';
 
 const style = theme => ({
   wrapper: {
@@ -21,9 +20,7 @@ const DataCompare = ({ classes }) => (
       <DataDownloadPanel />
     </Grid>
     <Grid item sm={12} md={9}>
-      <DataContent>
-        <DataChart />
-      </DataContent>
+      <DataChart />
     </Grid>
   </Grid>
 );

@@ -1,161 +1,79 @@
-/* eslint-disable react/prop-types */
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import classnames from 'classnames';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { compose, map, addIndex, prop, values, not, toLower } from 'ramda';
-import { scaleLinear, scaleTime } from 'd3-scale';
-import { withSize } from 'react-sizeme';
-import { getSymbolFill } from './utils';
-import Axis from './axis';
-import Line from './line';
-import Area from './area';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+import Chart from '../Chart';
+import DataLegend from '../DataLegend';
 
-const style = theme => ({
-  axis: {
-    '& path': {
-      stroke: theme.palette.secondary.dark,
-      shapeRendering: 'crispEdges',
-    },
-    '& line': {
-      stroke: theme.palette.secondary.dark,
-      shapeRendering: 'crispEdges',
-    },
-    '& text': {
-      fill: theme.palette.primary.dark,
-      fontWeight: 'bold',
+const styles = theme => ({
+  content: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  actions: {
+    display: 'flex',
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    marginLeft: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      marginRight: -8,
     },
   },
-  axisBottom: {
-    '& .tick:first-of-type': {
-      display: 'none',
-    },
-    '& .tick:last-of-type': {
-      display: 'none',
-    },
+  expandOpen: {
+    transform: 'rotate(180deg)',
   },
-  estimates: {
-    strokeWidth: 2,
-  },
-  included: {
-    strokeWidth: 1,
-  },
-  excluded: {
-    strokeWidth: 1,
-    strokeDasharray: '5 5',
+  typo: {
+    color: theme.palette.primary.dark,
   },
 });
 
-export class Chart extends React.Component {
-  state = {
-    xScale: scaleTime(),
-    yScale: scaleLinear(),
-  };
+const DataChart = ({ classes, expanded, onExpand, title }) => (
+  <Card className={classes.card} square>
+    <CardHeader
+      title={<Typography className={classes.typo}>{title}</Typography>}
+      subheader="Deaths per 1000 live births"
+    />
+    <CardContent className={classes.content}>
+      <Chart />
+    </CardContent>
+    <CardActions className={classes.actions}>
+      <Typography className={classes.typo}>
+        <FormattedMessage {...messages.legend} />
+      </Typography>
+      <IconButton
+        className={classnames(classes.expand, { [classes.expandOpen]: expanded })}
+        onClick={onExpand}
+      >
+        <ExpandMoreIcon />
+      </IconButton>
+    </CardActions>
+    <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <DataLegend />
+    </Collapse>
+  </Card>
+);
 
-  static getDerivedStateFromProps = (nextProps, prevState) => {
-    let { xScale, yScale } = prevState;
-
-    const height = nextProps.size.width / 1.77;
-
-    const contentWidth = Math.floor(
-      nextProps.size.width - nextProps.margin.left - nextProps.margin.right,
-    );
-    const contentHeight = Math.floor(
-      height - nextProps.margin.top - nextProps.margin.bottom,
-    );
-
-    xScale
-      .domain([new Date(1985, 0, 1), new Date(2016, 0, 1)])
-      .range([0, contentWidth])
-      .nice();
-    yScale
-      .domain([0, 260])
-      .range([contentHeight, 0])
-      .nice();
-
-    return {
-      ...prevState,
-      height,
-      contentWidth,
-      contentHeight,
-      xScale,
-      yScale,
-    };
-  };
-
-  render = () => {
-    const { size, margin, classes, theme, series, estimates } = this.props;
-    const { width } = size;
-    const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
-
-    return (
-      <div>
-        <Typography variant="caption">
-          <span style={{ marginLeft: margin.left }}>
-            Deaths per 1000 live births
-          </span>
-        </Typography>
-        <svg width={width} height={height}>
-          <g transform={`translate(${margin.left}, ${margin.top})`}>
-            <g>
-              <Area
-                data={prop('datapoints', estimates)}
-                xScale={xScale}
-                yScale={yScale}
-                color={theme.palette.secondary.dark}
-                classes={classes}
-              />
-            </g>
-            <g>
-              <Axis
-                orient="Left"
-                scale={yScale}
-                ticks={20}
-                tickSize={-contentWidth}
-                classes={classes}
-              />
-              <Axis
-                orient="Bottom"
-                scale={xScale}
-                translate={`translate(0, ${contentHeight})`}
-                ticks={10}
-                tickSize={-contentHeight}
-                classes={classes}
-              />
-            </g>
-            <g>
-              {addIndex(map)(({ id, datapoints, type, isEstimate }, index) => {
-                const color = isEstimate
-                  ? theme.palette.primary.main
-                  : theme.palette.chartColorScale(index);
-                const line = isEstimate
-                  ? prop('estimates', classes)
-                  : prop(toLower(type), classes);
-                return (
-                  <Line
-                    key={id}
-                    data={datapoints}
-                    xScale={xScale}
-                    yScale={yScale}
-                    color={color}
-                    classes={{ line }}
-                    hasSymbols={not(isEstimate)}
-                    symbolFill={getSymbolFill(type, color)}
-                  />
-                );
-              }, values(series))}
-            </g>
-          </g>
-        </svg>
-      </div>
-    );
-  };
-}
-
-Chart.defaultProps = {
-  margin: { top: 10, right: 1, bottom: 20, left: 40 },
+DataChart.propTypes = {
+  classes: PropTypes.object.isRequired,
+  title: PropTypes.string,
+  expanded: PropTypes.bool,
+  onExpand: PropTypes.func,
 };
 
-export default compose(withStyles(style, { withTheme: true }), withSize())(
-  Chart,
-);
+export default withStyles(styles)(DataChart);

@@ -5,10 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import CountrySelector from '../CountrySelector';
 import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadPanel from '../DataDownloadPanel';
-import DataTitle from '../DataTitle';
 import DataChart from '../DataChart';
-import DataLegend from '../DataLegend';
-import DataContent from '../DataContent';
 
 const style = theme => ({
   wrapper: {
@@ -30,11 +27,7 @@ const DataCountry = ({ classes }) => (
       <DataDownloadPanel />
     </Grid>
     <Grid item sm={12} md={9} className={classes.content}>
-      <DataContent>
-        <DataTitle />
-        <DataChart />
-        <DataLegend />
-      </DataContent>
+      <DataChart />
     </Grid>
   </Grid>
 );
