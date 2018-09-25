@@ -1,4 +1,4 @@
-import { map, pipe, filter, pluck, values, join, propOr, propEq } from 'ramda';
+import { map, pipe, filter, pluck, join, propOr, propEq } from 'ramda';
 
 export dataParser from './data';
 export structureParser, { filterArtefacts } from './structure';

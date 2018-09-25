@@ -21,17 +21,14 @@ import {
   tail,
   over,
   has,
-  gte,
   map,
   merge,
   sortBy,
   lensProp,
   lensPath,
-  length,
   toPairs,
   split,
   append,
-  reject,
   find,
   values,
   always,
@@ -48,8 +45,7 @@ const X = 'TIME_PERIOD';
 // const Y0 = 'LOWER_BOUND';
 // const Y1 = 'UPPER_BOUND';
 
-const getArtefacts = type =>
-  pathOr([], ['data', 'structure', type, 'observation']);
+const getArtefacts = type => pathOr([], ['data', 'structure', type, 'observation']);
 
 const getObservations = pathOr({}, ['data', 'dataSets', 0, 'observations']);
 
@@ -59,9 +55,7 @@ const getName = locale => path(['name', locale]);
 
 const getType = observation =>
   pipe(
-    find(([id, value]) =>
-      pipe(path([id, 'valueId']), equals(value))(observation),
-    ),
+    find(([id, value]) => pipe(path([id, 'valueId']), equals(value))(observation)),
     ifElse(isNil, identity, last),
   );
 

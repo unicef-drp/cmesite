@@ -2,17 +2,7 @@
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {
-  compose,
-  map,
-  addIndex,
-  prop,
-  values,
-  not,
-  toLower,
-  filter,
-  propEq,
-} from 'ramda';
+import { compose, map, addIndex, prop, not, toLower } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
 import { getSymbolFill } from './utils';

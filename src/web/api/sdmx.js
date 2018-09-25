@@ -12,7 +12,7 @@ import {
   //join,
   //propOr,
 } from 'ramda';
-import { structureParser, dataParser, dataQuery } from '../lib/sdmx';
+import { structureParser, dataParser /*dataQuery*/ } from '../lib/sdmx';
 import sdmxStructure from '../../mock/data/sdmxStructure';
 import sdmxData from '../../mock/data/sdmxData';
 
