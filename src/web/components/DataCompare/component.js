@@ -8,13 +8,14 @@ import DataChart from '../DataChart';
 
 const style = theme => ({
   wrapper: {
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    paddingTop: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    margin: 0,
   },
 });
 
 const DataCompare = ({ classes }) => (
-  <Grid container className={classes.wrapper}>
+  <Grid container spacing={16} className={classes.wrapper}>
     <Grid item sm={12} md={3}>
       <DataAllDimensions isSide />
       <DataDownloadPanel />

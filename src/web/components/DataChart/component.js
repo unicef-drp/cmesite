@@ -16,6 +16,9 @@ import Chart from '../Chart';
 import DataLegend from '../DataLegend';
 
 const styles = theme => ({
+  card: {
+    marginBottom: theme.spacing.unit * 2,
+  },
   content: {
     paddingTop: 0,
     paddingBottom: 0,
