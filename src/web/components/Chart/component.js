@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { compose, map, addIndex, prop, not, toLower } from 'ramda';
+import { compose, map, addIndex, not } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
-import { getSymbolFill } from './utils';
+import { getSymbolFill, getClass } from './utils';
 import Axis from './axis';
 import Line from './line';
 import Area from './area';
@@ -129,9 +129,6 @@ export class Chart extends React.Component {
               const color = isEstimate
                 ? theme.palette.primary.main
                 : theme.palette.chartColorScale(index);
-              const line = isEstimate
-                ? prop('estimates', classes)
-                : prop(toLower(type), classes);
               return (
                 <Line
                   key={id}
@@ -139,7 +136,7 @@ export class Chart extends React.Component {
                   xScale={xScale}
                   yScale={yScale}
                   color={color}
-                  classes={{ line }}
+                  classes={getClass(type, isEstimate, classes)}
                   hasSymbols={not(isEstimate)}
                   symbolFill={getSymbolFill(type, color)}
                 />
