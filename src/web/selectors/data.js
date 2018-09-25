@@ -12,6 +12,10 @@ import {
   find,
   values,
   filter,
+  ifElse,
+  equals,
+  head,
+  length,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 
@@ -35,6 +39,14 @@ export const getCountryDimension = createSelector(
   getDimensions,
   find(propEq('id', 'REF_AREA')),
 );
+export const getCountryValue = createSelector(
+  getCountryDimension,
+  pipe(
+    propOr([], 'values'),
+    filter(propEq('isSelected', true)),
+    ifElse(pipe(length, equals(1)), head, always(null)),
+  ),
+);
 export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,
@@ -44,12 +56,11 @@ export const getTitle = createSelector(
   getOtherDimensions,
   dataQuery(' ', ' ', 'label'),
 );
-export const getDataSeries = createSelector(getData, propOr({}, 'series'));
+export const getDataSeries = createSelector(
+  getData,
+  pipe(propOr({}, 'series'), values),
+);
 export const getDataEstimateSeries = createSelector(
   getDataSeries,
-  pipe(values, filter(propEq('isEstimate', true))),
-);
-export const getEstimateDataSerie = createSelector(
-  getDataSeries,
-  pipe(values, find(propEq('isEstimate', true))),
+  filter(propEq('isEstimate', true)),
 );

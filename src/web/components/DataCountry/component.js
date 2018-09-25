@@ -16,7 +16,7 @@ const style = theme => ({
   },
 });
 
-const DataCountry = ({ classes, series, estimates }) => (
+const DataCountry = ({ classes, series, estimates, country }) => (
   <Grid container spacing={16} className={classes.wrapper}>
     <Grid item xs={12}>
       <CountrySelector />
@@ -26,15 +26,16 @@ const DataCountry = ({ classes, series, estimates }) => (
       <DataDownloadPanel />
     </Grid>
     <Grid item sm={12} md={9}>
-      <DataChart series={series} estimates={estimates} />
+      {country && <DataChart series={series} estimates={estimates} />}
     </Grid>
   </Grid>
 );
 
 DataCountry.propTypes = {
   classes: PropTypes.object.isRequired,
-  series: PropTypes.object.isRequired,
-  estimates: PropTypes.object.isRequired,
+  series: PropTypes.array.isRequired,
+  estimates: PropTypes.array.isRequired,
+  country: PropTypes.object,
 };
 
 export default withStyles(style)(DataCountry);

@@ -2,7 +2,17 @@
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { compose, map, addIndex, prop, values, not, toLower } from 'ramda';
+import {
+  compose,
+  map,
+  addIndex,
+  prop,
+  values,
+  not,
+  toLower,
+  filter,
+  propEq,
+} from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
 import { getSymbolFill } from './utils';
@@ -91,15 +101,21 @@ export class Chart extends React.Component {
       <svg width={width} height={height}>
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           <g>
-            {estimates ? (
-              <Area
-                data={prop('datapoints', estimates)}
-                xScale={xScale}
-                yScale={yScale}
-                color={theme.palette.secondary.dark}
-                classes={classes}
-              />
-            ) : null}
+            {estimates
+              ? map(
+                  ({ id, datapoints }) => (
+                    <Area
+                      key={id}
+                      data={datapoints}
+                      xScale={xScale}
+                      yScale={yScale}
+                      color={theme.palette.secondary.dark}
+                      classes={classes}
+                    />
+                  ),
+                  estimates,
+                )
+              : null}
           </g>
           <g>
             <Axis
@@ -138,7 +154,7 @@ export class Chart extends React.Component {
                   symbolFill={getSymbolFill(type, color)}
                 />
               );
-            }, values(series))}
+            }, series)}
           </g>
         </g>
       </svg>

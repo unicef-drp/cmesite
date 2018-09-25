@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, values, addIndex } from 'ramda';
+import { map, addIndex } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { symbolGenerator, getSymbolFill } from '../Chart/utils';
 
-const styles = theme => ({
+const styles = () => ({
   list: {
     width: '100%',
     padding: 0,
@@ -37,7 +37,7 @@ const DataLegend = ({ classes, theme, series }) => (
           <ListItemText primary={`${name} (${type})`} />
         </ListItem>
       );
-    }, values(series))}
+    }, series)}
   </List>
 );
 

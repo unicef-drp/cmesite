@@ -63,7 +63,7 @@ const methods = {
     }),
   getData: (/*{ dimensions }*/) =>
     new Promise(resolve => {
-      setTimeout(() => resolve(configuredDataParser(sdmxData)), 500);
+      setTimeout(() => resolve(configuredDataParser(sdmxData)), 1000);
     }),
 };
 
