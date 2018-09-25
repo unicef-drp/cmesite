@@ -10,24 +10,26 @@ const style = theme => ({
   wrapper: {
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
-    margin: 0,
+    marginTop: 0,
+    marginBottom: 0,
   },
 });
 
-const DataCompare = ({ classes }) => (
+const DataCompare = ({ classes, series }) => (
   <Grid container spacing={16} className={classes.wrapper}>
     <Grid item sm={12} md={3}>
       <DataAllDimensions isSide />
       <DataDownloadPanel />
     </Grid>
     <Grid item sm={12} md={9}>
-      <DataChart />
+      <DataChart series={series} />
     </Grid>
   </Grid>
 );
 
 DataCompare.propTypes = {
   classes: PropTypes.object.isRequired,
+  series: PropTypes.array.isRequired,
 };
 
 export default withStyles(style)(DataCompare);

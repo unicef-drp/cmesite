@@ -91,13 +91,15 @@ export class Chart extends React.Component {
       <svg width={width} height={height}>
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           <g>
-            <Area
-              data={prop('datapoints', estimates)}
-              xScale={xScale}
-              yScale={yScale}
-              color={theme.palette.secondary.dark}
-              classes={classes}
-            />
+            {estimates ? (
+              <Area
+                data={prop('datapoints', estimates)}
+                xScale={xScale}
+                yScale={yScale}
+                color={theme.palette.secondary.dark}
+                classes={classes}
+              />
+            ) : null}
           </g>
           <g>
             <Axis

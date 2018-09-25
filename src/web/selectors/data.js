@@ -11,6 +11,7 @@ import {
   eqBy,
   find,
   values,
+  filter,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 
@@ -24,10 +25,7 @@ export const getIsLoadingStructure = createSelector(
   prop('isLoadingStructure'),
 );
 export const getIsLoadingData = createSelector(getData, prop('isLoadingData'));
-export const getDownloadingData = createSelector(
-  getData,
-  prop('downloadingData'),
-);
+export const getDownloadingData = createSelector(getData, prop('downloadingData'));
 export const getRawDimensions = createSelector(getData, prop('dimensions'));
 export const getDimensions = createSelector(
   getRawDimensions,
@@ -47,6 +45,10 @@ export const getTitle = createSelector(
   dataQuery(' ', ' ', 'label'),
 );
 export const getDataSeries = createSelector(getData, propOr({}, 'series'));
+export const getDataEstimateSeries = createSelector(
+  getDataSeries,
+  pipe(values, filter(propEq('isEstimate', true))),
+);
 export const getEstimateDataSerie = createSelector(
   getDataSeries,
   pipe(values, find(propEq('isEstimate', true))),

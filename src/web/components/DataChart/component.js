@@ -46,14 +46,14 @@ const styles = theme => ({
   },
 });
 
-const DataChart = ({ classes, expanded, onExpand, title }) => (
+const DataChart = ({ classes, expanded, onExpand, title, series, estimates }) => (
   <Card className={classes.card} square>
     <CardHeader
       title={<Typography className={classes.typo}>{title}</Typography>}
       subheader="Deaths per 1000 live births"
     />
     <CardContent className={classes.content}>
-      <Chart />
+      <Chart series={series} estimates={estimates} />
     </CardContent>
     <CardActions className={classes.actions}>
       <Typography className={classes.typo}>
@@ -67,7 +67,7 @@ const DataChart = ({ classes, expanded, onExpand, title }) => (
       </IconButton>
     </CardActions>
     <Collapse in={expanded} timeout="auto" unmountOnExit>
-      <DataLegend />
+      <DataLegend series={series} />
     </Collapse>
   </Card>
 );
@@ -77,6 +77,8 @@ DataChart.propTypes = {
   title: PropTypes.string,
   expanded: PropTypes.bool,
   onExpand: PropTypes.func,
+  series: PropTypes.array,
+  estimates: PropTypes.object,
 };
 
 export default withStyles(styles)(DataChart);

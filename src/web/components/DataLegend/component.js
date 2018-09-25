@@ -7,14 +7,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { symbolGenerator, getSymbolFill } from '../Chart/utils';
 
-const styles = () => ({
+const styles = theme => ({
   list: {
     width: '100%',
     padding: 0,
   },
 });
 
-const SIZE = 40;
+const SIZE = 60;
 
 const DataLegend = ({ classes, theme, series }) => (
   <List className={classes.list}>
@@ -44,7 +44,7 @@ const DataLegend = ({ classes, theme, series }) => (
 DataLegend.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  series: PropTypes.object,
+  series: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(DataLegend);
