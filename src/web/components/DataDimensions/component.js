@@ -33,6 +33,7 @@ const styles = theme => ({
   },
   panelDetails: {
     padding: 0,
+    //borderTop: `1px solid ${theme.palette.secondary.dark}`,
   },
   typo: {
     color: theme.palette.primary.dark,
@@ -58,10 +59,7 @@ const DataDimensions = ({ classes, dimensions, changeSelection }) => (
           <Typography className={classes.typo}>{label}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
-          <DataDimension
-            dimension={dimension}
-            changeSelection={changeSelection}
-          />
+          <DataDimension dimension={dimension} changeSelection={changeSelection} />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     ))(dimensions)}

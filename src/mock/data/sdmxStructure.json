@@ -901,6 +901,40 @@
         "isPartial": false,
         "codes": [
           {
+            "id": "MRM0T6",
+            "name": {
+              "en": "Mortality Rate Under 6 Months Old"
+            },
+            "description": {
+              "en": "Mortality rate for children under 6 Months old"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_INDICATOR_CME(1.0).MRY0T4",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MRM0T12",
+            "name": {
+              "en": "Mortality Rate Under 12 Months Old"
+            },
+            "description": {
+              "en": "Mortality rate for children under 12 Months old"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_INDICATOR_CME(1.0).MRY0T4",
+                "type": "code"
+              }
+            ]
+          },
+          {
             "id": "MRY0T4",
             "name": {
               "en": "Mortality Rate Under 5 Years Old"
@@ -938,6 +972,40 @@
             "id": "MRM0",
             "name": {
               "en": "Mortality Rate 0 to 28 Days Old"
+            },
+            "description": {
+              "en": "Neonatal mortality rate"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_INDICATOR_CME(1.0).MRM0",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MRM64",
+            "name": {
+              "en": "Mortality Rate 0 to 64 Days Old"
+            },
+            "description": {
+              "en": "Neonatal mortality rate"
+            },
+            "links": [
+              {
+                "rel": "self",
+                "urn":
+                  "urn:sdmx:org.sdmx.infomodel.codelist.Code=UNICEFDRPDAU:CL_INDICATOR_CME(1.0).MRM0",
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "id": "MRM128",
+            "name": {
+              "en": "Mortality Rate 0 to 128 Days Old"
             },
             "description": {
               "en": "Neonatal mortality rate"
@@ -5468,12 +5536,10 @@
           {
             "id": "234",
             "name": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 0-1"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 0-1"
             },
             "description": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 0-1"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 0-1"
             },
             "links": [
               {
@@ -5487,12 +5553,10 @@
           {
             "id": "235",
             "name": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 02-3"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 02-3"
             },
             "description": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 02-3"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 02-3"
             },
             "links": [
               {
@@ -5506,12 +5570,10 @@
           {
             "id": "236",
             "name": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 04-5"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 04-5"
             },
             "description": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 04-5"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 04-5"
             },
             "links": [
               {
@@ -5525,12 +5587,10 @@
           {
             "id": "237",
             "name": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 06-7"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 06-7"
             },
             "description": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 06-7"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 06-7"
             },
             "links": [
               {
@@ -5544,12 +5604,10 @@
           {
             "id": "238",
             "name": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 08-9"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 08-9"
             },
             "description": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories 08-9"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories 08-9"
             },
             "links": [
               {
@@ -6172,12 +6230,10 @@
           {
             "id": "274",
             "name": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories EX"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories EX"
             },
             "description": {
-              "en":
-                "Special DHS Direct (Various periods) Full Birth Histories EX"
+              "en": "Special DHS Direct (Various periods) Full Birth Histories EX"
             },
             "links": [
               {
@@ -8041,12 +8097,10 @@
           {
             "id": "381",
             "name": {
-              "en":
-                "Interim DHS Direct (Various periods) Full Birth Histories MM"
+              "en": "Interim DHS Direct (Various periods) Full Birth Histories MM"
             },
             "description": {
-              "en":
-                "Interim DHS Direct (Various periods) Full Birth Histories MM"
+              "en": "Interim DHS Direct (Various periods) Full Birth Histories MM"
             },
             "links": [
               {

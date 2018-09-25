@@ -10,6 +10,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 const styles = () => ({
   list: {
     width: '100%',
+    overflow: 'auto',
+    maxHeight: 300,
+    padding: 0,
   },
   checkbox: {
     width: 'initial',
