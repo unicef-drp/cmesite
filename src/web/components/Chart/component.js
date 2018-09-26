@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { compose, map, addIndex, values, head } from 'ramda';
+import { compose, map, addIndex, ifElse, isNil, always } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
 import { getSymbolFill, getClass, hasSymbols, getColor } from './utils';
@@ -83,67 +83,84 @@ export class Chart extends React.Component {
   };
 
   render = () => {
-    console.debug('render Chart');
-    const { size, margin, classes, theme, series, estimates } = this.props;
+    const {
+      size,
+      margin,
+      classes,
+      theme,
+      uncertaintySeries,
+      estimateSeries,
+      includedSeries,
+      excludedSeries,
+    } = this.props;
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
 
+    const areas = uncertaintySeries
+      ? map(
+          ({ id, datapoints }) => (
+            <Area
+              key={id}
+              data={datapoints}
+              xScale={xScale}
+              yScale={yScale}
+              color={theme.palette.secondary.dark}
+              classes={classes}
+            />
+          ),
+          uncertaintySeries,
+        )
+      : null;
+
+    const linesFactory = ifElse(
+      isNil,
+      always(null),
+      addIndex(map)(({ id, datapoints, type }, index) => (
+        <Line
+          key={id}
+          data={datapoints}
+          xScale={xScale}
+          yScale={yScale}
+          color={getColor(type, index, theme)}
+          classes={getClass(type, classes)}
+          hasSymbols={hasSymbols(type)}
+          symbolFill={getSymbolFill(type, index, theme)}
+        />
+      )),
+    );
+
     return (
-      <svg width={width} height={height}>
-        <g transform={`translate(${margin.left}, ${margin.top})`}>
-          <g>
-            {estimates
-              ? map(
-                  ({ id, datapoints }) => (
-                    <Area
-                      key={id}
-                      data={datapoints}
-                      xScale={xScale}
-                      yScale={yScale}
-                      color={theme.palette.secondary.dark}
-                      classes={classes}
-                    />
-                  ),
-                  head(values(estimates)),
-                )
-              : null}
+      <div>
+        {' '}
+        {/* required for withSize to work properly */}
+        <svg width={width} height={height}>
+          <g transform={`translate(${margin.left}, ${margin.top})`}>
+            <g>{areas}</g>
+            <g>
+              <Axis
+                orient="Left"
+                scale={yScale}
+                ticks={20}
+                tickSize={-contentWidth}
+                classes={classes}
+              />
+              <Axis
+                orient="Bottom"
+                scale={xScale}
+                translate={`translate(0, ${contentHeight})`}
+                ticks={10}
+                tickSize={-contentHeight}
+                classes={classes}
+              />
+            </g>
+            <g>
+              {linesFactory(estimateSeries)}
+              {linesFactory(includedSeries)}
+              {linesFactory(excludedSeries)}
+            </g>
           </g>
-          <g>
-            <Axis
-              orient="Left"
-              scale={yScale}
-              ticks={20}
-              tickSize={-contentWidth}
-              classes={classes}
-            />
-            <Axis
-              orient="Bottom"
-              scale={xScale}
-              translate={`translate(0, ${contentHeight})`}
-              ticks={10}
-              tickSize={-contentHeight}
-              classes={classes}
-            />
-          </g>
-          <g>
-            {map(
-              addIndex(map)(({ id, datapoints, type }, index) => (
-                <Line
-                  key={id}
-                  data={datapoints}
-                  xScale={xScale}
-                  yScale={yScale}
-                  color={getColor(type, index, theme)}
-                  classes={getClass(type, classes)}
-                  hasSymbols={hasSymbols(type)}
-                  symbolFill={getSymbolFill(type, index, theme)}
-                />
-              )),
-              values(series),
-            )}
-          </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
     );
   };
 }

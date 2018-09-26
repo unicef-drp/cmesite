@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import CountrySelector from '../CountrySelector';
 import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadPanel from '../DataDownloadPanel';
-import DataChart from '../DataChart';
+import { DataCountryChart } from '../DataChart';
 
 const style = theme => ({
   wrapper: {
@@ -16,25 +16,25 @@ const style = theme => ({
   },
 });
 
-const DataCountry = ({ classes, series, estimates, country }) => (
+const DataCountry = ({ classes, country }) => (
   <Grid container spacing={16} className={classes.wrapper}>
     <Grid item xs={12}>
       <CountrySelector />
     </Grid>
-    <Grid item sm={12} md={3}>
+    <Grid item sm={12} md={country ? 3 : 12}>
       <DataOtherDimensions isSide />
       <DataDownloadPanel />
     </Grid>
-    <Grid item sm={12} md={9}>
-      {country && <DataChart series={series} estimates={estimates} />}
-    </Grid>
+    {country && (
+      <Grid item sm={12} md={9}>
+        <DataCountryChart />
+      </Grid>
+    )}
   </Grid>
 );
 
 DataCountry.propTypes = {
   classes: PropTypes.object.isRequired,
-  series: PropTypes.object.isRequired,
-  estimates: PropTypes.object.isRequired,
   country: PropTypes.object,
 };
 

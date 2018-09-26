@@ -85,9 +85,7 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       <div className={classes.wrapper}>
         <DataCountry />
       </div>
-      <div className={classes.wrapper}>
-        <DataCompare />
-      </div>
+      <div className={classes.wrapper}>{/*<DataCompare />*/}</div>
       <div
         style={{
           height: 300,

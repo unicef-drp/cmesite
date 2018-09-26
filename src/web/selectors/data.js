@@ -64,5 +64,13 @@ export const getDataSeries = createSelector(
 );
 export const getDataEstimateSeries = createSelector(
   getDataSeries,
-  pick(['ESTIMATE']),
+  prop('ESTIMATE'),
+);
+export const getDataIncludedSeries = createSelector(
+  getDataSeries,
+  prop('INCLUDED'),
+);
+export const getDataExcludedSeries = createSelector(
+  getDataSeries,
+  prop('EXCLUDED'),
 );
