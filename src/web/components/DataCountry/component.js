@@ -33,8 +33,8 @@ const DataCountry = ({ classes, series, estimates, country }) => (
 
 DataCountry.propTypes = {
   classes: PropTypes.object.isRequired,
-  series: PropTypes.array.isRequired,
-  estimates: PropTypes.array.isRequired,
+  series: PropTypes.object.isRequired,
+  estimates: PropTypes.object.isRequired,
   country: PropTypes.object,
 };
 

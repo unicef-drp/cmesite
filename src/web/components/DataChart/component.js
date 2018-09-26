@@ -77,8 +77,8 @@ DataChart.propTypes = {
   title: PropTypes.string,
   expanded: PropTypes.bool,
   onExpand: PropTypes.func,
-  series: PropTypes.array.isRequired,
-  estimates: PropTypes.array,
+  series: PropTypes.object.isRequired,
+  estimates: PropTypes.object,
 };
 
 export default withStyles(styles)(DataChart);

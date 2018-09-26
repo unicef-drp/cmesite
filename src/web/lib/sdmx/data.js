@@ -131,7 +131,6 @@ const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
     id: serieKey,
     name: path([Z, 'valueName'], observation),
     type,
-    isEstimate,
     datapoints: [observation],
   };
 

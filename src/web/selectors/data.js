@@ -16,6 +16,8 @@ import {
   equals,
   head,
   length,
+  groupBy,
+  pick,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 
@@ -58,9 +60,9 @@ export const getTitle = createSelector(
 );
 export const getDataSeries = createSelector(
   getData,
-  pipe(propOr({}, 'series'), values),
+  pipe(propOr({}, 'series'), values, groupBy(prop('type'))),
 );
 export const getDataEstimateSeries = createSelector(
   getDataSeries,
-  filter(propEq('isEstimate', true)),
+  pick(['ESTIMATE']),
 );

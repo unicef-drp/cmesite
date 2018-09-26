@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { compose, map, addIndex, not } from 'ramda';
+import { compose, map, addIndex, values, head } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
-import { getSymbolFill, getClass } from './utils';
+import { getSymbolFill, getClass, hasSymbols, getColor } from './utils';
 import Axis from './axis';
 import Line from './line';
 import Area from './area';
@@ -33,7 +33,7 @@ const style = theme => ({
       display: 'none',
     },
   },
-  estimates: {
+  estimate: {
     strokeWidth: 2,
   },
   included: {
@@ -83,6 +83,7 @@ export class Chart extends React.Component {
   };
 
   render = () => {
+    console.debug('render Chart');
     const { size, margin, classes, theme, series, estimates } = this.props;
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
@@ -103,7 +104,7 @@ export class Chart extends React.Component {
                       classes={classes}
                     />
                   ),
-                  estimates,
+                  head(values(estimates)),
                 )
               : null}
           </g>
@@ -125,23 +126,21 @@ export class Chart extends React.Component {
             />
           </g>
           <g>
-            {addIndex(map)(({ id, datapoints, type, isEstimate }, index) => {
-              const color = isEstimate
-                ? theme.palette.primary.main
-                : theme.palette.chartColorScale(index);
-              return (
+            {map(
+              addIndex(map)(({ id, datapoints, type }, index) => (
                 <Line
                   key={id}
                   data={datapoints}
                   xScale={xScale}
                   yScale={yScale}
-                  color={color}
-                  classes={getClass(type, isEstimate, classes)}
-                  hasSymbols={not(isEstimate)}
-                  symbolFill={getSymbolFill(type, color)}
+                  color={getColor(type, index, theme)}
+                  classes={getClass(type, classes)}
+                  hasSymbols={hasSymbols(type)}
+                  symbolFill={getSymbolFill(type, index, theme)}
                 />
-              );
-            }, series)}
+              )),
+              values(series),
+            )}
           </g>
         </g>
       </svg>

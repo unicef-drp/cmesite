@@ -29,7 +29,7 @@ const DataCompare = ({ classes, series }) => (
 
 DataCompare.propTypes = {
   classes: PropTypes.object.isRequired,
-  series: PropTypes.array.isRequired,
+  series: PropTypes.object.isRequired,
 };
 
 export default withStyles(style)(DataCompare);
