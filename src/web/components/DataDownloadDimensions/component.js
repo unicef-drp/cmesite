@@ -11,6 +11,7 @@ import DataDimension from '../DataDimension';
 const styles = theme => ({
   wrapper: {
     paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
   },
   content: {
     paddingBottom: theme.spacing.unit,
@@ -23,15 +24,12 @@ const styles = theme => ({
 const DataDownloadDimensions = ({ classes, dimensions, changeSelection }) => (
   <Grid container className={classes.wrapper} spacing={16}>
     {map(({ label, ...dimension }) => (
-      <Grid item xs={12} sm={6} key={dimension.id}>
+      <Grid item xs={12} md={4} key={dimension.id}>
         <Card square>
           <CardContent className={classes.content}>
             <Typography className={classes.typo}>{label}</Typography>
           </CardContent>
-          <DataDimension
-            dimension={dimension}
-            changeSelection={changeSelection}
-          />
+          <DataDimension dimension={dimension} changeSelection={changeSelection} />
         </Card>
       </Grid>
     ))(dimensions)}

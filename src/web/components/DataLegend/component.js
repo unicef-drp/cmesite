@@ -46,6 +46,8 @@ const styles = theme => ({
   list: {
     width: '100%',
     padding: 0,
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   item: {
     width: '50%',
@@ -56,30 +58,38 @@ const DataLegend = ({
   classes,
   theme,
   estimateSeries,
+  uncertaintySeries,
   includedSeries,
   excludedSeries,
 }) => {
   const SIZE = 60;
 
-  const itemFactory = ifElse(
-    isNil,
-    always(null),
-    addIndex(map)(({ id, name, type }, index) => (
-      <ListItem className={classes.item} key={id} dense button>
-        <svg width={SIZE / 2} height={SIZE / 2}>
-          <g>
-            <path
-              d={symbolGenerator(SIZE)()}
-              transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-              stroke={getColor(type, index, theme)}
-              fill={getSymbolFill(type, index, theme)}
-            />
-          </g>
-        </svg>
-        <ListItemText primary={`${name} (${type})`} />
-      </ListItem>
-    )),
-  );
+  const itemFactory = isUncertainty =>
+    ifElse(
+      isNil,
+      always(null),
+      addIndex(map)(({ id, name, type }, index) => (
+        <ListItem className={classes.item} key={id} dense button>
+          <svg width={SIZE / 2} height={SIZE / 2}>
+            <g>
+              <path
+                d={symbolGenerator(SIZE)()}
+                transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                stroke={getColor(type, index, theme, isUncertainty)}
+                fill={getSymbolFill(type, index, theme, isUncertainty)}
+              />
+            </g>
+          </svg>
+          <ListItemText>
+            {name} ({isUncertainty ? (
+              <FormattedMessage {...messages.uncertainty} />
+            ) : (
+              type
+            )})
+          </ListItemText>
+        </ListItem>
+      )),
+    );
 
   return (
     <ExpansionPanel classes={{ root: classes.panelRoot }}>
@@ -97,9 +107,10 @@ const DataLegend = ({
       </ExpansionPanelSummary>
       <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
         <List className={classes.list}>
-          {itemFactory(estimateSeries)}
-          {itemFactory(includedSeries)}
-          {itemFactory(excludedSeries)}
+          {itemFactory()(estimateSeries)}
+          {itemFactory(true)(uncertaintySeries)}
+          {itemFactory()(includedSeries)}
+          {itemFactory()(excludedSeries)}
         </List>
       </ExpansionPanelDetails>
     </ExpansionPanel>
@@ -110,6 +121,9 @@ DataLegend.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   estimateSeries: PropTypes.array,
+  uncertaintySeries: PropTypes.array,
+  includedSeries: PropTypes.array,
+  excludedSeries: PropTypes.array,
 };
 
 export default withStyles(styles, { withTheme: true })(DataLegend);

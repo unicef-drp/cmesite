@@ -5,4 +5,8 @@ export default defineMessages({
     id: 'legend.title',
     defaultMessage: 'Legend',
   },
+  uncertainty: {
+    id: 'legend.uncertainty',
+    defaultMessage: 'UNCERTAINTY',
+  },
 });

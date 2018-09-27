@@ -21,12 +21,12 @@ const DataCountry = ({ classes, country }) => (
     <Grid item xs={12}>
       <CountrySelector />
     </Grid>
-    <Grid item sm={12} md={country ? 3 : 12}>
+    <Grid item xs={12} md={country ? 3 : 12}>
       <DataOtherDimensions isSide />
       <DataDownloadPanel />
     </Grid>
     {country && (
-      <Grid item sm={12} md={9}>
+      <Grid item xs={12} md={9}>
         <DataCountryChart />
       </Grid>
     )}

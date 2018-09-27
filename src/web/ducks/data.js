@@ -14,6 +14,7 @@ export const STRUCTURE_LOADED = 'CM/DATA/STRUCTURE_LOADED';
 export const LOADING_DATA = 'CM/DATA/LOADING_DATA';
 export const DATA_LOADED = 'CM/DATA/DATA_LOADED';
 export const TOGGLE_DOWNLOADING_DATA = 'CM/DATA/TOGGLE_DOWNLOADING_DATA';
+export const TOGGLE_ACTIVE_TYPE = 'CM/DATA/TOGGLE_ACTIVE_TYPE';
 export const types = {
   CHANGE_ACTIVE_TAB,
   TOGGLE_DIMENSION_VALUE,
@@ -23,6 +24,7 @@ export const types = {
   LOADING_DATA,
   DATA_LOADED,
   TOGGLE_DOWNLOADING_DATA,
+  TOGGLE_ACTIVE_TYPE,
 };
 
 const initialState = {
@@ -31,6 +33,7 @@ const initialState = {
   isLoadingData: false,
   downloadingData: {},
   dimensions: [],
+  activeTypes: { ESTIMATE: true, INCLUDED: true, EXCLUDED: false },
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -79,6 +82,8 @@ const reducer = (state = initialState, action = {}) => {
         not,
         state,
       );
+    case TOGGLE_ACTIVE_TYPE:
+      return over(lensPath(['activeTypes', action.activeType]), not, state);
     default:
       return state;
   }
@@ -99,6 +104,11 @@ export const selectDimensionValue = (dimensionIndex, valueIndex) => ({
   type: SELECT_DIMENSION_VALUE,
   dimensionIndex,
   valueIndex,
+});
+
+export const toggleActiveType = activeType => ({
+  type: TOGGLE_ACTIVE_TYPE,
+  activeType,
 });
 
 const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
@@ -129,10 +139,7 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
     });
 };
 
-export const changeSelection = type => (
-  dimensionIndex,
-  valueIndex,
-) => dispatch => {
+export const changeSelection = type => (dimensionIndex, valueIndex) => dispatch => {
   if (equals(type, 'toggle'))
     dispatch(toggleDimensionValue(dimensionIndex, valueIndex));
   else if (equals(type, 'select'))
@@ -169,6 +176,7 @@ const actions = {
   toggleDimensionValue,
   selectDimensionValue,
   downloadData,
+  toggleActiveType,
 };
 
 export default { reducer, actions };

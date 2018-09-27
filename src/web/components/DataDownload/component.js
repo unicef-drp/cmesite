@@ -16,6 +16,7 @@ const DataDownload = ({ classes }) => (
   <Grid container className={classes.wrapper}>
     <DataDownloadBar />
     <DataDownloadDimensions />
+    <DataDownloadBar />
   </Grid>
 );
 

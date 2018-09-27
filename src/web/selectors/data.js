@@ -17,6 +17,7 @@ import {
   head,
   length,
   groupBy,
+  keys,
   pick,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
@@ -58,19 +59,25 @@ export const getTitle = createSelector(
   getOtherDimensions,
   dataQuery(' ', ' ', 'label'),
 );
+export const getActiveTypes = createSelector(getData, prop('activeTypes'));
 export const getDataSeries = createSelector(
   getData,
   pipe(propOr({}, 'series'), values, groupBy(prop('type'))),
 );
-export const getDataEstimateSeries = createSelector(
+export const getActiveSeries = createSelector(
+  getActiveTypes,
   getDataSeries,
+  useWith(pick, [pipe(filter(identity), keys), identity]),
+);
+export const getDataEstimateSeries = createSelector(
+  getActiveSeries,
   prop('ESTIMATE'),
 );
 export const getDataIncludedSeries = createSelector(
-  getDataSeries,
+  getActiveSeries,
   prop('INCLUDED'),
 );
 export const getDataExcludedSeries = createSelector(
-  getDataSeries,
+  getActiveSeries,
   prop('EXCLUDED'),
 );

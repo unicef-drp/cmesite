@@ -131,8 +131,7 @@ export class Chart extends React.Component {
 
     return (
       <div>
-        {' '}
-        {/* required for withSize to work properly */}
+        {/* div is required for withSize to work properly */}
         <svg width={width} height={height}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <g>{areas}</g>
