@@ -7,7 +7,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import Checkbox from '@material-ui/core/Checkbox';
 import Chart from '../Chart';
 import DataLegend from '../DataLegend';
 
@@ -51,7 +51,7 @@ const DataChart = ({
                   <FormControlLabel
                     key={type}
                     control={
-                      <Switch
+                      <Checkbox
                         color="primary"
                         checked={active}
                         onChange={() => toggleActiveType(type)}
