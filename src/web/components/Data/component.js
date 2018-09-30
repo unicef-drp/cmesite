@@ -15,7 +15,7 @@ import Hidden from '@material-ui/core/Hidden';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataCountry from '../DataCountry';
-import DataCompare from '../DataCompare';
+// import DataCompare from '../DataCompare';
 import DataDownload from '../DataDownload';
 import DataNotes from '../DataNotes';
 
