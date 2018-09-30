@@ -21,9 +21,13 @@ const dimensions = [
     position: 2,
     label: 'Indicator',
     values: [
+      { id: 'MRM0T6', label: 'Mortality Rate Under 6 Months Old' },
+      { id: 'MRM0T12', label: 'Mortality Rate Under 12 Months Old' },
       { id: 'MRY0T4', label: 'Mortality Rate Under 5 Years Old' },
       { id: 'MRY5T14', label: 'Mortality Rate 5 to 14 Years Old' },
       { id: 'MRM0', label: 'Mortality Rate 0 to 28 Days Old' },
+      { id: 'MRM64', label: 'Mortality Rate 0 to 64 Days Old' },
+      { id: 'MRM128', label: 'Mortality Rate 0 to 128 Days Old' },
     ],
   },
   {

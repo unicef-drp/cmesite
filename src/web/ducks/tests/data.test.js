@@ -36,6 +36,7 @@ describe('ducks', () => {
           activeTab: 0,
           isLoadingStructure: false,
           isLoadingData: false,
+          activeTypes: { ESTIMATE: true, INCLUDED: true, EXCLUDED: false },
           downloadingData: {},
           dimensions: [],
         });
