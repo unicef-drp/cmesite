@@ -17,11 +17,11 @@ const style = theme => ({
 
 const DataCompare = ({ classes, series }) => (
   <Grid container spacing={16} className={classes.wrapper}>
-    <Grid item xs={12} md={3}>
+    <Grid item xs={12} md={4}>
       <DataAllDimensions isSide />
       <DataDownloadPanel />
     </Grid>
-    <Grid item xs={12} md={9}>
+    <Grid item xs={12} md={8}>
       <DataChart series={series} />
     </Grid>
   </Grid>

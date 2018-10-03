@@ -7,7 +7,12 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Checkbox from '@material-ui/core/Checkbox';
 import DataDimension from '../DataDimension';
+import {
+  isAllDimensionValuesSelected,
+  hasIndeterminateSelection,
+} from '../../utils';
 
 const styles = theme => ({
   panelRoot: {
@@ -17,8 +22,13 @@ const styles = theme => ({
   },
   panelSummaryRoot: {
     minHeight: 0,
+    [theme.breakpoints.down('xs')]: {
+      paddingLeft: theme.spacing.unit * 2,
+      paddingRight: theme.spacing.unit * 2,
+    },
   },
   panelSummaryContent: {
+    alignItems: 'center',
     '&$expanded': {
       margin: 0,
       marginTop: theme.spacing.unit * 1.5,
@@ -33,14 +43,32 @@ const styles = theme => ({
   },
   panelDetails: {
     padding: 0,
+    flexDirection: 'column',
     //borderTop: `1px solid ${theme.palette.secondary.dark}`,
   },
   typo: {
     color: theme.palette.primary.dark,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+  },
+  checkbox: {
+    width: 'initial',
+    height: 'initial',
+  },
+  buttons: {
+    display: 'flex',
+  },
+  button: {
+    textTransform: 'none',
   },
 });
 
-const DataDimensions = ({ classes, dimensions, changeSelection }) => (
+const DataDimensions = ({
+  classes,
+  dimensions,
+  changeSelection,
+  changeAllSelection,
+}) => (
   <React.Fragment>
     {map(({ label, ...dimension }) => (
       <ExpansionPanel
@@ -56,6 +84,16 @@ const DataDimensions = ({ classes, dimensions, changeSelection }) => (
             expanded: classes.expanded,
           }}
         >
+          <Checkbox
+            checked={isAllDimensionValuesSelected(dimension)}
+            indeterminate={hasIndeterminateSelection(dimension)}
+            onClick={event => {
+              event.stopPropagation();
+              changeAllSelection(dimension.index, event.target.checked);
+            }}
+            classes={{ root: classes.checkbox }}
+            color="primary"
+          />
           <Typography className={classes.typo}>{label}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
@@ -70,6 +108,7 @@ DataDimensions.propTypes = {
   classes: PropTypes.object.isRequired,
   dimensions: PropTypes.array.isRequired,
   changeSelection: PropTypes.func.isRequired,
+  changeAllSelection: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(DataDimensions);

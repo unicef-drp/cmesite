@@ -8,6 +8,7 @@ export const SCOPES = ['all', 'selection'];
 
 export const CHANGE_ACTIVE_TAB = 'CM/DATA/CHANGE_ACTIVE_TAB';
 export const TOGGLE_DIMENSION_VALUE = 'CM/DATA/TOGGLE_DIMENSION_VALUE';
+export const TOGGLE_DIMENSION_VALUES = 'CM/DATA/TOGGLE_DIMENSION_VALUES';
 export const SELECT_DIMENSION_VALUE = 'CM/DATA/SELECT_DIMENSION_VALUE';
 export const LOADING_STRUCTURE = 'CM/DATA/LOADING_STRUCTURE';
 export const STRUCTURE_LOADED = 'CM/DATA/STRUCTURE_LOADED';
@@ -18,6 +19,7 @@ export const TOGGLE_ACTIVE_TYPE = 'CM/DATA/TOGGLE_ACTIVE_TYPE';
 export const types = {
   CHANGE_ACTIVE_TAB,
   TOGGLE_DIMENSION_VALUE,
+  TOGGLE_DIMENSION_VALUES,
   SELECT_DIMENSION_VALUE,
   LOADING_STRUCTURE,
   STRUCTURE_LOADED,
@@ -50,6 +52,12 @@ const reducer = (state = initialState, action = {}) => {
           'isSelected',
         ]),
         not,
+        state,
+      );
+    case TOGGLE_DIMENSION_VALUES:
+      return over(
+        lensPath(['dimensions', action.dimensionIndex, 'values']),
+        map(assoc('isSelected', action.value)),
         state,
       );
     case SELECT_DIMENSION_VALUE:
@@ -100,6 +108,12 @@ export const toggleDimensionValue = (dimensionIndex, valueIndex) => ({
   valueIndex,
 });
 
+export const toggleDimensionValues = (dimensionIndex, value) => ({
+  type: TOGGLE_DIMENSION_VALUES,
+  dimensionIndex,
+  value,
+});
+
 export const selectDimensionValue = (dimensionIndex, valueIndex) => ({
   type: SELECT_DIMENSION_VALUE,
   dimensionIndex,
@@ -142,6 +156,9 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
 export const changeSelection = type => (dimensionIndex, valueIndex) => dispatch => {
   if (equals(type, 'toggle'))
     dispatch(toggleDimensionValue(dimensionIndex, valueIndex));
+  else if (equals(type, 'toggleAll'))
+    dispatch(toggleDimensionValues(dimensionIndex, valueIndex));
+  // valueIndex -> value of toggle
   else if (equals(type, 'select'))
     dispatch(selectDimensionValue(dimensionIndex, valueIndex));
   dispatch(loadData());
@@ -174,6 +191,7 @@ export const downloadData = ({ format, scope }) => dispatch => {
 const actions = {
   changeActiveTab,
   toggleDimensionValue,
+  toggleDimensionValues,
   selectDimensionValue,
   downloadData,
   toggleActiveType,

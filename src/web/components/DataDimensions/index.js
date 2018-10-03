@@ -10,6 +10,7 @@ const withDimensions = selector =>
   compose(
     connect(createStructuredSelector({ dimensions: selector }), {
       changeSelection: changeSelection('toggle'),
+      changeAllSelection: changeSelection('toggleAll'),
     }),
     branch(
       ({ dimensions }) => anyPass([isNil, isEmpty])(dimensions),
@@ -19,6 +20,4 @@ const withDimensions = selector =>
 
 export const withAllDimensions = withDimensions(getDimensions);
 export const DataAllDimensions = withAllDimensions(Component);
-export const DataOtherDimensions = withDimensions(getOtherDimensions)(
-  Component,
-);
+export const DataOtherDimensions = withDimensions(getOtherDimensions)(Component);
