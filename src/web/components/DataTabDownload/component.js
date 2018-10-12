@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import DataDownloadActions from '../DataDownloadActions';
-import DataDownloadDimensions from '../DataDownloadDimensions';
+import { DataAllDimensions } from '../DataDimensions';
 
 const style = theme => ({
   wrapper: {
@@ -14,8 +14,10 @@ const style = theme => ({
 
 const DataDownload = ({ classes }) => (
   <Grid container className={classes.wrapper}>
-    <DataDownloadDimensions />
-    <DataDownloadActions />
+    <Grid item xs={12}>
+      <DataAllDimensions />
+      <DataDownloadActions />
+    </Grid>
   </Grid>
 );
 
