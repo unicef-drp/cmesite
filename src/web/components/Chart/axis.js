@@ -24,7 +24,7 @@ class Axis extends React.Component {
       this.getAxisName(axis)(this.props.scale)
         .tickPadding(6)
         .tickSize(this.props.tickSize)
-        .ticks(this.props.ticks),
+        .ticks(10),
     );
 
   render = () => (
@@ -48,10 +48,6 @@ Axis.propTypes = {
   ticks: PropTypes.number,
   tickSize: PropTypes.number,
   classes: PropTypes.object,
-};
-
-Axis.defaultProps = {
-  ticks: 10,
 };
 
 export default Axis;

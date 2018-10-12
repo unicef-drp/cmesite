@@ -16,11 +16,13 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2,
   },
   header: {
-    paddingBottom: 0,
+    backgroundColor: theme.palette.secondary.dark,
+    minHeight: theme.spacing.unit * 6,
   },
   content: {
-    paddingTop: 0,
-    paddingBottom: 0,
+    '&:last-child': {
+      paddingBottom: theme.spacing.unit,
+    },
   },
   typo: {
     color: theme.palette.primary.dark,
@@ -42,32 +44,28 @@ const DataChart = ({
       <CardHeader
         className={classes.header}
         title={<Typography className={classes.typo}>{title}</Typography>}
-        subheader={
-          <React.Fragment>
-            <div className={classes.toggles}>
-              {pipe(
-                toPairs,
-                map(([type, active]) => (
-                  <FormControlLabel
-                    key={type}
-                    control={
-                      <Checkbox
-                        color="primary"
-                        checked={active}
-                        onChange={() => toggleActiveType(type)}
-                      />
-                    }
-                    label={type}
-                  />
-                )),
-              )(activeTypes)}
-            </div>
-            <Typography>Deaths per 1000 live births</Typography>
-          </React.Fragment>
-        }
       />
       <CardContent className={classes.content}>
+        <Typography>Deaths per 1000 live births</Typography>
         <Chart {...series} />
+        <div className={classes.toggles}>
+          {pipe(
+            toPairs,
+            map(([type, active]) => (
+              <FormControlLabel
+                key={type}
+                control={
+                  <Checkbox
+                    color="primary"
+                    checked={active}
+                    onChange={() => toggleActiveType(type)}
+                  />
+                }
+                label={type}
+              />
+            )),
+          )(activeTypes)}
+        </div>
       </CardContent>
     </Card>
     <DataLegend {...series} />
