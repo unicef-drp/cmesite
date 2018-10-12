@@ -21,6 +21,7 @@ const styles = theme => ({
     },
   },
   panelSummaryRoot: {
+    backgroundColor: theme.palette.secondary.dark,
     minHeight: 0,
     [theme.breakpoints.down('xs')]: {
       paddingLeft: theme.spacing.unit * 2,
