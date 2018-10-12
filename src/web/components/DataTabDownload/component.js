@@ -12,7 +12,7 @@ const style = theme => ({
   },
 });
 
-const DataDownload = ({ classes }) => (
+const DataTabDownload = ({ classes }) => (
   <Grid container className={classes.wrapper}>
     <Grid item xs={12}>
       <DataAllDimensions />
@@ -21,8 +21,8 @@ const DataDownload = ({ classes }) => (
   </Grid>
 );
 
-DataDownload.propTypes = {
+DataTabDownload.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(DataDownload);
+export default withStyles(style)(DataTabDownload);

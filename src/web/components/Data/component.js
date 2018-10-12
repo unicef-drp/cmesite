@@ -15,7 +15,7 @@ import Hidden from '@material-ui/core/Hidden';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataTabCountry from '../DataTabCountry';
-// import DataTabCompare from '../DataTabCompare';
+import DataTabCompare from '../DataTabCompare';
 import DataTabDownload from '../DataTabDownload';
 import DataNotes from '../DataNotes';
 
@@ -85,7 +85,9 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       <div className={classes.wrapper}>
         <DataTabCountry />
       </div>
-      <div className={classes.wrapper}>{/*<DataTabCompare />*/}</div>
+      <div className={classes.wrapper}>
+        <DataTabCompare />
+      </div>
       <div
         style={{
           height: 300,

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { DataAllDimensions } from '../DataDimensions';
-import DataDownloadPanel from '../DataDownloadPanel';
-import DataChart from '../DataChart';
+import DataDownloadActions from '../DataDownloadActions';
+import { DataCompareChart } from '../DataChart';
 
 const style = theme => ({
   wrapper: {
@@ -15,21 +15,20 @@ const style = theme => ({
   },
 });
 
-const DataCompare = ({ classes, series }) => (
+const DataTabCompare = ({ classes }) => (
   <Grid container spacing={16} className={classes.wrapper}>
     <Grid item xs={12} md={4}>
       <DataAllDimensions isSide />
-      <DataDownloadPanel />
+      <DataDownloadActions />
     </Grid>
     <Grid item xs={12} md={8}>
-      <DataChart series={series} />
+      <DataCompareChart />
     </Grid>
   </Grid>
 );
 
-DataCompare.propTypes = {
+DataTabCompare.propTypes = {
   classes: PropTypes.object.isRequired,
-  series: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(DataCompare);
+export default withStyles(style)(DataTabCompare);

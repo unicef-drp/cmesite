@@ -16,7 +16,7 @@ const style = theme => ({
   },
 });
 
-const DataCountry = ({ classes, country }) => (
+const DataTabCountry = ({ classes, country }) => (
   <Grid container spacing={16} className={classes.wrapper}>
     <Grid item xs={12}>
       <CountrySelector />
@@ -33,9 +33,9 @@ const DataCountry = ({ classes, country }) => (
   </Grid>
 );
 
-DataCountry.propTypes = {
+DataTabCountry.propTypes = {
   classes: PropTypes.object.isRequired,
   country: PropTypes.object,
 };
 
-export default withStyles(style)(DataCountry);
+export default withStyles(style)(DataTabCountry);
