@@ -14,9 +14,9 @@ import PublicIcon from '@material-ui/icons/Public';
 import Hidden from '@material-ui/core/Hidden';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import DataCountry from '../DataCountry';
-// import DataCompare from '../DataCompare';
-import DataDownload from '../DataDownload';
+import DataTabCountry from '../DataTabCountry';
+// import DataTabCompare from '../DataTabCompare';
+import DataTabDownload from '../DataTabDownload';
 import DataNotes from '../DataNotes';
 
 // temp
@@ -83,9 +83,9 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       animateHeight={false}
     >
       <div className={classes.wrapper}>
-        <DataCountry />
+        <DataTabCountry />
       </div>
-      <div className={classes.wrapper}>{/*<DataCompare />*/}</div>
+      <div className={classes.wrapper}>{/*<DataTabCompare />*/}</div>
       <div
         style={{
           height: 300,
@@ -99,7 +99,7 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
         </Avatar>
       </div>
       <div className={classes.wrapper}>
-        <DataDownload />
+        <DataTabDownload />
       </div>
     </SwipeableViews>
     <DataNotes />
