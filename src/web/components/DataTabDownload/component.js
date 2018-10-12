@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { DataDownloadBar } from '../DataDownloadActions';
+import DataDownloadActions from '../DataDownloadActions';
 import DataDownloadDimensions from '../DataDownloadDimensions';
 
 const style = theme => ({
@@ -14,9 +14,8 @@ const style = theme => ({
 
 const DataDownload = ({ classes }) => (
   <Grid container className={classes.wrapper}>
-    <DataDownloadBar />
     <DataDownloadDimensions />
-    <DataDownloadBar />
+    <DataDownloadActions />
   </Grid>
 );
 

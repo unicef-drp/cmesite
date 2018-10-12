@@ -17,4 +17,16 @@ export default defineMessages({
     id: 'download.csv.selection',
     defaultMessage: 'Download selection as CSV',
   },
+  title: {
+    id: 'download.title',
+    defaultMessage: 'Download',
+  },
+  xml: {
+    id: 'download.xml',
+    defaultMessage: 'XML',
+  },
+  csv: {
+    id: 'download.csv',
+    defaultMessage: 'CSV',
+  },
 });

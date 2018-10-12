@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CountrySelector from '../CountrySelector';
 import { DataOtherDimensions } from '../DataDimensions';
-import { DataDownloadPanel } from '../DataDownloadActions';
+import DataDownloadActions from '../DataDownloadActions';
 import { DataCountryChart } from '../DataChart';
 
 const style = theme => ({
@@ -23,7 +23,7 @@ const DataCountry = ({ classes, country }) => (
     </Grid>
     <Grid item xs={12} md={country ? 4 : 12}>
       <DataOtherDimensions isSide />
-      <DataDownloadPanel />
+      <DataDownloadActions />
     </Grid>
     {country && (
       <Grid item xs={12} md={8}>
