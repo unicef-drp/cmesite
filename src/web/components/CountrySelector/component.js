@@ -82,17 +82,11 @@ const SingleValue = props => (
 );
 
 const ValueContainer = props => (
-  <div className={props.selectProps.classes.valueContainer}>
-    {props.children}
-  </div>
+  <div className={props.selectProps.classes.valueContainer}>{props.children}</div>
 );
 
 const Menu = props => (
-  <Paper
-    square
-    className={props.selectProps.classes.paper}
-    {...props.innerProps}
-  >
+  <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
     {props.children}
   </Paper>
 );
