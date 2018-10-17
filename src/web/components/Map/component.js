@@ -7,7 +7,7 @@ import { geoMercator, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
 import { withSize } from 'react-sizeme';
 
-const style = theme => ({});
+const style = () => ({});
 
 class WorldMap extends React.Component {
   constructor() {
@@ -26,7 +26,7 @@ class WorldMap extends React.Component {
   componentDidMount() {
     fetch('https://unpkg.com/world-atlas@1.1.4/world/110m.json').then(response => {
       if (response.status !== 200) {
-        console.log(`There was a problem: ${response.status}`);
+        // console.log(`There was a problem: ${response.status}`);
         return;
       }
       response.json().then(worldData => {
