@@ -18,7 +18,7 @@ const style = theme => ({
     paddingRight: theme.spacing.unit * 2,
   },
   container: {
-    paddingTop: theme.spacing.unit * 2,
+    paddingTop: theme.spacing.unit,
   },
   card: {
     borderRadius: 0,
