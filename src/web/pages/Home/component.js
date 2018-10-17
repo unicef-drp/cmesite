@@ -9,7 +9,7 @@ import News from '../../components/News';
 import Datasets from '../../components/Datasets';
 import { FeaturedReports } from '../../components/Reports';
 import Footer from '../../components/Footer';
-import WorldMap from '../../components/Map';
+import HomeMap from '../../components/DataMap';
 
 const style = theme => ({
   wrapper: {
@@ -32,7 +32,7 @@ export const HomePage = ({ classes }) => (
         <News />
       </Grid>
       <Grid item xs={12} sm={12} md={8}>
-        <WorldMap />
+        <HomeMap />
       </Grid>
     </Grid>
     <Datasets />

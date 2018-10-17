@@ -195,6 +195,7 @@ const actions = {
   selectDimensionValue,
   downloadData,
   toggleActiveType,
+  loadStructure,
 };
 
 export default { reducer, actions };

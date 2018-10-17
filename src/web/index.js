@@ -76,4 +76,5 @@ loadConfig().then(config => {
   ReactDOM.render(ROOT, document.getElementById('root'));
   store.dispatch(ducks.wp.actions.loadTags());
   store.dispatch(ducks.wp.actions.loadPosts());
+  store.dispatch(ducks.data.actions.loadStructure());
 });

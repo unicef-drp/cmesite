@@ -2,7 +2,12 @@ import { isNil, map, addIndex, prop } from 'ramda';
 import { compose, branch, renderNothing, withProps, withHandlers } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { getCountryDimension, getCountryValue } from '../../selectors/data';
+import {
+  getCountryDimension,
+  getCountryValue,
+  getIndicatorDimension,
+  getIndicatorValue,
+} from '../../selectors/data';
 import { changeSelection } from '../../ducks/data';
 import Component from './component';
 
@@ -38,8 +43,8 @@ export const CountrySelector = enhance(
 
 export const IndicatorSelector = enhance(
   {
-    dimension: getCountryDimension,
-    value: getCountryValue,
+    dimension: getIndicatorDimension,
+    value: getIndicatorValue,
   },
   {
     noOptions: 'indicatorSelectorPlaceholder',
