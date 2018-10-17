@@ -9,10 +9,7 @@ import News from '../../components/News';
 import Datasets from '../../components/Datasets';
 import { FeaturedReports } from '../../components/Reports';
 import Footer from '../../components/Footer';
-
-// temp
-import Avatar from '@material-ui/core/Avatar';
-import BlurOnIcon from '@material-ui/icons/BlurOn';
+import WorldMap from '../../components/Map';
 
 const style = theme => ({
   wrapper: {
@@ -35,18 +32,7 @@ export const HomePage = ({ classes }) => (
         <News />
       </Grid>
       <Grid item xs={12} sm={12} md={8}>
-        <div
-          style={{
-            height: 300,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar>
-            <BlurOnIcon />
-          </Avatar>
-        </div>
+        <WorldMap />
       </Grid>
     </Grid>
     <Datasets />

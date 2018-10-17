@@ -16,12 +16,9 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataTabCountry from '../DataTabCountry';
 import DataTabCompare from '../DataTabCompare';
+import DataTabMap from '../DataTabMap';
 import DataTabDownload from '../DataTabDownload';
 import DataNotes from '../DataNotes';
-
-// temp
-import Avatar from '@material-ui/core/Avatar';
-import BlurOnIcon from '@material-ui/icons/BlurOn';
 
 const style = theme => ({
   wrapper: {
@@ -88,17 +85,8 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       <div className={classes.wrapper}>
         <DataTabCompare />
       </div>
-      <div
-        style={{
-          height: 300,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar>
-          <BlurOnIcon />
-        </Avatar>
+      <div className={classes.wrapper}>
+        <DataTabMap />
       </div>
       <div className={classes.wrapper}>
         <DataTabDownload />
