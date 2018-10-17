@@ -10,6 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { CountrySelector, IndicatorSelector } from '../Selector';
 import WorldMap from '../Map';
+import DataProgress from '../DataProgress';
 
 const styles = theme => ({
   card: {
@@ -35,13 +36,19 @@ const styles = theme => ({
   },
 });
 
-const Component = ({ classes, isHome }) => {
+const Component = ({ classes, isHome, isLoadingData }) => {
   const invariant = (
-    <CardContent className={classes.content}>
-      <WorldMap />
-      <p>slider</p>
-      <p>legend</p>
-    </CardContent>
+    <React.Fragment>
+      {isLoadingData ? (
+        <DataProgress />
+      ) : (
+        <CardContent className={classes.content}>
+          <WorldMap />
+          <p>slider</p>
+          <p>legend</p>
+        </CardContent>
+      )}
+    </React.Fragment>
   );
 
   if (!isHome) return invariant;
@@ -85,6 +92,7 @@ const Component = ({ classes, isHome }) => {
 Component.propTypes = {
   classes: PropTypes.object.isRequired,
   isHome: PropTypes.bool,
+  isLoadingData: PropTypes.bool,
 };
 
 export default withStyles(styles)(Component);
