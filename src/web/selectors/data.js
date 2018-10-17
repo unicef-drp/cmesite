@@ -12,15 +12,12 @@ import {
   find,
   values,
   filter,
-  ifElse,
-  equals,
-  head,
-  length,
   groupBy,
   keys,
   pick,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
+import { getSelectedDimensionValue } from '../utils';
 
 export const getData = prop('data');
 export const getActiveTab = createSelector(getData, prop('activeTab'));
@@ -42,13 +39,17 @@ export const getCountryDimension = createSelector(
   getDimensions,
   find(propEq('id', 'REF_AREA')),
 );
+export const getIndicatorDimension = createSelector(
+  getDimensions,
+  find(propEq('id', 'INDICATOR')),
+);
 export const getCountryValue = createSelector(
   getCountryDimension,
-  pipe(
-    propOr([], 'values'),
-    filter(propEq('isSelected', true)),
-    ifElse(pipe(length, equals(1)), head, always(null)),
-  ),
+  getSelectedDimensionValue,
+);
+export const getIndicatorValue = createSelector(
+  getIndicatorDimension,
+  getSelectedDimensionValue,
 );
 export const getOtherDimensions = createSelector(
   getCountryDimension,

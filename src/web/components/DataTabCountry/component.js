@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import CountrySelector from '../CountrySelector';
+import { CountrySelector } from '../Selector';
 import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
 import { DataCountryChart } from '../DataChart';
