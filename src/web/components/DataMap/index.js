@@ -1,3 +1,3 @@
-import Component from './home';
+import Component from './component';
 
 export default Component;

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
-import WorldMap from '../Map';
+import DataMap from '../DataMap';
 
 const style = theme => ({
   wrapper: {
@@ -22,7 +22,7 @@ const DataTabMap = ({ classes }) => (
       <DataDownloadActions />
     </Grid>
     <Grid item xs={12} md={8}>
-      <WorldMap />
+      <DataMap />
     </Grid>
   </Grid>
 );
