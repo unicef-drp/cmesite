@@ -29,16 +29,22 @@ const style = theme => ({
   about: {
     backgroundColor: theme.palette.secondary.main,
     marginTop: theme.spacing.unit * -2,
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    flexWrap: 'wrap',
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
   },
   typo: {
     color: theme.palette.primary.dark,
   },
   section: {
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-    paddingTop: theme.spacing.unit * 4,
+    padding: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 4,
   },
   logos: {
@@ -47,6 +53,8 @@ const style = theme => ({
     borderRight: 0,
     marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 4,
+    paddingLeft: 0,
+    paddingRight: 0,
   },
   logo: {
     height: 40,
@@ -62,8 +70,13 @@ const style = theme => ({
     width: 100,
   },
   action: {
+    padding: theme.spacing.unit * 2,
     paddingTop: 0,
     paddingBottom: 0,
+  },
+  title: {
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
   },
 });
 
@@ -83,16 +96,12 @@ const About = ({ about, focuses, classes }) => (
         xs={12}
         sm={12}
         md={12}
-        className={classNames(classes.section, classes.about)}
+        className={classes.about}
         container
         justify="center"
       >
-        <Grid item xs={12} sm={7} md={7}>
-          <Typography
-            variant="display1"
-            align="center"
-            className={classes.typo}
-          >
+        <Grid item xs={12} sm={7} md={7} className={classes.title}>
+          <Typography variant="headline" align="center" className={classes.typo}>
             {path(['title', 'rendered'])(about)}
           </Typography>
           <Typography variant="body2" align="center" paragraph>
@@ -105,7 +114,7 @@ const About = ({ about, focuses, classes }) => (
         </Grid>
         <Grid
           item
-          xs={12}
+          xs={11}
           sm={10}
           md={10}
           className={classNames(classes.section, classes.logos)}
@@ -115,10 +124,12 @@ const About = ({ about, focuses, classes }) => (
           <img src={unLogo} className={classes.logo} />
           <img src={wboLogo} className={classes.logo} />
         </Grid>
-        <Typography variant="display1" align="center" className={classes.typo}>
-          <FormattedMessage {...messages.focus} />
-        </Typography>
-        <Grid item xs={12} sm={10} md={10} className={classes.section}>
+        <Grid item xs={12} sm={7} md={7} className={classes.title}>
+          <Typography variant="headline" align="center" className={classes.typo}>
+            <FormattedMessage {...messages.focus} />
+          </Typography>
+        </Grid>
+        <Grid item xs={11} sm={10} md={10} className={classes.section}>
           {map(focus => {
             const image = path(['acf', 'image'])(focus);
             return (

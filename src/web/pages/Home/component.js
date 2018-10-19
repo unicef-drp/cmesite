@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Page from '../../components/Page';
 import Header from '../../components/Header';
 import Splash from '../../components/Splash';
 import News from '../../components/News';
 import Datasets from '../../components/Datasets';
 import { FeaturedReports } from '../../components/Reports';
 import Footer from '../../components/Footer';
-
-// temp
-import Avatar from '@material-ui/core/Avatar';
-import BlurOnIcon from '@material-ui/icons/BlurOn';
+import DataMap from '../../components/DataMap';
 
 const style = theme => ({
   wrapper: {
@@ -25,37 +23,28 @@ const style = theme => ({
   },
 });
 
-export const Page = ({ classes }) => (
-  <React.Fragment>
+export const HomePage = ({ classes }) => (
+  <Page>
     <Header routeName="home" />
     <Splash />
-    <Grid container className={classes.wrapper}>
-      <Grid item xs={12} sm={12} md={4}>
-        <News />
+    <div className={classes.wrapper}>
+      <Grid spacing={16} container>
+        <Grid item xs={12} sm={12} md={4}>
+          <News />
+        </Grid>
+        <Grid item xs={12} sm={12} md={8}>
+          <DataMap isHome />
+        </Grid>
       </Grid>
-      <Grid item xs={12} sm={12} md={8}>
-        <div
-          style={{
-            height: 300,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar>
-            <BlurOnIcon />
-          </Avatar>
-        </div>
-      </Grid>
-    </Grid>
+    </div>
     <Datasets />
     <FeaturedReports />
     <Footer />
-  </React.Fragment>
+  </Page>
 );
 
-Page.propTypes = {
+HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(Page);
+export default withStyles(style)(HomePage);

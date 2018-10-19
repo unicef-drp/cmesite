@@ -61,4 +61,5 @@ module.exports = {
   report,
   dataset,
   splash,
+  dimensions,
 };

@@ -17,7 +17,6 @@ Available on [http://staging.wp.cme.redpelicans.com/wp-admin](http://staging.wp.
 
 Available on [http://staging.cme.redpelicans.com](http://staging.cme.redpelicans.com)
 
-
 ### QA env
 
 Linked to `master` branch. 
@@ -35,7 +34,6 @@ Available on [http://qa.wp.cme.redpelicans.com/wp-admin](http://qa.wp.cme.redpel
 
 Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
 
-
 ## Setup
 
 ### Wordpress
@@ -50,12 +48,15 @@ Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
 * WP REST API - filter fields (filter fields to have only useful data through API)
 * Tuxedo Big File Uploads (handle size upload limit)
 
+#### Backup
+
+For editorial content, use WP exporter tool.
+
 ### Kubernetes
 
 #### ConfigMap
 
 2 ConfigMaps are used to mount `config.json` in containers. Because there is yet no way to update them they are not managed in CI/CD pipelines.
-
 
 First create `ConfigMap` for all envs:
 
@@ -63,7 +64,6 @@ First create `ConfigMap` for all envs:
 $ kubectl create configmap cme-config-staging --from-file=config=params/staging.json
 $ kubectl create configmap cme-config-qa --from-file=config=params/qa.json
 ```
-
 
 List them:
 
@@ -81,7 +81,6 @@ Delete one:
 $ kubectl delete configmaps cme-config-qa
 
 ```
-
 
 ### Jira
 

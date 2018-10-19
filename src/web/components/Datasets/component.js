@@ -48,7 +48,7 @@ const style = theme => ({
 
 const Datasets = ({ classes, updatedAt, datasets }) => (
   <div className={classes.wrapper}>
-    <Typography variant="display1" color="secondary" align="center">
+    <Typography variant="headline" color="secondary" align="center">
       <FormattedMessage {...messages.title} />
     </Typography>
     <Typography variant="body2" color="secondary" align="center">

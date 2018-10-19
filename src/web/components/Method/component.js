@@ -21,7 +21,6 @@ const style = theme => ({
   },
   image: {
     width: '100%',
-    height: '100%',
   },
 });
 
@@ -30,7 +29,7 @@ const Method = ({ method, classes }) => {
   return (
     <Grid container className={classes.wrapper} justify="center">
       <Grid item xs={12} sm={8}>
-        <Typography variant="display1" align="center" className={classes.typo}>
+        <Typography variant="headline" align="center" className={classes.typo}>
           {path(['title', 'rendered'])(method)}
         </Typography>
         <Typography variant="body2" align="center" paragraph>
@@ -40,10 +39,10 @@ const Method = ({ method, classes }) => {
             }}
           />
         </Typography>
+        {isNil(image) ? null : (
+          <img className={classes.image} src={image.url} alt={image.alt} />
+        )}
       </Grid>
-      {isNil(image) ? null : (
-        <img className={classes.image} src={image.url} alt={image.alt} />
-      )}
     </Grid>
   );
 };
