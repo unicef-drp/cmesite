@@ -74,7 +74,12 @@ loadConfig().then(config => {
   wpApi.config(prop('wp')(config));
   sdmxApi.config(prop('sdmx')(config));
   ReactDOM.render(ROOT, document.getElementById('root'));
-  store.dispatch(ducks.wp.actions.loadTags());
-  store.dispatch(ducks.wp.actions.loadPosts());
+  store.dispatch(ducks.wp.actions.loadPosts('splashes'));
+  store.dispatch(ducks.wp.actions.loadPosts('news'));
+  store.dispatch(ducks.wp.actions.loadPosts('datasets'));
+  store.dispatch(ducks.wp.actions.loadPosts('reports'));
+  store.dispatch(ducks.wp.actions.loadPosts('focuses'));
+  store.dispatch(ducks.wp.actions.loadPosts('abouts'));
+  store.dispatch(ducks.wp.actions.loadPosts('methods'));
   store.dispatch(ducks.data.actions.loadStructure());
 });
