@@ -68,6 +68,10 @@ const Selector = ({ classes, value, values, handleValue, keys }) => (
 
 Selector.propTypes = {
   classes: PropTypes.object.isRequired,
+  value: PropTypes.object,
+  values: PropTypes.array,
+  keys: PropTypes.object,
+  handleValue: PropTypes.func,
 };
 
 export default withStyles(styles)(Selector);
