@@ -30,7 +30,7 @@ const Splash = ({ splash, classes, theme }) => (
   >
     <Grid container alignItems="center" className={classes.wrapper}>
       <Grid item xs={12} sm={6} md={4}>
-        <Typography variant="display2" color="secondary" paragraph>
+        <Typography variant="display1" color="secondary" paragraph>
           {path(['title', 'rendered'])(splash)}
         </Typography>
         <Typography variant="body2" color="secondary">
