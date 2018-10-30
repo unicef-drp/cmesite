@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { compose, map, addIndex, ifElse, isNil, always, prop } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
@@ -45,10 +46,21 @@ const style = theme => ({
   },
 });
 
+const Tooltip = ({ d, x, y }) => (
+  <div style={{ position: 'absolute', top: y, left: x }}>{d.y}</div>
+);
+
+Tooltip.propTypes = {
+  d: PropTypes.object.isRequired,
+  x: PropTypes.number,
+  y: PropTypes.number,
+};
+
 export class Chart extends React.Component {
   state = {
     xScale: scaleTime(),
     yScale: scaleLinear(),
+    tooltip: null,
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
@@ -84,6 +96,8 @@ export class Chart extends React.Component {
       yScale,
     };
   };
+
+  setTooltip = tooltip => this.setState({ tooltip });
 
   render = () => {
     const {
@@ -129,6 +143,7 @@ export class Chart extends React.Component {
           classes={getClass(type, classes)}
           hasSymbols={hasSymbols(type)}
           symbolFill={getSymbolFill(type, index, theme)}
+          setTooltip={this.setTooltip}
         />
       )),
     );
@@ -163,6 +178,7 @@ export class Chart extends React.Component {
             </g>
           </g>
         </svg>
+        {this.state.tooltip && <Tooltip {...this.state.tooltip} />}
       </div>
     );
   };

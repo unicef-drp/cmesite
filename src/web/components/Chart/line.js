@@ -28,7 +28,7 @@ class Line extends React.Component {
     return {
       ...prevState,
       line,
-      symbol: symbolGenerator(20)(),
+      symbol: symbolGenerator(30)(),
       xScaleGetter,
       yScaleGetter,
     };
@@ -43,21 +43,29 @@ class Line extends React.Component {
         fill="none"
       />
       {this.props.hasSymbols
-        ? addIndex(map)(
-            (d, i) =>
-              this.defined(d) ? (
-                <path
-                  key={i}
-                  d={this.state.symbol}
-                  transform={`translate(${this.state.xScaleGetter(
-                    d,
-                  )},${this.state.yScaleGetter(d)})`}
-                  stroke={this.props.color}
-                  fill={this.props.symbolFill}
-                />
-              ) : null,
-            this.props.data,
-          )
+        ? addIndex(map)((d, i) => {
+            if (!this.defined(d)) return null;
+
+            const x = this.state.xScaleGetter(d);
+            const y = this.state.yScaleGetter(d);
+
+            return (
+              <path
+                key={i}
+                d={this.state.symbol}
+                transform={`translate(${x},${y})`}
+                stroke={this.props.color}
+                fill={this.props.symbolFill}
+                onMouseOver={() => {
+                  clearTimeout(this.antiBlink);
+                  this.props.setTooltip({ x, y, d });
+                }}
+                onMouseOut={() => {
+                  this.antiBlink = setTimeout(() => this.props.setTooltip(), 1000);
+                }}
+              />
+            );
+          }, this.props.data)
         : null}
     </React.Fragment>
   );
@@ -71,6 +79,7 @@ Line.propTypes = {
   color: PropTypes.string,
   hasSymbols: PropTypes.bool,
   symbolFill: PropTypes.string,
+  setTooltip: PropTypes.func.isRequired,
 };
 
 Line.defaultProps = {
