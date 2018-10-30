@@ -14,11 +14,11 @@ const style = theme => ({
   axis: {
     '& path': {
       stroke: theme.palette.secondary.dark,
-      shapeRendering: 'crispEdges',
+      shapeRendering: 'auto',
     },
     '& line': {
       stroke: theme.palette.secondary.dark,
-      shapeRendering: 'crispEdges',
+      shapeRendering: 'auto',
     },
     '& text': {
       fill: theme.palette.primary.dark,
@@ -54,7 +54,7 @@ export class Chart extends React.Component {
   static getDerivedStateFromProps = (nextProps, prevState) => {
     let { xScale, yScale } = prevState;
 
-    const height = nextProps.size.width / 1.77;
+    const height = Math.ceil(nextProps.size.width / 1.77);
 
     const contentWidth = Math.floor(
       nextProps.size.width - nextProps.margin.left - nextProps.margin.right,
