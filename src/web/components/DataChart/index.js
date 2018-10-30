@@ -1,3 +1,4 @@
+import { pipe, reject, isNil, isEmpty } from 'ramda';
 import { compose, branch, renderComponent } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -12,6 +13,7 @@ import {
 import { toggleActiveType } from '../../ducks/data';
 import Component from './component';
 import DataProgress from '../DataProgress';
+import DataNone from '../DataNone';
 
 const withData = selectors =>
   compose(
@@ -25,6 +27,15 @@ const withData = selectors =>
       { toggleActiveType },
     ),
     branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
+    branch(
+      ({ estimateSeries, includedSeries, excludedSeries }) =>
+        pipe(reject(isNil), isEmpty)([
+          estimateSeries,
+          includedSeries,
+          excludedSeries,
+        ]),
+      renderComponent(DataNone),
+    ),
   );
 
 export const DataCountryChart = withData({
