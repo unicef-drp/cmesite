@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { compose, map, addIndex, ifElse, isNil, always } from 'ramda';
+import { compose, map, addIndex, ifElse, isNil, always, prop } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { withSize } from 'react-sizeme';
-import { getSymbolFill, getClass, hasSymbols, getColor } from './utils';
+import { getSymbolFill, getClass, hasSymbols, getColor, getExtents } from './utils';
 import Axis from './axis';
 import Line from './line';
 import Area from './area';
@@ -63,12 +63,15 @@ export class Chart extends React.Component {
       height - nextProps.margin.top - nextProps.margin.bottom,
     );
 
+    const { estimateSeries, includedSeries, excludedSeries } = nextProps;
+    const extents = getExtents(estimateSeries, includedSeries, excludedSeries);
+
     xScale
-      .domain([new Date(1985, 0, 1), new Date(2016, 0, 1)])
+      .domain(prop('x', extents))
       .range([0, contentWidth])
       .nice();
     yScale
-      .domain([0, 260])
+      .domain(prop('y', extents))
       .range([contentHeight, 0])
       .nice();
 
@@ -93,6 +96,7 @@ export class Chart extends React.Component {
       includedSeries,
       excludedSeries,
     } = this.props;
+
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
 
