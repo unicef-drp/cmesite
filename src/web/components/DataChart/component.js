@@ -67,8 +67,8 @@ const DataChart = ({
           )(activeTypes)}
         </div>
       </CardContent>
+      <DataLegend {...series} />
     </Card>
-    <DataLegend {...series} />
   </React.Fragment>
 );
 

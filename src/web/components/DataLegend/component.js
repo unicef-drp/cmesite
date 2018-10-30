@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -15,15 +16,14 @@ import messages from './messages';
 import { symbolGenerator, getSymbolFill, getColor } from '../Chart/utils';
 
 const styles = theme => ({
-  panelRoot: {
-    '&:last-child': {
-      marginBottom: theme.spacing.unit * 2,
-    },
+  panelExpanded: {
+    margin: 0,
   },
   panelSummaryRoot: {
-    minHeight: 0,
+    backgroundColor: theme.palette.secondary.dark,
   },
   panelSummaryContent: {
+    minHeight: 24,
     '&$expanded': {
       margin: 0,
       marginTop: theme.spacing.unit * 1.5,
@@ -32,8 +32,10 @@ const styles = theme => ({
   },
   expanded: {
     // panelSummaryExpanded is not apply, expanded is required (MUI bug)
+    minHeight: 24,
+    margin: 0,
     '&$expanded': {
-      minHeight: 0,
+      minHeight: 24,
     },
   },
   panelDetails: {
@@ -51,6 +53,9 @@ const styles = theme => ({
   },
   item: {
     width: '50%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
 });
 
@@ -70,16 +75,18 @@ const DataLegend = ({
       always(null),
       addIndex(map)(({ id, name, type }, index) => (
         <ListItem className={classes.item} key={id} dense button>
-          <svg width={SIZE / 2} height={SIZE / 2}>
-            <g>
-              <path
-                d={symbolGenerator(SIZE)()}
-                transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                stroke={getColor(type, index, theme, isUncertainty)}
-                fill={getSymbolFill(type, index, theme, isUncertainty)}
-              />
-            </g>
-          </svg>
+          <ListItemIcon>
+            <svg width={SIZE / 2} height={SIZE / 2}>
+              <g>
+                <path
+                  d={symbolGenerator(SIZE)()}
+                  transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                  stroke={getColor(type, index, theme, isUncertainty)}
+                  fill={getSymbolFill(type, index, theme, isUncertainty)}
+                />
+              </g>
+            </svg>
+          </ListItemIcon>
           <ListItemText>
             {name} ({isUncertainty ? (
               <FormattedMessage {...messages.uncertainty} />
@@ -92,7 +99,7 @@ const DataLegend = ({
     );
 
   return (
-    <ExpansionPanel classes={{ root: classes.panelRoot }}>
+    <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
         classes={{
