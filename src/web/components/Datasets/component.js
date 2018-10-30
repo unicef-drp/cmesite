@@ -5,10 +5,8 @@ import { format } from 'date-fns';
 import Typography from '@material-ui/core/Typography';
 import DescriptionIcon from '@material-ui/icons/Description';
 import withStyles from '@material-ui/core/styles/withStyles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
@@ -25,21 +23,13 @@ const style = theme => ({
   },
   list: {
     paddingTop: theme.spacing.unit * 2,
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
   },
   item: {
-    width: 500,
-    [theme.breakpoints.only('md')]: {
-      width: 360,
-    },
-    [theme.breakpoints.only('sm')]: {
-      width: 500,
-    },
-    [theme.breakpoints.only('xs')]: {
-      width: 360,
-    },
+    borderRadius: 0,
+  },
+  typo: {
+    paddingLeft: theme.spacing.unit * 2,
+    textTransform: 'none',
   },
   icon: {
     color: theme.palette.secondary.main,
@@ -56,33 +46,35 @@ const Datasets = ({ classes, updatedAt, datasets }) => (
       {' - '}
       {format(updatedAt, 'DD MMMM YYYY', { locale: 'en' })}
     </Typography>
-    <List className={classes.list} dense>
+    <Grid container className={classes.list} spacing={16}>
       {map(dataset => {
         const file = path(['acf', 'file'])(dataset);
         if (isNil(file)) return null;
         return (
-          <ListItem
-            key={dataset.id}
-            button
-            component="a"
-            className={classes.item}
-            target="_blank"
-            href={dataset.acf.file.url}
-            download
-          >
-            <ListItemIcon>
+          <Grid item xs={12} md={6} lg={4} key={dataset.id}>
+            <Button
+              component="a"
+              color="inherit"
+              className={classes.item}
+              target="_blank"
+              href={dataset.acf.file.url}
+              download
+            >
               <DescriptionIcon className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              primary={`${path(['title', 'rendered'])(dataset)}: ${
-                dataset.acf.file.description
-              }`}
-              primaryTypographyProps={{ color: 'secondary' }}
-            />
-          </ListItem>
+              <Typography
+                color="secondary"
+                className={classes.typo}
+                variant="body2"
+              >
+                {`${path(['title', 'rendered'])(dataset)}: ${
+                  dataset.acf.file.description
+                }`}
+              </Typography>
+            </Button>
+          </Grid>
         );
-      })(datasets)}
-    </List>
+      }, datasets)}
+    </Grid>
   </div>
 );
 
