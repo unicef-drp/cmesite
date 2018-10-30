@@ -39,6 +39,10 @@ const style = theme => ({
   typo: {
     color: theme.palette.primary.dark,
   },
+  title: {
+    color: theme.palette.primary.dark,
+    marginBottom: theme.spacing.unit * 4,
+  },
   section: {
     display: 'flex',
     justifyContent: 'space-around',
@@ -74,7 +78,7 @@ const style = theme => ({
     paddingTop: 0,
     paddingBottom: 0,
   },
-  title: {
+  titleWrapper: {
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
   },
@@ -100,12 +104,8 @@ const About = ({ about, focuses, classes }) => (
         container
         justify="center"
       >
-        <Grid item xs={12} sm={7} md={7} className={classes.title}>
-          <Typography
-            variant="headline"
-            align="center"
-            className={classes.typo}
-          >
+        <Grid item xs={12} sm={7} md={7} className={classes.titleWrapper}>
+          <Typography variant="headline" align="center" className={classes.title}>
             {path(['title', 'rendered'])(about)}
           </Typography>
           <Typography variant="body2" align="center" paragraph>
@@ -128,12 +128,8 @@ const About = ({ about, focuses, classes }) => (
           <img src={unLogo} className={classes.logo} />
           <img src={wboLogo} className={classes.logo} />
         </Grid>
-        <Grid item xs={12} sm={7} md={7} className={classes.title}>
-          <Typography
-            variant="headline"
-            align="center"
-            className={classes.typo}
-          >
+        <Grid item xs={12} sm={7} md={7} className={classes.titleWrapper}>
+          <Typography variant="headline" align="center" className={classes.title}>
             <FormattedMessage {...messages.focus} />
           </Typography>
         </Grid>
