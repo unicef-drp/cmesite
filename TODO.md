@@ -1,22 +1,16 @@
-# config
-[ ] put config in store for selectors and ducks
-[ ] handle locale properly
-
 # data map
 [ ] slider
 [ ] legend
 [?] country selector behavior
 [?] time selector behavior (impact on request)
 [ ] Can't call setState (or forceUpdate) on an unmounted component (no data and select all)
-
-# chart
-[ ] chart has no proptypes
-
-# map
 [ ] trigger data request in home at start
 [ ] load topojson of unicef
 [ ] parse it to bind its ids to sdmx (if not already done)
 [ ] bind sdmx data to ids for tooltips and values (choropleth)
+
+# chart
+[ ] chart has no proptypes
 
 # misc
 [ ] lib/sdmx/data.js y0 and y1 mocked
@@ -45,3 +39,6 @@
 [ ] handle compact zones
 [ ] handle edge positions
 [ ] alter marker on over
+
+## config
+[ ] handle locale

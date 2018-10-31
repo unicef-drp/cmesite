@@ -8,8 +8,7 @@
       "id": "CME_DF",
       "version": "1.0",
       "agencyId": "UNICEFDRPDAU"
-    },
-    "dimensionIds": ["REF_AREA", "INDICATOR", "SEX"]
+    }
   },
   "language": {
     "locale": "en"
