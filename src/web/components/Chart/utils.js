@@ -18,8 +18,9 @@ import {
   isNil,
   reject,
 } from 'ramda';
+import { ESTIMATE, EXCLUDED } from '../../constants';
 
-const isEstimate = equals('ESTIMATE');
+const isEstimate = equals(ESTIMATE);
 
 export const hasSymbols = complement(isEstimate);
 
@@ -29,7 +30,7 @@ export const symbolGenerator = size =>
     .size(size);
 
 export const getSymbolFill = (type, index, theme, isUncertainty) => {
-  if (equals(type, 'EXCLUDED')) return 'none';
+  if (equals(type, EXCLUDED)) return 'none';
   return getColor(type, index, theme, isUncertainty);
 };
 

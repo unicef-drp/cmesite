@@ -22,8 +22,6 @@
 [ ] lib/sdmx/data.js y0 and y1 mocked
 [ ] api/sdmx.js mocked
 [ ] DataNote source
-[ ] data selectors should not rely on hardcoded config stuff
-[ ] remove hardcoded stuff (ESTIMATE, EXCLUDED in utils)
 
 # perf
 [ ] Chart is re-rendered when switching tabs and when expanding Legend

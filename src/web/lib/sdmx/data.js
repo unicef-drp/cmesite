@@ -33,17 +33,7 @@ import {
   values,
   always,
 } from 'ramda';
-
-const DIMENSION_IDS = ['REF_AREA', 'INDICATOR', 'SEX'];
-const TYPES = [
-  ['SERIES_NAME', '269', 'ESTIMATE'],
-  ['OBS_STATUS', 'IN', 'INCLUDED'],
-  ['OBS_STATUS', 'EX', 'EXCLUDED'],
-];
-const Z = 'SERIES_NAME';
-const X = 'TIME_PERIOD';
-// const Y0 = 'LOWER_BOUND';
-// const Y1 = 'UPPER_BOUND';
+import { RELEVANT_DIMENSIONS, TYPES, Z, X, ESTIMATE } from '../../constants';
 
 const getArtefacts = type => pathOr([], ['data', 'structure', type, 'observation']);
 
@@ -55,8 +45,10 @@ const getName = locale => path(['name', locale]);
 
 const getType = observation =>
   pipe(
-    find(([id, value]) => pipe(path([id, 'valueId']), equals(value))(observation)),
-    ifElse(isNil, identity, last),
+    find(({ sdmxId, sdmxValue }) =>
+      pipe(path([sdmxId, 'valueId']), equals(sdmxValue))(observation),
+    ),
+    ifElse(isNil, identity, prop('id')),
   );
 
 const getSerieKey = ids =>
@@ -112,9 +104,10 @@ const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
   ])(pair);
 
   const type = getType(sdmxObservation)(TYPES);
+  console.log(sdmxObservation, type);
   if (isNil(type)) return acc;
 
-  const isEstimate = equals('ESTIMATE', type);
+  const isEstimate = equals(ESTIMATE, type);
   const observation = pipe(
     assoc('x', getX(X)(sdmxObservation)),
     ifElse(always(isEstimate), assoc('y0', sdmxObservation.y - 10), identity), // TEMP
@@ -122,7 +115,7 @@ const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
     //ifElse(always(isEstimate), assoc('y0', path([Y0, 'valueId'], sdmxObservation)), identity),
     //ifElse(always(isEstimate), assoc('y1', path([Y1, 'valueId'], sdmxObservation)), identity),
   )(sdmxObservation);
-  const serieKey = getSerieKey([...DIMENSION_IDS, Z])(observation, type);
+  const serieKey = getSerieKey([...RELEVANT_DIMENSIONS, Z])(observation, type);
 
   if (has(serieKey, acc))
     return over(lensPath([serieKey, 'datapoints']), append(observation), acc);

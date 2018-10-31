@@ -1,7 +1,18 @@
-import { not, over, lensPath, assoc, map, addIndex, equals } from 'ramda';
+import {
+  not,
+  over,
+  lensPath,
+  assoc,
+  map,
+  addIndex,
+  equals,
+  reduce,
+  prop,
+} from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi from '../api/sdmx';
 import { getRawDimensions } from '../selectors/data';
+import { TYPES } from '../constants';
 
 export const FORMATS = ['csv', 'xml'];
 export const SCOPES = ['all', 'selection'];
@@ -35,7 +46,12 @@ const initialState = {
   isLoadingData: false,
   downloadingData: {},
   dimensions: [],
-  activeTypes: { ESTIMATE: true, INCLUDED: true, EXCLUDED: false },
+  activeTypes: reduce(
+    (memo, type) => assoc(prop('id', type), prop('value', type), memo),
+    {},
+    TYPES,
+  ),
+  //activeTypes: { ESTIMATE: true, INCLUDED: true, EXCLUDED: false },
 };
 
 const reducer = (state = initialState, action = {}) => {

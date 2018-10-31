@@ -18,6 +18,14 @@ import {
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 import { getSelectedDimensionValue } from '../utils';
+import {
+  REF_AREA,
+  INDICATOR,
+  RELEVANT_DIMENSIONS,
+  ESTIMATE,
+  INCLUDED,
+  EXCLUDED,
+} from '../constants';
 
 export const getData = prop('data');
 export const getActiveTab = createSelector(getData, prop('activeTab'));
@@ -33,15 +41,15 @@ export const getDownloadingData = createSelector(getData, prop('downloadingData'
 export const getRawDimensions = createSelector(getData, prop('dimensions'));
 export const getDimensions = createSelector(
   getRawDimensions,
-  filterArtefacts(['REF_AREA', 'INDICATOR', 'SEX']),
+  filterArtefacts(RELEVANT_DIMENSIONS),
 );
 export const getCountryDimension = createSelector(
   getDimensions,
-  find(propEq('id', 'REF_AREA')),
+  find(propEq('id', REF_AREA)),
 );
 export const getIndicatorDimension = createSelector(
   getDimensions,
-  find(propEq('id', 'INDICATOR')),
+  find(propEq('id', INDICATOR)),
 );
 export const getCountryValue = createSelector(
   getCountryDimension,
@@ -72,13 +80,13 @@ export const getActiveSeries = createSelector(
 );
 export const getDataEstimateSeries = createSelector(
   getActiveSeries,
-  prop('ESTIMATE'),
+  prop(ESTIMATE),
 );
 export const getDataIncludedSeries = createSelector(
   getActiveSeries,
-  prop('INCLUDED'),
+  prop(INCLUDED),
 );
 export const getDataExcludedSeries = createSelector(
   getActiveSeries,
-  prop('EXCLUDED'),
+  prop(EXCLUDED),
 );
