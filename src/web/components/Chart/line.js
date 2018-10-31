@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { prop, pipe, both, map, not, addIndex } from 'ramda';
+import { prop, pipe, both, map, addIndex } from 'ramda';
 import { line as d3Line, curveMonotoneX } from 'd3-shape';
 import { symbolGenerator } from './utils';
 
@@ -12,7 +12,7 @@ class Line extends React.Component {
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
-    const { xScale, yScale, hasSymbols } = nextProps;
+    const { xScale, yScale } = nextProps;
     let { line } = prevState;
 
     const xScaleGetter = pipe(prop('x'), xScale);
@@ -23,12 +23,9 @@ class Line extends React.Component {
       .y(yScaleGetter)
       .curve(curveMonotoneX);
 
-    if (not(hasSymbols)) return { ...prevState, line };
-
     return {
       ...prevState,
       line,
-      symbol: symbolGenerator(30)(),
       xScaleGetter,
       yScaleGetter,
     };
@@ -42,31 +39,39 @@ class Line extends React.Component {
         stroke={this.props.color}
         fill="none"
       />
-      {this.props.hasSymbols
-        ? addIndex(map)((d, i) => {
-            if (!this.defined(d)) return null;
+      {addIndex(map)((d, i) => {
+        if (!this.defined(d)) return null;
 
-            const x = this.state.xScaleGetter(d);
-            const y = this.state.yScaleGetter(d);
+        const x = this.state.xScaleGetter(d);
+        const y = this.state.yScaleGetter(d);
 
-            return (
+        return (
+          <React.Fragment key={`marker-${i}`}>
+            {/* visible marker */}
+            {this.props.hasSymbols && (
               <path
-                key={i}
-                d={this.state.symbol}
+                d={symbolGenerator(30)()}
                 transform={`translate(${x},${y})`}
                 stroke={this.props.color}
                 fill={this.props.symbolFill}
-                onMouseOver={() => {
-                  clearTimeout(this.antiBlink);
-                  this.props.setTooltip({ x, y, d });
-                }}
-                onMouseOut={() => {
-                  this.antiBlink = setTimeout(() => this.props.setTooltip(), 1000);
-                }}
               />
-            );
-          }, this.props.data)
-        : null}
+            )}
+            {/* over marker */}
+            <path
+              d={symbolGenerator(60)()}
+              transform={`translate(${x},${y})`}
+              fill="transparent"
+              onMouseOver={() => {
+                clearTimeout(this.antiBlink);
+                this.props.setTooltip({ x, y, d, color: this.props.color });
+              }}
+              onMouseOut={() => {
+                this.antiBlink = setTimeout(() => this.props.setTooltip(), 1000);
+              }}
+            />
+          </React.Fragment>
+        );
+      }, this.props.data)}
     </React.Fragment>
   );
 }

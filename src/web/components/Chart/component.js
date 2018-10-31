@@ -10,6 +10,7 @@ import { getSymbolFill, getClass, hasSymbols, getColor, getExtents } from './uti
 import Axis from './axis';
 import Line from './line';
 import Area from './area';
+import Tooltip from './tooltip';
 
 const style = theme => ({
   axis: {
@@ -45,16 +46,6 @@ const style = theme => ({
     strokeDasharray: '5 5',
   },
 });
-
-const Tooltip = ({ d, x, y }) => (
-  <div style={{ position: 'absolute', top: y, left: x }}>{d.y}</div>
-);
-
-Tooltip.propTypes = {
-  d: PropTypes.object.isRequired,
-  x: PropTypes.number,
-  y: PropTypes.number,
-};
 
 export class Chart extends React.Component {
   state = {
