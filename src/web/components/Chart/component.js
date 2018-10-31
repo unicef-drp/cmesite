@@ -45,7 +45,7 @@ const style = theme => ({
   },
 });
 
-export class Chart extends React.Component {
+class Chart extends React.Component {
   state = {
     xScale: scaleTime(),
     yScale: scaleLinear(),

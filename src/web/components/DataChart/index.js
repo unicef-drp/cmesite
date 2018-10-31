@@ -21,7 +21,6 @@ const withData = selectors =>
       createStructuredSelector({
         title: getTitle,
         isLoadingData: getIsLoadingData,
-        activeTypes: getActiveTypes,
         ...selectors,
       }),
       { toggleActiveType },
@@ -39,6 +38,7 @@ const withData = selectors =>
   );
 
 export const DataCountryChart = withData({
+  activeTypes: getActiveTypes,
   estimateSeries: getDataEstimateSeries,
   uncertaintySeries: getDataEstimateSeries,
   includedSeries: getDataIncludedSeries,
