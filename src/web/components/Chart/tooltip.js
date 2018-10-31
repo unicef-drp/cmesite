@@ -30,7 +30,6 @@ const Tooltip = ({ classes, theme, d, x, y, color }) => (
     elevation={2}
   >
     <CardContent className={classes.content}>
-      {console.log(d)}
       <Typography variant="body1" style={{ color }}>
         {path(['SERIES_NAME', 'valueName'], d)}
       </Typography>

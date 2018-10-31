@@ -66,7 +66,7 @@ class Line extends React.Component {
                 this.props.setTooltip({ x, y, d, color: this.props.color });
               }}
               onMouseOut={() => {
-                this.antiBlink = setTimeout(() => this.props.setTooltip(), 1000);
+                this.antiBlink = setTimeout(() => this.props.setTooltip(), 100);
               }}
             />
           </React.Fragment>
