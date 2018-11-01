@@ -6,15 +6,13 @@ import Paper from '@material-ui/core/Paper';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-export const inputComponent = ({ inputRef, ...props }) => (
-  <div ref={inputRef} {...props} />
-);
-
 export const Control = props => (
   <TextField
     fullWidth
     InputProps={{
-      inputComponent,
+      /* eslint-disable react/prop-types */
+      inputComponent: ({ inputRef, ...props }) => <div ref={inputRef} {...props} />,
+      /* eslint-enable react/prop-types */
       classes: { underline: props.selectProps.classes.cssUnderline },
       inputProps: {
         className: props.selectProps.classes.input,
@@ -31,6 +29,7 @@ Control.propTypes = {
   innerProps: PropTypes.object,
   selectProps: PropTypes.object,
   children: PropTypes.node,
+  innerRef: PropTypes.func,
 };
 
 export const Option = props => (

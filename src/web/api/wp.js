@@ -12,28 +12,19 @@ const postFields = join(',')([
   'tags',
   'acf',
 ]);
-const getPosts = () =>
+const getPosts = ({ postType = 'posts' }) =>
   axios
     .get(
       endPoint(
-        `/posts?fields=${postFields}&order=asc&orderBy=modified&per_page=100`,
+        `/${postType}?fields=${postFields}&order=asc&orderBy=modified&per_page=100`,
       ),
     )
-    .then(prop('data'));
-
-const getTags = () =>
-  axios
-    .get(endPoint(`/tags?&fields=${join(',')(['id', 'name'])}`))
     .then(prop('data'));
 
 /* eslint-disable-line no-shadow */
 const config = config => (globalConfig = { ...globalConfig, ...config });
 
-const methods = {
-  config,
-  getPosts,
-  getTags,
-};
+const methods = { config, getPosts };
 
 const error = method => () => {
   throw new Error(`Unkown method: ${method}`);
