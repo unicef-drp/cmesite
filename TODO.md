@@ -43,3 +43,5 @@
 
 ## config
 [ ] handle locale
+
+https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest/data/UNICEFDRPDAU,CME_DF,1.0/AFG+AGO...269./all/?startPeriod=2012&endPeriod=2018&dimensionAtObservation=AllDimensions
