@@ -22,7 +22,10 @@
 
 # unicef
 [ ] data icons tabs
+[ ] page(s) width and map size
+[ ] selectors style
 [ ] WP backup WP-DB-Backup
+[!] logos are small, need png not ai, images too big
 
 ---
 

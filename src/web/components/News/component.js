@@ -38,7 +38,7 @@ const style = theme => ({
 
 const News = ({ classes, news }) => (
   <div className={classes.wrapper}>
-    <Typography variant="headline" align="center" className={classes.typo}>
+    <Typography variant="title" align="center" className={classes.typo}>
       <FormattedMessage {...messages.title} />
     </Typography>
     <div className={classes.container}>

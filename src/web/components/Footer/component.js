@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core';
 import messages from './messages';
 import igmeLogo from '../../../assets/igme-logo.png';
-import unicefLogo from '../../../assets/unicef-black-logo.jpeg';
+import unicefLogo from '../../../assets/unicef-black-logo.png';
 import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
 import wboLogo from '../../../assets/wbo-black-logo.png';

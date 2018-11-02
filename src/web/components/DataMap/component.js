@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -31,8 +32,15 @@ const styles = theme => ({
       paddingBottom: theme.spacing.unit,
     },
   },
+  title: {
+    display: 'flex',
+    alignItems: 'baseline',
+  },
   typo: {
     color: theme.palette.primary.dark,
+  },
+  subtitle: {
+    paddingLeft: theme.spacing.unit,
   },
 });
 
@@ -59,18 +67,17 @@ const Component = ({ classes, isHome, isLoadingData }) => {
         <CardHeader
           className={classes.header}
           title={
-            <React.Fragment>
-              <Typography
-                variant="headline"
-                align="center"
-                className={classes.typo}
-              >
+            <div className={classes.title}>
+              <Typography variant="headline" className={classes.typo}>
                 <FormattedMessage {...messages.title} />
               </Typography>
-              <Typography variant="body2" align="center" className={classes.typo}>
+              <Typography
+                variant="title"
+                className={classnames(classes.typo, classes.subtitle)}
+              >
                 <FormattedMessage {...messages.subtitle} />
               </Typography>
-            </React.Fragment>
+            </div>
           }
         />
         <CardContent className={classes.content}>

@@ -19,11 +19,11 @@ const style = theme => ({
 
 export const Home = ({ classes }) => (
   <div className={classes.wrapper}>
-    <Grid spacing={16} container>
-      <Grid item xs={12} sm={12} md={4}>
+    <Grid spacing={32} container>
+      <Grid item xs={12} sm={12} md={4} lg={3}>
         <News />
       </Grid>
-      <Grid item xs={12} sm={12} md={8}>
+      <Grid item xs={12} sm={12} md={8} lg={9}>
         <DataMap isHome />
       </Grid>
     </Grid>
