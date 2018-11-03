@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { compose, map, addIndex, ifElse, isNil, always, prop } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
