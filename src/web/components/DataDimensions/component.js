@@ -51,6 +51,7 @@ const styles = theme => ({
     color: theme.palette.primary.dark,
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
+    fontWeight: 600,
   },
   checkbox: {
     width: 'initial',

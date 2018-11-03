@@ -28,7 +28,7 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2,
   },
   header: {
-    backgroundColor: theme.palette.secondary.dark,
+    //backgroundColor: theme.palette.secondary.dark,
     minHeight: theme.spacing.unit * 6,
   },
   typo: {
@@ -55,7 +55,11 @@ const DataChart = ({
     <Card className={classes.card} square>
       <CardHeader
         className={classes.header}
-        title={<Typography className={classes.typo}>{title}</Typography>}
+        title={
+          <Typography align="center" variant="title" className={classes.typo}>
+            {title}
+          </Typography>
+        }
       />
       <CardContent>
         <Chart {...series} />
