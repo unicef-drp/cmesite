@@ -3,7 +3,8 @@
     "endpoint": "http://rp5.redpelicans.com:9090/wp-json/wp/v2"
   },
   "sdmx": {
-    "endpoint": "http://sdmx.unicef.endpoint",
+    "endpoint":
+      "https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest",
     "dataflow": {
       "id": "CME_DF",
       "version": "1.0",
