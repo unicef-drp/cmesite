@@ -21,12 +21,12 @@ const DataTabCountry = ({ classes, country }) => (
     <Grid item xs={12}>
       <CountrySelector />
     </Grid>
-    <Grid item xs={12} md={country ? 4 : 12}>
+    <Grid item xs={12} md={country ? 3 : 12}>
       <DataOtherDimensions isSide />
       <DataDownloadActions />
     </Grid>
     {country && (
-      <Grid item xs={12} md={8}>
+      <Grid item xs={12} md={9}>
         <DataCountryChart />
       </Grid>
     )}
