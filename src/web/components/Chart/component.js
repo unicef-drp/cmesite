@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { compose, map, addIndex, ifElse, isNil, always, prop } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
-import { zoom, zoomTransform as d3ZoomTransform } from 'd3-zoom';
+import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
 import { withSize } from 'react-sizeme';
 import { getSymbolFill, getClass, hasSymbols, getColor, getExtents } from './utils';
@@ -125,7 +125,14 @@ class Chart extends React.Component {
     } = this.props;
 
     const { width } = size;
-    const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
+    const {
+      height,
+      contentWidth,
+      contentHeight,
+      xScale,
+      yScale,
+      zoomTransform,
+    } = this.state;
 
     const areas = uncertaintySeries
       ? map(
@@ -165,6 +172,16 @@ class Chart extends React.Component {
     return (
       <div>
         {/* div is required for withSize to work properly */}
+        <div
+          onClick={() => {
+            select(this.chartElement)
+              .transition()
+              .duration(750)
+              .call(this.zoom.transform, zoomIdentity);
+          }}
+        >
+          reset
+        </div>
         <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <defs>

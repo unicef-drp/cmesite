@@ -29,7 +29,7 @@ const styles = theme => ({
   },
   header: {
     //backgroundColor: theme.palette.secondary.dark,
-    minHeight: theme.spacing.unit * 6,
+    paddingBottom: 0,
   },
   typo: {
     color: theme.palette.primary.dark,
