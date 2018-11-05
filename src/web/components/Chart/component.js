@@ -137,6 +137,7 @@ class Chart extends React.Component {
               yScale={yScale}
               color={theme.palette.secondary.dark}
               classes={classes}
+              setTooltip={this.setTooltip}
             />
           ),
           uncertaintySeries,
@@ -196,7 +197,13 @@ class Chart extends React.Component {
             </g>
           </g>
         </svg>
-        {this.state.tooltip && <Tooltip {...this.state.tooltip} />}
+        {this.state.tooltip && (
+          <Tooltip
+            {...this.state.tooltip}
+            width={this.state.contentWidth}
+            height={this.state.contentHeight}
+          />
+        )}
       </div>
     );
   };

@@ -37,6 +37,7 @@
     "html-webpack-plugin": "2.29.0",
     "ignore-styles": "^5.0.1",
     "jest": "^23.2",
+    "numeral": "^2.0.6",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.4",
     "prop-types": "^15.6.2",

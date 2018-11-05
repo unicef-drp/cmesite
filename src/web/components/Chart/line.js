@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { prop, pipe, both, map, addIndex } from 'ramda';
 import { line as d3Line, curveMonotoneX } from 'd3-shape';
+import { select } from 'd3-selection';
 import { symbolGenerator } from './utils';
 
 class Line extends React.Component {
@@ -61,11 +62,13 @@ class Line extends React.Component {
               d={symbolGenerator(60)()}
               transform={`translate(${x},${y})`}
               fill="transparent"
-              onMouseOver={() => {
+              onMouseOver={event => {
+                select(event.target).attr('fill', this.props.color);
                 clearTimeout(this.antiBlink);
                 this.props.setTooltip({ x, y, d, color: this.props.color });
               }}
-              onMouseOut={() => {
+              onMouseOut={event => {
+                select(event.target).attr('fill', 'transparent');
                 this.antiBlink = setTimeout(() => this.props.setTooltip(), 100);
               }}
             />
@@ -89,7 +92,6 @@ Line.propTypes = {
 
 Line.defaultProps = {
   data: [],
-  symbolShape: 'none',
 };
 
 export default Line;

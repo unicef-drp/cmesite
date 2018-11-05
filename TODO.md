@@ -13,8 +13,9 @@
 # chart
 [ ] chart has no proptypes
 [ ] extent y1, y0
-[ ] tooltip area
-[ ] zoom in lines
+[x] tooltip area
+[x] zoom in lines
+[ ] reset zoom btn
 
 # sdmx
 [ ] lib/sdmx/data.js y0 and y1 mocked
@@ -24,7 +25,11 @@
 
 # perf
 [ ] Chart is re-rendered when switching tabs and when expanding Legend
+[ ] changing a selection rerender all tabs
 [ ] sdmx data request is too heavy when all selected
+
+# UI
+[ ] reducing home page make splash content goes behind updates block
 
 # unicef
 [ ] data icons/style tabs
@@ -46,9 +51,9 @@
 [ ] different symbols regarding SERIES_METHOD
 
 ## tooltips
-[ ] handle compact zones
-[ ] handle edge positions
-[ ] alter marker on over
+[x] handle compact zones
+[x] handle edge positions
+[x] alter marker on over
 
 ## config
 [ ] handle locale
