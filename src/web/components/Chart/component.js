@@ -2,6 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { compose, map, addIndex, ifElse, isNil, always, prop } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
+import { zoom, zoomTransform as d3ZoomTransform } from 'd3-zoom';
+import { select } from 'd3-selection';
 import { withSize } from 'react-sizeme';
 import { getSymbolFill, getClass, hasSymbols, getColor, getExtents } from './utils';
 import Axis from './axis';
@@ -22,6 +24,7 @@ const style = theme => ({
     '& text': {
       fill: theme.palette.primary.dark,
       fontWeight: 'bold',
+      userSelect: 'none',
     },
   },
   axisBottom: {
@@ -45,14 +48,27 @@ const style = theme => ({
 });
 
 class Chart extends React.Component {
-  state = {
-    xScale: scaleTime(),
-    yScale: scaleLinear(),
-    tooltip: null,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      xScale: scaleTime(),
+      yScale: scaleLinear(),
+      tooltip: null,
+      zoomTransform: null,
+    };
+
+    this.zoom = zoom()
+      .scaleExtent([0.5, 4])
+      .on('zoom', this.zoomed.bind(this));
+  }
+
+  componentDidMount = () => select(this.chartElement).call(this.zoom);
+
+  componentDidUpdate = () => select(this.chartElement).call(this.zoom);
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
-    let { xScale, yScale } = prevState;
+    let { xScale, yScale, zoomTransform } = prevState;
 
     const height = Math.ceil(nextProps.size.width / 1.77);
 
@@ -75,6 +91,11 @@ class Chart extends React.Component {
       .range([contentHeight, 0])
       .nice();
 
+    if (zoomTransform) {
+      xScale.domain(zoomTransform.rescaleX(xScale).domain());
+      yScale.domain(zoomTransform.rescaleY(yScale).domain());
+    }
+
     return {
       ...prevState,
       height,
@@ -83,6 +104,10 @@ class Chart extends React.Component {
       xScale,
       yScale,
     };
+  };
+
+  zoomed = () => {
+    this.setState({ zoomTransform: d3ZoomTransform(this.chartElement) });
   };
 
   setTooltip = tooltip => this.setState({ tooltip });
@@ -139,9 +164,13 @@ class Chart extends React.Component {
     return (
       <div>
         {/* div is required for withSize to work properly */}
-        <svg width={width} height={height}>
+        <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
-            <g>{areas}</g>
+            <defs>
+              <clipPath id="clip">
+                <rect x="0" y="0" width={contentWidth} height={contentHeight} />
+              </clipPath>
+            </defs>
             <g>
               <Axis
                 orient="Left"
@@ -159,10 +188,11 @@ class Chart extends React.Component {
                 classes={classes}
               />
             </g>
-            <g>
-              {linesFactory(estimateSeries)}
+            <g clipPath="url(#clip)">
+              {areas}
               {linesFactory(includedSeries)}
               {linesFactory(excludedSeries)}
+              {linesFactory(estimateSeries)}
             </g>
           </g>
         </svg>
