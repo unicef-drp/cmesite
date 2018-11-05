@@ -33,7 +33,15 @@ import {
   values,
   always,
 } from 'ramda';
-import { RELEVANT_DIMENSIONS, TYPES, Z, X, ESTIMATE } from '../../constants';
+import {
+  RELEVANT_DIMENSIONS,
+  TYPES,
+  Z,
+  X,
+  Y0,
+  Y1,
+  ESTIMATE,
+} from '../../constants';
 
 const getArtefacts = type => pathOr([], ['data', 'structure', type, 'observation']);
 
@@ -104,16 +112,23 @@ const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
   ])(pair);
 
   const type = getType(sdmxObservation)(TYPES);
-  console.log(sdmxObservation, type);
   if (isNil(type)) return acc;
 
   const isEstimate = equals(ESTIMATE, type);
   const observation = pipe(
     assoc('x', getX(X)(sdmxObservation)),
-    ifElse(always(isEstimate), assoc('y0', sdmxObservation.y - 10), identity), // TEMP
-    ifElse(always(isEstimate), assoc('y1', sdmxObservation.y + 10), identity), // TEMP
-    //ifElse(always(isEstimate), assoc('y0', path([Y0, 'valueId'], sdmxObservation)), identity),
-    //ifElse(always(isEstimate), assoc('y1', path([Y1, 'valueId'], sdmxObservation)), identity),
+    //ifElse(always(isEstimate), assoc('y0', sdmxObservation.y - 10), identity), // TEMP
+    //ifElse(always(isEstimate), assoc('y1', sdmxObservation.y + 10), identity), // TEMP
+    ifElse(
+      always(isEstimate),
+      assoc('y0', path([Y0, 'valueId'], sdmxObservation)),
+      identity,
+    ),
+    ifElse(
+      always(isEstimate),
+      assoc('y1', path([Y1, 'valueId'], sdmxObservation)),
+      identity,
+    ),
   )(sdmxObservation);
   const serieKey = getSerieKey([...RELEVANT_DIMENSIONS, Z])(observation, type);
 

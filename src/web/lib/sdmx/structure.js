@@ -21,6 +21,7 @@ import {
   flatten,
   addIndex,
 } from 'ramda';
+import { RELEVANT_DIMENSIONS_DEFAULTS } from '../../constants';
 
 const getName = locale => path(['name', locale]);
 
@@ -55,10 +56,7 @@ const getConcepts = dimensionIds =>
     indexBy(path(['links', 0, 'urn'])),
   );
 
-const getCodelists = pipe(
-  pathOr([], ['data', 'codelists']),
-  indexBy(prop('urn')),
-);
+const getCodelists = pipe(pathOr([], ['data', 'codelists']), indexBy(prop('urn')));
 
 const getValues = (locale, codelists) =>
   pipe(
@@ -72,6 +70,7 @@ const getValues = (locale, codelists) =>
         map(code => ({
           id: prop('id')(code),
           label: getName(locale)(code),
+          isSelected: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
         })),
       ),
     ),

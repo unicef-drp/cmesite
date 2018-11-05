@@ -8,24 +8,31 @@
 [ ] load topojson of unicef
 [ ] parse it to bind its ids to sdmx (if not already done)
 [ ] bind sdmx data to ids for tooltips and values (choropleth)
+[ ] zoom
 
 # chart
 [ ] chart has no proptypes
+[ ] extent y1, y0
+[ ] tooltip area
+[ ] zoom in lines
 
-# misc
+# sdmx
 [ ] lib/sdmx/data.js y0 and y1 mocked
 [ ] api/sdmx.js mocked
 [ ] DataNote source
+[ ] download headers
 
 # perf
 [ ] Chart is re-rendered when switching tabs and when expanding Legend
+[ ] sdmx data request is too heavy when all selected
 
 # unicef
-[ ] data icons tabs
+[ ] data icons/style tabs
 [ ] page(s) width and map size
 [ ] selectors style
-[ ] WP backup WP-DB-Backup
-[!] logos are small, need png not ai, images too big
+[ ] WP backup WP-DB-Backup (daily)
+[!] logos are small, need png not ai, images (ie home) are too big
+[!] space between chart and side (not aesthetic)
 
 ---
 
@@ -36,7 +43,6 @@
 [ ] hover interaction
 
 ## chart
-[ ] zoom in lines
 [ ] different symbols regarding SERIES_METHOD
 
 ## tooltips
@@ -46,5 +52,3 @@
 
 ## config
 [ ] handle locale
-
-https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest/data/UNICEFDRPDAU,CME_DF,1.0/AFG+AGO...269./all/?startPeriod=2012&endPeriod=2018&dimensionAtObservation=AllDimensions

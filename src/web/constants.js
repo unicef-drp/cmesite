@@ -2,6 +2,7 @@ export const REF_AREA = 'REF_AREA';
 export const INDICATOR = 'INDICATOR';
 export const SEX = 'SEX';
 export const RELEVANT_DIMENSIONS = [REF_AREA, INDICATOR, SEX];
+export const RELEVANT_DIMENSIONS_DEFAULTS = new Set(['AFG', 'MRY0T4', '_T']);
 
 export const ESTIMATE = 'ESTIMATE';
 export const INCLUDED = 'INCLUDED';

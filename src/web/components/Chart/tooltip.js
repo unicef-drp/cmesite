@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { REF_AREA, Z, X } from '../../constants';
 
 const style = theme => ({
   card: {
@@ -31,12 +32,11 @@ const Tooltip = ({ classes, theme, d, x, y, color }) => (
   >
     <CardContent className={classes.content}>
       <Typography variant="body1" style={{ color }}>
-        {path(['SERIES_NAME', 'valueName'], d)}
+        {path([Z, 'valueName'], d)}
       </Typography>
+      <Typography variant="body2">{path([REF_AREA, 'valueName'], d)}</Typography>
       <Typography variant="body2">{prop('y', d)}</Typography>
-      <Typography variant="body2">
-        {path(['TIME_PERIOD', 'valueName'], d)}
-      </Typography>
+      <Typography variant="body2">{path([X, 'valueName'], d)}</Typography>
     </CardContent>
   </Card>
 );

@@ -51,7 +51,6 @@ const initialState = {
     {},
     TYPES,
   ),
-  //activeTypes: { ESTIMATE: true, INCLUDED: true, EXCLUDED: false },
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -182,9 +181,10 @@ export const changeSelection = type => (dimensionIndex, valueIndex) => dispatch 
 
 export const loadStructure = () => dispatch => {
   dispatch({ type: LOADING_STRUCTURE });
-  return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions =>
-    dispatch({ type: STRUCTURE_LOADED, dimensions }),
-  );
+  return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions => {
+    dispatch({ type: STRUCTURE_LOADED, dimensions });
+    dispatch(loadData());
+  });
 };
 
 export const loadData = () => (dispatch, getState) => {
