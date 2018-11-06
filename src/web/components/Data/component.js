@@ -80,16 +80,16 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       animateHeight={false}
     >
       <div className={classes.wrapper}>
-        <DataTabCountry />
+        <DataTabCountry activeTab={activeTab} />
       </div>
       <div className={classes.wrapper}>
-        <DataTabCompare />
+        <DataTabCompare activeTab={activeTab} />
       </div>
       <div className={classes.wrapper}>
-        <DataTabMap />
+        <DataTabMap activeTab={activeTab} />
       </div>
       <div className={classes.wrapper}>
-        <DataTabDownload />
+        <DataTabDownload activeTab={activeTab} />
       </div>
     </SwipeableViews>
     <DataNotes />
