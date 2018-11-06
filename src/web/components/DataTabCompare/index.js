@@ -1,3 +1,6 @@
+import { compose, shouldUpdate } from 'recompose';
 import Component from './component';
 
-export default Component;
+export default compose(shouldUpdate(nextProps => nextProps.activeTab === 1))(
+  Component,
+);
