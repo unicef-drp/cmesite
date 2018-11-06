@@ -15,6 +15,9 @@ const style = theme => ({
       paddingRight: theme.spacing.unit * 2,
     },
   },
+  content: {
+    marginTop: theme.spacing.unit * -8,
+  },
 });
 
 const Splash = ({ splash, classes, theme }) => (
@@ -29,7 +32,7 @@ const Splash = ({ splash, classes, theme }) => (
     }}
   >
     <Grid container alignItems="center" className={classes.wrapper}>
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid item xs={12} sm={6} md={4} className={classes.content}>
         <Typography variant="display1" color="secondary" paragraph>
           {path(['title', 'rendered'])(splash)}
         </Typography>
