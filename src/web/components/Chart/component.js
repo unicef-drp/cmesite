@@ -1,10 +1,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import { compose, map, addIndex, ifElse, isNil, always, prop } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
 import { withSize } from 'react-sizeme';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import { getSymbolFill, getClass, hasSymbols, getColor, getExtents } from './utils';
 import Axis from './axis';
 import Line from './line';
@@ -44,6 +47,12 @@ const style = theme => ({
   excluded: {
     strokeWidth: 1,
     strokeDasharray: '5 5',
+  },
+  resetZoom: {
+    position: 'absolute',
+    top: theme.spacing.unit * 2,
+    right: theme.spacing.unit,
+    textTransform: 'none',
   },
 });
 
@@ -110,6 +119,13 @@ class Chart extends React.Component {
     this.setState({ zoomTransform: d3ZoomTransform(this.chartElement) });
   };
 
+  resetZoom = () => {
+    select(this.chartElement)
+      .transition()
+      .duration(750)
+      .call(this.zoom.transform, zoomIdentity);
+  };
+
   setTooltip = tooltip => this.setState({ tooltip });
 
   render = () => {
@@ -125,14 +141,7 @@ class Chart extends React.Component {
     } = this.props;
 
     const { width } = size;
-    const {
-      height,
-      contentWidth,
-      contentHeight,
-      xScale,
-      yScale,
-      zoomTransform,
-    } = this.state;
+    const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
 
     const areas = uncertaintySeries
       ? map(
@@ -172,16 +181,13 @@ class Chart extends React.Component {
     return (
       <div>
         {/* div is required for withSize to work properly */}
-        <div
-          onClick={() => {
-            select(this.chartElement)
-              .transition()
-              .duration(750)
-              .call(this.zoom.transform, zoomIdentity);
-          }}
+        <Button
+          variant="contained"
+          onClick={this.resetZoom}
+          className={classes.resetZoom}
         >
-          reset
-        </div>
+          <FormattedMessage {...messages.resetZoom} />
+        </Button>
         <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <defs>
