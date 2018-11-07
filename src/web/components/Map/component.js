@@ -5,13 +5,12 @@ import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'ramda';
 import { geoPath } from 'd3-geo';
 import { geoRobinson } from 'd3-geo-projection';
-import { feature } from 'topojson-client';
 import { withSize } from 'react-sizeme';
 import worldData from '../../../mock/map/world-geo';
 
 const style = () => ({});
 
-class WorldMap extends React.Component {
+class Map extends React.Component {
   projection({ width, height }) {
     /*return geoMercator()
       .scale(width / 2 / Math.PI)
@@ -25,6 +24,7 @@ class WorldMap extends React.Component {
   render() {
     const { width } = this.props.size;
     const height = width / 1.77;
+    const projection = this.projection({ width, height });
 
     return (
       <div>
@@ -34,7 +34,7 @@ class WorldMap extends React.Component {
             {worldData.features.map((d, i) => (
               <path
                 key={`path-${i}`}
-                d={geoPath().projection(this.projection({ width, height }))(d)}
+                d={geoPath().projection(projection)(d)}
                 fill={`rgba(38,50,56,${1 / worldData.features.length * i})`}
                 stroke="#FFFFFF"
                 strokeWidth={0.5}
@@ -48,6 +48,4 @@ class WorldMap extends React.Component {
   }
 }
 
-export default compose(withStyles(style, { withTheme: true }), withSize())(
-  WorldMap,
-);
+export default compose(withStyles(style, { withTheme: true }), withSize())(Map);

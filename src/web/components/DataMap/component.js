@@ -33,14 +33,20 @@ const styles = theme => ({
     },
   },
   title: {
-    display: 'flex',
-    alignItems: 'baseline',
-  },
-  typo: {
     color: theme.palette.primary.dark,
+    borderBottom: `1px solid ${theme.palette.primary.dark}`,
+    marginBottom: theme.spacing.unit,
   },
-  subtitle: {
-    paddingLeft: theme.spacing.unit,
+  country: {
+    background: theme.palette.primary.light,
+    padding: theme.spacing.unit * 3,
+  },
+  countryLabel: {
+    fontWeight: 600,
+  },
+  indicatorLabel: {
+    color: theme.palette.primary.dark,
+    fontWeight: 600,
   },
 });
 
@@ -62,37 +68,48 @@ const Component = ({ classes, isHome, isLoadingData }) => {
   if (!isHome) return invariant;
 
   return (
-    <React.Fragment>
-      <Card className={classes.card} square>
-        <CardHeader
-          className={classes.header}
-          title={
-            <div className={classes.title}>
-              <Typography variant="headline" className={classes.typo}>
-                <FormattedMessage {...messages.title} />
-              </Typography>
-              <Typography
-                variant="title"
-                className={classnames(classes.typo, classes.subtitle)}
-              >
-                <FormattedMessage {...messages.subtitle} />
-              </Typography>
-            </div>
-          }
-        />
-        <CardContent className={classes.content}>
-          <Grid container spacing={8}>
-            <Grid item xs={12} md={6}>
-              <CountrySelector />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <IndicatorSelector />
-            </Grid>
-          </Grid>
-        </CardContent>
+    <Grid container spacing={16}>
+      <Grid
+        item
+        xs={12}
+        lg={8}
+        container
+        direction="column"
+        justify="space-between"
+      >
+        <Typography variant="headline" className={classes.title}>
+          <FormattedMessage {...messages.title} />&nbsp;
+          <small>
+            <FormattedMessage {...messages.subtitle} />
+          </small>
+        </Typography>
+        <div>
+          <Typography
+            variant="body2"
+            color="primary"
+            className={classes.indicatorLabel}
+          >
+            <FormattedMessage {...messages.indicator} />
+          </Typography>
+          <IndicatorSelector />
+        </div>
+      </Grid>
+      <Grid item xs={12} lg={4}>
+        <div className={classes.country}>
+          <Typography
+            variant="body2"
+            color="primary"
+            className={classes.countryLabel}
+          >
+            <FormattedMessage {...messages.country} />
+          </Typography>
+          <CountrySelector />
+        </div>
+      </Grid>
+      <Grid item xs={12}>
         {invariant}
-      </Card>
-    </React.Fragment>
+      </Grid>
+    </Grid>
   );
 };
 
