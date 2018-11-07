@@ -32,16 +32,24 @@ import {
   find,
   values,
   always,
+  propOr,
+  filter,
+  propEq,
 } from 'ramda';
-import {
-  RELEVANT_DIMENSIONS,
-  TYPES,
-  Z,
-  X,
-  Y0,
-  Y1,
-  ESTIMATE,
-} from '../../constants';
+import { RELEVANT_DIMENSIONS, TYPES, Z, X, Y0, Y1, ESTIMATE } from '../../constants';
+
+export const dataQuery = (dimensionSeparator = '.', valueSeparator = '+', key = 'id') =>
+  pipe(
+    map(
+      pipe(
+        propOr([], 'values'),
+        filter(propEq('isSelected', true)),
+        pluck(key),
+        join(valueSeparator),
+      ),
+    ),
+    join(dimensionSeparator),
+  );
 
 const getArtefacts = type => pathOr([], ['data', 'structure', type, 'observation']);
 
@@ -65,13 +73,9 @@ const getSerieKey = ids =>
     identity,
   ]);
 
-const getX = x =>
-  pipe(path([x, 'valueId']), ifElse(isNil, identity, id => new Date(id)));
+const getX = x => pipe(path([x, 'valueId']), ifElse(isNil, identity, id => new Date(id)));
 
-const parseArtefact = locale => (valueIndex, artefactIndex) => (
-  artefact,
-  value,
-) => ({
+const parseArtefact = locale => (valueIndex, artefactIndex) => (artefact, value) => ({
   id: prop('id', artefact),
   name: getName(locale)(artefact),
   index: parseInt(artefactIndex),
@@ -99,10 +103,7 @@ const parseObservationKey = locale => dimensions =>
 const parseObservationValue = locale => attributes =>
   pipe(
     last,
-    converge(merge, [
-      pipe(head, y => ({ y })),
-      pipe(tail, parseArtefacts(locale)(attributes)),
-    ]),
+    converge(merge, [pipe(head, y => ({ y })), pipe(tail, parseArtefacts(locale)(attributes))]),
   );
 
 const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
@@ -117,9 +118,9 @@ const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
   const isEstimate = equals(ESTIMATE, type);
   const observation = pipe(
     assoc('x', getX(X)(sdmxObservation)),
-    //ifElse(always(isEstimate), assoc('y0', sdmxObservation.y - 10), identity), // TEMP
-    //ifElse(always(isEstimate), assoc('y1', sdmxObservation.y + 10), identity), // TEMP
-    ifElse(
+    ifElse(always(isEstimate), assoc('y0', sdmxObservation.y - 10), identity), // TEMP
+    ifElse(always(isEstimate), assoc('y1', sdmxObservation.y + 10), identity), // TEMP
+    /*    ifElse(
       always(isEstimate),
       assoc('y0', path([Y0, 'valueId'], sdmxObservation)),
       identity,
@@ -128,12 +129,11 @@ const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
       always(isEstimate),
       assoc('y1', path([Y1, 'valueId'], sdmxObservation)),
       identity,
-    ),
+    ),*/
   )(sdmxObservation);
   const serieKey = getSerieKey([...RELEVANT_DIMENSIONS, Z])(observation, type);
 
-  if (has(serieKey, acc))
-    return over(lensPath([serieKey, 'datapoints']), append(observation), acc);
+  if (has(serieKey, acc)) return over(lensPath([serieKey, 'datapoints']), append(observation), acc);
 
   const serie = {
     id: serieKey,
