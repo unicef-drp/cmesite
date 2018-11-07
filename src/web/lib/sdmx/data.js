@@ -40,8 +40,21 @@ import {
   flip,
   contains,
   both,
+  indexBy,
+  difference,
 } from 'ramda';
-import { RELEVANT_DIMENSIONS, TYPES, Z, X, Y0, Y1, ESTIMATE, ESTIMATE_TYPE } from '../../constants';
+import {
+  RELEVANT_DIMENSIONS,
+  TYPES,
+  Z,
+  X,
+  Y0,
+  Y1,
+  ESTIMATE,
+  ESTIMATE_TYPE,
+  TIME_PERIOD,
+  REF_AREA,
+} from '../../constants';
 
 const getValues = propOr([], 'values');
 
@@ -130,7 +143,7 @@ const parseObservationValue = locale => attributes =>
     converge(merge, [pipe(head, y => ({ y })), pipe(tail, parseArtefacts(locale)(attributes))]),
   );
 
-const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
+const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair) => {
   const sdmxObservation = converge(merge, [
     parseObservationKey(locale)(dimensions),
     parseObservationValue(locale)(attributes),
@@ -155,13 +168,13 @@ const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
       identity,
     ),*/
   )(sdmxObservation);
-  const serieKey = getSerieKey([...RELEVANT_DIMENSIONS, Z])(observation, type);
+  const serieKey = getSerieKey(pivot)(observation, type);
 
   if (has(serieKey, acc)) return over(lensPath([serieKey, 'datapoints']), append(observation), acc);
 
   const serie = {
     id: serieKey,
-    name: path([Z, 'valueName'], observation),
+    name: path([difference(pivot, RELEVANT_DIMENSIONS), 'valueName'], observation),
     type,
     datapoints: [observation],
   };
@@ -169,15 +182,22 @@ const reduceObservation = (locale, dimensions, attributes) => (acc, pair) => {
   return assoc(serieKey, serie, acc);
 };
 
-const parser = ({ locale }) => data => {
+const parser = ({ locale, isMap }) => data => {
   const dimensions = getArtefacts('dimensions')(data);
   const attributes = getArtefacts('attributes')(data);
+
+  const pivot = isMap ? [TIME_PERIOD] : [...RELEVANT_DIMENSIONS, Z];
 
   return pipe(
     getObservations,
     toPairs,
-    reduce(reduceObservation(locale, dimensions, attributes), {}),
-    map(over(lensProp('datapoints'), sortBy(prop('x')))),
+    reduce(reduceObservation(locale, pivot, dimensions, attributes), {}),
+    map(
+      over(
+        lensProp('datapoints'),
+        ifElse(always(isMap), indexBy(path([REF_AREA, 'valueId'])), sortBy(prop('x'))),
+      ),
+    ),
   )(data);
 };
 

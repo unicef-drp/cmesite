@@ -36,6 +36,7 @@ class Map extends React.Component {
                 key={`path-${i}`}
                 d={geoPath().projection(projection)(d)}
                 fill={`rgba(38,50,56,${1 / worldData.features.length * i})`}
+                //fill={}
                 stroke="#FFFFFF"
                 strokeWidth={0.5}
                 //onMouseOver={() => console.log(d)}

@@ -51,13 +51,14 @@ export const getTitle = createSelector(
   dataQuery({ dimensionSeparator: ' ', valueSeparator: ' ', key: 'label' }),
 );
 export const getActiveTypes = createSelector(getData, prop('activeTypes'));
-export const getDataSeries = createSelector(
+export const getMapSeries = createSelector(getData, propOr({}, 'mapSeries'));
+export const getTimeSeries = createSelector(
   getData,
-  pipe(propOr({}, 'series'), values, groupBy(prop('type'))),
+  pipe(propOr({}, 'timeSeries'), values, groupBy(prop('type'))),
 );
 export const getActiveSeries = createSelector(
   getActiveTypes,
-  getDataSeries,
+  getTimeSeries,
   useWith(pick, [pipe(filter(identity), keys), identity]),
 );
 export const getDataEstimateSeries = createSelector(getActiveSeries, prop(ESTIMATE));

@@ -18,8 +18,8 @@ const dataflowQuery = (separator = '/', config = globalConfig) => {
 const configuredStructureParser = (structure, config = globalConfig) =>
   structureParser({ locale: config.locale, dimensionIds: RELEVANT_DIMENSIONS })(structure);
 
-const configuredDataParser = (data, config = globalConfig) =>
-  dataParser({ locale: config.locale })(data);
+const configuredDataParser = (data, parserOptions, config = globalConfig) =>
+  dataParser({ locale: config.locale, ...parserOptions })(data);
 
 const getStructure = () =>
   axios
@@ -31,7 +31,7 @@ const getStructure = () =>
     })
     .then(({ data }) => configuredStructureParser(data));
 
-const getData = ({ dimensions, queryOptions }) =>
+const getData = ({ dimensions, queryOptions, parserOptions }) =>
   axios
     .get(
       endPoint(
@@ -46,7 +46,7 @@ const getData = ({ dimensions, queryOptions }) =>
         },
       },
     )
-    .then(({ data }) => configuredDataParser(data));
+    .then(({ data }) => configuredDataParser(data, parserOptions));
 
 /* eslint-disable-line no-shadow */
 const config = config => (globalConfig = { ...globalConfig, ...config });
@@ -59,9 +59,9 @@ const methods = {
       setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 1000);
     }),
   //getData,
-  getData: () =>
+  getData: ({ parserOptions }) =>
     new Promise(resolve => {
-      setTimeout(() => resolve(configuredDataParser(sdmxData)), 1000);
+      setTimeout(() => resolve(configuredDataParser(sdmxData, parserOptions)), 1000);
     }),
 };
 

@@ -1,15 +1,8 @@
 # data map
 [ ] slider
 [ ] legend
-[?] country selector behavior
-[?] time selector behavior (impact on request)
-[x] Can't call setState (or forceUpdate) on an unmounted component (no data and select all)
-[ ] trigger data request in home at start
-[x] load topojson of unicef
-[x] parse it to bind its ids to sdmx (if not already done)
 [ ] bind sdmx data to ids for tooltips and values (choropleth)
 [ ] zoom
-[x] projection
 [ ] tooltip with button
 
 # chart
@@ -39,6 +32,9 @@
 # deploy
 [ ] staging and qa with real endpoint
 [ ] make a bundle for daniele (with proper config)
+
+# bug
+[ ] with real data, some estimates have X wrong
 
 ---
 

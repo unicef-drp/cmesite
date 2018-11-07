@@ -94,7 +94,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLoadingData: false,
-        series: action.series,
+        [action.isMap ? 'mapSeries' : 'timeSeries']: action.series,
       };
     case TOGGLE_DOWNLOADING_DATA:
       return over(lensPath(['downloadingData', `${action.format}.${action.scope}`]), not, state);
@@ -173,7 +173,7 @@ export const loadStructure = () => dispatch => {
   dispatch({ type: LOADING_STRUCTURE });
   return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions => {
     dispatch({ type: STRUCTURE_LOADED, dimensions });
-    dispatch(loadData());
+    dispatch(loadData({ path: getPath(routes.home) }));
   });
 };
 
@@ -187,9 +187,10 @@ export const loadData = ({ path } = {}) => (dispatch, getState) => {
     queryOptions: {
       dropIds: isMap ? [REF_AREA] : [TIME_PERIOD],
       isExclusive: complement(equals)(activeTab, 1), // country and map, not compare
-      onlyEstimates: isMap, // only map
+      onlyEstimates: isMap,
     },
-  }).then(series => dispatch({ type: DATA_LOADED, series }));
+    parserOptions: { isMap },
+  }).then(series => dispatch({ type: DATA_LOADED, isMap, series }));
 };
 
 export const downloadData = ({ format, scope }) => dispatch => {
