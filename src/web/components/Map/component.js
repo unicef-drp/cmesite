@@ -38,7 +38,7 @@ class Map extends React.Component {
                 fill={`rgba(38,50,56,${1 / worldData.features.length * i})`}
                 stroke="#FFFFFF"
                 strokeWidth={0.5}
-                onMouseOver={() => console.log(d)}
+                //onMouseOver={() => console.log(d)}
               />
             ))}
           </g>

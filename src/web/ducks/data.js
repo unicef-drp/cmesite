@@ -8,11 +8,14 @@ import {
   equals,
   reduce,
   prop,
+  complement,
+  or,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
+import routes, { getPath } from '../routes';
 import sdmxApi from '../api/sdmx';
-import { getRawDimensions } from '../selectors/data';
-import { TYPES } from '../constants';
+import { getRawDimensions, getActiveTab } from '../selectors/data';
+import { TYPES, REF_AREA, TIME_PERIOD } from '../constants';
 
 export const FORMATS = ['csv', 'xml'];
 export const SCOPES = ['all', 'selection'];
@@ -59,13 +62,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, activeTab: action.activeTab };
     case TOGGLE_DIMENSION_VALUE:
       return over(
-        lensPath([
-          'dimensions',
-          action.dimensionIndex,
-          'values',
-          action.valueIndex,
-          'isSelected',
-        ]),
+        lensPath(['dimensions', action.dimensionIndex, 'values', action.valueIndex, 'isSelected']),
         not,
         state,
       );
@@ -100,11 +97,7 @@ const reducer = (state = initialState, action = {}) => {
         series: action.series,
       };
     case TOGGLE_DOWNLOADING_DATA:
-      return over(
-        lensPath(['downloadingData', `${action.format}.${action.scope}`]),
-        not,
-        state,
-      );
+      return over(lensPath(['downloadingData', `${action.format}.${action.scope}`]), not, state);
     case TOGGLE_ACTIVE_TYPE:
       return over(lensPath(['activeTypes', action.activeType]), not, state);
     default:
@@ -168,15 +161,12 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
     });
 };
 
-export const changeSelection = type => (dimensionIndex, valueIndex) => dispatch => {
-  if (equals(type, 'toggle'))
-    dispatch(toggleDimensionValue(dimensionIndex, valueIndex));
-  else if (equals(type, 'toggleAll'))
-    dispatch(toggleDimensionValues(dimensionIndex, valueIndex));
+export const changeSelection = ({ type, path }) => (dimensionIndex, valueIndex) => dispatch => {
+  if (equals(type, 'toggle')) dispatch(toggleDimensionValue(dimensionIndex, valueIndex));
+  else if (equals(type, 'toggleAll')) dispatch(toggleDimensionValues(dimensionIndex, valueIndex));
   // valueIndex -> value of toggle
-  else if (equals(type, 'select'))
-    dispatch(selectDimensionValue(dimensionIndex, valueIndex));
-  dispatch(loadData());
+  else if (equals(type, 'select')) dispatch(selectDimensionValue(dimensionIndex, valueIndex));
+  dispatch(loadData({ path }));
 };
 
 export const loadStructure = () => dispatch => {
@@ -187,11 +177,18 @@ export const loadStructure = () => dispatch => {
   });
 };
 
-export const loadData = () => (dispatch, getState) => {
+export const loadData = ({ path } = {}) => (dispatch, getState) => {
+  const activeTab = getActiveTab(getState());
+  const isMap = or(equals(activeTab, 2), equals(path, getPath(routes.home)));
   dispatch({ type: LOADING_DATA });
   return requestSDMX(dispatch, {
     method: 'getData',
     dimensions: getRawDimensions(getState()),
+    queryOptions: {
+      dropIds: isMap ? [REF_AREA] : [TIME_PERIOD],
+      isExclusive: complement(equals)(activeTab, 1), // country and map, not compare
+      onlyEstimates: isMap, // only map
+    },
   }).then(series => dispatch({ type: DATA_LOADED, series }));
 };
 

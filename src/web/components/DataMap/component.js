@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -51,14 +47,7 @@ const Component = ({ classes, isHome, isLoadingData }) => {
 
   return (
     <Grid container spacing={16}>
-      <Grid
-        item
-        xs={12}
-        lg={8}
-        container
-        direction="column"
-        justify="space-between"
-      >
+      <Grid item xs={12} lg={8} container direction="column" justify="space-between">
         <Typography variant="headline" className={classes.title}>
           <FormattedMessage {...messages.title} />&nbsp;
           <small>
@@ -66,11 +55,7 @@ const Component = ({ classes, isHome, isLoadingData }) => {
           </small>
         </Typography>
         <div>
-          <Typography
-            variant="body2"
-            color="primary"
-            className={classes.indicatorLabel}
-          >
+          <Typography variant="body2" color="primary" className={classes.indicatorLabel}>
             <FormattedMessage {...messages.indicator} />
           </Typography>
           <IndicatorSelector />
@@ -78,11 +63,7 @@ const Component = ({ classes, isHome, isLoadingData }) => {
       </Grid>
       <Grid item xs={12} lg={4}>
         <div className={classes.country}>
-          <Typography
-            variant="body2"
-            color="primary"
-            className={classes.countryLabel}
-          >
+          <Typography variant="body2" color="primary" className={classes.countryLabel}>
             <FormattedMessage {...messages.country} />
           </Typography>
           <HomeCountrySelector />

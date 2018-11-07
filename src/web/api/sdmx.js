@@ -16,9 +16,7 @@ const dataflowQuery = (separator = '/', config = globalConfig) => {
 };
 
 const configuredStructureParser = (structure, config = globalConfig) =>
-  structureParser({ locale: config.locale, dimensionIds: RELEVANT_DIMENSIONS })(
-    structure,
-  );
+  structureParser({ locale: config.locale, dimensionIds: RELEVANT_DIMENSIONS })(structure);
 
 const configuredDataParser = (data, config = globalConfig) =>
   dataParser({ locale: config.locale })(data);
@@ -33,11 +31,11 @@ const getStructure = () =>
     })
     .then(({ data }) => configuredStructureParser(data));
 
-const getData = ({ dimensions }) =>
+const getData = ({ dimensions, queryOptions }) =>
   axios
     .get(
       endPoint(
-        `/data/${dataflowQuery(',')}/${dataQuery()(
+        `/data/${dataflowQuery(',')}/${dataQuery(queryOptions)(
           dimensions,
         )}/?dimensionAtObservation=AllDimensions`,
       ),
@@ -55,13 +53,13 @@ const config = config => (globalConfig = { ...globalConfig, ...config });
 
 const methods = {
   config,
-  getStructure,
-  getMockStructure: () =>
+  //getStructure,
+  getStructure: () =>
     new Promise(resolve => {
       setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 1000);
     }),
-  getData,
-  getMockData: () =>
+  //getData,
+  getData: () =>
     new Promise(resolve => {
       setTimeout(() => resolve(configuredDataParser(sdmxData)), 1000);
     }),

@@ -66,7 +66,6 @@
     "style-loader": "^0.21.0",
     "styled-components": "^3.3.3",
     "sw-precache-webpack-plugin": "^0.11.5",
-    "topojson-client": "^3.0.0",
     "typeface-montserrat": "0.0.54",
     "typeface-open-sans": "0.0.54",
     "url-loader": "^1.0.1",
@@ -75,8 +74,7 @@
   "scripts": {
     "start:mock": "DEBUG=farso* farso-server --config src/mock/farso.config.js",
     "precommit": "lint-staged",
-    "eslint-check":
-      "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
+    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "lint": "eslint src --color",
     "wtest": "cross-env NODE_ENV=test node scripts/test.js --env=jsdom",
     "test": "cross-env NODE_ENV=test jest --env=jsdom --detectOpenHandles",
@@ -84,8 +82,7 @@
     "build": "cross-env NODE_ENV=production node scripts/build.js",
     "bundle:stats":
       "NODE_ENV=production webpack -p --config ./config/webpack.config.prod.js --profile --json > stats.json",
-    "bundle:analyse":
-      "webpack-bundle-analyzer ./stats.json ./build --report --mode=static"
+    "bundle:analyse": "webpack-bundle-analyzer ./stats.json ./build --report --mode=static"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

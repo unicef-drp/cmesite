@@ -35,15 +35,39 @@ import {
   propOr,
   filter,
   propEq,
+  cond,
+  T,
+  flip,
+  contains,
+  both,
 } from 'ramda';
-import { RELEVANT_DIMENSIONS, TYPES, Z, X, Y0, Y1, ESTIMATE } from '../../constants';
+import { RELEVANT_DIMENSIONS, TYPES, Z, X, Y0, Y1, ESTIMATE, ESTIMATE_TYPE } from '../../constants';
 
-export const dataQuery = (dimensionSeparator = '.', valueSeparator = '+', key = 'id') =>
+const getValues = propOr([], 'values');
+
+export const dataQuery = ({
+  dimensionSeparator = '.',
+  valueSeparator = '+',
+  key = 'id',
+  dropIds = [],
+  isExclusive,
+  onlyEstimates,
+} = {}) =>
   pipe(
     map(
       pipe(
-        propOr([], 'values'),
-        filter(propEq('isSelected', true)),
+        cond([
+          [pipe(prop('id'), flip(contains)(dropIds)), always([])],
+          [
+            both(always(onlyEstimates), propEq('id', prop('sdmxId', ESTIMATE_TYPE))),
+            always([{ id: prop('sdmxValue', ESTIMATE_TYPE) }]),
+          ],
+          [
+            always(isExclusive),
+            pipe(getValues, find(propEq('isSelected', true)), flip(append)([])),
+          ],
+          [T, pipe(getValues, filter(propEq('isSelected', true)))],
+        ]),
         pluck(key),
         join(valueSeparator),
       ),
