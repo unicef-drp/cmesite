@@ -9,29 +9,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { CountrySelector, IndicatorSelector } from '../Selector';
+import { HomeCountrySelector, IndicatorSelector } from '../Selector';
 import WorldMap from '../Map';
 import DataProgress from '../DataProgress';
 
 const styles = theme => ({
-  card: {
-    marginBottom: theme.spacing.unit * 2,
-    background: 'none',
-    boxShadow: 'none',
-  },
-  header: {
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-  },
-  content: {
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-    '&:last-child': {
-      paddingBottom: theme.spacing.unit,
-    },
-  },
   title: {
     color: theme.palette.primary.dark,
     borderBottom: `1px solid ${theme.palette.primary.dark}`,
@@ -56,11 +38,11 @@ const Component = ({ classes, isHome, isLoadingData }) => {
       {isLoadingData ? (
         <DataProgress />
       ) : (
-        <CardContent className={classes.content}>
+        <React.Fragment>
           <WorldMap />
           <p>slider</p>
           <p>legend</p>
-        </CardContent>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
@@ -103,7 +85,7 @@ const Component = ({ classes, isHome, isLoadingData }) => {
           >
             <FormattedMessage {...messages.country} />
           </Typography>
-          <CountrySelector />
+          <HomeCountrySelector />
         </div>
       </Grid>
       <Grid item xs={12}>

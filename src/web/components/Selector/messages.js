@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'countrySelector.noOption',
     defaultMessage: 'No country',
   },
+  countrySelectorHome: {
+    id: 'countrySelector.home',
+    defaultMessage: 'Type a country',
+  },
   indicatorSelectorPlaceholder: {
     id: 'indicatorSelector.placeholder',
     defaultMessage: 'Select an indicator',
