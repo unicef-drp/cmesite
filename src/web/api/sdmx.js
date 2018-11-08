@@ -3,7 +3,7 @@ import { map, fromPairs, compose, toPairs, forEach, join } from 'ramda';
 import { structureParser, dataParser, dataQuery } from '../lib/sdmx';
 import { RELEVANT_DIMENSIONS } from '../constants';
 import sdmxStructure from '../../mock/data/sdmxStructure';
-import sdmxData from '../../mock/data/sdmxData';
+import sdmxData from '../../mock/data/sdmxDataMap';
 
 const mockConfig = { locale: 'en' };
 let globalConfig = { debug: true, ...mockConfig };

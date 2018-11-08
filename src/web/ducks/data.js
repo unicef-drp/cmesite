@@ -30,6 +30,7 @@ export const LOADING_DATA = 'CM/DATA/LOADING_DATA';
 export const DATA_LOADED = 'CM/DATA/DATA_LOADED';
 export const TOGGLE_DOWNLOADING_DATA = 'CM/DATA/TOGGLE_DOWNLOADING_DATA';
 export const TOGGLE_ACTIVE_TYPE = 'CM/DATA/TOGGLE_ACTIVE_TYPE';
+export const CHANGE_MAP_INDEX = 'CM/DATA/CHANGE_MAP_INDEX';
 export const types = {
   CHANGE_ACTIVE_TAB,
   TOGGLE_DIMENSION_VALUE,
@@ -41,6 +42,7 @@ export const types = {
   DATA_LOADED,
   TOGGLE_DOWNLOADING_DATA,
   TOGGLE_ACTIVE_TYPE,
+  CHANGE_MAP_INDEX,
 };
 
 const initialState = {
@@ -54,12 +56,17 @@ const initialState = {
     {},
     TYPES,
   ),
+  timeSeries: {},
+  mapSeries: {},
+  mapIndex: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case CHANGE_ACTIVE_TAB:
       return { ...state, activeTab: action.activeTab };
+    case CHANGE_MAP_INDEX:
+      return { ...state, mapIndex: action.mapIndex };
     case TOGGLE_DIMENSION_VALUE:
       return over(
         lensPath(['dimensions', action.dimensionIndex, 'values', action.valueIndex, 'isSelected']),
@@ -108,6 +115,11 @@ const reducer = (state = initialState, action = {}) => {
 export const changeActiveTab = activeTab => ({
   type: CHANGE_ACTIVE_TAB,
   activeTab,
+});
+
+export const changeMapIndex = mapIndex => ({
+  type: CHANGE_MAP_INDEX,
+  mapIndex,
 });
 
 export const toggleDimensionValue = (dimensionIndex, valueIndex) => ({

@@ -1,7 +1,5 @@
 # data map
-[ ] slider
-[ ] legend
-[ ] bind sdmx data to ids for tooltips and values (choropleth)
+[ ] legend (position/responsive, style(border, bg, home/data))
 [ ] zoom
 [ ] tooltip with button
 
@@ -34,7 +32,7 @@
 [ ] make a bundle for daniele (with proper config)
 
 # bug
-[ ] with real data, some estimates have X wrong
+[ ] request on select a country is not the proper one
 
 ---
 

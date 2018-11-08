@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { HomeCountrySelector, IndicatorSelector } from '../Selector';
 import WorldMap from '../Map';
+import MapSlider from '../MapSlider';
 import DataProgress from '../DataProgress';
 
 const styles = theme => ({
@@ -35,9 +36,8 @@ const Component = ({ classes, isHome, isLoadingData }) => {
         <DataProgress />
       ) : (
         <React.Fragment>
-          <WorldMap />
-          <p>slider</p>
-          <p>legend</p>
+          <WorldMap isHome />
+          <MapSlider />
         </React.Fragment>
       )}
     </React.Fragment>

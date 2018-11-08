@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import 'typeface-montserrat';
 import 'typeface-open-sans';
-import { scaleOrdinal } from 'd3-scale';
+import { scaleOrdinal, scaleQuantize } from 'd3-scale';
 import LanguageProvider from './components/LanguageProvider';
 import ConfigContext from './components/ConfigContext';
 import App from './components/App';
@@ -51,11 +51,16 @@ const theme = createMuiTheme({
       contrastText: '#0B3B57',
     },
     chartColorScale: scaleOrdinal().range([
-      //'#E6ED46',
+      //'#E6ED46', // hardly visible
       '#60C9E2',
       '#DE405C',
       '#6B3889',
     ]),
+    mapColorScale: scaleQuantize()
+      .domain([0, 100])
+      .range(['#cdeaf6', '#9ad5ee', '#0095d6', '#0080b2', '#506897']), // ratio %
+    mapAboveColor: '#002e49',
+    mapNoneColor: '#9b9b9b',
   },
 });
 

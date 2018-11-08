@@ -2,51 +2,68 @@
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { compose } from 'ramda';
+import { compose, propOr } from 'ramda';
 import { geoPath } from 'd3-geo';
 import { geoRobinson } from 'd3-geo-projection';
 import { withSize } from 'react-sizeme';
 import worldData from '../../../mock/map/world-geo';
+import Legend from './legend';
+import { getColor } from './utils';
 
-const style = () => ({});
+const style = () => ({
+  wrapper: {
+    //backgroundColor: theme.palette.primary.light,
+  },
+});
 
-class Map extends React.Component {
-  projection({ width, height }) {
-    /*return geoMercator()
-      .scale(width / 2 / Math.PI)
-      .translate([width / 2, height / 1.4]);*/
+class WorldMap extends React.Component {
+  constructor(props) {
+    super(props);
 
-    return geoRobinson()
-      .scale(width / 2 / Math.PI)
-      .translate([width / 2, height / 2]);
+    this.state = {
+      projection: geoRobinson(),
+    };
   }
 
-  render() {
-    const { width } = this.props.size;
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    let { projection } = prevState;
+    const { width } = nextProps.size;
     const height = width / 1.77;
-    const projection = this.projection({ width, height });
+
+    projection.scale(width / 1.8 / Math.PI).translate([width / 2, height / 1.8]);
+
+    return { ...prevState, projection };
+  };
+
+  render() {
+    const { theme, size, mapSerie, classes } = this.props;
+    const { width } = size;
+    const height = width / 1.77;
+    const { projection } = this.state;
+    const datapoints = propOr([], 'datapoints', mapSerie);
+    const { mapAboveColor, mapNoneColor, mapColorScale } = theme.palette;
 
     return (
-      <div>
+      <div className={classes.wrapper}>
         {/* div is required for withSize to work properly */}
         <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-          <g className="countries">
+          <g>
             {worldData.features.map((d, i) => (
               <path
                 key={`path-${i}`}
                 d={geoPath().projection(projection)(d)}
-                fill={`rgba(38,50,56,${1 / worldData.features.length * i})`}
-                //fill={}
-                stroke="#FFFFFF"
-                strokeWidth={0.5}
+                fill={getColor({ scale: mapColorScale, d, datapoints, noneColor: mapNoneColor })}
+                stroke={theme.palette.secondary.main}
+                strokeWidth={0.2}
                 //onMouseOver={() => console.log(d)}
               />
             ))}
           </g>
         </svg>
+        <Legend scale={mapColorScale} colors={{ none: mapNoneColor, above: mapAboveColor }} />
       </div>
     );
   }
 }
 
-export default compose(withStyles(style, { withTheme: true }), withSize())(Map);
+export default compose(withStyles(style, { withTheme: true }), withSize())(WorldMap);
