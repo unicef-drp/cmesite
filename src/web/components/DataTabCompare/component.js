@@ -22,7 +22,7 @@ const DataTabCompare = ({ classes }) => (
       <DataDownloadActions />
     </Grid>
     <Grid item xs={12} md={9}>
-      <DataCompareChart />
+      <DataCompareChart isCompare />
     </Grid>
   </Grid>
 );

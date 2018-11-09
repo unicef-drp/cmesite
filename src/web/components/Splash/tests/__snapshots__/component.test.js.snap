@@ -4,6 +4,7 @@ exports[`Splash | component render should match snapshot 1`] = `
 <Splash
   classes={
     Object {
+      "content": "Splash-content-2",
       "wrapper": "Splash-wrapper-1",
     }
   }

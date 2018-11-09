@@ -18,7 +18,7 @@ const style = theme => ({
 const DataTabMap = ({ classes }) => (
   <Grid container spacing={16} className={classes.wrapper}>
     <Grid item xs={12} md={3}>
-      <DataOtherDimensions isSide />
+      <DataOtherDimensions isSide isSelectionExclusive />
       <DataDownloadActions />
     </Grid>
     <Grid item xs={12} md={9}>

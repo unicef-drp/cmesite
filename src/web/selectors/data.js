@@ -27,6 +27,7 @@ import { getSelectedDimensionValue } from '../utils';
 import {
   REF_AREA,
   INDICATOR,
+  SEX,
   RELEVANT_DIMENSIONS,
   ESTIMATE,
   INCLUDED,
@@ -55,8 +56,10 @@ export const getRawDimensions = createSelector(getData, prop('dimensions'));
 export const getDimensions = createSelector(getRawDimensions, filterArtefacts(RELEVANT_DIMENSIONS));
 export const getCountryDimension = createSelector(getDimensions, find(propEq('id', REF_AREA)));
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
+export const getSexDimension = createSelector(getDimensions, find(propEq('id', SEX)));
 export const getCountryValue = createSelector(getCountryDimension, getSelectedDimensionValue);
 export const getIndicatorValue = createSelector(getIndicatorDimension, getSelectedDimensionValue);
+export const getSexValue = createSelector(getSexDimension, getSelectedDimensionValue);
 export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,
@@ -75,15 +78,19 @@ export const getMapIndex = createSelector(getData, getMapSeries, (data, series) 
   ifElse(isNil, always(dec(length(series))), identity)(prop('mapIndex', data)),
 );
 export const getMapSerie = createSelector(getMapIndex, getMapSeries, nth);
-export const getTimeSeries = createSelector(
+export const getCountrySeries = createSelector(
   getData,
-  pipe(propOr({}, 'timeSeries'), values, groupBy(prop('type'))),
+  pipe(propOr({}, 'countrySeries'), values, groupBy(prop('type'))),
 );
-export const getActiveSeries = createSelector(
+export const getCountryActiveSeries = createSelector(
   getActiveTypes,
-  getTimeSeries,
+  getCountrySeries,
   useWith(pick, [pipe(filter(identity), keys), identity]),
 );
-export const getDataEstimateSeries = createSelector(getActiveSeries, prop(ESTIMATE));
-export const getDataIncludedSeries = createSelector(getActiveSeries, prop(INCLUDED));
-export const getDataExcludedSeries = createSelector(getActiveSeries, prop(EXCLUDED));
+export const getCountryEstimateSeries = createSelector(getCountryActiveSeries, prop(ESTIMATE));
+export const getCountryIncludedSeries = createSelector(getCountryActiveSeries, prop(INCLUDED));
+export const getCountryExcludedSeries = createSelector(getCountryActiveSeries, prop(EXCLUDED));
+export const getCompareEstimateSeries = createSelector(
+  getData,
+  pipe(propOr({}, 'compareSeries'), values),
+);

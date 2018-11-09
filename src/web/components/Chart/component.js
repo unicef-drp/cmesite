@@ -84,9 +84,7 @@ class Chart extends React.Component {
     const contentWidth = Math.floor(
       nextProps.size.width - nextProps.margin.left - nextProps.margin.right,
     );
-    const contentHeight = Math.floor(
-      height - nextProps.margin.top - nextProps.margin.bottom,
-    );
+    const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
 
     const { estimateSeries, includedSeries, excludedSeries } = nextProps;
     const extents = getExtents(estimateSeries, includedSeries, excludedSeries);
@@ -138,6 +136,7 @@ class Chart extends React.Component {
       estimateSeries,
       includedSeries,
       excludedSeries,
+      isCompare,
     } = this.props;
 
     const { width } = size;
@@ -169,10 +168,10 @@ class Chart extends React.Component {
           data={datapoints}
           xScale={xScale}
           yScale={yScale}
-          color={getColor(type, index, theme)}
+          color={getColor(isCompare ? null : type, index, theme)}
           classes={getClass(type, classes)}
           hasSymbols={hasSymbols(type)}
-          symbolFill={getSymbolFill(type, index, theme)}
+          symbolFill={getSymbolFill(isCompare ? null : type, index, theme)}
           setTooltip={this.setTooltip}
         />
       )),
@@ -181,11 +180,7 @@ class Chart extends React.Component {
     return (
       <div>
         {/* div is required for withSize to work properly */}
-        <Button
-          variant="contained"
-          onClick={this.resetZoom}
-          className={classes.resetZoom}
-        >
+        <Button variant="contained" onClick={this.resetZoom} className={classes.resetZoom}>
           <FormattedMessage {...messages.resetZoom} />
         </Button>
         <svg width={width} height={height} ref={el => (this.chartElement = el)}>

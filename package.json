@@ -57,6 +57,7 @@
     "react-select": "^2.0.0",
     "react-sizeme": "^2.5.2",
     "react-swipeable-views": "^0.12.16",
+    "react-swipeable-views-utils": "^0.13.0",
     "react-test-renderer": "^16.4.1",
     "recompose": "^0.27.0",
     "redux": "^4.0.0",

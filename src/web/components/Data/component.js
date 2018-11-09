@@ -77,19 +77,18 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
       index={activeTab}
       onChangeIndex={index => changeActiveTab(index)}
-      animateHeight={false}
     >
       <div className={classes.wrapper}>
-        <DataTabCountry activeTab={activeTab} />
+        <DataTabCountry />
       </div>
       <div className={classes.wrapper}>
-        <DataTabCompare activeTab={activeTab} />
+        <DataTabCompare />
       </div>
       <div className={classes.wrapper}>
-        <DataTabMap activeTab={activeTab} />
+        <DataTabMap />
       </div>
       <div className={classes.wrapper}>
-        <DataTabDownload activeTab={activeTab} />
+        <DataTabDownload />
       </div>
     </SwipeableViews>
     <DataNotes />

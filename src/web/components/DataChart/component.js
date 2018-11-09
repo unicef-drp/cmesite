@@ -1,16 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  map,
-  toPairs,
-  pipe,
-  toLower,
-  equals,
-  length,
-  filter,
-  identity,
-  values,
-} from 'ramda';
+import { map, toPairs, pipe, toLower, equals, length, filter, identity, values } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -44,13 +34,7 @@ const styles = theme => ({
   },
 });
 
-const DataChart = ({
-  classes,
-  title,
-  activeTypes,
-  toggleActiveType,
-  ...series
-}) => (
+const DataChart = ({ classes, title, activeTypes, toggleActiveType, isCompare, ...series }) => (
   <React.Fragment>
     <Card className={classes.card} square>
       <CardHeader
@@ -62,7 +46,7 @@ const DataChart = ({
         }
       />
       <CardContent>
-        <Chart {...series} />
+        <Chart {...series} isCompare={isCompare} />
       </CardContent>
       {activeTypes && (
         <div className={classes.toggles}>
@@ -75,10 +59,7 @@ const DataChart = ({
               map(([type, active]) => (
                 <FormControlLabel
                   key={type}
-                  disabled={
-                    active &&
-                    equals(1, length(values(filter(identity, activeTypes))))
-                  }
+                  disabled={active && equals(1, length(values(filter(identity, activeTypes))))}
                   control={
                     <Checkbox
                       color="primary"
@@ -93,7 +74,7 @@ const DataChart = ({
           </div>
         </div>
       )}
-      <DataLegend {...series} />
+      <DataLegend {...series} isCompare={isCompare} />
     </Card>
   </React.Fragment>
 );
@@ -103,6 +84,7 @@ DataChart.propTypes = {
   title: PropTypes.string,
   activeTypes: PropTypes.object,
   toggleActiveType: PropTypes.func.isRequired,
+  isCompare: PropTypes.bool,
 };
 
 export default withStyles(styles)(DataChart);

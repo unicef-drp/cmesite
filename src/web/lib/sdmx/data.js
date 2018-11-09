@@ -79,7 +79,7 @@ export const dataQuery = ({
             always(isExclusive),
             pipe(getValues, find(propEq('isSelected', true)), flip(append)([])),
           ],
-          [T, pipe(getValues, filter(propEq('isSelected', true)))],
+          [T, pipe(getValues, filter(propEq('isToggled', true)))],
         ]),
         pluck(key),
         join(valueSeparator),
@@ -155,18 +155,16 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
   const isEstimate = equals(ESTIMATE, type);
   const observation = pipe(
     assoc('x', getX(X)(sdmxObservation)),
-    ifElse(always(isEstimate), assoc('y0', sdmxObservation.y - 10), identity), // TEMP
-    ifElse(always(isEstimate), assoc('y1', sdmxObservation.y + 10), identity), // TEMP
-    /*    ifElse(
+    ifElse(
       always(isEstimate),
-      assoc('y0', path([Y0, 'valueId'], sdmxObservation)),
+      assoc('y0', Number(path([Y0, 'valueId'], sdmxObservation))),
       identity,
     ),
     ifElse(
       always(isEstimate),
-      assoc('y1', path([Y1, 'valueId'], sdmxObservation)),
+      assoc('y1', Number(path([Y1, 'valueId'], sdmxObservation))),
       identity,
-    ),*/
+    ),
   )(sdmxObservation);
   const serieKey = getSerieKey(pivot)(observation, type);
 

@@ -6,9 +6,10 @@ import {
   getTitle,
   getIsLoadingData,
   getActiveTypes,
-  getDataEstimateSeries,
-  getDataIncludedSeries,
-  getDataExcludedSeries,
+  getCountryEstimateSeries,
+  getCountryIncludedSeries,
+  getCountryExcludedSeries,
+  getCompareEstimateSeries,
 } from '../../selectors/data';
 import { toggleActiveType } from '../../ducks/data';
 import Component from './component';
@@ -28,23 +29,19 @@ const withData = selectors =>
     branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
     branch(
       ({ estimateSeries, includedSeries, excludedSeries }) =>
-        pipe(reject(isNil), isEmpty)([
-          estimateSeries,
-          includedSeries,
-          excludedSeries,
-        ]),
+        pipe(reject(isNil), isEmpty)([estimateSeries, includedSeries, excludedSeries]),
       renderComponent(DataNone),
     ),
   );
 
 export const DataCountryChart = withData({
   activeTypes: getActiveTypes,
-  estimateSeries: getDataEstimateSeries,
-  uncertaintySeries: getDataEstimateSeries,
-  includedSeries: getDataIncludedSeries,
-  excludedSeries: getDataExcludedSeries,
+  estimateSeries: getCountryEstimateSeries,
+  uncertaintySeries: getCountryEstimateSeries,
+  includedSeries: getCountryIncludedSeries,
+  excludedSeries: getCountryExcludedSeries,
 })(Component);
 
 export const DataCompareChart = withData({
-  estimateSeries: getDataEstimateSeries,
+  estimateSeries: getCompareEstimateSeries,
 })(Component);

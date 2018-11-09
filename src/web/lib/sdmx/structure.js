@@ -33,13 +33,7 @@ const getDimensionName = (locale, concepts) =>
   );
 
 const getDimensions = pipe(
-  pathOr({}, [
-    'data',
-    'dataStructures',
-    0,
-    'dataStructureComponents',
-    'dimensionList',
-  ]),
+  pathOr({}, ['data', 'dataStructures', 0, 'dataStructureComponents', 'dimensionList']),
   pick(['dimensions', 'timeDimensions']),
   values,
   flatten,
@@ -71,6 +65,7 @@ const getValues = (locale, codelists) =>
           id: prop('id')(code),
           label: getName(locale)(code),
           isSelected: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
+          isToggled: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
         })),
       ),
     ),

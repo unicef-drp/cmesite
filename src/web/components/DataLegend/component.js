@@ -66,6 +66,7 @@ const DataLegend = ({
   uncertaintySeries,
   includedSeries,
   excludedSeries,
+  isCompare,
 }) => {
   const SIZE = 60;
 
@@ -81,18 +82,14 @@ const DataLegend = ({
                 <path
                   d={symbolGenerator(SIZE)()}
                   transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                  stroke={getColor(type, index, theme, isUncertainty)}
-                  fill={getSymbolFill(type, index, theme, isUncertainty)}
+                  stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
+                  fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
                 />
               </g>
             </svg>
           </ListItemIcon>
           <ListItemText>
-            {name} ({isUncertainty ? (
-              <FormattedMessage {...messages.uncertainty} />
-            ) : (
-              type
-            )})
+            {name} ({isUncertainty ? <FormattedMessage {...messages.uncertainty} /> : type})
           </ListItemText>
         </ListItem>
       )),
@@ -131,6 +128,7 @@ DataLegend.propTypes = {
   uncertaintySeries: PropTypes.array,
   includedSeries: PropTypes.array,
   excludedSeries: PropTypes.array,
+  isCompare: PropTypes.bool,
 };
 
 export default withStyles(styles, { withTheme: true })(DataLegend);

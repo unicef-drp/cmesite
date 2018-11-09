@@ -4,9 +4,10 @@ exports[`Datasets | component render should match snapshot 1`] = `
 <Datasets
   classes={
     Object {
-      "icon": "Datasets-icon-4",
+      "icon": "Datasets-icon-5",
       "item": "Datasets-item-3",
       "list": "Datasets-list-2",
+      "typo": "Datasets-typo-4",
       "wrapper": "Datasets-wrapper-1",
     }
   }

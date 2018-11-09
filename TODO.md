@@ -1,22 +1,18 @@
 # data map
-[ ] legend (position/responsive, style(border, bg, home/data))
+[ ] legend (position/responsive)
 [ ] zoom
 [ ] tooltip with button
 
 # chart
 [ ] tooltip position
-[ ] compare estimate color
+[ ] legend labels (need country in compare)
 
 # sdmx
-[ ] work around selection
-[ ] lib/sdmx/data.js y0 and y1 mocked
-[ ] api/sdmx.js mocked
-[ ] DataNote source
 [ ] download headers
+[ ] DataNote source
 
 # perf
-[ ] Chart is re-rendered when switching tabs and when expanding Legend
-[ ] changing a selection rerender all tabs
+[-] Chart is maybe re-rendered when switching tabs and when expanding Legend
 [ ] sdmx data request is too heavy when all selected
 
 # unicef
@@ -24,15 +20,18 @@
 [ ] page(s) width and map size
 [ ] selectors style
 [ ] WP backup WP-DB-Backup (daily)
-[!] logos are small, need png not ai, images (ie home) are too big
-[!] space between chart and side (not aesthetic)
+[ ] logos are small, need png not ai, images (ie home) are too big
+[ ] space between chart and side (not aesthetic)
 
 # deploy
 [ ] staging and qa with real endpoint
 [ ] make a bundle for daniele (with proper config)
 
 # bug
-[ ] request on select a country is not the proper one
+[ ] change selection, reset mapIndex
+[ ] initial request in home
+[ ] initial request in map
+[ ] block requests in compare
 
 ---
 
