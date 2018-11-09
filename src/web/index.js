@@ -85,7 +85,10 @@ loadConfig().then(config => {
   );
 
   wpApi.config(prop('wp')(config));
-  sdmxApi.config(prop('sdmx')(config));
+  sdmxApi.config({
+    ...prop('sdmx')(config),
+    endpoint: 'https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest',
+  });
   ReactDOM.render(ROOT, document.getElementById('root'));
   store.dispatch(ducks.wp.actions.loadPosts('splashes'));
   store.dispatch(ducks.wp.actions.loadPosts('news'));
