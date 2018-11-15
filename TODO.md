@@ -13,7 +13,7 @@
 - [ ] download headers
 
 ## perf
-- [-] Chart is maybe re-rendered when switching tabs and when expanding Legend
+- [ ] Chart is maybe re-rendered when switching tabs and when expanding Legend
 - [ ] sdmx data request is too heavy when all selected
 
 ## unicef
