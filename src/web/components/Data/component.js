@@ -77,7 +77,6 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
       index={activeTab}
       onChangeIndex={index => changeActiveTab(index)}
-      animateHeight={false}
     >
       <div className={classes.wrapper}>
         <DataTabCountry />

@@ -17,12 +17,12 @@ const style = theme => ({
 
 const DataTabCompare = ({ classes }) => (
   <Grid container spacing={16} className={classes.wrapper}>
-    <Grid item xs={12} md={4}>
+    <Grid item xs={12} md={3}>
       <DataAllDimensions isSide />
       <DataDownloadActions />
     </Grid>
-    <Grid item xs={12} md={8}>
-      <DataCompareChart />
+    <Grid item xs={12} md={9}>
+      <DataCompareChart isCompare />
     </Grid>
   </Grid>
 );

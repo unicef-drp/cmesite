@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, toPairs, pipe } from 'ramda';
+import { map, toPairs, pipe, toLower, equals, length, filter, identity, values } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,73 +10,81 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chart from '../Chart';
 import DataLegend from '../DataLegend';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 const styles = theme => ({
   card: {
     marginBottom: theme.spacing.unit * 2,
   },
   header: {
-    backgroundColor: theme.palette.secondary.dark,
-    minHeight: theme.spacing.unit * 6,
-  },
-  content: {
-    '&:last-child': {
-      paddingBottom: theme.spacing.unit,
-    },
+    //backgroundColor: theme.palette.secondary.dark,
+    paddingBottom: 0,
   },
   typo: {
     color: theme.palette.primary.dark,
   },
   toggles: {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+    borderTop: `1px solid ${theme.palette.secondary.dark}`,
   },
 });
 
-const DataChart = ({
-  classes,
-  title,
-  activeTypes,
-  toggleActiveType,
-  ...series
-}) => (
+const DataChart = ({ classes, title, activeTypes, toggleActiveType, isCompare, ...series }) => (
   <React.Fragment>
     <Card className={classes.card} square>
       <CardHeader
         className={classes.header}
-        title={<Typography className={classes.typo}>{title}</Typography>}
+        title={
+          <Typography align="center" variant="title" className={classes.typo}>
+            {title}
+          </Typography>
+        }
       />
-      <CardContent className={classes.content}>
-        <Typography>Deaths per 1000 live births</Typography>
-        <Chart {...series} />
-        <div className={classes.toggles}>
-          {pipe(
-            toPairs,
-            map(([type, active]) => (
-              <FormControlLabel
-                key={type}
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={active}
-                    onChange={() => toggleActiveType(type)}
-                  />
-                }
-                label={type}
-              />
-            )),
-          )(activeTypes)}
-        </div>
+      <CardContent>
+        <Chart {...series} isCompare={isCompare} />
       </CardContent>
+      {activeTypes && (
+        <div className={classes.toggles}>
+          <Typography className={classes.typo}>
+            <FormattedMessage {...messages.series} />
+          </Typography>
+          <div>
+            {pipe(
+              toPairs,
+              map(([type, active]) => (
+                <FormControlLabel
+                  key={type}
+                  disabled={active && equals(1, length(values(filter(identity, activeTypes))))}
+                  control={
+                    <Checkbox
+                      color="primary"
+                      checked={active}
+                      onChange={() => toggleActiveType(type)}
+                    />
+                  }
+                  label={<FormattedMessage {...messages[toLower(type)]} />}
+                />
+              )),
+            )(activeTypes)}
+          </div>
+        </div>
+      )}
+      <DataLegend {...series} isCompare={isCompare} />
     </Card>
-    <DataLegend {...series} />
   </React.Fragment>
 );
 
 DataChart.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string,
-  activeTypes: PropTypes.object.isRequired,
+  activeTypes: PropTypes.object,
   toggleActiveType: PropTypes.func.isRequired,
+  isCompare: PropTypes.bool,
 };
 
 export default withStyles(styles)(DataChart);

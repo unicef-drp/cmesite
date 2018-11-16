@@ -6,6 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import Radio from '@material-ui/core/Radio';
 
 const styles = () => ({
   list: {
@@ -20,22 +21,27 @@ const styles = () => ({
   },
 });
 
-const DataDimension = ({ classes, dimension, changeSelection }) => (
+const DataDimension = ({ classes, dimension, changeSelection, isSelectionExclusive }) => (
   <List className={classes.list}>
-    {addIndex(map)(({ id, label, isSelected }, index) => (
-      <ListItem
-        key={id}
-        dense
-        button
-        onClick={() => changeSelection(dimension.index, index)}
-      >
-        <Checkbox
-          checked={!!isSelected}
-          tabIndex={-1}
-          disableRipple
-          classes={{ root: classes.checkbox }}
-          color="primary"
-        />
+    {addIndex(map)(({ id, label, isSelected, isToggled }, index) => (
+      <ListItem key={id} dense button onClick={() => changeSelection(dimension.index, index)}>
+        {isSelectionExclusive ? (
+          <Radio
+            checked={!!isSelected}
+            tabIndex={-1}
+            disableRipple
+            classes={{ root: classes.checkbox }}
+            color="primary"
+          />
+        ) : (
+          <Checkbox
+            checked={!!isToggled}
+            tabIndex={-1}
+            disableRipple
+            classes={{ root: classes.checkbox }}
+            color="primary"
+          />
+        )}
         <ListItemText primary={label} />
       </ListItem>
     ))(dimension.values)}
@@ -46,6 +52,7 @@ DataDimension.propTypes = {
   classes: PropTypes.object.isRequired,
   dimension: PropTypes.object.isRequired,
   changeSelection: PropTypes.func.isRequired,
+  isSelectionExclusive: PropTypes.bool,
 };
 
 export default withStyles(styles)(DataDimension);

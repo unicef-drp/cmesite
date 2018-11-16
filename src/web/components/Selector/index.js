@@ -2,6 +2,8 @@ import { isNil, map, addIndex, prop } from 'ramda';
 import { compose, branch, renderNothing, withProps, withHandlers } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import routes, { getPath } from '../../routes';
 import {
   getCountryDimension,
   getCountryValue,
@@ -11,10 +13,11 @@ import {
 import { changeSelection } from '../../ducks/data';
 import Component from './component';
 
-export const enhance = (selectors, keys) =>
+export const enhance = (selectors, keys, { isCountry } = {}) =>
   compose(
+    withRouter,
     connect(createStructuredSelector(selectors), {
-      changeSelection: changeSelection('select'),
+      changeSelection: changeSelection({ type: 'select' }),
     }),
     branch(({ dimension }) => isNil(dimension), renderNothing),
     withProps(({ dimension }) => ({
@@ -25,8 +28,10 @@ export const enhance = (selectors, keys) =>
       ),
     })),
     withHandlers({
-      handleValue: ({ dimension, changeSelection }) => value =>
-        changeSelection(dimension.index, value.index),
+      handleValue: ({ dimension, changeSelection, history }) => value => {
+        if (isCountry) history.push(getPath(routes.data));
+        changeSelection(dimension.index, value.index);
+      },
     }),
   );
 
@@ -39,6 +44,13 @@ export const CountrySelector = enhance(
     noOptions: 'countrySelectorPlaceholder',
     placeholder: 'countrySelectorNoOption',
   },
+  { isCountry: true },
+)(Component);
+
+export const HomeCountrySelector = enhance(
+  { dimension: getCountryDimension },
+  { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorHome' },
+  { isCountry: true },
 )(Component);
 
 export const IndicatorSelector = enhance(

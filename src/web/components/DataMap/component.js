@@ -2,37 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { CountrySelector, IndicatorSelector } from '../Selector';
+import { HomeCountrySelector, IndicatorSelector } from '../Selector';
 import WorldMap from '../Map';
+import MapSlider from '../MapSlider';
 import DataProgress from '../DataProgress';
 
 const styles = theme => ({
-  card: {
-    marginBottom: theme.spacing.unit * 2,
-    background: 'none',
-    boxShadow: 'none',
-  },
-  header: {
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-  },
-  content: {
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-    '&:last-child': {
-      paddingBottom: theme.spacing.unit,
-    },
-  },
-  typo: {
+  title: {
     color: theme.palette.primary.dark,
+    borderBottom: `1px solid ${theme.palette.primary.dark}`,
+    marginBottom: theme.spacing.unit,
+  },
+  country: {
+    background: theme.palette.primary.light,
+    padding: theme.spacing.unit * 3,
+  },
+  countryLabel: {
+    fontWeight: 600,
+  },
+  indicatorLabel: {
+    color: theme.palette.primary.dark,
+    fontWeight: 600,
   },
 });
 
@@ -42,11 +35,10 @@ const Component = ({ classes, isHome, isLoadingData }) => {
       {isLoadingData ? (
         <DataProgress />
       ) : (
-        <CardContent className={classes.content}>
-          <WorldMap />
-          <p>slider</p>
-          <p>legend</p>
-        </CardContent>
+        <React.Fragment>
+          <WorldMap isHome />
+          <MapSlider />
+        </React.Fragment>
       )}
     </React.Fragment>
   );
@@ -54,38 +46,33 @@ const Component = ({ classes, isHome, isLoadingData }) => {
   if (!isHome) return invariant;
 
   return (
-    <React.Fragment>
-      <Card className={classes.card} square>
-        <CardHeader
-          className={classes.header}
-          title={
-            <React.Fragment>
-              <Typography
-                variant="headline"
-                align="center"
-                className={classes.typo}
-              >
-                <FormattedMessage {...messages.title} />
-              </Typography>
-              <Typography variant="body2" align="center" className={classes.typo}>
-                <FormattedMessage {...messages.subtitle} />
-              </Typography>
-            </React.Fragment>
-          }
-        />
-        <CardContent className={classes.content}>
-          <Grid container spacing={8}>
-            <Grid item xs={12} md={6}>
-              <CountrySelector />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <IndicatorSelector />
-            </Grid>
-          </Grid>
-        </CardContent>
+    <Grid container spacing={16}>
+      <Grid item xs={12} lg={8} container direction="column" justify="space-between">
+        <Typography variant="headline" className={classes.title}>
+          <FormattedMessage {...messages.title} />&nbsp;
+          <small>
+            <FormattedMessage {...messages.subtitle} />
+          </small>
+        </Typography>
+        <div>
+          <Typography variant="body2" color="primary" className={classes.indicatorLabel}>
+            <FormattedMessage {...messages.indicator} />
+          </Typography>
+          <IndicatorSelector />
+        </div>
+      </Grid>
+      <Grid item xs={12} lg={4}>
+        <div className={classes.country}>
+          <Typography variant="body2" color="primary" className={classes.countryLabel}>
+            <FormattedMessage {...messages.country} />
+          </Typography>
+          <HomeCountrySelector />
+        </div>
+      </Grid>
+      <Grid item xs={12}>
         {invariant}
-      </Card>
-    </React.Fragment>
+      </Grid>
+    </Grid>
   );
 };
 

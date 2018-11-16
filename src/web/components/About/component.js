@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import unicefLogo from '../../../assets/unicef-black-logo.jpeg';
+import unicefLogo from '../../../assets/unicef-black-logo.png';
 import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
 import wboLogo from '../../../assets/wbo-black-logo.png';
@@ -38,6 +38,10 @@ const style = theme => ({
   },
   typo: {
     color: theme.palette.primary.dark,
+  },
+  title: {
+    color: theme.palette.primary.dark,
+    marginBottom: theme.spacing.unit * 4,
   },
   section: {
     display: 'flex',
@@ -74,7 +78,7 @@ const style = theme => ({
     paddingTop: 0,
     paddingBottom: 0,
   },
-  title: {
+  titleWrapper: {
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
   },
@@ -85,23 +89,13 @@ const About = ({ about, focuses, classes }) => (
     <div
       className={classes.splash}
       style={{
-        background: `url("${path(['acf', 'image', 'url'])(
-          about,
-        )}") no-repeat center`,
+        background: `url("${path(['acf', 'image', 'url'])(about)}") no-repeat center`,
       }}
     />
     <Grid container className={classes.wrapper} justify="center">
-      <Grid
-        item
-        xs={12}
-        sm={12}
-        md={12}
-        className={classes.about}
-        container
-        justify="center"
-      >
-        <Grid item xs={12} sm={7} md={7} className={classes.title}>
-          <Typography variant="headline" align="center" className={classes.typo}>
+      <Grid item xs={12} sm={12} md={12} className={classes.about} container justify="center">
+        <Grid item xs={12} sm={7} md={7} className={classes.titleWrapper}>
+          <Typography variant="headline" align="center" className={classes.title}>
             {path(['title', 'rendered'])(about)}
           </Typography>
           <Typography variant="body2" align="center" paragraph>
@@ -112,20 +106,14 @@ const About = ({ about, focuses, classes }) => (
             />
           </Typography>
         </Grid>
-        <Grid
-          item
-          xs={11}
-          sm={10}
-          md={10}
-          className={classNames(classes.section, classes.logos)}
-        >
+        <Grid item xs={11} sm={10} md={10} className={classNames(classes.section, classes.logos)}>
           <img src={unicefLogo} className={classes.logo} />
           <img src={whoLogo} className={classes.logo} />
           <img src={unLogo} className={classes.logo} />
           <img src={wboLogo} className={classes.logo} />
         </Grid>
-        <Grid item xs={12} sm={7} md={7} className={classes.title}>
-          <Typography variant="headline" align="center" className={classes.typo}>
+        <Grid item xs={12} sm={7} md={7} className={classes.titleWrapper}>
+          <Typography variant="headline" align="center" className={classes.title}>
             <FormattedMessage {...messages.focus} />
           </Typography>
         </Grid>
@@ -135,31 +123,16 @@ const About = ({ about, focuses, classes }) => (
             return (
               <div key={focus.id} className={classes.focus}>
                 {isNil(image) ? null : (
-                  <img
-                    src={image.url}
-                    alt={image.alt}
-                    className={classes.focusLogo}
-                  />
+                  <img src={image.url} alt={image.alt} className={classes.focusLogo} />
                 )}
-                <Typography
-                  variant="body2"
-                  align="center"
-                  paragraph
-                  className={classes.typo}
-                >
+                <Typography variant="body2" align="center" paragraph className={classes.typo}>
                   {path(['title', 'rendered'])(focus)}
                 </Typography>
               </div>
             );
           })(focuses)}
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={10}
-          md={10}
-          className={classNames(classes.section, classes.action)}
-        >
+        <Grid item xs={12} sm={10} md={10} className={classNames(classes.section, classes.action)}>
           <Button variant="contained" color="primary">
             <FormattedMessage {...messages.action} />
           </Button>

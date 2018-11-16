@@ -8,7 +8,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import 'typeface-montserrat';
 import 'typeface-open-sans';
-import { scaleOrdinal } from 'd3-scale';
+import { scaleOrdinal, scaleQuantize } from 'd3-scale';
+import { schemeSet1 } from 'd3-scale-chromatic';
 import LanguageProvider from './components/LanguageProvider';
 import ConfigContext from './components/ConfigContext';
 import App from './components/App';
@@ -24,11 +25,17 @@ const theme = createMuiTheme({
     fontFamily: "'open sans'",
     title: {
       fontFamily: "'montserrat'",
+      textTransform: 'uppercase',
+      fontWeight: 600,
+    },
+    display1: {
+      fontFamily: "'montserrat'",
+      fontWeight: 600,
     },
     headline: {
       fontFamily: "'montserrat'",
       textTransform: 'uppercase',
-      fontWeight: 400,
+      fontWeight: 600,
     },
   },
   palette: {
@@ -44,12 +51,18 @@ const theme = createMuiTheme({
       dark: '#DEDEDF',
       contrastText: '#0B3B57',
     },
-    chartColorScale: scaleOrdinal().range([
-      //'#E6ED46',
+    chartColorScale: scaleOrdinal(schemeSet1),
+    /*chartColorScale: scaleOrdinal().range([
+      //'#E6ED46', // hardly visible
       '#60C9E2',
       '#DE405C',
       '#6B3889',
-    ]),
+    ]),*/
+    mapColorScale: scaleQuantize()
+      .domain([0, 100])
+      .range(['#cdeaf6', '#9ad5ee', '#0095d6', '#0080b2', '#506897']), // ratio %
+    mapAboveColor: '#002e49',
+    mapNoneColor: '#9b9b9b',
   },
 });
 
@@ -72,7 +85,17 @@ loadConfig().then(config => {
   );
 
   wpApi.config(prop('wp')(config));
-  sdmxApi.config(prop('sdmx')(config));
+  //sdmxApi.config(prop('sdmx')(config));
+
+  sdmxApi.config({
+    endpoint: 'https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest',
+    dataflow: {
+      id: 'CME_DF',
+      version: '1.0',
+      agencyId: 'UNICEFDRPDAU',
+    },
+  });
+
   ReactDOM.render(ROOT, document.getElementById('root'));
   store.dispatch(ducks.wp.actions.loadPosts('splashes'));
   store.dispatch(ducks.wp.actions.loadPosts('news'));

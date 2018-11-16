@@ -1,28 +1,33 @@
-/* eslint-disable react/prop-types */
-
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { compose, map, addIndex, ifElse, isNil, always } from 'ramda';
+import Button from '@material-ui/core/Button';
+import { compose, map, addIndex, ifElse, isNil, always, prop } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
+import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
+import { select } from 'd3-selection';
 import { withSize } from 'react-sizeme';
-import { getSymbolFill, getClass, hasSymbols, getColor } from './utils';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+import { getSymbolFill, getClass, hasSymbols, getColor, getExtents } from './utils';
 import Axis from './axis';
 import Line from './line';
 import Area from './area';
+import Tooltip from './tooltip';
 
 const style = theme => ({
   axis: {
     '& path': {
       stroke: theme.palette.secondary.dark,
-      shapeRendering: 'crispEdges',
+      shapeRendering: 'auto',
     },
     '& line': {
       stroke: theme.palette.secondary.dark,
-      shapeRendering: 'crispEdges',
+      shapeRendering: 'auto',
     },
     '& text': {
       fill: theme.palette.primary.dark,
       fontWeight: 'bold',
+      userSelect: 'none',
     },
   },
   axisBottom: {
@@ -43,34 +48,60 @@ const style = theme => ({
     strokeWidth: 1,
     strokeDasharray: '5 5',
   },
+  resetZoom: {
+    position: 'absolute',
+    top: theme.spacing.unit * 2,
+    right: theme.spacing.unit,
+    textTransform: 'none',
+  },
 });
 
-export class Chart extends React.Component {
-  state = {
-    xScale: scaleTime(),
-    yScale: scaleLinear(),
-  };
+class Chart extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      xScale: scaleTime(),
+      yScale: scaleLinear(),
+      tooltip: null,
+      zoomTransform: null,
+    };
+
+    this.zoom = zoom()
+      .scaleExtent([0.5, 4])
+      .on('zoom', this.zoomed.bind(this));
+  }
+
+  componentDidMount = () => select(this.chartElement).call(this.zoom);
+
+  componentDidUpdate = () => select(this.chartElement).call(this.zoom);
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
-    let { xScale, yScale } = prevState;
+    let { xScale, yScale, zoomTransform } = prevState;
 
-    const height = nextProps.size.width / 1.77;
+    const height = Math.ceil(nextProps.size.width / 1.77);
 
     const contentWidth = Math.floor(
       nextProps.size.width - nextProps.margin.left - nextProps.margin.right,
     );
-    const contentHeight = Math.floor(
-      height - nextProps.margin.top - nextProps.margin.bottom,
-    );
+    const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
+
+    const { estimateSeries, includedSeries, excludedSeries } = nextProps;
+    const extents = getExtents(estimateSeries, includedSeries, excludedSeries);
 
     xScale
-      .domain([new Date(1985, 0, 1), new Date(2016, 0, 1)])
+      .domain(prop('x', extents))
       .range([0, contentWidth])
       .nice();
     yScale
-      .domain([0, 260])
+      .domain(prop('y', extents))
       .range([contentHeight, 0])
       .nice();
+
+    if (zoomTransform) {
+      xScale.domain(zoomTransform.rescaleX(xScale).domain());
+      yScale.domain(zoomTransform.rescaleY(yScale).domain());
+    }
 
     return {
       ...prevState,
@@ -82,6 +113,19 @@ export class Chart extends React.Component {
     };
   };
 
+  zoomed = () => {
+    this.setState({ zoomTransform: d3ZoomTransform(this.chartElement) });
+  };
+
+  resetZoom = () => {
+    select(this.chartElement)
+      .transition()
+      .duration(750)
+      .call(this.zoom.transform, zoomIdentity);
+  };
+
+  setTooltip = tooltip => this.setState({ tooltip });
+
   render = () => {
     const {
       size,
@@ -92,7 +136,9 @@ export class Chart extends React.Component {
       estimateSeries,
       includedSeries,
       excludedSeries,
+      isCompare,
     } = this.props;
+
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
 
@@ -106,6 +152,7 @@ export class Chart extends React.Component {
               yScale={yScale}
               color={theme.palette.secondary.dark}
               classes={classes}
+              setTooltip={this.setTooltip}
             />
           ),
           uncertaintySeries,
@@ -121,10 +168,11 @@ export class Chart extends React.Component {
           data={datapoints}
           xScale={xScale}
           yScale={yScale}
-          color={getColor(type, index, theme)}
+          color={getColor(isCompare ? null : type, index, theme)}
           classes={getClass(type, classes)}
           hasSymbols={hasSymbols(type)}
-          symbolFill={getSymbolFill(type, index, theme)}
+          symbolFill={getSymbolFill(isCompare ? null : type, index, theme)}
+          setTooltip={this.setTooltip}
         />
       )),
     );
@@ -132,9 +180,16 @@ export class Chart extends React.Component {
     return (
       <div>
         {/* div is required for withSize to work properly */}
-        <svg width={width} height={height}>
+        <Button variant="contained" onClick={this.resetZoom} className={classes.resetZoom}>
+          <FormattedMessage {...messages.resetZoom} />
+        </Button>
+        <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
-            <g>{areas}</g>
+            <defs>
+              <clipPath id="clip">
+                <rect x="0" y="0" width={contentWidth} height={contentHeight} />
+              </clipPath>
+            </defs>
             <g>
               <Axis
                 orient="Left"
@@ -152,13 +207,21 @@ export class Chart extends React.Component {
                 classes={classes}
               />
             </g>
-            <g>
-              {linesFactory(estimateSeries)}
+            <g clipPath="url(#clip)">
+              {areas}
               {linesFactory(includedSeries)}
               {linesFactory(excludedSeries)}
+              {linesFactory(estimateSeries)}
             </g>
           </g>
         </svg>
+        {this.state.tooltip && (
+          <Tooltip
+            {...this.state.tooltip}
+            width={this.state.contentWidth}
+            height={this.state.contentHeight}
+          />
+        )}
       </div>
     );
   };

@@ -1,69 +1,67 @@
-// import axios from 'axios';
-import {
-  map,
-  fromPairs,
-  compose,
-  toPairs,
-  forEach,
-  //pipe,
-  //pluck,
-  //propEq,
-  //filter,
-  //join,
-  //propOr,
-} from 'ramda';
-import { structureParser, dataParser /*dataQuery*/ } from '../lib/sdmx';
+import axios from 'axios';
+import { map, fromPairs, compose, toPairs, forEach, join } from 'ramda';
+import { structureParser, dataParser, dataQuery } from '../lib/sdmx';
+import { RELEVANT_DIMENSIONS } from '../constants';
 import sdmxStructure from '../../mock/data/sdmxStructure';
-import sdmxData from '../../mock/data/sdmxData';
+import sdmxData from '../../mock/data/sdmxDataMap';
 
-const mockConfig = {
-  dimensionIds: ['REF_AREA', 'INDICATOR', 'SEX'],
-  locale: 'en',
-};
+const mockConfig = { locale: 'en' };
 let globalConfig = { debug: true, ...mockConfig };
 
-/*const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
+const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
 
 const dataflowQuery = (separator = '/', config = globalConfig) => {
   const { agencyId, id, version } = config.dataflow;
   return join(separator, [agencyId, id, version]);
 };
-*/
 
 const configuredStructureParser = (structure, config = globalConfig) =>
-  structureParser({ locale: config.locale, dimensionIds: config.dimensionIds })(
-    structure,
-  );
+  structureParser({ locale: config.locale, dimensionIds: RELEVANT_DIMENSIONS })(structure);
 
-const configuredDataParser = (data, config = globalConfig) =>
-  dataParser({ locale: config.locale })(data);
+const configuredDataParser = (data, parserOptions, config = globalConfig) =>
+  dataParser({ locale: config.locale, ...parserOptions })(data);
 
-/*const getStructure = () =>
+const getStructure = () =>
+  axios
+    .get(endPoint(`/dataflow/${dataflowQuery()}/?references=all`), {
+      headers: {
+        Accept: 'application/vnd.sdmx.structure+json;version=1.0',
+        'Accept-Language': 'en',
+      },
+    })
+    .then(({ data }) => configuredStructureParser(data));
+
+const getData = ({ dimensions, queryOptions, parserOptions }) =>
   axios
     .get(
-      endPoint(`/dataflow/${dataflowQuery()}/?references=all`),
+      endPoint(
+        `/data/${dataflowQuery(',')}/${dataQuery(queryOptions)(
+          dimensions,
+        )}/?dimensionAtObservation=AllDimensions`,
+      ),
+      {
+        headers: {
+          Accept: 'application/vnd.sdmx.data+json;version=1.0.0-wd',
+          'Accept-Language': 'en',
+        },
+      },
     )
-    .then();
-
-const getData = (dimensions) =>
-  axios
-    .get(
-      endPoint(`/data/${dataflowQuery(',')}/${dataQuery()(dimensions)}/?dimensionAtObservation=AllDimensions`),
-    )
-    .then();*/
+    .then(({ data }) => configuredDataParser(data, parserOptions));
 
 /* eslint-disable-line no-shadow */
 const config = config => (globalConfig = { ...globalConfig, ...config });
 
 const methods = {
   config,
-  getStructure: () =>
+  getStructure,
+  _getStructure: () =>
     new Promise(resolve => {
       setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 1000);
     }),
-  getData: (/*{ dimensions }*/) =>
+  getData,
+  _getData: ({ parserOptions }) =>
     new Promise(resolve => {
-      setTimeout(() => resolve(configuredDataParser(sdmxData)), 1000);
+      setTimeout(() => resolve(configuredDataParser(sdmxData, parserOptions)), 1000);
     }),
 };
 

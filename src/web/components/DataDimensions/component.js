@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { map } from 'ramda';
+import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -9,10 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Checkbox from '@material-ui/core/Checkbox';
 import DataDimension from '../DataDimension';
-import {
-  isAllDimensionValuesSelected,
-  hasIndeterminateSelection,
-} from '../../utils';
+import { isAllDimensionValuesSelected, hasIndeterminateSelection } from '../../utils';
 
 const styles = theme => ({
   panelRoot: {
@@ -51,6 +49,7 @@ const styles = theme => ({
     color: theme.palette.primary.dark,
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
+    fontWeight: 600,
   },
   checkbox: {
     width: 'initial',
@@ -62,6 +61,9 @@ const styles = theme => ({
   button: {
     textTransform: 'none',
   },
+  hidden: {
+    visibility: 'hidden',
+  },
 });
 
 const DataDimensions = ({
@@ -69,14 +71,11 @@ const DataDimensions = ({
   dimensions,
   changeSelection,
   changeAllSelection,
+  isSelectionExclusive,
 }) => (
   <React.Fragment>
     {map(({ label, ...dimension }) => (
-      <ExpansionPanel
-        key={dimension.id}
-        defaultExpanded
-        classes={{ root: classes.panelRoot }}
-      >
+      <ExpansionPanel key={dimension.id} defaultExpanded classes={{ root: classes.panelRoot }}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           classes={{
@@ -93,12 +92,17 @@ const DataDimensions = ({
               changeAllSelection(dimension.index, event.target.checked);
             }}
             classes={{ root: classes.checkbox }}
+            className={classnames({ [classes.hidden]: isSelectionExclusive })}
             color="primary"
           />
           <Typography className={classes.typo}>{label}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
-          <DataDimension dimension={dimension} changeSelection={changeSelection} />
+          <DataDimension
+            dimension={dimension}
+            changeSelection={changeSelection}
+            isSelectionExclusive={isSelectionExclusive}
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     ))(dimensions)}
@@ -110,6 +114,7 @@ DataDimensions.propTypes = {
   dimensions: PropTypes.array.isRequired,
   changeSelection: PropTypes.func.isRequired,
   changeAllSelection: PropTypes.func.isRequired,
+  isSelectionExclusive: PropTypes.bool,
 };
 
 export default withStyles(styles)(DataDimensions);

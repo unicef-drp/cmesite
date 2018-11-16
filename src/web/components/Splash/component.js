@@ -15,22 +15,23 @@ const style = theme => ({
       paddingRight: theme.spacing.unit * 2,
     },
   },
+  content: {
+    marginTop: theme.spacing.unit * -8,
+  },
 });
 
 const Splash = ({ splash, classes, theme }) => (
   <div
     style={{
-      background: `${theme.palette.primary.main} url("${path([
-        'acf',
-        'image',
-        'url',
-      ])(splash)}") repeat center`,
+      background: `${theme.palette.primary.main} url("${path(['acf', 'image', 'url'])(
+        splash,
+      )}") repeat center`,
       backgroundSize: 'cover',
     }}
   >
     <Grid container alignItems="center" className={classes.wrapper}>
-      <Grid item xs={12} sm={6} md={4}>
-        <Typography variant="display2" color="secondary" paragraph>
+      <Grid item xs={12} sm={6} md={4} className={classes.content}>
+        <Typography variant="display1" color="secondary" paragraph>
           {path(['title', 'rendered'])(splash)}
         </Typography>
         <Typography variant="body2" color="secondary">

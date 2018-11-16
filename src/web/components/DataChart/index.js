@@ -1,3 +1,4 @@
+import { pipe, reject, isNil, isEmpty } from 'ramda';
 import { compose, branch, renderComponent } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -5,13 +6,15 @@ import {
   getTitle,
   getIsLoadingData,
   getActiveTypes,
-  getDataEstimateSeries,
-  getDataIncludedSeries,
-  getDataExcludedSeries,
+  getCountryEstimateSeries,
+  getCountryIncludedSeries,
+  getCountryExcludedSeries,
+  getCompareEstimateSeries,
 } from '../../selectors/data';
 import { toggleActiveType } from '../../ducks/data';
 import Component from './component';
 import DataProgress from '../DataProgress';
+import DataNone from '../DataNone';
 
 const withData = selectors =>
   compose(
@@ -19,21 +22,26 @@ const withData = selectors =>
       createStructuredSelector({
         title: getTitle,
         isLoadingData: getIsLoadingData,
-        activeTypes: getActiveTypes,
         ...selectors,
       }),
       { toggleActiveType },
     ),
     branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
+    branch(
+      ({ estimateSeries, includedSeries, excludedSeries }) =>
+        pipe(reject(isNil), isEmpty)([estimateSeries, includedSeries, excludedSeries]),
+      renderComponent(DataNone),
+    ),
   );
 
 export const DataCountryChart = withData({
-  estimateSeries: getDataEstimateSeries,
-  uncertaintySeries: getDataEstimateSeries,
-  includedSeries: getDataIncludedSeries,
-  excludedSeries: getDataExcludedSeries,
+  activeTypes: getActiveTypes,
+  estimateSeries: getCountryEstimateSeries,
+  uncertaintySeries: getCountryEstimateSeries,
+  includedSeries: getCountryIncludedSeries,
+  excludedSeries: getCountryExcludedSeries,
 })(Component);
 
 export const DataCompareChart = withData({
-  estimateSeries: getDataEstimateSeries,
+  estimateSeries: getCompareEstimateSeries,
 })(Component);

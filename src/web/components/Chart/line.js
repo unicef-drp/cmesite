@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { prop, pipe, both, map, not, addIndex } from 'ramda';
+import { prop, pipe, both, map, addIndex } from 'ramda';
 import { line as d3Line, curveMonotoneX } from 'd3-shape';
+import { select } from 'd3-selection';
 import { symbolGenerator } from './utils';
 
 class Line extends React.Component {
@@ -12,7 +13,7 @@ class Line extends React.Component {
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
-    const { xScale, yScale, hasSymbols } = nextProps;
+    const { xScale, yScale } = nextProps;
     let { line } = prevState;
 
     const xScaleGetter = pipe(prop('x'), xScale);
@@ -23,12 +24,9 @@ class Line extends React.Component {
       .y(yScaleGetter)
       .curve(curveMonotoneX);
 
-    if (not(hasSymbols)) return { ...prevState, line };
-
     return {
       ...prevState,
       line,
-      symbol: symbolGenerator(20)(),
       xScaleGetter,
       yScaleGetter,
     };
@@ -42,23 +40,41 @@ class Line extends React.Component {
         stroke={this.props.color}
         fill="none"
       />
-      {this.props.hasSymbols
-        ? addIndex(map)(
-            (d, i) =>
-              this.defined(d) ? (
-                <path
-                  key={i}
-                  d={this.state.symbol}
-                  transform={`translate(${this.state.xScaleGetter(
-                    d,
-                  )},${this.state.yScaleGetter(d)})`}
-                  stroke={this.props.color}
-                  fill={this.props.symbolFill}
-                />
-              ) : null,
-            this.props.data,
-          )
-        : null}
+      {addIndex(map)((d, i) => {
+        if (!this.defined(d)) return null;
+
+        const x = this.state.xScaleGetter(d);
+        const y = this.state.yScaleGetter(d);
+
+        return (
+          <React.Fragment key={`marker-${i}`}>
+            {/* visible marker */}
+            {this.props.hasSymbols && (
+              <path
+                d={symbolGenerator(30)()}
+                transform={`translate(${x},${y})`}
+                stroke={this.props.color}
+                fill={this.props.symbolFill}
+              />
+            )}
+            {/* over marker */}
+            <path
+              d={symbolGenerator(60)()}
+              transform={`translate(${x},${y})`}
+              fill="transparent"
+              onMouseOver={event => {
+                select(event.target).attr('fill', this.props.color);
+                clearTimeout(this.antiBlink);
+                this.props.setTooltip({ x, y, d, color: this.props.color });
+              }}
+              onMouseOut={event => {
+                select(event.target).attr('fill', 'transparent');
+                this.antiBlink = setTimeout(() => this.props.setTooltip(), 100);
+              }}
+            />
+          </React.Fragment>
+        );
+      }, this.props.data)}
     </React.Fragment>
   );
 }
@@ -71,11 +87,11 @@ Line.propTypes = {
   color: PropTypes.string,
   hasSymbols: PropTypes.bool,
   symbolFill: PropTypes.string,
+  setTooltip: PropTypes.func.isRequired,
 };
 
 Line.defaultProps = {
   data: [],
-  symbolShape: 'none',
 };
 
 export default Line;
