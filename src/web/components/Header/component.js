@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, prop, compose } from 'ramda';
+import { map, prop } from 'ramda';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -19,8 +19,6 @@ import messages from './messages';
 import { allRoutes, getPath } from '../../routes';
 import igmeLogo from '../../../assets/igme-logo.png';
 import Wrapper from '../Wrapper';
-
-import withWidth from '@material-ui/core/withWidth';
 
 const style = theme => ({
   toolbar: {
@@ -65,7 +63,7 @@ class Header extends React.Component {
               <img src={igmeLogo} className={classes.logo} />
               <Hidden xsDown>
                 <Typography variant="title" className={classes.typo}>
-                  <FormattedMessage {...messages.title} /> {this.props.width}
+                  <FormattedMessage {...messages.title} />
                 </Typography>
               </Hidden>
               <Hidden smUp>
@@ -123,5 +121,4 @@ Header.propTypes = {
   routeName: PropTypes.string,
 };
 
-//export default withStyles(style)(Header);
-export default compose(withStyles(style), withWidth())(Header);
+export default withStyles(style)(Header);
