@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header | component render should match snapshot 1`] = `
-<Header
+<WithTheme(WithWidth(Header))
   classes={
     Object {
-      "logo": "Header-logo-2",
-      "menubar": "Header-menubar-5",
-      "selectedMenu": "Header-selectedMenu-6",
-      "titlebar": "Header-titlebar-4",
-      "toolbar": "Header-toolbar-1",
-      "typo": "Header-typo-3",
+      "logo": "WithTheme-WithWidth-Header---logo-2",
+      "menubar": "WithTheme-WithWidth-Header---menubar-5",
+      "selectedMenu": "WithTheme-WithWidth-Header---selectedMenu-6",
+      "titlebar": "WithTheme-WithWidth-Header---titlebar-4",
+      "toolbar": "WithTheme-WithWidth-Header---toolbar-1",
+      "typo": "WithTheme-WithWidth-Header---typo-3",
     }
   }
   locale="en"

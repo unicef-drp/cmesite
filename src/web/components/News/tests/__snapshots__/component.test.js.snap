@@ -6,8 +6,9 @@ exports[`News | component render should match snapshot 1`] = `
     Object {
       "card": "News-card-3",
       "container": "News-container-2",
+      "content": "News-content-5",
       "media": "News-media-4",
-      "typo": "News-typo-5",
+      "typo": "News-typo-6",
       "wrapper": "News-wrapper-1",
     }
   }
