@@ -18,17 +18,17 @@
 
 ## unicef
 - [ ] data icons/style tabs
-- [ ] page(s) width and map size
-- [ ] selectors style
+- [x] page(s) width and map size
+- [x] selectors style
 - [ ] WP backup WP-DB-Backup (daily)
-- [ ] logos are small, need png not ai, images (ie home) are too big
-- [ ] space between chart and side (not aesthetic)
+- [x] logos are small, need png not ai, images (ie home) are too big
+- [x] space between chart and side (not aesthetic)
 - [ ] DataNote source
-- [ ] SEO aspect
+- [ ] SEO aspect, post release (https://web.dev/measure?authuser=1)
 
 ## deploy
 - [x] staging with real endpoint
-- [ ] qa with real endpoint
+- [x] qa with real endpoint
 - [ ] make a bundle for daniele (with proper config)
 
 ## bug/in progress
@@ -36,7 +36,11 @@
 - [ ] initial request in home
 - [ ] initial request in map
 - [ ] block requests in compare
-- [ ] series label when small screen
+- [x] series label when small screen
+
+## forgotten realms
+- [ ] contact us in about
+- [ ] footer links
 
 ---
 

@@ -2,17 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Wrapper from '../Wrapper';
 
 const style = theme => ({
   wrapper: {
     backgroundColor: theme.palette.secondary.dark,
-    padding: theme.spacing.unit * 4,
-    paddingLeft: theme.spacing.unit * 12,
-    paddingRight: theme.spacing.unit * 12,
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
-    },
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
   },
   typo: {
     color: theme.palette.primary.dark,
@@ -20,11 +16,11 @@ const style = theme => ({
 });
 
 const DataNotes = ({ notes, classes }) => (
-  <div className={classes.wrapper}>
+  <Wrapper classes={{ root: classes.wrapper }}>
     <Typography align="center" component="p" className={classes.typo}>
       {notes}
     </Typography>
-  </div>
+  </Wrapper>
 );
 
 DataNotes.propTypes = {

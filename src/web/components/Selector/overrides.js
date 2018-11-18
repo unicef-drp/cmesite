@@ -54,8 +54,28 @@ Placeholder.propTypes = {
   children: PropTypes.node,
 };
 
+export const SingleCountryValue = props => (
+  <Typography
+    variant="title"
+    {...props.innerProps}
+    color="primary"
+    className={props.selectProps.classes.singleValue}
+  >
+    {props.children}
+  </Typography>
+);
+
+SingleCountryValue.propTypes = {
+  innerProps: PropTypes.object,
+  children: PropTypes.node,
+};
+
 export const SingleValue = props => (
-  <Typography variant="body2" {...props.innerProps}>
+  <Typography
+    variant="body2"
+    {...props.innerProps}
+    className={props.selectProps.classes.singleValue}
+  >
     {props.children}
   </Typography>
 );

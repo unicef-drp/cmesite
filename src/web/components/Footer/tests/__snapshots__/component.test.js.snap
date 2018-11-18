@@ -4,9 +4,10 @@ exports[`Footer | component render should match snapshot 1`] = `
 <Footer
   classes={
     Object {
-      "footer": "Footer-footer-1",
+      "container": "Footer-container-1",
+      "igmeLogo": "Footer-igmeLogo-3",
       "item": "Footer-item-2",
-      "logo": "Footer-logo-3",
+      "logo": "Footer-logo-4",
     }
   }
 />

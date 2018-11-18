@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import DataDownloadActions from '../DataDownloadActions';
 import { DataAllDimensions } from '../DataDimensions';
+import Wrapper from '../Wrapper';
 
 const style = theme => ({
   wrapper: {
@@ -13,12 +14,14 @@ const style = theme => ({
 });
 
 const DataTabDownload = ({ classes }) => (
-  <Grid container className={classes.wrapper}>
-    <Grid item xs={12}>
-      <DataAllDimensions />
-      <DataDownloadActions />
+  <Wrapper classes={{ root: classes.wrapper }}>
+    <Grid container>
+      <Grid item xs={12}>
+        <DataAllDimensions />
+        <DataDownloadActions />
+      </Grid>
     </Grid>
-  </Grid>
+  </Wrapper>
 );
 
 DataTabDownload.propTypes = {

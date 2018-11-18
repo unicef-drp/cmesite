@@ -9,17 +9,13 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import Wrapper from '../Wrapper';
 
 const style = theme => ({
   wrapper: {
     backgroundColor: theme.palette.primary.main,
-    padding: theme.spacing.unit * 4,
-    paddingLeft: theme.spacing.unit * 12,
-    paddingRight: theme.spacing.unit * 12,
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
-    },
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
   },
   list: {
     paddingTop: theme.spacing.unit * 2,
@@ -37,7 +33,7 @@ const style = theme => ({
 });
 
 const Datasets = ({ classes, updatedAt, datasets }) => (
-  <div className={classes.wrapper}>
+  <Wrapper classes={{ root: classes.wrapper }}>
     <Typography variant="headline" color="secondary" align="center">
       <FormattedMessage {...messages.title} />
     </Typography>
@@ -69,7 +65,7 @@ const Datasets = ({ classes, updatedAt, datasets }) => (
         );
       }, datasets)}
     </Grid>
-  </div>
+  </Wrapper>
 );
 
 Datasets.propTypes = {

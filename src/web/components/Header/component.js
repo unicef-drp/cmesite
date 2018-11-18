@@ -18,21 +18,17 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { allRoutes, getPath } from '../../routes';
 import igmeLogo from '../../../assets/igme-logo.png';
+import Wrapper from '../Wrapper';
 
 const style = theme => ({
   toolbar: {
-    paddingLeft: theme.spacing.unit * 10,
-    paddingRight: theme.spacing.unit * 10,
     [theme.breakpoints.down('xs')]: {
-      paddingLeft: theme.spacing.unit,
-      paddingRight: theme.spacing.unit,
       display: 'flex',
       justifyContent: 'space-between',
     },
   },
   logo: {
     height: 30,
-    paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
   },
   typo: {
@@ -62,36 +58,40 @@ class Header extends React.Component {
     return (
       <React.Fragment>
         <AppBar position="fixed" className={classes.titlebar}>
-          <Toolbar disableGutters className={classes.toolbar}>
-            <img src={igmeLogo} className={classes.logo} />
-            <Hidden xsDown>
-              <Typography variant="title" className={classes.typo}>
-                <FormattedMessage {...messages.title} />
-              </Typography>
-            </Hidden>
-            <Hidden smUp>
-              <IconButton color="primary" onClick={this.handleOpen}>
-                <MenuIcon />
-              </IconButton>
-            </Hidden>
-          </Toolbar>
+          <Wrapper>
+            <Toolbar disableGutters className={classes.toolbar}>
+              <img src={igmeLogo} className={classes.logo} />
+              <Hidden xsDown>
+                <Typography variant="title" className={classes.typo}>
+                  <FormattedMessage {...messages.title} />
+                </Typography>
+              </Hidden>
+              <Hidden smUp>
+                <IconButton color="primary" onClick={this.handleOpen}>
+                  <MenuIcon />
+                </IconButton>
+              </Hidden>
+            </Toolbar>
+          </Wrapper>
         </AppBar>
         <Hidden xsDown>
           <AppBar position="fixed" className={classes.menubar}>
-            <Toolbar disableGutters className={classes.toolbar}>
-              {map(route => (
-                <Button
-                  color="inherit"
-                  key={prop('name')(route)}
-                  component={Link}
-                  to={getPath(route)}
-                  disabled={routeName === prop('name')(route)}
-                  classes={{ disabled: classes.selectedMenu }}
-                >
-                  <FormattedMessage {...prop(prop('name')(route))(messages)} />
-                </Button>
-              ))(allRoutes)}
-            </Toolbar>
+            <Wrapper>
+              <Toolbar disableGutters className={classes.toolbar}>
+                {map(route => (
+                  <Button
+                    color="inherit"
+                    key={prop('name')(route)}
+                    component={Link}
+                    to={getPath(route)}
+                    disabled={routeName === prop('name')(route)}
+                    classes={{ disabled: classes.selectedMenu }}
+                  >
+                    <FormattedMessage {...prop(prop('name')(route))(messages)} />
+                  </Button>
+                ))(allRoutes)}
+              </Toolbar>
+            </Wrapper>
           </AppBar>
         </Hidden>
         <Drawer open={this.state.isOpen} onClose={this.handleClose} anchor="top">

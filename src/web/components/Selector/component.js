@@ -10,6 +10,7 @@ import {
   Option,
   Placeholder,
   SingleValue,
+  SingleCountryValue,
   ValueContainer,
   Menu,
 } from './overrides';
@@ -21,12 +22,15 @@ const styles = theme => ({
   },
   valueContainer: {
     display: 'flex',
-    flexWrap: 'wrap',
+    //flexWrap: 'wrap',
     flex: 1,
     alignItems: 'center',
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
+  },
+  singleValue: {
+    textTransform: 'none',
   },
   paper: {
     marginTop: theme.spacing.unit,
@@ -44,7 +48,7 @@ const styles = theme => ({
   },
 });
 
-const Selector = ({ classes, value, values, handleValue, keys }) => (
+const Selector = ({ classes, value, values, handleValue, keys, isCountry }) => (
   <Paper square elevation={1}>
     <Select
       classes={classes}
@@ -54,7 +58,7 @@ const Selector = ({ classes, value, values, handleValue, keys }) => (
         Option,
         NoOptionsMessage: Option,
         Placeholder,
-        SingleValue,
+        SingleValue: isCountry ? SingleCountryValue : SingleValue,
         ValueContainer,
         Menu,
       }}

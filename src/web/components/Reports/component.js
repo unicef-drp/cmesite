@@ -13,17 +13,15 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import routes, { getPath } from '../../routes';
+import Wrapper from '../Wrapper';
 
 const style = theme => ({
+  reports: {
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
+  },
   wrapper: {
     backgroundColor: theme.palette.secondary.main,
-    padding: theme.spacing.unit * 4,
-    paddingLeft: theme.spacing.unit * 12,
-    paddingRight: theme.spacing.unit * 12,
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
-    },
   },
   secondaryWrapper: {
     backgroundColor: theme.palette.secondary.dark,
@@ -38,24 +36,23 @@ const style = theme => ({
   card: {
     display: 'flex',
     flexDirection: 'row',
-    borderRadius: 0,
-    border: `1px solid ${theme.palette.primary.light}`,
     backgroundColor: theme.palette.primary.light,
     margin: theme.spacing.unit * 2,
-    width: 320,
+    width: 340,
     minHeight: 180,
   },
   secondaryCard: {
-    border: 'none',
     backgroundColor: theme.palette.secondary.dark,
     margin: 0,
     marginBottom: theme.spacing.unit * 2,
   },
   content: {
     backgroundColor: theme.palette.secondary.main,
+    border: `1px solid ${theme.palette.primary.light}`,
   },
   secondaryContent: {
     backgroundColor: theme.palette.secondary.dark,
+    border: 'none',
   },
   media: {
     margin: theme.spacing.unit * 2,
@@ -69,74 +66,72 @@ const style = theme => ({
   typo: {
     color: theme.palette.primary.dark,
   },
+  leftIcon: {
+    marginRight: theme.spacing.unit,
+  },
 });
 
 const Reports = ({ classes, reports, isSecondary }) => (
-  <div
-    className={classNames(classes.wrapper, {
-      [classes.secondaryWrapper]: isSecondary,
-    })}
-  >
-    <Typography variant="headline" align="center" className={classes.typo}>
-      <FormattedMessage {...messages.title} />
-    </Typography>
-    <div className={classes.container}>
-      {map(report => {
-        const image = path(['acf', 'image'])(report);
-        const file = path(['acf', 'file'])(report);
-        return (
-          <Card
-            key={report.id}
-            className={classNames(classes.card, {
-              [classes.secondaryCard]: isSecondary,
-            })}
-            elevation={0}
-          >
-            {isNil(image) ? null : (
-              <CardMedia
-                className={classes.media}
-                image={report.acf.image.url}
-                title={report.acf.image.alt}
-              />
-            )}
-            <CardContent
-              className={classNames(classes.content, {
-                [classes.secondaryContent]: isSecondary,
+  <Wrapper classes={{ root: classes[isSecondary ? 'secondaryWrapper' : 'wrapper'] }}>
+    <div className={classes.reports}>
+      <Typography variant="headline" align="center" className={classes.typo}>
+        <FormattedMessage {...messages.title} />
+      </Typography>
+      <div className={classes.container}>
+        {map(report => {
+          const image = path(['acf', 'image'])(report);
+          const file = path(['acf', 'file'])(report);
+          return (
+            <Card
+              key={report.id}
+              className={classNames(classes.card, {
+                [classes.secondaryCard]: isSecondary,
               })}
+              elevation={0}
+              square
             >
-              <Typography variant="body2" className={classes.typo} paragraph>
-                {path(['title', 'rendered'])(report)}
-              </Typography>
-              {isNil(file) ? null : (
-                <Button
-                  color="primary"
-                  target="_blank"
-                  size="small"
-                  href={report.acf.file.url}
-                  download
-                >
-                  <DescriptionIcon />
-                  {report.acf.file.description}
-                </Button>
+              {isNil(image) ? null : (
+                <CardMedia
+                  className={classes.media}
+                  image={report.acf.image.url}
+                  title={report.acf.image.alt}
+                />
               )}
-            </CardContent>
-          </Card>
-        );
-      })(reports)}
-    </div>
-    {isSecondary ? (
-      <div className={classes.action}>
-        <Button
-          variant="contained"
-          color="primary"
-          component={Link}
-          to={getPath(routes.reports)}
-        >
-          <FormattedMessage {...messages.action} />
-        </Button>
+              <CardContent
+                className={classNames(classes.content, {
+                  [classes.secondaryContent]: isSecondary,
+                })}
+              >
+                <Typography variant="body2" className={classes.typo} paragraph>
+                  {path(['title', 'rendered'])(report)}
+                </Typography>
+                {isNil(file) ? null : (
+                  <Button
+                    color="primary"
+                    target="_blank"
+                    size="small"
+                    variant="outlined"
+                    href={report.acf.file.url}
+                    download
+                  >
+                    <DescriptionIcon className={classes.leftIcon} />
+                    {report.acf.file.description}
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+          );
+        })(reports)}
       </div>
-    ) : null}
-  </div>
+      {isSecondary ? (
+        <div className={classes.action}>
+          <Button variant="contained" color="primary" component={Link} to={getPath(routes.reports)}>
+            <FormattedMessage {...messages.action} />
+          </Button>
+        </div>
+      ) : null}
+    </div>
+  </Wrapper>
 );
 
 Reports.propTypes = {

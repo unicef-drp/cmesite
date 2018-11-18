@@ -18,17 +18,9 @@ import DataTabCountry from '../DataTabCountry';
 import DataTabCompare from '../DataTabCompare';
 import DataTabMap from '../DataTabMap';
 import DataTabDownload from '../DataTabDownload';
-import DataNotes from '../DataNotes';
+import Wrapper from '../Wrapper';
 
-const style = theme => ({
-  wrapper: {
-    paddingLeft: theme.spacing.unit * 12,
-    paddingRight: theme.spacing.unit * 12,
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
-    },
-  },
+const style = () => ({
   tabRoot: {
     minHeight: 48,
   },
@@ -49,49 +41,42 @@ const tabs = [
 
 const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
   <React.Fragment>
-    <AppBar position="static" color="default" className={classes.wrapper}>
-      <Tabs
-        value={activeTab}
-        onChange={(event, value) => changeActiveTab(value)}
-        indicatorColor="primary"
-        textColor="primary"
-        fullWidth
-      >
-        {map(tab => (
-          <Tab
-            key={tab.key}
-            label={
-              <Hidden smDown>
-                <Typography variant="body2" className={classes.tabTypo}>
-                  <FormattedMessage {...messages[tab.key]} />
-                </Typography>
-              </Hidden>
-            }
-            icon={tab.icon}
-            classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
-          />
-        ))(tabs)}
-      </Tabs>
+    <AppBar position="static" color="default">
+      <Wrapper>
+        <Tabs
+          value={activeTab}
+          onChange={(event, value) => changeActiveTab(value)}
+          indicatorColor="primary"
+          textColor="primary"
+          fullWidth
+        >
+          {map(tab => (
+            <Tab
+              key={tab.key}
+              label={
+                <Hidden smDown>
+                  <Typography variant="body2" className={classes.tabTypo}>
+                    <FormattedMessage {...messages[tab.key]} />
+                  </Typography>
+                </Hidden>
+              }
+              icon={tab.icon}
+              classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
+            />
+          ))(tabs)}
+        </Tabs>
+      </Wrapper>
     </AppBar>
     <SwipeableViews
       axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
       index={activeTab}
       onChangeIndex={index => changeActiveTab(index)}
     >
-      <div className={classes.wrapper}>
-        <DataTabCountry />
-      </div>
-      <div className={classes.wrapper}>
-        <DataTabCompare />
-      </div>
-      <div className={classes.wrapper}>
-        <DataTabMap />
-      </div>
-      <div className={classes.wrapper}>
-        <DataTabDownload />
-      </div>
+      <DataTabCountry />
+      <DataTabCompare />
+      <DataTabMap />
+      <DataTabDownload />
     </SwipeableViews>
-    <DataNotes />
   </React.Fragment>
 );
 

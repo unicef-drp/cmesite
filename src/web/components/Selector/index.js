@@ -22,6 +22,7 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
     branch(({ dimension }) => isNil(dimension), renderNothing),
     withProps(({ dimension }) => ({
       keys,
+      isCountry,
       values: addIndex(map)(
         ({ id, label }, index) => ({ index, label, value: id }),
         prop('values')(dimension),
@@ -36,14 +37,8 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
   );
 
 export const CountrySelector = enhance(
-  {
-    dimension: getCountryDimension,
-    value: getCountryValue,
-  },
-  {
-    noOptions: 'countrySelectorPlaceholder',
-    placeholder: 'countrySelectorNoOption',
-  },
+  { dimension: getCountryDimension, value: getCountryValue },
+  { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorNoOption' },
   { isCountry: true },
 )(Component);
 
@@ -54,12 +49,6 @@ export const HomeCountrySelector = enhance(
 )(Component);
 
 export const IndicatorSelector = enhance(
-  {
-    dimension: getIndicatorDimension,
-    value: getIndicatorValue,
-  },
-  {
-    noOptions: 'indicatorSelectorPlaceholder',
-    placeholder: 'indicatorSelectorNoOption',
-  },
+  { dimension: getIndicatorDimension, value: getIndicatorValue },
+  { noOptions: 'indicatorSelectorPlaceholder', placeholder: 'indicatorSelectorNoOption' },
 )(Component);

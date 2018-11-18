@@ -1,5 +1,6 @@
 import React from 'react';
 import Page from '../../components/Page';
+import PageContent from '../../components/PageContent';
 import Header from '../../components/Header';
 import Splash from '../../components/Splash';
 import Home from '../../components/Home';
@@ -10,10 +11,12 @@ import Footer from '../../components/Footer';
 export const HomePage = () => (
   <Page>
     <Header routeName="home" />
-    <Splash />
-    <Home />
-    <Datasets />
-    <FeaturedReports />
+    <PageContent>
+      <Splash />
+      <Home />
+      <Datasets />
+      <FeaturedReports />
+    </PageContent>
     <Footer />
   </Page>
 );
