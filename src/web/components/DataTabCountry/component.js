@@ -6,29 +6,30 @@ import { CountrySelector } from '../Selector';
 import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
 import { DataCountryChart } from '../DataChart';
+import Wrapper from '../Wrapper';
 
 const style = theme => ({
   wrapper: {
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    marginTop: 0,
-    marginBottom: 0,
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
   },
 });
 
 const DataTabCountry = ({ classes }) => (
-  <Grid container spacing={16} className={classes.wrapper}>
-    <Grid item xs={12}>
-      <CountrySelector />
+  <Wrapper classes={{ root: classes.wrapper }}>
+    <Grid container spacing={16}>
+      <Grid item xs={12}>
+        <CountrySelector />
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <DataOtherDimensions isSide isSelectionExclusive />
+        <DataDownloadActions />
+      </Grid>
+      <Grid item xs={12} md={9}>
+        <DataCountryChart />
+      </Grid>
     </Grid>
-    <Grid item xs={12} md={3}>
-      <DataOtherDimensions isSide isSelectionExclusive />
-      <DataDownloadActions />
-    </Grid>
-    <Grid item xs={12} md={9}>
-      <DataCountryChart />
-    </Grid>
-  </Grid>
+  </Wrapper>
 );
 
 DataTabCountry.propTypes = {

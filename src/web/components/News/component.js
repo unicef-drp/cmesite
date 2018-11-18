@@ -12,24 +12,39 @@ import messages from './messages';
 const style = theme => ({
   wrapper: {
     backgroundColor: theme.palette.secondary.main,
-    marginTop: theme.spacing.unit * -8,
+    marginTop: theme.spacing.unit * -6,
     paddingTop: theme.spacing.unit * 2,
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
   },
   container: {
     paddingTop: theme.spacing.unit,
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      justifyContent: 'space-around',
+    },
   },
   card: {
     borderRadius: 0,
     background: 'none',
     padding: 0,
+    [theme.breakpoints.down('sm')]: {
+      width: 320,
+      paddingTop: 0,
+    },
   },
   media: {
-    paddingTop: '56.5%',
-    height: 0,
-    paddingLeft: theme.spacing.unit * 4,
-    paddingRight: theme.spacing.unit * 4,
+    [theme.breakpoints.up('md')]: {
+      paddingTop: '56.5%',
+      height: 0,
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: 160,
+    },
+  },
+  content: {
+    paddingLeft: 0,
+    paddingRight: 0,
   },
   typo: {
     color: theme.palette.primary.dark,
@@ -53,7 +68,7 @@ const News = ({ classes, news }) => (
                 title={post.acf.image.alt}
               />
             )}
-            <CardContent>
+            <CardContent className={classes.content}>
               <Typography variant="body2" color="primary" paragraph>
                 {path(['title', 'rendered'])(post)}
               </Typography>

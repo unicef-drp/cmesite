@@ -3,18 +3,16 @@ import PropTypes from 'prop-types';
 import { path, isNil } from 'ramda';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Grid from '@material-ui/core/Grid';
+import Wrapper from '../Wrapper';
 
 const style = theme => ({
   wrapper: {
     backgroundColor: theme.palette.secondary.main,
-    padding: theme.spacing.unit * 4,
-    paddingLeft: theme.spacing.unit * 12,
-    paddingRight: theme.spacing.unit * 12,
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
-    },
+  },
+  root: {
+    backgroundColor: theme.palette.secondary.main,
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
   },
   typo: {
     color: theme.palette.primary.dark,
@@ -27,8 +25,8 @@ const style = theme => ({
 const Method = ({ method, classes }) => {
   const image = path(['acf', 'image'])(method);
   return (
-    <Grid container className={classes.wrapper} justify="center">
-      <Grid item xs={12} sm={8}>
+    <Wrapper classes={{ root: classes.wrapper }}>
+      <div className={classes.root}>
         <Typography variant="headline" align="center" className={classes.typo}>
           {path(['title', 'rendered'])(method)}
         </Typography>
@@ -39,11 +37,9 @@ const Method = ({ method, classes }) => {
             }}
           />
         </Typography>
-        {isNil(image) ? null : (
-          <img className={classes.image} src={image.url} alt={image.alt} />
-        )}
-      </Grid>
-    </Grid>
+        {isNil(image) ? null : <img className={classes.image} src={image.url} alt={image.alt} />}
+      </div>
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -11,6 +12,15 @@ import MapSlider from '../MapSlider';
 import DataProgress from '../DataProgress';
 
 const styles = theme => ({
+  root: {
+    paddingTop: theme.spacing.unit * 4,
+  },
+  map: {
+    marginLeft: theme.spacing.unit * 4,
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 0,
+    },
+  },
   title: {
     color: theme.palette.primary.dark,
     borderBottom: `1px solid ${theme.palette.primary.dark}`,
@@ -31,7 +41,7 @@ const styles = theme => ({
 
 const Component = ({ classes, isHome, isLoadingData }) => {
   const invariant = (
-    <React.Fragment>
+    <div className={classnames({ [classes.map]: !isHome })}>
       {isLoadingData ? (
         <DataProgress />
       ) : (
@@ -40,14 +50,14 @@ const Component = ({ classes, isHome, isLoadingData }) => {
           <MapSlider />
         </React.Fragment>
       )}
-    </React.Fragment>
+    </div>
   );
 
   if (!isHome) return invariant;
 
   return (
-    <Grid container spacing={16}>
-      <Grid item xs={12} lg={8} container direction="column" justify="space-between">
+    <Grid container spacing={32} className={classes.root}>
+      <Grid item xs={12} sm={7} xl={8} container direction="column" justify="space-between">
         <Typography variant="headline" className={classes.title}>
           <FormattedMessage {...messages.title} />&nbsp;
           <small>
@@ -61,7 +71,7 @@ const Component = ({ classes, isHome, isLoadingData }) => {
           <IndicatorSelector />
         </div>
       </Grid>
-      <Grid item xs={12} lg={4}>
+      <Grid item xs={12} sm={5} xl={4}>
         <div className={classes.country}>
           <Typography variant="body2" color="primary" className={classes.countryLabel}>
             <FormattedMessage {...messages.country} />

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { map } from 'ramda';
-import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -9,6 +8,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Checkbox from '@material-ui/core/Checkbox';
+import Radio from '@material-ui/core/Radio';
 import DataDimension from '../DataDimension';
 import { isAllDimensionValuesSelected, hasIndeterminateSelection } from '../../utils';
 
@@ -21,10 +21,8 @@ const styles = theme => ({
   panelSummaryRoot: {
     backgroundColor: theme.palette.secondary.dark,
     minHeight: 0,
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
-    },
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
   },
   panelSummaryContent: {
     alignItems: 'center',
@@ -47,8 +45,8 @@ const styles = theme => ({
   },
   typo: {
     color: theme.palette.primary.dark,
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
     fontWeight: 600,
   },
   checkbox: {
@@ -60,9 +58,6 @@ const styles = theme => ({
   },
   button: {
     textTransform: 'none',
-  },
-  hidden: {
-    visibility: 'hidden',
   },
 });
 
@@ -84,17 +79,20 @@ const DataDimensions = ({
             expanded: classes.expanded,
           }}
         >
-          <Checkbox
-            checked={isAllDimensionValuesSelected(dimension)}
-            indeterminate={hasIndeterminateSelection(dimension)}
-            onClick={event => {
-              event.stopPropagation();
-              changeAllSelection(dimension.index, event.target.checked);
-            }}
-            classes={{ root: classes.checkbox }}
-            className={classnames({ [classes.hidden]: isSelectionExclusive })}
-            color="primary"
-          />
+          {isSelectionExclusive ? (
+            <Radio disableRipple disabled classes={{ root: classes.checkbox }} color="primary" />
+          ) : (
+            <Checkbox
+              checked={isAllDimensionValuesSelected(dimension)}
+              indeterminate={hasIndeterminateSelection(dimension)}
+              onClick={event => {
+                event.stopPropagation();
+                changeAllSelection(dimension.index, event.target.checked);
+              }}
+              classes={{ root: classes.checkbox }}
+              color="primary"
+            />
+          )}
           <Typography className={classes.typo}>{label}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>

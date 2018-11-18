@@ -8,12 +8,19 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 
-const styles = () => ({
+const styles = theme => ({
   list: {
     width: '100%',
     overflow: 'auto',
     maxHeight: 300,
     padding: 0,
+  },
+  item: {
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+  },
+  text: {
+    paddingLeft: theme.spacing.unit,
   },
   checkbox: {
     width: 'initial',
@@ -24,7 +31,13 @@ const styles = () => ({
 const DataDimension = ({ classes, dimension, changeSelection, isSelectionExclusive }) => (
   <List className={classes.list}>
     {addIndex(map)(({ id, label, isSelected, isToggled }, index) => (
-      <ListItem key={id} dense button onClick={() => changeSelection(dimension.index, index)}>
+      <ListItem
+        key={id}
+        dense
+        button
+        onClick={() => changeSelection(dimension.index, index)}
+        className={classes.item}
+      >
         {isSelectionExclusive ? (
           <Radio
             checked={!!isSelected}
@@ -42,7 +55,7 @@ const DataDimension = ({ classes, dimension, changeSelection, isSelectionExclusi
             color="primary"
           />
         )}
-        <ListItemText primary={label} />
+        <ListItemText primary={label} className={classes.text} />
       </ListItem>
     ))(dimension.values)}
   </List>

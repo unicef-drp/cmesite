@@ -4,16 +4,11 @@ import { path } from 'ramda';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Wrapper from '../Wrapper';
 
 const style = theme => ({
   wrapper: {
     height: 350,
-    paddingLeft: theme.spacing.unit * 12,
-    paddingRight: theme.spacing.unit * 12,
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
-    },
   },
   content: {
     marginTop: theme.spacing.unit * -8,
@@ -23,28 +18,28 @@ const style = theme => ({
 const Splash = ({ splash, classes, theme }) => (
   <div
     style={{
-      background: `${theme.palette.primary.main} url("${path([
-        'acf',
-        'image',
-        'url',
-      ])(splash)}") repeat center`,
+      background: `${theme.palette.primary.main} url("${path(['acf', 'image', 'url'])(
+        splash,
+      )}") repeat center`,
       backgroundSize: 'cover',
     }}
   >
-    <Grid container alignItems="center" className={classes.wrapper}>
-      <Grid item xs={12} sm={6} md={4} className={classes.content}>
-        <Typography variant="display1" color="secondary" paragraph>
-          {path(['title', 'rendered'])(splash)}
-        </Typography>
-        <Typography variant="body2" color="secondary">
-          <span
-            dangerouslySetInnerHTML={{
-              __html: path(['content', 'rendered'])(splash),
-            }}
-          />
-        </Typography>
+    <Wrapper>
+      <Grid container alignItems="center" className={classes.wrapper}>
+        <Grid item xs={12} sm={6} md={4} className={classes.content}>
+          <Typography variant="display1" color="secondary" paragraph>
+            {path(['title', 'rendered'])(splash)}
+          </Typography>
+          <Typography variant="body2" color="secondary">
+            <span
+              dangerouslySetInnerHTML={{
+                __html: path(['content', 'rendered'])(splash),
+              }}
+            />
+          </Typography>
+        </Grid>
       </Grid>
-    </Grid>
+    </Wrapper>
   </div>
 );
 

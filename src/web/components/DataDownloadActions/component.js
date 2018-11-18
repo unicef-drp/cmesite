@@ -21,6 +21,8 @@ const styles = theme => ({
   },
   header: {
     backgroundColor: theme.palette.primary.main,
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
     paddingTop: theme.spacing.unit * 1.5,
     paddingBottom: theme.spacing.unit * 1.5,
   },
@@ -39,8 +41,18 @@ const styles = theme => ({
     maxHeight: 300,
     padding: 0,
   },
+  item: {
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+  },
+  text: {
+    paddingLeft: theme.spacing.unit,
+  },
   progress: {
     color: theme.palette.primary.main,
+  },
+  avatar: {
+    marginRight: theme.spacing.unit,
   },
 });
 
@@ -48,6 +60,7 @@ const DataDownloadPanel = ({ classes, downloadData, downloadingData }) => (
   <Card square className={classes.wrapper}>
     <CardHeader
       className={classes.header}
+      classes={{ avatar: classes.avatar }}
       avatar={<DescriptionIcon className={classes.typo} />}
       title={
         <Typography className={classes.typo}>
@@ -70,11 +83,9 @@ const DataDownloadPanel = ({ classes, downloadData, downloadingData }) => (
               className={classes.item}
               disableRipple
             >
-              {downloading && (
-                <CircularProgress size={24} className={classes.progress} />
-              )}
+              {downloading && <CircularProgress size={24} className={classes.progress} />}
               {!downloading && <DescriptionIcon className={classes.progress} />}
-              <ListItemText>
+              <ListItemText className={classes.text}>
                 <FormattedMessage {...prop(key, messages)} />
               </ListItemText>
             </ListItem>
