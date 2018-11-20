@@ -7,24 +7,30 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import LabelIcon from '@material-ui/icons/Label';
-import Tooltip from '@material-ui/core/Tooltip';
-import Hidden from '@material-ui/core/Hidden';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { getSteps, getInterval } from './utils';
 
 const style = theme => ({
-  wrapper: {
+  list: {
     position: 'absolute',
     left: 0,
     bottom: 0,
-  },
-  list: {
     width: 150,
+    [theme.breakpoints.down('xs')]: {
+      position: 'initial',
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      width: '100%',
+    },
   },
   denseItem: {
     paddingTop: 0,
     paddingBottom: 0,
+    [theme.breakpoints.down('xs')]: {
+      width: 150,
+    },
   },
   denseItemText: {
     paddingLeft: 0,
@@ -34,20 +40,13 @@ const style = theme => ({
     fontWeight: 600,
     color: theme.palette.primary.dark,
   },
-  tooltip: {
-    background: theme.palette.common.white,
-    color: theme.palette.text.primary,
-    boxShadow: theme.shadows[1],
-    fontSize: 11,
-    width: 150,
-  },
 });
 
 const Legend = ({ classes, scale, colors }) => {
   const steps = getSteps(scale);
   const interval = getInterval(scale);
 
-  const invariant = (
+  return (
     <List className={classes.list} dense>
       {times(
         n => (
@@ -85,19 +84,6 @@ const Legend = ({ classes, scale, colors }) => {
         </ListItemText>
       </ListItem>
     </List>
-  );
-
-  return (
-    <React.Fragment>
-      <Hidden smDown>
-        <div className={classes.wrapper}>{invariant}</div>
-      </Hidden>
-      <Hidden mdUp>
-        <Tooltip title={invariant} classes={{ tooltip: classes.tooltip }}>
-          <LabelIcon style={{ color: colors.none }} />
-        </Tooltip>
-      </Hidden>
-    </React.Fragment>
   );
 };
 

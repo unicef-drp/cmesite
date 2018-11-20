@@ -1,8 +1,12 @@
-import { path, length, divide, last } from 'ramda';
+import { path, length, divide, last, prop } from 'ramda';
 
-export const getColor = ({ scale, d, datapoints, noneColor }) => {
+export const getDatapoint = ({ d, datapoints }) => {
   const code = path(['properties', 'code'], d);
-  const y = path([code, 'y'], datapoints);
+  return prop(code, datapoints);
+};
+
+export const getColor = ({ scale, datapoint, noneColor }) => {
+  const y = prop('y', datapoint);
   return y ? scale(y) : noneColor;
 };
 

@@ -9,4 +9,8 @@ export default defineMessages({
     id: 'map.legend.max',
     defaultMessage: '100 and above',
   },
+  resetZoom: {
+    id: 'data.reset.zoom',
+    defaultMessage: 'Reset zoom',
+  },
 });
