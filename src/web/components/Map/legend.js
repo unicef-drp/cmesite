@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { times } from 'ramda';
+import { times, nth, dec, length, inc, equals } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,13 +9,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import LabelIcon from '@material-ui/icons/Label';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { getSteps, getInterval } from './utils';
 
 const style = theme => ({
   list: {
+    padding: 0,
     position: 'absolute',
     left: 0,
-    bottom: 0,
+    bottom: theme.spacing.unit * -3,
     width: 150,
     [theme.breakpoints.down('xs')]: {
       position: 'initial',
@@ -42,9 +42,9 @@ const style = theme => ({
   },
 });
 
-const Legend = ({ classes, scale, colors }) => {
-  const steps = getSteps(scale);
-  const interval = getInterval(scale);
+const Legend = ({ classes, scale }) => {
+  const domain = scale.domain();
+  const colors = scale.range();
 
   return (
     <List className={classes.list} dense>
@@ -52,30 +52,24 @@ const Legend = ({ classes, scale, colors }) => {
         n => (
           <ListItem key={n} dense disableGutters classes={{ dense: classes.denseItem }}>
             <ListItemIcon>
-              <LabelIcon style={{ color: scale(n * interval) }} />
+              <LabelIcon style={{ color: nth(inc(n), colors) }} />
             </ListItemIcon>
             <ListItemText
               classes={{ dense: classes.denseItemText, textDense: classes.denseItemTextText }}
             >
-              {`${n * interval} - ${(n + 1) * interval - 1}`}
+              {equals(n, dec(length(domain))) ? (
+                <FormattedMessage {...messages.max} values={{ max: nth(n, domain) }} />
+              ) : (
+                `${nth(n, domain)} - ${dec(nth(inc(n), domain))}`
+              )}
             </ListItemText>
           </ListItem>
         ),
-        steps,
+        length(domain),
       )}
       <ListItem dense disableGutters classes={{ dense: classes.denseItem }}>
         <ListItemIcon>
-          <LabelIcon style={{ color: colors.above }} />
-        </ListItemIcon>
-        <ListItemText
-          classes={{ dense: classes.denseItemText, textDense: classes.denseItemTextText }}
-        >
-          <FormattedMessage {...messages.max} />
-        </ListItemText>
-      </ListItem>
-      <ListItem dense disableGutters classes={{ dense: classes.denseItem }}>
-        <ListItemIcon>
-          <LabelIcon style={{ color: colors.none }} />
+          <LabelIcon style={{ color: scale(-1) }} />
         </ListItemIcon>
         <ListItemText
           classes={{ dense: classes.denseItemText, textDense: classes.denseItemTextText }}
@@ -90,7 +84,6 @@ const Legend = ({ classes, scale, colors }) => {
 Legend.propTypes = {
   classes: PropTypes.object.isRequired,
   scale: PropTypes.func.isRequired,
-  colors: PropTypes.object.isRequired,
 };
 
 export default withStyles(style)(Legend);

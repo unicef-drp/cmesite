@@ -7,10 +7,26 @@ export default defineMessages({
   },
   max: {
     id: 'map.legend.max',
-    defaultMessage: '100 and above',
+    defaultMessage: '{max} and above',
+  },
+  upper: {
+    id: 'map.datapoint.upper',
+    defaultMessage: 'upper',
+  },
+  lower: {
+    id: 'map.datapoint.lower',
+    defaultMessage: 'lower',
+  },
+  estimate: {
+    id: 'map.datapoint.estimate',
+    defaultMessage: 'est.',
   },
   resetZoom: {
     id: 'data.reset.zoom',
     defaultMessage: 'Reset zoom',
+  },
+  countryDetails: {
+    id: 'data.country.details',
+    defaultMessage: 'Click on the country to see details',
   },
 });

@@ -14,7 +14,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import Hidden from '@material-ui/core/Hidden';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import DataTabCountry from '../DataTabCountry';
+import { DataTabCountry } from '../DataTab';
 import DataTabCompare from '../DataTabCompare';
 import DataTabMap from '../DataTabMap';
 import DataTabDownload from '../DataTabDownload';
@@ -72,10 +72,13 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       index={activeTab}
       onChangeIndex={index => changeActiveTab(index)}
     >
-      <DataTabCountry />
-      <DataTabCompare />
+      <DataTabCountry ownTab={0} />
+      <div>nothing</div>
+      <div>nothing</div>
+      <div>nothing</div>
+      {/*<DataTabCompare />
       <DataTabMap />
-      <DataTabDownload />
+      <DataTabDownload />*/}
     </SwipeableViews>
   </React.Fragment>
 );

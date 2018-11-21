@@ -11,11 +11,14 @@ const withDimensions = selector =>
   compose(
     connect(
       createStructuredSelector({ dimensions: selector }),
-      (dispatch, { isSelectionExclusive }) =>
+      (dispatch, { isSelectionExclusive, dataType }) =>
         bindActionCreators(
           {
-            changeSelection: changeSelection({ type: isSelectionExclusive ? 'select' : 'toggle' }),
-            changeAllSelection: changeSelection({ type: 'toggleAll' }),
+            changeSelection: changeSelection({
+              dataType,
+              selectionType: isSelectionExclusive ? 'select' : 'toggle',
+            }),
+            changeAllSelection: changeSelection({ dataType, selectionType: 'toggleAll' }),
           },
           dispatch,
         ),
@@ -23,6 +26,5 @@ const withDimensions = selector =>
     branch(({ dimensions }) => anyPass([isNil, isEmpty])(dimensions), renderNothing),
   );
 
-export const withAllDimensions = withDimensions(getDimensions);
-export const DataAllDimensions = withAllDimensions(Component);
+export const DataAllDimensions = withDimensions(getDimensions)(Component);
 export const DataOtherDimensions = withDimensions(getOtherDimensions)(Component);

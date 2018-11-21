@@ -17,7 +17,7 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
   compose(
     withRouter,
     connect(createStructuredSelector(selectors), {
-      changeSelection: changeSelection({ type: 'select' }),
+      changeSelection: changeSelection({ selectionType: 'select' }),
     }),
     branch(({ dimension }) => isNil(dimension), renderNothing),
     withProps(({ dimension }) => ({

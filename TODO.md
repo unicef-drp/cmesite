@@ -1,7 +1,6 @@
 # TODO
 
 ## requests/selections
-- [ ] change selection, reset mapIndex
 - [ ] initial request in home
 - [ ] initial request in map
 - [ ] block requests in compare
@@ -10,13 +9,15 @@
 - [ ] if no country in compare, no request
 - [ ] Chart is maybe re-rendered when switching tabs and when expanding Legend
 - [ ] sdmx data request is too heavy when all selected
+- [ ] change selection, reset mapIndex
 
 ## map
 - [x] legend (position/responsive)
 - [x] zoom
-- [ ] tooltip
-- [ ] bug in map, colors are no aligned with values
-- [ ] map slider show year only
+- [x] tooltip
+- [x] bug in map, colors are no aligned with values
+- [x] rework legend tresholds
+- [x] map slider show year only
 
 ## chart
 - [x] no curve monotone x
@@ -35,7 +36,7 @@
 - [ ] download headers
 
 ## bugs
-- [ ] bug can't type in home country selector
+- [x] bug can't type in home country selector
 - [ ] datasource, reduce white space due to swipeable
 
 ## misc

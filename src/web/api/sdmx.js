@@ -53,15 +53,15 @@ const config = config => (globalConfig = { ...globalConfig, ...config });
 
 const methods = {
   config,
-  getStructure,
-  _getStructure: () =>
+  //getStructure,
+  getStructure: () =>
     new Promise(resolve => {
-      setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 1000);
+      setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 100);
     }),
-  getData,
-  _getData: ({ parserOptions }) =>
+  //getData,
+  getData: ({ parserOptions }) =>
     new Promise(resolve => {
-      setTimeout(() => resolve(configuredDataParser(sdmxData, parserOptions)), 1000);
+      setTimeout(() => resolve(configuredDataParser(sdmxData, parserOptions)), 100);
     }),
 };
 
