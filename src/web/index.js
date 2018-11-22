@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { prop } from 'ramda';
+import { prop, equals } from 'ramda';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
@@ -17,8 +17,9 @@ import { translationMessages } from './i18n';
 import configureStore from './store/configureStore';
 import ducks from './ducks';
 import wpApi from './api/wp';
-import sdmxApi from './api/sdmx';
+import sdmxApi, { MAP, COUNTRY } from './api/sdmx';
 import loadConfig from './config';
+import routes, { getPath } from './routes';
 
 const theme = createMuiTheme({
   typography: {
@@ -104,5 +105,7 @@ loadConfig().then(config => {
   store.dispatch(ducks.wp.actions.loadPosts('focuses'));
   store.dispatch(ducks.wp.actions.loadPosts('abouts'));
   store.dispatch(ducks.wp.actions.loadPosts('methods'));
-  store.dispatch(ducks.data.actions.loadStructure());
+
+  const isHome = equals(history.location.pathname, getPath(routes.home));
+  store.dispatch(ducks.data.actions.loadStructure(isHome ? MAP : COUNTRY));
 });

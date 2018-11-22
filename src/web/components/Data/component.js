@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map } from 'ramda';
+import { map, equals } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,10 +14,10 @@ import PublicIcon from '@material-ui/icons/Public';
 import Hidden from '@material-ui/core/Hidden';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { DataTabCountry } from '../DataTab';
-import DataTabCompare from '../DataTabCompare';
-import DataTabMap from '../DataTabMap';
-import DataTabDownload from '../DataTabDownload';
+import CountryTab from './country';
+import CompareTab from './compare';
+import MapTab from './map';
+import DownloadTab from './download';
 import Wrapper from '../Wrapper';
 
 const style = () => ({
@@ -72,13 +72,10 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       index={activeTab}
       onChangeIndex={index => changeActiveTab(index)}
     >
-      <DataTabCountry ownTab={0} />
-      <div>nothing</div>
-      <div>nothing</div>
-      <div>nothing</div>
-      {/*<DataTabCompare />
-      <DataTabMap />
-      <DataTabDownload />*/}
+      <CountryTab isActive={equals(activeTab, 0)} />
+      <CompareTab isActive={equals(activeTab, 1)} />
+      <MapTab isActive={equals(activeTab, 2)} />
+      <DownloadTab isActive={equals(activeTab, 3)} />
     </SwipeableViews>
   </React.Fragment>
 );

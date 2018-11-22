@@ -7,6 +7,7 @@ import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
 import { DataCountryChart } from '../DataChart';
 import Wrapper from '../Wrapper';
+import { COUNTRY } from '../../api/sdmx';
 
 const style = theme => ({
   wrapper: {
@@ -15,14 +16,14 @@ const style = theme => ({
   },
 });
 
-const DataTabCountry = ({ classes }) => (
+const Country = ({ classes }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Grid container spacing={16}>
       <Grid item xs={12}>
-        <CountrySelector />
+        <CountrySelector dataType={COUNTRY} />
       </Grid>
       <Grid item xs={12} md={3}>
-        <DataOtherDimensions isSide isSelectionExclusive />
+        <DataOtherDimensions isSide isSelectionExclusive dataType={COUNTRY} />
         <DataDownloadActions />
       </Grid>
       <Grid item xs={12} md={9}>
@@ -32,8 +33,8 @@ const DataTabCountry = ({ classes }) => (
   </Wrapper>
 );
 
-DataTabCountry.propTypes = {
+Country.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(DataTabCountry);
+export default withStyles(style)(Country);

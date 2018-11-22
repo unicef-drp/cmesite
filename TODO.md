@@ -1,15 +1,15 @@
 # TODO
 
 ## requests/selections
-- [ ] initial request in home
-- [ ] initial request in map
+- [x] initial request in home
+- [x] initial request in map
+- [x] change selection, reset mapIndex
+- [x] default compare country is the one from country
 - [ ] block requests in compare
 - [ ] click on country to go on tab country with proper selection
-- [ ] default compare country is the one from country
 - [ ] if no country in compare, no request
 - [ ] Chart is maybe re-rendered when switching tabs and when expanding Legend
 - [ ] sdmx data request is too heavy when all selected
-- [ ] change selection, reset mapIndex
 
 ## map
 - [x] legend (position/responsive)
@@ -23,11 +23,10 @@
 - [x] no curve monotone x
 - [x] add yaxis label 'per thousand'
 - [x] hide negative values in yaxis
-- [ ] legend labels (need country in compare)
 - [ ] update chart title when switching from compare to country
 - [ ] tooltip labels (country, compare, SERIES_NAME, SERIES_CATEGORY, SERIES_TYPE, SERIES_YEAR and country for compare)
 - [ ] legend symbol: lines for estimate et uncertainty
-- [ ] legend labels (country, compare, SERIES_NAME and indicators values)
+- [ ] legend labels (country, compare, SERIES_NAME and indicators values, need country in compare)
 - [ ] extent always take uncertainty into account
 - [ ] add ticks for the starting value in chart
 - [ ] tooltip position
@@ -43,14 +42,13 @@
 - [x] no data -> choose a country
 - [x] space between news in home page (xs)
 - [ ] check reports in several langs
-- [ ] put constants in config, remove hardcoded config in index.js
 - [ ] contact us in about
 - [ ] footer links
 
 ## unicef
 - [ ] data icons/style tabs
 - [ ] WP backup WP-DB-Backup (daily)
-- [ ] DataNote source
+- [ ] DataNote source (one par tab or per all?)
 - [ ] SEO aspect, post release (https://web.dev/measure?authuser=1)
 - [ ] GA
 
@@ -59,9 +57,11 @@
 ## dimensions
 - [ ] remove SEX dimension for configured INDICATOR values (disagreggated)
 - [ ] collapsable download box
+- [ ] swipeable avoid rendering, collapse states are reset (collapse, switch tabs, expanded!)
 
 ## chart
 - [ ] different symbols regarding SERIES_METHOD
 
 ## config
+- [ ] put constants in config, remove hardcoded config in index.js
 - [ ] handle locale

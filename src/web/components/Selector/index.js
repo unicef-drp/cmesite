@@ -2,6 +2,7 @@ import { isNil, map, addIndex, prop } from 'ramda';
 import { compose, branch, renderNothing, withProps, withHandlers } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import routes, { getPath } from '../../routes';
 import {
@@ -16,9 +17,12 @@ import Component from './component';
 export const enhance = (selectors, keys, { isCountry } = {}) =>
   compose(
     withRouter,
-    connect(createStructuredSelector(selectors), {
-      changeSelection: changeSelection({ selectionType: 'select' }),
-    }),
+    connect(createStructuredSelector(selectors), (dispatch, { dataType }) =>
+      bindActionCreators(
+        { changeSelection: changeSelection({ dataType, selectionType: 'select' }) },
+        dispatch,
+      ),
+    ),
     branch(({ dimension }) => isNil(dimension), renderNothing),
     withProps(({ dimension }) => ({
       keys,

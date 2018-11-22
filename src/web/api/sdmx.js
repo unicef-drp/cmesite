@@ -1,9 +1,22 @@
 import axios from 'axios';
-import { map, fromPairs, compose, toPairs, forEach, join } from 'ramda';
+import { map, fromPairs, compose, toPairs, forEach, join, prop } from 'ramda';
 import { structureParser, dataParser, dataQuery } from '../lib/sdmx';
-import { RELEVANT_DIMENSIONS } from '../constants';
+import { RELEVANT_DIMENSIONS, TIME_PERIOD, REF_AREA } from '../constants';
 import sdmxStructure from '../../mock/data/sdmxStructure';
-import sdmxData from '../../mock/data/sdmxDataMap';
+import sdmxData from '../../mock/data/sdmxData';
+import sdmxDataMap from '../../mock/data/sdmxDataMap';
+
+export const COUNTRY = 'country';
+export const COMPARE = 'compare';
+export const MAP = 'map';
+export const DATA_CONTEXTS = {
+  [COUNTRY]: { queryOptions: { dropIds: [TIME_PERIOD], isExclusive: true } },
+  [COMPARE]: { queryOptions: { dropIds: [TIME_PERIOD], onlyEstimates: true } },
+  [MAP]: {
+    queryOptions: { dropIds: [REF_AREA], isExclusive: true, onlyEstimates: true },
+    parserOptions: { isMap: true },
+  },
+};
 
 const mockConfig = { locale: 'en' };
 let globalConfig = { debug: true, ...mockConfig };
@@ -31,7 +44,9 @@ const getStructure = () =>
     })
     .then(({ data }) => configuredStructureParser(data));
 
-const getData = ({ dimensions, queryOptions, parserOptions }) =>
+const getData = ({ dimensions, dataType }) => {
+  const { queryOptions, parserOptions } = prop(dataType, DATA_CONTEXTS);
+
   axios
     .get(
       endPoint(
@@ -47,6 +62,7 @@ const getData = ({ dimensions, queryOptions, parserOptions }) =>
       },
     )
     .then(({ data }) => configuredDataParser(data, parserOptions));
+};
 
 /* eslint-disable-line no-shadow */
 const config = config => (globalConfig = { ...globalConfig, ...config });
@@ -59,10 +75,13 @@ const methods = {
       setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 100);
     }),
   //getData,
-  getData: ({ parserOptions }) =>
-    new Promise(resolve => {
-      setTimeout(() => resolve(configuredDataParser(sdmxData, parserOptions)), 100);
-    }),
+  getData: ({ dataType }) => {
+    const data = dataType === MAP ? sdmxDataMap : sdmxData;
+    const { parserOptions } = prop(dataType, DATA_CONTEXTS);
+    return new Promise(resolve => {
+      setTimeout(() => resolve(configuredDataParser(data, parserOptions)), 100);
+    });
+  },
 };
 
 const error = method => () => {

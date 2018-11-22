@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { DataAllDimensions } from '../DataDimensions';
+import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
-import { DataCompareChart } from '../DataChart';
+import DataMap from '../DataMap';
 import Wrapper from '../Wrapper';
+import { MAP } from '../../api/sdmx';
 
 const style = theme => ({
   wrapper: {
@@ -14,22 +15,22 @@ const style = theme => ({
   },
 });
 
-const DataTabCompare = ({ classes }) => (
+const DataTabMap = ({ classes }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Grid container spacing={16}>
       <Grid item xs={12} md={3}>
-        <DataAllDimensions isSide />
+        <DataOtherDimensions isSide isSelectionExclusive dataType={MAP} />
         <DataDownloadActions />
       </Grid>
       <Grid item xs={12} md={9}>
-        <DataCompareChart isCompare />
+        <DataMap />
       </Grid>
     </Grid>
   </Wrapper>
 );
 
-DataTabCompare.propTypes = {
+DataTabMap.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(DataTabCompare);
+export default withStyles(style)(DataTabMap);
