@@ -12,11 +12,10 @@ import {
   path,
   nth,
   pipe,
-  isNil,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP } from '../api/sdmx';
-import { getRawDimensions, getShouldLoadData } from '../selectors/data';
+import { getRawDimensions, getStale, getCanLoadData } from '../selectors/data';
 import { TYPES } from '../constants';
 
 export const FORMATS = ['csv', 'xml'];
@@ -45,8 +44,9 @@ const initialState = {
     {},
     TYPES,
   ),
-  isToggledStale: true,
-  isSelectedStale: true,
+  countryStale: true,
+  compareStale: true,
+  mapStale: true,
   countrySeries: {},
   compareSeries: {},
   mapSeries: {},
@@ -65,7 +65,7 @@ const reducer = (state = initialState, action = {}) => {
           lensPath(['dimensions', action.dimensionIndex, 'values', action.valueIndex, 'isToggled']),
           not,
         ),
-        assoc('isToggledStale', true),
+        assoc('compareStale', true),
       )(state);
     case TOGGLE_DIMENSION_VALUES:
       return pipe(
@@ -73,7 +73,7 @@ const reducer = (state = initialState, action = {}) => {
           lensPath(['dimensions', action.dimensionIndex, 'values']),
           map(assoc('isToggled', action.value)),
         ),
-        assoc('isToggledStale', true),
+        assoc('compareStale', true),
       )(state);
     case SELECT_DIMENSION_VALUE:
       var selectPath = ['dimensions', action.dimensionIndex, 'values'];
@@ -87,7 +87,8 @@ const reducer = (state = initialState, action = {}) => {
             isToggled: hasNoToggled ? equals(index, action.valueIndex) : value.isToggled,
           })),
         ),
-        assoc('isSelectedStale', true),
+        assoc('countryStale', true),
+        assoc('mapStale', true),
       )(state);
     case LOADING_STRUCTURE:
       return { ...state, isLoadingStructure: true };
@@ -100,7 +101,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isLoadingData: false,
         [`${action.dataType}Series`]: action.series,
-        [`${equals(COMPARE, action.dataType) ? 'isToggled' : 'isSelected'}Stale`]: false,
+        [`${action.dataType}Stale`]: false,
       };
     case TOGGLE_DOWNLOADING_DATA:
       return over(lensPath(['downloadingData', `${action.format}.${action.scope}`]), not, state);
@@ -147,7 +148,7 @@ export const changeActiveTab = activeTab => (dispatch, getState) => {
   dispatch({ type: CHANGE_ACTIVE_TAB, activeTab });
 
   const dataType = nth(activeTab, [COUNTRY, COMPARE, MAP, null]);
-  if (getShouldLoadData(dataType)(getState())) dispatch(loadData(dataType));
+  if (getStale(dataType)(getState())) dispatch(loadData(dataType));
 };
 
 export const changeSelection = ({ selectionType, dataType }) => (
@@ -172,7 +173,7 @@ export const loadStructure = dataType => dispatch => {
 };
 
 export const loadData = dataType => (dispatch, getState) => {
-  if (isNil(dataType)) return;
+  if (not(getCanLoadData(dataType)(getState()))) return;
 
   dispatch({ type: LOADING_DATA });
   if (equals(dataType, MAP)) dispatch(changeMapIndex());

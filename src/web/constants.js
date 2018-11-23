@@ -20,3 +20,5 @@ export const Z = 'SERIES_NAME';
 export const X = TIME_PERIOD;
 export const Y0 = 'LOWER_BOUND';
 export const Y1 = 'UPPER_BOUND';
+
+export const MAX_SDMX_VALUES = 18;

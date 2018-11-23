@@ -21,14 +21,15 @@ import {
   isNil,
   length,
   nth,
-  or,
-  and,
   equals,
-  complement,
+  none,
+  and,
+  gt,
+  lte,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
-import { COMPARE } from '../api/sdmx';
-import { getSelectedDimensionValue } from '../utils';
+import { COUNTRY, COMPARE, MAP } from '../api/sdmx';
+import { getSelectedDimensionValue, getToggledCombinations } from '../utils';
 import {
   REF_AREA,
   INDICATOR,
@@ -37,6 +38,7 @@ import {
   ESTIMATE,
   INCLUDED,
   EXCLUDED,
+  MAX_SDMX_VALUES,
 } from '../constants';
 
 export const getData = prop('data');
@@ -58,8 +60,7 @@ export const getIsLoadingStructure = createSelector(getData, prop('isLoadingStru
 export const getIsLoadingData = createSelector(getData, prop('isLoadingData'));
 export const getDownloadingData = createSelector(getData, prop('downloadingData'));
 export const getRawDimensions = createSelector(getData, prop('dimensions'));
-export const getIsToggledStale = createSelector(getData, prop('isToggledStale'));
-export const getIsSelectedStale = createSelector(getData, prop('isSelectedStale'));
+export const getStale = dataType => createSelector(getData, prop(`${dataType}Stale`));
 export const getDimensions = createSelector(getRawDimensions, filterArtefacts(RELEVANT_DIMENSIONS));
 export const getCountryDimension = createSelector(getDimensions, find(propEq('id', REF_AREA)));
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
@@ -101,11 +102,19 @@ export const getCompareEstimateSeries = createSelector(
   getData,
   pipe(propOr({}, 'compareSeries'), values),
 );
-export const getShouldLoadData = dataType =>
-  createSelector(getIsToggledStale, getIsSelectedStale, (isToggledStale, isSelectedStale) => {
-    if (isNil(dataType)) return false;
-    return or(
-      and(equals(dataType, COMPARE), isToggledStale),
-      and(complement(equals)(dataType, COMPARE), isSelectedStale),
-    );
-  });
+export const getCanLoadData = dataType =>
+  createSelector(
+    getCountryValue,
+    getIndicatorValue,
+    getSexValue,
+    getDimensions,
+    (country, indicator, sex, dimensions) => {
+      if (isNil(dataType)) return false;
+      if (equals(dataType, COUNTRY)) return none(isNil, [country, indicator, sex]);
+      else if (equals(dataType, MAP)) return none(isNil, [indicator, sex]);
+      else if (equals(dataType, COMPARE)) {
+        const combinations = getToggledCombinations(dimensions);
+        return and(gt(combinations, 0), lte(combinations, MAX_SDMX_VALUES));
+      } else return false;
+    },
+  );

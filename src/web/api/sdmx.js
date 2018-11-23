@@ -47,7 +47,7 @@ const getStructure = () =>
 const getData = ({ dimensions, dataType }) => {
   const { queryOptions, parserOptions } = prop(dataType, DATA_CONTEXTS);
 
-  axios
+  return axios
     .get(
       endPoint(
         `/data/${dataflowQuery(',')}/${dataQuery(queryOptions)(
@@ -69,13 +69,13 @@ const config = config => (globalConfig = { ...globalConfig, ...config });
 
 const methods = {
   config,
-  //getStructure,
-  getStructure: () =>
+  getStructure,
+  _getStructure: () =>
     new Promise(resolve => {
       setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 100);
     }),
-  //getData,
-  getData: ({ dataType }) => {
+  getData,
+  _getData: ({ dataType }) => {
     const data = dataType === MAP ? sdmxDataMap : sdmxData;
     const { parserOptions } = prop(dataType, DATA_CONTEXTS);
     return new Promise(resolve => {

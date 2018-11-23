@@ -5,9 +5,11 @@
 - [x] initial request in map
 - [x] change selection, reset mapIndex
 - [x] default compare country is the one from country
-- [ ] click on country to go on tab country with proper selection
-- [ ] block requests if no selection
-- [ ] block requests if too many selection (20 combined)
+- [x] click on country to go on tab country with proper selection
+- [x] block requests if no selection
+- [x] block requests if too many selection (20 combined)
+- [ ] go from home to data by selecting a country (no load data triggered)
+- [ ] no data in compare, invalid selection message in chart/map
 
 ## map
 - [x] legend (position/responsive)
