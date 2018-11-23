@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { prop } from 'ramda';
 import { select } from 'd3-selection';
-import * as axis from 'd3-axis';
+import * as d3Axis from 'd3-axis';
 
 /* React and D3 both need to manipulate the DOM.
  * With latest versions of each, it sounds better to rely on D3 for computations like scales
@@ -19,20 +19,20 @@ class Axis extends React.Component {
 
   getAxisName = prop(`axis${this.props.orient}`);
 
-  renderAxis = () =>
-    select(this.axisElement).call(
-      this.getAxisName(axis)(this.props.scale)
-        .tickPadding(6)
-        .tickSize(this.props.tickSize)
-        .ticks(10),
-    );
+  renderAxis = () => {
+    const axis = this.getAxisName(d3Axis)(this.props.scale)
+      .tickPadding(6)
+      .tickSize(this.props.tickSize)
+      .ticks(10);
+
+    if (this.props.tickFormat) axis.tickFormat(this.props.tickFormat);
+
+    select(this.axisElement).call(axis);
+  };
 
   render = () => (
     <g
-      className={classNames(
-        prop('axis')(this.props.classes),
-        this.getAxisName(this.props.classes),
-      )}
+      className={classNames(prop('axis')(this.props.classes), this.getAxisName(this.props.classes))}
       ref={el => {
         this.axisElement = el;
       }}
@@ -43,6 +43,7 @@ class Axis extends React.Component {
 
 Axis.propTypes = {
   scale: PropTypes.func.isRequired,
+  tickFormat: PropTypes.func,
   orient: PropTypes.oneOf(['Top', 'Right', 'Bottom', 'Left']),
   translate: PropTypes.string,
   ticks: PropTypes.number,

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { CountrySelector } from '../Selector';
 import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
-import { DataCountryChart } from '../DataChart';
+import DataMap from '../DataMap';
 import Wrapper from '../Wrapper';
+import { MAP } from '../../api/sdmx';
 
 const style = theme => ({
   wrapper: {
@@ -15,25 +15,23 @@ const style = theme => ({
   },
 });
 
-const DataTabCountry = ({ classes }) => (
+const Map = ({ classes, isActive }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Grid container spacing={16}>
-      <Grid item xs={12}>
-        <CountrySelector />
-      </Grid>
       <Grid item xs={12} md={3}>
-        <DataOtherDimensions isSide isSelectionExclusive />
+        <DataOtherDimensions isSide isSelectionExclusive dataType={MAP} />
         <DataDownloadActions />
       </Grid>
       <Grid item xs={12} md={9}>
-        <DataCountryChart />
+        {isActive && <DataMap />}
       </Grid>
     </Grid>
   </Wrapper>
 );
 
-DataTabCountry.propTypes = {
+Map.propTypes = {
   classes: PropTypes.object.isRequired,
+  isActive: PropTypes.bool,
 };
 
-export default withStyles(style)(DataTabCountry);
+export default withStyles(style)(Map);

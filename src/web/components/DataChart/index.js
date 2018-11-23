@@ -1,5 +1,5 @@
 import { pipe, reject, isNil, isEmpty } from 'ramda';
-import { compose, branch, renderComponent } from 'recompose';
+import { compose, branch, renderComponent, withProps } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import {
@@ -42,6 +42,7 @@ export const DataCountryChart = withData({
   excludedSeries: getCountryExcludedSeries,
 })(Component);
 
-export const DataCompareChart = withData({
-  estimateSeries: getCompareEstimateSeries,
-})(Component);
+export const DataCompareChart = compose(
+  withData({ estimateSeries: getCompareEstimateSeries }),
+  withProps({ isCompare: true }),
+)(Component);

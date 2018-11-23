@@ -22,12 +22,13 @@ const styles = theme => ({
   },
   valueContainer: {
     display: 'flex',
-    //flexWrap: 'wrap',
+    flexWrap: 'wrap',
     flex: 1,
     alignItems: 'center',
-    padding: theme.spacing.unit * 2,
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+    padding: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+    overflow: 'hidden',
   },
   singleValue: {
     textTransform: 'none',

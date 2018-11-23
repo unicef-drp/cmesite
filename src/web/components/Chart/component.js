@@ -1,7 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { compose, map, addIndex, ifElse, isNil, always, prop } from 'ramda';
+import Typography from '@material-ui/core/Typography';
+import { compose, map, addIndex, ifElse, isNil, always, prop, lte, identity } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
@@ -50,7 +51,7 @@ const style = theme => ({
   },
   resetZoom: {
     position: 'absolute',
-    top: theme.spacing.unit * 2,
+    top: theme.spacing.unit * 4,
     right: theme.spacing.unit,
     textTransform: 'none',
   },
@@ -142,6 +143,8 @@ class Chart extends React.Component {
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
 
+    if (contentWidth < 0 || contentHeight < 0) return null; // avoid rect in defs error, should be solved
+
     const areas = uncertaintySeries
       ? map(
           ({ id, datapoints }) => (
@@ -180,6 +183,9 @@ class Chart extends React.Component {
     return (
       <div>
         {/* div is required for withSize to work properly */}
+        <Typography variant="caption">
+          <FormattedMessage {...messages.yAxisLabel} />
+        </Typography>
         <Button variant="contained" onClick={this.resetZoom} className={classes.resetZoom}>
           <FormattedMessage {...messages.resetZoom} />
         </Button>
@@ -196,6 +202,7 @@ class Chart extends React.Component {
                 scale={yScale}
                 ticks={20}
                 tickSize={-contentWidth}
+                tickFormat={ifElse(lte(0), identity, always(''))}
                 classes={classes}
               />
               <Axis

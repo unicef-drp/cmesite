@@ -1,4 +1,17 @@
-import { all, equals, any, propEq, both, pipe, propOr, find } from 'ramda';
+import {
+  all,
+  equals,
+  any,
+  propEq,
+  both,
+  pipe,
+  propOr,
+  find,
+  product,
+  map,
+  length,
+  filter,
+} from 'ramda';
 
 const getValues = propOr([], 'values');
 
@@ -10,3 +23,8 @@ export const hasIndeterminateSelection = pipe(
 );
 
 export const getSelectedDimensionValue = pipe(getValues, find(propEq('isSelected', true)));
+
+export const getToggledCombinations = pipe(
+  map(pipe(getValues, filter(propEq('isToggled', true)), length)),
+  product,
+);

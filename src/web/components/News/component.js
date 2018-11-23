@@ -31,6 +31,8 @@ const style = theme => ({
     [theme.breakpoints.down('sm')]: {
       width: 320,
       paddingTop: 0,
+      paddingLeft: theme.spacing.unit,
+      paddingRight: theme.spacing.unit,
     },
   },
   media: {

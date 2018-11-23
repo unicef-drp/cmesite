@@ -5,4 +5,8 @@ export default defineMessages({
     id: 'data.reset.zoom',
     defaultMessage: 'Reset zoom',
   },
+  yAxisLabel: {
+    id: 'data.yaxis.label',
+    defaultMessage: 'per thousand',
+  },
 });

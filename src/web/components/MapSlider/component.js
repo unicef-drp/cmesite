@@ -26,7 +26,8 @@ const styles = theme => ({
   },
 });
 
-const getLabel = mapSeries => pipe(flip(nth)(mapSeries), prop('name'));
+const getLabel = mapSeries =>
+  pipe(flip(nth)(mapSeries), prop('name'), name => new Date(name).getFullYear());
 
 const Component = ({ classes, theme, value, mapSeries, changeMapIndex, onChangeValue }) => (
   <div className={classes.wrapper}>

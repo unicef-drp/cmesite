@@ -7,7 +7,7 @@ export default defineMessages({
   },
   countrySelectorNoOption: {
     id: 'countrySelector.noOption',
-    defaultMessage: 'No country',
+    defaultMessage: 'Choose a country',
   },
   countrySelectorHome: {
     id: 'countrySelector.home',

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { prop } from 'ramda';
+import { prop, equals } from 'ramda';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import 'typeface-montserrat';
 import 'typeface-open-sans';
-import { scaleOrdinal, scaleQuantize } from 'd3-scale';
+import { scaleOrdinal, scaleThreshold } from 'd3-scale';
 import { schemeSet1 } from 'd3-scale-chromatic';
 import LanguageProvider from './components/LanguageProvider';
 import ConfigContext from './components/ConfigContext';
@@ -17,8 +17,9 @@ import { translationMessages } from './i18n';
 import configureStore from './store/configureStore';
 import ducks from './ducks';
 import wpApi from './api/wp';
-import sdmxApi from './api/sdmx';
+import sdmxApi, { MAP, COUNTRY } from './api/sdmx';
 import loadConfig from './config';
+import routes, { getPath } from './routes';
 
 const theme = createMuiTheme({
   typography: {
@@ -58,9 +59,9 @@ const theme = createMuiTheme({
       '#DE405C',
       '#6B3889',
     ]),*/
-    mapColorScale: scaleQuantize()
-      .domain([0, 100])
-      .range(['#cdeaf6', '#9ad5ee', '#0095d6', '#0080b2', '#506897']), // ratio %
+    mapColorScale: scaleThreshold()
+      .domain([0, 10, 20, 40, 100, 150])
+      .range(['#9b9b9b', '#cdeaf6', '#9ad5ee', '#0095d6', '#0080b2', '#506897', '#002e49']),
     mapAboveColor: '#002e49',
     mapNoneColor: '#9b9b9b',
   },
@@ -104,5 +105,7 @@ loadConfig().then(config => {
   store.dispatch(ducks.wp.actions.loadPosts('focuses'));
   store.dispatch(ducks.wp.actions.loadPosts('abouts'));
   store.dispatch(ducks.wp.actions.loadPosts('methods'));
-  store.dispatch(ducks.data.actions.loadStructure());
+
+  const isHome = equals(history.location.pathname, getPath(routes.home));
+  store.dispatch(ducks.data.actions.loadStructure(isHome ? MAP : COUNTRY));
 });

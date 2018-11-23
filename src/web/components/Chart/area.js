@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { prop, pipe, allPass } from 'ramda';
-import { area as d3Area, curveMonotoneX } from 'd3-shape';
+import { area as d3Area, curveLinear } from 'd3-shape';
 
 class Area extends React.Component {
   state = {
@@ -16,7 +16,7 @@ class Area extends React.Component {
       .x(pipe(prop('x'), xScale))
       .y0(pipe(prop('y0'), yScale))
       .y1(pipe(prop('y1'), yScale))
-      .curve(curveMonotoneX);
+      .curve(curveLinear);
 
     return { ...prevState, area };
   };

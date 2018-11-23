@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { prop, pipe, both, map, addIndex } from 'ramda';
-import { line as d3Line, curveMonotoneX } from 'd3-shape';
+import { line as d3Line, curveLinear } from 'd3-shape';
 import { select } from 'd3-selection';
 import { symbolGenerator } from './utils';
 
@@ -22,7 +22,7 @@ class Line extends React.Component {
     line
       .x(xScaleGetter)
       .y(yScaleGetter)
-      .curve(curveMonotoneX);
+      .curve(curveLinear);
 
     return {
       ...prevState,
@@ -69,7 +69,7 @@ class Line extends React.Component {
               }}
               onMouseOut={event => {
                 select(event.target).attr('fill', 'transparent');
-                this.antiBlink = setTimeout(() => this.props.setTooltip(), 100);
+                this.antiBlink = setTimeout(() => this.props.setTooltip(), 50);
               }}
             />
           </React.Fragment>

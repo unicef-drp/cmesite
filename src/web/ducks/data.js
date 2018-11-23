@@ -1,8 +1,22 @@
-import { not, over, lensPath, assoc, map, addIndex, equals, reduce, prop, or } from 'ramda';
+import {
+  not,
+  over,
+  lensPath,
+  assoc,
+  map,
+  addIndex,
+  equals,
+  reduce,
+  prop,
+  none,
+  path,
+  nth,
+  pipe,
+} from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
-import sdmxApi from '../api/sdmx';
-import { getRawDimensions } from '../selectors/data';
-import { TYPES, TIME_PERIOD } from '../constants';
+import sdmxApi, { COUNTRY, COMPARE, MAP } from '../api/sdmx';
+import { getRawDimensions, getStale, getCanLoadData } from '../selectors/data';
+import { TYPES } from '../constants';
 
 export const FORMATS = ['csv', 'xml'];
 export const SCOPES = ['all', 'selection'];
@@ -18,19 +32,6 @@ export const DATA_LOADED = 'CM/DATA/DATA_LOADED';
 export const TOGGLE_DOWNLOADING_DATA = 'CM/DATA/TOGGLE_DOWNLOADING_DATA';
 export const TOGGLE_ACTIVE_TYPE = 'CM/DATA/TOGGLE_ACTIVE_TYPE';
 export const CHANGE_MAP_INDEX = 'CM/DATA/CHANGE_MAP_INDEX';
-export const types = {
-  CHANGE_ACTIVE_TAB,
-  TOGGLE_DIMENSION_VALUE,
-  TOGGLE_DIMENSION_VALUES,
-  SELECT_DIMENSION_VALUE,
-  LOADING_STRUCTURE,
-  STRUCTURE_LOADED,
-  LOADING_DATA,
-  DATA_LOADED,
-  TOGGLE_DOWNLOADING_DATA,
-  TOGGLE_ACTIVE_TYPE,
-  CHANGE_MAP_INDEX,
-};
 
 const initialState = {
   activeTab: 0,
@@ -43,6 +44,9 @@ const initialState = {
     {},
     TYPES,
   ),
+  countryStale: true,
+  compareStale: true,
+  mapStale: true,
   countrySeries: {},
   compareSeries: {},
   mapSeries: {},
@@ -56,40 +60,48 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_MAP_INDEX:
       return { ...state, mapIndex: action.mapIndex };
     case TOGGLE_DIMENSION_VALUE:
-      return over(
-        lensPath(['dimensions', action.dimensionIndex, 'values', action.valueIndex, 'isToggled']),
-        not,
-        state,
-      );
-    case TOGGLE_DIMENSION_VALUES:
-      return over(
-        lensPath(['dimensions', action.dimensionIndex, 'values']),
-        map(assoc('isToggled', action.value)),
-        state,
-      );
-    case SELECT_DIMENSION_VALUE:
-      return over(
-        lensPath(['dimensions', action.dimensionIndex, 'values']),
-        addIndex(map)((value, index) =>
-          assoc('isSelected', equals(index, action.valueIndex), value),
+      return pipe(
+        over(
+          lensPath(['dimensions', action.dimensionIndex, 'values', action.valueIndex, 'isToggled']),
+          not,
         ),
-        state,
-      );
+        assoc('compareStale', true),
+      )(state);
+    case TOGGLE_DIMENSION_VALUES:
+      return pipe(
+        over(
+          lensPath(['dimensions', action.dimensionIndex, 'values']),
+          map(assoc('isToggled', action.value)),
+        ),
+        assoc('compareStale', true),
+      )(state);
+    case SELECT_DIMENSION_VALUE:
+      var selectPath = ['dimensions', action.dimensionIndex, 'values'];
+      var hasNoToggled = none(prop('isToggled'), path(selectPath, state));
+      return pipe(
+        over(
+          lensPath(selectPath),
+          addIndex(map)((value, index) => ({
+            ...value,
+            isSelected: equals(index, action.valueIndex),
+            isToggled: hasNoToggled ? equals(index, action.valueIndex) : value.isToggled,
+          })),
+        ),
+        assoc('countryStale', true),
+        assoc('mapStale', true),
+      )(state);
     case LOADING_STRUCTURE:
       return { ...state, isLoadingStructure: true };
     case STRUCTURE_LOADED:
-      return {
-        ...state,
-        isLoadingStructure: false,
-        dimensions: action.dimensions,
-      };
+      return { ...state, isLoadingStructure: false, dimensions: action.dimensions };
     case LOADING_DATA:
       return { ...state, isLoadingData: true };
     case DATA_LOADED:
       return {
         ...state,
         isLoadingData: false,
-        [`${action.key}Series`]: action.series,
+        [`${action.dataType}Series`]: action.series,
+        [`${action.dataType}Stale`]: false,
       };
     case TOGGLE_DOWNLOADING_DATA:
       return over(lensPath(['downloadingData', `${action.format}.${action.scope}`]), not, state);
@@ -100,38 +112,9 @@ const reducer = (state = initialState, action = {}) => {
   }
 };
 
-export const changeActiveTab = activeTab => ({
-  type: CHANGE_ACTIVE_TAB,
-  activeTab,
-});
+export const changeMapIndex = mapIndex => ({ type: CHANGE_MAP_INDEX, mapIndex });
 
-export const changeMapIndex = mapIndex => ({
-  type: CHANGE_MAP_INDEX,
-  mapIndex,
-});
-
-export const toggleDimensionValue = (dimensionIndex, valueIndex) => ({
-  type: TOGGLE_DIMENSION_VALUE,
-  dimensionIndex,
-  valueIndex,
-});
-
-export const toggleDimensionValues = (dimensionIndex, value) => ({
-  type: TOGGLE_DIMENSION_VALUES,
-  dimensionIndex,
-  value,
-});
-
-export const selectDimensionValue = (dimensionIndex, valueIndex) => ({
-  type: SELECT_DIMENSION_VALUE,
-  dimensionIndex,
-  valueIndex,
-});
-
-export const toggleActiveType = activeType => ({
-  type: TOGGLE_ACTIVE_TYPE,
-  activeType,
-});
+export const toggleActiveType = activeType => ({ type: TOGGLE_ACTIVE_TYPE, activeType });
 
 const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
   const { method } = ctx;
@@ -161,38 +144,44 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
     });
 };
 
-export const changeSelection = ({ type }) => (dimensionIndex, valueIndex) => dispatch => {
-  const isToggle = equals(type, 'toggle');
-  const isToggleAll = equals(type, 'toggleAll');
+export const changeActiveTab = activeTab => (dispatch, getState) => {
+  dispatch({ type: CHANGE_ACTIVE_TAB, activeTab });
 
-  if (isToggle) dispatch(toggleDimensionValue(dimensionIndex, valueIndex));
-  else if (isToggleAll) dispatch(toggleDimensionValues(dimensionIndex, valueIndex));
-  else if (equals(type, 'select')) dispatch(selectDimensionValue(dimensionIndex, valueIndex));
-
-  if (or(isToggle, isToggleAll))
-    dispatch(
-      loadData({ key: 'compare', queryOptions: { dropIds: [TIME_PERIOD], onlyEstimates: true } }),
-    );
+  const dataType = nth(activeTab, [COUNTRY, COMPARE, MAP, null]);
+  if (getStale(dataType)(getState())) dispatch(loadData(dataType));
 };
 
-export const loadStructure = () => dispatch => {
+export const changeSelection = ({ selectionType, dataType }) => (
+  dimensionIndex,
+  valueIndex,
+) => dispatch => {
+  if (equals(selectionType, 'toggle'))
+    dispatch({ type: TOGGLE_DIMENSION_VALUE, dimensionIndex, valueIndex });
+  else if (equals(selectionType, 'toggleAll'))
+    dispatch({ type: TOGGLE_DIMENSION_VALUES, dimensionIndex, value: valueIndex });
+  else if (equals(selectionType, 'select'))
+    dispatch({ type: SELECT_DIMENSION_VALUE, dimensionIndex, valueIndex });
+  dispatch(loadData(dataType));
+};
+
+export const loadStructure = dataType => dispatch => {
   dispatch({ type: LOADING_STRUCTURE });
   return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions => {
     dispatch({ type: STRUCTURE_LOADED, dimensions });
+    dispatch(loadData(dataType));
   });
 };
 
-export const loadData = ({ key, queryOptions = {}, parserOptions = {} } = {}) => (
-  dispatch,
-  getState,
-) => {
+export const loadData = dataType => (dispatch, getState) => {
+  if (not(getCanLoadData(dataType)(getState()))) return;
+
   dispatch({ type: LOADING_DATA });
+  if (equals(dataType, MAP)) dispatch(changeMapIndex());
   return requestSDMX(dispatch, {
     method: 'getData',
     dimensions: getRawDimensions(getState()),
-    queryOptions,
-    parserOptions,
-  }).then(series => dispatch({ type: DATA_LOADED, key, series }));
+    dataType,
+  }).then(series => dispatch({ type: DATA_LOADED, dataType, series }));
 };
 
 export const downloadData = ({ format, scope }) => dispatch => {
@@ -206,12 +195,10 @@ export const downloadData = ({ format, scope }) => dispatch => {
 
 const actions = {
   changeActiveTab,
-  toggleDimensionValue,
-  toggleDimensionValues,
-  selectDimensionValue,
   downloadData,
   toggleActiveType,
   loadStructure,
+  changeSelection,
 };
 
 export default { reducer, actions };

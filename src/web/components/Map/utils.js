@@ -1,11 +1,11 @@
-import { path, length, divide, last } from 'ramda';
+import { path, prop } from 'ramda';
 
-export const getColor = ({ scale, d, datapoints, noneColor }) => {
+export const getDatapoint = ({ d, datapoints }) => {
   const code = path(['properties', 'code'], d);
-  const y = path([code, 'y'], datapoints);
-  return y ? scale(y) : noneColor;
+  return prop(code, datapoints);
 };
 
-export const getSteps = scale => length(scale.range());
-
-export const getInterval = scale => divide(last(scale.domain()), getSteps(scale));
+export const getColor = ({ scale, datapoint }) => {
+  const y = prop('y', datapoint);
+  return scale(y ? y : -1);
+};
