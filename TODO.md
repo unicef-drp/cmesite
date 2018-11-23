@@ -5,11 +5,9 @@
 - [x] initial request in map
 - [x] change selection, reset mapIndex
 - [x] default compare country is the one from country
-- [ ] block requests in compare
 - [ ] click on country to go on tab country with proper selection
-- [ ] if no country in compare, no request
-- [ ] Chart is maybe re-rendered when switching tabs and when expanding Legend
-- [ ] sdmx data request is too heavy when all selected
+- [ ] block requests if no selection
+- [ ] block requests if too many selection (20 combined)
 
 ## map
 - [x] legend (position/responsive)

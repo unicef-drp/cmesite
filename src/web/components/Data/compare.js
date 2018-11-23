@@ -15,7 +15,7 @@ const style = theme => ({
   },
 });
 
-const Compare = ({ classes }) => (
+const Compare = ({ classes, isActive }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Grid container spacing={16}>
       <Grid item xs={12} md={3}>
@@ -23,7 +23,7 @@ const Compare = ({ classes }) => (
         <DataDownloadActions />
       </Grid>
       <Grid item xs={12} md={9}>
-        <DataCompareChart />
+        {isActive && <DataCompareChart />}
       </Grid>
     </Grid>
   </Wrapper>
@@ -31,6 +31,7 @@ const Compare = ({ classes }) => (
 
 Compare.propTypes = {
   classes: PropTypes.object.isRequired,
+  isActive: PropTypes.bool,
 };
 
 export default withStyles(style)(Compare);

@@ -15,7 +15,7 @@ const style = theme => ({
   },
 });
 
-const DataTabMap = ({ classes }) => (
+const Map = ({ classes, isActive }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Grid container spacing={16}>
       <Grid item xs={12} md={3}>
@@ -23,14 +23,15 @@ const DataTabMap = ({ classes }) => (
         <DataDownloadActions />
       </Grid>
       <Grid item xs={12} md={9}>
-        <DataMap />
+        {isActive && <DataMap />}
       </Grid>
     </Grid>
   </Wrapper>
 );
 
-DataTabMap.propTypes = {
+Map.propTypes = {
   classes: PropTypes.object.isRequired,
+  isActive: PropTypes.bool,
 };
 
-export default withStyles(style)(DataTabMap);
+export default withStyles(style)(Map);

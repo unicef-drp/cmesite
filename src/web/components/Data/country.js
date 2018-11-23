@@ -16,7 +16,7 @@ const style = theme => ({
   },
 });
 
-const Country = ({ classes }) => (
+const Country = ({ classes, isActive }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Grid container spacing={16}>
       <Grid item xs={12}>
@@ -27,7 +27,7 @@ const Country = ({ classes }) => (
         <DataDownloadActions />
       </Grid>
       <Grid item xs={12} md={9}>
-        <DataCountryChart />
+        {isActive && <DataCountryChart />}
       </Grid>
     </Grid>
   </Wrapper>
@@ -35,6 +35,7 @@ const Country = ({ classes }) => (
 
 Country.propTypes = {
   classes: PropTypes.object.isRequired,
+  isActive: PropTypes.bool,
 };
 
 export default withStyles(style)(Country);

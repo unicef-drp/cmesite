@@ -26,6 +26,8 @@ const styles = theme => ({
     flex: 1,
     alignItems: 'center',
     padding: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
     overflow: 'hidden',
   },
   singleValue: {
