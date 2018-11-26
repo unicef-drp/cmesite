@@ -21,11 +21,12 @@ class Axis extends React.Component {
 
   renderAxis = () => {
     const axis = this.getAxisName(d3Axis)(this.props.scale)
-      .tickPadding(6)
       .tickSize(this.props.tickSize)
-      .ticks(10);
+      .tickPadding(this.props.tickPadding);
 
     if (this.props.tickFormat) axis.tickFormat(this.props.tickFormat);
+    if (this.props.ticks) axis.ticks(this.props.ticks);
+    if (this.props.tickValues) axis.tickValues(this.props.tickValues);
 
     select(this.axisElement).call(axis);
   };
@@ -33,9 +34,7 @@ class Axis extends React.Component {
   render = () => (
     <g
       className={classNames(prop('axis')(this.props.classes), this.getAxisName(this.props.classes))}
-      ref={el => {
-        this.axisElement = el;
-      }}
+      ref={el => (this.axisElement = el)}
       transform={this.props.translate}
     />
   );
@@ -48,7 +47,13 @@ Axis.propTypes = {
   translate: PropTypes.string,
   ticks: PropTypes.number,
   tickSize: PropTypes.number,
+  tickPadding: PropTypes.tickPadding,
+  tickValues: PropTypes.array,
   classes: PropTypes.object,
+};
+
+Axis.defaultProps = {
+  tickPadding: 6,
 };
 
 export default Axis;

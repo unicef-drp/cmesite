@@ -58,7 +58,7 @@ const DataChart = ({ classes, title, activeTypes, toggleActiveType, isCompare, .
     {activeTypes && (
       <div className={classes.toggles}>
         <Typography className={classes.typo}>
-          <FormattedMessage {...messages.series} />
+          {/*<FormattedMessage {...messages.series} />*/}
         </Typography>
         <div>
           {pipe(

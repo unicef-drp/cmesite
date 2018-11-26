@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import DataDownloadActions from '../DataDownloadActions';
 import { DataAllDimensions } from '../DataDimensions';
 import Wrapper from '../Wrapper';
+import DataNotes from '../DataNotes';
 
 const style = theme => ({
   wrapper: {
@@ -19,6 +20,7 @@ const DataTabDownload = ({ classes }) => (
       <Grid item xs={12}>
         <DataAllDimensions />
         <DataDownloadActions />
+        <DataNotes />
       </Grid>
     </Grid>
   </Wrapper>

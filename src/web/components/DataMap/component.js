@@ -10,6 +10,7 @@ import { HomeCountrySelector, IndicatorSelector } from '../Selector';
 import WorldMap from '../Map';
 import MapSlider from '../MapSlider';
 import DataProgress from '../DataProgress';
+import { COUNTRY } from '../../api/sdmx';
 
 const styles = theme => ({
   root: {
@@ -76,7 +77,7 @@ const Component = ({ classes, isHome, isLoadingData }) => {
           <Typography variant="body2" color="primary" className={classes.countryLabel}>
             <FormattedMessage {...messages.country} />
           </Typography>
-          <HomeCountrySelector />
+          <HomeCountrySelector dataType={COUNTRY} />
         </div>
       </Grid>
       <Grid item xs={12}>

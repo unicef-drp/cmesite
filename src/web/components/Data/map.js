@@ -6,6 +6,7 @@ import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
 import DataMap from '../DataMap';
 import Wrapper from '../Wrapper';
+import DataNotes from '../DataNotes';
 import { MAP } from '../../api/sdmx';
 
 const style = theme => ({
@@ -24,6 +25,9 @@ const Map = ({ classes, isActive }) => (
       </Grid>
       <Grid item xs={12} md={9}>
         {isActive && <DataMap />}
+      </Grid>
+      <Grid item xs={12}>
+        <DataNotes />
       </Grid>
     </Grid>
   </Wrapper>

@@ -8,7 +8,8 @@
 - [x] click on country to go on tab country with proper selection
 - [x] block requests if no selection
 - [x] block requests if too many selection (20 combined)
-- [ ] go from home to data by selecting a country (no load data triggered)
+- [x] go from home to data by selecting a country (no load data triggered)
+- [x] go back to home, no request triggered
 - [ ] no data in compare, invalid selection message in chart/map
 
 ## map
@@ -23,20 +24,20 @@
 - [x] no curve monotone x
 - [x] add yaxis label 'per thousand'
 - [x] hide negative values in yaxis
+- [x] tooltip labels (country, compare, SERIES_NAME, SERIES_CATEGORY, SERIES_TYPE, SERIES_YEAR and country for compare)
+- [x] legend labels (country, compare, SERIES_NAME and indicators values, need country in compare)
+- [x] legend symbol: lines for estimate and uncertainty
+- [x] different symbols regarding SERIES_METHOD
+- [x] add ticks for the starting value in chart
 - [ ] update chart title when switching from compare to country
-- [ ] tooltip labels (country, compare, SERIES_NAME, SERIES_CATEGORY, SERIES_TYPE, SERIES_YEAR and country for compare)
-- [ ] legend symbol: lines for estimate et uncertainty
-- [ ] legend labels (country, compare, SERIES_NAME and indicators values, need country in compare)
-- [ ] extent always take uncertainty into account
-- [ ] add ticks for the starting value in chart
-- [ ] tooltip position
 
 ## sdmx
+- [ ] remove SEX dimension for configured INDICATOR values (disagreggated)
 - [ ] download headers
 
 ## bugs
 - [x] bug can't type in home country selector
-- [ ] datasource, reduce white space due to swipeable
+- [x] datasource, reduce white space due to swipeable
 
 ## misc
 - [x] no data -> choose a country
@@ -55,12 +56,15 @@
 ---
 
 ## dimensions
-- [ ] remove SEX dimension for configured INDICATOR values (disagreggated)
+- [x] swipeable avoid rendering, collapse states are reset (collapse, switch tabs, expanded!)
 - [ ] collapsable download box
-- [ ] swipeable avoid rendering, collapse states are reset (collapse, switch tabs, expanded!)
+
+## map
+- [ ] first request, last period then all, update component accordingly (no slider if single period)
 
 ## chart
-- [ ] different symbols regarding SERIES_METHOD
+- [ ] tooltip position
+- [ ] extent always take uncertainty into account
 
 ## config
 - [ ] put constants in config, remove hardcoded config in index.js

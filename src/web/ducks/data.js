@@ -12,6 +12,7 @@ import {
   path,
   nth,
   pipe,
+  isEmpty,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP } from '../api/sdmx';
@@ -164,7 +165,9 @@ export const changeSelection = ({ selectionType, dataType }) => (
   dispatch(loadData(dataType));
 };
 
-export const loadStructure = dataType => dispatch => {
+export const loadStructure = dataType => (dispatch, getState) => {
+  if (not(isEmpty(getRawDimensions(getState())))) return dispatch(loadData(dataType));
+
   dispatch({ type: LOADING_STRUCTURE });
   return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions => {
     dispatch({ type: STRUCTURE_LOADED, dimensions });

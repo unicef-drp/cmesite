@@ -13,7 +13,7 @@ export const ESTIMATE_TYPE = { sdmxId: 'SERIES_NAME', sdmxValue: '269', id: ESTI
 export const TYPES = [
   ESTIMATE_TYPE,
   { sdmxId: 'OBS_STATUS', sdmxValue: 'IN', id: INCLUDED, value: true },
-  { sdmxId: 'OBS_STATUS', sdmxValue: 'EX', id: EXCLUDED, value: false },
+  { sdmxId: 'OBS_STATUS', sdmxValue: 'EX', id: EXCLUDED, value: true },
 ];
 
 export const Z = 'SERIES_NAME';
@@ -22,3 +22,6 @@ export const Y0 = 'LOWER_BOUND';
 export const Y1 = 'UPPER_BOUND';
 
 export const MAX_SDMX_VALUES = 18;
+
+export const SERIES_METHOD = 'SERIES_METHOD';
+export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE', 'SERIES_YEAR'];

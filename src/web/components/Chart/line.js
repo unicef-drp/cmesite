@@ -51,7 +51,7 @@ class Line extends React.Component {
             {/* visible marker */}
             {this.props.hasSymbols && (
               <path
-                d={symbolGenerator(30)()}
+                d={symbolGenerator(30, this.props.serieIndex)()}
                 transform={`translate(${x},${y})`}
                 stroke={this.props.color}
                 fill={this.props.symbolFill}
@@ -59,7 +59,7 @@ class Line extends React.Component {
             )}
             {/* over marker */}
             <path
-              d={symbolGenerator(60)()}
+              d={symbolGenerator(60, this.props.serieIndex)()}
               transform={`translate(${x},${y})`}
               fill="transparent"
               onMouseOver={event => {
@@ -88,6 +88,7 @@ Line.propTypes = {
   hasSymbols: PropTypes.bool,
   symbolFill: PropTypes.string,
   setTooltip: PropTypes.func.isRequired,
+  serieIndex: PropTypes.number,
 };
 
 Line.defaultProps = {

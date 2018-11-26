@@ -7,14 +7,14 @@ export default defineMessages({
   },
   estimate: {
     id: 'data.chart.estimate',
-    defaultMessage: 'Trend line',
+    defaultMessage: 'UN IGME estimates',
   },
   included: {
     id: 'data.chart.included',
-    defaultMessage: 'Data series',
+    defaultMessage: 'Source data',
   },
   excluded: {
     id: 'data.chart.excluded',
-    defaultMessage: 'Excluded series',
+    defaultMessage: 'Excluded source data',
   },
 });

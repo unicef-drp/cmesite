@@ -1,5 +1,5 @@
 import { min as d3Min, max as d3Max } from 'd3-array';
-import { symbol, symbolCircle } from 'd3-shape';
+import { symbol, symbols } from 'd3-shape';
 import {
   equals,
   pipe,
@@ -17,16 +17,17 @@ import {
   isEmpty,
   isNil,
   reject,
+  length,
 } from 'ramda';
 import { ESTIMATE, EXCLUDED } from '../../constants';
 
-const isEstimate = equals(ESTIMATE);
+export const isEstimate = equals(ESTIMATE);
 
 export const hasSymbols = complement(isEstimate);
 
-export const symbolGenerator = size =>
+export const symbolGenerator = (size, index) =>
   symbol()
-    .type(symbolCircle)
+    .type(symbols[index % length(symbols)])
     .size(size);
 
 export const getSymbolFill = (type, index, theme, isUncertainty) => {
@@ -58,14 +59,8 @@ export const getExtents = (...series) => {
           max(last(prop('x', extents)), prop('x', last(datapoints))),
         ],
         y: [
-          min(
-            head(prop('y', extents)),
-            d3Min(datapoints, pipe(props(['y', 'y0', 'y1']), d3Min)),
-          ),
-          max(
-            last(prop('y', extents)),
-            d3Max(datapoints, pipe(props(['y', 'y0', 'y1']), d3Max)),
-          ),
+          min(head(prop('y', extents)), d3Min(datapoints, pipe(props(['y', 'y0', 'y1']), d3Min))),
+          max(last(prop('y', extents)), d3Max(datapoints, pipe(props(['y', 'y0', 'y1']), d3Max))),
         ],
       };
     },
