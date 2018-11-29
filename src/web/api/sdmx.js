@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { map, fromPairs, compose, toPairs, forEach, join, prop } from 'ramda';
+import FileSaver from 'file-saver';
+import { map, fromPairs, compose, toPairs, forEach, join, prop, equals, path } from 'ramda';
 import { structureParser, dataParser, dataQuery } from '../lib/sdmx';
 import { RELEVANT_DIMENSIONS, TIME_PERIOD, REF_AREA } from '../constants';
 import sdmxStructure from '../../mock/data/sdmxStructure';
@@ -9,6 +10,7 @@ import sdmxDataMap from '../../mock/data/sdmxDataMap';
 export const COUNTRY = 'country';
 export const COMPARE = 'compare';
 export const MAP = 'map';
+export const DOWNLOAD = 'download';
 export const DATA_CONTEXTS = {
   [COUNTRY]: { queryOptions: { dropIds: [TIME_PERIOD], isExclusive: true } },
   [COMPARE]: { queryOptions: { dropIds: [TIME_PERIOD], onlyEstimates: true } },
@@ -16,6 +18,12 @@ export const DATA_CONTEXTS = {
     queryOptions: { dropIds: [REF_AREA], isExclusive: true, onlyEstimates: true },
     parserOptions: { isMap: true },
   },
+  [DOWNLOAD]: { queryOptions: { dropIds: [] } },
+};
+const dataHeaders = {
+  json: 'application/vnd.sdmx.data+json;version=1.0.0-wd',
+  xml: 'application/vnd.sdmx.genericdata+xml; version=2.1',
+  csv: 'application/vnd.sdmx.data+csv',
 };
 
 const mockConfig = { locale: 'en' };
@@ -56,12 +64,31 @@ const getData = ({ dimensions, dataType }) => {
       ),
       {
         headers: {
-          Accept: 'application/vnd.sdmx.data+json;version=1.0.0-wd',
+          Accept: prop('json', dataHeaders),
           'Accept-Language': 'en',
         },
       },
     )
     .then(({ data }) => configuredDataParser(data, parserOptions));
+};
+
+const getFileData = ({ dimensions, dataType, format, scope }) => {
+  const { queryOptions } = prop(dataType, DATA_CONTEXTS);
+  const query = equals(scope, 'all') ? scope : dataQuery(queryOptions)(dimensions);
+  const url = endPoint(`/data/${dataflowQuery(',')}/${query}`);
+  const options = {
+    headers: {
+      Accept: `${prop(format, dataHeaders)};file=true`,
+      'Accept-Language': 'en',
+    },
+  };
+
+  return axios.get(url, options).then(response => {
+    const blob = new Blob([prop('data')(response)], {
+      type: path(['headers', 'content-type'])(response),
+    });
+    FileSaver.saveAs(blob, `download.${format}`);
+  });
 };
 
 /* eslint-disable-line no-shadow */
@@ -82,6 +109,7 @@ const methods = {
       setTimeout(() => resolve(configuredDataParser(data, parserOptions)), 100);
     });
   },
+  getFileData,
 };
 
 const error = method => () => {

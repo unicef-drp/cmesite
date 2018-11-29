@@ -21,7 +21,7 @@ const Map = ({ classes, isActive }) => (
     <Grid container spacing={16}>
       <Grid item xs={12} md={3}>
         <DataOtherDimensions isSide isSelectionExclusive dataType={MAP} />
-        <DataDownloadActions />
+        <DataDownloadActions dataType={MAP} />
       </Grid>
       <Grid item xs={12} md={9}>
         {isActive && <DataMap />}

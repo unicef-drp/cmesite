@@ -176,6 +176,7 @@ export const loadStructure = dataType => (dispatch, getState) => {
 };
 
 export const loadData = dataType => (dispatch, getState) => {
+  if (not(getStale(dataType)(getState()))) return;
   if (not(getCanLoadData(dataType)(getState()))) return;
 
   dispatch({ type: LOADING_DATA });
@@ -187,12 +188,14 @@ export const loadData = dataType => (dispatch, getState) => {
   }).then(series => dispatch({ type: DATA_LOADED, dataType, series }));
 };
 
-export const downloadData = ({ format, scope }) => dispatch => {
+export const downloadData = ({ dataType, format, scope }) => (dispatch, getState) => {
   dispatch({ type: TOGGLE_DOWNLOADING_DATA, format, scope });
-  // get selection or set all
-  // use proper http header
-  return new Promise(resolve => {
-    setTimeout(() => resolve(), 2000);
+  return requestSDMX(dispatch, {
+    method: 'getFileData',
+    dimensions: getRawDimensions(getState()),
+    dataType,
+    format,
+    scope,
   }).then(() => dispatch({ type: TOGGLE_DOWNLOADING_DATA, format, scope }));
 };
 

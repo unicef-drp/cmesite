@@ -74,7 +74,7 @@ const styles = theme => ({
   },
 });
 
-const DataDownloadPanel = ({ classes, downloadData, downloadingData }) => (
+const DataDownloadActions = ({ classes, downloadData, downloadingData, dataType }) => (
   <ExpansionPanel defaultExpanded classes={{ root: classes.panelRoot }}>
     <ExpansionPanelSummary
       expandIcon={<ExpandMoreIcon />}
@@ -100,7 +100,7 @@ const DataDownloadPanel = ({ classes, downloadData, downloadingData }) => (
               key={key}
               dense
               button
-              onClick={() => downloadData({ format, scope })}
+              onClick={() => downloadData({ dataType, format, scope })}
               disabled={downloading}
               className={classes.item}
               disableRipple
@@ -118,10 +118,11 @@ const DataDownloadPanel = ({ classes, downloadData, downloadingData }) => (
   </ExpansionPanel>
 );
 
-DataDownloadPanel.propTypes = {
+DataDownloadActions.propTypes = {
   downloadingData: PropTypes.object,
   downloadData: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  dataType: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(DataDownloadPanel);
+export default withStyles(styles)(DataDownloadActions);

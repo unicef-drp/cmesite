@@ -6,6 +6,7 @@ import DataDownloadActions from '../DataDownloadActions';
 import { DataAllDimensions } from '../DataDimensions';
 import Wrapper from '../Wrapper';
 import DataNotes from '../DataNotes';
+import { DOWNLOAD } from '../../api/sdmx';
 
 const style = theme => ({
   wrapper: {
@@ -19,7 +20,7 @@ const DataTabDownload = ({ classes }) => (
     <Grid container spacing={16}>
       <Grid item xs={12}>
         <DataAllDimensions />
-        <DataDownloadActions />
+        <DataDownloadActions dataType={DOWNLOAD} />
       </Grid>
       <Grid item xs={12}>
         <DataNotes />

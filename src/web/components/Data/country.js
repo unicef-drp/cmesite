@@ -25,7 +25,7 @@ const Country = ({ classes, isActive }) => (
       </Grid>
       <Grid item xs={12} md={3}>
         <DataOtherDimensions isSide isSelectionExclusive dataType={COUNTRY} />
-        <DataDownloadActions />
+        <DataDownloadActions dataType={COUNTRY} />
       </Grid>
       <Grid item xs={12} md={9}>
         {isActive && <DataCountryChart />}

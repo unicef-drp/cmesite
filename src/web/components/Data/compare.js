@@ -21,7 +21,7 @@ const Compare = ({ classes, isActive }) => (
     <Grid container spacing={16}>
       <Grid item xs={12} md={3}>
         <DataAllDimensions isSide dataType={COMPARE} />
-        <DataDownloadActions />
+        <DataDownloadActions dataType={COMPARE} />
       </Grid>
       <Grid item xs={12} md={9}>
         {isActive && <DataCompareChart />}
