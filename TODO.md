@@ -6,6 +6,7 @@
 
 ## chart
 - [ ] update chart title when switching from compare to country
+- [ ] all relevant indicators values in compare (legend and tooltip)
 
 ## sdmx
 - [ ] remove SEX dimension for configured INDICATOR values (disagreggated)
@@ -13,16 +14,18 @@
 
 ## misc
 - [ ] check reports in several langs
-- [ ] contact us in about
-- [ ] footer links
+- [ ] measurement unit reject if not rate in map
+- [ ] deaths (not rate): no serie selection, no label in yaxis, margin yAxis
+- [x] contact us in about
+- [x] footer links
 
 ## unicef
 - [ ] data icons tabs
 - [ ] WP backup WP-DB-Backup (daily)
-- [ ] DataNote source
+- [ ] DataNote source per tab with tag
 - [ ] SEO aspect, post release (https://web.dev/measure?authuser=1)
-- [ ] GA
-- [ ] notes for meetings
+- [ ] GA, snippet in index.html
+- [x] notes for meetings
 - [x] feedbacks of lucia
 - [ ] topojson to update
 - [ ] datasets organization (ceci)
@@ -43,3 +46,4 @@
 ## how-to & replies
 - 2nd point: update the splash post
 - methods image can't be interactive easily, can't see the end of the comment
+- contact is info@childmortality.org ?

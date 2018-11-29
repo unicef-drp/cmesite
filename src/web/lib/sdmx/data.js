@@ -182,7 +182,7 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
     serie = assoc(SERIES_METHOD, path([SERIES_METHOD, 'valueId'], observation), serie);
 
   if (contains(REF_AREA, RELEVANT_DIMENSIONS))
-    serie = assoc(REF_AREA, path([REF_AREA, 'valueId'], observation), serie);
+    serie = assoc(REF_AREA, path([REF_AREA, 'valueName'], observation), serie);
 
   return assoc(serieKey, serie, acc);
 };

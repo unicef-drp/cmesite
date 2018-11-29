@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import messages from './messages';
 import Wrapper from '../Wrapper';
 import igmeLogo from '../../../assets/igme-logo.png';
@@ -11,6 +12,8 @@ import unicefLogo from '../../../assets/unicef-black-logo.png';
 import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
 import wboLogo from '../../../assets/wbo-black-logo.png';
+import { EMAIL } from '../../constants';
+import routes, { getPath } from '../../routes';
 
 const style = theme => ({
   container: {
@@ -58,13 +61,13 @@ const Footer = ({ classes }) => (
         <img src={wboLogo} className={classes.logo} />
       </div>
       <div className={classnames(classes.item, classes.itemRight)}>
-        <Button className={classes.button}>
+        <Button className={classes.button} component={Link} to={getPath(routes.about)}>
           <FormattedMessage {...messages.about} />
         </Button>
         <Button className={classes.button}>
-          <FormattedMessage {...messages.legals} />
+          <FormattedMessage {...messages.legal} />
         </Button>
-        <Button className={classes.button}>
+        <Button className={classes.button} href={`mailto:${EMAIL}`}>
           <FormattedMessage {...messages.contact} />
         </Button>
       </div>

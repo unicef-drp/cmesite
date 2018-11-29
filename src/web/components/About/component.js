@@ -13,6 +13,7 @@ import unicefLogo from '../../../assets/unicef-black-logo.png';
 import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
 import wboLogo from '../../../assets/wbo-black-logo.png';
+import { EMAIL } from '../../constants';
 
 const style = theme => ({
   wrapper: {
@@ -140,7 +141,7 @@ const About = ({ about, focuses, classes, theme }) => (
 
         {/* contact */}
         <Grid item xs={12} sm={10} md={10} className={classNames(classes.section, classes.action)}>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" href={`mailto:${EMAIL}`}>
             <FormattedMessage {...messages.action} />
           </Button>
         </Grid>

@@ -47,7 +47,7 @@ Axis.propTypes = {
   translate: PropTypes.string,
   ticks: PropTypes.number,
   tickSize: PropTypes.number,
-  tickPadding: PropTypes.tickPadding,
+  tickPadding: PropTypes.number,
   tickValues: PropTypes.array,
   classes: PropTypes.object,
 };

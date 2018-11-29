@@ -62,7 +62,7 @@ const style = theme => ({
   resetZoom: {
     position: 'absolute',
     top: theme.spacing.unit * 4,
-    right: theme.spacing.unit,
+    right: theme.spacing.unit * 2,
     textTransform: 'none',
   },
 });

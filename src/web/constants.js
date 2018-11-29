@@ -25,3 +25,5 @@ export const MAX_SDMX_VALUES = 18;
 
 export const SERIES_METHOD = 'SERIES_METHOD';
 export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE', 'SERIES_YEAR'];
+
+export const EMAIL = 'info@childmortality.org';

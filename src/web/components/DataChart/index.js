@@ -1,4 +1,4 @@
-import { pipe, reject, isNil, isEmpty } from 'ramda';
+import { pipe, reject, isNil, isEmpty, either } from 'ramda';
 import { compose, branch, renderComponent, withProps } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -29,7 +29,11 @@ const withData = selectors =>
     branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
     branch(
       ({ estimateSeries, includedSeries, excludedSeries }) =>
-        pipe(reject(isNil), isEmpty)([estimateSeries, includedSeries, excludedSeries]),
+        pipe(reject(either(isNil, isEmpty)), isEmpty)([
+          estimateSeries,
+          includedSeries,
+          excludedSeries,
+        ]),
       renderComponent(DataNone),
     ),
   );
