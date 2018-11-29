@@ -1,7 +1,11 @@
 {
   "type": "FeatureCollection",
   "meta": {
-    "border": { "stroke": "rgba(184, 184, 184, 0.7)", "strokeWidth": 1, "dashArray": "2, 4" }
+    "border": {
+      "stroke": "rgba(184, 184, 184, 0.7)",
+      "strokeWidth": 1,
+      "dashArray": "2, 4"
+    }
   },
   "autoZoom": true,
   "view": [[-55.612, -180], [83.645, 208.219]],
@@ -369,7 +373,10 @@
         "fontStyle": null,
         "disabled": null
       },
-      "geometry": { "type": "LineString", "coordinates": [[33.171, 22.0065], [36.8659, 22.0065]] }
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[33.171, 22.0065], [36.8659, 22.0065]]
+      }
     },
     {
       "type": "Feature",
@@ -2176,7 +2183,7 @@
         "name": "American Samoa",
         "fontStyle": null,
         "disabled": 1,
-        "code": "ASM"
+        "code": "WSM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12117,7 +12124,7 @@
         "name": "Republic of Korea",
         "fontStyle": null,
         "disabled": null,
-        "code": "KOR"
+        "code": "PRK"
       },
       "geometry": {
         "type": "Polygon",
@@ -24032,7 +24039,7 @@
         "type": "Region",
         "dashArray": null,
         "strokeWidth": null,
-        "name": "Eswatini",
+        "name": "Swaziland",
         "fontStyle": null,
         "disabled": null,
         "code": "SWZ"
@@ -24128,7 +24135,7 @@
         "name": "Switzerland",
         "fontStyle": null,
         "disabled": null,
-        "code": "CHE"
+        "code": "SUR"
       },
       "geometry": {
         "type": "MultiPolygon",
