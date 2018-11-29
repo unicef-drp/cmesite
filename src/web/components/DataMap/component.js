@@ -25,6 +25,7 @@ const styles = theme => ({
   title: {
     color: theme.palette.primary.dark,
     borderBottom: `1px solid ${theme.palette.primary.dark}`,
+    paddingBottom: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
   country: {
@@ -60,9 +61,8 @@ const Component = ({ classes, isHome, isLoadingData }) => {
     <Grid container spacing={32} className={classes.root}>
       <Grid item xs={12} sm={7} xl={8} container direction="column" justify="space-between">
         <Typography variant="headline" className={classes.title}>
-          <FormattedMessage {...messages.title} />&nbsp;
           <small>
-            <FormattedMessage {...messages.subtitle} />
+            <FormattedMessage {...messages.title} />
           </small>
         </Typography>
         <div>

@@ -14,8 +14,8 @@ const style = theme => ({
     backgroundColor: theme.palette.secondary.main,
     marginTop: theme.spacing.unit * -6,
     paddingTop: theme.spacing.unit * 2,
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit * 4,
+    paddingRight: theme.spacing.unit * 4,
   },
   container: {
     paddingTop: theme.spacing.unit,

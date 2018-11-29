@@ -34,12 +34,12 @@ const style = theme => ({
     flexWrap: 'wrap',
   },
   igmeLogo: {
-    height: 25,
+    height: 30,
     marginLeft: 0,
     marginRight: theme.spacing.unit,
   },
   logo: {
-    height: 40,
+    height: 50,
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
     marginLeft: theme.spacing.unit,

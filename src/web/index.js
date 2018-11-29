@@ -37,10 +37,14 @@ const theme = createMuiTheme({
       textTransform: 'uppercase',
       fontWeight: 600,
     },
+    subheading: {
+      fontWeight: 600,
+      fontSize: 20,
+    },
   },
   palette: {
     primary: {
-      light: '#E1ECF8',
+      light: '#d7e8f7',
       main: '#3282DA',
       dark: '#0B3B57',
       contrastText: '#fff',
@@ -48,7 +52,7 @@ const theme = createMuiTheme({
     secondary: {
       light: '#fff',
       main: '#fff',
-      dark: '#DEDEDF',
+      dark: '#e2e9eb',
       contrastText: '#0B3B57',
     },
     chartColorScale: scaleOrdinal(schemeSet1),
@@ -60,8 +64,8 @@ const theme = createMuiTheme({
     ]),*/
     mapColorScale: scaleThreshold()
       .domain([0, 10, 20, 40, 100, 150])
-      .range(['#9b9b9b', '#cdeaf6', '#9ad5ee', '#0095d6', '#0080b2', '#506897', '#002e49']),
-    mapAboveColor: '#002e49',
+      .range(['#9b9b9b', '#d4ebf6', '#a4d3f2', '#50b5e7', '#3596d1', '#006aa5', '#003f6f']),
+    mapAboveColor: '#3282DA',
     mapNoneColor: '#9b9b9b',
   },
 });

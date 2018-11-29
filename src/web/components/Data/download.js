@@ -16,10 +16,12 @@ const style = theme => ({
 
 const DataTabDownload = ({ classes }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
-    <Grid container>
+    <Grid container spacing={16}>
       <Grid item xs={12}>
         <DataAllDimensions />
         <DataDownloadActions />
+      </Grid>
+      <Grid item xs={12}>
         <DataNotes />
       </Grid>
     </Grid>

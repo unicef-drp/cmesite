@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'header.title',
-    defaultMessage: 'Child Mortality Estimates',
+    defaultMessage: 'UN Inter-agency Group for Child Mortality Estimation',
   },
   home: {
     id: 'route.home',

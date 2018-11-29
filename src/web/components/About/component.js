@@ -37,7 +37,7 @@ const style = theme => ({
   section: {
     display: 'flex',
     justifyContent: 'space-around',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flexWrap: 'wrap',
     padding: theme.spacing.unit * 2,
   },
@@ -51,7 +51,7 @@ const style = theme => ({
     paddingRight: 0,
   },
   logo: {
-    height: 50,
+    height: 60,
     margin: theme.spacing.unit,
   },
   focus: {
@@ -92,7 +92,7 @@ const About = ({ about, focuses, classes, theme }) => (
           <Typography variant="headline" align="center" className={classes.title}>
             {path(['title', 'rendered'])(about)}
           </Typography>
-          <Typography variant="body2" align="center" paragraph>
+          <Typography variant="body2" align="center" paragraph className={classes.typo}>
             <span
               dangerouslySetInnerHTML={{
                 __html: path(['content', 'rendered'])(about),
@@ -105,7 +105,7 @@ const About = ({ about, focuses, classes, theme }) => (
         <Grid item xs={11} sm={10} md={10} className={classNames(classes.section, classes.logos)}>
           <img src={unicefLogo} className={classes.logo} />
           <img src={whoLogo} className={classes.logo} />
-          <img src={unLogo} className={classes.logo} />
+          <img src={unLogo} className={classes.logo} style={{ height: 70 }} />
           <img src={wboLogo} className={classes.logo} />
         </Grid>
 
@@ -125,7 +125,12 @@ const About = ({ about, focuses, classes, theme }) => (
                 {isNil(image) ? null : (
                   <img src={image.url} alt={image.alt} className={classes.focusLogo} />
                 )}
-                <Typography variant="body2" align="center" paragraph className={classes.typo}>
+                <Typography
+                  variant="body2"
+                  align="center"
+                  className={classes.typo}
+                  style={{ lineHeight: 1.2 }}
+                >
                   {path(['title', 'rendered'])(focus)}
                 </Typography>
               </div>

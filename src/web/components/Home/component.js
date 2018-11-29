@@ -15,10 +15,10 @@ const style = theme => ({
 export const Home = ({ classes }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Grid spacing={32} container>
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md={4} lg={3}>
         <News />
       </Grid>
-      <Grid item xs={12} md={8}>
+      <Grid item xs={12} md={8} lg={9}>
         <DataMap isHome />
       </Grid>
     </Grid>
