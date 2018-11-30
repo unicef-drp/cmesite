@@ -13,6 +13,7 @@ import unicefLogo from '../../../assets/unicef-black-logo.png';
 import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
 import wboLogo from '../../../assets/wbo-black-logo.png';
+import { EMAIL } from '../../constants';
 
 const style = theme => ({
   wrapper: {
@@ -37,7 +38,7 @@ const style = theme => ({
   section: {
     display: 'flex',
     justifyContent: 'space-around',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flexWrap: 'wrap',
     padding: theme.spacing.unit * 2,
   },
@@ -51,13 +52,14 @@ const style = theme => ({
     paddingRight: 0,
   },
   logo: {
-    height: 50,
+    height: 60,
     margin: theme.spacing.unit,
   },
   focus: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'flex-start',
     width: 150,
   },
   focusLogo: {
@@ -92,7 +94,7 @@ const About = ({ about, focuses, classes, theme }) => (
           <Typography variant="headline" align="center" className={classes.title}>
             {path(['title', 'rendered'])(about)}
           </Typography>
-          <Typography variant="body2" align="center" paragraph>
+          <Typography variant="body2" align="center" paragraph className={classes.typo}>
             <span
               dangerouslySetInnerHTML={{
                 __html: path(['content', 'rendered'])(about),
@@ -105,7 +107,7 @@ const About = ({ about, focuses, classes, theme }) => (
         <Grid item xs={11} sm={10} md={10} className={classNames(classes.section, classes.logos)}>
           <img src={unicefLogo} className={classes.logo} />
           <img src={whoLogo} className={classes.logo} />
-          <img src={unLogo} className={classes.logo} />
+          <img src={unLogo} className={classes.logo} style={{ height: 70 }} />
           <img src={wboLogo} className={classes.logo} />
         </Grid>
 
@@ -125,7 +127,12 @@ const About = ({ about, focuses, classes, theme }) => (
                 {isNil(image) ? null : (
                   <img src={image.url} alt={image.alt} className={classes.focusLogo} />
                 )}
-                <Typography variant="body2" align="center" paragraph className={classes.typo}>
+                <Typography
+                  variant="body2"
+                  align="center"
+                  className={classes.typo}
+                  style={{ lineHeight: 1.2 }}
+                >
                   {path(['title', 'rendered'])(focus)}
                 </Typography>
               </div>
@@ -135,7 +142,7 @@ const About = ({ about, focuses, classes, theme }) => (
 
         {/* contact */}
         <Grid item xs={12} sm={10} md={10} className={classNames(classes.section, classes.action)}>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" href={`mailto:${EMAIL}`}>
             <FormattedMessage {...messages.action} />
           </Button>
         </Grid>

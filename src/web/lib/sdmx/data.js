@@ -54,9 +54,17 @@ import {
   ESTIMATE_TYPE,
   TIME_PERIOD,
   REF_AREA,
+  SERIES_METHOD,
+  INDICATOR,
 } from '../../constants';
 
 const getValues = propOr([], 'values');
+const getValuesFiltered = onlyRates =>
+  ifElse(
+    propEq('id', INDICATOR),
+    pipe(getValues, ifElse(always(onlyRates), filter(propEq('isRate', true)), identity)),
+    getValues,
+  );
 
 export const dataQuery = ({
   dimensionSeparator = '.',
@@ -65,6 +73,7 @@ export const dataQuery = ({
   dropIds = [],
   isExclusive,
   onlyEstimates,
+  onlyRates,
 } = {}) =>
   pipe(
     map(
@@ -77,9 +86,9 @@ export const dataQuery = ({
           ],
           [
             always(isExclusive),
-            pipe(getValues, find(propEq('isSelected', true)), flip(append)([])),
+            pipe(getValuesFiltered(onlyRates), find(propEq('isSelected', true)), flip(append)([])),
           ],
-          [T, pipe(getValues, filter(propEq('isToggled', true)))],
+          [T, pipe(getValuesFiltered(onlyRates), filter(propEq('isToggled', true)))],
         ]),
         pluck(key),
         join(valueSeparator),
@@ -170,12 +179,20 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
 
   if (has(serieKey, acc)) return over(lensPath([serieKey, 'datapoints']), append(observation), acc);
 
-  const serie = {
+  let serie = {
     id: serieKey,
     name: path([difference(pivot, RELEVANT_DIMENSIONS), 'valueName'], observation),
     type,
     datapoints: [observation],
+    ...reduce(
+      (memo, key) => ({ ...memo, [key]: path([key, 'valueName'], observation) }),
+      {},
+      RELEVANT_DIMENSIONS,
+    ),
   };
+
+  if (has(SERIES_METHOD, observation))
+    serie = assoc(SERIES_METHOD, path([SERIES_METHOD, 'valueId'], observation), serie);
 
   return assoc(serieKey, serie, acc);
 };

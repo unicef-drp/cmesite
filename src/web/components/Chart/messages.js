@@ -7,6 +7,6 @@ export default defineMessages({
   },
   yAxisLabel: {
     id: 'data.yaxis.label',
-    defaultMessage: 'per thousand',
+    defaultMessage: 'Deaths per 1,000',
   },
 });

@@ -26,9 +26,10 @@ import {
   and,
   gt,
   lte,
+  path,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
-import { COUNTRY, COMPARE, MAP } from '../api/sdmx';
+import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
 import { getSelectedDimensionValue, getToggledCombinations } from '../utils';
 import {
   REF_AREA,
@@ -39,23 +40,11 @@ import {
   INCLUDED,
   EXCLUDED,
   MAX_SDMX_VALUES,
+  EXC_NO_SEX_INDICATOR_VALUES,
 } from '../constants';
 
 export const getData = prop('data');
 export const getActiveTab = createSelector(getData, prop('activeTab'));
-export const getNotes = always(`
-  Included Data points refer to aliquip perpetua vel in, alia vide alterum vim et. 
-  Quo mutat dolore semper id. Ne vim quodsi imperdiet, quando facilisis eu mel. 
-  Tation alterum facilisi vis ea. No sale movet munere ius. Ne his putant minimum. 
-  Pro ut enim dicta prompta. Ad porro discere nam. Usu accumsan theophrastus necessitatibus ea, 
-  et usu quaeque adversarium. His et nonumy voluptua, quo utinam audire petentium in. 
-  Libris putant vim in. His legimus electram salutandi ad, eum nisl oratio omnesque eu. 
-  Pro tale vero ea, soleat ignota ei sea. Ex accumsan nominati consequat nec, zril prodesset 
-  repudiandae in cum. Ne his putant minimum. Pro ut enim dicta prompta. Ad porro discere nam. 
-  Usu accumsan theophrastus necessitatibus ea, et usu quaeque adversarium. His et nonumy voluptua, 
-  quo utinam audire petentium in. Libris putant vim in. His legimus electram salutandi ad, 
-  eum nisl oratio omnesque eu
-`);
 export const getIsLoadingStructure = createSelector(getData, prop('isLoadingStructure'));
 export const getIsLoadingData = createSelector(getData, prop('isLoadingData'));
 export const getDownloadingData = createSelector(getData, prop('downloadingData'));
@@ -67,15 +56,32 @@ export const getIndicatorDimension = createSelector(getDimensions, find(propEq('
 export const getSexDimension = createSelector(getDimensions, find(propEq('id', SEX)));
 export const getCountryValue = createSelector(getCountryDimension, getSelectedDimensionValue);
 export const getIndicatorValue = createSelector(getIndicatorDimension, getSelectedDimensionValue);
+export const getIsExcNoSexIndicatorValue = createSelector(getIndicatorValue, value =>
+  EXC_NO_SEX_INDICATOR_VALUES.has(prop('id', value)),
+);
 export const getSexValue = createSelector(getSexDimension, getSelectedDimensionValue);
 export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,
   useWith(reject, [eqBy(prop('id')), identity]),
 );
-export const getTitle = createSelector(
+export const getCountryTitle = createSelector(
   getOtherDimensions,
-  dataQuery({ dimensionSeparator: ' ', valueSeparator: ' ', key: 'label' }),
+  dataQuery({
+    ...path([COUNTRY, 'queryOptions'], DATA_CONTEXTS),
+    dimensionSeparator: ' - ',
+    valueSeparator: ' ',
+    key: 'label',
+  }),
+);
+export const getCompareTitle = createSelector(
+  getDimensions,
+  dataQuery({
+    ...path([COMPARE, 'queryOptions'], DATA_CONTEXTS),
+    dimensionSeparator: ' - ',
+    valueSeparator: ' and ',
+    key: 'label',
+  }),
 );
 export const getActiveTypes = createSelector(getData, prop('activeTypes'));
 export const getMapSeries = createSelector(
@@ -111,7 +117,8 @@ export const getCanLoadData = dataType =>
     (country, indicator, sex, dimensions) => {
       if (isNil(dataType)) return false;
       if (equals(dataType, COUNTRY)) return none(isNil, [country, indicator, sex]);
-      else if (equals(dataType, MAP)) return none(isNil, [indicator, sex]);
+      else if (equals(dataType, MAP))
+        return and(none(isNil, [indicator, sex]), propEq('isRate', true, indicator));
       else if (equals(dataType, COMPARE)) {
         const combinations = getToggledCombinations(dimensions);
         return and(gt(combinations, 0), lte(combinations, MAX_SDMX_VALUES));

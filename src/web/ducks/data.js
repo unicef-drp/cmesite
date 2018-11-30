@@ -12,11 +12,13 @@ import {
   path,
   nth,
   pipe,
+  isEmpty,
+  propEq,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP } from '../api/sdmx';
 import { getRawDimensions, getStale, getCanLoadData } from '../selectors/data';
-import { TYPES } from '../constants';
+import { TYPES, REF_AREA } from '../constants';
 
 export const FORMATS = ['csv', 'xml'];
 export const SCOPES = ['all', 'selection'];
@@ -88,7 +90,12 @@ const reducer = (state = initialState, action = {}) => {
           })),
         ),
         assoc('countryStale', true),
-        assoc('mapStale', true),
+        assoc(
+          'mapStale',
+          pipe(nth(action.dimensionIndex), propEq('id', REF_AREA))(state.dimensions)
+            ? state.mapStale
+            : true,
+        ),
       )(state);
     case LOADING_STRUCTURE:
       return { ...state, isLoadingStructure: true };
@@ -164,7 +171,9 @@ export const changeSelection = ({ selectionType, dataType }) => (
   dispatch(loadData(dataType));
 };
 
-export const loadStructure = dataType => dispatch => {
+export const loadStructure = dataType => (dispatch, getState) => {
+  if (not(isEmpty(getRawDimensions(getState())))) return dispatch(loadData(dataType));
+
   dispatch({ type: LOADING_STRUCTURE });
   return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions => {
     dispatch({ type: STRUCTURE_LOADED, dimensions });
@@ -173,6 +182,7 @@ export const loadStructure = dataType => dispatch => {
 };
 
 export const loadData = dataType => (dispatch, getState) => {
+  if (not(getStale(dataType)(getState()))) return;
   if (not(getCanLoadData(dataType)(getState()))) return;
 
   dispatch({ type: LOADING_DATA });
@@ -184,12 +194,14 @@ export const loadData = dataType => (dispatch, getState) => {
   }).then(series => dispatch({ type: DATA_LOADED, dataType, series }));
 };
 
-export const downloadData = ({ format, scope }) => dispatch => {
+export const downloadData = ({ dataType, format, scope }) => (dispatch, getState) => {
   dispatch({ type: TOGGLE_DOWNLOADING_DATA, format, scope });
-  // get selection or set all
-  // use proper http header
-  return new Promise(resolve => {
-    setTimeout(() => resolve(), 2000);
+  return requestSDMX(dispatch, {
+    method: 'getFileData',
+    dimensions: getRawDimensions(getState()),
+    dataType,
+    format,
+    scope,
   }).then(() => dispatch({ type: TOGGLE_DOWNLOADING_DATA, format, scope }));
 };
 

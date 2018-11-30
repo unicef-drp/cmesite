@@ -50,7 +50,8 @@ Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
 
 #### Backup
 
-For editorial content, use WP exporter tool.
+- CPT UI: Tools > copy/paste 'Export Post Types'
+- For editorial content, use WP exporter tool
 
 ### Kubernetes
 

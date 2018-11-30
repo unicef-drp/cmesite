@@ -1,5 +1,5 @@
 import { min as d3Min, max as d3Max } from 'd3-array';
-import { symbol, symbolCircle } from 'd3-shape';
+import { symbol, symbols } from 'd3-shape';
 import {
   equals,
   pipe,
@@ -17,16 +17,17 @@ import {
   isEmpty,
   isNil,
   reject,
+  length,
 } from 'ramda';
 import { ESTIMATE, EXCLUDED } from '../../constants';
 
-const isEstimate = equals(ESTIMATE);
+export const isEstimate = equals(ESTIMATE);
 
 export const hasSymbols = complement(isEstimate);
 
-export const symbolGenerator = size =>
+export const symbolGenerator = (size, index) =>
   symbol()
-    .type(symbolCircle)
+    .type(symbols[index % length(symbols)])
     .size(size);
 
 export const getSymbolFill = (type, index, theme, isUncertainty) => {

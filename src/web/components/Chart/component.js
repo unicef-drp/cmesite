@@ -6,6 +6,7 @@ import { compose, map, addIndex, ifElse, isNil, always, prop, lte, identity } fr
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
+import { timeFormat } from 'd3-time-format';
 import { withSize } from 'react-sizeme';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -39,6 +40,15 @@ const style = theme => ({
       display: 'none',
     },
   },
+  axisTop: {
+    '& path': {
+      display: 'none',
+    },
+    '& line': {
+      stroke: theme.palette.primary.dark,
+      strokeDasharray: '1 3',
+    },
+  },
   estimate: {
     strokeWidth: 2,
   },
@@ -52,7 +62,7 @@ const style = theme => ({
   resetZoom: {
     position: 'absolute',
     top: theme.spacing.unit * 4,
-    right: theme.spacing.unit,
+    right: theme.spacing.unit * 2,
     textTransform: 'none',
   },
 });
@@ -111,6 +121,7 @@ class Chart extends React.Component {
       contentHeight,
       xScale,
       yScale,
+      extents,
     };
   };
 
@@ -141,9 +152,7 @@ class Chart extends React.Component {
     } = this.props;
 
     const { width } = size;
-    const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
-
-    if (contentWidth < 0 || contentHeight < 0) return null; // avoid rect in defs error, should be solved
+    const { height, contentWidth, contentHeight, xScale, yScale, extents } = this.state;
 
     const areas = uncertaintySeries
       ? map(
@@ -174,6 +183,7 @@ class Chart extends React.Component {
           color={getColor(isCompare ? null : type, index, theme)}
           classes={getClass(type, classes)}
           hasSymbols={hasSymbols(type)}
+          serieIndex={index}
           symbolFill={getSymbolFill(isCompare ? null : type, index, theme)}
           setTooltip={this.setTooltip}
         />
@@ -191,16 +201,18 @@ class Chart extends React.Component {
         </Button>
         <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
-            <defs>
-              <clipPath id="clip">
-                <rect x="0" y="0" width={contentWidth} height={contentHeight} />
-              </clipPath>
-            </defs>
+            {contentWidth < 0 || contentHeight < 0 ? null : (
+              <defs>
+                <clipPath id="clip">
+                  <rect x="0" y="0" width={contentWidth} height={contentHeight} />
+                </clipPath>
+              </defs>
+            )}
             <g>
               <Axis
                 orient="Left"
                 scale={yScale}
-                ticks={20}
+                ticks={10}
                 tickSize={-contentWidth}
                 tickFormat={ifElse(lte(0), identity, always(''))}
                 classes={classes}
@@ -214,6 +226,16 @@ class Chart extends React.Component {
                 classes={classes}
               />
             </g>
+            <Axis
+              orient="Top"
+              scale={xScale}
+              translate="translate(0, 0)"
+              tickValues={prop('x', extents)}
+              tickSize={-contentHeight}
+              classes={classes}
+              tickFormat={timeFormat('%Y')}
+              tickPadding={2}
+            />
             <g clipPath="url(#clip)">
               {areas}
               {linesFactory(includedSeries)}
@@ -224,6 +246,7 @@ class Chart extends React.Component {
         </svg>
         {this.state.tooltip && (
           <Tooltip
+            isCompare={isCompare}
             {...this.state.tooltip}
             width={this.state.contentWidth}
             height={this.state.contentHeight}
@@ -235,7 +258,7 @@ class Chart extends React.Component {
 }
 
 Chart.defaultProps = {
-  margin: { top: 10, right: 1, bottom: 20, left: 25 },
+  margin: { top: 10, right: 10, bottom: 20, left: 25 },
 };
 
 export default compose(withStyles(style, { withTheme: true }), withSize())(Chart);

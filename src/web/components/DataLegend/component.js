@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, addIndex, isNil, always, ifElse } from 'ramda';
+import { map, addIndex, isNil, always, ifElse, join, pipe, pick, values } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
+import RemoveIcon from '@material-ui/icons/Remove';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -13,7 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { symbolGenerator, getSymbolFill, getColor } from '../Chart/utils';
+import { symbolGenerator, getSymbolFill, getColor, isEstimate } from '../Chart/utils';
+import { RELEVANT_DIMENSIONS } from '../../constants';
 
 const styles = theme => ({
   panelExpanded: {
@@ -74,22 +76,33 @@ const DataLegend = ({
     ifElse(
       isNil,
       always(null),
-      addIndex(map)(({ id, name, type }, index) => (
+      addIndex(map)(({ id, name, type, ...serie }, index) => (
         <ListItem className={classes.item} key={id} dense button>
           <ListItemIcon>
-            <svg width={SIZE / 2} height={SIZE / 2}>
-              <g>
-                <path
-                  d={symbolGenerator(SIZE)()}
-                  transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                  stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
-                  fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
-                />
-              </g>
-            </svg>
+            {isEstimate(type) ? (
+              <RemoveIcon
+                style={{
+                  color: getColor(isCompare ? null : type, index, theme, isUncertainty),
+                  fontSize: 30,
+                }}
+              />
+            ) : (
+              <svg width={SIZE / 2} height={SIZE / 2}>
+                <g>
+                  <path
+                    d={symbolGenerator(SIZE, index)()}
+                    transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                    stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
+                    fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
+                  />
+                </g>
+              </svg>
+            )}
           </ListItemIcon>
           <ListItemText>
-            {name} ({isUncertainty ? <FormattedMessage {...messages.uncertainty} /> : type})
+            {isCompare
+              ? join(' ', [...pipe(pick(RELEVANT_DIMENSIONS), values)(serie), name])
+              : name}
           </ListItemText>
         </ListItem>
       )),

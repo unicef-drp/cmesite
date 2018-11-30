@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { path } from 'ramda';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Wrapper from '../Wrapper';
@@ -15,17 +16,21 @@ const style = theme => ({
   },
 });
 
-const DataNotes = ({ notes, classes }) => (
+const DataNote = ({ note, classes }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Typography align="center" component="p" className={classes.typo}>
-      {notes}
+      <span
+        dangerouslySetInnerHTML={{
+          __html: path(['content', 'rendered'])(note),
+        }}
+      />
     </Typography>
   </Wrapper>
 );
 
-DataNotes.propTypes = {
+DataNote.propTypes = {
   classes: PropTypes.object.isRequired,
-  notes: PropTypes.string,
+  note: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(DataNotes);
+export default withStyles(style)(DataNote);

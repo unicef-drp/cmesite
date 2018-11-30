@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { map, xprod, prop } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import DescriptionIcon from '@material-ui/icons/Description';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -16,23 +17,43 @@ import messages from './messages';
 import { FORMATS, SCOPES } from '../../ducks/data';
 
 const styles = theme => ({
-  wrapper: {
-    marginBottom: theme.spacing.unit * 2,
-  },
-  header: {
-    backgroundColor: theme.palette.primary.main,
-    paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingTop: theme.spacing.unit * 1.5,
-    paddingBottom: theme.spacing.unit * 1.5,
-  },
-  content: {
-    padding: 0,
+  panelRoot: {
     '&:last-child': {
-      paddingBottom: 0,
+      marginBottom: theme.spacing.unit * 2,
     },
   },
+  panelSummaryRoot: {
+    backgroundColor: theme.palette.primary.main,
+    minHeight: 0,
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+  },
+  panelSummaryContent: {
+    alignItems: 'center',
+    '&$expanded': {
+      margin: 0,
+      marginTop: theme.spacing.unit * 1.5,
+      marginBottom: theme.spacing.unit * 1.5,
+    },
+  },
+  expanded: {
+    // panelSummaryExpanded is not apply, expanded is required (MUI bug)
+    '&$expanded': {
+      minHeight: 0,
+    },
+  },
+  panelDetails: {
+    padding: 0,
+    flexDirection: 'column',
+    //borderTop: `1px solid ${theme.palette.secondary.dark}`,
+  },
   typo: {
+    color: theme.palette.secondary.main,
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    fontWeight: 600,
+  },
+  icon: {
     color: theme.palette.secondary.main,
   },
   list: {
@@ -51,24 +72,25 @@ const styles = theme => ({
   progress: {
     color: theme.palette.primary.main,
   },
-  avatar: {
-    marginRight: theme.spacing.unit,
-  },
 });
 
-const DataDownloadPanel = ({ classes, downloadData, downloadingData }) => (
-  <Card square className={classes.wrapper}>
-    <CardHeader
-      className={classes.header}
-      classes={{ avatar: classes.avatar }}
-      avatar={<DescriptionIcon className={classes.typo} />}
-      title={
-        <Typography className={classes.typo}>
-          <FormattedMessage {...messages.title} />
-        </Typography>
-      }
-    />
-    <CardContent className={classes.content}>
+const DataDownloadActions = ({ classes, downloadData, downloadingData, dataType }) => (
+  <ExpansionPanel defaultExpanded classes={{ root: classes.panelRoot }}>
+    <ExpansionPanelSummary
+      expandIcon={<ExpandMoreIcon />}
+      classes={{
+        root: classes.panelSummaryRoot,
+        content: classes.panelSummaryContent,
+        expanded: classes.expanded,
+        expandIcon: classes.icon,
+      }}
+    >
+      <DescriptionIcon className={classes.icon} />
+      <Typography className={classes.typo}>
+        <FormattedMessage {...messages.title} />
+      </Typography>
+    </ExpansionPanelSummary>
+    <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
       <List className={classes.list}>
         {map(([format, scope]) => {
           const key = `${format}.${scope}`;
@@ -78,7 +100,7 @@ const DataDownloadPanel = ({ classes, downloadData, downloadingData }) => (
               key={key}
               dense
               button
-              onClick={() => downloadData({ format, scope })}
+              onClick={() => downloadData({ dataType, format, scope })}
               disabled={downloading}
               className={classes.item}
               disableRipple
@@ -92,14 +114,15 @@ const DataDownloadPanel = ({ classes, downloadData, downloadingData }) => (
           );
         })(xprod(FORMATS, SCOPES))}
       </List>
-    </CardContent>
-  </Card>
+    </ExpansionPanelDetails>
+  </ExpansionPanel>
 );
 
-DataDownloadPanel.propTypes = {
+DataDownloadActions.propTypes = {
   downloadingData: PropTypes.object,
   downloadData: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  dataType: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(DataDownloadPanel);
+export default withStyles(styles)(DataDownloadActions);

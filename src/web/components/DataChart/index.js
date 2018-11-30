@@ -1,9 +1,10 @@
-import { pipe, reject, isNil, isEmpty } from 'ramda';
+import { pipe, reject, isNil, isEmpty, either } from 'ramda';
 import { compose, branch, renderComponent, withProps } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import {
-  getTitle,
+  getCountryTitle,
+  getCompareTitle,
   getIsLoadingData,
   getActiveTypes,
   getCountryEstimateSeries,
@@ -20,7 +21,6 @@ const withData = selectors =>
   compose(
     connect(
       createStructuredSelector({
-        title: getTitle,
         isLoadingData: getIsLoadingData,
         ...selectors,
       }),
@@ -29,12 +29,17 @@ const withData = selectors =>
     branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
     branch(
       ({ estimateSeries, includedSeries, excludedSeries }) =>
-        pipe(reject(isNil), isEmpty)([estimateSeries, includedSeries, excludedSeries]),
+        pipe(reject(either(isNil, isEmpty)), isEmpty)([
+          estimateSeries,
+          includedSeries,
+          excludedSeries,
+        ]),
       renderComponent(DataNone),
     ),
   );
 
 export const DataCountryChart = withData({
+  title: getCountryTitle,
   activeTypes: getActiveTypes,
   estimateSeries: getCountryEstimateSeries,
   uncertaintySeries: getCountryEstimateSeries,
@@ -43,6 +48,6 @@ export const DataCountryChart = withData({
 })(Component);
 
 export const DataCompareChart = compose(
-  withData({ estimateSeries: getCompareEstimateSeries }),
+  withData({ title: getCompareTitle, estimateSeries: getCompareEstimateSeries }),
   withProps({ isCompare: true }),
 )(Component);

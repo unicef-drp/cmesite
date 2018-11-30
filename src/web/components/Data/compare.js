@@ -6,6 +6,7 @@ import { DataAllDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
 import { DataCompareChart } from '../DataChart';
 import Wrapper from '../Wrapper';
+import DataNote from '../DataNote';
 import { COMPARE } from '../../api/sdmx';
 
 const style = theme => ({
@@ -20,10 +21,13 @@ const Compare = ({ classes, isActive }) => (
     <Grid container spacing={16}>
       <Grid item xs={12} md={3}>
         <DataAllDimensions isSide dataType={COMPARE} />
-        <DataDownloadActions />
+        <DataDownloadActions dataType={COMPARE} />
       </Grid>
       <Grid item xs={12} md={9}>
         {isActive && <DataCompareChart />}
+      </Grid>
+      <Grid item xs={12}>
+        <DataNote dataType={COMPARE} />
       </Grid>
     </Grid>
   </Wrapper>

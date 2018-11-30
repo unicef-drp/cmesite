@@ -11,7 +11,7 @@ import {
   getIndicatorDimension,
   getIndicatorValue,
 } from '../../selectors/data';
-import { changeSelection } from '../../ducks/data';
+import { changeSelection, changeActiveTab } from '../../ducks/data';
 import Component from './component';
 
 export const enhance = (selectors, keys, { isCountry } = {}) =>
@@ -19,7 +19,10 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
     withRouter,
     connect(createStructuredSelector(selectors), (dispatch, { dataType }) =>
       bindActionCreators(
-        { changeSelection: changeSelection({ dataType, selectionType: 'select' }) },
+        {
+          changeSelection: changeSelection({ dataType, selectionType: 'select' }),
+          changeActiveTab,
+        },
         dispatch,
       ),
     ),
@@ -33,8 +36,11 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
       ),
     })),
     withHandlers({
-      handleValue: ({ dimension, changeSelection, history }) => value => {
-        if (isCountry) history.push(getPath(routes.data));
+      handleValue: ({ dimension, changeSelection, history, changeActiveTab }) => value => {
+        if (isCountry) {
+          changeActiveTab(0);
+          history.push(getPath(routes.data));
+        }
         changeSelection(dimension.index, value.index);
       },
     }),

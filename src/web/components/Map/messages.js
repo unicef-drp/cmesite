@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   none: {
     id: 'map.legend.none',
-    defaultMessage: 'No Data',
+    defaultMessage: 'No data',
   },
   max: {
     id: 'map.legend.max',

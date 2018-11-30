@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { prop, equals } from 'ramda';
+import { prop } from 'ramda';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
@@ -17,9 +17,8 @@ import { translationMessages } from './i18n';
 import configureStore from './store/configureStore';
 import ducks from './ducks';
 import wpApi from './api/wp';
-import sdmxApi, { MAP, COUNTRY } from './api/sdmx';
+import sdmxApi from './api/sdmx';
 import loadConfig from './config';
-import routes, { getPath } from './routes';
 
 const theme = createMuiTheme({
   typography: {
@@ -38,10 +37,14 @@ const theme = createMuiTheme({
       textTransform: 'uppercase',
       fontWeight: 600,
     },
+    subheading: {
+      fontWeight: 600,
+      fontSize: 20,
+    },
   },
   palette: {
     primary: {
-      light: '#E1ECF8',
+      light: '#d7e8f7',
       main: '#3282DA',
       dark: '#0B3B57',
       contrastText: '#fff',
@@ -49,20 +52,14 @@ const theme = createMuiTheme({
     secondary: {
       light: '#fff',
       main: '#fff',
-      dark: '#DEDEDF',
+      dark: '#e2e9eb',
       contrastText: '#0B3B57',
     },
     chartColorScale: scaleOrdinal(schemeSet1),
-    /*chartColorScale: scaleOrdinal().range([
-      //'#E6ED46', // hardly visible
-      '#60C9E2',
-      '#DE405C',
-      '#6B3889',
-    ]),*/
     mapColorScale: scaleThreshold()
       .domain([0, 10, 20, 40, 100, 150])
-      .range(['#9b9b9b', '#cdeaf6', '#9ad5ee', '#0095d6', '#0080b2', '#506897', '#002e49']),
-    mapAboveColor: '#002e49',
+      .range(['#9b9b9b', '#d4ebf6', '#a4d3f2', '#50b5e7', '#3596d1', '#006aa5', '#003f6f']),
+    mapAboveColor: '#3282DA',
     mapNoneColor: '#9b9b9b',
   },
 });
@@ -89,11 +86,13 @@ loadConfig().then(config => {
   //sdmxApi.config(prop('sdmx')(config));
 
   sdmxApi.config({
-    endpoint: 'https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest',
+    //endpoint: 'https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest',
+    endpoint: 'https://apidata.unicef.org/sdmx/Rest',
     dataflow: {
       id: 'CME_DF',
       version: '1.0',
-      agencyId: 'UNICEFDRPDAU',
+      //agencyId: 'UNICEFDRPDAU',
+      agencyId: 'UNICEF',
     },
   });
 
@@ -105,7 +104,5 @@ loadConfig().then(config => {
   store.dispatch(ducks.wp.actions.loadPosts('focuses'));
   store.dispatch(ducks.wp.actions.loadPosts('abouts'));
   store.dispatch(ducks.wp.actions.loadPosts('methods'));
-
-  const isHome = equals(history.location.pathname, getPath(routes.home));
-  store.dispatch(ducks.data.actions.loadStructure(isHome ? MAP : COUNTRY));
+  store.dispatch(ducks.wp.actions.loadPosts('datanotes'));
 });

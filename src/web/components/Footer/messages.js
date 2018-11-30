@@ -5,9 +5,9 @@ export default defineMessages({
     id: 'footer.about',
     defaultMessage: 'About UN IGME',
   },
-  legals: {
-    id: 'footer.legals',
-    defaultMessage: 'Legals',
+  legal: {
+    id: 'footer.legal',
+    defaultMessage: 'Legal',
   },
   contact: {
     id: 'footer.contact',

@@ -3,11 +3,11 @@
     "endpoint": "http://rp5.redpelicans.com:9090/wp-json/wp/v2"
   },
   "sdmx": {
-    "endpoint": "https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest",
+    "endpoint": "https://apidata.unicef.org/sdmx/Rest",
     "dataflow": {
       "id": "CME_DF",
       "version": "1.0",
-      "agencyId": "UNICEFDRPDAU"
+      "agencyId": "UNICEF"
     }
   },
   "language": {

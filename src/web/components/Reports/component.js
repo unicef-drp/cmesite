@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { map, isNil, path } from 'ramda';
+import { map, isNil, path, toPairs, pipe, pick, propOr, not } from 'ramda';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import routes, { getPath } from '../../routes';
 import Wrapper from '../Wrapper';
+import { LOCALES } from '../../constants';
 
 const style = theme => ({
   reports: {
@@ -71,6 +72,8 @@ const style = theme => ({
   },
 });
 
+const getFiles = pipe(propOr({}, 'acf'), pick(LOCALES), toPairs);
+
 const Reports = ({ classes, reports, isSecondary }) => (
   <Wrapper classes={{ root: classes[isSecondary ? 'secondaryWrapper' : 'wrapper'] }}>
     <div className={classes.reports}>
@@ -80,7 +83,6 @@ const Reports = ({ classes, reports, isSecondary }) => (
       <div className={classes.container}>
         {map(report => {
           const image = path(['acf', 'image'])(report);
-          const file = path(['acf', 'file'])(report);
           return (
             <Card
               key={report.id}
@@ -105,19 +107,22 @@ const Reports = ({ classes, reports, isSecondary }) => (
                 <Typography variant="body2" className={classes.typo} paragraph>
                   {path(['title', 'rendered'])(report)}
                 </Typography>
-                {isNil(file) ? null : (
-                  <Button
-                    color="primary"
-                    target="_blank"
-                    size="small"
-                    variant="outlined"
-                    href={report.acf.file.url}
-                    download
-                  >
-                    <DescriptionIcon className={classes.leftIcon} />
-                    {report.acf.file.description}
-                  </Button>
-                )}
+                {map(([locale, file]) => {
+                  if (not(file)) return null;
+                  return (
+                    <Button
+                      key={locale}
+                      color="primary"
+                      target="_blank"
+                      size="small"
+                      href={file.url}
+                      download
+                    >
+                      <DescriptionIcon className={classes.leftIcon} />
+                      <FormattedMessage {...messages[locale]} />
+                    </Button>
+                  );
+                }, getFiles(report))}
               </CardContent>
             </Card>
           );

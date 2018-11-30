@@ -62,7 +62,7 @@ class Header extends React.Component {
             <Toolbar disableGutters className={classes.toolbar}>
               <img src={igmeLogo} className={classes.logo} />
               <Hidden xsDown>
-                <Typography variant="title" className={classes.typo}>
+                <Typography variant="subheading" className={classes.typo}>
                   <FormattedMessage {...messages.title} />
                 </Typography>
               </Hidden>

@@ -6,6 +6,7 @@ import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
 import DataMap from '../DataMap';
 import Wrapper from '../Wrapper';
+import DataNote from '../DataNote';
 import { MAP } from '../../api/sdmx';
 
 const style = theme => ({
@@ -20,10 +21,13 @@ const Map = ({ classes, isActive }) => (
     <Grid container spacing={16}>
       <Grid item xs={12} md={3}>
         <DataOtherDimensions isSide isSelectionExclusive dataType={MAP} />
-        <DataDownloadActions />
+        <DataDownloadActions dataType={MAP} />
       </Grid>
       <Grid item xs={12} md={9}>
         {isActive && <DataMap />}
+      </Grid>
+      <Grid item xs={12}>
+        <DataNote dataType={MAP} />
       </Grid>
     </Grid>
   </Wrapper>
