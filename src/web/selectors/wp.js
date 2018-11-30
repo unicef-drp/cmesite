@@ -1,4 +1,4 @@
-import { prop, propOr, pipe, take, last, head, filter, pathEq } from 'ramda';
+import { prop, propOr, pipe, take, last, head, filter, pathEq, contains, find, path } from 'ramda';
 import { createSelector } from 'reselect';
 
 export const getWP = prop('wp');
@@ -10,11 +10,12 @@ export const getReports = createSelector(getWP, propOr([], 'reports'));
 export const getFocuses = createSelector(getWP, propOr([], 'focuses'));
 export const getAbout = createSelector(getWP, pipe(propOr([], 'abouts'), head));
 export const getMethod = createSelector(getWP, pipe(propOr([], 'methods'), head));
+export const getDatanotes = createSelector(getWP, propOr([], 'datanotes'));
 
-export const getDatasetsUpdatedAt = createSelector(
-  getDatasets,
-  pipe(last, prop('modified_gmt')),
-);
+export const getDatanote = dataType =>
+  createSelector(getDatanotes, find(pipe(path(['acf', 'tabs']), contains(dataType))));
+
+export const getDatasetsUpdatedAt = createSelector(getDatasets, pipe(last, prop('modified_gmt')));
 
 export const getFeaturedReports = createSelector(
   getReports,

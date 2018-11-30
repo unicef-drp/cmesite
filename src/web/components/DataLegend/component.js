@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, addIndex, isNil, always, ifElse, prop, join } from 'ramda';
+import { map, addIndex, isNil, always, ifElse, join, pipe, pick, values } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import RemoveIcon from '@material-ui/icons/Remove';
 import List from '@material-ui/core/List';
@@ -15,7 +15,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { symbolGenerator, getSymbolFill, getColor, isEstimate } from '../Chart/utils';
-import { REF_AREA } from '../../constants';
+import { RELEVANT_DIMENSIONS } from '../../constants';
 
 const styles = theme => ({
   panelExpanded: {
@@ -100,8 +100,9 @@ const DataLegend = ({
             )}
           </ListItemIcon>
           <ListItemText>
-            {/*{name} ({isUncertainty ? <FormattedMessage {...messages.uncertainty} /> : type})*/}
-            {isCompare ? join(' ', [prop(REF_AREA, serie), name]) : name}
+            {isCompare
+              ? join(' ', [...pipe(pick(RELEVANT_DIMENSIONS), values)(serie), name])
+              : name}
           </ListItemText>
         </ListItem>
       )),

@@ -7,7 +7,7 @@ import { DataOtherDimensions } from '../DataDimensions';
 import DataDownloadActions from '../DataDownloadActions';
 import { DataCountryChart } from '../DataChart';
 import Wrapper from '../Wrapper';
-import DataNotes from '../DataNotes';
+import DataNote from '../DataNote';
 import { COUNTRY } from '../../api/sdmx';
 
 const style = theme => ({
@@ -31,7 +31,7 @@ const Country = ({ classes, isActive }) => (
         {isActive && <DataCountryChart />}
       </Grid>
       <Grid item xs={12}>
-        <DataNotes />
+        <DataNote dataType={COUNTRY} />
       </Grid>
     </Grid>
   </Wrapper>

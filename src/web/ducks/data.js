@@ -13,11 +13,12 @@ import {
   nth,
   pipe,
   isEmpty,
+  propEq,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP } from '../api/sdmx';
 import { getRawDimensions, getStale, getCanLoadData } from '../selectors/data';
-import { TYPES } from '../constants';
+import { TYPES, REF_AREA } from '../constants';
 
 export const FORMATS = ['csv', 'xml'];
 export const SCOPES = ['all', 'selection'];
@@ -89,7 +90,12 @@ const reducer = (state = initialState, action = {}) => {
           })),
         ),
         assoc('countryStale', true),
-        assoc('mapStale', true),
+        assoc(
+          'mapStale',
+          pipe(nth(action.dimensionIndex), propEq('id', REF_AREA))(state.dimensions)
+            ? state.mapStale
+            : true,
+        ),
       )(state);
     case LOADING_STRUCTURE:
       return { ...state, isLoadingStructure: true };

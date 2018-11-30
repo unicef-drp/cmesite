@@ -20,8 +20,9 @@ import {
   pick,
   flatten,
   addIndex,
+  test,
 } from 'ramda';
-import { RELEVANT_DIMENSIONS_DEFAULTS } from '../../constants';
+import { RELEVANT_DIMENSIONS_DEFAULTS, EXC_RATE_INDICATOR_VALUE_REGEXP } from '../../constants';
 
 const getName = locale => path(['name', locale]);
 
@@ -66,6 +67,7 @@ const getValues = (locale, codelists) =>
           label: getName(locale)(code),
           isSelected: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
           isToggled: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
+          isRate: test(EXC_RATE_INDICATOR_VALUE_REGEXP, getName(locale)(code)),
         })),
       ),
     ),

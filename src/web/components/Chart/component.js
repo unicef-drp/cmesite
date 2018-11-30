@@ -154,8 +154,6 @@ class Chart extends React.Component {
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale, extents } = this.state;
 
-    if (contentWidth < 0 || contentHeight < 0) return null; // avoid rect in defs error, should be solved
-
     const areas = uncertaintySeries
       ? map(
           ({ id, datapoints }) => (
@@ -203,11 +201,13 @@ class Chart extends React.Component {
         </Button>
         <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
-            <defs>
-              <clipPath id="clip">
-                <rect x="0" y="0" width={contentWidth} height={contentHeight} />
-              </clipPath>
-            </defs>
+            {contentWidth < 0 || contentHeight < 0 ? null : (
+              <defs>
+                <clipPath id="clip">
+                  <rect x="0" y="0" width={contentWidth} height={contentHeight} />
+                </clipPath>
+              </defs>
+            )}
             <g>
               <Axis
                 orient="Left"
@@ -246,6 +246,7 @@ class Chart extends React.Component {
         </svg>
         {this.state.tooltip && (
           <Tooltip
+            isCompare={isCompare}
             {...this.state.tooltip}
             width={this.state.contentWidth}
             height={this.state.contentHeight}

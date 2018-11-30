@@ -92,11 +92,13 @@ loadConfig().then(config => {
   //sdmxApi.config(prop('sdmx')(config));
 
   sdmxApi.config({
-    endpoint: 'https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest',
+    //endpoint: 'https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest',
+    endpoint: 'https://apidata.unicef.org/sdmx/Rest',
     dataflow: {
       id: 'CME_DF',
       version: '1.0',
-      agencyId: 'UNICEFDRPDAU',
+      //agencyId: 'UNICEFDRPDAU',
+      agencyId: 'UNICEF',
     },
   });
 
@@ -108,4 +110,5 @@ loadConfig().then(config => {
   store.dispatch(ducks.wp.actions.loadPosts('focuses'));
   store.dispatch(ducks.wp.actions.loadPosts('abouts'));
   store.dispatch(ducks.wp.actions.loadPosts('methods'));
+  store.dispatch(ducks.wp.actions.loadPosts('datanotes'));
 });

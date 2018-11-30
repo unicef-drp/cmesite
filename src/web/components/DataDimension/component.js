@@ -30,13 +30,14 @@ const styles = theme => ({
 
 const DataDimension = ({ classes, dimension, changeSelection, isSelectionExclusive }) => (
   <List className={classes.list}>
-    {addIndex(map)(({ id, label, isSelected, isToggled }, index) => (
+    {addIndex(map)(({ id, label, isSelected, isToggled, isDisabled }, index) => (
       <ListItem
         key={id}
         dense
         button
         onClick={() => changeSelection(dimension.index, index)}
         className={classes.item}
+        disabled={isDisabled}
       >
         {isSelectionExclusive ? (
           <Radio

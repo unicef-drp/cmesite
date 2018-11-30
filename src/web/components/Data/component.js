@@ -7,10 +7,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import PlaceIcon from '@material-ui/icons/Place';
-import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
-import DescriptionIcon from '@material-ui/icons/Description';
-import PublicIcon from '@material-ui/icons/Public';
 import Hidden from '@material-ui/core/Hidden';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -19,8 +15,15 @@ import CompareTab from './compare';
 import MapTab from './map';
 import DownloadTab from './download';
 import Wrapper from '../Wrapper';
+import countryIcon from '../../../assets/country-tab.png';
+import compareIcon from '../../../assets/compare-tab.png';
+import mapIcon from '../../../assets/map-tab.png';
+import downloadIcon from '../../../assets/download-tab.png';
 
-const style = () => ({
+const style = theme => ({
+  wrapper: {
+    backgroundColor: theme.palette.secondary.light,
+  },
   tabRoot: {
     minHeight: 48,
   },
@@ -30,19 +33,22 @@ const style = () => ({
   tabTypo: {
     textTransform: 'none',
   },
+  tabIcon: {
+    height: 30,
+  },
 });
 
 const tabs = [
-  { key: 'country', icon: <PlaceIcon /> },
-  { key: 'compare', icon: <CompareArrowsIcon /> },
-  { key: 'map', icon: <PublicIcon /> },
-  { key: 'download', icon: <DescriptionIcon /> },
+  { key: 'country', icon: countryIcon },
+  { key: 'compare', icon: compareIcon },
+  { key: 'map', icon: mapIcon },
+  { key: 'download', icon: downloadIcon },
 ];
 
 const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
   <React.Fragment>
     <AppBar position="static" color="default">
-      <Wrapper>
+      <Wrapper classes={{ root: classes.wrapper }}>
         <Tabs
           value={activeTab}
           onChange={(event, value) => changeActiveTab(value)}
@@ -60,7 +66,7 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
                   </Typography>
                 </Hidden>
               }
-              icon={tab.icon}
+              icon={<img className={classes.tabIcon} src={tab.icon} />}
               classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
             />
           ))(tabs)}
