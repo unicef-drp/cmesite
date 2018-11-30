@@ -30,3 +30,4 @@ export const SERIES_METHOD = 'SERIES_METHOD';
 export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE', 'SERIES_YEAR'];
 
 export const EMAIL = 'childmortality@unicef.org';
+export const LOCALES = ['en', 'fr', 'es'];

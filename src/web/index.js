@@ -56,12 +56,6 @@ const theme = createMuiTheme({
       contrastText: '#0B3B57',
     },
     chartColorScale: scaleOrdinal(schemeSet1),
-    /*chartColorScale: scaleOrdinal().range([
-      //'#E6ED46', // hardly visible
-      '#60C9E2',
-      '#DE405C',
-      '#6B3889',
-    ]),*/
     mapColorScale: scaleThreshold()
       .domain([0, 10, 20, 40, 100, 150])
       .range(['#9b9b9b', '#d4ebf6', '#a4d3f2', '#50b5e7', '#3596d1', '#006aa5', '#003f6f']),

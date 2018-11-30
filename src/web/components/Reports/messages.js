@@ -9,4 +9,16 @@ export default defineMessages({
     id: 'reports.action',
     defaultMessage: 'Explore all reports',
   },
+  en: {
+    id: 'reports.en',
+    defaultMessage: 'English',
+  },
+  fr: {
+    id: 'reports.fr',
+    defaultMessage: 'French',
+  },
+  es: {
+    id: 'reports.es',
+    defaultMessage: 'Spanish',
+  },
 });

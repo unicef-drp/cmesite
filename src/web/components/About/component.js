@@ -59,6 +59,7 @@ const style = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'flex-start',
     width: 150,
   },
   focusLogo: {
