@@ -10,12 +10,12 @@
 - [x] from home, choosing a country, select country tab in addition to change route
 - [x] switching from home to data has issue
 - [x] wp: check reports in several langs
-- [ ] deliver bundle with config.json and reworked index.js
 - [ ] misc: deaths (not rate): no serie selection, no label in yaxis, margin yAxis
 
 ---
 
 # how-to & replies
+- [ ] deliver bundle with config.json and reworked index.js
 - 2nd point: update the splash post
 - methods image can't be interactive easily, can't see the end of the comment
 - are saving qa on a daily basis (to avoid loosing content) ?
