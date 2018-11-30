@@ -73,7 +73,7 @@ const getValues = (locale, codelists) =>
     ),
   );
 
-const parser = ({ locale, dimensionIds }) => structure => {
+const parser = ({ locale, dimensionIds = [] }) => structure => {
   const concepts = getConcepts(dimensionIds)(structure);
   const codelists = getCodelists(structure);
 
