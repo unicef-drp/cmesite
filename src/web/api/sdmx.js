@@ -1,8 +1,21 @@
 import axios from 'axios';
 import FileSaver from 'file-saver';
-import { map, fromPairs, compose, toPairs, forEach, join, prop, equals, path } from 'ramda';
+import {
+  map,
+  fromPairs,
+  compose,
+  toPairs,
+  forEach,
+  join,
+  prop,
+  equals,
+  path,
+  ifElse,
+  always,
+  identity,
+} from 'ramda';
 import { structureParser, dataParser, dataQuery } from '../lib/sdmx';
-import { RELEVANT_DIMENSIONS, TIME_PERIOD, REF_AREA } from '../constants';
+import { RELEVANT_DIMENSIONS, TIME_PERIOD, REF_AREA, END_PERIOD } from '../constants';
 import sdmxStructure from '../../mock/data/sdmxStructure';
 import sdmxData from '../../mock/data/sdmxData';
 import sdmxDataMap from '../../mock/data/sdmxDataMap';
@@ -10,6 +23,7 @@ import sdmxDataMap from '../../mock/data/sdmxDataMap';
 export const COUNTRY = 'country';
 export const COMPARE = 'compare';
 export const MAP = 'map';
+export const HOME = 'home';
 export const DOWNLOAD = 'download';
 export const DATA_CONTEXTS = {
   [COUNTRY]: { queryOptions: { dropIds: [TIME_PERIOD], isExclusive: true } },
@@ -53,14 +67,18 @@ const getStructure = () =>
     .then(({ data }) => configuredStructureParser(data));
 
 const getData = ({ dimensions, dataType }) => {
-  const { queryOptions, parserOptions } = prop(dataType, DATA_CONTEXTS);
+  const __dataType = ifElse(equals(HOME), always(MAP), identity)(dataType);
+  const { queryOptions, parserOptions } = prop(__dataType, DATA_CONTEXTS);
+  const onlyLatestParams = equals(dataType, HOME)
+    ? `&startPeriod=${END_PERIOD}&endPeriod=${END_PERIOD}`
+    : '';
 
   return axios
     .get(
       endPoint(
         `/data/${dataflowQuery(',')}/${dataQuery(queryOptions)(
           dimensions,
-        )}/?dimensionAtObservation=AllDimensions`,
+        )}/?dimensionAtObservation=AllDimensions${onlyLatestParams}`,
       ),
       {
         headers: {

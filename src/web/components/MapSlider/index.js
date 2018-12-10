@@ -1,6 +1,6 @@
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { isEmpty } from 'ramda';
+import { lte, length } from 'ramda';
 import { compose, withState, withHandlers, branch, renderNothing } from 'recompose';
 import { getMapSeries, getMapIndex } from '../../selectors/data';
 import { changeMapIndex } from '../../ducks/data';
@@ -16,7 +16,7 @@ const enhance = compose(
   ),
   withState('value', 'setValue', ({ mapIndex }) => mapIndex),
   withHandlers({ onChangeValue: ({ setValue }) => value => setValue(value) }),
-  branch(({ mapSeries }) => isEmpty(mapSeries), renderNothing),
+  branch(({ mapSeries }) => lte(length(mapSeries), 1), renderNothing),
 );
 
 export default enhance(Component);
