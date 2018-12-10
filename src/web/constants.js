@@ -31,3 +31,4 @@ export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE', 'SERIES
 
 export const EMAIL = 'childmortality@unicef.org';
 export const LOCALES = ['en', 'fr', 'es'];
+export const END_PERIOD = '2017-06'; // requires data availability to know boundaries of a time dimension

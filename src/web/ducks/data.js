@@ -14,9 +14,12 @@ import {
   pipe,
   isEmpty,
   propEq,
+  ifElse,
+  always,
+  identity,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
-import sdmxApi, { COUNTRY, COMPARE, MAP } from '../api/sdmx';
+import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
 import { getRawDimensions, getStale, getCanLoadData } from '../selectors/data';
 import { TYPES, REF_AREA } from '../constants';
 
@@ -182,16 +185,18 @@ export const loadStructure = dataType => (dispatch, getState) => {
 };
 
 export const loadData = dataType => (dispatch, getState) => {
-  if (not(getStale(dataType)(getState()))) return;
-  if (not(getCanLoadData(dataType)(getState()))) return;
+  const __dataType = ifElse(equals(HOME), always(MAP), identity)(dataType);
+
+  if (not(getStale(__dataType)(getState()))) return;
+  if (not(getCanLoadData(__dataType)(getState()))) return;
 
   dispatch({ type: LOADING_DATA });
-  if (equals(dataType, MAP)) dispatch(changeMapIndex());
+  if (equals(__dataType, MAP)) dispatch(changeMapIndex());
   return requestSDMX(dispatch, {
     method: 'getData',
     dimensions: getRawDimensions(getState()),
     dataType,
-  }).then(series => dispatch({ type: DATA_LOADED, dataType, series }));
+  }).then(series => dispatch({ type: DATA_LOADED, dataType: __dataType, series }));
 };
 
 export const downloadData = ({ dataType, format, scope }) => (dispatch, getState) => {
