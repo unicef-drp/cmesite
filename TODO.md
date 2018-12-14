@@ -6,10 +6,7 @@
 ---
 
 # how-to & replies
-- [ ] deliver bundle with config.json and reworked index.js
-- 2nd point: update the splash post
-- methods image can't be interactive easily, can't see the end of the comment
-- are saving qa on a daily basis (to avoid loosing content) ?
+- [ ] deliver bundle with config.json and reworked index.js + doc
 - datasets organization (ceci)
 - GA, snippet in index.html, during deployment to ensure having the proper token
 

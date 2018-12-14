@@ -1,6 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, addIndex, isNil, always, ifElse, join, pipe, pick, values, prop } from 'ramda';
+import {
+  map,
+  addIndex,
+  isNil,
+  always,
+  ifElse,
+  join,
+  pipe,
+  pick,
+  values,
+  prop,
+  sortBy,
+  reverse,
+} from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import RemoveIcon from '@material-ui/icons/Remove';
 import List from '@material-ui/core/List';
@@ -21,7 +34,7 @@ import {
   getColor,
   isEstimate,
 } from '../Chart/utils';
-import { RELEVANT_DIMENSIONS, SERIES_METHOD } from '../../constants';
+import { RELEVANT_DIMENSIONS, SERIES_METHOD, SERIES_YEAR } from '../../constants';
 
 const styles = theme => ({
   panelExpanded: {
@@ -137,8 +150,9 @@ const DataLegend = ({
         <List className={classes.list}>
           {itemFactory()(estimateSeries)}
           {itemFactory(true)(uncertaintySeries)}
-          {itemFactory()(includedSeries)}
-          {itemFactory()(excludedSeries)}
+          {/*itemFactory()(reverse(sortBy(prop(SERIES_YEAR), concat(includedSeries, excludedSeries))))*/}
+          {itemFactory()(reverse(sortBy(prop(SERIES_YEAR), includedSeries)))}
+          {itemFactory()(reverse(sortBy(prop(SERIES_YEAR), excludedSeries)))}
         </List>
       </ExpansionPanelDetails>
     </ExpansionPanel>

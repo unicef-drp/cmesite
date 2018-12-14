@@ -27,6 +27,7 @@ import {
   gt,
   lte,
   path,
+  or,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
@@ -115,7 +116,7 @@ export const getCanLoadData = dataType =>
     getSexValue,
     getDimensions,
     (country, indicator, sex, dimensions) => {
-      if (isNil(dataType)) return false;
+      if (or(isNil(dataType), isNil(indicator))) return false;
       if (equals(dataType, COUNTRY)) return none(isNil, [country, indicator, sex]);
       else if (equals(dataType, MAP))
         return and(none(isNil, [indicator, sex]), propEq('isRate', true, indicator));

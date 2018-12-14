@@ -28,7 +28,8 @@ export const Y1 = 'UPPER_BOUND';
 
 export const MAX_SDMX_VALUES = 18;
 
-export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE', 'SERIES_YEAR'];
+export const SERIES_YEAR = 'SERIES_YEAR';
+export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE', SERIES_YEAR];
 
 export const EMAIL = 'childmortality@unicef.org';
 export const LEGAL_LINK = 'https://www.unicef.org/about/legal.html';
