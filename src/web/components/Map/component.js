@@ -86,7 +86,6 @@ class WorldMap extends React.Component {
         <Button variant="contained" onClick={this.resetZoom} className={classes.resetZoom}>
           <FormattedMessage {...messages.resetZoom} />
         </Button>
-        <Highlight datapoint={this.state.datapoint} />
         <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g>
             {worldData.features.map((d, i) => {
@@ -113,6 +112,7 @@ class WorldMap extends React.Component {
           </g>
         </svg>
         <Legend scale={mapColorScale} />
+        <Highlight datapoint={this.state.datapoint} />
       </div>
     );
   }

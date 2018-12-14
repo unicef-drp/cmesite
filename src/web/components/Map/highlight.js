@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { prop, isNil, always, ifElse, path } from 'ramda';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { REF_AREA } from '../../constants';
+import { REF_AREA, Z } from '../../constants';
 
 const style = theme => ({
   root: {
@@ -20,6 +20,13 @@ const style = theme => ({
     bottom: theme.spacing.unit * -3,
     left: '40%',
     textTransform: 'none',
+    width: 300,
+    [theme.breakpoints.down('xs')]: {
+      marginTop: theme.spacing.unit * 2,
+      position: 'inherit',
+      left: 'inherit',
+      bottom: 'inherit',
+    },
   },
   typo: {
     color: theme.palette.primary.dark,
@@ -38,36 +45,24 @@ const Hightlight = ({ classes, datapoint }) => {
       </Typography>
       <Divider />
       <Grid container spacing={0}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo}>
-            {format(prop('y0', datapoint))}
+            <strong>{path([Z, 'valueName'], datapoint)}</strong>
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
+          <Typography variant="body2" className={classes.typo}>
+            <FormattedMessage {...messages.uncertainty} />
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo}>
             <strong>{format(prop('y', datapoint))}</strong>
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo}>
-            {format(prop('y1', datapoint))}
-          </Typography>
-        </Grid>
-        <Grid item xs={4}>
-          <Typography variant="body2" className={classes.typo}>
-            <FormattedMessage {...messages.lower} />
-          </Typography>
-        </Grid>
-        <Grid item xs={4}>
-          <Typography variant="body2" className={classes.typo}>
-            <strong>
-              <FormattedMessage {...messages.estimate} />
-            </strong>
-          </Typography>
-        </Grid>
-        <Grid item xs={4}>
-          <Typography variant="body2" className={classes.typo}>
-            <FormattedMessage {...messages.upper} />
+            ({format(prop('y0', datapoint))} - {format(prop('y1', datapoint))})
           </Typography>
         </Grid>
       </Grid>
