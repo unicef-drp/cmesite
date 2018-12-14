@@ -31,6 +31,7 @@ export const MAX_SDMX_VALUES = 18;
 export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE', 'SERIES_YEAR'];
 
 export const EMAIL = 'childmortality@unicef.org';
+export const LEGAL_LINK = 'https://www.unicef.org/about/legal.html';
 export const LOCALES = ['en', 'fr', 'es'];
 export const END_PERIOD = '2017-06'; // requires data availability to know boundaries of a time dimension
 

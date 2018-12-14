@@ -1,7 +1,7 @@
 # TODO
 - [ ] misc: deaths (not rate): no serie selection, no label in yaxis, margin yAxis
 - [ ] map legend distribution
-- [ ] remaining feedbacks: 10/21
+- [ ] remaining feedbacks: 12/21
 
 ---
 

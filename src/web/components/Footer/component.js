@@ -12,7 +12,7 @@ import unicefLogo from '../../../assets/unicef-black-logo.png';
 import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
 import wboLogo from '../../../assets/wbo-black-logo.png';
-import { EMAIL } from '../../constants';
+import { EMAIL, LEGAL_LINK } from '../../constants';
 import routes, { getPath } from '../../routes';
 
 const style = theme => ({
@@ -64,7 +64,7 @@ const Footer = ({ classes }) => (
         <Button className={classes.button} component={Link} to={getPath(routes.about)}>
           <FormattedMessage {...messages.about} />
         </Button>
-        <Button className={classes.button}>
+        <Button className={classes.button} href={LEGAL_LINK} target="_blank">
           <FormattedMessage {...messages.legal} />
         </Button>
         <Button className={classes.button} href={`mailto:${EMAIL}`}>
