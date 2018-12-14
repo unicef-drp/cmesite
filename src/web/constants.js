@@ -2,10 +2,11 @@ export const REF_AREA = 'REF_AREA';
 export const INDICATOR = 'INDICATOR';
 export const SEX = 'SEX';
 export const TIME_PERIOD = 'TIME_PERIOD';
+export const REF_DATE = 'REF_DATE';
 export const RELEVANT_DIMENSIONS = [REF_AREA, INDICATOR, SEX];
 export const SEX_TOTAL_VALUE = '_T';
 export const RELEVANT_DIMENSIONS_DEFAULTS = new Set(['MRY0T4', SEX_TOTAL_VALUE]);
-export const EXC_NO_SEX_INDICATOR_VALUES = new Set(['MRY0T4']);
+export const EXC_NO_SEX_INDICATOR_VALUES = new Set(['MRY0T4', 'MRY5T14', 'TMM0', 'TMY5T14']);
 export const EXC_RATE_INDICATOR_VALUE_REGEXP = /rate/;
 
 export const ESTIMATE = 'ESTIMATE';

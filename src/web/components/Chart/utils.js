@@ -30,6 +30,7 @@ export const symbolGenerator = (size, index) =>
     .type(symbols[index % length(symbols)])
     .size(size);
 
+export const CIRCLE_INDEX = 0;
 export const SQUARE_INDEX = 3;
 
 export const getSymbolFill = (type, index, theme, isUncertainty) => {

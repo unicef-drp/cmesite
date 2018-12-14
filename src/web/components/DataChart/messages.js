@@ -11,10 +11,10 @@ export default defineMessages({
   },
   included: {
     id: 'data.chart.included',
-    defaultMessage: 'Source data',
+    defaultMessage: 'Data series',
   },
   excluded: {
     id: 'data.chart.excluded',
-    defaultMessage: 'Excluded source data',
+    defaultMessage: 'Excluded series',
   },
 });
