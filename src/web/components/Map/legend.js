@@ -15,7 +15,7 @@ const style = theme => ({
     padding: 0,
     position: 'absolute',
     left: 0,
-    bottom: theme.spacing.unit * -3,
+    bottom: theme.spacing.unit * -4,
     width: 150,
     [theme.breakpoints.down('xs')]: {
       position: 'initial',

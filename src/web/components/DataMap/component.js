@@ -39,6 +39,9 @@ const styles = theme => ({
     color: theme.palette.primary.dark,
     fontWeight: 600,
   },
+  note: {
+    paddingTop: theme.spacing.unit * 2,
+  },
 });
 
 const Component = ({ classes, isHome, isLoadingData }) => {
@@ -49,6 +52,11 @@ const Component = ({ classes, isHome, isLoadingData }) => {
       ) : (
         <React.Fragment>
           <WorldMap isHome />
+          <Typography variant="caption" className={classes.note}>
+            <em>
+              <FormattedMessage {...messages.note} />
+            </em>
+          </Typography>
           <MapSlider />
         </React.Fragment>
       )}
