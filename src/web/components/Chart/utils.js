@@ -30,6 +30,8 @@ export const symbolGenerator = (size, index) =>
     .type(symbols[index % length(symbols)])
     .size(size);
 
+export const SQUARE_INDEX = 3;
+
 export const getSymbolFill = (type, index, theme, isUncertainty) => {
   if (equals(type, EXCLUDED)) return 'none';
   return getColor(type, index, theme, isUncertainty);

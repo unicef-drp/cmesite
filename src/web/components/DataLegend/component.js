@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { symbolGenerator, getSymbolFill, getColor, isEstimate } from '../Chart/utils';
+import { symbolGenerator, getSymbolFill, getColor, isEstimate, SQUARE_INDEX } from '../Chart/utils';
 import { RELEVANT_DIMENSIONS } from '../../constants';
 
 const styles = theme => ({
@@ -79,7 +79,7 @@ const DataLegend = ({
       addIndex(map)(({ id, name, type, ...serie }, index) => (
         <ListItem className={classes.item} key={id} dense button>
           <ListItemIcon>
-            {isEstimate(type) ? (
+            {isEstimate(type) && !isUncertainty ? (
               <RemoveIcon
                 style={{
                   color: getColor(isCompare ? null : type, index, theme, isUncertainty),
@@ -88,14 +88,15 @@ const DataLegend = ({
               />
             ) : (
               <svg width={SIZE / 2} height={SIZE / 2}>
-                <g>
-                  <path
-                    d={symbolGenerator(SIZE, index)()}
-                    transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                    stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
-                    fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
-                  />
-                </g>
+                <path
+                  d={symbolGenerator(
+                    SIZE * (isUncertainty ? 4 : 2),
+                    isUncertainty ? SQUARE_INDEX : index,
+                  )()}
+                  transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                  stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
+                  fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
+                />
               </svg>
             )}
           </ListItemIcon>
