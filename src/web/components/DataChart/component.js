@@ -12,7 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Chart from '../Chart';
 import DataLegend from '../DataLegend';
-import { CIRCLE_INDEX, symbolGenerator } from '../Chart/utils';
+import { getSymbol } from '../Chart/utils';
 import { EXCLUDED, ESTIMATE } from '../../constants';
 
 const styles = theme => ({
@@ -95,7 +95,7 @@ const DataChart = ({
                     {equals(type, ESTIMATE) ? null : (
                       <svg width={SIZE / 2} height={SIZE / 2}>
                         <path
-                          d={symbolGenerator(SIZE * 4, CIRCLE_INDEX)()}
+                          d={getSymbol({ size: SIZE * 4 })()}
                           transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
                           stroke={theme.palette.secondary.dark}
                           fill={equals(type, EXCLUDED) ? 'none' : theme.palette.secondary.dark}

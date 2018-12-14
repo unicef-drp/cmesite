@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, addIndex, isNil, always, ifElse, join, pipe, pick, values } from 'ramda';
+import { map, addIndex, isNil, always, ifElse, join, pipe, pick, values, prop } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import RemoveIcon from '@material-ui/icons/Remove';
 import List from '@material-ui/core/List';
@@ -14,8 +14,14 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { symbolGenerator, getSymbolFill, getColor, isEstimate, SQUARE_INDEX } from '../Chart/utils';
-import { RELEVANT_DIMENSIONS } from '../../constants';
+import {
+  getSymbol,
+  getSeriesMethodSymbol,
+  getSymbolFill,
+  getColor,
+  isEstimate,
+} from '../Chart/utils';
+import { RELEVANT_DIMENSIONS, SERIES_METHOD } from '../../constants';
 
 const styles = theme => ({
   panelExpanded: {
@@ -89,10 +95,14 @@ const DataLegend = ({
             ) : (
               <svg width={SIZE / 2} height={SIZE / 2}>
                 <path
-                  d={symbolGenerator(
-                    SIZE * (isUncertainty ? 4 : 2),
-                    isUncertainty ? SQUARE_INDEX : index,
-                  )()}
+                  d={
+                    isUncertainty
+                      ? getSymbol({ size: SIZE * 4, shape: 'square' })()
+                      : getSeriesMethodSymbol({
+                          size: SIZE * 2,
+                          method: prop(SERIES_METHOD, serie),
+                        })()
+                  }
                   transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
                   stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
                   fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
