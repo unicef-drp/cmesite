@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { prop, pipe, allPass } from 'ramda';
+import { prop, pipe, allPass, map, addIndex } from 'ramda';
 import { area as d3Area, curveLinear } from 'd3-shape';
+import { select } from 'd3-selection';
+import { getSymbol } from './utils';
 
 class Area extends React.Component {
   state = {
@@ -12,22 +14,55 @@ class Area extends React.Component {
     const { xScale, yScale } = nextProps;
     let { area } = prevState;
 
+    const xScaleGetter = pipe(prop('x'), xScale);
+    const y0ScaleGetter = pipe(prop('y0'), yScale);
+    const y1ScaleGetter = pipe(prop('y1'), yScale);
+
     area
-      .x(pipe(prop('x'), xScale))
-      .y0(pipe(prop('y0'), yScale))
-      .y1(pipe(prop('y1'), yScale))
+      .x(xScaleGetter)
+      .y0(y0ScaleGetter)
+      .y1(y1ScaleGetter)
       .curve(curveLinear);
 
-    return { ...prevState, area };
+    return {
+      ...prevState,
+      area,
+      xScaleGetter,
+      y1ScaleGetter,
+    };
   };
 
   render = () => (
-    <path
-      d={this.state.area(this.props.data)}
-      className={prop('area')(this.props.classes)}
-      stroke={this.props.color}
-      fill={this.props.color}
-    />
+    <React.Fragment>
+      <path
+        d={this.state.area(this.props.data)}
+        className={prop('area')(this.props.classes)}
+        stroke={this.props.color}
+        fill={this.props.color}
+      />
+      {addIndex(map)((d, i) => {
+        const x = this.state.xScaleGetter(d);
+        const y = this.state.y1ScaleGetter(d);
+
+        // over marker
+        return (
+          <path
+            key={`marker-${i}`}
+            d={getSymbol({ size: 60 })()}
+            transform={`translate(${x},${y})`}
+            fill="transparent"
+            onMouseOver={event => {
+              select(event.target).attr('fill', this.props.color);
+              this.props.setTooltip({ x, y, d, isUncertainty: true, color: this.props.color });
+            }}
+            onMouseOut={event => {
+              select(event.target).attr('fill', 'transparent');
+              this.props.setTooltip();
+            }}
+          />
+        );
+      }, this.props.data)}
+    </React.Fragment>
   );
 }
 
@@ -37,6 +72,7 @@ Area.propTypes = {
   data: PropTypes.array,
   classes: PropTypes.object,
   color: PropTypes.string,
+  setTooltip: PropTypes.func.isRequired,
 };
 
 Area.defaultProps = {

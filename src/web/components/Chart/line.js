@@ -72,12 +72,11 @@ class Line extends React.Component {
               fill="transparent"
               onMouseOver={event => {
                 select(event.target).attr('fill', this.props.color);
-                clearTimeout(this.antiBlink);
                 this.props.setTooltip({ x, y, d, color: this.props.color });
               }}
               onMouseOut={event => {
                 select(event.target).attr('fill', 'transparent');
-                this.antiBlink = setTimeout(() => this.props.setTooltip(), 50);
+                this.props.setTooltip();
               }}
             />
           </React.Fragment>

@@ -41,7 +41,7 @@ const getTop = ({ y, height, theme }) => {
   return y + (isFlipped ? 0 : -150) + (isFlipped ? theme.spacing.unit * 2 : 0);
 };
 
-const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare }) => (
+const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare, isUncertainty }) => (
   <Card
     className={classes.card}
     style={{
@@ -57,7 +57,12 @@ const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare }) =
         {getLabel({ isCompare })(d)}
       </Typography>
       <Typography variant="body2">
-        <strong>{format(prop('y', d))}</strong> ({path([REF_DATE, 'valueName'], d)})
+        <strong>
+          {isUncertainty
+            ? join(' - ', [format(prop('y0', d)), format(prop('y1', d))])
+            : format(prop('y', d))}
+        </strong>{' '}
+        ({path([REF_DATE, 'valueName'], d)})
       </Typography>
     </CardContent>
   </Card>
@@ -73,6 +78,7 @@ Tooltip.propTypes = {
   height: PropTypes.number,
   color: PropTypes.string,
   isCompare: PropTypes.bool,
+  isUncertainty: PropTypes.bool,
 };
 
 export default withStyles(style, { withTheme: true })(Tooltip);

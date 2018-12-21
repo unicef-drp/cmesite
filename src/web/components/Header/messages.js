@@ -11,7 +11,7 @@ export default defineMessages({
   },
   data: {
     id: 'route.data',
-    defaultMessage: 'Data and Estimates',
+    defaultMessage: 'Data',
   },
   reports: {
     id: 'route.reports',

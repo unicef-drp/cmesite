@@ -1,9 +1,13 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  title: {
-    id: 'legend.title',
-    defaultMessage: 'Legend',
+  titleSources: {
+    id: 'legend.title.sources',
+    defaultMessage: 'Legend (data sources)',
+  },
+  titleMethods: {
+    id: 'legend.title.methods',
+    defaultMessage: 'Legend (methods)',
   },
   uncertainty: {
     id: 'legend.uncertainty',

@@ -10,7 +10,7 @@ import { HomeCountrySelector, IndicatorSelector } from '../Selector';
 import WorldMap from '../Map';
 import MapSlider from '../MapSlider';
 import DataProgress from '../DataProgress';
-import { COUNTRY } from '../../api/sdmx';
+import { COUNTRY, HOME } from '../../api/sdmx';
 
 const styles = theme => ({
   root: {
@@ -28,11 +28,8 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
-  country: {
-    background: theme.palette.primary.light,
-    padding: theme.spacing.unit * 3,
-  },
   countryLabel: {
+    color: theme.palette.primary.dark,
     fontWeight: 600,
   },
   indicatorLabel: {
@@ -69,27 +66,25 @@ const Component = ({ classes, isHome, isLoadingData }) => {
   if (!isHome) return invariant;
 
   return (
-    <Grid container spacing={32} className={classes.root}>
-      <Grid item xs={12} sm={7} xl={8} container direction="column" justify="space-between">
+    <Grid container spacing={16} className={classes.root}>
+      <Grid item xs={12}>
         <Typography variant="headline" className={classes.title}>
           <small>
             <FormattedMessage {...messages.title} />
           </small>
         </Typography>
-        <div>
-          <Typography variant="body2" color="primary" className={classes.indicatorLabel}>
-            <FormattedMessage {...messages.indicator} />
-          </Typography>
-          <IndicatorSelector />
-        </div>
       </Grid>
-      <Grid item xs={12} sm={5} xl={4}>
-        <div className={classes.country}>
-          <Typography variant="body2" color="primary" className={classes.countryLabel}>
-            <FormattedMessage {...messages.country} />
-          </Typography>
-          <HomeCountrySelector dataType={COUNTRY} />
-        </div>
+      <Grid item xs={12} sm={7}>
+        <Typography variant="body2" color="primary" className={classes.indicatorLabel}>
+          <FormattedMessage {...messages.indicator} />
+        </Typography>
+        <IndicatorSelector dataType={HOME} />
+      </Grid>
+      <Grid item xs={12} sm={5}>
+        <Typography variant="body2" color="primary" className={classes.countryLabel}>
+          <FormattedMessage {...messages.country} />
+        </Typography>
+        <HomeCountrySelector dataType={COUNTRY} />
       </Grid>
       <Grid item xs={12}>
         {invariant}

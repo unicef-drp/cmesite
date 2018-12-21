@@ -98,6 +98,7 @@ class WorldMap extends React.Component {
                   fill={color}
                   stroke={theme.palette.secondary.main}
                   strokeWidth={0.2}
+                  onClick={() => this.props.handleMapClick(datapoint)}
                   onMouseOver={event => {
                     select(event.target).attr('fill', theme.palette.primary.main);
                     this.setDatapoint(datapoint);

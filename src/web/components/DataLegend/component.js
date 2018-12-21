@@ -13,6 +13,10 @@ import {
   prop,
   sortBy,
   reverse,
+  toPairs,
+  indexBy,
+  path,
+  isEmpty,
 } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import RemoveIcon from '@material-ui/icons/Remove';
@@ -83,10 +87,10 @@ const styles = theme => ({
 const DataLegend = ({
   classes,
   theme,
-  estimateSeries,
-  uncertaintySeries,
-  includedSeries,
-  excludedSeries,
+  estimateSeries = [],
+  uncertaintySeries = [],
+  includedSeries = [],
+  excludedSeries = [],
   isCompare,
 }) => {
   const SIZE = 60;
@@ -132,30 +136,73 @@ const DataLegend = ({
       )),
     );
 
+  const methods = toPairs(indexBy(prop(SERIES_METHOD), [...includedSeries, ...excludedSeries]));
+
   return (
-    <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
-      <ExpansionPanelSummary
-        expandIcon={<ExpandMoreIcon />}
-        classes={{
-          root: classes.panelSummaryRoot,
-          content: classes.panelSummaryContent,
-          expanded: classes.expanded,
-        }}
-      >
-        <Typography className={classes.typo}>
-          <FormattedMessage {...messages.title} />
-        </Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
-        <List className={classes.list}>
-          {itemFactory()(estimateSeries)}
-          {itemFactory(true)(uncertaintySeries)}
-          {/*itemFactory()(reverse(sortBy(prop(SERIES_YEAR), concat(includedSeries, excludedSeries))))*/}
-          {itemFactory()(reverse(sortBy(prop(SERIES_YEAR), includedSeries)))}
-          {itemFactory()(reverse(sortBy(prop(SERIES_YEAR), excludedSeries)))}
-        </List>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+    <React.Fragment>
+      <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          classes={{
+            root: classes.panelSummaryRoot,
+            content: classes.panelSummaryContent,
+            expanded: classes.expanded,
+          }}
+        >
+          <Typography className={classes.typo}>
+            <FormattedMessage {...messages.titleSources} />
+          </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
+          <List className={classes.list}>
+            {itemFactory()(estimateSeries)}
+            {itemFactory(true)(uncertaintySeries)}
+            {includedSeries && itemFactory()(reverse(sortBy(prop(SERIES_YEAR), includedSeries)))}
+            {excludedSeries && itemFactory()(reverse(sortBy(prop(SERIES_YEAR), excludedSeries)))}
+          </List>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      {isEmpty(methods) ? null : (
+        <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0} defaultExpanded>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            classes={{
+              root: classes.panelSummaryRoot,
+              content: classes.panelSummaryContent,
+              expanded: classes.expanded,
+            }}
+          >
+            <Typography className={classes.typo}>
+              <FormattedMessage {...messages.titleMethods} />
+            </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
+            <List className={classes.list}>
+              {map(
+                ([method, serie]) => (
+                  <ListItem className={classes.item} key={method} dense button>
+                    <ListItemIcon>
+                      <svg width={SIZE / 2} height={SIZE / 2}>
+                        <path
+                          d={getSeriesMethodSymbol({ size: SIZE * 2, method })()}
+                          transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                          stroke={theme.palette.secondary.dark}
+                          fill={theme.palette.secondary.dark}
+                        />
+                      </svg>
+                    </ListItemIcon>
+                    <ListItemText>
+                      {path(['datapoints', 0, SERIES_METHOD, 'valueName'], serie)}
+                    </ListItemText>
+                  </ListItem>
+                ),
+                methods,
+              )}
+            </List>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      )}
+    </React.Fragment>
   );
 };
 
