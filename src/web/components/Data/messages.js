@@ -3,18 +3,18 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   country: {
     id: 'data.country',
-    defaultMessage: 'Country data',
+    defaultMessage: 'Country data and estimates',
   },
   compare: {
     id: 'data.compare',
-    defaultMessage: 'Compare',
+    defaultMessage: 'Compare estimates',
   },
   map: {
     id: 'data.map',
-    defaultMessage: 'Map',
+    defaultMessage: 'Map estimates',
   },
   download: {
     id: 'data.download',
-    defaultMessage: 'Download',
+    defaultMessage: 'Download data  and estimates',
   },
 });

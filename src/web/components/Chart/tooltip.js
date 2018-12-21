@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { prop, isNil, always, ifElse, pipe, join, values, pick, pluck } from 'ramda';
+import { path, prop, isNil, always, ifElse, pipe, join, values, pick, pluck } from 'ramda';
 import numeral from 'numeral';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { TOOLTIP_SERIES_KEYS, RELEVANT_DIMENSIONS } from '../../constants';
+import { TOOLTIP_SERIES_KEYS, RELEVANT_DIMENSIONS, REF_DATE } from '../../constants';
 
 const WIDTH = 250;
 
@@ -41,7 +41,7 @@ const getTop = ({ y, height, theme }) => {
   return y + (isFlipped ? 0 : -150) + (isFlipped ? theme.spacing.unit * 2 : 0);
 };
 
-const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare }) => (
+const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare, isUncertainty }) => (
   <Card
     className={classes.card}
     style={{
@@ -57,7 +57,12 @@ const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare }) =
         {getLabel({ isCompare })(d)}
       </Typography>
       <Typography variant="body2">
-        <strong>{format(prop('y', d))}</strong>
+        <strong>
+          {isUncertainty
+            ? join(' - ', [format(prop('y0', d)), format(prop('y1', d))])
+            : format(prop('y', d))}
+        </strong>{' '}
+        ({path([REF_DATE, 'valueName'], d)})
       </Typography>
     </CardContent>
   </Card>
@@ -73,6 +78,7 @@ Tooltip.propTypes = {
   height: PropTypes.number,
   color: PropTypes.string,
   isCompare: PropTypes.bool,
+  isUncertainty: PropTypes.bool,
 };
 
 export default withStyles(style, { withTheme: true })(Tooltip);

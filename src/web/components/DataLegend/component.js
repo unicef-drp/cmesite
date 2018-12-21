@@ -1,6 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, addIndex, isNil, always, ifElse, join, pipe, pick, values } from 'ramda';
+import {
+  map,
+  addIndex,
+  isNil,
+  always,
+  ifElse,
+  join,
+  pipe,
+  pick,
+  values,
+  prop,
+  sortBy,
+  reverse,
+  toPairs,
+  indexBy,
+  path,
+  isEmpty,
+} from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import RemoveIcon from '@material-ui/icons/Remove';
 import List from '@material-ui/core/List';
@@ -14,8 +31,14 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { symbolGenerator, getSymbolFill, getColor, isEstimate } from '../Chart/utils';
-import { RELEVANT_DIMENSIONS } from '../../constants';
+import {
+  getSymbol,
+  getSeriesMethodSymbol,
+  getSymbolFill,
+  getColor,
+  isEstimate,
+} from '../Chart/utils';
+import { RELEVANT_DIMENSIONS, SERIES_METHOD, SERIES_YEAR } from '../../constants';
 
 const styles = theme => ({
   panelExpanded: {
@@ -64,10 +87,10 @@ const styles = theme => ({
 const DataLegend = ({
   classes,
   theme,
-  estimateSeries,
-  uncertaintySeries,
-  includedSeries,
-  excludedSeries,
+  estimateSeries = [],
+  uncertaintySeries = [],
+  includedSeries = [],
+  excludedSeries = [],
   isCompare,
 }) => {
   const SIZE = 60;
@@ -79,7 +102,7 @@ const DataLegend = ({
       addIndex(map)(({ id, name, type, ...serie }, index) => (
         <ListItem className={classes.item} key={id} dense button>
           <ListItemIcon>
-            {isEstimate(type) ? (
+            {isEstimate(type) && !isUncertainty ? (
               <RemoveIcon
                 style={{
                   color: getColor(isCompare ? null : type, index, theme, isUncertainty),
@@ -88,14 +111,19 @@ const DataLegend = ({
               />
             ) : (
               <svg width={SIZE / 2} height={SIZE / 2}>
-                <g>
-                  <path
-                    d={symbolGenerator(SIZE, index)()}
-                    transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                    stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
-                    fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
-                  />
-                </g>
+                <path
+                  d={
+                    isUncertainty
+                      ? getSymbol({ size: SIZE * 4, shape: 'square' })()
+                      : getSeriesMethodSymbol({
+                          size: SIZE * 2,
+                          method: prop(SERIES_METHOD, serie),
+                        })()
+                  }
+                  transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                  stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
+                  fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
+                />
               </svg>
             )}
           </ListItemIcon>
@@ -108,29 +136,73 @@ const DataLegend = ({
       )),
     );
 
+  const methods = toPairs(indexBy(prop(SERIES_METHOD), [...includedSeries, ...excludedSeries]));
+
   return (
-    <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
-      <ExpansionPanelSummary
-        expandIcon={<ExpandMoreIcon />}
-        classes={{
-          root: classes.panelSummaryRoot,
-          content: classes.panelSummaryContent,
-          expanded: classes.expanded,
-        }}
-      >
-        <Typography className={classes.typo}>
-          <FormattedMessage {...messages.title} />
-        </Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
-        <List className={classes.list}>
-          {itemFactory()(estimateSeries)}
-          {itemFactory(true)(uncertaintySeries)}
-          {itemFactory()(includedSeries)}
-          {itemFactory()(excludedSeries)}
-        </List>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+    <React.Fragment>
+      <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          classes={{
+            root: classes.panelSummaryRoot,
+            content: classes.panelSummaryContent,
+            expanded: classes.expanded,
+          }}
+        >
+          <Typography className={classes.typo}>
+            <FormattedMessage {...messages.titleSources} />
+          </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
+          <List className={classes.list}>
+            {itemFactory()(estimateSeries)}
+            {itemFactory(true)(uncertaintySeries)}
+            {includedSeries && itemFactory()(reverse(sortBy(prop(SERIES_YEAR), includedSeries)))}
+            {excludedSeries && itemFactory()(reverse(sortBy(prop(SERIES_YEAR), excludedSeries)))}
+          </List>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      {isEmpty(methods) ? null : (
+        <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0} defaultExpanded>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            classes={{
+              root: classes.panelSummaryRoot,
+              content: classes.panelSummaryContent,
+              expanded: classes.expanded,
+            }}
+          >
+            <Typography className={classes.typo}>
+              <FormattedMessage {...messages.titleMethods} />
+            </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
+            <List className={classes.list}>
+              {map(
+                ([method, serie]) => (
+                  <ListItem className={classes.item} key={method} dense button>
+                    <ListItemIcon>
+                      <svg width={SIZE / 2} height={SIZE / 2}>
+                        <path
+                          d={getSeriesMethodSymbol({ size: SIZE * 2, method })()}
+                          transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                          stroke={theme.palette.secondary.dark}
+                          fill={theme.palette.secondary.dark}
+                        />
+                      </svg>
+                    </ListItemIcon>
+                    <ListItemText>
+                      {path(['datapoints', 0, SERIES_METHOD, 'valueName'], serie)}
+                    </ListItemText>
+                  </ListItem>
+                ),
+                methods,
+              )}
+            </List>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      )}
+    </React.Fragment>
   );
 };
 

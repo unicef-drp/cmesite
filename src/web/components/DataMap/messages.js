@@ -13,4 +13,9 @@ export default defineMessages({
     id: 'map.home.indicator',
     defaultMessage: 'Select indicator data',
   },
+  note: {
+    id: 'map.note',
+    defaultMessage:
+      'Note: This map does not reflect a position by UN IGME agencies on the legal status of any country or territory or the delimitation of any frontiers.',
+  },
 });

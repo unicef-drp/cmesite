@@ -9,13 +9,9 @@ export default defineMessages({
     id: 'map.legend.max',
     defaultMessage: '{max} and above',
   },
-  upper: {
-    id: 'map.datapoint.upper',
-    defaultMessage: 'upper',
-  },
-  lower: {
-    id: 'map.datapoint.lower',
-    defaultMessage: 'lower',
+  uncertainty: {
+    id: 'map.datapoint.uncertainty',
+    defaultMessage: 'Uncertainty Interval',
   },
   estimate: {
     id: 'map.datapoint.estimate',

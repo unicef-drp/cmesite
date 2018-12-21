@@ -8,10 +8,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Chart from '../Chart';
-import DataLegend from '../DataLegend';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import Chart from '../Chart';
+import DataLegend from '../DataLegend';
+import { getSymbol } from '../Chart/utils';
+import { EXCLUDED, ESTIMATE } from '../../constants';
 
 const styles = theme => ({
   card: {
@@ -40,9 +42,23 @@ const styles = theme => ({
       flexDirection: 'column',
     },
   },
+  label: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 });
 
-const DataChart = ({ classes, title, activeTypes, toggleActiveType, isCompare, ...series }) => (
+const SIZE = 60;
+
+const DataChart = ({
+  classes,
+  theme,
+  title,
+  activeTypes,
+  toggleActiveType,
+  isCompare,
+  ...series
+}) => (
   <Card className={classes.card} square>
     <CardHeader
       className={classes.header}
@@ -74,7 +90,21 @@ const DataChart = ({ classes, title, activeTypes, toggleActiveType, isCompare, .
                     onChange={() => toggleActiveType(type)}
                   />
                 }
-                label={<FormattedMessage {...messages[toLower(type)]} />}
+                label={
+                  <span className={classes.label}>
+                    {equals(type, ESTIMATE) ? null : (
+                      <svg width={SIZE / 2} height={SIZE / 2}>
+                        <path
+                          d={getSymbol({ size: SIZE * 4 })()}
+                          transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                          stroke={theme.palette.secondary.dark}
+                          fill={equals(type, EXCLUDED) ? 'none' : theme.palette.secondary.dark}
+                        />
+                      </svg>
+                    )}
+                    <FormattedMessage {...messages[toLower(type)]} />
+                  </span>
+                }
               />
             )),
           )(activeTypes)}
@@ -87,10 +117,11 @@ const DataChart = ({ classes, title, activeTypes, toggleActiveType, isCompare, .
 
 DataChart.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   title: PropTypes.string,
   activeTypes: PropTypes.object,
   toggleActiveType: PropTypes.func.isRequired,
   isCompare: PropTypes.bool,
 };
 
-export default withStyles(styles)(DataChart);
+export default withStyles(styles, { withTheme: true })(DataChart);

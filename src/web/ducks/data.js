@@ -111,7 +111,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isLoadingData: false,
         [`${action.dataType}Series`]: action.series,
-        [`${action.dataType}Stale`]: false,
+        [`${action.dataType}Stale`]: action.staled || false,
       };
     case TOGGLE_DOWNLOADING_DATA:
       return over(lensPath(['downloadingData', `${action.format}.${action.scope}`]), not, state);
@@ -196,7 +196,14 @@ export const loadData = dataType => (dispatch, getState) => {
     method: 'getData',
     dimensions: getRawDimensions(getState()),
     dataType,
-  }).then(series => dispatch({ type: DATA_LOADED, dataType: __dataType, series }));
+  }).then(series =>
+    dispatch({
+      type: DATA_LOADED,
+      staled: equals(dataType, HOME),
+      dataType: __dataType,
+      series,
+    }),
+  );
 };
 
 export const downloadData = ({ dataType, format, scope }) => (dispatch, getState) => {

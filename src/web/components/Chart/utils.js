@@ -1,5 +1,12 @@
 import { min as d3Min, max as d3Max } from 'd3-array';
-import { symbol, symbols } from 'd3-shape';
+import {
+  symbol,
+  symbolCircle,
+  symbolTriangle,
+  symbolDiamond,
+  symbolSquare,
+  symbolCross,
+} from 'd3-shape';
 import {
   equals,
   pipe,
@@ -17,18 +24,32 @@ import {
   isEmpty,
   isNil,
   reject,
-  length,
 } from 'ramda';
-import { ESTIMATE, EXCLUDED } from '../../constants';
+import {
+  ESTIMATE,
+  EXCLUDED,
+  DEFAULT_SYMBOL,
+  SERIES_METHOD_SYMBOLS,
+  MISC_SYMBOL,
+} from '../../constants';
 
 export const isEstimate = equals(ESTIMATE);
 
 export const hasSymbols = complement(isEstimate);
 
-export const symbolGenerator = (size, index) =>
+const symbols = {
+  circle: symbolCircle,
+  triangle: symbolTriangle,
+  diamond: symbolDiamond,
+  square: symbolSquare,
+  cross: symbolCross,
+};
+export const getSymbol = ({ size = 30, shape = DEFAULT_SYMBOL } = {}) =>
   symbol()
-    .type(symbols[index % length(symbols)])
+    .type(prop(shape, symbols))
     .size(size);
+export const getSeriesMethodSymbol = ({ size, method } = {}) =>
+  getSymbol({ size, shape: propOr(MISC_SYMBOL, method, SERIES_METHOD_SYMBOLS) });
 
 export const getSymbolFill = (type, index, theme, isUncertainty) => {
   if (equals(type, EXCLUDED)) return 'none';

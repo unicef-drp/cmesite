@@ -86,7 +86,6 @@ class WorldMap extends React.Component {
         <Button variant="contained" onClick={this.resetZoom} className={classes.resetZoom}>
           <FormattedMessage {...messages.resetZoom} />
         </Button>
-        <Highlight datapoint={this.state.datapoint} />
         <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g>
             {worldData.features.map((d, i) => {
@@ -99,6 +98,7 @@ class WorldMap extends React.Component {
                   fill={color}
                   stroke={theme.palette.secondary.main}
                   strokeWidth={0.2}
+                  onClick={() => this.props.handleMapClick(datapoint)}
                   onMouseOver={event => {
                     select(event.target).attr('fill', theme.palette.primary.main);
                     this.setDatapoint(datapoint);
@@ -113,6 +113,7 @@ class WorldMap extends React.Component {
           </g>
         </svg>
         <Legend scale={mapColorScale} />
+        <Highlight datapoint={this.state.datapoint} />
       </div>
     );
   }

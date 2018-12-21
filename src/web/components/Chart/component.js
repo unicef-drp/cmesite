@@ -6,7 +6,7 @@ import { compose, map, addIndex, ifElse, isNil, always, prop, lte, identity } fr
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
-import { timeFormat } from 'd3-time-format';
+// import { timeFormat } from 'd3-time-format';
 import { withSize } from 'react-sizeme';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -177,13 +177,13 @@ class Chart extends React.Component {
       addIndex(map)(({ id, datapoints, type }, index) => (
         <Line
           key={id}
+          type={type}
           data={datapoints}
           xScale={xScale}
           yScale={yScale}
           color={getColor(isCompare ? null : type, index, theme)}
           classes={getClass(type, classes)}
           hasSymbols={hasSymbols(type)}
-          serieIndex={index}
           symbolFill={getSymbolFill(isCompare ? null : type, index, theme)}
           setTooltip={this.setTooltip}
         />
@@ -233,7 +233,7 @@ class Chart extends React.Component {
               tickValues={prop('x', extents)}
               tickSize={-contentHeight}
               classes={classes}
-              tickFormat={timeFormat('%Y')}
+              tickFormat={always('') /*timeFormat('%Y')*/}
               tickPadding={2}
             />
             <g clipPath="url(#clip)">
