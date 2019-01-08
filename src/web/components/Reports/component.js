@@ -59,6 +59,7 @@ const style = theme => ({
     margin: theme.spacing.unit * 2,
     paddingLeft: '35%',
     width: 0,
+    height: 180,
   },
   action: {
     display: 'flex',
