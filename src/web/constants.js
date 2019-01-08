@@ -7,7 +7,7 @@ export const RELEVANT_DIMENSIONS = [REF_AREA, INDICATOR, SEX];
 export const SEX_TOTAL_VALUE = '_T';
 export const RELEVANT_DIMENSIONS_DEFAULTS = new Set(['MRY0T4', SEX_TOTAL_VALUE]);
 
-export const EXC_NO_SEX_INDICATOR_VALUES = new Set(['MRY0T4', 'MRY5T14', 'TMM0', 'TMY5T14']);
+export const EXC_NO_SEX_INDICATOR_VALUES = new Set(['MRM0', 'MRY5T14', 'TMM0', 'TMY5T14']);
 export const EXC_RATE_INDICATOR_VALUE_REGEXP = /^((?!death).)*$/i;
 
 export const ESTIMATE = 'ESTIMATE';
