@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { compose, map, addIndex, ifElse, isNil, always, prop, lte, identity } from 'ramda';
+import { compose, map, addIndex, ifElse, isNil, always, prop, lte, identity, indexOf } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
@@ -149,6 +149,7 @@ class Chart extends React.Component {
       includedSeries,
       excludedSeries,
       isCompare,
+      seriesNames,
     } = this.props;
 
     const { width } = size;
@@ -174,17 +175,17 @@ class Chart extends React.Component {
     const linesFactory = ifElse(
       isNil,
       always(null),
-      addIndex(map)(({ id, datapoints, type }, index) => (
+      addIndex(map)(({ id, name, datapoints, type }, index) => (
         <Line
           key={id}
           type={type}
           data={datapoints}
           xScale={xScale}
           yScale={yScale}
-          color={getColor(isCompare ? null : type, index, theme)}
+          color={getColor({ type, index: indexOf(name, seriesNames), theme })}
           classes={getClass(type, classes)}
           hasSymbols={hasSymbols(type)}
-          symbolFill={getSymbolFill(isCompare ? null : type, index, theme)}
+          symbolFill={getSymbolFill(isCompare ? null : type, indexOf(name, seriesNames), theme)}
           setTooltip={this.setTooltip}
         />
       )),

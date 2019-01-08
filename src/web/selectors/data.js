@@ -93,10 +93,11 @@ export const getMapIndex = createSelector(getData, getMapSeries, (data, series) 
   ifElse(isNil, always(dec(length(series))), identity)(prop('mapIndex', data)),
 );
 export const getMapSerie = createSelector(getMapIndex, getMapSeries, nth);
-export const getCountrySeries = createSelector(
+export const getRawCountrySeries = createSelector(
   getData,
-  pipe(propOr({}, 'countrySeries'), values, groupBy(prop('type'))),
+  pipe(propOr({}, 'countrySeries'), values),
 );
+export const getCountrySeries = createSelector(getRawCountrySeries, groupBy(prop('type')));
 export const getCountryActiveSeries = createSelector(
   getActiveTypes,
   getCountrySeries,
@@ -108,6 +109,10 @@ export const getCountryExcludedSeries = createSelector(getCountryActiveSeries, p
 export const getCompareEstimateSeries = createSelector(
   getData,
   pipe(propOr({}, 'compareSeries'), values),
+);
+export const getSeriesNames = createSelector(
+  getRawCountrySeries,
+  pipe(groupBy(prop('name')), keys),
 );
 export const getCanLoadData = dataType =>
   createSelector(

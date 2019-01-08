@@ -17,6 +17,7 @@ import {
   indexBy,
   path,
   isEmpty,
+  indexOf,
 } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import RemoveIcon from '@material-ui/icons/Remove';
@@ -92,6 +93,7 @@ const DataLegend = ({
   includedSeries = [],
   excludedSeries = [],
   isCompare,
+  seriesNames = [],
 }) => {
   const SIZE = 60;
 
@@ -105,7 +107,7 @@ const DataLegend = ({
             {isEstimate(type) && !isUncertainty ? (
               <RemoveIcon
                 style={{
-                  color: getColor(isCompare ? null : type, index, theme, isUncertainty),
+                  color: getColor({ type, index, theme, isUncertainty }),
                   fontSize: 30,
                 }}
               />
@@ -121,8 +123,18 @@ const DataLegend = ({
                         })()
                   }
                   transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                  stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
-                  fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
+                  stroke={getColor({
+                    type,
+                    index: indexOf(name, seriesNames),
+                    theme,
+                    isUncertainty,
+                  })}
+                  fill={getSymbolFill(
+                    isCompare ? null : type,
+                    indexOf(name, seriesNames),
+                    theme,
+                    isUncertainty,
+                  )}
                 />
               </svg>
             )}
@@ -218,6 +230,7 @@ DataLegend.propTypes = {
   includedSeries: PropTypes.array,
   excludedSeries: PropTypes.array,
   isCompare: PropTypes.bool,
+  serieNames: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(DataLegend);

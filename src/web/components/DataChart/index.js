@@ -1,4 +1,4 @@
-import { pipe, reject, isNil, isEmpty, either } from 'ramda';
+import { pipe, reject, isNil, isEmpty, either, pluck, uniq } from 'ramda';
 import { compose, branch, renderComponent, withProps } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -7,6 +7,7 @@ import {
   getCompareTitle,
   getIsLoadingData,
   getActiveTypes,
+  getSeriesNames,
   getCountryEstimateSeries,
   getCountryIncludedSeries,
   getCountryExcludedSeries,
@@ -45,6 +46,7 @@ export const DataCountryChart = withData({
   uncertaintySeries: getCountryEstimateSeries,
   includedSeries: getCountryIncludedSeries,
   excludedSeries: getCountryExcludedSeries,
+  seriesNames: getSeriesNames,
 })(Component);
 
 export const DataCompareChart = compose(
