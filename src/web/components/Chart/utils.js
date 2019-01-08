@@ -24,7 +24,6 @@ import {
   isEmpty,
   isNil,
   reject,
-  not,
 } from 'ramda';
 import {
   ESTIMATE,

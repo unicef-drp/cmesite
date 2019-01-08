@@ -107,7 +107,7 @@ const DataLegend = ({
             {isEstimate(type) && !isUncertainty ? (
               <RemoveIcon
                 style={{
-                  color: getColor({ type, index, theme, isUncertainty }),
+                  color: getColor({ type: isCompare ? null : type, index, theme, isUncertainty }),
                   fontSize: 30,
                 }}
               />
@@ -124,7 +124,7 @@ const DataLegend = ({
                   }
                   transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
                   stroke={getColor({
-                    type,
+                    type: isCompare ? null : type,
                     index: indexOf(name, seriesNames),
                     theme,
                     isUncertainty,

@@ -182,10 +182,18 @@ class Chart extends React.Component {
           data={datapoints}
           xScale={xScale}
           yScale={yScale}
-          color={getColor({ type, index: indexOf(name, seriesNames), theme })}
+          color={getColor({
+            type: isCompare ? null : type,
+            index: isCompare ? index : indexOf(name, seriesNames),
+            theme,
+          })}
           classes={getClass(type, classes)}
           hasSymbols={hasSymbols(type)}
-          symbolFill={getSymbolFill(isCompare ? null : type, indexOf(name, seriesNames), theme)}
+          symbolFill={getSymbolFill(
+            isCompare ? null : type,
+            isCompare ? index : indexOf(name, seriesNames),
+            theme,
+          )}
           setTooltip={this.setTooltip}
         />
       )),
