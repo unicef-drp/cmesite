@@ -1,4 +1,4 @@
-import { pipe, reject, isNil, isEmpty, either, pluck, uniq } from 'ramda';
+import { pipe, reject, isNil, isEmpty, either } from 'ramda';
 import { compose, branch, renderComponent, withProps } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
