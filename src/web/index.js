@@ -85,15 +85,10 @@ loadConfig().then(config => {
   wpApi.config(prop('wp')(config));
   //sdmxApi.config(prop('sdmx')(config));
 
+  // staging and qa
   sdmxApi.config({
-    //endpoint: 'https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest',
-    endpoint: 'https://apidata.unicef.org/sdmx/Rest',
-    dataflow: {
-      id: 'CME_DF',
-      version: '1.0',
-      //agencyId: 'UNICEFDRPDAU',
-      agencyId: 'UNICEF',
-    },
+    endpoint: 'https://api.data.unicef.org/sdmx/Rest',
+    dataflow: { id: 'CME_DF', version: '1.0', agencyId: 'UNICEF' },
   });
 
   ReactDOM.render(ROOT, document.getElementById('root'));
