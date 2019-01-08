@@ -87,7 +87,7 @@ loadConfig().then(config => {
 
   sdmxApi.config({
     //endpoint: 'https://dotstatdev.westeurope.cloudapp.azure.com/JulyDisseminateNSIService/rest',
-    endpoint: 'https://apidata.unicef.org/sdmx/Rest',
+    endpoint: 'https://api.data.unicef.org/sdmx/Rest',
     dataflow: {
       id: 'CME_DF',
       version: '1.0',
