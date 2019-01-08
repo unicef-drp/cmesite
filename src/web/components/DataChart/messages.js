@@ -7,7 +7,7 @@ export default defineMessages({
   },
   estimate: {
     id: 'data.chart.estimate',
-    defaultMessage: 'UN IGME estimates',
+    defaultMessage: 'UN IGME Estimates',
   },
   included: {
     id: 'data.chart.included',

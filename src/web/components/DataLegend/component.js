@@ -128,9 +128,13 @@ const DataLegend = ({
             )}
           </ListItemIcon>
           <ListItemText>
-            {isCompare
-              ? join(' ', [...pipe(pick(RELEVANT_DIMENSIONS), values)(serie), name])
-              : name}
+            {isCompare ? (
+              join(' ', [...pipe(pick(RELEVANT_DIMENSIONS), values)(serie), name])
+            ) : isUncertainty ? (
+              <FormattedMessage {...messages.uncertainty} />
+            ) : (
+              name
+            )}
           </ListItemText>
         </ListItem>
       )),
