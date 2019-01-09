@@ -84,7 +84,6 @@ export const getCompareTitle = createSelector(
     key: 'label',
   }),
 );
-export const getActiveTypes = createSelector(getData, prop('activeTypes'));
 export const getMapSeries = createSelector(
   getData,
   pipe(propOr({}, 'mapSeries'), values, sortBy(prop('name'))),
@@ -98,8 +97,13 @@ export const getRawCountrySeries = createSelector(
   pipe(propOr({}, 'countrySeries'), values),
 );
 export const getCountrySeries = createSelector(getRawCountrySeries, groupBy(prop('type')));
+export const getCountryActiveTypes = createSelector(
+  getCountrySeries,
+  getData,
+  useWith(pick, [keys, prop('activeTypes')]),
+);
 export const getCountryActiveSeries = createSelector(
-  getActiveTypes,
+  getCountryActiveTypes,
   getCountrySeries,
   useWith(pick, [pipe(filter(identity), keys), identity]),
 );

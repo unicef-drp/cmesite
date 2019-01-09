@@ -1,6 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, toPairs, pipe, toLower, equals, length, filter, identity, values } from 'ramda';
+import {
+  map,
+  toPairs,
+  pipe,
+  toLower,
+  equals,
+  length,
+  filter,
+  identity,
+  values,
+  sortBy,
+  findIndex,
+  propEq,
+} from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -13,7 +26,7 @@ import messages from './messages';
 import Chart from '../Chart';
 import DataLegend from '../DataLegend';
 import { getSymbol } from '../Chart/utils';
-import { EXCLUDED, ESTIMATE } from '../../constants';
+import { EXCLUDED, ESTIMATE, TYPES } from '../../constants';
 
 const styles = theme => ({
   card: {
@@ -80,6 +93,7 @@ const DataChart = ({
         <div>
           {pipe(
             toPairs,
+            sortBy(([type]) => findIndex(propEq('id', type), TYPES)),
             map(([type, active]) => (
               <FormControlLabel
                 key={type}
