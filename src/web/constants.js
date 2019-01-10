@@ -11,14 +11,15 @@ export const EXC_NO_SEX_INDICATOR_VALUES = new Set(['MRM0', 'MRY5T14', 'TMM0', '
 export const EXC_RATE_INDICATOR_VALUE_REGEXP = /^((?!death).)*$/i;
 
 export const ESTIMATE = 'ESTIMATE';
-export const INCLUDED = 'INCLUDED';
-export const EXCLUDED = 'EXCLUDED';
+export const INCLUDED = 'IN';
+export const EXCLUDED = 'EX';
 
+export const OBS_STATUS = 'OBS_STATUS';
 export const ESTIMATE_TYPE = { sdmxId: 'SERIES_NAME', sdmxValue: '269', id: ESTIMATE, value: true };
 export const TYPES = [
   ESTIMATE_TYPE,
-  { sdmxId: 'OBS_STATUS', sdmxValue: 'IN', id: INCLUDED, value: true },
-  { sdmxId: 'OBS_STATUS', sdmxValue: 'EX', id: EXCLUDED, value: true },
+  { sdmxId: OBS_STATUS, sdmxValue: 'IN', id: INCLUDED, value: true },
+  { sdmxId: OBS_STATUS, sdmxValue: 'EX', id: EXCLUDED, value: true },
 ];
 
 export const Z = 'SERIES_NAME';

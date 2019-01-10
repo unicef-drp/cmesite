@@ -4,7 +4,7 @@ import { prop, pipe, both, map, addIndex, path } from 'ramda';
 import { line as d3Line, curveLinear } from 'd3-shape';
 import { select } from 'd3-selection';
 import { getSymbol, getSeriesMethodSymbol, isEstimate } from './utils';
-import { SERIES_METHOD } from '../../constants';
+import { SERIES_METHOD, OBS_STATUS } from '../../constants';
 
 class Line extends React.Component {
   defined = both(prop('x'), prop('y'));
@@ -58,7 +58,9 @@ class Line extends React.Component {
                 }
                 transform={`translate(${x},${y})`}
                 stroke={this.props.color}
-                fill={this.props.symbolFill}
+                fill={this.props.symbolFill(
+                  isEstimate(this.props.type) ? this.props.type : path([OBS_STATUS, 'valueId'], d),
+                )}
               />
             )}
             {/* over marker */}
@@ -94,7 +96,7 @@ Line.propTypes = {
   color: PropTypes.string,
   type: PropTypes.string,
   hasSymbols: PropTypes.bool,
-  symbolFill: PropTypes.string,
+  symbolFill: PropTypes.func.isRequired,
   setTooltip: PropTypes.func.isRequired,
 };
 

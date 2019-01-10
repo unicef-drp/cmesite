@@ -9,11 +9,11 @@ export default defineMessages({
     id: 'data.chart.estimate',
     defaultMessage: 'UN IGME Estimates',
   },
-  included: {
+  in: {
     id: 'data.chart.included',
     defaultMessage: 'Source data included',
   },
-  excluded: {
+  ex: {
     id: 'data.chart.excluded',
     defaultMessage: 'Source data excluded',
   },

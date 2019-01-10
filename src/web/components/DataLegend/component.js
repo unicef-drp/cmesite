@@ -129,11 +129,8 @@ const DataLegend = ({
                     theme,
                     isUncertainty,
                   })}
-                  fill={getSymbolFill(
+                  fill={getSymbolFill(indexOf(name, seriesNames), theme, isUncertainty)(
                     isCompare ? null : type,
-                    indexOf(name, seriesNames),
-                    theme,
-                    isUncertainty,
                   )}
                 />
               </svg>

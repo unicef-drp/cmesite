@@ -51,7 +51,7 @@ export const getSymbol = ({ size = 30, shape = DEFAULT_SYMBOL } = {}) =>
 export const getSeriesMethodSymbol = ({ size, method } = {}) =>
   getSymbol({ size, shape: propOr(MISC_SYMBOL, method, SERIES_METHOD_SYMBOLS) });
 
-export const getSymbolFill = (type, index, theme, isUncertainty) => {
+export const getSymbolFill = (index, theme, isUncertainty) => type => {
   if (equals(type, EXCLUDED)) return 'none';
   return getColor({ type, index, theme, isUncertainty });
 };

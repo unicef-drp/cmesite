@@ -192,7 +192,7 @@ class Chart extends React.Component {
           classes={getClass(type, classes)}
           hasSymbols={hasSymbols(type)}
           symbolFill={getSymbolFill(
-            isCompare ? null : type,
+            //isCompare ? null : type,
             isCompare ? index : indexOf(name, seriesNames),
             theme,
           )}
