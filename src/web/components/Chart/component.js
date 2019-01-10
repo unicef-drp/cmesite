@@ -15,6 +15,7 @@ import Axis from './axis';
 import Line from './line';
 import Area from './area';
 import Tooltip from './tooltip';
+import { INCLUDED, EXCLUDED } from '../../constants';
 
 const style = theme => ({
   axis: {
@@ -97,7 +98,9 @@ class Chart extends React.Component {
     );
     const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
 
-    const { estimateSeries, includedSeries, excludedSeries } = nextProps;
+    const { estimateSeries, mergedSeries } = nextProps;
+    const includedSeries = prop(INCLUDED, mergedSeries);
+    const excludedSeries = prop(EXCLUDED, mergedSeries);
     const extents = getExtents(estimateSeries, includedSeries, excludedSeries);
 
     xScale
@@ -146,8 +149,7 @@ class Chart extends React.Component {
       theme,
       uncertaintySeries,
       estimateSeries,
-      includedSeries,
-      excludedSeries,
+      mergedSeries,
       isCompare,
       seriesNames,
     } = this.props;
@@ -247,8 +249,8 @@ class Chart extends React.Component {
             />
             <g clipPath="url(#clip)">
               {areas}
-              {linesFactory(includedSeries)}
-              {linesFactory(excludedSeries)}
+              {linesFactory(prop(INCLUDED, mergedSeries))}
+              {linesFactory(prop(EXCLUDED, mergedSeries))}
               {linesFactory(estimateSeries)}
             </g>
           </g>

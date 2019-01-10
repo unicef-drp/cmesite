@@ -71,7 +71,7 @@ const DataChart = ({
   toggleActiveType,
   isCompare,
   serieNames,
-  ...series
+  ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
     <CardHeader

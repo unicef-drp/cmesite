@@ -28,6 +28,17 @@ import {
   lte,
   path,
   or,
+  concat,
+  props,
+  unnest,
+  reduce,
+  head,
+  assoc,
+  mergeWithKey,
+  append,
+  over,
+  lensProp,
+  isEmpty,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
@@ -110,6 +121,33 @@ export const getCountryActiveSeries = createSelector(
 export const getCountryEstimateSeries = createSelector(getCountryActiveSeries, prop(ESTIMATE));
 export const getCountryIncludedSeries = createSelector(getCountryActiveSeries, prop(INCLUDED));
 export const getCountryExcludedSeries = createSelector(getCountryActiveSeries, prop(EXCLUDED));
+export const getCountryOtherSeries = createSelector(
+  getCountryActiveSeries,
+  ifElse(
+    isEmpty,
+    identity,
+    pipe(
+      props([INCLUDED, EXCLUDED]),
+      unnest,
+      groupBy(prop('name')),
+      values,
+      reduce(
+        (memo, series) =>
+          pipe(
+            ifElse(pipe(length, equals(1)), head, series =>
+              assoc(
+                'type',
+                INCLUDED,
+                mergeWithKey((k, l, r) => (k == 'datapoints' ? concat(l, r) : r), ...series),
+              ),
+            ),
+            serie => over(lensProp(prop('type', serie)), append(serie), memo),
+          )(series),
+        { [INCLUDED]: [], [EXCLUDED]: [] },
+      ),
+    ),
+  ),
+);
 export const getCompareEstimateSeries = createSelector(
   getData,
   pipe(propOr({}, 'compareSeries'), values),
