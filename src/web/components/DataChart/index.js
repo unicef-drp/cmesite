@@ -1,4 +1,4 @@
-import { pipe, reject, isNil, isEmpty, either, keys, equals, prop } from 'ramda';
+import { pipe, reject, isNil, isEmpty, either, keys, equals } from 'ramda';
 import { compose, branch, renderComponent, withProps } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ import { toggleActiveType } from '../../ducks/data';
 import Component from './component';
 import DataProgress from '../DataProgress';
 import DataNone from '../DataNone';
-import { ESTIMATE, INCLUDED, EXCLUDED } from '../../constants';
+import { ESTIMATE } from '../../constants';
 
 const withData = selectors =>
   compose(
