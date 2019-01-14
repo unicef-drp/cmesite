@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'datasets.title',
     defaultMessage: 'Global datasets',
   },
+  subtitle: {
+    id: 'datasets.subtitle',
+    defaultMessage: 'Last update - 18 September 2018',
+  },
   updatedAt: {
     id: 'datasets.updatedAt',
     defaultMessage: 'Last update',

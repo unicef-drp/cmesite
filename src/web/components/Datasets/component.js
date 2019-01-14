@@ -38,10 +38,13 @@ const Datasets = ({ classes, updatedAt, datasets }) => (
       <FormattedMessage {...messages.title} />
     </Typography>
     <Typography variant="body2" color="secondary" align="center">
+      <FormattedMessage {...messages.subtitle} />
+    </Typography>
+    {/*<Typography variant="body2" color="secondary" align="center">
       <FormattedMessage {...messages.updatedAt} />
       {' - '}
       {format(updatedAt, 'DD MMMM YYYY', { locale: 'en' })}
-    </Typography>
+    </Typography>*/}
     <Grid container className={classes.list} spacing={16}>
       {map(dataset => {
         const file = path(['acf', 'file'])(dataset);
