@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { map, path, isNil } from 'ramda';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import Typography from '@material-ui/core/Typography';
 import DescriptionIcon from '@material-ui/icons/Description';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -32,7 +32,7 @@ const style = theme => ({
   },
 });
 
-const Datasets = ({ classes, updatedAt, datasets }) => (
+const Datasets = ({ classes, /*updatedAt,*/ datasets }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Typography variant="headline" color="secondary" align="center">
       <FormattedMessage {...messages.title} />
@@ -73,7 +73,7 @@ const Datasets = ({ classes, updatedAt, datasets }) => (
 
 Datasets.propTypes = {
   classes: PropTypes.object.isRequired,
-  updatedAt: PropTypes.string,
+  //updatedAt: PropTypes.string,
   datasets: PropTypes.array,
 };
 
