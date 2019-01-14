@@ -155,7 +155,7 @@ class Chart extends React.Component {
     } = this.props;
 
     const { width } = size;
-    const { height, contentWidth, contentHeight, xScale, yScale, extents } = this.state;
+    const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
 
     const areas = uncertaintySeries
       ? map(
@@ -237,16 +237,17 @@ class Chart extends React.Component {
                 classes={classes}
               />
             </g>
-            <Axis
+            {/*<Axis
               orient="Top"
               scale={xScale}
               translate="translate(0, 0)"
               tickValues={prop('x', extents)}
               tickSize={-contentHeight}
               classes={classes}
-              tickFormat={always('') /*timeFormat('%Y')*/}
+              tickFormat={always('')}
               tickPadding={2}
-            />
+            />*/
+            /* alternative tickFormat timeFormat('%Y')*/}
             <g clipPath="url(#clip)">
               {areas}
               {linesFactory(prop(INCLUDED, mergedSeries))}

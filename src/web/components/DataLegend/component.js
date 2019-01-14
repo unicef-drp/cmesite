@@ -176,7 +176,7 @@ const DataLegend = ({
         </ExpansionPanelDetails>
       </ExpansionPanel>
       {isEmpty(methods) ? null : (
-        <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0} defaultExpanded>
+        <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             classes={{
