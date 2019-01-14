@@ -13,21 +13,24 @@ import {
   getCountryOtherSeries,
   getCountryIncludedSeries,
   getCountryExcludedSeries,
+  getCountryHasHighlights,
+  getCompareHasHighlights,
 } from '../../selectors/data';
-import { toggleActiveType } from '../../ducks/data';
+import { toggleActiveType, highlightSerie } from '../../ducks/data';
 import Component from './component';
 import DataProgress from '../DataProgress';
 import DataNone from '../DataNone';
 import { ESTIMATE } from '../../constants';
+import { COUNTRY, COMPARE } from '../../api/sdmx';
 
-const withData = selectors =>
+const withData = ({ type, selectors }) =>
   compose(
     connect(
       createStructuredSelector({
         isLoadingData: getIsLoadingData,
         ...selectors,
       }),
-      { toggleActiveType },
+      { toggleActiveType, highlightSerie: highlightSerie(type) },
     ),
     branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
     branch(
@@ -43,14 +46,18 @@ const withData = selectors =>
 
 export const DataCountryChart = compose(
   withData({
-    title: getCountryTitle,
-    activeTypes: getCountryActiveTypes,
-    estimateSeries: getCountryEstimateSeries,
-    uncertaintySeries: getCountryEstimateSeries,
-    mergedSeries: getCountryOtherSeries,
-    includedSeries: getCountryIncludedSeries,
-    excludedSeries: getCountryExcludedSeries,
-    seriesNames: getSeriesNames,
+    type: COUNTRY,
+    selectors: {
+      title: getCountryTitle,
+      activeTypes: getCountryActiveTypes,
+      estimateSeries: getCountryEstimateSeries,
+      uncertaintySeries: getCountryEstimateSeries,
+      mergedSeries: getCountryOtherSeries,
+      includedSeries: getCountryIncludedSeries,
+      excludedSeries: getCountryExcludedSeries,
+      hasHighlights: getCountryHasHighlights,
+      seriesNames: getSeriesNames,
+    },
   }),
   withProps(({ activeTypes }) => ({
     activeTypes: pipe(keys, equals([ESTIMATE]))(activeTypes) ? null : activeTypes,
@@ -58,6 +65,13 @@ export const DataCountryChart = compose(
 )(Component);
 
 export const DataCompareChart = compose(
-  withData({ title: getCompareTitle, estimateSeries: getCompareEstimateSeries }),
+  withData({
+    type: COMPARE,
+    selectors: {
+      title: getCompareTitle,
+      estimateSeries: getCompareEstimateSeries,
+      hasHighlights: getCompareHasHighlights,
+    },
+  }),
   withProps({ isCompare: true }),
 )(Component);

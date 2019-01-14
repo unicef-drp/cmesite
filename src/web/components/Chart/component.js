@@ -152,6 +152,7 @@ class Chart extends React.Component {
       mergedSeries,
       isCompare,
       seriesNames,
+      hasHighlights,
     } = this.props;
 
     const { width } = size;
@@ -159,7 +160,7 @@ class Chart extends React.Component {
 
     const areas = uncertaintySeries
       ? map(
-          ({ id, datapoints }) => (
+          ({ id, datapoints, isHighlighted }) => (
             <Area
               key={id}
               data={datapoints}
@@ -168,6 +169,8 @@ class Chart extends React.Component {
               color={theme.palette.secondary.dark}
               classes={classes}
               setTooltip={this.setTooltip}
+              isHighlighted={isHighlighted}
+              hasHighlights={hasHighlights}
             />
           ),
           uncertaintySeries,
@@ -177,7 +180,7 @@ class Chart extends React.Component {
     const linesFactory = ifElse(
       isNil,
       always(null),
-      addIndex(map)(({ id, name, datapoints, type }, index) => (
+      addIndex(map)(({ id, name, datapoints, type, isHighlighted }, index) => (
         <Line
           key={id}
           type={type}
@@ -197,6 +200,8 @@ class Chart extends React.Component {
             theme,
           )}
           setTooltip={this.setTooltip}
+          isHighlighted={isHighlighted}
+          hasHighlights={hasHighlights}
         />
       )),
     );

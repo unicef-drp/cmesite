@@ -24,6 +24,8 @@ import {
   isEmpty,
   isNil,
   reject,
+  and,
+  not,
 } from 'ramda';
 import {
   ESTIMATE,
@@ -65,6 +67,9 @@ export const getColor = ({ index, theme, type, isUncertainty }) => {
   else if (isEstimate(type)) return theme.palette.primary.main;
   return theme.palette.chartColorScale(index);
 };
+
+export const getOpacity = ({ isHighlighted, hasHighlights }) =>
+  and(not(isHighlighted), hasHighlights) ? 0.25 : 1;
 
 export const getExtents = (...series) => {
   const validSeries = reject(isNil, series);

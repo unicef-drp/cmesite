@@ -19,6 +19,7 @@ import {
   isEmpty,
   indexOf,
 } from 'ramda';
+import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import RemoveIcon from '@material-ui/icons/Remove';
 import List from '@material-ui/core/List';
@@ -83,11 +84,15 @@ const styles = theme => ({
       width: '100%',
     },
   },
+  selectedItem: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const DataLegend = ({
   classes,
   theme,
+  highlightSerie,
   estimateSeries = [],
   uncertaintySeries = [],
   includedSeries = [],
@@ -101,8 +106,14 @@ const DataLegend = ({
     ifElse(
       isNil,
       always(null),
-      addIndex(map)(({ id, name, type, ...serie }, index) => (
-        <ListItem className={classes.item} key={id} dense button>
+      addIndex(map)(({ id, name, type, isHighlighted, ...serie }, index) => (
+        <ListItem
+          className={classnames(classes.item, { [classes.selectedItem]: isHighlighted })}
+          key={id}
+          dense
+          button
+          onClick={() => highlightSerie(id)}
+        >
           <ListItemIcon>
             {isEstimate(type) && !isUncertainty ? (
               <RemoveIcon
@@ -228,6 +239,7 @@ DataLegend.propTypes = {
   excludedSeries: PropTypes.array,
   isCompare: PropTypes.bool,
   serieNames: PropTypes.array.isRequired,
+  highlightSerie: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(DataLegend);

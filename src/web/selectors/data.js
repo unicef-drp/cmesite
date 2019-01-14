@@ -107,6 +107,10 @@ export const getRawCountrySeries = createSelector(
   getData,
   pipe(propOr({}, 'countrySeries'), values),
 );
+export const getCountryHasHighlights = createSelector(
+  getRawCountrySeries,
+  pipe(find(propEq('isHighlighted', true)), Boolean),
+);
 export const getCountrySeries = createSelector(getRawCountrySeries, groupBy(prop('type')));
 export const getCountryActiveTypes = createSelector(
   getCountrySeries,
@@ -151,6 +155,10 @@ export const getCountryOtherSeries = createSelector(
 export const getCompareEstimateSeries = createSelector(
   getData,
   pipe(propOr({}, 'compareSeries'), values),
+);
+export const getCompareHasHighlights = createSelector(
+  getCompareEstimateSeries,
+  pipe(find(propEq('isHighlighted', true)), Boolean),
 );
 export const getSeriesNames = createSelector(
   getRawCountrySeries,

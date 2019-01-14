@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { prop, pipe, allPass, map, addIndex } from 'ramda';
 import { area as d3Area, curveLinear } from 'd3-shape';
 import { select } from 'd3-selection';
-import { getSymbol } from './utils';
+import { getSymbol, getOpacity } from './utils';
 
 class Area extends React.Component {
   state = {
@@ -38,7 +38,9 @@ class Area extends React.Component {
         d={this.state.area(this.props.data)}
         className={prop('area')(this.props.classes)}
         stroke={this.props.color}
+        strokeOpacity={getOpacity(this.props)}
         fill={this.props.color}
+        fillOpacity={getOpacity(this.props)}
       />
       {addIndex(map)((d, i) => {
         const x = this.state.xScaleGetter(d);
@@ -73,6 +75,8 @@ Area.propTypes = {
   classes: PropTypes.object,
   color: PropTypes.string,
   setTooltip: PropTypes.func.isRequired,
+  hasHighlights: PropTypes.bool,
+  isHighlighted: PropTypes.bool,
 };
 
 Area.defaultProps = {
