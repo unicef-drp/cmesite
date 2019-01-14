@@ -5,9 +5,7 @@ exports[`Footer | component render should match snapshot 1`] = `
   classes={
     Object {
       "container": "Footer-container-1",
-      "igmeLogo": "Footer-igmeLogo-3",
       "item": "Footer-item-2",
-      "logo": "Footer-logo-4",
     }
   }
 />
