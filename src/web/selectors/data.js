@@ -39,7 +39,6 @@ import {
   over,
   lensProp,
   isEmpty,
-  tap,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
