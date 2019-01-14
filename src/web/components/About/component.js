@@ -9,6 +9,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Wrapper from '../Wrapper';
+import Logos from '../Logos';
 import unicefLogo from '../../../assets/unicef-black-logo.png';
 import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
@@ -105,10 +106,7 @@ const About = ({ about, focuses, classes, theme }) => (
 
         {/* logos */}
         <Grid item xs={11} sm={10} md={10} className={classNames(classes.section, classes.logos)}>
-          <img src={unicefLogo} className={classes.logo} />
-          <img src={whoLogo} className={classes.logo} />
-          <img src={unLogo} className={classes.logo} style={{ height: 70 }} />
-          <img src={wboLogo} className={classes.logo} />
+          <Logos />
         </Grid>
 
         {/* title */}

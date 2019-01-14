@@ -7,11 +7,7 @@ import { withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import messages from './messages';
 import Wrapper from '../Wrapper';
-import igmeLogo from '../../../assets/igme-logo.png';
-import unicefLogo from '../../../assets/unicef-black-logo.png';
-import whoLogo from '../../../assets/who-black-logo.png';
-import unLogo from '../../../assets/un-black-logo.png';
-import wboLogo from '../../../assets/wbo-black-logo.png';
+import Logos from '../Logos';
 import { EMAIL, LEGAL_LINK } from '../../constants';
 import routes, { getPath } from '../../routes';
 
@@ -36,29 +32,13 @@ const style = theme => ({
     alignItems: 'center',
     flexWrap: 'wrap',
   },
-  igmeLogo: {
-    height: 30,
-    marginLeft: 0,
-    marginRight: theme.spacing.unit,
-  },
-  logo: {
-    height: 50,
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
 });
 
 const Footer = ({ classes }) => (
   <Wrapper>
     <div className={classes.container}>
       <div className={classnames(classes.item, classes.itemLeft)}>
-        <img src={igmeLogo} className={classes.igmeLogo} />
-        <img src={unicefLogo} className={classes.logo} />
-        <img src={whoLogo} className={classes.logo} />
-        <img src={unLogo} className={classes.logo} />
-        <img src={wboLogo} className={classes.logo} />
+        <Logos hasMainLogo />
       </div>
       <div className={classnames(classes.item, classes.itemRight)}>
         <Button className={classes.button} component={Link} to={getPath(routes.about)}>

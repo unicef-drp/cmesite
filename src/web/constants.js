@@ -46,3 +46,10 @@ export const SERIES_METHOD_SYMBOLS = {
   HD: 'diamond',
   VR: 'square',
 };
+
+export const LOGOS = {
+  unicef: 'http://data.unicef.org',
+  who: 'https://www.who.int',
+  un: 'http://www.un.org/en/development/desa/population',
+  wbo: 'http://www.worldbank.org',
+};
