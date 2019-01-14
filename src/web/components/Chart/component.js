@@ -53,10 +53,10 @@ const style = theme => ({
   estimate: {
     strokeWidth: 2,
   },
-  included: {
+  in: {
     strokeWidth: 1,
   },
-  excluded: {
+  ex: {
     strokeWidth: 1,
     strokeDasharray: '5 5',
   },
