@@ -15,6 +15,8 @@ import {
   getCountryExcludedSeries,
   getCountryHasHighlights,
   getCompareHasHighlights,
+  getCompareSeriesUnit,
+  getCountrySeriesUnit,
 } from '../../selectors/data';
 import { toggleActiveType, highlightSerie } from '../../ducks/data';
 import Component from './component';
@@ -57,6 +59,7 @@ export const DataCountryChart = compose(
       excludedSeries: getCountryExcludedSeries,
       hasHighlights: getCountryHasHighlights,
       seriesNames: getSeriesNames,
+      seriesUnit: getCountrySeriesUnit,
     },
   }),
   withProps(({ activeTypes }) => ({
@@ -71,6 +74,7 @@ export const DataCompareChart = compose(
       title: getCompareTitle,
       estimateSeries: getCompareEstimateSeries,
       hasHighlights: getCompareHasHighlights,
+      seriesUnit: getCompareSeriesUnit,
     },
   }),
   withProps({ isCompare: true }),

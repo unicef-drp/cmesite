@@ -153,6 +153,7 @@ class Chart extends React.Component {
       isCompare,
       seriesNames,
       hasHighlights,
+      seriesUnit,
     } = this.props;
 
     const { width } = size;
@@ -210,7 +211,10 @@ class Chart extends React.Component {
       <div>
         {/* div is required for withSize to work properly */}
         <Typography variant="caption">
-          <FormattedMessage {...messages.yAxisLabel} />
+          {
+            /*<FormattedMessage {...messages.yAxisLabel} />*/
+            seriesUnit
+          }
         </Typography>
         <Button variant="contained" onClick={this.resetZoom} className={classes.resetZoom}>
           <FormattedMessage {...messages.resetZoom} />

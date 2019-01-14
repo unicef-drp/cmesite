@@ -73,6 +73,7 @@ const DataChart = ({
   serieNames,
   highlightSerie,
   hasHighlights,
+  seriesUnit,
   ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
@@ -85,7 +86,12 @@ const DataChart = ({
       }
     />
     <CardContent>
-      <Chart {...series} hasHighlights={hasHighlights} isCompare={isCompare} />
+      <Chart
+        {...series}
+        hasHighlights={hasHighlights}
+        isCompare={isCompare}
+        seriesUnit={seriesUnit}
+      />
     </CardContent>
     {activeTypes && (
       <div className={classes.toggles}>
@@ -147,6 +153,7 @@ DataChart.propTypes = {
   serieNames: PropTypes.array.isRequired,
   highlightSerie: PropTypes.func.isRequired,
   hasHighlightedSeries: PropTypes.bool,
+  seriesUnit: PropTypes.string,
 };
 
 export default withStyles(styles, { withTheme: true })(DataChart);

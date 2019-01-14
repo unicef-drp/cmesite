@@ -39,6 +39,7 @@ import {
   over,
   lensProp,
   isEmpty,
+  tap,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
@@ -53,6 +54,7 @@ import {
   EXCLUDED,
   MAX_SDMX_VALUES,
   EXC_NO_SEX_INDICATOR_VALUES,
+  UNIT_MEASURE,
 } from '../constants';
 
 export const getData = prop('data');
@@ -132,6 +134,7 @@ export const getCountryOtherSeries = createSelector(
     identity,
     pipe(
       props([INCLUDED, EXCLUDED]),
+      reject(isNil),
       unnest,
       groupBy(prop('name')),
       values,
@@ -145,6 +148,7 @@ export const getCountryOtherSeries = createSelector(
                 mergeWithKey((k, l, r) => (k == 'datapoints' ? concat(l, r) : r), ...series),
               ),
             ),
+            over(lensProp('datapoints'), sortBy(prop('x'))),
             serie => over(lensProp(prop('type', serie)), append(serie), memo),
           )(series),
         { [INCLUDED]: [], [EXCLUDED]: [] },
@@ -163,6 +167,20 @@ export const getCompareHasHighlights = createSelector(
 export const getSeriesNames = createSelector(
   getRawCountrySeries,
   pipe(groupBy(prop('name')), keys),
+);
+export const getCountrySeriesUnit = createSelector(
+  getCountryActiveSeries,
+  pipe(
+    values,
+    unnest,
+    groupBy(prop(UNIT_MEASURE)),
+    keys,
+    ifElse(pipe(length, equals(1)), head, always(null)),
+  ),
+);
+export const getCompareSeriesUnit = createSelector(
+  getCompareEstimateSeries,
+  pipe(groupBy(prop(UNIT_MEASURE)), keys, ifElse(pipe(length, equals(1)), head, always(null))),
 );
 export const getCanLoadData = dataType =>
   createSelector(

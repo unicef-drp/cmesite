@@ -14,15 +14,16 @@ export const ESTIMATE = 'ESTIMATE';
 export const INCLUDED = 'IN';
 export const EXCLUDED = 'EX';
 
+export const SERIES_NAME = 'SERIES_NAME';
 export const OBS_STATUS = 'OBS_STATUS';
-export const ESTIMATE_TYPE = { sdmxId: 'SERIES_NAME', sdmxValue: '269', id: ESTIMATE, value: true };
+export const ESTIMATE_TYPE = { sdmxId: SERIES_NAME, sdmxValue: '269', id: ESTIMATE, value: true };
 export const TYPES = [
   ESTIMATE_TYPE,
   { sdmxId: OBS_STATUS, sdmxValue: 'IN', id: INCLUDED, value: true },
   { sdmxId: OBS_STATUS, sdmxValue: 'EX', id: EXCLUDED, value: true },
 ];
 
-export const Z = 'SERIES_NAME';
+export const Z = SERIES_NAME;
 export const X = TIME_PERIOD;
 export const Y0 = 'LOWER_BOUND';
 export const Y1 = 'UPPER_BOUND';
@@ -37,6 +38,7 @@ export const LEGAL_LINK = 'https://www.unicef.org/about/legal.html';
 export const LOCALES = ['en', 'fr', 'es'];
 export const END_PERIOD = '2017-06'; // requires data availability to know boundaries of a time dimension
 
+export const UNIT_MEASURE = 'UNIT_MEASURE';
 export const SERIES_METHOD = 'SERIES_METHOD';
 export const DEFAULT_SYMBOL = 'circle';
 export const MISC_SYMBOL = 'cross';
