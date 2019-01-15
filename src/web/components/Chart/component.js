@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { compose, map, addIndex, ifElse, isNil, always, prop, lte, identity } from 'ramda';
+import { compose, map, addIndex, ifElse, isNil, always, prop, lte, identity, indexOf } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
@@ -15,6 +15,7 @@ import Axis from './axis';
 import Line from './line';
 import Area from './area';
 import Tooltip from './tooltip';
+import { INCLUDED, EXCLUDED } from '../../constants';
 
 const style = theme => ({
   axis: {
@@ -52,10 +53,10 @@ const style = theme => ({
   estimate: {
     strokeWidth: 2,
   },
-  included: {
+  in: {
     strokeWidth: 1,
   },
-  excluded: {
+  ex: {
     strokeWidth: 1,
     strokeDasharray: '5 5',
   },
@@ -97,7 +98,9 @@ class Chart extends React.Component {
     );
     const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
 
-    const { estimateSeries, includedSeries, excludedSeries } = nextProps;
+    const { estimateSeries, mergedSeries } = nextProps;
+    const includedSeries = prop(INCLUDED, mergedSeries);
+    const excludedSeries = prop(EXCLUDED, mergedSeries);
     const extents = getExtents(estimateSeries, includedSeries, excludedSeries);
 
     xScale
@@ -146,17 +149,19 @@ class Chart extends React.Component {
       theme,
       uncertaintySeries,
       estimateSeries,
-      includedSeries,
-      excludedSeries,
+      mergedSeries,
       isCompare,
+      seriesNames,
+      hasHighlights,
+      seriesUnit,
     } = this.props;
 
     const { width } = size;
-    const { height, contentWidth, contentHeight, xScale, yScale, extents } = this.state;
+    const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
 
     const areas = uncertaintySeries
       ? map(
-          ({ id, datapoints }) => (
+          ({ id, datapoints, isHighlighted }) => (
             <Area
               key={id}
               data={datapoints}
@@ -165,6 +170,8 @@ class Chart extends React.Component {
               color={theme.palette.secondary.dark}
               classes={classes}
               setTooltip={this.setTooltip}
+              isHighlighted={isHighlighted}
+              hasHighlights={hasHighlights}
             />
           ),
           uncertaintySeries,
@@ -174,18 +181,28 @@ class Chart extends React.Component {
     const linesFactory = ifElse(
       isNil,
       always(null),
-      addIndex(map)(({ id, datapoints, type }, index) => (
+      addIndex(map)(({ id, name, datapoints, type, isHighlighted }, index) => (
         <Line
           key={id}
           type={type}
           data={datapoints}
           xScale={xScale}
           yScale={yScale}
-          color={getColor(isCompare ? null : type, index, theme)}
+          color={getColor({
+            type: isCompare ? null : type,
+            index: isCompare ? index : indexOf(name, seriesNames),
+            theme,
+          })}
           classes={getClass(type, classes)}
           hasSymbols={hasSymbols(type)}
-          symbolFill={getSymbolFill(isCompare ? null : type, index, theme)}
+          symbolFill={getSymbolFill(
+            //isCompare ? null : type,
+            isCompare ? index : indexOf(name, seriesNames),
+            theme,
+          )}
           setTooltip={this.setTooltip}
+          isHighlighted={isHighlighted}
+          hasHighlights={hasHighlights}
         />
       )),
     );
@@ -194,7 +211,10 @@ class Chart extends React.Component {
       <div>
         {/* div is required for withSize to work properly */}
         <Typography variant="caption">
-          <FormattedMessage {...messages.yAxisLabel} />
+          {
+            /*<FormattedMessage {...messages.yAxisLabel} />*/
+            seriesUnit
+          }
         </Typography>
         <Button variant="contained" onClick={this.resetZoom} className={classes.resetZoom}>
           <FormattedMessage {...messages.resetZoom} />
@@ -226,20 +246,21 @@ class Chart extends React.Component {
                 classes={classes}
               />
             </g>
-            <Axis
+            {/*<Axis
               orient="Top"
               scale={xScale}
               translate="translate(0, 0)"
               tickValues={prop('x', extents)}
               tickSize={-contentHeight}
               classes={classes}
-              tickFormat={always('') /*timeFormat('%Y')*/}
+              tickFormat={always('')}
               tickPadding={2}
-            />
+            />*/
+            /* alternative tickFormat timeFormat('%Y')*/}
             <g clipPath="url(#clip)">
               {areas}
-              {linesFactory(includedSeries)}
-              {linesFactory(excludedSeries)}
+              {linesFactory(prop(INCLUDED, mergedSeries))}
+              {linesFactory(prop(EXCLUDED, mergedSeries))}
               {linesFactory(estimateSeries)}
             </g>
           </g>

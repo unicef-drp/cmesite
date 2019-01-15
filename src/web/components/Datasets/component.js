@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { map, path, isNil } from 'ramda';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import Typography from '@material-ui/core/Typography';
 import DescriptionIcon from '@material-ui/icons/Description';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -32,16 +32,19 @@ const style = theme => ({
   },
 });
 
-const Datasets = ({ classes, updatedAt, datasets }) => (
+const Datasets = ({ classes, /*updatedAt,*/ datasets }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
     <Typography variant="headline" color="secondary" align="center">
       <FormattedMessage {...messages.title} />
     </Typography>
     <Typography variant="body2" color="secondary" align="center">
+      <FormattedMessage {...messages.subtitle} />
+    </Typography>
+    {/*<Typography variant="body2" color="secondary" align="center">
       <FormattedMessage {...messages.updatedAt} />
       {' - '}
       {format(updatedAt, 'DD MMMM YYYY', { locale: 'en' })}
-    </Typography>
+    </Typography>*/}
     <Grid container className={classes.list} spacing={16}>
       {map(dataset => {
         const file = path(['acf', 'file'])(dataset);
@@ -70,7 +73,7 @@ const Datasets = ({ classes, updatedAt, datasets }) => (
 
 Datasets.propTypes = {
   classes: PropTypes.object.isRequired,
-  updatedAt: PropTypes.string,
+  //updatedAt: PropTypes.string,
   datasets: PropTypes.array,
 };
 

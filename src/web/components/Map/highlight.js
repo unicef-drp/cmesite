@@ -33,7 +33,7 @@ const style = theme => ({
   },
 });
 
-const format = ifElse(isNil, always(null), n => numeral(n).format('0.00'));
+const format = ifElse(isNil, always(null), n => numeral(n).format('0.0'));
 
 const Hightlight = ({ classes, datapoint }) => {
   if (isNil(datapoint)) return null;

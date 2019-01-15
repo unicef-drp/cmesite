@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { prop, pipe, both, map, addIndex, path } from 'ramda';
 import { line as d3Line, curveLinear } from 'd3-shape';
 import { select } from 'd3-selection';
-import { getSymbol, getSeriesMethodSymbol, isEstimate } from './utils';
-import { SERIES_METHOD } from '../../constants';
+import { getSymbol, getSeriesMethodSymbol, isEstimate, getOpacity } from './utils';
+import { SERIES_METHOD, OBS_STATUS } from '../../constants';
 
 class Line extends React.Component {
   defined = both(prop('x'), prop('y'));
@@ -39,6 +39,7 @@ class Line extends React.Component {
         d={this.state.line(this.props.data)}
         className={prop('line')(this.props.classes)}
         stroke={this.props.color}
+        strokeOpacity={getOpacity(this.props)}
         fill="none"
       />
       {addIndex(map)((d, i) => {
@@ -58,7 +59,11 @@ class Line extends React.Component {
                 }
                 transform={`translate(${x},${y})`}
                 stroke={this.props.color}
-                fill={this.props.symbolFill}
+                strokeOpacity={getOpacity(this.props)}
+                fill={this.props.symbolFill(
+                  isEstimate(this.props.type) ? this.props.type : path([OBS_STATUS, 'valueId'], d),
+                )}
+                fillOpacity={getOpacity(this.props)}
               />
             )}
             {/* over marker */}
@@ -94,8 +99,10 @@ Line.propTypes = {
   color: PropTypes.string,
   type: PropTypes.string,
   hasSymbols: PropTypes.bool,
-  symbolFill: PropTypes.string,
+  symbolFill: PropTypes.func.isRequired,
   setTooltip: PropTypes.func.isRequired,
+  hasHighlights: PropTypes.bool,
+  isHighlighted: PropTypes.bool,
 };
 
 Line.defaultProps = {

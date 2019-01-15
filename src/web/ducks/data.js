@@ -37,6 +37,7 @@ export const DATA_LOADED = 'CM/DATA/DATA_LOADED';
 export const TOGGLE_DOWNLOADING_DATA = 'CM/DATA/TOGGLE_DOWNLOADING_DATA';
 export const TOGGLE_ACTIVE_TYPE = 'CM/DATA/TOGGLE_ACTIVE_TYPE';
 export const CHANGE_MAP_INDEX = 'CM/DATA/CHANGE_MAP_INDEX';
+export const HIGHLIGHT_SERIE = 'CM/DATA/HIGHLIGHT_SERIE';
 
 const initialState = {
   activeTab: 0,
@@ -60,6 +61,12 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case HIGHLIGHT_SERIE:
+      return over(
+        lensPath([`${action.serieType}Series`, action.serieId, 'isHighlighted']),
+        not,
+        state,
+      );
     case CHANGE_ACTIVE_TAB:
       return { ...state, activeTab: action.activeTab };
     case CHANGE_MAP_INDEX:
@@ -121,6 +128,12 @@ const reducer = (state = initialState, action = {}) => {
       return state;
   }
 };
+
+export const highlightSerie = serieType => serieId => ({
+  type: HIGHLIGHT_SERIE,
+  serieType,
+  serieId,
+});
 
 export const changeMapIndex = mapIndex => ({ type: CHANGE_MAP_INDEX, mapIndex });
 

@@ -57,6 +57,7 @@ import {
   SERIES_METHOD,
   INDICATOR,
   SERIES_YEAR,
+  UNIT_MEASURE,
 } from '../../constants';
 
 const getValues = propOr([], 'values');
@@ -197,6 +198,9 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
 
   if (has(SERIES_YEAR, observation))
     serie = assoc(SERIES_YEAR, path([SERIES_YEAR, 'valueId'], observation), serie);
+
+  if (has(UNIT_MEASURE, observation))
+    serie = assoc(UNIT_MEASURE, path([UNIT_MEASURE, 'valueName'], observation), serie);
 
   return assoc(serieKey, serie, acc);
 };

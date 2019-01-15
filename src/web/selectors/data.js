@@ -28,6 +28,17 @@ import {
   lte,
   path,
   or,
+  concat,
+  props,
+  unnest,
+  reduce,
+  head,
+  assoc,
+  mergeWithKey,
+  append,
+  over,
+  lensProp,
+  isEmpty,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
@@ -42,6 +53,7 @@ import {
   EXCLUDED,
   MAX_SDMX_VALUES,
   EXC_NO_SEX_INDICATOR_VALUES,
+  UNIT_MEASURE,
 } from '../constants';
 
 export const getData = prop('data');
@@ -84,7 +96,6 @@ export const getCompareTitle = createSelector(
     key: 'label',
   }),
 );
-export const getActiveTypes = createSelector(getData, prop('activeTypes'));
 export const getMapSeries = createSelector(
   getData,
   pipe(propOr({}, 'mapSeries'), values, sortBy(prop('name'))),
@@ -93,21 +104,82 @@ export const getMapIndex = createSelector(getData, getMapSeries, (data, series) 
   ifElse(isNil, always(dec(length(series))), identity)(prop('mapIndex', data)),
 );
 export const getMapSerie = createSelector(getMapIndex, getMapSeries, nth);
-export const getCountrySeries = createSelector(
+export const getRawCountrySeries = createSelector(
   getData,
-  pipe(propOr({}, 'countrySeries'), values, groupBy(prop('type'))),
+  pipe(propOr({}, 'countrySeries'), values),
+);
+export const getCountryHasHighlights = createSelector(
+  getRawCountrySeries,
+  pipe(find(propEq('isHighlighted', true)), Boolean),
+);
+export const getCountrySeries = createSelector(getRawCountrySeries, groupBy(prop('type')));
+export const getCountryActiveTypes = createSelector(
+  getCountrySeries,
+  getData,
+  useWith(pick, [keys, prop('activeTypes')]),
 );
 export const getCountryActiveSeries = createSelector(
-  getActiveTypes,
+  getCountryActiveTypes,
   getCountrySeries,
   useWith(pick, [pipe(filter(identity), keys), identity]),
 );
 export const getCountryEstimateSeries = createSelector(getCountryActiveSeries, prop(ESTIMATE));
 export const getCountryIncludedSeries = createSelector(getCountryActiveSeries, prop(INCLUDED));
 export const getCountryExcludedSeries = createSelector(getCountryActiveSeries, prop(EXCLUDED));
+export const getCountryOtherSeries = createSelector(
+  getCountryActiveSeries,
+  ifElse(
+    isEmpty,
+    identity,
+    pipe(
+      props([INCLUDED, EXCLUDED]),
+      reject(isNil),
+      unnest,
+      groupBy(prop('name')),
+      values,
+      reduce(
+        (memo, series) =>
+          pipe(
+            ifElse(pipe(length, equals(1)), head, series =>
+              assoc(
+                'type',
+                INCLUDED,
+                mergeWithKey((k, l, r) => (k == 'datapoints' ? concat(l, r) : r), ...series),
+              ),
+            ),
+            over(lensProp('datapoints'), sortBy(prop('x'))),
+            serie => over(lensProp(prop('type', serie)), append(serie), memo),
+          )(series),
+        { [INCLUDED]: [], [EXCLUDED]: [] },
+      ),
+    ),
+  ),
+);
 export const getCompareEstimateSeries = createSelector(
   getData,
   pipe(propOr({}, 'compareSeries'), values),
+);
+export const getCompareHasHighlights = createSelector(
+  getCompareEstimateSeries,
+  pipe(find(propEq('isHighlighted', true)), Boolean),
+);
+export const getSeriesNames = createSelector(
+  getRawCountrySeries,
+  pipe(groupBy(prop('name')), keys),
+);
+export const getCountrySeriesUnit = createSelector(
+  getCountryActiveSeries,
+  pipe(
+    values,
+    unnest,
+    groupBy(prop(UNIT_MEASURE)),
+    keys,
+    ifElse(pipe(length, equals(1)), head, always(null)),
+  ),
+);
+export const getCompareSeriesUnit = createSelector(
+  getCompareEstimateSeries,
+  pipe(groupBy(prop(UNIT_MEASURE)), keys, ifElse(pipe(length, equals(1)), head, always(null))),
 );
 export const getCanLoadData = dataType =>
   createSelector(

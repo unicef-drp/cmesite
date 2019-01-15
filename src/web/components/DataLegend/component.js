@@ -17,7 +17,9 @@ import {
   indexBy,
   path,
   isEmpty,
+  indexOf,
 } from 'ramda';
+import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import RemoveIcon from '@material-ui/icons/Remove';
 import List from '@material-ui/core/List';
@@ -82,16 +84,21 @@ const styles = theme => ({
       width: '100%',
     },
   },
+  selectedItem: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const DataLegend = ({
   classes,
   theme,
+  highlightSerie,
   estimateSeries = [],
   uncertaintySeries = [],
   includedSeries = [],
   excludedSeries = [],
   isCompare,
+  seriesNames = [],
 }) => {
   const SIZE = 60;
 
@@ -99,13 +106,19 @@ const DataLegend = ({
     ifElse(
       isNil,
       always(null),
-      addIndex(map)(({ id, name, type, ...serie }, index) => (
-        <ListItem className={classes.item} key={id} dense button>
+      addIndex(map)(({ id, name, type, isHighlighted, ...serie }, index) => (
+        <ListItem
+          className={classnames(classes.item, { [classes.selectedItem]: isHighlighted })}
+          key={id}
+          dense
+          button
+          onClick={() => highlightSerie(id)}
+        >
           <ListItemIcon>
             {isEstimate(type) && !isUncertainty ? (
               <RemoveIcon
                 style={{
-                  color: getColor(isCompare ? null : type, index, theme, isUncertainty),
+                  color: getColor({ type: isCompare ? null : type, index, theme, isUncertainty }),
                   fontSize: 30,
                 }}
               />
@@ -121,16 +134,27 @@ const DataLegend = ({
                         })()
                   }
                   transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                  stroke={getColor(isCompare ? null : type, index, theme, isUncertainty)}
-                  fill={getSymbolFill(isCompare ? null : type, index, theme, isUncertainty)}
+                  stroke={getColor({
+                    type: isCompare ? null : type,
+                    index: indexOf(name, seriesNames),
+                    theme,
+                    isUncertainty,
+                  })}
+                  fill={getSymbolFill(indexOf(name, seriesNames), theme, isUncertainty)(
+                    isCompare ? null : type,
+                  )}
                 />
               </svg>
             )}
           </ListItemIcon>
           <ListItemText>
-            {isCompare
-              ? join(' ', [...pipe(pick(RELEVANT_DIMENSIONS), values)(serie), name])
-              : name}
+            {isCompare ? (
+              join(' ', [...pipe(pick(RELEVANT_DIMENSIONS), values)(serie), name])
+            ) : isUncertainty ? (
+              <FormattedMessage {...messages.uncertainty} />
+            ) : (
+              name
+            )}
           </ListItemText>
         </ListItem>
       )),
@@ -163,7 +187,7 @@ const DataLegend = ({
         </ExpansionPanelDetails>
       </ExpansionPanel>
       {isEmpty(methods) ? null : (
-        <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0} defaultExpanded>
+        <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             classes={{
@@ -214,6 +238,8 @@ DataLegend.propTypes = {
   includedSeries: PropTypes.array,
   excludedSeries: PropTypes.array,
   isCompare: PropTypes.bool,
+  serieNames: PropTypes.array.isRequired,
+  highlightSerie: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(DataLegend);

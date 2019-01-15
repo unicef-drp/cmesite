@@ -24,6 +24,8 @@ import {
   isEmpty,
   isNil,
   reject,
+  and,
+  not,
 } from 'ramda';
 import {
   ESTIMATE,
@@ -51,20 +53,23 @@ export const getSymbol = ({ size = 30, shape = DEFAULT_SYMBOL } = {}) =>
 export const getSeriesMethodSymbol = ({ size, method } = {}) =>
   getSymbol({ size, shape: propOr(MISC_SYMBOL, method, SERIES_METHOD_SYMBOLS) });
 
-export const getSymbolFill = (type, index, theme, isUncertainty) => {
+export const getSymbolFill = (index, theme, isUncertainty) => type => {
   if (equals(type, EXCLUDED)) return 'none';
-  return getColor(type, index, theme, isUncertainty);
+  return getColor({ type, index, theme, isUncertainty });
 };
 
 export const getClass = (type, classes) => ({
   line: isEstimate(type) ? prop('estimate', classes) : prop(toLower(type), classes),
 });
 
-export const getColor = (type, index, theme, isUncertainty) => {
+export const getColor = ({ index, theme, type, isUncertainty }) => {
   if (isUncertainty) return theme.palette.secondary.dark;
   else if (isEstimate(type)) return theme.palette.primary.main;
   return theme.palette.chartColorScale(index);
 };
+
+export const getOpacity = ({ isHighlighted, hasHighlights }) =>
+  and(not(isHighlighted), hasHighlights) ? 0.25 : 1;
 
 export const getExtents = (...series) => {
   const validSeries = reject(isNil, series);
