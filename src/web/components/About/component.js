@@ -10,10 +10,6 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Wrapper from '../Wrapper';
 import Logos from '../Logos';
-import unicefLogo from '../../../assets/unicef-black-logo.png';
-import whoLogo from '../../../assets/who-black-logo.png';
-import unLogo from '../../../assets/un-black-logo.png';
-import wboLogo from '../../../assets/wbo-black-logo.png';
 import { EMAIL } from '../../constants';
 
 const style = theme => ({
