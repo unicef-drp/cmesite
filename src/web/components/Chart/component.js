@@ -7,6 +7,7 @@ import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
 // import { timeFormat } from 'd3-time-format';
+import numeral from 'numeral';
 import { withSize } from 'react-sizeme';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -235,7 +236,7 @@ class Chart extends React.Component {
                 scale={yScale}
                 ticks={10}
                 tickSize={-contentWidth}
-                tickFormat={ifElse(lte(0), identity, always(''))}
+                tickFormat={ifElse(lte(0), n => numeral(n).format('0a'), always(''))}
                 classes={classes}
               />
               <Axis
@@ -280,7 +281,7 @@ class Chart extends React.Component {
 }
 
 Chart.defaultProps = {
-  margin: { top: 10, right: 10, bottom: 20, left: 25 },
+  margin: { top: 10, right: 10, bottom: 20, left: 30 },
 };
 
 export default compose(withStyles(style, { withTheme: true }), withSize())(Chart);
