@@ -61,7 +61,7 @@ const Datasets = ({ classes, /*updatedAt,*/ datasets }) => (
             >
               <DescriptionIcon className={classes.icon} />
               <Typography color="secondary" className={classes.typo} variant="body2">
-                {`${path(['title', 'rendered'])(dataset)}: ${dataset.acf.file.description}`}
+                {`${path(['title', 'rendered'])(dataset)} ${dataset.acf.file.description}`}
               </Typography>
             </Button>
           </Grid>
