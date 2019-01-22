@@ -206,7 +206,7 @@ const DataLegend = ({
             <List className={classes.list}>
               {map(
                 ([method, serie]) => (
-                  <ListItem className={classes.item} key={method} dense button>
+                  <ListItem className={classes.item} key={method} dense>
                     <ListItemIcon>
                       <svg width={SIZE / 2} height={SIZE / 2}>
                         <path
