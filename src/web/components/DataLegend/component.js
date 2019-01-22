@@ -242,6 +242,7 @@ DataLegend.propTypes = {
   isCompare: PropTypes.bool,
   serieNames: PropTypes.array.isRequired,
   highlightSerie: PropTypes.func.isRequired,
+  seriesNames: PropTypes.array,
 };
 
 export default withStyles(styles, { withTheme: true })(DataLegend);

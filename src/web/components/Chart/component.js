@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Button from '@material-ui/core/Button';
@@ -281,6 +282,21 @@ class Chart extends React.Component {
     );
   };
 }
+
+Chart.propTypes = {
+  size: PropTypes.object.isRequired,
+  margin: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  estimateSeries: PropTypes.array,
+  uncertaintySeries: PropTypes.array,
+  mergedSeries: PropTypes.object,
+  isCompare: PropTypes.bool,
+  seriesNames: PropTypes.array,
+  hasHighlights: PropTypes.bool,
+  seriesUnit: PropTypes.string,
+  width: PropTypes.string,
+};
 
 Chart.defaultProps = {
   margin: { top: 10, right: 10, bottom: 20, left: 30 },

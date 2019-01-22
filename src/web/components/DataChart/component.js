@@ -152,7 +152,7 @@ DataChart.propTypes = {
   isCompare: PropTypes.bool,
   serieNames: PropTypes.array.isRequired,
   highlightSerie: PropTypes.func.isRequired,
-  hasHighlightedSeries: PropTypes.bool,
+  hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,
 };
 

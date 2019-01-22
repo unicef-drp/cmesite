@@ -77,6 +77,7 @@ Selector.propTypes = {
   values: PropTypes.array,
   keys: PropTypes.object,
   handleValue: PropTypes.func,
+  isCountry: PropTypes.bool,
 };
 
 export default withStyles(styles)(Selector);
