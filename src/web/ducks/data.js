@@ -23,8 +23,9 @@ import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
 import { getRawDimensions, getStale, getCanLoadData } from '../selectors/data';
 import { TYPES, REF_AREA } from '../constants';
 
-export const FORMATS = ['csv', 'xml'];
-export const SCOPES = ['all', 'selection'];
+export const SCOPES = ['selection', 'all'];
+//export const FORMATS = ['csv', 'xml'];
+export const FORMATS = ['csv'];
 
 export const CHANGE_ACTIVE_TAB = 'CM/DATA/CHANGE_ACTIVE_TAB';
 export const TOGGLE_DIMENSION_VALUE = 'CM/DATA/TOGGLE_DIMENSION_VALUE';
