@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { compose, map, addIndex, ifElse, isNil, always, prop, lte, identity, indexOf } from 'ramda';
@@ -159,6 +160,7 @@ class Chart extends React.Component {
 
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
+    const ticks = isWidthUp('sm', this.props.width) ? 10 : 8;
 
     const areas = uncertaintySeries
       ? map(
@@ -234,7 +236,7 @@ class Chart extends React.Component {
               <Axis
                 orient="Left"
                 scale={yScale}
-                ticks={10}
+                ticks={ticks}
                 tickSize={-contentWidth}
                 tickFormat={ifElse(lte(0), n => numeral(n).format('0a'), always(''))}
                 classes={classes}
@@ -243,7 +245,7 @@ class Chart extends React.Component {
                 orient="Bottom"
                 scale={xScale}
                 translate={`translate(0, ${contentHeight})`}
-                ticks={10}
+                ticks={ticks}
                 tickSize={-contentHeight}
                 classes={classes}
               />
@@ -284,4 +286,4 @@ Chart.defaultProps = {
   margin: { top: 10, right: 10, bottom: 20, left: 30 },
 };
 
-export default compose(withStyles(style, { withTheme: true }), withSize())(Chart);
+export default compose(withWidth(), withStyles(style, { withTheme: true }), withSize())(Chart);
