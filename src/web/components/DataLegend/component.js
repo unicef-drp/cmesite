@@ -18,6 +18,7 @@ import {
   path,
   isEmpty,
   indexOf,
+  concat,
 } from 'ramda';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -160,7 +161,9 @@ const DataLegend = ({
       )),
     );
 
-  const methods = toPairs(indexBy(prop(SERIES_METHOD), [...includedSeries, ...excludedSeries]));
+  const otherSeries = concat(includedSeries, excludedSeries);
+  const methods = toPairs(indexBy(prop(SERIES_METHOD), otherSeries));
+  const otherLegendItems = reverse(sortBy(prop(SERIES_YEAR), otherSeries));
 
   return (
     <React.Fragment>
@@ -181,8 +184,7 @@ const DataLegend = ({
           <List className={classes.list}>
             {itemFactory()(estimateSeries)}
             {itemFactory(true)(uncertaintySeries)}
-            {includedSeries && itemFactory()(reverse(sortBy(prop(SERIES_YEAR), includedSeries)))}
-            {excludedSeries && itemFactory()(reverse(sortBy(prop(SERIES_YEAR), excludedSeries)))}
+            {itemFactory()(otherLegendItems)}
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
