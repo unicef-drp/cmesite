@@ -86,7 +86,7 @@ const styles = theme => ({
     },
   },
   selectedItem: {
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: theme.palette.secondary.darker,
   },
 });
 
@@ -212,8 +212,8 @@ const DataLegend = ({
                         <path
                           d={getSeriesMethodSymbol({ size: SIZE * 2, method })()}
                           transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                          stroke={theme.palette.secondary.dark}
-                          fill={theme.palette.secondary.dark}
+                          stroke={theme.palette.secondary.darker}
+                          fill={theme.palette.secondary.darker}
                         />
                       </svg>
                     </ListItemIcon>

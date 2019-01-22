@@ -120,8 +120,8 @@ const DataChart = ({
                         <path
                           d={getSymbol({ size: SIZE * 4 })()}
                           transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                          stroke={theme.palette.secondary.dark}
-                          fill={equals(type, EXCLUDED) ? 'none' : theme.palette.secondary.dark}
+                          stroke={theme.palette.secondary.darker}
+                          fill={equals(type, EXCLUDED) ? 'none' : theme.palette.secondary.darker}
                         />
                       </svg>
                     )}

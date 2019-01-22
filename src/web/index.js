@@ -9,7 +9,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import 'typeface-montserrat';
 import 'typeface-open-sans';
 import { scaleOrdinal, scaleThreshold } from 'd3-scale';
-import { schemeSet1 } from 'd3-scale-chromatic';
+import { schemeCategory10 } from 'd3-scale-chromatic';
 import LanguageProvider from './components/LanguageProvider';
 import ConfigContext from './components/ConfigContext';
 import App from './components/App';
@@ -53,9 +53,10 @@ const theme = createMuiTheme({
       light: '#fff',
       main: '#fff',
       dark: '#e2e9eb',
+      darker: '#a9a9a9',
       contrastText: '#0B3B57',
     },
-    chartColorScale: scaleOrdinal(schemeSet1),
+    chartColorScale: scaleOrdinal(schemeCategory10),
     mapColorScale: scaleThreshold()
       .domain([0, 10, 20, 40, 100, 150])
       .range(['#9b9b9b', '#d4ebf6', '#a4d3f2', '#50b5e7', '#3596d1', '#006aa5', '#003f6f']),

@@ -167,7 +167,8 @@ class Chart extends React.Component {
               data={datapoints}
               xScale={xScale}
               yScale={yScale}
-              color={theme.palette.secondary.dark}
+              color={theme.palette.secondary.darker}
+              bgColor={theme.palette.secondary.dark}
               classes={classes}
               setTooltip={this.setTooltip}
               isHighlighted={isHighlighted}

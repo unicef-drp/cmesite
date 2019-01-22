@@ -37,9 +37,9 @@ class Area extends React.Component {
       <path
         d={this.state.area(this.props.data)}
         className={prop('area')(this.props.classes)}
-        stroke={this.props.color}
+        stroke={this.props.bgColor}
         strokeOpacity={getOpacity(this.props)}
-        fill={this.props.color}
+        fill={this.props.bgColor}
         fillOpacity={getOpacity(this.props)}
       />
       {addIndex(map)((d, i) => {
@@ -74,6 +74,7 @@ Area.propTypes = {
   data: PropTypes.array,
   classes: PropTypes.object,
   color: PropTypes.string,
+  bgColor: PropTypes.string,
   setTooltip: PropTypes.func.isRequired,
   hasHighlights: PropTypes.bool,
   isHighlighted: PropTypes.bool,
