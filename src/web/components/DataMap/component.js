@@ -38,9 +38,7 @@ const styles = theme => ({
   },
   note: {
     paddingTop: theme.spacing.unit * 2,
-    [theme.breakpoints.down('sm')]: {
-      paddingBottom: theme.spacing.unit * 2,
-    },
+    paddingBottom: theme.spacing.unit * 3,
   },
 });
 
