@@ -11,6 +11,6 @@ export default defineMessages({
   },
   uncertainty: {
     id: 'legend.uncertainty',
-    defaultMessage: 'UN IGME Uncertainty Interval',
+    defaultMessage: 'UN IGME Uncertainty Intervals',
   },
 });

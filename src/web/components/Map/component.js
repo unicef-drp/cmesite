@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { compose, propOr, path } from 'ramda';
@@ -118,5 +119,13 @@ class WorldMap extends React.Component {
     );
   }
 }
+
+WorldMap.propTypes = {
+  size: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  mapSerie: PropTypes.object,
+  handleMapClick: PropTypes.func.isRequired,
+};
 
 export default compose(withStyles(style, { withTheme: true }), withSize())(WorldMap);

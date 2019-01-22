@@ -10,6 +10,10 @@ function inputComponent({ inputRef, ...props }) {
   return <div ref={inputRef} {...props} />;
 }
 
+inputComponent.propTypes = {
+  inputRef: PropTypes.func,
+};
+
 export const Control = props => (
   <TextField
     fullWidth
@@ -32,6 +36,7 @@ Control.propTypes = {
   selectProps: PropTypes.object,
   children: PropTypes.node,
   innerRef: PropTypes.func,
+  inputRef: PropTypes.func,
 };
 
 export const Option = props => (
@@ -59,6 +64,7 @@ export const Placeholder = props => (
 Placeholder.propTypes = {
   innerProps: PropTypes.object,
   children: PropTypes.node,
+  selectProps: PropTypes.object,
 };
 
 export const SingleCountryValue = props => (
@@ -75,6 +81,7 @@ export const SingleCountryValue = props => (
 SingleCountryValue.propTypes = {
   innerProps: PropTypes.object,
   children: PropTypes.node,
+  selectProps: PropTypes.object,
 };
 
 export const SingleValue = props => (
@@ -90,6 +97,7 @@ export const SingleValue = props => (
 SingleValue.propTypes = {
   innerProps: PropTypes.object,
   children: PropTypes.node,
+  selectProps: PropTypes.object,
 };
 
 export const ValueContainer = props => (

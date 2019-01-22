@@ -6,7 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { TOOLTIP_SERIES_KEYS, RELEVANT_DIMENSIONS, REF_DATE } from '../../constants';
+import { TOOLTIP_SERIES_KEYS, RELEVANT_DIMENSIONS, REF_DATE, SERIES_NAME } from '../../constants';
+import { FormattedMessage } from 'react-intl';
+import messages from '../DataLegend/messages';
 
 const WIDTH = 250;
 
@@ -25,7 +27,7 @@ const style = theme => ({
 const format = ifElse(isNil, always(null), n => numeral(n).format('0.00'));
 const getLabel = ({ isCompare }) =>
   pipe(
-    pick(isCompare ? [...RELEVANT_DIMENSIONS, ...TOOLTIP_SERIES_KEYS] : TOOLTIP_SERIES_KEYS),
+    pick(isCompare ? [...RELEVANT_DIMENSIONS, ...TOOLTIP_SERIES_KEYS] : [SERIES_NAME]),
     values,
     pluck('valueName'),
     join(' '),
@@ -54,16 +56,20 @@ const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare, isU
   >
     <CardContent className={classes.content}>
       <Typography variant="body1" style={{ color }}>
-        {getLabel({ isCompare })(d)}
+        {isUncertainty ? (
+          <FormattedMessage {...messages.uncertainty} />
+        ) : (
+          getLabel({ isCompare })(d)
+        )}
       </Typography>
       <Typography variant="body2">
         <strong>
           {isUncertainty
             ? join(' - ', [format(prop('y0', d)), format(prop('y1', d))])
             : format(prop('y', d))}
-        </strong>{' '}
-        ({path([REF_DATE, 'valueName'], d)})
+        </strong>
       </Typography>
+      <Typography variant="body2">({path([REF_DATE, 'valueName'], d)})</Typography>
     </CardContent>
   </Card>
 );

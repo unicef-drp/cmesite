@@ -18,6 +18,7 @@ import {
   path,
   isEmpty,
   indexOf,
+  concat,
 } from 'ramda';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -85,7 +86,7 @@ const styles = theme => ({
     },
   },
   selectedItem: {
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: theme.palette.secondary.darker,
   },
 });
 
@@ -160,7 +161,9 @@ const DataLegend = ({
       )),
     );
 
-  const methods = toPairs(indexBy(prop(SERIES_METHOD), [...includedSeries, ...excludedSeries]));
+  const otherSeries = concat(includedSeries, excludedSeries);
+  const methods = toPairs(indexBy(prop(SERIES_METHOD), otherSeries));
+  const otherLegendItems = reverse(sortBy(prop(SERIES_YEAR), otherSeries));
 
   return (
     <React.Fragment>
@@ -181,8 +184,7 @@ const DataLegend = ({
           <List className={classes.list}>
             {itemFactory()(estimateSeries)}
             {itemFactory(true)(uncertaintySeries)}
-            {includedSeries && itemFactory()(reverse(sortBy(prop(SERIES_YEAR), includedSeries)))}
-            {excludedSeries && itemFactory()(reverse(sortBy(prop(SERIES_YEAR), excludedSeries)))}
+            {itemFactory()(otherLegendItems)}
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -204,14 +206,14 @@ const DataLegend = ({
             <List className={classes.list}>
               {map(
                 ([method, serie]) => (
-                  <ListItem className={classes.item} key={method} dense button>
+                  <ListItem className={classes.item} key={method} dense>
                     <ListItemIcon>
                       <svg width={SIZE / 2} height={SIZE / 2}>
                         <path
                           d={getSeriesMethodSymbol({ size: SIZE * 2, method })()}
                           transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                          stroke={theme.palette.secondary.dark}
-                          fill={theme.palette.secondary.dark}
+                          stroke={theme.palette.secondary.darker}
+                          fill={theme.palette.secondary.darker}
                         />
                       </svg>
                     </ListItemIcon>
@@ -240,6 +242,7 @@ DataLegend.propTypes = {
   isCompare: PropTypes.bool,
   serieNames: PropTypes.array.isRequired,
   highlightSerie: PropTypes.func.isRequired,
+  seriesNames: PropTypes.array,
 };
 
 export default withStyles(styles, { withTheme: true })(DataLegend);

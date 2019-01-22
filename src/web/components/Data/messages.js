@@ -17,4 +17,8 @@ export default defineMessages({
     id: 'data.download',
     defaultMessage: 'Download data  and estimates',
   },
+  action: {
+    id: 'download.action',
+    defaultMessage: 'Global datasets',
+  },
 });

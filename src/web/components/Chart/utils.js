@@ -63,7 +63,7 @@ export const getClass = (type, classes) => ({
 });
 
 export const getColor = ({ index, theme, type, isUncertainty }) => {
-  if (isUncertainty) return theme.palette.secondary.dark;
+  if (isUncertainty) return theme.palette.secondary.darker;
   else if (isEstimate(type)) return theme.palette.primary.main;
   return theme.palette.chartColorScale(index);
 };

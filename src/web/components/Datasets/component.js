@@ -34,6 +34,7 @@ const style = theme => ({
 
 const Datasets = ({ classes, /*updatedAt,*/ datasets }) => (
   <Wrapper classes={{ root: classes.wrapper }}>
+    <div id="datasets" />
     <Typography variant="headline" color="secondary" align="center">
       <FormattedMessage {...messages.title} />
     </Typography>
@@ -61,7 +62,7 @@ const Datasets = ({ classes, /*updatedAt,*/ datasets }) => (
             >
               <DescriptionIcon className={classes.icon} />
               <Typography color="secondary" className={classes.typo} variant="body2">
-                {`${path(['title', 'rendered'])(dataset)}: ${dataset.acf.file.description}`}
+                {`${path(['title', 'rendered'])(dataset)} ${dataset.acf.file.description}`}
               </Typography>
             </Button>
           </Grid>

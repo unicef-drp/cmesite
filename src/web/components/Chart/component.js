@@ -1,12 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { compose, map, addIndex, ifElse, isNil, always, prop, lte, identity, indexOf } from 'ramda';
+import { compose, map, addIndex, ifElse, isNil, always, prop, lte, indexOf } from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
 // import { timeFormat } from 'd3-time-format';
+import numeral from 'numeral';
 import { withSize } from 'react-sizeme';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -158,6 +161,7 @@ class Chart extends React.Component {
 
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
+    const ticks = isWidthUp('sm', this.props.width) ? 10 : 8;
 
     const areas = uncertaintySeries
       ? map(
@@ -167,7 +171,8 @@ class Chart extends React.Component {
               data={datapoints}
               xScale={xScale}
               yScale={yScale}
-              color={theme.palette.secondary.dark}
+              color={theme.palette.secondary.darker}
+              bgColor={theme.palette.secondary.dark}
               classes={classes}
               setTooltip={this.setTooltip}
               isHighlighted={isHighlighted}
@@ -232,16 +237,16 @@ class Chart extends React.Component {
               <Axis
                 orient="Left"
                 scale={yScale}
-                ticks={10}
+                ticks={ticks}
                 tickSize={-contentWidth}
-                tickFormat={ifElse(lte(0), identity, always(''))}
+                tickFormat={ifElse(lte(0), n => numeral(n).format('0a'), always(''))}
                 classes={classes}
               />
               <Axis
                 orient="Bottom"
                 scale={xScale}
                 translate={`translate(0, ${contentHeight})`}
-                ticks={10}
+                ticks={ticks}
                 tickSize={-contentHeight}
                 classes={classes}
               />
@@ -278,8 +283,23 @@ class Chart extends React.Component {
   };
 }
 
-Chart.defaultProps = {
-  margin: { top: 10, right: 10, bottom: 20, left: 25 },
+Chart.propTypes = {
+  size: PropTypes.object.isRequired,
+  margin: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  estimateSeries: PropTypes.array,
+  uncertaintySeries: PropTypes.array,
+  mergedSeries: PropTypes.object,
+  isCompare: PropTypes.bool,
+  seriesNames: PropTypes.array,
+  hasHighlights: PropTypes.bool,
+  seriesUnit: PropTypes.string,
+  width: PropTypes.string,
 };
 
-export default compose(withStyles(style, { withTheme: true }), withSize())(Chart);
+Chart.defaultProps = {
+  margin: { top: 10, right: 10, bottom: 20, left: 30 },
+};
+
+export default compose(withWidth(), withStyles(style, { withTheme: true }), withSize())(Chart);

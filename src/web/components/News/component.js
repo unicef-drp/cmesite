@@ -16,6 +16,7 @@ const style = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingLeft: theme.spacing.unit * 4,
     paddingRight: theme.spacing.unit * 4,
+    height: `calc(100% + ${theme.spacing.unit * 6}px)`,
   },
   container: {
     paddingTop: theme.spacing.unit,
