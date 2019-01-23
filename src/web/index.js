@@ -59,8 +59,8 @@ const theme = createMuiTheme({
     chartColorScale: scaleOrdinal(schemeCategory10),
     mapColorScale: scaleThreshold()
       .domain([0, 10, 20, 40, 100, 150])
-      .range(['#9b9b9b', '#d4ebf6', '#a4d3f2', '#50b5e7', '#3596d1', '#006aa5', '#003f6f']),
-    mapAboveColor: '#3282DA',
+      .range(['#9b9b9b', '#a1d4eb', '#7bcef1', '#4fbaea', '#2b9cd7', '#006ba6', '#153e6b']),
+    mapAboveColor: '#5f3d65',
     mapNoneColor: '#9b9b9b',
   },
 });
