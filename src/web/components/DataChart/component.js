@@ -150,7 +150,7 @@ DataChart.propTypes = {
   activeTypes: PropTypes.object,
   toggleActiveType: PropTypes.func.isRequired,
   isCompare: PropTypes.bool,
-  serieNames: PropTypes.array.isRequired,
+  serieNames: PropTypes.array,
   highlightSerie: PropTypes.func.isRequired,
   hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,

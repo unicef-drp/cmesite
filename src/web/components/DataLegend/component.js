@@ -240,7 +240,7 @@ DataLegend.propTypes = {
   includedSeries: PropTypes.array,
   excludedSeries: PropTypes.array,
   isCompare: PropTypes.bool,
-  serieNames: PropTypes.array.isRequired,
+  serieNames: PropTypes.array,
   highlightSerie: PropTypes.func.isRequired,
   seriesNames: PropTypes.array,
 };
