@@ -66,6 +66,7 @@ const getValues = (locale, codelists) =>
           id: prop('id')(code),
           label: getName(locale)(code),
           isSelected: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
+          isMapSelected: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)), // default is map compliant
           isToggled: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
           isRate: test(EXC_RATE_INDICATOR_VALUE_REGEXP, getName(locale)(code)),
         })),
