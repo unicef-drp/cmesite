@@ -76,6 +76,7 @@ export const dataQuery = ({
   isExclusive,
   onlyEstimates,
   onlyRates,
+  isMap,
 } = {}) =>
   pipe(
     map(
@@ -88,7 +89,11 @@ export const dataQuery = ({
           ],
           [
             always(isExclusive),
-            pipe(getValuesFiltered(onlyRates), find(propEq('isSelected', true)), flip(append)([])),
+            pipe(
+              getValuesFiltered(onlyRates),
+              find(propEq(isMap ? 'isMapSelected' : 'isSelected', true)),
+              flip(append)([]),
+            ),
           ],
           [T, pipe(getValuesFiltered(onlyRates), filter(propEq('isToggled', true)))],
         ]),

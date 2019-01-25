@@ -66,13 +66,21 @@ export const getStale = dataType => createSelector(getData, prop(`${dataType}Sta
 export const getDimensions = createSelector(getRawDimensions, filterArtefacts(RELEVANT_DIMENSIONS));
 export const getCountryDimension = createSelector(getDimensions, find(propEq('id', REF_AREA)));
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
+export const getMapIndicatorDimension = createSelector(
+  getIndicatorDimension,
+  ifElse(isNil, identity, over(lensProp('values'), filter(propEq('isRate', true)))),
+);
 export const getSexDimension = createSelector(getDimensions, find(propEq('id', SEX)));
-export const getCountryValue = createSelector(getCountryDimension, getSelectedDimensionValue);
-export const getIndicatorValue = createSelector(getIndicatorDimension, getSelectedDimensionValue);
+export const getCountryValue = createSelector(getCountryDimension, getSelectedDimensionValue());
+export const getIndicatorValue = createSelector(getIndicatorDimension, getSelectedDimensionValue());
+export const getSexValue = createSelector(getSexDimension, getSelectedDimensionValue());
+export const getMapIndicatorValue = createSelector(
+  getMapIndicatorDimension,
+  getSelectedDimensionValue('isMapSelected'),
+);
 export const getIsExcNoSexIndicatorValue = createSelector(getIndicatorValue, value =>
   EXC_NO_SEX_INDICATOR_VALUES.has(prop('id', value)),
 );
-export const getSexValue = createSelector(getSexDimension, getSelectedDimensionValue);
 export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,
@@ -185,13 +193,13 @@ export const getCanLoadData = dataType =>
   createSelector(
     getCountryValue,
     getIndicatorValue,
+    getMapIndicatorValue,
     getSexValue,
     getDimensions,
-    (country, indicator, sex, dimensions) => {
+    (country, indicator, mapIndicator, sex, dimensions) => {
       if (or(isNil(dataType), isNil(indicator))) return false;
       if (equals(dataType, COUNTRY)) return none(isNil, [country, indicator, sex]);
-      else if (equals(dataType, MAP))
-        return and(none(isNil, [indicator, sex]), propEq('isRate', true, indicator));
+      else if (equals(dataType, MAP)) return none(isNil, [mapIndicator, sex]);
       else if (equals(dataType, COMPARE)) {
         const combinations = getToggledCombinations(dimensions);
         return and(gt(combinations, 0), lte(combinations, MAX_SDMX_VALUES));

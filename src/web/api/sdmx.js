@@ -29,7 +29,13 @@ export const DATA_CONTEXTS = {
   [COUNTRY]: { queryOptions: { dropIds: [TIME_PERIOD], isExclusive: true } },
   [COMPARE]: { queryOptions: { dropIds: [TIME_PERIOD], onlyEstimates: true } },
   [MAP]: {
-    queryOptions: { dropIds: [REF_AREA], isExclusive: true, onlyEstimates: true, onlyRates: true },
+    queryOptions: {
+      dropIds: [REF_AREA],
+      isExclusive: true,
+      onlyEstimates: true,
+      onlyRates: true,
+      isMap: true,
+    },
     parserOptions: { isMap: true },
   },
   [DOWNLOAD]: { queryOptions: { dropIds: [] } },

@@ -17,6 +17,7 @@ import {
   ifElse,
   always,
   identity,
+  or,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
@@ -91,22 +92,20 @@ const reducer = (state = initialState, action = {}) => {
     case SELECT_DIMENSION_VALUE:
       var selectPath = ['dimensions', action.dimensionIndex, 'values'];
       var hasNoToggled = none(prop('isToggled'), path(selectPath, state));
+      var isRefArea = pipe(nth(action.dimensionIndex), propEq('id', REF_AREA))(state.dimensions);
+      var isDeath = pipe(path([...selectPath, action.valueIndex]), prop('isRate'), not)(state);
       return pipe(
         over(
           lensPath(selectPath),
           addIndex(map)((value, index) => ({
             ...value,
             isSelected: equals(index, action.valueIndex),
+            isMapSelected: isDeath ? value.isMapSelected : equals(index, action.valueIndex),
             isToggled: hasNoToggled ? equals(index, action.valueIndex) : value.isToggled,
           })),
         ),
         assoc('countryStale', true),
-        assoc(
-          'mapStale',
-          pipe(nth(action.dimensionIndex), propEq('id', REF_AREA))(state.dimensions)
-            ? state.mapStale
-            : true,
-        ),
+        assoc('mapStale', or(isRefArea, isDeath) ? state.mapStale : true),
       )(state);
     case LOADING_STRUCTURE:
       return { ...state, isLoadingStructure: true };
@@ -164,7 +163,7 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
       } else {
         dispatch(requestError({ method: ctx.method, errorCode }));
       }
-      throw err;
+      //throw err;
     });
 };
 
@@ -202,7 +201,14 @@ export const loadData = dataType => (dispatch, getState) => {
   const __dataType = ifElse(equals(HOME), always(MAP), identity)(dataType);
 
   if (not(getStale(__dataType)(getState()))) return;
-  if (not(getCanLoadData(__dataType)(getState()))) return;
+  if (not(getCanLoadData(__dataType)(getState()))) {
+    return dispatch({
+      type: DATA_LOADED,
+      staled: equals(dataType, HOME),
+      dataType: __dataType,
+      series: {},
+    });
+  }
 
   dispatch({ type: LOADING_DATA });
   if (equals(__dataType, MAP)) dispatch(changeMapIndex());

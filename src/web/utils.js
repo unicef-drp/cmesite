@@ -22,7 +22,8 @@ export const hasIndeterminateSelection = pipe(
   both(any(propEq('isToggled', true)), any(pipe(propOr(false, 'isToggled'), equals(false)))),
 );
 
-export const getSelectedDimensionValue = pipe(getValues, find(propEq('isSelected', true)));
+export const getSelectedDimensionValue = (key = 'isSelected') =>
+  pipe(getValues, find(propEq(key, true)));
 
 export const getToggledCombinations = pipe(
   map(pipe(getValues, filter(propEq('isToggled', true)), length)),

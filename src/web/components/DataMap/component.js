@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { HomeCountrySelector, IndicatorSelector } from '../Selector';
+import { HomeCountrySelector, HomeIndicatorSelector } from '../Selector';
 import WorldMap from '../Map';
 import MapSlider from '../MapSlider';
 import DataProgress from '../DataProgress';
@@ -76,7 +76,7 @@ const Component = ({ classes, isHome, isLoadingData }) => {
         <Typography variant="body2" color="primary" className={classes.indicatorLabel}>
           <FormattedMessage {...messages.indicator} />
         </Typography>
-        <IndicatorSelector dataType={HOME} />
+        <HomeIndicatorSelector dataType={HOME} />
       </Grid>
       <Grid item xs={12} sm={5}>
         <Typography variant="body2" color="primary" className={classes.countryLabel}>

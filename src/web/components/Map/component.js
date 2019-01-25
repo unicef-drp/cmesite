@@ -79,7 +79,7 @@ class WorldMap extends React.Component {
     const { width } = size;
     const height = width / 1.77;
     const datapoints = propOr([], 'datapoints', mapSerie);
-    const { mapColorScale } = theme.palette;
+    const { mapColorScale, mapAboveColor } = theme.palette;
 
     return (
       <div className={classes.root}>
@@ -101,7 +101,7 @@ class WorldMap extends React.Component {
                   strokeWidth={0.2}
                   onClick={() => this.props.handleMapClick(datapoint)}
                   onMouseOver={event => {
-                    select(event.target).attr('fill', theme.palette.primary.main);
+                    select(event.target).attr('fill', mapAboveColor);
                     this.setDatapoint(datapoint);
                   }}
                   onMouseOut={event => {
