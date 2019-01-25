@@ -18,12 +18,11 @@ import {
   always,
   identity,
   or,
-  and,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
 import { getRawDimensions, getStale, getCanLoadData } from '../selectors/data';
-import { TYPES, REF_AREA, INDICATOR } from '../constants';
+import { TYPES, REF_AREA } from '../constants';
 
 export const SCOPES = ['selection', 'all'];
 //export const FORMATS = ['csv', 'xml'];
