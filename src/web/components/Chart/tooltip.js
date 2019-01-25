@@ -35,12 +35,12 @@ const getLabel = ({ isCompare }) =>
 
 const getLeft = ({ x, width, theme }) => {
   const isFlipped = x > width / 2;
-  return x - (isFlipped ? WIDTH : 0) + theme.spacing.unit * (isFlipped ? 2 : 3.5);
+  return x - (isFlipped ? WIDTH : 0) + theme.spacing.unit * (isFlipped ? 2 : 6);
 };
 
 const getTop = ({ y, height, theme }) => {
   const isFlipped = y < height / 2;
-  return y + (isFlipped ? 0 : -150) + (isFlipped ? theme.spacing.unit * 2 : 0);
+  return y + (isFlipped ? 10 : -80) + (isFlipped ? theme.spacing.unit * 2 : 0);
 };
 
 const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare, isUncertainty }) => (
