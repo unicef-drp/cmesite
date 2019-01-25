@@ -68,11 +68,12 @@ export const getCountryDimension = createSelector(getDimensions, find(propEq('id
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
 export const getMapIndicatorDimension = createSelector(
   getIndicatorDimension,
-  over(lensProp('values'), filter(propEq('isRate', true))),
+  ifElse(isNil, identity, over(lensProp('values'), filter(propEq('isRate', true)))),
 );
 export const getSexDimension = createSelector(getDimensions, find(propEq('id', SEX)));
 export const getCountryValue = createSelector(getCountryDimension, getSelectedDimensionValue());
 export const getIndicatorValue = createSelector(getIndicatorDimension, getSelectedDimensionValue());
+export const getSexValue = createSelector(getSexDimension, getSelectedDimensionValue());
 export const getMapIndicatorValue = createSelector(
   getMapIndicatorDimension,
   getSelectedDimensionValue('isMapSelected'),
@@ -80,7 +81,6 @@ export const getMapIndicatorValue = createSelector(
 export const getIsExcNoSexIndicatorValue = createSelector(getIndicatorValue, value =>
   EXC_NO_SEX_INDICATOR_VALUES.has(prop('id', value)),
 );
-export const getSexValue = createSelector(getSexDimension, getSelectedDimensionValue());
 export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,
