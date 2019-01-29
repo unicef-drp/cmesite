@@ -23,6 +23,7 @@ export const getFocuses = createSelector(getWP, propOr([], 'focuses'));
 export const getAbout = createSelector(getWP, pipe(propOr([], 'abouts'), head));
 export const getMethod = createSelector(getWP, pipe(propOr([], 'methods'), head));
 export const getDatanotes = createSelector(getWP, propOr([], 'datanotes'));
+export const getDownload = createSelector(getWP, pipe(propOr([], 'downloads'), head));
 
 export const getDatanote = dataType =>
   createSelector(getDatanotes, find(pipe(pathOr([], ['acf', 'tabs']), contains(dataType))));

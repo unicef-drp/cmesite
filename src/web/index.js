@@ -109,4 +109,5 @@ loadConfig().then(config => {
   store.dispatch(ducks.wp.actions.loadPosts('abouts'));
   store.dispatch(ducks.wp.actions.loadPosts('methods'));
   store.dispatch(ducks.wp.actions.loadPosts('datanotes'));
+  store.dispatch(ducks.wp.actions.loadPosts('downloads'));
 });

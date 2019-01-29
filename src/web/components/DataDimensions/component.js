@@ -67,6 +67,7 @@ const DataDimensions = ({
   changeSelection,
   changeAllSelection,
   isSelectionExclusive,
+  dataType,
 }) => (
   <React.Fragment>
     {map(({ label, ...dimension }) => (
@@ -100,6 +101,7 @@ const DataDimensions = ({
             dimension={dimension}
             changeSelection={changeSelection}
             isSelectionExclusive={isSelectionExclusive}
+            dataType={dataType}
           />
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -113,6 +115,7 @@ DataDimensions.propTypes = {
   changeSelection: PropTypes.func.isRequired,
   changeAllSelection: PropTypes.func.isRequired,
   isSelectionExclusive: PropTypes.bool,
+  dataType: PropTypes.string,
 };
 
 export default withStyles(styles)(DataDimensions);

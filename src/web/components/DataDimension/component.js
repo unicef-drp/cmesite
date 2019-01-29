@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
+import { MAP } from '../../api/sdmx';
 
 const styles = theme => ({
   list: {
@@ -28,9 +29,9 @@ const styles = theme => ({
   },
 });
 
-const DataDimension = ({ classes, dimension, changeSelection, isSelectionExclusive }) => (
+const DataDimension = ({ classes, dimension, changeSelection, isSelectionExclusive, dataType }) => (
   <List className={classes.list}>
-    {addIndex(map)(({ id, label, isSelected, isToggled, isDisabled }, index) => (
+    {addIndex(map)(({ id, label, isSelected, isMapSelected, isToggled, isDisabled }, index) => (
       <ListItem
         key={id}
         dense
@@ -41,7 +42,7 @@ const DataDimension = ({ classes, dimension, changeSelection, isSelectionExclusi
       >
         {isSelectionExclusive ? (
           <Radio
-            checked={!!isSelected}
+            checked={dataType === MAP ? !!isMapSelected : !!isSelected}
             tabIndex={-1}
             disableRipple
             classes={{ root: classes.checkbox }}
@@ -67,6 +68,7 @@ DataDimension.propTypes = {
   dimension: PropTypes.object.isRequired,
   changeSelection: PropTypes.func.isRequired,
   isSelectionExclusive: PropTypes.bool,
+  dataType: PropTypes.string,
 };
 
 export default withStyles(styles)(DataDimension);

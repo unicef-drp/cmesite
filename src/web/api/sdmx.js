@@ -9,12 +9,11 @@ import {
   join,
   prop,
   equals,
-  path,
   ifElse,
   always,
   identity,
 } from 'ramda';
-import { structureParser, dataParser, dataQuery } from '../lib/sdmx';
+import { structureParser, dataParser, dataQuery, toCsv } from '../lib/sdmx';
 import { RELEVANT_DIMENSIONS, TIME_PERIOD, REF_AREA, END_PERIOD } from '../constants';
 import sdmxStructure from '../../mock/data/sdmxStructure';
 import sdmxData from '../../mock/data/sdmxData';
@@ -59,7 +58,7 @@ const dataflowQuery = (separator = '/', config = globalConfig) => {
 const configuredStructureParser = (structure, config = globalConfig) =>
   structureParser({ locale: config.locale, dimensionIds: RELEVANT_DIMENSIONS })(structure);
 
-const configuredDataParser = (data, parserOptions, config = globalConfig) =>
+const configuredDataParser = (data, parserOptions = {}, config = globalConfig) =>
   dataParser({ locale: config.locale, ...parserOptions })(data);
 
 const getStructure = () =>
@@ -96,22 +95,29 @@ const getData = ({ dimensions, dataType }) => {
     .then(({ data }) => configuredDataParser(data, parserOptions));
 };
 
-const getFileData = ({ dimensions, dataType, format, scope }) => {
+const getFileData = ({ dimensions, dataType, /*format,*/ scope }) => {
   const { queryOptions } = prop(dataType, DATA_CONTEXTS);
   const query = equals(scope, 'all') ? scope : dataQuery(queryOptions)(dimensions);
-  const url = endPoint(`/data/${dataflowQuery(',')}/${query}`);
+  //const url = endPoint(`/data/${dataflowQuery(',')}/${query}`);
+  const url = endPoint(
+    `/data/${dataflowQuery(',')}/${query}/?dimensionAtObservation=AllDimensions`,
+  );
   const options = {
     headers: {
-      Accept: `${prop(format, dataHeaders)};file=true`,
+      //'Accept': `${prop(format, dataHeaders)};file=true`, // SDMX API is not fulfilling the needs...
+      Accept: prop('json', dataHeaders),
       'Accept-Language': 'en',
     },
   };
 
-  return axios.get(url, options).then(response => {
-    const blob = new Blob([prop('data')(response)], {
+  return axios.get(url, options).then(({ data }) => {
+    const csv = toCsv()(configuredDataParser(data, { isRaw: true }));
+    const blob = new Blob([csv], { type: 'application/vnd.sdmx.data+csv; charset=utf-8' });
+    FileSaver.saveAs(blob, `${dataflowQuery('-')}-download.csv`);
+    /*const blob = new Blob([data], {
       type: path(['headers', 'content-type'])(response),
     });
-    FileSaver.saveAs(blob, `download.${format}`);
+    FileSaver.saveAs(blob, `download.${format}`);*/
   });
 };
 
