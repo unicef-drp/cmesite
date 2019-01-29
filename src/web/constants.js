@@ -7,6 +7,8 @@ export const RELEVANT_DIMENSIONS = [REF_AREA, INDICATOR, SEX];
 export const SEX_TOTAL_VALUE = '_T';
 export const RELEVANT_DIMENSIONS_DEFAULTS = new Set(['MRY0T4', SEX_TOTAL_VALUE]);
 
+export const EXCLUDED_DOWNLOAD_DIMENSIONS = [TIME_PERIOD];
+
 export const EXC_NO_SEX_INDICATOR_VALUES = new Set(['MRM0', 'MRY5T14', 'TMM0', 'TMY5T14']);
 export const EXC_RATE_INDICATOR_VALUE_REGEXP = /^((?!death).)*$/i;
 
@@ -35,7 +37,7 @@ export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE', SERIES_
 
 export const EMAIL = 'childmortality@unicef.org';
 export const LEGAL_LINK = 'https://www.unicef.org/about/legal.html';
-export const LOCALES = ['en', 'fr', 'es'];
+export const LOCALES = ['en', 'fr', 'es', 'ru', 'ar'];
 export const END_PERIOD = '2017-06'; // requires data availability to know boundaries of a time dimension
 
 export const UNIT_MEASURE = 'UNIT_MEASURE';

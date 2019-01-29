@@ -53,7 +53,7 @@ Option.propTypes = {
 export const Placeholder = props => (
   <Typography
     variant="body2"
-    color="textSecondary"
+    //color="textSecondary"
     className={props.selectProps.classes.placeholder}
     {...props.innerProps}
   >

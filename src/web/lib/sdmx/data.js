@@ -42,6 +42,10 @@ import {
   both,
   indexBy,
   difference,
+  take,
+  concat,
+  omit,
+  is,
 } from 'ramda';
 import {
   RELEVANT_DIMENSIONS,
@@ -58,6 +62,7 @@ import {
   INDICATOR,
   SERIES_YEAR,
   UNIT_MEASURE,
+  EXCLUDED_DOWNLOAD_DIMENSIONS,
 } from '../../constants';
 
 const getValues = propOr([], 'values');
@@ -104,6 +109,32 @@ export const dataQuery = ({
     join(dimensionSeparator),
   );
 
+const toCsvRow = ({ delimiter, isHeader, excludedArtefactIds }) =>
+  map(
+    pipe(
+      omit(excludedArtefactIds),
+      values,
+      //sortBy(prop('index')),
+      map(
+        ifElse(
+          is(Number),
+          ifElse(always(isHeader), always('Observation value'), identity),
+          pipe(pick(isHeader ? ['name', 'id'] : ['valueName', 'valueId']), values, join(delimiter)),
+        ),
+      ),
+      join(delimiter),
+    ),
+  );
+export const toCsv = ({
+  eol = '\r\n',
+  delimiter = ',',
+  excludedArtefactIds = EXCLUDED_DOWNLOAD_DIMENSIONS,
+} = {}) =>
+  converge(pipe(concat, join(eol)), [
+    pipe(take(1), toCsvRow({ delimiter, isHeader: true, excludedArtefactIds })),
+    toCsvRow({ delimiter, excludedArtefactIds }),
+  ]);
+
 const getArtefacts = type => pathOr([], ['data', 'structure', type, 'observation']);
 
 const getObservations = pathOr({}, ['data', 'dataSets', 0, 'observations']);
@@ -142,7 +173,7 @@ const parseArtefacts = locale => artefacts =>
     const artefact = nth(artefactIndex, artefacts);
     if (isNil(artefact)) return acc;
     const value = getValue(valueIndex)(artefact);
-    if (isNil(value)) return acc;
+    //if (isNil(value)) return acc;
     return assoc(
       prop('id', artefact),
       parseArtefact(locale)(valueIndex, artefactIndex)(artefact, value),
@@ -159,11 +190,14 @@ const parseObservationValue = locale => attributes =>
     converge(merge, [pipe(head, y => ({ y })), pipe(tail, parseArtefacts(locale)(attributes))]),
   );
 
-const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair) => {
-  const sdmxObservation = converge(merge, [
+const parseObservationPair = (locale, dimensions, attributes) =>
+  converge(merge, [
     parseObservationKey(locale)(dimensions),
     parseObservationValue(locale)(attributes),
-  ])(pair);
+  ]);
+
+const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair) => {
+  const sdmxObservation = parseObservationPair(locale, dimensions, attributes)(pair);
 
   const type = getType(sdmxObservation)(TYPES);
   if (isNil(type)) return acc;
@@ -210,9 +244,17 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
   return assoc(serieKey, serie, acc);
 };
 
-const parser = ({ locale, isMap }) => data => {
+const parser = ({ locale, isMap, isRaw }) => data => {
   const dimensions = getArtefacts('dimensions')(data);
   const attributes = getArtefacts('attributes')(data);
+
+  if (isRaw) {
+    return pipe(
+      getObservations,
+      toPairs,
+      map(parseObservationPair(locale, dimensions, attributes)),
+    )(data);
+  }
 
   const pivot = isMap ? [TIME_PERIOD] : [...RELEVANT_DIMENSIONS, Z];
 

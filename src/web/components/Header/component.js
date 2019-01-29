@@ -84,7 +84,7 @@ class Header extends React.Component {
                     key={prop('name')(route)}
                     component={Link}
                     to={getPath(route)}
-                    disabled={routeName === prop('name')(route)}
+                    disabled={routeName === prop('path')(route)}
                     classes={{ disabled: classes.selectedMenu }}
                   >
                     <FormattedMessage {...prop(prop('name')(route))(messages)} />
@@ -102,7 +102,7 @@ class Header extends React.Component {
                 key={prop('name')(route)}
                 component={Link}
                 to={getPath(route)}
-                disabled={routeName === prop('name')(route)}
+                disabled={routeName === prop('path')(route)}
               >
                 <ListItemText>
                   <FormattedMessage {...prop(prop('name')(route))(messages)} />
