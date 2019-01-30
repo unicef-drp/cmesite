@@ -42,6 +42,9 @@ const theme = createMuiTheme({
     },
   },
   palette: {
+    background: {
+      default: '#fff',
+    },
     primary: {
       light: '#d7e8f7',
       main: '#3282DA',
@@ -92,13 +95,13 @@ loadConfig().then(config => {
   );
 
   wpApi.config(prop('wp')(config));
-  //sdmxApi.config(prop('sdmx')(config));
+  sdmxApi.config(prop('sdmx')(config));
 
   // staging and qa
-  sdmxApi.config({
+  /*sdmxApi.config({
     endpoint: 'https://api.data.unicef.org/sdmx/Rest',
     dataflow: { id: 'CME_DF', version: '1.0', agencyId: 'UNICEF' },
-  });
+  });*/
 
   ReactDOM.render(ROOT, document.getElementById('root'));
   store.dispatch(ducks.wp.actions.loadPosts('splashes'));

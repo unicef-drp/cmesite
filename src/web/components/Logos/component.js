@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import { LOGOS } from '../../constants';
 import igmeLogo from '../../../assets/igme-logo.png';
-import unicefLogo from '../../../assets/unicef-black-logo.png';
+import unicefLogo from '../../../assets/unicef-black-logo.jpg';
 import whoLogo from '../../../assets/who-black-logo.png';
 import unLogo from '../../../assets/un-black-logo.png';
 import wboLogo from '../../../assets/wbo-black-logo.png';
