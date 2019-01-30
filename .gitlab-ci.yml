@@ -56,7 +56,8 @@ build and push staging docker image:
   script:
     - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile.nginx .
     - docker push $CONTAINER_IMAGE
-  only: develop
+  only:
+    - develop
   tags:
     - kube-rp
 
