@@ -15,62 +15,83 @@ variables:
 
 setup:
   stage: setup
-  script: yarn
+  script:
+    - yarn
   artifacts:
     paths: node_modules/
-  tags: kube-rp
+  tags:
+    - kube-rp
 
 run unit test:
   stage: unit-test
   cache:
     untracked: true
     policy: pull
-  dependencies: setup
-  script: yarn test
-  tags: kube-rp
+  dependencies:
+    - setup
+  script:
+    - yarn test
+  tags:
+    - kube-rp
 
 build:
   stage: build
-  dependencies: setup
-  script: yarn build
+  dependencies:
+    - setup
+  script:
+    - yarn build
   artifacts:
     paths: build/
-  tags: kube-rp
+  tags:
+    - kube-rp
 
 build and push staging docker image:
   stage: build-staging-image
-  before_script: docker login -u ebasley -p $HUB_DOCKER_PWD
-  dependencies: build
+  before_script:
+    - docker login -u ebasley -p $HUB_DOCKER_PWD
+  dependencies:
+    - build
   script:
     - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile.nginx .
     - docker push $CONTAINER_IMAGE
   only: develop
-  tags: kube-rp
+  tags:
+    - kube-rp
 
 run staging:
   stage: run-staging-image
-  script: kubectl set image deployment/cme-staging cme=$CONTAINER_IMAGE
-  only: develop
-  tags: kube-rp
+  script:
+    - kubectl set image deployment/cme-staging cme=$CONTAINER_IMAGE
+  only:
+    - develop
+  tags:
+    - kube-rp
   environment:
     name: staging
 
 build and push qa docker image:
   stage: build-qa-image
-  before_script: docker login -u ebasley -p $HUB_DOCKER_PWD
-  dependencies: build
+  before_script:
+    - docker login -u ebasley -p $HUB_DOCKER_PWD
+  dependencies:
+    - build
   script:
     - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile.nginx .
     - docker tag $CONTAINER_IMAGE $LATEST_CONTAINER_IMAGE
     - docker push $CONTAINER_IMAGE
     - docker push $LATEST_CONTAINER_IMAGE
-  only: master
-  tags: kube-rp
+  only:
+    - master
+  tags:
+    - kube-rp
 
 run qa:
   stage: run-qa-image
-  script: kubectl set image deployment/cme-qa cme=$CONTAINER_IMAGE
-  only: master
-  tags: kube-rp
+  script:
+    - kubectl set image deployment/cme-qa cme=$CONTAINER_IMAGE
+  only:
+    - master
+  tags:
+    - kube-rp
   environment:
     name: qa
