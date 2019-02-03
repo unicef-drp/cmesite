@@ -74,7 +74,14 @@ const styles = theme => ({
   },
 });
 
-const DataDownloadActions = ({ classes, download, downloadData, downloadingData, dataType }) => (
+const DataDownloadActions = ({
+  classes,
+  download,
+  downloadData,
+  downloadingData,
+  dataType,
+  codebook,
+}) => (
   <ExpansionPanel defaultExpanded classes={{ root: classes.panelRoot }}>
     <ExpansionPanelSummary
       expandIcon={<ExpandMoreIcon />}
@@ -131,6 +138,24 @@ const DataDownloadActions = ({ classes, download, downloadData, downloadingData,
               </ListItemText>
             </ListItem>
           )}
+        {codebook &&
+          path(['acf', 'file'], codebook) && (
+            <ListItem
+              dense
+              button
+              className={classes.item}
+              disableRipple
+              target="_blank"
+              href={path(['acf', 'file', 'url'], codebook)}
+              download
+              component="a"
+            >
+              <DescriptionIcon className={classes.progress} />
+              <ListItemText className={classes.text}>
+                <FormattedMessage {...messages.codebook} />
+              </ListItemText>
+            </ListItem>
+          )}
       </List>
     </ExpansionPanelDetails>
   </ExpansionPanel>
@@ -141,6 +166,7 @@ DataDownloadActions.propTypes = {
   downloadData: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   download: PropTypes.object,
+  codebook: PropTypes.object,
   dataType: PropTypes.string.isRequired,
 };
 

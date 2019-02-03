@@ -8,7 +8,8 @@ import { downloadData } from '../../ducks/data';
 export const enhance = connect(
   createStructuredSelector({
     downloadingData: getDownloadingData,
-    download: getDownload,
+    codebook: getDownload('codebook'),
+    download: getDownload('all'),
   }),
   { downloadData },
 );
