@@ -1,5 +1,7 @@
 stages:
+  - setup
   - unit-test
+  - build
   - build-staging-image
   - run-staging-image
   - build-qa-image
@@ -11,31 +13,53 @@ variables:
   CONTAINER_IMAGE: ebasley/cme:$CI_COMMIT_SHA
   LATEST_CONTAINER_IMAGE: ebasley/cme:latest
 
+setup:
+  stage: setup
+  script:
+    - yarn
+  artifacts:
+    paths:
+      - node_modules/
+  tags:
+    - kube-rp
+
 run unit test:
   stage: unit-test
-  before_script:
-    - yarn
   cache:
     untracked: true
     policy: pull
+  dependencies:
+    - setup
   script:
     - yarn test
   tags:
-    - docker
+    - kube-rp
+
+build:
+  stage: build
+  dependencies:
+    - setup
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - build/
+  tags:
+    - kube-rp
 
 build and push staging docker image:
   stage: build-staging-image
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
-    - yarn
+  dependencies:
+    - build
   script:
-    - yarn build
     - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile.nginx .
     - docker push $CONTAINER_IMAGE
   only:
     - develop
   tags:
-    - kube-rp 
+    - kube-rp
 
 run staging:
   stage: run-staging-image
@@ -52,9 +76,9 @@ build and push qa docker image:
   stage: build-qa-image
   before_script:
     - docker login -u ebasley -p $HUB_DOCKER_PWD
-    - yarn
+  dependencies:
+    - build
   script:
-    - yarn build
     - docker build --pull --no-cache -t $CONTAINER_IMAGE -f Dockerfile.nginx .
     - docker tag $CONTAINER_IMAGE $LATEST_CONTAINER_IMAGE
     - docker push $CONTAINER_IMAGE
@@ -74,4 +98,3 @@ run qa:
     - kube-rp
   environment:
     name: qa
-

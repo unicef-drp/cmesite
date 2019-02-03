@@ -11,6 +11,7 @@ import {
   pick,
   values,
   prop,
+  propOr,
   sortBy,
   reverse,
   toPairs,
@@ -41,7 +42,13 @@ import {
   getColor,
   isEstimate,
 } from '../Chart/utils';
-import { RELEVANT_DIMENSIONS, SERIES_METHOD, SERIES_YEAR } from '../../constants';
+import {
+  RELEVANT_DIMENSIONS,
+  SERIES_METHOD,
+  SERIES_YEAR,
+  INCLUDED,
+  EXCLUDED,
+} from '../../constants';
 
 const styles = theme => ({
   panelExpanded: {
@@ -96,8 +103,7 @@ const DataLegend = ({
   highlightSerie,
   estimateSeries = [],
   uncertaintySeries = [],
-  includedSeries = [],
-  excludedSeries = [],
+  mergedSeries = {},
   isCompare,
   seriesNames = [],
 }) => {
@@ -161,7 +167,10 @@ const DataLegend = ({
       )),
     );
 
-  const otherSeries = concat(includedSeries, excludedSeries);
+  const otherSeries = concat(
+    propOr([], INCLUDED, mergedSeries),
+    propOr([], EXCLUDED, mergedSeries),
+  );
   const methods = toPairs(indexBy(prop(SERIES_METHOD), otherSeries));
   const otherLegendItems = reverse(sortBy(prop(SERIES_YEAR), otherSeries));
 
@@ -237,8 +246,7 @@ DataLegend.propTypes = {
   theme: PropTypes.object.isRequired,
   estimateSeries: PropTypes.array,
   uncertaintySeries: PropTypes.array,
-  includedSeries: PropTypes.array,
-  excludedSeries: PropTypes.array,
+  mergedSeries: PropTypes.object,
   isCompare: PropTypes.bool,
   serieNames: PropTypes.array,
   highlightSerie: PropTypes.func.isRequired,

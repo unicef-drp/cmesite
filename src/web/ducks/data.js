@@ -24,7 +24,7 @@ import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
 import { getRawDimensions, getStale, getCanLoadData } from '../selectors/data';
 import { TYPES, REF_AREA } from '../constants';
 
-export const SCOPES = ['selection', 'all'];
+export const SCOPES = ['selection' /*, 'all'*/];
 //export const FORMATS = ['csv', 'xml'];
 export const FORMATS = ['csv'];
 

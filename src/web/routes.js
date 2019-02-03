@@ -34,9 +34,7 @@ const routes = {
   },
 };
 
-export const allRoutes = compose(map(([name, r]) => ({ ...r, name })), toPairs)(
-  routes,
-);
+export const allRoutes = compose(map(([name, r]) => ({ ...r, name })), toPairs)(routes);
 export const defaultRoute = find(r => r.default)(allRoutes);
 export default routes;
 export const getPath = prop('path');

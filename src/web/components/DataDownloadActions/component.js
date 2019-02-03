@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, xprod, prop } from 'ramda';
+import { map, xprod, prop, path } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -74,7 +74,14 @@ const styles = theme => ({
   },
 });
 
-const DataDownloadActions = ({ classes, downloadData, downloadingData, dataType }) => (
+const DataDownloadActions = ({
+  classes,
+  download,
+  downloadData,
+  downloadingData,
+  dataType,
+  codebook,
+}) => (
   <ExpansionPanel defaultExpanded classes={{ root: classes.panelRoot }}>
     <ExpansionPanelSummary
       expandIcon={<ExpandMoreIcon />}
@@ -113,6 +120,42 @@ const DataDownloadActions = ({ classes, downloadData, downloadingData, dataType 
             </ListItem>
           );
         })(xprod(FORMATS, SCOPES))}
+        {download &&
+          path(['acf', 'file'], download) && (
+            <ListItem
+              dense
+              button
+              className={classes.item}
+              disableRipple
+              target="_blank"
+              href={path(['acf', 'file', 'url'], download)}
+              download
+              component="a"
+            >
+              <DescriptionIcon className={classes.progress} />
+              <ListItemText className={classes.text}>
+                <FormattedMessage {...messages['csv.all']} />
+              </ListItemText>
+            </ListItem>
+          )}
+        {codebook &&
+          path(['acf', 'file'], codebook) && (
+            <ListItem
+              dense
+              button
+              className={classes.item}
+              disableRipple
+              target="_blank"
+              href={path(['acf', 'file', 'url'], codebook)}
+              download
+              component="a"
+            >
+              <DescriptionIcon className={classes.progress} />
+              <ListItemText className={classes.text}>
+                <FormattedMessage {...messages.codebook} />
+              </ListItemText>
+            </ListItem>
+          )}
       </List>
     </ExpansionPanelDetails>
   </ExpansionPanel>
@@ -122,6 +165,8 @@ DataDownloadActions.propTypes = {
   downloadingData: PropTypes.object,
   downloadData: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  download: PropTypes.object,
+  codebook: PropTypes.object,
   dataType: PropTypes.string.isRequired,
 };
 

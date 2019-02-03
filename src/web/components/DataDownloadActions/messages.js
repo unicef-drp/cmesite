@@ -29,4 +29,8 @@ export default defineMessages({
     id: 'download.csv',
     defaultMessage: 'CSV',
   },
+  codebook: {
+    id: 'download.codebook',
+    defaultMessage: 'Download codebook',
+  },
 });

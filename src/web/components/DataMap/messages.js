@@ -7,11 +7,11 @@ export default defineMessages({
   },
   country: {
     id: 'map.home.country',
-    defaultMessage: 'Select country data',
+    defaultMessage: 'Select country',
   },
   indicator: {
     id: 'map.home.indicator',
-    defaultMessage: 'Select indicator data',
+    defaultMessage: 'Select indicator',
   },
   note: {
     id: 'map.note',

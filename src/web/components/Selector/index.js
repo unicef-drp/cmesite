@@ -48,13 +48,13 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
 
 export const CountrySelector = enhance(
   { dimension: getCountryDimension, value: getCountryValue },
-  { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorNoOption' },
+  { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorPlaceholder' },
   { isCountry: true },
 )(Component);
 
 export const HomeCountrySelector = enhance(
   { dimension: getCountryDimension },
-  { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorHome' },
+  { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorPlaceholder' },
   { isCountry: true },
 )(Component);
 

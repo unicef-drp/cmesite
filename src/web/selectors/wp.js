@@ -23,6 +23,7 @@ export const getFocuses = createSelector(getWP, propOr([], 'focuses'));
 export const getAbout = createSelector(getWP, pipe(propOr([], 'abouts'), head));
 export const getMethod = createSelector(getWP, pipe(propOr([], 'methods'), head));
 export const getDatanotes = createSelector(getWP, propOr([], 'datanotes'));
+export const getDownloads = createSelector(getWP, propOr([], 'downloads'));
 
 export const getDatanote = dataType =>
   createSelector(getDatanotes, find(pipe(pathOr([], ['acf', 'tabs']), contains(dataType))));
@@ -38,3 +39,6 @@ export const getMethodReports = createSelector(
   getReports,
   filter(pathEq(['acf', 'ismethod'], true)),
 );
+
+export const getDownload = type =>
+  createSelector(getDownloads, find(pathEq(['acf', 'downloadtype'], type)));

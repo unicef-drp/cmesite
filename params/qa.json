@@ -3,7 +3,7 @@
     "endpoint": "http://qa.wp.cme.redpelicans.com/wp-json/wp/v2"
   },
   "sdmx": {
-    "endpoint": "https://apidata.unicef.org/sdmx/Rest",
+    "endpoint": "https://api.data.unicef.org/sdmx/Rest",
     "dataflow": {
       "id": "CME_DF",
       "version": "1.0",
