@@ -102,7 +102,7 @@ const About = ({ about, focuses, classes, theme }) => (
 
         {/* logos */}
         <Grid item xs={11} sm={10} md={10} className={classNames(classes.section, classes.logos)}>
-          <Logos />
+          <Logos size="big" />
         </Grid>
 
         {/* title */}

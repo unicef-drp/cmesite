@@ -8,6 +8,7 @@ import {
   equals,
   reduce,
   prop,
+  defaultTo,
   none,
   path,
   nth,
@@ -18,11 +19,18 @@ import {
   always,
   identity,
   or,
+  findIndex,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
-import { getRawDimensions, getStale, getCanLoadData } from '../selectors/data';
-import { TYPES, REF_AREA } from '../constants';
+import {
+  getRawDimensions,
+  getStale,
+  getCanLoadData,
+  getIsExcNoSexIndicatorValueByIndexes,
+  getSexDimension,
+} from '../selectors/data';
+import { TYPES, REF_AREA, SEX_TOTAL_VALUE } from '../constants';
 
 export const SCOPES = ['selection' /*, 'all'*/];
 //export const FORMATS = ['csv', 'xml'];
@@ -110,7 +118,7 @@ const reducer = (state = initialState, action = {}) => {
     case LOADING_STRUCTURE:
       return { ...state, isLoadingStructure: true };
     case STRUCTURE_LOADED:
-      return { ...state, isLoadingStructure: false, dimensions: action.dimensions };
+      return { ...state, isLoadingStructure: false, dimensions: defaultTo([], action.dimensions) };
     case LOADING_DATA:
       return { ...state, isLoadingData: true };
     case DATA_LOADED:
@@ -174,16 +182,25 @@ export const changeActiveTab = activeTab => (dispatch, getState) => {
   if (getStale(dataType)(getState())) dispatch(loadData(dataType));
 };
 
-export const changeSelection = ({ selectionType, dataType }) => (
-  dimensionIndex,
-  valueIndex,
-) => dispatch => {
+export const changeSelection = ({ selectionType, dataType }) => (dimensionIndex, valueIndex) => (
+  dispatch,
+  getState,
+) => {
   if (equals(selectionType, 'toggle'))
     dispatch({ type: TOGGLE_DIMENSION_VALUE, dimensionIndex, valueIndex });
   else if (equals(selectionType, 'toggleAll'))
     dispatch({ type: TOGGLE_DIMENSION_VALUES, dimensionIndex, value: valueIndex });
-  else if (equals(selectionType, 'select'))
+  else if (equals(selectionType, 'select')) {
     dispatch({ type: SELECT_DIMENSION_VALUE, dimensionIndex, valueIndex });
+    if (getIsExcNoSexIndicatorValueByIndexes(dimensionIndex, valueIndex)(getState())) {
+      const sexDimension = getSexDimension(getState());
+      dispatch({
+        type: SELECT_DIMENSION_VALUE,
+        dimensionIndex: prop('index', sexDimension),
+        valueIndex: findIndex(propEq('id', SEX_TOTAL_VALUE), prop('values', sexDimension)),
+      });
+    }
+  }
   dispatch(loadData(dataType));
 };
 

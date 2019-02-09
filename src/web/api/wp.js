@@ -4,21 +4,10 @@ import { map, fromPairs, prop, compose, toPairs, forEach, join } from 'ramda';
 let globalConfig = { debug: true };
 const endPoint = (path, config = globalConfig) => `${config.endpoint}${path}`;
 
-const postFields = join(',')([
-  'id',
-  'title',
-  'content',
-  'modified_gmt',
-  'tags',
-  'acf',
-]);
+const postFields = join(',')(['id', 'title', 'content', 'modified_gmt', 'tags', 'acf']);
 const getPosts = ({ postType = 'posts' }) =>
   axios
-    .get(
-      endPoint(
-        `/${postType}?fields=${postFields}&order=asc&orderBy=modified&per_page=100`,
-      ),
-    )
+    .get(endPoint(`/${postType}?fields=${postFields}&order=desc&orderBy=modified&per_page=100`))
     .then(prop('data'));
 
 /* eslint-disable-line no-shadow */

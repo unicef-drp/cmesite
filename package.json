@@ -73,8 +73,6 @@
     "style-loader": "^0.21.0",
     "styled-components": "^3.3.3",
     "sw-precache-webpack-plugin": "^0.11.5",
-    "typeface-montserrat": "0.0.54",
-    "typeface-open-sans": "0.0.54",
     "url-loader": "^1.0.1",
     "webpack-manifest-plugin": "^2.0.3"
   },
