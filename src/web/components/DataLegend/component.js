@@ -20,6 +20,7 @@ import {
   isEmpty,
   indexOf,
   concat,
+  pluck,
 } from 'ramda';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -172,7 +173,7 @@ const DataLegend = ({
     propOr([], EXCLUDED, mergedSeries),
   );
   const methods = toPairs(indexBy(prop(SERIES_METHOD), otherSeries));
-  const otherLegendItems = reverse(sortBy(prop(SERIES_YEAR), otherSeries));
+  const otherLegendItems = reverse(sortBy(pipe(prop(SERIES_YEAR), Number), otherSeries));
 
   return (
     <React.Fragment>
