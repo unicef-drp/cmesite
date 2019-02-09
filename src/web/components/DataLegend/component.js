@@ -20,7 +20,6 @@ import {
   isEmpty,
   indexOf,
   concat,
-  pluck,
 } from 'ramda';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
