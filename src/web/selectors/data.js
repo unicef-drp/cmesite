@@ -81,6 +81,8 @@ export const getMapIndicatorValue = createSelector(
 export const getIsExcNoSexIndicatorValue = createSelector(getIndicatorValue, value =>
   EXC_NO_SEX_INDICATOR_VALUES.has(prop('id', value)),
 );
+export const getIsExcNoSexIndicatorValueByIndexes = (dimensionIndex, valueIndex) =>
+  createSelector(getRawDimensions, pipe(path([dimensionIndex, 'values', valueIndex]), prop('id')));
 export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,

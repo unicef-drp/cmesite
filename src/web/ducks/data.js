@@ -8,6 +8,7 @@ import {
   equals,
   reduce,
   prop,
+  defaultTo,
   none,
   path,
   nth,
@@ -110,7 +111,7 @@ const reducer = (state = initialState, action = {}) => {
     case LOADING_STRUCTURE:
       return { ...state, isLoadingStructure: true };
     case STRUCTURE_LOADED:
-      return { ...state, isLoadingStructure: false, dimensions: action.dimensions };
+      return { ...state, isLoadingStructure: false, dimensions: defaultTo([], action.dimensions) };
     case LOADING_DATA:
       return { ...state, isLoadingData: true };
     case DATA_LOADED:
@@ -182,8 +183,10 @@ export const changeSelection = ({ selectionType, dataType }) => (
     dispatch({ type: TOGGLE_DIMENSION_VALUE, dimensionIndex, valueIndex });
   else if (equals(selectionType, 'toggleAll'))
     dispatch({ type: TOGGLE_DIMENSION_VALUES, dimensionIndex, value: valueIndex });
-  else if (equals(selectionType, 'select'))
+  else if (equals(selectionType, 'select')) {
     dispatch({ type: SELECT_DIMENSION_VALUE, dimensionIndex, valueIndex });
+    // find EXC_NO_SEX_INDICATOR_VALUES id from dimensionIndex and valueIndex in dimensions
+  }
   dispatch(loadData(dataType));
 };
 
