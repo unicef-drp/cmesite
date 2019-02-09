@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { equals, map } from 'ramda';
 import { withStyles } from '@material-ui/core';
 import { LOGOS } from '../../constants';
 import igmeLogo from '../../../assets/igme-logo.png';
@@ -21,29 +23,39 @@ const style = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
   },
+  big: {
+    height: 100,
+  },
 });
 
-const Logos = ({ hasMainLogo, classes }) => (
+const data = [
+  { href: LOGOS.unicef, logo: unicefLogo },
+  { href: LOGOS.who, logo: whoLogo },
+  { href: LOGOS.un, logo: unLogo },
+  { href: LOGOS.wbo, logo: wboLogo },
+];
+
+const Logos = ({ hasMainLogo, classes, size }) => (
   <React.Fragment>
     {hasMainLogo && <img src={igmeLogo} className={classes.igmeLogo} />}
-    <a href={LOGOS.unicef} target="_blank" rel="noopener noreferrer">
-      <img src={unicefLogo} className={classes.logo} />
-    </a>
-    <a href={LOGOS.who} target="_blank" rel="noopener noreferrer">
-      <img src={whoLogo} className={classes.logo} />
-    </a>
-    <a href={LOGOS.un} target="_blank" rel="noopener noreferrer">
-      <img src={unLogo} className={classes.logo} />
-    </a>
-    <a href={LOGOS.wbo} target="_blank" rel="noopener noreferrer">
-      <img src={wboLogo} className={classes.logo} />
-    </a>
+    {map(
+      ({ href, logo }) => (
+        <a key={href} href={href} target="_blank" rel="noopener noreferrer">
+          <img
+            src={logo}
+            className={classNames(classes.logo, { [classes.big]: equals('big', size) })}
+          />
+        </a>
+      ),
+      data,
+    )}
   </React.Fragment>
 );
 
 Logos.propTypes = {
   hasMainLogo: PropTypes.bool,
   classes: PropTypes.object.isRequired,
+  size: PropTypes.string,
 };
 
 export default withStyles(style)(Logos);

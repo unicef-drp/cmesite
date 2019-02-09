@@ -44,9 +44,9 @@ const withDimensions = selector =>
         }, dimensions),
       };
     }),
-    withProps(({ dimensions, isExcNoSexIndicatorValue }) => {
+    withProps(({ dimensions, isSelectionExclusive, isExcNoSexIndicatorValue }) => {
       // on some indicator values, sex is irrelevant, only total is kept
-      if (not(isExcNoSexIndicatorValue)) return {};
+      if (not(isExcNoSexIndicatorValue) || not(isSelectionExclusive)) return {};
       return {
         dimensions: map(dimension => {
           if (not(propEq('id', SEX, dimension))) return dimension;
