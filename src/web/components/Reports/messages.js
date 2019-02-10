@@ -21,4 +21,12 @@ export default defineMessages({
     id: 'reports.es',
     defaultMessage: 'Spanish',
   },
+  ru: {
+    id: 'reports.ru',
+    defaultMessage: 'Russian',
+  },
+  ar: {
+    id: 'reports.ar',
+    defaultMessage: 'Arabic',
+  },
 });
