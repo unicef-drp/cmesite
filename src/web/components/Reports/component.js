@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { map, isNil, path, toPairs, pipe, pick, propOr, not } from 'ramda';
+import { map, isNil, path, toPairs, pipe, pick, propOr, not, contains } from 'ramda';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -120,7 +120,11 @@ const Reports = ({ classes, reports, isSecondary }) => (
                       download
                     >
                       <DescriptionIcon className={classes.leftIcon} />
-                      <FormattedMessage {...messages[locale]} />
+                      {contains(locale, LOCALES) ? (
+                        <FormattedMessage {...messages[locale]} />
+                      ) : (
+                        locale
+                      )}
                     </Button>
                   );
                 }, getFiles(report))}
