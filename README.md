@@ -65,6 +65,8 @@ Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
 * Tools > Export (XML file)
 * Tools > Import > WordPress run importer > choose file
 
+> check users roles (there are not properly set after import)
+
 ### Kubernetes
 
 #### ConfigMap
