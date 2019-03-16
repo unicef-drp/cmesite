@@ -44,20 +44,26 @@ Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
 
 ### Wordpress
 
-#### Plugins
+**1. install and activate plugins**
+* [WordPress REST API (Version 2)](https://github.com/WP-API/WP-API)
+* [Only Rest API by Braad Martin](https://wordpress.org/plugins/only-rest-api/)
+* [ACF to REST](https://wordpress.org/plugins/acf-to-rest-api/)
+* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
+* [Custom Post Type UI](https://wordpress.org/plugins/custom-post-type-ui/)
+* [Tuxedo Big File Uploads](https://wordpress.org/plugins/tuxedo-big-file-uploads/)
+* [WordPress importer](https://wordpress.org/plugins/wordpress-importer/)
 
-* WordPress REST API (Version 2)
-* Custom Post Type UI (add custom REST resources)
-* Advanced Custom Fields (add custom fields to WP/custom resources)
-* Only Rest API by Braad Martin
-* ACF to REST (expose custom fields to REST API)
-* WP REST API - filter fields (filter fields to have only useful data through API)
-* Tuxedo Big File Uploads (handle size upload limit)
+**2. export/import advanced custom fields**
+* export Custom Fields > Tools > export (JSON file)
+* import Custom Fields > Tools > import
 
-#### Backup
+**3. export/import custom post types**
+* export CPT UI > Tools > Copy (JSON)
+* import CPT UI > Tools > Paste (JSON)
 
-- CPT UI: Tools > copy/paste 'Export Post Types'
-- For editorial content, use WP exporter tool
+**4. export/import data**
+* Tools > Export (XML file)
+* Tools > Import > WordPress run importer > choose file
 
 ### Kubernetes
 
