@@ -2,43 +2,18 @@
 
 ## CI/CD
 
+> Deployed on `kube-rp` both on `staging` and `qa` envs.
 
-Deployed on `kube-rp` both on `staging` and `qa` envs.
+|env|git branch|wordpress admin|cme url|
+|---|----------|--------------|-------|
+|staging|develop|http://wordpress.staging.cme.redpelicans.com/wp-admin/|http://cme.staging.redpelicans.com/|
+|qa|master|http://wordpress.qa.cme.redpelicans.com/wp-admin/|http://cme.qa.redpelicans.com/|
 
-
-### Staging env
-
-Linked to `develop` branch. 
-
-#### Wordpress
-
-Available on [http://staging.wp.cme.redpelicans.com/wp-admin](http://staging.wp.cme.redpelicans.com/wp-admin)
-
+*WordPress admin:*
 ```
   Username: root
   Password: p******
 ```
-
-#### CME Site
-
-Available on [http://staging.cme.redpelicans.com](http://staging.cme.redpelicans.com)
-
-### QA env
-
-Linked to `master` branch. 
-
-#### Wordpress
-
-Available on [http://qa.wp.cme.redpelicans.com/wp-admin](http://qa.wp.cme.redpelicans.com/wp-admin)
-
-```
-  Username: root
-  Password: p******
-```
-
-#### CME Site
-
-Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
 
 ## Setup
 
