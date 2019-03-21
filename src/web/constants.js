@@ -45,10 +45,10 @@ export const SERIES_METHOD = 'SERIES_METHOD';
 export const DEFAULT_SYMBOL = 'circle';
 export const MISC_SYMBOL = 'cross';
 export const SERIES_METHOD_SYMBOLS = {
-  FBH: 'circle',
-  SBH: 'triangle',
-  HD: 'diamond',
-  VR: 'square',
+  FBH: 'triangle',
+  SBH: 'circle',
+  HD: 'square',
+  VR: 'diamond',
 };
 
 export const LOGOS = {
