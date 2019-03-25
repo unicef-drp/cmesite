@@ -81,8 +81,8 @@ deploy staging:
     - gcloud config set compute/region europe-west1-b
     - gcloud container clusters get-credentials main --region europe-west1-b
     - kubectl get pods -n staging -o wide
-    - kubectl set image deployment/proxy proxy=$CONTAINER_IMAGE -n staging
-    - kubectl set env deployment/proxy GIT_HASH=$CI_COMMIT_SHA -n staging
+    - kubectl set image deployment/cme cme=$CONTAINER_IMAGE -n staging
+    - kubectl set env deployment/cme GIT_HASH=$CI_COMMIT_SHA -n staging
   only:
     - develop
   environment:
@@ -103,8 +103,8 @@ deploy qa:
     - gcloud config set compute/region europe-west1-b
     - gcloud container clusters get-credentials main --region europe-west1-b
     - kubectl get pods -n qa -o wide
-    - kubectl set image deployment/proxy proxy=$CONTAINER_IMAGE -n qa
-    - kubectl set env deployment/proxy GIT_HASH=$CI_COMMIT_SHA -n qa
+    - kubectl set image deployment/cme cme=$CONTAINER_IMAGE -n qa
+    - kubectl set env deployment/cme GIT_HASH=$CI_COMMIT_SHA -n qa
   only:
     - master
   environment:
