@@ -16,7 +16,6 @@ import {
 } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -24,6 +23,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Chart from '../Chart';
+import DataHeader from '../DataHeader';
 import DataLegend from '../DataLegend';
 import { getSymbol } from '../Chart/utils';
 import { EXCLUDED, ESTIMATE, TYPES } from '../../constants';
@@ -35,10 +35,6 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
     },
-  },
-  header: {
-    //backgroundColor: theme.palette.secondary.dark,
-    paddingBottom: 0,
   },
   typo: {
     color: theme.palette.primary.dark,
@@ -74,17 +70,11 @@ const DataChart = ({
   highlightSerie,
   hasHighlights,
   seriesUnit,
+  changeMode,
   ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
-    <CardHeader
-      className={classes.header}
-      title={
-        <Typography align="center" variant="title" className={classes.typo}>
-          {title}
-        </Typography>
-      }
-    />
+    <DataHeader title={title} changeMode={changeMode} />
     <CardContent>
       <Chart
         {...series}
@@ -154,6 +144,7 @@ DataChart.propTypes = {
   highlightSerie: PropTypes.func.isRequired,
   hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,
+  changeMode: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(DataChart);

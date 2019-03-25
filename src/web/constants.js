@@ -57,3 +57,31 @@ export const LOGOS = {
   un: 'http://www.un.org/en/development/desa/population',
   wbo: 'http://www.worldbank.org',
 };
+
+export const SERIES_CATEGORY = 'SERIES_CATEGORY';
+export const SERIES_TYPE = 'SERIES_TYPE';
+export const AGE_GROUP_OF_WOMEN = 'AGE_GROUP_OF_WOMEN';
+export const TIME_SINCE_FIRST_BIRTH = 'TIME_SINCE_FIRST_BIRTH';
+export const INTERVAL = 'INTERVAL';
+export const STD_ERR = 'STD_ERR';
+export const OBS_VALUE = 'OBS_VALUE';
+export const EXPORT_INDEX_IDS = [
+  REF_AREA,
+  INDICATOR,
+  SEX,
+  SERIES_NAME,
+  SERIES_CATEGORY,
+  SERIES_METHOD,
+  SERIES_TYPE,
+  AGE_GROUP_OF_WOMEN,
+  TIME_SINCE_FIRST_BIRTH,
+  SERIES_YEAR,
+  OBS_STATUS,
+  INTERVAL,
+  REF_DATE,
+  OBS_VALUE,
+  STD_ERR,
+  UNIT_MEASURE,
+  Y0,
+  Y1,
+];
