@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
+import numeral from 'numeral';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,16 +10,14 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Tooltip from '@material-ui/core/Tooltip';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataHeader from '../DataHeader';
 import {
   SERIES_NAME,
-  SERIES_YEAR,
   OBS_STATUS,
-  UNIT_MEASURE,
   SERIES_CATEGORY,
-  SERIES_TYPE,
   AGE_GROUP_OF_WOMEN,
   TIME_SINCE_FIRST_BIRTH,
   INTERVAL,
@@ -26,6 +25,9 @@ import {
   REF_DATE,
   STD_ERR,
 } from '../../constants';
+import { getSeriesMethodSymbol } from '../Chart/utils';
+
+const SIZE = 60;
 
 const styles = theme => ({
   card: {
@@ -38,100 +40,111 @@ const styles = theme => ({
   typo: {
     color: theme.palette.primary.dark,
   },
-  cell: {
-    paddingLeft: theme.spacing.unit * 0.5,
-    paddingRight: theme.spacing.unit * 0.5,
-    borderRight: '1px solid rgba(224, 224, 224, 1)',
+  table: {
+    minWidth: 550,
   },
 });
 
-const DataTable = ({ classes, series, title, changeMode }) => (
+const format = R.ifElse(R.isNil, R.always(null), n => numeral(n).format('0.0'));
+const mergePropsByKey = (key, props, sep = '') =>
+  R.pipe(R.pick(props), R.pluck(key), R.values, R.join(sep));
+
+const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
   <Card className={classes.card} square>
-    <DataHeader title={title} changeMode={changeMode} />
+    <DataHeader title={title} changeMode={changeMode} mode={mode} />
     <CardContent>
-      <Table padding="none">
+      <Table padding="none" className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell className={classes.cell}>
+            <TableCell>
               <FormattedMessage {...messages.seriesName} />
             </TableCell>
-            <TableCell className={classes.cell}>
-              <FormattedMessage {...messages.seriesYear} />
-            </TableCell>
-            <TableCell className={classes.cell}>
+            <TableCell>
               <FormattedMessage {...messages.obsStatus} />
             </TableCell>
-            <TableCell className={classes.cell}>
-              <FormattedMessage {...messages.unitMeasure} />
-            </TableCell>
-            <TableCell className={classes.cell}>
+            <TableCell>
               <FormattedMessage {...messages.seriesCategory} />
             </TableCell>
-            <TableCell className={classes.cell}>
-              <FormattedMessage {...messages.seriesType} />
+            <TableCell>
+              <Tooltip title={<FormattedMessage {...messages.aowtfsbLabel} />}>
+                <div>
+                  <FormattedMessage {...messages.aowtfsbId} />
+                </div>
+              </Tooltip>
             </TableCell>
-            <TableCell className={classes.cell}>
-              <FormattedMessage {...messages.ageGroupOfWomen} />
-            </TableCell>
-            <TableCell className={classes.cell}>
-              <FormattedMessage {...messages.timeSinceFirstBirth} />
-            </TableCell>
-            <TableCell className={classes.cell}>
+            <TableCell>
               <FormattedMessage {...messages.interval} />
             </TableCell>
-            <TableCell className={classes.cell}>
+            <TableCell>
               <FormattedMessage {...messages.seriesMethod} />
             </TableCell>
-            <TableCell className={classes.cell}>
+            <TableCell>
               <FormattedMessage {...messages.refDate} />
             </TableCell>
-            <TableCell className={classes.cell}>
-              <FormattedMessage {...messages.value} />
+            <TableCell>
+              <strong>
+                <FormattedMessage {...messages.value} />
+              </strong>
             </TableCell>
-            <TableCell className={classes.cell}>
+            <TableCell>
               <FormattedMessage {...messages.stdErr} />
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {R.map(
-            ({ id, datapoints }) => (
-              <React.Fragment key={id}>
-                {R.map(
-                  datapoint => (
-                    <TableRow key={`${id}-${R.path([REF_DATE, 'valueId'], datapoint)}`}>
-                      {R.map(
-                        key => (
-                          <TableCell key={key} className={classes.cell}>
-                            {R.pipe(
-                              R.prop(key),
-                              R.ifElse(R.is(Number), R.identity, R.prop('valueName')),
-                            )(datapoint)}
-                          </TableCell>
-                        ),
-                        [
-                          SERIES_NAME,
-                          SERIES_YEAR,
-                          OBS_STATUS,
-                          UNIT_MEASURE,
-                          SERIES_CATEGORY,
-                          SERIES_TYPE,
-                          AGE_GROUP_OF_WOMEN,
-                          TIME_SINCE_FIRST_BIRTH,
-                          INTERVAL,
-                          SERIES_METHOD,
-                          REF_DATE,
-                          'y',
-                          STD_ERR,
-                        ],
-                      )}
-                    </TableRow>
-                  ),
-                  datapoints,
-                )}
-              </React.Fragment>
+            datapoint => (
+              <TableRow
+                key={mergePropsByKey('valueId', [SERIES_NAME, OBS_STATUS, REF_DATE])(datapoint)}
+              >
+                <TableCell>{R.path([SERIES_NAME, 'valueName'], datapoint)}</TableCell>
+                <TableCell>
+                  <FormattedMessage
+                    {...messages[R.pipe(R.path([OBS_STATUS, 'valueId']), R.toLower)(datapoint)]}
+                  />
+                </TableCell>
+                <TableCell>{R.path([SERIES_CATEGORY, 'valueName'], datapoint)}</TableCell>
+                <TableCell>
+                  <Tooltip
+                    title={mergePropsByKey(
+                      'valueName',
+                      [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
+                      ' ',
+                    )(datapoint)}
+                  >
+                    <div>
+                      {mergePropsByKey(
+                        'valueId',
+                        [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
+                        ' ',
+                      )(datapoint)}
+                    </div>
+                  </Tooltip>
+                </TableCell>
+                <TableCell>{R.path([INTERVAL, 'valueName'], datapoint)}</TableCell>
+                <TableCell>
+                  <Tooltip title={R.path([SERIES_METHOD, 'valueName'], datapoint)}>
+                    <svg width={SIZE / 2} height={SIZE / 2}>
+                      <path
+                        d={getSeriesMethodSymbol({
+                          size: SIZE * 2,
+                          method: R.path([SERIES_METHOD, 'valueId'], datapoint),
+                        })()}
+                        transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                        stroke={theme.palette.secondary.darker}
+                        fill={theme.palette.secondary.darker}
+                      />
+                    </svg>
+                  </Tooltip>
+                </TableCell>
+                <TableCell>{R.path([REF_DATE, 'valueName'], datapoint)}</TableCell>
+                <TableCell>
+                  <strong>{format(R.prop('y', datapoint))}</strong>
+                </TableCell>
+                <TableCell>{R.path([STD_ERR, 'valueName'], datapoint)}</TableCell>
+              </TableRow>
             ),
-            series,
+            serie,
           )}
         </TableBody>
       </Table>
@@ -141,9 +154,11 @@ const DataTable = ({ classes, series, title, changeMode }) => (
 
 DataTable.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   changeMode: PropTypes.func.isRequired,
-  series: PropTypes.array,
+  serie: PropTypes.array,
   title: PropTypes.string,
+  mode: PropTypes.string,
 };
 
-export default withStyles(styles)(DataTable);
+export default withStyles(styles, { withTheme: true })(DataTable);

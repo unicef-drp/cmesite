@@ -17,38 +17,25 @@ export default defineMessages({
     id: 'datatable.upper',
     defaultMessage: 'Upper bound',
   },
-
   seriesName: {
     id: 'datatable.seriesName',
     defaultMessage: 'Name',
-  },
-  seriesYear: {
-    id: 'datatable.seriesYear',
-    defaultMessage: 'Year',
   },
   obsStatus: {
     id: 'datatable.obsStatus',
     defaultMessage: 'Obs status',
   },
-  unitMeasure: {
-    id: 'datatable.unitMeasure',
-    defaultMessage: 'Unit measure',
-  },
   seriesCategory: {
     id: 'datatable.seriesCategory',
     defaultMessage: 'Category',
   },
-  seriesType: {
-    id: 'datatable.seriesType',
-    defaultMessage: 'Type',
+  aowtfsbId: {
+    id: 'datatable.aowtfsbId',
+    defaultMessage: 'AoW & TSFB',
   },
-  ageGroupOfWomen: {
-    id: 'datatable.ageGroupOfWomen',
-    defaultMessage: 'Age group of women',
-  },
-  timeSinceFirstBirth: {
-    id: 'datatable.timeSinceFirstBirth',
-    defaultMessage: 'Time since 1st birth',
+  aowtfsbLabel: {
+    id: 'datatable.aowtfsbLabel',
+    defaultMessage: 'Age group of women & Time since 1st birth',
   },
   interval: {
     id: 'datatable.interval',
@@ -65,5 +52,13 @@ export default defineMessages({
   stdErr: {
     id: 'datatable.stdErr',
     defaultMessage: 'Std. err',
+  },
+  in: {
+    id: 'datatable.included',
+    defaultMessage: 'Included',
+  },
+  ex: {
+    id: 'datatable.excluded',
+    defaultMessage: 'Excluded',
   },
 });

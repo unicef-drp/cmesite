@@ -39,10 +39,11 @@ import {
   over,
   lensProp,
   isEmpty,
+  pluck,
 } from 'ramda';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
-import { getSelectedDimensionValue, getToggledCombinations } from '../utils';
+import { getSelectedDimensionValue, getToggledCombinations, sortByProps } from '../utils';
 import {
   REF_AREA,
   INDICATOR,
@@ -54,6 +55,8 @@ import {
   MAX_SDMX_VALUES,
   EXC_NO_SEX_INDICATOR_VALUES,
   UNIT_MEASURE,
+  SERIES_NAME,
+  REF_DATE,
 } from '../constants';
 
 export const getData = prop('data');
@@ -169,6 +172,17 @@ export const getCountryOtherSeries = createSelector(
       ),
     ),
   ),
+);
+export const getCountryAllEstimateSeries = createSelector(getCountrySeries, prop(ESTIMATE));
+export const getCountryAllIncludedSeries = createSelector(getCountrySeries, prop(INCLUDED));
+export const getCountryAllExcludedSeries = createSelector(getCountrySeries, prop(EXCLUDED));
+export const getCountryDatasourcesSerie = createSelector(
+  getCountryAllIncludedSeries,
+  getCountryAllExcludedSeries,
+  (included, excluded) =>
+    pipe(pluck('datapoints'), unnest, sortByProps([SERIES_NAME, REF_DATE]))(
+      concat(included, excluded),
+    ),
 );
 export const getCompareEstimateSeries = createSelector(
   getData,

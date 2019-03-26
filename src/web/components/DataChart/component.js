@@ -71,10 +71,11 @@ const DataChart = ({
   hasHighlights,
   seriesUnit,
   changeMode,
+  mode,
   ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
-    <DataHeader title={title} changeMode={changeMode} />
+    <DataHeader title={title} changeMode={changeMode} mode={mode} />
     <CardContent>
       <Chart
         {...series}
@@ -145,6 +146,7 @@ DataChart.propTypes = {
   hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,
   changeMode: PropTypes.func.isRequired,
+  mode: PropTypes.string,
 };
 
 export default withStyles(styles, { withTheme: true })(DataChart);

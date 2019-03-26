@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Table from '@material-ui/core/Table';
@@ -22,16 +23,19 @@ const styles = theme => ({
       marginLeft: 0,
     },
   },
+  table: {
+    minWidth: 350,
+  },
   typo: {
     color: theme.palette.primary.dark,
   },
 });
 
-const DataTable = ({ classes, series, title, changeMode }) => (
+const DataTable = ({ classes, series, title, mode, changeMode, width }) => (
   <Card className={classes.card} square>
-    <DataHeader title={title} changeMode={changeMode} />
+    <DataHeader title={title} changeMode={changeMode} mode={mode} />
     <CardContent>
-      <Table>
+      <Table padding={isWidthUp('sm', width) ? 'default' : 'dense'}>
         <TableHead>
           <TableRow>
             <TableCell>
@@ -75,6 +79,8 @@ DataTable.propTypes = {
   changeMode: PropTypes.func.isRequired,
   series: PropTypes.array,
   title: PropTypes.string,
+  width: PropTypes.string,
+  mode: PropTypes.string,
 };
 
-export default withStyles(styles)(DataTable);
+export default R.compose(withWidth(), withStyles(styles))(DataTable);

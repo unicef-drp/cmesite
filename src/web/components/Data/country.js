@@ -31,11 +31,11 @@ const Country = ({ classes, isActive, mode, changeMode }) => (
       </Grid>
       <Grid item xs={12} md={9}>
         {isActive && mode === 'chart' ? (
-          <DataCountryChart changeMode={changeMode} />
+          <DataCountryChart changeMode={changeMode} mode={mode} />
         ) : mode === 'estimates' ? (
-          <DataCountryEstimatesTable changeMode={changeMode} />
+          <DataCountryEstimatesTable changeMode={changeMode} mode={mode} />
         ) : (
-          <DataCountryDataSourcesTable changeMode={changeMode} />
+          <DataCountryDataSourcesTable changeMode={changeMode} mode={mode} />
         )}
       </Grid>
       <Grid item xs={12}>

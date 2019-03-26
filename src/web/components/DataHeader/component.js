@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
@@ -17,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-const DataHeader = ({ classes, title, changeMode }) => (
+const DataHeader = ({ classes, title, mode, changeMode }) => (
   <CardHeader
     className={classes.header}
     title={
@@ -25,17 +26,31 @@ const DataHeader = ({ classes, title, changeMode }) => (
         <Typography align="center" variant="title" className={classes.typo}>
           {title}
         </Typography>
-        <div>
-          <Button size="small" onClick={() => changeMode('chart')}>
-            <FormattedMessage {...messages.chart} />
-          </Button>
-          <Button onClick={() => changeMode('estimates')}>
-            <FormattedMessage {...messages.estimates} />
-          </Button>
-          <Button onClick={() => changeMode('datasources')}>
-            <FormattedMessage {...messages.datasources} />
-          </Button>
-        </div>
+        <Grid container justify="center">
+          <Grid item>
+            <Button size="small" onClick={() => changeMode('chart')} disabled={mode === 'chart'}>
+              <FormattedMessage {...messages.chart} />
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              size="small"
+              onClick={() => changeMode('estimates')}
+              disabled={mode === 'estimates'}
+            >
+              <FormattedMessage {...messages.estimates} />
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              size="small"
+              onClick={() => changeMode('datasources')}
+              disabled={mode === 'datasources'}
+            >
+              <FormattedMessage {...messages.datasources} />
+            </Button>
+          </Grid>
+        </Grid>
       </React.Fragment>
     }
   />
@@ -44,6 +59,7 @@ const DataHeader = ({ classes, title, changeMode }) => (
 DataHeader.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string,
+  mode: PropTypes.string,
   changeMode: PropTypes.func.isRequired,
 };
 
