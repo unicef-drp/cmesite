@@ -56,7 +56,7 @@ const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
       <Table padding="none" className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>
+            <TableCell align="center">
               <FormattedMessage {...messages.seriesName} />
             </TableCell>
             <TableCell>
@@ -65,7 +65,7 @@ const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
             <TableCell>
               <FormattedMessage {...messages.seriesCategory} />
             </TableCell>
-            <TableCell>
+            <TableCell align="center">
               <Tooltip title={<FormattedMessage {...messages.aowtfsbLabel} />}>
                 <div>
                   <FormattedMessage {...messages.aowtfsbId} />
@@ -96,6 +96,7 @@ const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
             datapoint => (
               <TableRow
                 key={mergePropsByKey('valueId', [SERIES_NAME, OBS_STATUS, REF_DATE])(datapoint)}
+                hover
               >
                 <TableCell>{R.path([SERIES_NAME, 'valueName'], datapoint)}</TableCell>
                 <TableCell>
@@ -104,7 +105,7 @@ const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
                   />
                 </TableCell>
                 <TableCell>{R.path([SERIES_CATEGORY, 'valueName'], datapoint)}</TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Tooltip
                     title={mergePropsByKey(
                       'valueName',

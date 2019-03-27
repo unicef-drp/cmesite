@@ -31,6 +31,8 @@ const styles = theme => ({
   },
 });
 
+const EvenTableCell = withStyles({ root: { width: '25%' } })(TableCell);
+
 const DataTable = ({ classes, series, title, mode, changeMode, width }) => (
   <Card className={classes.card} square>
     <DataHeader title={title} changeMode={changeMode} mode={mode} />
@@ -38,32 +40,34 @@ const DataTable = ({ classes, series, title, mode, changeMode, width }) => (
       <Table padding={isWidthUp('sm', width) ? 'default' : 'dense'}>
         <TableHead>
           <TableRow>
-            <TableCell>
+            <EvenTableCell>
               <FormattedMessage {...messages.year} />
-            </TableCell>
-            <TableCell>
+            </EvenTableCell>
+            <EvenTableCell>
               <strong>
                 <FormattedMessage {...messages.value} />
               </strong>
-            </TableCell>
-            <TableCell>
+            </EvenTableCell>
+            <EvenTableCell>
               <FormattedMessage {...messages.lower} />
-            </TableCell>
-            <TableCell>
+            </EvenTableCell>
+            <EvenTableCell>
               <FormattedMessage {...messages.upper} />
-            </TableCell>
+            </EvenTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {R.map(
             datapoint => (
-              <TableRow key={R.path([REF_DATE, 'valueId'], datapoint)}>
-                <TableCell>{Math.floor(R.path([REF_DATE, 'valueName'], datapoint))}</TableCell>
-                <TableCell>
+              <TableRow key={R.path([REF_DATE, 'valueId'], datapoint)} hover>
+                <EvenTableCell>
+                  {Math.floor(R.path([REF_DATE, 'valueName'], datapoint))}
+                </EvenTableCell>
+                <EvenTableCell>
                   <strong>{datapoint.y}</strong>
-                </TableCell>
-                <TableCell>{datapoint.y0}</TableCell>
-                <TableCell>{datapoint.y1}</TableCell>
+                </EvenTableCell>
+                <EvenTableCell>{datapoint.y0}</EvenTableCell>
+                <EvenTableCell>{datapoint.y1}</EvenTableCell>
               </TableRow>
             ),
             R.propOr([], 'datapoints', R.head(series)),

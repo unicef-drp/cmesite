@@ -11,6 +11,6 @@ export default defineMessages({
   },
   datasources: {
     id: 'dataheader.datasources',
-    defaultMessage: 'Datasources',
+    defaultMessage: 'Sourcedata',
   },
 });
