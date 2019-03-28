@@ -38,7 +38,7 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
     withHandlers({
       handleValue: ({ dimension, changeSelection, history, changeActiveTab }) => value => {
         if (isCountry) {
-          changeActiveTab(0);
+          changeActiveTab(0, true);
           history.push(getPath(routes.data));
         }
         changeSelection(dimension.index, value.index);

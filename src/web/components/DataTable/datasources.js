@@ -142,7 +142,7 @@ const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
                 <TableCell>
                   <strong>{format(R.prop('y', datapoint))}</strong>
                 </TableCell>
-                <TableCell>{R.path([STD_ERR, 'valueName'], datapoint)}</TableCell>
+                <TableCell>{format(R.path([STD_ERR, 'valueName'], datapoint))}</TableCell>
               </TableRow>
             ),
             serie,

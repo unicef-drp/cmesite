@@ -18,8 +18,8 @@ export const EXCLUDED = 'EX';
 
 export const SERIES_NAME = 'SERIES_NAME';
 export const OBS_STATUS = 'OBS_STATUS';
-//export const ESTIMATE_TYPE = { sdmxId: SERIES_NAME, sdmxValue: '269', id: ESTIMATE, value: true };
-export const ESTIMATE_TYPE = { sdmxId: OBS_STATUS, sdmxValue: 'A', id: ESTIMATE, value: true };
+export const ESTIMATE_TYPE = { sdmxId: SERIES_NAME, sdmxValue: '269', id: ESTIMATE, value: true };
+//export const ESTIMATE_TYPE = { sdmxId: OBS_STATUS, sdmxValue: 'A', id: ESTIMATE, value: true };
 export const TYPES = [
   ESTIMATE_TYPE,
   { sdmxId: OBS_STATUS, sdmxValue: 'IN', id: INCLUDED, value: true },

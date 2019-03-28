@@ -179,7 +179,7 @@ export const getCountryAllExcludedSeries = createSelector(getCountrySeries, prop
 export const getCountryDatasourcesSerie = createSelector(
   getCountryAllIncludedSeries,
   getCountryAllExcludedSeries,
-  (included, excluded) =>
+  (included = [], excluded = []) =>
     pipe(pluck('datapoints'), unnest, sortByProps([SERIES_NAME, REF_DATE]))(
       concat(included, excluded),
     ),

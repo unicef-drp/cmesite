@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-const DataHeader = ({ classes, title, mode, changeMode }) => (
+const DataHeader = ({ classes, title, mode, changeMode, isCompare }) => (
   <CardHeader
     className={classes.header}
     title={
@@ -26,31 +26,33 @@ const DataHeader = ({ classes, title, mode, changeMode }) => (
         <Typography align="center" variant="title" className={classes.typo}>
           {title}
         </Typography>
-        <Grid container justify="center">
-          <Grid item>
-            <Button size="small" onClick={() => changeMode('chart')} disabled={mode === 'chart'}>
-              <FormattedMessage {...messages.chart} />
-            </Button>
+        {!isCompare && (
+          <Grid container justify="center">
+            <Grid item>
+              <Button size="small" onClick={() => changeMode('chart')} disabled={mode === 'chart'}>
+                <FormattedMessage {...messages.chart} />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                size="small"
+                onClick={() => changeMode('estimates')}
+                disabled={mode === 'estimates'}
+              >
+                <FormattedMessage {...messages.estimates} />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                size="small"
+                onClick={() => changeMode('datasources')}
+                disabled={mode === 'datasources'}
+              >
+                <FormattedMessage {...messages.datasources} />
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Button
-              size="small"
-              onClick={() => changeMode('estimates')}
-              disabled={mode === 'estimates'}
-            >
-              <FormattedMessage {...messages.estimates} />
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              size="small"
-              onClick={() => changeMode('datasources')}
-              disabled={mode === 'datasources'}
-            >
-              <FormattedMessage {...messages.datasources} />
-            </Button>
-          </Grid>
-        </Grid>
+        )}
       </React.Fragment>
     }
   />
@@ -60,7 +62,8 @@ DataHeader.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string,
   mode: PropTypes.string,
-  changeMode: PropTypes.func.isRequired,
+  changeMode: PropTypes.func,
+  isCompare: PropTypes.bool,
 };
 
 export default withStyles(styles)(DataHeader);

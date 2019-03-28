@@ -75,7 +75,7 @@ const DataChart = ({
   ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
-    <DataHeader title={title} changeMode={changeMode} mode={mode} />
+    <DataHeader title={title} changeMode={changeMode} mode={mode} isCompare={isCompare} />
     <CardContent>
       <Chart
         {...series}
@@ -145,7 +145,7 @@ DataChart.propTypes = {
   highlightSerie: PropTypes.func.isRequired,
   hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,
-  changeMode: PropTypes.func.isRequired,
+  changeMode: PropTypes.func,
   mode: PropTypes.string,
 };
 
