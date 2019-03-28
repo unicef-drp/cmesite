@@ -5,7 +5,7 @@ export const TIME_PERIOD = 'TIME_PERIOD';
 export const REF_DATE = 'REF_DATE';
 export const RELEVANT_DIMENSIONS = [REF_AREA, INDICATOR, SEX];
 export const SEX_TOTAL_VALUE = '_T';
-export const RELEVANT_DIMENSIONS_DEFAULTS = new Set(['MRY0T4', SEX_TOTAL_VALUE]);
+export const RELEVANT_DIMENSIONS_DEFAULTS = new Set(['AFG', 'MRY0T4', SEX_TOTAL_VALUE]);
 
 export const EXCLUDED_DOWNLOAD_DIMENSIONS = [TIME_PERIOD];
 
@@ -19,6 +19,7 @@ export const EXCLUDED = 'EX';
 export const SERIES_NAME = 'SERIES_NAME';
 export const OBS_STATUS = 'OBS_STATUS';
 export const ESTIMATE_TYPE = { sdmxId: SERIES_NAME, sdmxValue: '269', id: ESTIMATE, value: true };
+//export const ESTIMATE_TYPE = { sdmxId: OBS_STATUS, sdmxValue: 'A', id: ESTIMATE, value: true };
 export const TYPES = [
   ESTIMATE_TYPE,
   { sdmxId: OBS_STATUS, sdmxValue: 'IN', id: INCLUDED, value: true },
@@ -45,10 +46,10 @@ export const SERIES_METHOD = 'SERIES_METHOD';
 export const DEFAULT_SYMBOL = 'circle';
 export const MISC_SYMBOL = 'cross';
 export const SERIES_METHOD_SYMBOLS = {
-  FBH: 'circle',
-  SBH: 'triangle',
-  HD: 'diamond',
-  VR: 'square',
+  FBH: 'triangle',
+  SBH: 'circle',
+  HD: 'square',
+  VR: 'diamond',
 };
 
 export const LOGOS = {
@@ -57,3 +58,31 @@ export const LOGOS = {
   un: 'http://www.un.org/en/development/desa/population',
   wbo: 'http://www.worldbank.org',
 };
+
+export const SERIES_CATEGORY = 'SERIES_CATEGORY';
+export const SERIES_TYPE = 'SERIES_TYPE';
+export const AGE_GROUP_OF_WOMEN = 'AGE_GROUP_OF_WOMEN';
+export const TIME_SINCE_FIRST_BIRTH = 'TIME_SINCE_FIRST_BIRTH';
+export const INTERVAL = 'INTERVAL';
+export const STD_ERR = 'STD_ERR';
+export const OBS_VALUE = 'OBS_VALUE';
+export const EXPORT_INDEX_IDS = [
+  REF_AREA,
+  INDICATOR,
+  SEX,
+  SERIES_NAME,
+  SERIES_CATEGORY,
+  SERIES_METHOD,
+  SERIES_TYPE,
+  AGE_GROUP_OF_WOMEN,
+  TIME_SINCE_FIRST_BIRTH,
+  SERIES_YEAR,
+  OBS_STATUS,
+  INTERVAL,
+  REF_DATE,
+  OBS_VALUE,
+  STD_ERR,
+  UNIT_MEASURE,
+  Y0,
+  Y1,
+];

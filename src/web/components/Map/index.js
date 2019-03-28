@@ -18,7 +18,7 @@ const enhance = compose(
   }),
   withHandlers({
     handleMapClick: ({ changeSelection, history, changeActiveTab }) => datapoint => {
-      changeActiveTab(0);
+      changeActiveTab(0, true);
       history.push(getPath(routes.data));
       const { index, valueIndex } = prop(REF_AREA, datapoint);
       changeSelection(index, valueIndex);

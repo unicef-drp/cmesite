@@ -2,56 +2,45 @@
 
 ## CI/CD
 
-Deployed on `kube-rp` both on `staging` and `qa` envs.
+> Deployed on `kube-rp` both on `staging` and `qa` envs.
 
+|env|git branch|wordpress admin|cme url|
+|---|----------|--------------|-------|
+|staging|develop|http://wordpress.staging.cme.redpelicans.com/wp-admin/|http://cme.staging.redpelicans.com/|
+|qa|master|http://wordpress.qa.cme.redpelicans.com/wp-admin/|http://cme.qa.redpelicans.com/|
 
-### Staging env
-
-Linked to `develop` branch. 
-
-#### Wordpress
-
-Available on [http://staging.wp.cme.redpelicans.com/wp-admin](http://staging.wp.cme.redpelicans.com/wp-admin)
-
-#### CME Site
-
-Available on [http://staging.cme.redpelicans.com](http://staging.cme.redpelicans.com)
-
-### QA env
-
-Linked to `master` branch. 
-
-#### Wordpress
-
-Available on [http://qa.wp.cme.redpelicans.com/wp-admin](http://qa.wp.cme.redpelicans.com/wp-admin)
-
+*WordPress admin:*
 ```
   Username: root
   Password: p******
 ```
 
-#### CME Site
-
-Available on [http://qa.cme.redpelicans.com](http://qa.cme.redpelicans.com)
-
 ## Setup
 
 ### Wordpress
 
-#### Plugins
+**1. install and activate plugins**
+* [WordPress REST API (Version 2)](https://github.com/WP-API/WP-API)
+* [Only Rest API by Braad Martin](https://wordpress.org/plugins/only-rest-api/)
+* [ACF to REST](https://wordpress.org/plugins/acf-to-rest-api/)
+* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
+* [Custom Post Type UI](https://wordpress.org/plugins/custom-post-type-ui/)
+* [Tuxedo Big File Uploads](https://wordpress.org/plugins/tuxedo-big-file-uploads/)
+* [WordPress importer](https://wordpress.org/plugins/wordpress-importer/)
 
-* WordPress REST API (Version 2)
-* Custom Post Type UI (add custom REST resources)
-* Advanced Custom Fields (add custom fields to WP/custom resources)
-* Only Rest API by Braad Martin
-* ACF to REST (expose custom fields to REST API)
-* WP REST API - filter fields (filter fields to have only useful data through API)
-* Tuxedo Big File Uploads (handle size upload limit)
+**2. export/import advanced custom fields**
+* export Custom Fields > Tools > export (JSON file)
+* import Custom Fields > Tools > import
 
-#### Backup
+**3. export/import custom post types**
+* export CPT UI > Tools > Copy (JSON)
+* import CPT UI > Tools > Paste (JSON)
 
-- CPT UI: Tools > copy/paste 'Export Post Types'
-- For editorial content, use WP exporter tool
+**4. export/import data**
+* Tools > Export (XML file)
+* Tools > Import > WordPress run importer > choose file
+
+> check users roles (there are not properly set after import)
 
 ### Kubernetes
 

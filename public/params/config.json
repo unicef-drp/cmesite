@@ -1,6 +1,6 @@
 {
   "wp": {
-    "endpoint": "http://staging.wp.cme.redpelicans.com/wp-json/wp/v2"
+    "endpoint": "http://wordpress.staging.cme.redpelicans.com/wp-json/wp/v2"
   },
   "sdmx": {
     "endpoint": "https://api.data.unicef.org/sdmx/Rest",

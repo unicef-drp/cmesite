@@ -10,7 +10,7 @@ import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { withSize } from 'react-sizeme';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import worldData from '../../../mock/map/world-geo';
+import worldData from '../../../mock/map/world-geo-v11';
 import Legend from './legend';
 import Highlight from './highlight';
 import { getColor, getDatapoint } from './utils';

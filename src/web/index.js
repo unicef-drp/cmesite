@@ -18,6 +18,19 @@ import sdmxApi from './api/sdmx';
 import loadConfig from './config';
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiTableCell: {
+      paddingNone: {
+        padding: 8,
+      },
+    },
+    MuiTableHead: {
+      root: {
+        backgroundColor: '#e2e9eb',
+        color: '#0B3B57',
+      },
+    },
+  },
   typography: {
     fontFamily: "'open sans', sans-serif",
     title: {

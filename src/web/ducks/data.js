@@ -175,8 +175,10 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
     });
 };
 
-export const changeActiveTab = activeTab => (dispatch, getState) => {
+export const changeActiveTab = (activeTab, shouldNotGetData) => (dispatch, getState) => {
   dispatch({ type: CHANGE_ACTIVE_TAB, activeTab });
+
+  if (shouldNotGetData) return;
 
   const dataType = nth(activeTab, [COUNTRY, COMPARE, MAP, null]);
   if (getStale(dataType)(getState())) dispatch(loadData(dataType));

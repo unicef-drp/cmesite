@@ -46,6 +46,7 @@ import {
   concat,
   omit,
   is,
+  indexOf,
 } from 'ramda';
 import {
   RELEVANT_DIMENSIONS,
@@ -63,6 +64,8 @@ import {
   SERIES_YEAR,
   UNIT_MEASURE,
   EXCLUDED_DOWNLOAD_DIMENSIONS,
+  EXPORT_INDEX_IDS,
+  OBS_VALUE,
 } from '../../constants';
 
 const getValues = propOr([], 'values');
@@ -114,12 +117,21 @@ const toCsvRow = ({ delimiter, isHeader, excludedArtefactIds }) =>
     pipe(
       omit(excludedArtefactIds),
       values,
-      //sortBy(prop('index')),
+      sortBy(ifElse(is(Number), always(indexOf(OBS_VALUE, EXPORT_INDEX_IDS)), prop('exportIndex'))),
       map(
         ifElse(
           is(Number),
           ifElse(always(isHeader), always('Observation value'), identity),
-          pipe(pick(isHeader ? ['name', 'id'] : ['valueName', 'valueId']), values, join(delimiter)),
+          pipe(
+            ifElse(
+              propEq('id', REF_AREA),
+              ifElse(always(isHeader), pick(['name', 'id']), pick(['valueName', 'valueId'])),
+              ifElse(always(isHeader), pick(['name']), pick(['valueName'])),
+            ),
+            values,
+            join(delimiter),
+          ),
+          join(delimiter),
         ),
       ),
       join(delimiter),
@@ -166,6 +178,7 @@ const parseArtefact = locale => (valueIndex, artefactIndex) => (artefact, value)
   valueId: prop('id', value),
   valueName: getName(locale)(value),
   valueIndex: parseInt(valueIndex),
+  exportIndex: indexOf(prop('id', artefact), EXPORT_INDEX_IDS),
 });
 
 const parseArtefacts = locale => artefacts =>
