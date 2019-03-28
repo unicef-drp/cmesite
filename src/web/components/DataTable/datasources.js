@@ -56,7 +56,7 @@ const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
       <Table padding="none" className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell align="center">
+            <TableCell>
               <FormattedMessage {...messages.seriesName} />
             </TableCell>
             <TableCell>
