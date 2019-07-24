@@ -1,0 +1,126 @@
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import * as R from 'ramda';
+import classnames from 'classnames';
+import { useTheme } from '@material-ui/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { makeSelectAbout, makeSelectFocuses, } from 'containers/App/selectors';
+import messages from './messages';
+import useStyles from './styles';
+import Wrapper from 'components/Wrapper';
+//import Logos from '../Logos';
+//import { EMAIL } from '../../constants';
+
+const AboutPage = ({ about, focuses }) => {
+  if (R.isNil(about)) return null;
+
+  const classes = useStyles();
+  const theme = useTheme();
+
+  return (
+    <React.Fragment>
+      <Helmet>
+        <title>About</title>
+        <meta name="description" content="about page" />
+      </Helmet>
+      <div
+        className={classes.splash}
+        style={{
+          background: `${theme.palette.primary.main} url("${R.path(['acf', 'image', 'url'])(
+            about,
+          )}") repeat center`,
+          backgroundSize: 'cover',
+        }}
+      />
+      <Wrapper classes={{ root: classes.wrapper }}>
+        <Grid container className={classes.about} justify="center">
+          {/* title */}
+          <Grid item xs={12} sm={7} md={7} className={classes.titleWrapper}>
+            <Typography variant="h5" align="center" className={classes.title}>
+              {R.path(['title', 'rendered'])(about)}
+            </Typography>
+            <Typography variant="body1" align="center" paragraph className={classes.typo}>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: R.path(['content', 'rendered'])(about),
+                }}
+              />
+            </Typography>
+          </Grid>
+
+          {/* logos */}
+          <Grid item xs={11} sm={10} md={10} className={classnames(classes.section, classes.logos)}>
+            {/*<Logos size="big" />*/}
+          </Grid>
+
+          {/* title */}
+          <Grid item xs={12} sm={7} md={7} className={classes.titleWrapper}>
+            <Typography variant="h5" align="center" className={classes.title}>
+              <FormattedMessage {...messages.focus} />
+            </Typography>
+          </Grid>
+
+          {/* focuses */}
+          <Grid item xs={11} sm={10} md={10} className={classes.section}>
+            {R.map(focus => {
+              const image = R.path(['acf', 'image'])(focus);
+              return (
+                <div key={focus.id} className={classes.focus}>
+                  {R.isNil(image) ? null : (
+                    <img src={image.url} alt={image.alt} className={classes.focusLogo} />
+                  )}
+                  <Typography
+                    variant="body1"
+                    align="center"
+                    className={classes.typo}
+                    style={{ lineHeight: 1.2 }}
+                  >
+                    {R.path(['title', 'rendered'])(focus)}
+                  </Typography>
+                </div>
+              );
+            })(focuses)}
+          </Grid>
+
+          {/* contact */}
+          <Grid item xs={12} sm={10} md={10} className={classnames(classes.section, classes.action)}>
+            <Button variant="contained" color="primary" href={`mailto:${'EMAIL'}`}>
+              <FormattedMessage {...messages.action} />
+            </Button>
+          </Grid>
+        </Grid>
+      </Wrapper>
+    </React.Fragment>
+  );
+}
+
+AboutPage.propTypes = {
+  about: PropTypes.object,
+  focuses: PropTypes.array,
+};
+
+AboutPage.defaultProps = {
+  focuses: [],
+};
+
+const mapStateToProps = createStructuredSelector({
+  about: makeSelectAbout(),
+  focuses: makeSelectFocuses(),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  null,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(AboutPage);

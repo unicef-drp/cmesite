@@ -20,6 +20,10 @@ import 'sanitize.css/sanitize.css';
 // Import root app
 import App from 'containers/App';
 
+// Import Theme Provider and theme
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './theme';
+
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
 
@@ -49,11 +53,13 @@ const MOUNT_NODE = document.getElementById('app');
 const render = messages => {
   ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </LanguageProvider>
+      <ThemeProvider theme={theme}>
+        <LanguageProvider messages={messages}>
+          <ConnectedRouter history={history}>
+            <App />
+          </ConnectedRouter>
+        </LanguageProvider>
+      </ThemeProvider>
     </Provider>,
     MOUNT_NODE,
   );
