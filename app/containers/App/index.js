@@ -1,52 +1,58 @@
-/**
- *
- * App
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- */
-
 import React from 'react';
+import PropTypes from 'prop-types';
+import * as R from 'ramda';
+import { compose } from 'redux';
 import { Helmet } from 'react-helmet';
-import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
-
+import { Switch, Route, withRouter } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import AboutPage from 'containers/AboutPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import useStyles from './styles';
+import { allRoutes, defaultRoute } from '../../routes';
+import { useInjectSaga } from 'utils/injectSaga';
+import reducer from './reducer';
+import saga from 'ducks/wordpress/saga';
 
-import GlobalStyle from '../../global-styles';
+const App = ({ location }) => {
+  useInjectSaga({ key: 'wordpress', saga });
 
-const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
-`;
+  const classes = useStyles();
 
-export default function App() {
   return (
-    <AppWrapper>
+    <div className={classes.root}>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="%s - CME info - Child Mortality Estimates"
+        defaultTitle="CME info - Child Mortality Estimates"
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="CME info - Child Mortality Estimates" />
       </Helmet>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
-        <Route path="/about" component={AboutPage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
+      <Header routePath={location.pathname} />
+      <div className={classes.content}>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/features" component={FeaturePage} />
+          {R.map(route => (
+            <Route
+              key={route.name}
+              path={route.path}
+              exact={route.exact}
+              component={route.component}
+            />
+          ), allRoutes)}
+          {defaultRoute && <Route component={defaultRoute.component} />}
+        </Switch>
+      </div>
       <Footer />
-      <GlobalStyle />
-    </AppWrapper>
+    </div>
   );
 }
+
+App.propTypes = {
+  location: PropTypes.object.isRequired,
+};
+
+export default compose(
+  withRouter,
+)(App);

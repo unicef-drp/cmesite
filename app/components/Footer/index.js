@@ -1,30 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import * as R from 'ramda';
+import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-
-import A from 'components/A';
-import LocaleToggle from 'containers/LocaleToggle';
-import Wrapper from './Wrapper';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import messages from './messages';
+import Wrapper from 'components/Wrapper';
+import Logos from 'components/Logos';
+import { EMAIL, LEGAL_LINK } from '../../staticConfig';
+import routes from '../../routes';
+import useStyles from './styles';
 
-function Footer() {
+const Footer = () => {
+  const classes = useStyles();
+
   return (
     <Wrapper>
-      <section>
-        <FormattedMessage {...messages.licenseMessage} />
-      </section>
-      <section>
-        <LocaleToggle />
-      </section>
-      <section>
-        <FormattedMessage
-          {...messages.authorMessage}
-          values={{
-            author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-          }}
-        />
-      </section>
+      <div className={classes.container}>
+        <div className={classnames(classes.item, classes.itemLeft)}>
+          <Logos hasMainLogo />
+        </div>
+        <div className={classnames(classes.item, classes.itemRight)}>
+          <Button className={classes.button} component={Link} to={R.prop('path', routes.about)}>
+            <FormattedMessage {...messages.about} />
+          </Button>
+          <Button className={classes.button} href={LEGAL_LINK} target="_blank">
+            <FormattedMessage {...messages.legal} />
+          </Button>
+          <Button className={classes.button} href={`mailto:${EMAIL}`}>
+            <FormattedMessage {...messages.contact} />
+          </Button>
+        </div>
+      </div>
     </Wrapper>
   );
 }
 
 export default Footer;
+

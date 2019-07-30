@@ -2,7 +2,6 @@
  * The global state selectors
  */
 
-import * as R from 'ramda';
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
@@ -40,18 +39,6 @@ const makeSelectLocation = () =>
     routerState => routerState.location,
   );
 
-const makeSelectAbout = () =>
-  createSelector(
-    selectGlobal,
-    R.pipe(R.propOr([], 'aboutPosts'), R.head),
-  );
-
-const makeSelectFocuses = () =>
-  createSelector(
-    selectGlobal,
-    R.propOr([], 'focusPosts'),
-  );
-
 export {
   selectGlobal,
   makeSelectCurrentUser,
@@ -59,6 +46,4 @@ export {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocation,
-  makeSelectAbout,
-  makeSelectFocuses,
 };

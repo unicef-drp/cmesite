@@ -7,19 +7,6 @@
  *
  */
 
-const fakePost = id => ({
-  id,
-  content: { rendered: "<strong>bold</strong>" },
-  title: { rendered: "<em>italic</em>" },
-  acf: {
-    image: {
-      url: 'https://childmortality.org/wp-content/uploads/2019/02/photo_about-1_compr.jpg',
-      alt: 'image',
-    },
-  },
-});
-const fakePosts = [fakePost(1), fakePost(2)];
-
 import produce from 'immer';
 import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR } from './constants';
 
@@ -31,9 +18,6 @@ export const initialState = {
   userData: {
     repositories: false,
   },
-
-  aboutPosts: fakePosts,
-  focusPosts: fakePosts,
 };
 
 /* eslint-disable default-case, no-param-reassign */

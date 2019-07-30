@@ -1,27 +1,30 @@
 import React from 'react';
-import { render } from 'react-testing-library';
-import { Provider } from 'react-redux';
+import renderer from 'react-test-renderer';
 import { IntlProvider } from 'react-intl';
-import { ConnectedRouter } from 'connected-react-router/immutable';
-import { createMemoryHistory } from 'history';
+import { Provider } from 'react-redux';
+import { browserHistory } from 'react-router-dom';
 
 import Header from '../index';
 import configureStore from '../../../configureStore';
 
 describe('<Header />', () => {
-  const history = createMemoryHistory();
-  const store = configureStore({}, history);
+  let store;
 
-  it('should render a div', () => {
-    const { container } = render(
-      <Provider store={store}>
-        <IntlProvider locale="en">
-          <ConnectedRouter history={history}>
+  beforeAll(() => {
+    store = configureStore({}, browserHistory);
+  });
+
+  it('should render and match the snapshot', () => {
+    const renderedComponent = renderer
+      .create(
+        <Provider store={store}>
+          <IntlProvider locale="en">
             <Header />
-          </ConnectedRouter>
-        </IntlProvider>
-      </Provider>,
-    );
-    expect(container.firstChild).toMatchSnapshot();
+          </IntlProvider>
+        </Provider>,
+      )
+      .toJSON();
+
+    expect(renderedComponent).toMatchSnapshot();
   });
 });

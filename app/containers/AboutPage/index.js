@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
@@ -11,18 +11,24 @@ import { useTheme } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { makeSelectAbout, makeSelectFocuses, } from 'containers/App/selectors';
+import { makeSelectAbout, makeSelectFocuses } from 'ducks/wordpress/selectors';
+import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
 import messages from './messages';
 import useStyles from './styles';
 import Wrapper from 'components/Wrapper';
-//import Logos from '../Logos';
-//import { EMAIL } from '../../constants';
+import Logos from 'components/Logos';
+import { EMAIL } from '../../staticConfig';
 
-const AboutPage = ({ about, focuses }) => {
-  if (R.isNil(about)) return null;
+const AboutPage = ({ loadPosts, about, focuses }) => {
+  useEffect(() => {
+    loadPosts('abouts');
+    loadPosts('focuses');
+  }, []);
 
   const classes = useStyles();
   const theme = useTheme();
+
+  if (R.isNil(about)) return null;
 
   return (
     <React.Fragment>
@@ -57,7 +63,7 @@ const AboutPage = ({ about, focuses }) => {
 
           {/* logos */}
           <Grid item xs={11} sm={10} md={10} className={classnames(classes.section, classes.logos)}>
-            {/*<Logos size="big" />*/}
+            <Logos size="big" />
           </Grid>
 
           {/* title */}
@@ -91,7 +97,7 @@ const AboutPage = ({ about, focuses }) => {
 
           {/* contact */}
           <Grid item xs={12} sm={10} md={10} className={classnames(classes.section, classes.action)}>
-            <Button variant="contained" color="primary" href={`mailto:${'EMAIL'}`}>
+            <Button variant="contained" color="primary" href={`mailto:${EMAIL}`}>
               <FormattedMessage {...messages.action} />
             </Button>
           </Grid>
@@ -117,7 +123,7 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(
   mapStateToProps,
-  null,
+  { loadPosts: loadPostsCreator },
 );
 
 export default compose(
