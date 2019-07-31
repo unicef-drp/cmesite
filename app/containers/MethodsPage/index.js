@@ -11,7 +11,7 @@ import { useTheme } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { makeSelectPost, makeSelectPosts } from 'ducks/wordpress/selectors';
+import { makeSelectAbout, makeSelectFocuses } from 'ducks/wordpress/selectors';
 import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
 import messages from './messages';
 import useStyles from './styles';
@@ -19,7 +19,7 @@ import Wrapper from 'components/Wrapper';
 import Logos from 'components/Logos';
 import { EMAIL } from '../../staticConfig';
 
-const AboutPage = ({ loadPosts, about, focuses = [] }) => {
+const AboutPage = ({ loadPosts, about, focuses }) => {
   useEffect(() => {
     loadPosts('abouts');
     loadPosts('focuses');
@@ -110,12 +110,15 @@ const AboutPage = ({ loadPosts, about, focuses = [] }) => {
 AboutPage.propTypes = {
   about: PropTypes.object,
   focuses: PropTypes.array,
-  loadPosts: PropTypes.func.isRequired,
+};
+
+AboutPage.defaultProps = {
+  focuses: [],
 };
 
 const mapStateToProps = createStructuredSelector({
-  about: makeSelectPost('abouts'),
-  focuses: makeSelectPosts('focuses'),
+  about: makeSelectAbout(),
+  focuses: makeSelectFocuses(),
 });
 
 const withConnect = connect(

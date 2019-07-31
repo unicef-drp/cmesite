@@ -16,4 +16,7 @@ export const LOGOS = [
 import igmeLogo from './images/igme-logo.png';
 export const IGME_LOGO = { img: igmeLogo };
 
-export const wordpressEndpoint = 'https://childmortality.org/wp-json/wp/v2';
+export const LOCALES = ['en', 'fr', 'es', 'ru', 'ar'];
+
+//export const wordpressEndpoint = 'https://childmortality.org/wp-json/wp/v2';
+export const wordpressEndpoint = 'http://wordpress.qa.cme.redpelicans.com/wp-json/wp/v2';

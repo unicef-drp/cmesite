@@ -1,22 +1,10 @@
 import produce from 'immer';
 import { LOAD_POSTS, LOAD_POSTS_SUCCESS, LOAD_POSTS_ERROR } from './constants';
 
-const fakePost = id => ({
-  id,
-  content: { rendered: "<strong>bold</strong>" },
-  title: { rendered: "<em>italic</em>" },
-  acf: {
-    image: {
-      url: 'https://childmortality.org/wp-content/uploads/2019/02/photo_about-1_compr.jpg',
-      alt: 'image',
-    },
-  },
-});
-const fakePosts = [fakePost(1), fakePost(2)];
-
 export const initialState = {
-  abouts: {loading: false, error: false, posts: fakePosts},
-  focuses: {loading: false, error: false, posts: fakePosts},
+  reports: {loading: false, error: false, posts: []},
+  abouts: {loading: false, error: false, posts: []},
+  focuses: {loading: false, error: false, posts: []},
 };
 
 /* eslint-disable default-case, no-param-reassign */

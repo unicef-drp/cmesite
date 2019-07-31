@@ -4,12 +4,12 @@ import { initialState } from './reducer';
 
 const selectWordpress = state => state.wordpress || initialState;
 
-export const makeSelectAbout = () => createSelector(
+export const makeSelectPosts = postType => createSelector(
   selectWordpress,
-  R.pipe(R.pathOr([], ['abouts', 'posts']), R.head),
+  R.pathOr([], [postType, 'posts']),
 );
 
-export const makeSelectFocuses = () => createSelector(
-  selectWordpress,
-  R.pathOr([], ['focuses', 'posts']),
+export const makeSelectPost = postType => createSelector(
+  makeSelectPosts(postType),
+  R.head,
 );
