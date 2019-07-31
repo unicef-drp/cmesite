@@ -13,3 +13,8 @@ export const makeSelectPost = postType => createSelector(
   makeSelectPosts(postType),
   R.head,
 );
+
+export const makeSelectFilteredPosts = (postType, filterType) => createSelector(
+  makeSelectPosts(postType),
+  R.filter(pathEq(['acf', filterType], true)),
+);
