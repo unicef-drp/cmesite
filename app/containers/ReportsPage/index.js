@@ -1,21 +1,13 @@
-import React, { useEffect, memo } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import * as R from 'ramda';
 import { makeSelectPosts } from 'ducks/wordpress/selectors';
-import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
 import Reports from 'components/Reports';
 
-const ReportsPage = ({ loadPosts, reports = [] }) => {
-  useEffect(() => {
-    loadPosts('reports');
-  }, []);
-
-  if (R.isEmpty(reports)) return null;
-
+const ReportsPage = ({ reports = [] }) => {
   return (
     <React.Fragment>
       <Helmet>
@@ -29,7 +21,6 @@ const ReportsPage = ({ loadPosts, reports = [] }) => {
 
 ReportsPage.propTypes = {
   reports: PropTypes.array,
-  loadPosts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -38,7 +29,7 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(
   mapStateToProps,
-  { loadPosts: loadPostsCreator },
+  null,
 );
 
 export default compose(
