@@ -15,6 +15,8 @@ import routes from '../../routes';
 const Reports = ({ reports = [], isSecondary }) => {
   const classes = useStyles();
 
+  if (R.isEmpty(reports)) return null;
+
   return (
     <Wrapper classes={{ root: classes[isSecondary ? 'secondaryWrapper' : 'wrapper'] }}>
       <div className={classes.reports}>

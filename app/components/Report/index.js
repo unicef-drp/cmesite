@@ -13,7 +13,7 @@ import { LOCALES } from '../../staticConfig';
 import useStyles from './styles';
 import messages from './messages';
 
-const Report = ({ acf = {}, title, isSecondary }) => {
+const Report = ({ acf = {}, title = {}, isSecondary }) => {
   const classes = useStyles();
 
   return (
