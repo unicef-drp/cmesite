@@ -42,7 +42,16 @@ const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add a font-family using Open Sans to the body
 openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
+  document.body.classList.add('openSansFontLoaded');
+});
+
+// Observe loading of Montserrat (to remove open sans, remove the <link> tag in
+// the index.html file and this observer)
+const montserratObserver = new FontFaceObserver('Montserrat', {});
+
+// When Montserrat is loaded, add a font-family using Montserrat to the body
+montserratObserver.load().then(() => {
+  document.body.classList.add('montserratFontLoaded');
 });
 
 // Create redux store with history

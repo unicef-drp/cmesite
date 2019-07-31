@@ -16,24 +16,29 @@ export default createMuiTheme({
     },
   },
   typography: {
-    fontFamily: "'open sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     h6: {
-      fontFamily: "'montserrat', sans-serif",
-      textTransform: 'uppercase',
+      fontFamily: "'Montserrat', sans-serif",
       fontWeight: 600,
+      textTransform: 'uppercase',
     },
     h4: {
-      fontFamily: "'montserrat', sans-serif",
+      fontFamily: "'Montserrat', sans-serif",
       fontWeight: 600,
     },
     h5: {
-      fontFamily: "'montserrat', sans-serif",
-      textTransform: 'uppercase',
+      fontFamily: "'Montserrat', sans-serif",
+      lineHeight: 1.35,
       fontWeight: 600,
+      textTransform: 'uppercase',
     },
     subtitle1: {
       fontWeight: 600,
       fontSize: 20,
+      lineHeight: 1.5,
+    },
+    body2: {
+      lineHeight: 1.75,
     },
   },
   palette: {

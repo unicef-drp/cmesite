@@ -9,6 +9,7 @@ import { makeSelectPost, makeSelectFilteredPosts } from 'ducks/wordpress/selecto
 import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
 import Reports from 'components/Reports';
 import Method from 'components/Method';
+import routes from '../../routes';
 
 const MethodsPage = ({ loadPosts, method, reports = [] }) => {
   useEffect(() => {
@@ -24,7 +25,7 @@ const MethodsPage = ({ loadPosts, method, reports = [] }) => {
         <meta name="description" content="methods page" />
       </Helmet>
       <Method {...method} />
-      <Reports reports={reports} isSecondary />
+      <Reports reports={reports} isSecondary reportPath={routes.reports.path} />
     </React.Fragment>
   );
 }

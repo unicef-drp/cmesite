@@ -13,7 +13,7 @@ const Method = ({ title = {}, content = {}, acf = {} }) => {
         <Typography variant="h5" align="center" className={classes.typo}>
           {title.rendered}
         </Typography>
-        <Typography variant="body1" align="center" paragraph>
+        <Typography variant="body2" align="center" paragraph>
           <span dangerouslySetInnerHTML={{ __html: content.rendered }} />
         </Typography>
         {acf.image && <img className={classes.image} src={image.url} alt={image.alt} />}

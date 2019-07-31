@@ -34,7 +34,7 @@ const Report = ({ acf = {}, title = {}, isSecondary }) => {
           [classes.secondaryContent]: isSecondary,
         })}
       >
-        <Typography variant="body1" className={classes.typo} paragraph>
+        <Typography variant="body2" className={classes.typo} paragraph>
           {title.rendered}
         </Typography>
         {R.map(([locale, file]) => {

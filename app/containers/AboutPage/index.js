@@ -52,7 +52,7 @@ const AboutPage = ({ loadPosts, about, focuses = [] }) => {
             <Typography variant="h5" align="center" className={classes.title}>
               {R.path(['title', 'rendered'])(about)}
             </Typography>
-            <Typography variant="body1" align="center" paragraph className={classes.typo}>
+            <Typography variant="body2" align="center" paragraph className={classes.typo}>
               <span
                 dangerouslySetInnerHTML={{
                   __html: R.path(['content', 'rendered'])(about),
@@ -83,7 +83,7 @@ const AboutPage = ({ loadPosts, about, focuses = [] }) => {
                     <img src={image.url} alt={image.alt} className={classes.focusLogo} />
                   )}
                   <Typography
-                    variant="body1"
+                    variant="body2"
                     align="center"
                     className={classes.typo}
                     style={{ lineHeight: 1.2 }}

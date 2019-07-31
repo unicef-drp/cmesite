@@ -12,6 +12,7 @@ import { allRoutes, defaultRoute } from '../../routes';
 import { useInjectSaga } from 'utils/injectSaga';
 import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
 import saga from 'ducks/wordpress/saga';
+import './styles.css';
 
 const App = ({ location, loadPosts }) => {
   useInjectSaga({ key: 'wordpress', saga });

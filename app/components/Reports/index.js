@@ -10,9 +10,8 @@ import useStyles from './styles';
 import messages from './messages';
 import Wrapper from 'components/Wrapper';
 import Report from 'components/Report';
-import routes from '../../routes';
 
-const Reports = ({ reports = [], isSecondary }) => {
+const Reports = ({ reports = [], reportPath, isSecondary }) => {
   const classes = useStyles();
 
   if (R.isEmpty(reports)) return null;
@@ -34,7 +33,7 @@ const Reports = ({ reports = [], isSecondary }) => {
               variant="contained"
               color="primary"
               component={Link}
-              to={routes.reports.path}
+              to={reportPath}
             >
               <FormattedMessage {...messages.action} />
             </Button>
@@ -48,6 +47,7 @@ const Reports = ({ reports = [], isSecondary }) => {
 Reports.propTypes = {
   reports: PropTypes.array,
   isSecondary: PropTypes.bool,
+  reportPath: PropTypes.string,
 };
 
 export default Reports;
