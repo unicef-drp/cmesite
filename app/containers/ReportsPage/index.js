@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectPosts } from 'ducks/wordpress/selectors';
-import Reports from 'components/Reports';
+//import Reports from 'components/Reports';
 
 const ReportsPage = ({ reports = [] }) => {
   return (
@@ -14,7 +14,7 @@ const ReportsPage = ({ reports = [] }) => {
         <title>Reports</title>
         <meta name="description" content="reports page" />
       </Helmet>
-      <Reports reports={reports} />
+      {/*<Reports reports={reports} />*/}
     </React.Fragment>
   );
 }

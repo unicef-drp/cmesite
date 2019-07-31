@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import Header from 'components/Header';
@@ -9,10 +10,15 @@ import Footer from 'components/Footer';
 import useStyles from './styles';
 import { allRoutes, defaultRoute } from '../../routes';
 import { useInjectSaga } from 'utils/injectSaga';
+import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
 import saga from 'ducks/wordpress/saga';
 
-const App = ({ location }) => {
+const App = ({ location, loadPosts }) => {
   useInjectSaga({ key: 'wordpress', saga });
+
+  useEffect(() => {
+    loadPosts('reports');
+  }, []);
 
   const classes = useStyles();
 
@@ -45,8 +51,15 @@ const App = ({ location }) => {
 
 App.propTypes = {
   location: PropTypes.object.isRequired,
+  loadPosts: PropTypes.func.isRequired,
 };
 
+const withConnect = connect(
+  null,
+  { loadPosts: loadPostsCreator },
+);
+
 export default compose(
+  withConnect,
   withRouter,
 )(App);

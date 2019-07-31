@@ -7,7 +7,6 @@ import { createStructuredSelector } from 'reselect';
 import * as R from 'ramda';
 import { makeSelectPost, makeSelectFilteredPosts } from 'ducks/wordpress/selectors';
 import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
-import useStyles from './styles';
 import Reports from 'components/Reports';
 import Method from 'components/Method';
 
@@ -15,8 +14,6 @@ const MethodsPage = ({ loadPosts, method, reports = [] }) => {
   useEffect(() => {
     loadPosts('methods');
   }, []);
-
-  const classes = useStyles();
 
   if (R.isNil(method)) return null;
 
@@ -35,6 +32,7 @@ const MethodsPage = ({ loadPosts, method, reports = [] }) => {
 MethodsPage.propTypes = {
   method: PropTypes.object,
   reports: PropTypes.array,
+  loadPosts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

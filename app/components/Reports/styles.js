@@ -18,4 +18,11 @@ export default makeStyles(theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
   },
+  typo: {
+    color: theme.palette.primary.dark,
+  },
+  action: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
