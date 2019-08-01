@@ -14,15 +14,13 @@ const styles = theme => ({
   },
 });
 
-const Wrapper = ({ classes, children }) => {
-  return (
-    <Grid container justify="center" className={classes.root}>
-      <Grid item xs={12} md={11} lg={9} xl={7}>
-        {children}
-      </Grid>
+const Wrapper = ({ classes, children }) => (
+  <Grid container justify="center" className={classes.root}>
+    <Grid item xs={12} md={11} lg={9} xl={7}>
+      {children}
     </Grid>
-  );
-}
+  </Grid>
+);
 
 Wrapper.propTypes = {
   children: PropTypes.node,

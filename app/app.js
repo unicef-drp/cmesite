@@ -22,10 +22,10 @@ import App from 'containers/App';
 
 // Import Theme Provider and theme
 import { ThemeProvider } from '@material-ui/styles';
+import LanguageProvider from 'containers/LanguageProvider';
 import theme from './theme';
 
 // Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
@@ -89,11 +89,7 @@ if (!window.Intl) {
   new Promise(resolve => {
     resolve(import('intl'));
   })
-    .then(() =>
-      Promise.all([
-        import('intl/locale-data/jsonp/en.js'),
-      ]),
-    ) // eslint-disable-line prettier/prettier
+    .then(() => Promise.all([import('intl/locale-data/jsonp/en.js')])) // eslint-disable-line prettier/prettier
     .then(() => render(translationMessages))
     .catch(err => {
       throw err;

@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import messages from './messages';
 import Wrapper from 'components/Wrapper';
 import Logos from 'components/Logos';
+import messages from './messages';
 import { EMAIL, LEGAL_LINK } from '../../staticConfig';
 import routes from '../../routes';
 import useStyles from './styles';
@@ -35,7 +34,6 @@ const Footer = () => {
       </div>
     </Wrapper>
   );
-}
+};
 
 export default Footer;
-

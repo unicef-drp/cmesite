@@ -2,10 +2,10 @@ import produce from 'immer';
 import { LOAD_POSTS, LOAD_POSTS_SUCCESS, LOAD_POSTS_ERROR } from './constants';
 
 export const initialState = {
-  reports: {loading: false, error: false, posts: []},
-  abouts: {loading: false, error: false, posts: []},
-  focuses: {loading: false, error: false, posts: []},
-  methods: {loading: false, error: false, posts: []},
+  reports: { loading: false, error: false, posts: [] },
+  abouts: { loading: false, error: false, posts: [] },
+  focuses: { loading: false, error: false, posts: [] },
+  methods: { loading: false, error: false, posts: [] },
 };
 
 /* eslint-disable default-case, no-param-reassign */

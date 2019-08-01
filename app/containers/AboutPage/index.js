@@ -13,10 +13,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { makeSelectPost, makeSelectPosts } from 'ducks/wordpress/selectors';
 import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
-import messages from './messages';
-import useStyles from './styles';
 import Wrapper from 'components/Wrapper';
 import Logos from 'components/Logos';
+import messages from './messages';
+import useStyles from './styles';
 import { EMAIL } from '../../staticConfig';
 
 const AboutPage = ({ loadPosts, about, focuses = [] }) => {
@@ -96,7 +96,13 @@ const AboutPage = ({ loadPosts, about, focuses = [] }) => {
           </Grid>
 
           {/* contact */}
-          <Grid item xs={12} sm={10} md={10} className={classnames(classes.section, classes.action)}>
+          <Grid
+            item
+            xs={12}
+            sm={10}
+            md={10}
+            className={classnames(classes.section, classes.action)}
+          >
             <Button variant="contained" color="primary" href={`mailto:${EMAIL}`}>
               <FormattedMessage {...messages.action} />
             </Button>
@@ -105,7 +111,7 @@ const AboutPage = ({ loadPosts, about, focuses = [] }) => {
       </Wrapper>
     </React.Fragment>
   );
-}
+};
 
 AboutPage.propTypes = {
   about: PropTypes.object,

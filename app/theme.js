@@ -58,7 +58,7 @@ export default createMuiTheme({
       darker: '#a9a9a9',
       contrastText: '#0B3B57',
     },
-    //http://tools.medialab.sciences-po.fr/iwanthue/
+    // http://tools.medialab.sciences-po.fr/iwanthue/
     chartColorScale: scaleOrdinal([
       '#8362d4',
       '#5cc151',

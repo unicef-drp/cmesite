@@ -14,7 +14,7 @@ export default makeStyles(theme => ({
   content: {
     backgroundColor: theme.palette.secondary.main,
 
-    //sticky footer -> https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/
+    // sticky footer -> https://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/
     flex: '1 0 auto',
   },
 }));

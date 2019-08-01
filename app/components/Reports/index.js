@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
-import classnames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import useStyles from './styles';
-import messages from './messages';
 import Wrapper from 'components/Wrapper';
 import Report from 'components/Report';
+import useStyles from './styles';
+import messages from './messages';
 
 const Reports = ({ reports = [], reportPath, isSecondary }) => {
   const classes = useStyles();
@@ -23,18 +22,16 @@ const Reports = ({ reports = [], reportPath, isSecondary }) => {
           <FormattedMessage {...messages.title} />
         </Typography>
         <div className={classes.container}>
-          {R.map(({ id, ...report }) => (
-            <Report key={id} {...report} isSecondary={isSecondary} />
-          ), reports)}
+          {R.map(
+            ({ id, ...report }) => (
+              <Report key={id} {...report} isSecondary={isSecondary} />
+            ),
+            reports,
+          )}
         </div>
         {isSecondary && (
           <div className={classes.action}>
-            <Button
-              variant="contained"
-              color="primary"
-              component={Link}
-              to={reportPath}
-            >
+            <Button variant="contained" color="primary" component={Link} to={reportPath}>
               <FormattedMessage {...messages.action} />
             </Button>
           </div>
@@ -42,7 +39,7 @@ const Reports = ({ reports = [], reportPath, isSecondary }) => {
       </div>
     </Wrapper>
   );
-}
+};
 
 Reports.propTypes = {
   reports: PropTypes.array,

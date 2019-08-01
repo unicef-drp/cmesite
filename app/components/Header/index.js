@@ -13,9 +13,9 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import useStyles from './styles';
 import { Link } from 'react-router-dom';
 import Wrapper from 'components/Wrapper';
+import useStyles from './styles';
 import messages from './messages';
 import { allRoutes } from '../../routes';
 import { IGME_LOGO } from '../../staticConfig';
@@ -29,7 +29,7 @@ function Header({ routePath }) {
       <AppBar position="fixed" className={classes.titlebar}>
         <Wrapper>
           <Toolbar disableGutters className={classes.toolbar}>
-            <img src={IGME_LOGO.img} className={classes.logo} />
+            <img alt="logo" src={IGME_LOGO.img} className={classes.logo} />
             <Hidden xsDown>
               <Typography variant="subtitle1" className={classes.typo}>
                 <FormattedMessage {...messages.title} />
@@ -63,11 +63,7 @@ function Header({ routePath }) {
           </Wrapper>
         </AppBar>
       </Hidden>
-      <Drawer
-        open={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        anchor="top"
-      >
+      <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} anchor="top">
         <List component="nav">
           {R.map(route => (
             <ListItem

@@ -7,17 +7,15 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectPosts } from 'ducks/wordpress/selectors';
 import Reports from 'components/Reports';
 
-const ReportsPage = ({ reports = [] }) => {
-  return (
-    <React.Fragment>
-      <Helmet>
-        <title>Reports</title>
-        <meta name="description" content="reports page" />
-      </Helmet>
-      <Reports reports={reports} />
-    </React.Fragment>
-  );
-}
+const ReportsPage = ({ reports = [] }) => (
+  <React.Fragment>
+    <Helmet>
+      <title>Reports</title>
+      <meta name="description" content="reports page" />
+    </Helmet>
+    <Reports reports={reports} />
+  </React.Fragment>
+);
 
 ReportsPage.propTypes = {
   reports: PropTypes.array,

@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import request from 'utils/request';
 import { LOAD_POSTS } from './constants';
 import { loadPostsSuccess, loadPostsError } from './actions';
-import request from 'utils/request';
 import { wordpressEndpoint } from '../../staticConfig';
 
 export function* getPosts({ postType }) {
@@ -17,4 +17,4 @@ export function* getPosts({ postType }) {
 
 export default function* saga() {
   yield takeEvery(LOAD_POSTS, getPosts);
-};
+}

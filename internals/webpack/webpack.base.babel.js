@@ -65,10 +65,10 @@ module.exports = options => ({
             loader: 'url-loader',
             options: {
               // Inline files smaller than 10 kB
-              //limit: 10 * 1024,
+              // limit: 10 * 1024,
             },
           },
-          /*{
+          /* {
             loader: 'image-webpack-loader',
             options: {
               mozjpeg: {
@@ -89,7 +89,7 @@ module.exports = options => ({
                 speed: 4,
               },
             },
-          },*/
+          }, */
         ],
       },
       {

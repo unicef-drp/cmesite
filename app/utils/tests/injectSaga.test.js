@@ -74,9 +74,9 @@ describe('injectSaga decorator', () => {
 
   it('should set a correct display name', () => {
     expect(ComponentWithSaga.displayName).toBe('withSaga(Component)');
-    expect(
-      injectSaga({ key: 'test', saga: testSaga })(() => null).displayName,
-    ).toBe('withSaga(Component)');
+    expect(injectSaga({ key: 'test', saga: testSaga })(() => null).displayName).toBe(
+      'withSaga(Component)',
+    );
   });
 
   it('should propagate props', () => {
