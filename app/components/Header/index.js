@@ -54,7 +54,7 @@ function Header({ routePath }) {
                   component={Link}
                   to={route.path}
                   disabled={routePath === route.path}
-                  classes={{ disabled: classes.selectedMenu }}
+                  classes={{ disabled: classes.selectedMenu, root: classes.menu }}
                 >
                   <FormattedMessage {...R.prop(route.name, messages)} />
                 </Button>

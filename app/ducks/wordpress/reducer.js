@@ -6,6 +6,9 @@ export const initialState = {
   abouts: { loading: false, error: false, posts: [] },
   focuses: { loading: false, error: false, posts: [] },
   methods: { loading: false, error: false, posts: [] },
+  splashes: { loading: false, error: false, posts: [] },
+  news: { loading: false, error: false, posts: [] },
+  datasets: { loading: false, error: false, posts: [] },
 };
 
 /* eslint-disable default-case, no-param-reassign */

@@ -24,4 +24,8 @@ export default makeStyles(theme => ({
     border: `1px solid ${theme.palette.secondary.main}`,
     color: `${theme.palette.secondary.main}!important`,
   },
+  menu: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
 }));

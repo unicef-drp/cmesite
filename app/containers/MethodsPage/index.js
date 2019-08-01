@@ -5,16 +5,19 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import * as R from 'ramda';
-import { makeSelectPost, makeSelectFilteredPosts } from 'ducks/wordpress/selectors';
+import { makeSelectLimitedPosts, makeSelectFilteredPosts } from 'ducks/wordpress/selectors';
 import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
+import Typography from '@material-ui/core/Typography';
 import Reports from 'components/Reports';
-import Method from 'components/Method';
-import routes from 'routes';
+import Wrapper from 'components/Wrapper';
+import useStyles from './styles';
 
 const MethodsPage = ({ loadPosts, method, reports = [] }) => {
   useEffect(() => {
     loadPosts('methods');
   }, []);
+
+  const classes = useStyles();
 
   if (R.isNil(method)) return null;
 
@@ -24,8 +27,18 @@ const MethodsPage = ({ loadPosts, method, reports = [] }) => {
         <title>Methods</title>
         <meta name="description" content="methods page" />
       </Helmet>
-      <Method {...method} />
-      <Reports reports={reports} isSecondary reportPath={routes.reports.path} />
+      <Wrapper classes={{ root: classes.wrapper }}>
+        <div className={classes.root}>
+          <Typography variant="h5" align="center" className={classes.typo}>
+            {method.title.rendered}
+          </Typography>
+          <Typography variant="body2" align="center" paragraph>
+            <span dangerouslySetInnerHTML={{ __html: method.content.rendered }} />
+          </Typography>
+          {method.acf.image && <img className={classes.image} src={method.acf.image.url} alt={method.acf.image.alt} />}
+        </div>
+      </Wrapper>
+      <Reports reports={reports} isSecondary />
     </React.Fragment>
   );
 };
@@ -37,7 +50,7 @@ MethodsPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  method: makeSelectPost('methods'),
+  method: makeSelectLimitedPosts('methods'),
   reports: makeSelectFilteredPosts('reports', 'ismethod'),
 });
 

@@ -21,6 +21,7 @@ import 'sanitize.css/sanitize.css';
 import App from 'containers/App';
 
 // Import Theme Provider and theme
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import LanguageProvider from 'containers/LanguageProvider';
 import theme from './theme';
@@ -65,6 +66,7 @@ const render = messages => {
       <ThemeProvider theme={theme}>
         <LanguageProvider messages={messages}>
           <ConnectedRouter history={history}>
+            <CssBaseline />
             <App />
           </ConnectedRouter>
         </LanguageProvider>

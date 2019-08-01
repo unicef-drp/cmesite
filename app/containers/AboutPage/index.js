@@ -7,28 +7,25 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import * as R from 'ramda';
 import classnames from 'classnames';
-import { useTheme } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { makeSelectPost, makeSelectPosts } from 'ducks/wordpress/selectors';
+import { makeSelectLimitedPosts, makeSelectPosts } from 'ducks/wordpress/selectors';
 import { loadPosts as loadPostsCreator } from 'ducks/wordpress/actions';
 import Wrapper from 'components/Wrapper';
+import Splash from 'components/Splash';
 import Logos from 'components/Logos';
 import messages from './messages';
 import useStyles from './styles';
 import { EMAIL } from '../../staticConfig';
 
-const AboutPage = ({ loadPosts, about, focuses = [] }) => {
+const AboutPage = ({ loadPosts, about = {}, focuses = [] }) => {
   useEffect(() => {
     loadPosts('abouts');
     loadPosts('focuses');
   }, []);
 
   const classes = useStyles();
-  const theme = useTheme();
-
-  if (R.isNil(about)) return null;
 
   return (
     <React.Fragment>
@@ -36,15 +33,7 @@ const AboutPage = ({ loadPosts, about, focuses = [] }) => {
         <title>About</title>
         <meta name="description" content="about page" />
       </Helmet>
-      <div
-        className={classes.splash}
-        style={{
-          background: `${theme.palette.primary.main} url("${R.path(['acf', 'image', 'url'])(
-            about,
-          )}") repeat center`,
-          backgroundSize: 'cover',
-        }}
-      />
+      <Splash acf={about.acf} />
       <Wrapper classes={{ root: classes.wrapper }}>
         <Grid container className={classes.about} justify="center">
           {/* title */}
@@ -120,7 +109,7 @@ AboutPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  about: makeSelectPost('abouts'),
+  about: makeSelectLimitedPosts('abouts'),
   focuses: makeSelectPosts('focuses'),
 });
 

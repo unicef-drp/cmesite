@@ -21,10 +21,13 @@ export default createMuiTheme({
       fontFamily: "'Montserrat', sans-serif",
       fontWeight: 600,
       textTransform: 'uppercase',
+      fontSize: '1.31rem',
+      lineHeight: 1.15,
     },
     h4: {
       fontFamily: "'Montserrat', sans-serif",
       fontWeight: 600,
+      lineHeight: 1.2,
     },
     h5: {
       fontFamily: "'Montserrat', sans-serif",

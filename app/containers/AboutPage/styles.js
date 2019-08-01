@@ -4,9 +4,6 @@ export default makeStyles(theme => ({
   wrapper: {
     backgroundColor: theme.palette.secondary.dark,
   },
-  splash: {
-    height: 350,
-  },
   about: {
     backgroundColor: theme.palette.secondary.main,
     marginTop: theme.spacing(-2),

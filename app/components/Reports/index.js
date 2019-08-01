@@ -10,7 +10,7 @@ import Report from 'components/Report';
 import useStyles from './styles';
 import messages from './messages';
 
-const Reports = ({ reports = [], reportPath, isSecondary }) => {
+const Reports = ({ reports = [], isSecondary }) => {
   const classes = useStyles();
 
   if (R.isEmpty(reports)) return null;
@@ -31,7 +31,7 @@ const Reports = ({ reports = [], reportPath, isSecondary }) => {
         </div>
         {isSecondary && (
           <div className={classes.action}>
-            <Button variant="contained" color="primary" component={Link} to={reportPath}>
+            <Button variant="contained" color="primary" component={Link} to={'/reports'}>
               <FormattedMessage {...messages.action} />
             </Button>
           </div>
@@ -44,7 +44,6 @@ const Reports = ({ reports = [], reportPath, isSecondary }) => {
 Reports.propTypes = {
   reports: PropTypes.array,
   isSecondary: PropTypes.bool,
-  reportPath: PropTypes.string,
 };
 
 export default Reports;
