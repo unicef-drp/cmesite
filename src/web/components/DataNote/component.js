@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { path } from 'ramda';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Wrapper from '../Wrapper';
+import Grid from '@material-ui/core/Grid';
 
 const style = theme => ({
-  wrapper: {
+  root: {
     backgroundColor: theme.palette.secondary.dark,
     paddingTop: theme.spacing.unit * 4,
     paddingBottom: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
   },
   typo: {
     color: theme.palette.primary.dark,
@@ -17,15 +19,13 @@ const style = theme => ({
 });
 
 const DataNote = ({ note, classes }) => (
-  <Wrapper classes={{ root: classes.wrapper }}>
-    <Typography align="center" component="p" className={classes.typo}>
-      <span
-        dangerouslySetInnerHTML={{
-          __html: path(['content', 'rendered'])(note),
-        }}
-      />
-    </Typography>
-  </Wrapper>
+  <Grid container justify="center" className={classes.root}>
+    <Grid item xs={12}>
+      <Typography align="center" component="p" className={classes.typo}>
+        <span dangerouslySetInnerHTML={{ __html: path(['content', 'rendered'])(note) }} />
+      </Typography>
+    </Grid>
+  </Grid>
 );
 
 DataNote.propTypes = {
