@@ -91,6 +91,7 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
       axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
       index={activeTab}
       onChangeIndex={index => changeActiveTab(index)}
+      animateHeight
     >
       <CountryTab isActive={equals(activeTab, 0)} />
       <CompareTab isActive={equals(activeTab, 1)} />
