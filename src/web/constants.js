@@ -86,3 +86,43 @@ export const EXPORT_INDEX_IDS = [
   Y0,
   Y1,
 ];
+
+/*
+ * the map (and its legend) depends on the displayed indicator.
+ * INDICATOR_MAP_SCALES is an object where keys are indicator value ids
+ * and values are an object of domains and ranges with options
+ * where:
+ * - domains should be integer array compliant with d3.scaleThreshold.domain
+ * - ranges should be integer array compliant with d3.scaleThreshold.range
+ * the only option is 'andAbove' to indicate if the domain is finite.
+ *
+ * range spec: [noData, ... domain intervals]
+ * no data color: '#9b9b9b'
+ * color pool: '#a1d4eb','#8abbd6 ','#72a2c0','#5b89ab','#447096','#2c5780','#153e6b','#21344a',
+ */
+export const MAP_DEFAULT_SCALE = {
+  domain: [0, 5, 10, 20, 30, 40, 100, 150],
+  range: [
+    '#9b9b9b',
+    '#a1d4eb',
+    '#8abbd6 ',
+    '#72a2c0',
+    '#5b89ab',
+    '#447096',
+    '#2c5780',
+    '#153e6b',
+    '#21344a',
+  ],
+};
+const MAP_NO_DATA = '#9b9b9b';
+export const INDICATOR_MAP_SCALES = {
+  MRY0T4: {
+    domain: [0, 10, 20, 30, 40, 50],
+    range: [MAP_NO_DATA, '#a1d4eb', '#8abbd6 ', '#72a2c0', '#5b89ab', '#447096', '#2c5780'],
+    andAbove: true,
+  },
+  MRY5T14: {
+    domain: [0, 10, 20, 50, 100],
+    range: [MAP_NO_DATA, '#a1d4eb', '#8abbd6 ', '#72a2c0', '#5b89ab', '#447096'],
+  },
+};

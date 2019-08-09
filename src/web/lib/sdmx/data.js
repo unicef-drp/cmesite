@@ -254,6 +254,9 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
   if (has(UNIT_MEASURE, observation))
     serie = assoc(UNIT_MEASURE, path([UNIT_MEASURE, 'valueName'], observation), serie);
 
+  if (has(INDICATOR, observation))
+    serie = assoc(`${INDICATOR}_ID`, path([INDICATOR, 'valueId'], observation), serie);
+
   return assoc(serieKey, serie, acc);
 };
 
