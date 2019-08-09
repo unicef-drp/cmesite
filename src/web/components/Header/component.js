@@ -44,6 +44,10 @@ const style = theme => ({
     border: `1px solid ${theme.palette.secondary.main}`,
     color: `${theme.palette.secondary.main}!important`,
   },
+  button: {
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+  },
 });
 
 class Header extends React.Component {
@@ -85,7 +89,7 @@ class Header extends React.Component {
                     component={Link}
                     to={getPath(route)}
                     disabled={routeName === prop('path')(route)}
-                    classes={{ disabled: classes.selectedMenu }}
+                    classes={{ disabled: classes.selectedMenu, root: classes.button }}
                   >
                     <FormattedMessage {...prop(prop('name')(route))(messages)} />
                   </Button>

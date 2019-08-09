@@ -52,6 +52,7 @@ const styles = theme => ({
   checkbox: {
     width: 'initial',
     height: 'initial',
+    padding: 0,
   },
   buttons: {
     display: 'flex',

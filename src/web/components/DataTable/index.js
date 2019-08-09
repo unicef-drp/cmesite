@@ -10,7 +10,7 @@ import {
 } from '../../selectors/data';
 import Estimates from './estimates';
 import Datasources from './datasources';
-import DataProgress from '../DataProgress';
+import Loader from '../Loader';
 import DataNone from '../DataNone';
 
 export const DataCountryEstimatesTable = compose(
@@ -21,7 +21,7 @@ export const DataCountryEstimatesTable = compose(
       series: getCountryAllEstimateSeries,
     }),
   ),
-  branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
+  branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
   branch(R.pipe(R.prop('series'), R.either(R.isNil, R.isEmpty)), renderComponent(DataNone)),
 )(Estimates);
 
@@ -33,6 +33,6 @@ export const DataCountryDataSourcesTable = compose(
       serie: getCountryDatasourcesSerie,
     }),
   ),
-  branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
+  branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
   branch(R.pipe(R.prop('serie'), R.either(R.isNil, R.isEmpty)), renderComponent(DataNone)),
 )(Datasources);

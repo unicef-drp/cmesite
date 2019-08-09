@@ -1,18 +1,8 @@
 import React from 'react';
 import Loadable from 'react-loadable';
-
-const style = {
-  height: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
+import Loader from '../../components/Loader';
 
 export default Loadable({
   loader: () => import('./index'),
-  loading: () => (
-    <div style={style}>
-      <div>loading...</div>
-    </div>
-  ),
+  loading: () => <Loader isPage />,
 });

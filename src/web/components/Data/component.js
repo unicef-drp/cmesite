@@ -36,6 +36,15 @@ const style = theme => ({
   tabIcon: {
     height: 30,
   },
+  tabLabelIcon: {
+    padding: 0,
+  },
+  tabLabelContainer: {
+    width: 'initial',
+    [theme.breakpoints.down('sm')]: {
+      padding: 0,
+    },
+  },
 });
 
 const tabs = [
@@ -54,7 +63,7 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
           onChange={(event, value) => changeActiveTab(value)}
           indicatorColor="primary"
           textColor="primary"
-          fullWidth
+          variant="fullWidth"
         >
           {map(tab => (
             <Tab
@@ -67,7 +76,12 @@ const Data = ({ classes, theme, activeTab, changeActiveTab }) => (
                 </Hidden>
               }
               icon={<img className={classes.tabIcon} src={tab.icon} />}
-              classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
+              classes={{
+                root: classes.tabRoot,
+                wrapper: classes.tabWrapper,
+                labelIcon: classes.tabLabelIcon,
+                labelContainer: classes.tabLabelContainer,
+              }}
             />
           ))(tabs)}
         </Tabs>

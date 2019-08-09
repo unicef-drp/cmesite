@@ -20,7 +20,7 @@ import {
 } from '../../selectors/data';
 import { toggleActiveType, highlightSerie } from '../../ducks/data';
 import Component from './component';
-import DataProgress from '../DataProgress';
+import Loader from '../Loader';
 import DataNone from '../DataNone';
 import { ESTIMATE } from '../../constants';
 import { COUNTRY, COMPARE } from '../../api/sdmx';
@@ -34,7 +34,7 @@ const withData = ({ type, selectors }) =>
       }),
       { toggleActiveType, highlightSerie: highlightSerie(type) },
     ),
-    branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
+    branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
     branch(
       ({ estimateSeries, includedSeries, excludedSeries }) =>
         pipe(reject(either(isNil, isEmpty)), isEmpty)([

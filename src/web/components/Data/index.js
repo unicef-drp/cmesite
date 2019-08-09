@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getActiveTab, getIsLoadingStructure } from '../../selectors/data';
 import { changeActiveTab } from '../../ducks/data';
 import Component from './component';
-import DataProgress from '../DataProgress';
+import Loader from '../Loader';
 
 export default compose(
   connect(
@@ -14,8 +14,5 @@ export default compose(
     }),
     { changeActiveTab },
   ),
-  branch(
-    ({ isLoadingStructure }) => isLoadingStructure,
-    renderComponent(DataProgress),
-  ),
+  branch(({ isLoadingStructure }) => isLoadingStructure, renderComponent(Loader)),
 )(Component);
