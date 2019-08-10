@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { prop, pipe, both, map, addIndex, path } from 'ramda';
+import { prop, pipe, both, map, addIndex, path, is } from 'ramda';
 import { line as d3Line, curveLinear } from 'd3-shape';
 import { select } from 'd3-selection';
 import { getSymbol, getSeriesMethodSymbol, isEstimate, getOpacity } from './utils';
 import { SERIES_METHOD, OBS_STATUS } from '../../constants';
 
 class Line extends React.Component {
-  defined = both(prop('x'), prop('y'));
+  defined = both(prop('x'), pipe(prop('y'), is(Number)));
 
   state = {
     line: d3Line().defined(this.defined),
