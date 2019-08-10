@@ -4,7 +4,6 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import routes, { getPath } from '../../routes';
 import {
   getCountryDimension,
   getCountryValue,
@@ -39,7 +38,7 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
       handleValue: ({ dimension, changeSelection, history, changeActiveTab }) => value => {
         if (isCountry) {
           changeActiveTab(0, true);
-          history.push(getPath(routes.data));
+          history.push(`/data/${value.label}`);
         }
         changeSelection(dimension.index, value.index);
       },

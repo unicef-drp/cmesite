@@ -20,6 +20,11 @@ import {
   identity,
   or,
   findIndex,
+  is,
+  lt,
+  both,
+  toLower,
+  propSatisfies,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
@@ -29,6 +34,7 @@ import {
   getCanLoadData,
   getIsExcNoSexIndicatorValueByIndexes,
   getSexDimension,
+  getCountryDimension,
 } from '../selectors/data';
 import { TYPES, REF_AREA, SEX_TOTAL_VALUE } from '../constants';
 
@@ -206,12 +212,23 @@ export const changeSelection = ({ selectionType, dataType }) => (dimensionIndex,
   dispatch(loadData(dataType));
 };
 
-export const loadStructure = dataType => (dispatch, getState) => {
+const changeCountryFromRoute = countryName => (dispatch, getState) => {
+  const { index, values } = getCountryDimension(getState());
+  const valueIndex = findIndex(
+    propSatisfies(pipe(toLower, equals(toLower(countryName))), 'label'),
+    values,
+  );
+  if (both(is(Number), lt(-1))(valueIndex))
+    dispatch(changeSelection({ selectionType: 'select', dataType: COUNTRY })(index, valueIndex));
+};
+
+export const loadStructure = (dataType, countryName) => (dispatch, getState) => {
   if (not(isEmpty(getRawDimensions(getState())))) return dispatch(loadData(dataType));
 
   dispatch({ type: LOADING_STRUCTURE });
   return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions => {
     dispatch({ type: STRUCTURE_LOADED, dimensions });
+    if (countryName) dispatch(changeCountryFromRoute(countryName));
     dispatch(loadData(dataType));
   });
 };
