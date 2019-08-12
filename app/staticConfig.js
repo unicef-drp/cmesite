@@ -18,5 +18,11 @@ export const IGME_LOGO = { img: igmeLogo, id: 'igme' };
 
 export const LOCALES = ['en', 'fr', 'es', 'ru', 'ar'];
 
+export const RELEVANT_DIMENSION_IDS = ['REF_AREA', 'INDICATOR', 'SEX'];
+export const EXC_RATE_INDICATOR_VALUE_REGEXP = /^((?!death).)*$/i;
+
+// params!
 // export const wordpressEndpoint = 'https://childmortality.org/wp-json/wp/v2';
 export const wordpressEndpoint = 'http://wordpress.qa.cme.redpelicans.com/wp-json/wp/v2';
+export const sdmxEndpoint = 'https://api.data.unicef.org/sdmx/Rest';
+export const sdmxDataflow = { agencyId: 'UNICEF', id: 'CME_DF', version: '1.0' };
