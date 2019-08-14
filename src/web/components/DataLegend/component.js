@@ -20,6 +20,7 @@ import {
   isEmpty,
   indexOf,
   concat,
+  propEq,
 } from 'ramda';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -93,7 +94,7 @@ const styles = theme => ({
     },
   },
   selectedItem: {
-    backgroundColor: theme.palette.secondary.darker,
+    backgroundColor: theme.palette.secondary.dark,
   },
 });
 
@@ -101,6 +102,8 @@ const DataLegend = ({
   classes,
   theme,
   highlightSerie,
+  highlightMethod,
+  highlightedMethods,
   estimateSeries = [],
   uncertaintySeries = [],
   mergedSeries = {},
@@ -215,7 +218,15 @@ const DataLegend = ({
             <List className={classes.list}>
               {map(
                 ([method, serie]) => (
-                  <ListItem className={classes.item} key={method} dense>
+                  <ListItem
+                    className={classnames(classes.item, {
+                      [classes.selectedItem]: propEq(method, true, highlightedMethods),
+                    })}
+                    key={method}
+                    dense
+                    button
+                    onClick={() => highlightMethod(method)}
+                  >
                     <ListItemIcon>
                       <svg width={SIZE / 2} height={SIZE / 2}>
                         <path
@@ -250,6 +261,8 @@ DataLegend.propTypes = {
   isCompare: PropTypes.bool,
   serieNames: PropTypes.array,
   highlightSerie: PropTypes.func.isRequired,
+  highlightMethod: PropTypes.func.isRequired,
+  highlightedMethods: PropTypes.object.isRequired,
   seriesNames: PropTypes.array,
 };
 

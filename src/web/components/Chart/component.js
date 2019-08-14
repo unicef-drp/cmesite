@@ -4,7 +4,22 @@ import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { compose, map, addIndex, ifElse, isNil, always, prop, lte, indexOf } from 'ramda';
+import {
+  compose,
+  map,
+  addIndex,
+  ifElse,
+  isNil,
+  always,
+  prop,
+  lte,
+  indexOf,
+  propEq,
+  any,
+  pipe,
+  values,
+  identity,
+} from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
@@ -18,7 +33,7 @@ import Axis from './axis';
 import Line from './line';
 import Area from './area';
 import Tooltip from './tooltip';
-import { INCLUDED, EXCLUDED } from '../../constants';
+import { INCLUDED, EXCLUDED, SERIES_METHOD } from '../../constants';
 
 const style = theme => ({
   axis: {
@@ -157,11 +172,13 @@ class Chart extends React.Component {
       seriesNames,
       hasHighlights,
       seriesUnit,
+      highlightedMethods,
     } = this.props;
 
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
     const ticks = isWidthUp('sm', this.props.width) ? 10 : 8;
+    const hasHighlightedMethods = pipe(values, any(identity))(highlightedMethods);
 
     const areas = uncertaintySeries
       ? map(
@@ -176,7 +193,7 @@ class Chart extends React.Component {
               classes={classes}
               setTooltip={this.setTooltip}
               isHighlighted={isHighlighted}
-              hasHighlights={hasHighlights}
+              hasHighlights={hasHighlights || hasHighlightedMethods}
             />
           ),
           uncertaintySeries,
@@ -186,7 +203,7 @@ class Chart extends React.Component {
     const linesFactory = ifElse(
       isNil,
       always(null),
-      addIndex(map)(({ id, name, datapoints, type, isHighlighted }, index) => (
+      addIndex(map)(({ id, name, datapoints, type, isHighlighted, ...serie }, index) => (
         <Line
           key={id}
           type={type}
@@ -206,8 +223,10 @@ class Chart extends React.Component {
             theme,
           )}
           setTooltip={this.setTooltip}
-          isHighlighted={isHighlighted}
-          hasHighlights={hasHighlights}
+          isHighlighted={
+            isHighlighted || propEq(prop(SERIES_METHOD, serie), true, highlightedMethods)
+          }
+          hasHighlights={hasHighlights || hasHighlightedMethods}
         />
       )),
     );
@@ -296,6 +315,7 @@ Chart.propTypes = {
   hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,
   width: PropTypes.string,
+  highlightedMethods: PropTypes.object.isRequired,
 };
 
 Chart.defaultProps = {

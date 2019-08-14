@@ -72,6 +72,8 @@ const DataChart = ({
   seriesUnit,
   changeMode,
   mode,
+  highlightMethod,
+  highlightedMethods,
   ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
@@ -80,6 +82,7 @@ const DataChart = ({
       <Chart
         {...series}
         hasHighlights={hasHighlights}
+        highlightedMethods={highlightedMethods}
         isCompare={isCompare}
         seriesUnit={seriesUnit}
       />
@@ -130,6 +133,8 @@ const DataChart = ({
       serieNames={serieNames}
       isCompare={isCompare}
       highlightSerie={highlightSerie}
+      highlightMethod={highlightMethod}
+      highlightedMethods={highlightedMethods}
     />
   </Card>
 );
@@ -143,6 +148,8 @@ DataChart.propTypes = {
   isCompare: PropTypes.bool,
   serieNames: PropTypes.array,
   highlightSerie: PropTypes.func.isRequired,
+  highlightMethod: PropTypes.func.isRequired,
+  highlightedMethods: PropTypes.object.isRequired,
   hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,
   changeMode: PropTypes.func,

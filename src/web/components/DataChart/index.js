@@ -17,8 +17,9 @@ import {
   getCompareHasHighlights,
   getCompareSeriesUnit,
   getCountrySeriesUnit,
+  getHighlightedMethods,
 } from '../../selectors/data';
-import { toggleActiveType, highlightSerie } from '../../ducks/data';
+import { toggleActiveType, highlightSerie, highlightMethod } from '../../ducks/data';
 import Component from './component';
 import Loader from '../Loader';
 import DataNone from '../DataNone';
@@ -32,7 +33,7 @@ const withData = ({ type, selectors }) =>
         isLoadingData: getIsLoadingData,
         ...selectors,
       }),
-      { toggleActiveType, highlightSerie: highlightSerie(type) },
+      { toggleActiveType, highlightSerie: highlightSerie(type), highlightMethod },
     ),
     branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
     branch(
@@ -60,6 +61,7 @@ export const DataCountryChart = compose(
       hasHighlights: getCountryHasHighlights,
       seriesNames: getSeriesNames,
       seriesUnit: getCountrySeriesUnit,
+      highlightedMethods: getHighlightedMethods,
     },
   }),
   withProps(({ activeTypes }) => ({

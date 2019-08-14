@@ -4,5 +4,5 @@ import Loader from '../../components/Loader';
 
 export default Loadable({
   loader: () => import('./index'),
-  loading: () => <Loader isPage />,
+  loading: () => <Loader />,
 });

@@ -60,6 +60,7 @@ import {
 } from '../constants';
 
 export const getData = prop('data');
+export const getHighlightedMethods = createSelector(getData, prop('highlightedMethods'));
 export const getActiveTab = createSelector(getData, prop('activeTab'));
 export const getIsLoadingStructure = createSelector(getData, prop('isLoadingStructure'));
 export const getIsLoadingData = createSelector(getData, prop('isLoadingData'));
