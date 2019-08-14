@@ -73,7 +73,7 @@ const DataChart = ({
   changeMode,
   mode,
   highlightMethod,
-  highlightedMethods,
+  highlightedMethods = {},
   ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
@@ -149,7 +149,7 @@ DataChart.propTypes = {
   serieNames: PropTypes.array,
   highlightSerie: PropTypes.func.isRequired,
   highlightMethod: PropTypes.func.isRequired,
-  highlightedMethods: PropTypes.object.isRequired,
+  highlightedMethods: PropTypes.object,
   hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,
   changeMode: PropTypes.func,
