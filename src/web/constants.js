@@ -3,6 +3,7 @@ export const INDICATOR = 'INDICATOR';
 export const SEX = 'SEX';
 export const TIME_PERIOD = 'TIME_PERIOD';
 export const REF_DATE = 'REF_DATE';
+export const MODEL = 'SERIES_NAME'; // should be MODEL
 export const RELEVANT_DIMENSIONS = [REF_AREA, INDICATOR, SEX];
 export const SEX_TOTAL_VALUE = '_T';
 export const RELEVANT_DIMENSIONS_DEFAULTS = new Set(['AFG', 'MRY0T4', SEX_TOTAL_VALUE]);

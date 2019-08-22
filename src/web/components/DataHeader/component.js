@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { map, equals } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
@@ -16,9 +17,17 @@ const styles = theme => ({
   typo: {
     color: theme.palette.primary.dark,
   },
+  model: {
+    textTransform: 'initial',
+    color: theme.palette.primary.main,
+  },
+  btn: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
 });
 
-const DataHeader = ({ classes, title, mode, changeMode, isCompare }) => (
+const DataHeader = ({ classes, title, model, mode, changeMode, isCompare }) => (
   <CardHeader
     className={classes.header}
     title={
@@ -27,31 +36,34 @@ const DataHeader = ({ classes, title, mode, changeMode, isCompare }) => (
           {title}
         </Typography>
         {!isCompare && (
-          <Grid container justify="center">
-            <Grid item>
-              <Button size="small" onClick={() => changeMode('chart')} disabled={mode === 'chart'}>
-                <FormattedMessage {...messages.chart} />
-              </Button>
+          <React.Fragment>
+            <Grid container justify="center">
+              <Grid item>
+                {map(m => (
+                  <Button
+                    className={classes.btn}
+                    key={m}
+                    size="small"
+                    onClick={() => changeMode(m)}
+                    disabled={equals(m, mode)}
+                    color="primary"
+                  >
+                    <FormattedMessage {...messages[m]} />
+                  </Button>
+                ))(['chart', 'estimates', 'datasources'])}
+              </Grid>
             </Grid>
-            <Grid item>
-              <Button
-                size="small"
-                onClick={() => changeMode('estimates')}
-                disabled={mode === 'estimates'}
-              >
-                <FormattedMessage {...messages.estimates} />
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
-                size="small"
-                onClick={() => changeMode('datasources')}
-                disabled={mode === 'datasources'}
-              >
-                <FormattedMessage {...messages.datasources} />
-              </Button>
-            </Grid>
-          </Grid>
+            {model && (
+              <Grid container justify="center">
+                <Grid item>
+                  <Typography variant="subtitle2" className={classes.model}>
+                    <FormattedMessage {...messages.model} />
+                    {model}
+                  </Typography>
+                </Grid>
+              </Grid>
+            )}
+          </React.Fragment>
         )}
       </React.Fragment>
     }
@@ -62,6 +74,7 @@ DataHeader.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string,
   mode: PropTypes.string,
+  model: PropTypes.string,
   changeMode: PropTypes.func,
   isCompare: PropTypes.bool,
 };

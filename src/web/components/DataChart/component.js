@@ -13,6 +13,7 @@ import {
   sortBy,
   findIndex,
   propEq,
+  path,
 } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -26,7 +27,7 @@ import Chart from '../Chart';
 import DataHeader from '../DataHeader';
 import DataLegend from '../DataLegend';
 import { getSymbol } from '../Chart/utils';
-import { EXCLUDED, ESTIMATE, TYPES } from '../../constants';
+import { EXCLUDED, ESTIMATE, TYPES, MODEL } from '../../constants';
 
 const styles = theme => ({
   card: {
@@ -77,7 +78,13 @@ const DataChart = ({
   ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
-    <DataHeader title={title} changeMode={changeMode} mode={mode} isCompare={isCompare} />
+    <DataHeader
+      title={title}
+      changeMode={changeMode}
+      mode={mode}
+      isCompare={isCompare}
+      model={path(['estimateSeries', 0, 'MODEL'], series)}
+    />
     <CardContent>
       <Chart
         {...series}
