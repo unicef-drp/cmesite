@@ -88,6 +88,8 @@ export const EXPORT_INDEX_IDS = [
   Y1,
 ];
 
+export const DATASET_TYPES = ['estimates', 'sourcedata', 'methods'];
+
 /*
  * the map (and its legend) depends on the displayed indicator.
  * INDICATOR_MAP_SCALES is an object where keys are indicator value ids
