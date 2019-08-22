@@ -26,6 +26,7 @@ import {
   reject,
   and,
   not,
+  is,
 } from 'ramda';
 import {
   ESTIMATE,
@@ -38,6 +39,8 @@ import {
 export const isEstimate = equals(ESTIMATE);
 
 export const hasSymbols = complement(isEstimate);
+
+export const isValidCoord = coord => pipe(prop(coord), is(Number));
 
 const symbols = {
   circle: symbolCircle,
