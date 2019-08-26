@@ -21,27 +21,27 @@ const style = theme => ({
 });
 
 const DataTabDownload = ({ classes }) => (
-  <Wrapper classes={{ root: classes.wrapper }}>
-    <Grid container spacing={16}>
-      <Grid item xs={12} container justify="center">
-        <Button
-          variant="contained"
-          color="primary"
-          component={Link}
-          to={`${getPath(routes.home)}#datasets`}
-        >
-          <FormattedMessage {...messages.action} />
-        </Button>
+  <React.Fragment>
+    <Wrapper classes={{ root: classes.wrapper }}>
+      <Grid container spacing={16}>
+        <Grid item xs={12} container justify="center">
+          <Button
+            variant="contained"
+            color="primary"
+            component={Link}
+            to={`${getPath(routes.home)}#datasets`}
+          >
+            <FormattedMessage {...messages.action} />
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <DataAllDimensions />
+          <DataDownloadActions dataType={DOWNLOAD} />
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <DataAllDimensions />
-        <DataDownloadActions dataType={DOWNLOAD} />
-      </Grid>
-      <Grid item xs={12}>
-        <DataNote dataType={DOWNLOAD} />
-      </Grid>
-    </Grid>
-  </Wrapper>
+    </Wrapper>
+    <DataNote dataType={DOWNLOAD} />
+  </React.Fragment>
 );
 
 DataTabDownload.propTypes = {

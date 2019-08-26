@@ -10,8 +10,8 @@ const style = theme => ({
     backgroundColor: theme.palette.secondary.dark,
     paddingTop: theme.spacing.unit * 4,
     paddingBottom: theme.spacing.unit * 4,
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit * 40,
+    paddingRight: theme.spacing.unit * 40,
   },
   typo: {
     color: theme.palette.primary.dark,

@@ -17,20 +17,20 @@ const style = theme => ({
 });
 
 const Compare = ({ classes, isActive }) => (
-  <Wrapper classes={{ root: classes.wrapper }}>
-    <Grid container spacing={16}>
-      <Grid item xs={12} md={3}>
-        <DataAllDimensions isSide dataType={COMPARE} />
-        <DataDownloadActions dataType={COMPARE} />
+  <React.Fragment>
+    <Wrapper classes={{ root: classes.wrapper }}>
+      <Grid container spacing={16}>
+        <Grid item xs={12} md={3}>
+          <DataAllDimensions isSide dataType={COMPARE} />
+          <DataDownloadActions dataType={COMPARE} />
+        </Grid>
+        <Grid item xs={12} md={9}>
+          {isActive && <DataCompareChart />}
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={9}>
-        {isActive && <DataCompareChart />}
-      </Grid>
-      <Grid item xs={12}>
-        <DataNote dataType={COMPARE} />
-      </Grid>
-    </Grid>
-  </Wrapper>
+    </Wrapper>
+    <DataNote dataType={COMPARE} />
+  </React.Fragment>
 );
 
 Compare.propTypes = {

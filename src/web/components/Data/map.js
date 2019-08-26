@@ -17,20 +17,20 @@ const style = theme => ({
 });
 
 const Map = ({ classes, isActive }) => (
-  <Wrapper classes={{ root: classes.wrapper }}>
-    <Grid container spacing={16}>
-      <Grid item xs={12} md={3}>
-        <DataOtherDimensions isSide isSelectionExclusive dataType={MAP} />
-        <DataDownloadActions dataType={MAP} />
+  <React.Fragment>
+    <Wrapper classes={{ root: classes.wrapper }}>
+      <Grid container spacing={16}>
+        <Grid item xs={12} md={3}>
+          <DataOtherDimensions isSide isSelectionExclusive dataType={MAP} />
+          <DataDownloadActions dataType={MAP} />
+        </Grid>
+        <Grid item xs={12} md={9}>
+          {isActive && <DataMap />}
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={9}>
-        {isActive && <DataMap />}
-      </Grid>
-      <Grid item xs={12}>
-        <DataNote dataType={MAP} />
-      </Grid>
-    </Grid>
-  </Wrapper>
+    </Wrapper>
+    <DataNote dataType={MAP} />
+  </React.Fragment>
 );
 
 Map.propTypes = {
