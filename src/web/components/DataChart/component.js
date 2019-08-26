@@ -27,7 +27,7 @@ import Chart from '../Chart';
 import DataHeader from '../DataHeader';
 import DataLegend from '../DataLegend';
 import { getSymbol } from '../Chart/utils';
-import { EXCLUDED, ESTIMATE, TYPES, MODEL } from '../../constants';
+import { EXCLUDED, ESTIMATE, TYPES /*MODEL*/ } from '../../constants';
 
 const styles = theme => ({
   card: {
