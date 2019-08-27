@@ -31,7 +31,8 @@ unit test:
   stage: unit-test
   image: $NODE_VERSION 
   script:
-    - yarn test
+    - yarn test --coverage
+  coverage: /All files\s*\|\s*([\d\.]+)/
   dependencies:
     - setup
   tags:
