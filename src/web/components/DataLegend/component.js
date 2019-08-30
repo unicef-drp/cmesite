@@ -89,8 +89,12 @@ const styles = theme => ({
   },
   item: {
     width: '50%',
+    cursor: 'pointer',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
     },
   },
   selectedItem: {
@@ -121,7 +125,7 @@ const DataLegend = ({
           className={classnames(classes.item, { [classes.selectedItem]: isHighlighted })}
           key={id}
           dense
-          button
+          //button
           onClick={() => highlightSerie(id)}
         >
           <ListItemIcon>
@@ -224,7 +228,7 @@ const DataLegend = ({
                     })}
                     key={method}
                     dense
-                    button
+                    //button
                     onClick={() => highlightMethod(method)}
                   >
                     <ListItemIcon>
