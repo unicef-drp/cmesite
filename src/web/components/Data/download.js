@@ -18,6 +18,9 @@ const style = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  noteBar: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const DataTabDownload = ({ classes }) => (
@@ -40,7 +43,11 @@ const DataTabDownload = ({ classes }) => (
         </Grid>
       </Grid>
     </Wrapper>
-    <DataNote dataType={DOWNLOAD} />
+    <div className={classes.noteBar}>
+      <Wrapper>
+        <DataNote dataType={DOWNLOAD} />
+      </Wrapper>
+    </div>
   </React.Fragment>
 );
 

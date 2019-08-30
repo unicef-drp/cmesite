@@ -17,6 +17,9 @@ const style = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  noteBar: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const Country = ({ classes, isActive, mode, changeMode }) => (
@@ -39,9 +42,12 @@ const Country = ({ classes, isActive, mode, changeMode }) => (
             <DataCountryDataSourcesTable changeMode={changeMode} mode={mode} />
           )}
         </Grid>
+        <Grid item xs={12} />
       </Grid>
     </Wrapper>
-    {mode === 'chart' && <DataNote dataType={COUNTRY} />}
+    <div className={classes.noteBar}>
+      <Wrapper>{mode === 'chart' && <DataNote dataType={COUNTRY} />}</Wrapper>
+    </div>
   </React.Fragment>
 );
 

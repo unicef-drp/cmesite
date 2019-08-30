@@ -14,6 +14,9 @@ const style = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  noteBar: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const Compare = ({ classes, isActive }) => (
@@ -29,7 +32,11 @@ const Compare = ({ classes, isActive }) => (
         </Grid>
       </Grid>
     </Wrapper>
-    <DataNote dataType={COMPARE} />
+    <div className={classes.noteBar}>
+      <Wrapper>
+        <DataNote dataType={COMPARE} />
+      </Wrapper>
+    </div>
   </React.Fragment>
 );
 

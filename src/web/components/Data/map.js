@@ -14,6 +14,9 @@ const style = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  noteBar: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const Map = ({ classes, isActive }) => (
@@ -29,7 +32,11 @@ const Map = ({ classes, isActive }) => (
         </Grid>
       </Grid>
     </Wrapper>
-    <DataNote dataType={MAP} />
+    <div className={classes.noteBar}>
+      <Wrapper>
+        <DataNote dataType={MAP} />
+      </Wrapper>
+    </div>
   </React.Fragment>
 );
 
