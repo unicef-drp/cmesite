@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { map, equals } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -17,17 +18,16 @@ const styles = theme => ({
   typo: {
     color: theme.palette.primary.dark,
   },
-  model: {
-    textTransform: 'initial',
-    color: theme.palette.primary.main,
-  },
   btn: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
   },
+  unselected: {
+    color: theme.palette.secondary.darker,
+  },
 });
 
-const DataHeader = ({ classes, title, model, mode, changeMode, isCompare }) => (
+const DataHeader = ({ classes, title, mode, changeMode, isCompare }) => (
   <CardHeader
     className={classes.header}
     title={
@@ -41,28 +41,17 @@ const DataHeader = ({ classes, title, model, mode, changeMode, isCompare }) => (
               <Grid item>
                 {map(m => (
                   <Button
-                    className={classes.btn}
+                    className={classnames(classes.btn, { [classes.unselected]: !equals(m, mode) })}
                     key={m}
                     size="small"
                     onClick={() => changeMode(m)}
-                    disabled={equals(m, mode)}
-                    color="primary"
+                    color={equals(m, mode) ? 'primary' : 'default'}
                   >
                     <FormattedMessage {...messages[m]} />
                   </Button>
                 ))(['chart', 'estimates', 'datasources'])}
               </Grid>
             </Grid>
-            {model && (
-              <Grid container justify="center">
-                <Grid item>
-                  <Typography variant="subtitle2" className={classes.model}>
-                    <FormattedMessage {...messages.model} />
-                    {model}
-                  </Typography>
-                </Grid>
-              </Grid>
-            )}
           </React.Fragment>
         )}
       </React.Fragment>
@@ -74,7 +63,6 @@ DataHeader.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string,
   mode: PropTypes.string,
-  model: PropTypes.string,
   changeMode: PropTypes.func,
   isCompare: PropTypes.bool,
 };

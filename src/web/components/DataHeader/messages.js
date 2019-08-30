@@ -13,8 +13,4 @@ export default defineMessages({
     id: 'dataheader.datasources',
     defaultMessage: 'Source data',
   },
-  model: {
-    id: 'dataheader.model',
-    defaultMessage: 'Estimation model: ',
-  },
 });
