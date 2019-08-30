@@ -9,7 +9,7 @@ import {
   mockedDimensions7,
   mockedSdmxData1,
   mockedSdmxData2,
-} from '../../../mocks';
+} from '../../../../mock/data/data';
 
 describe('/web/lib/sdmx/data', () => {
   describe('dataQuery', () => {
