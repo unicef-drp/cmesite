@@ -40,7 +40,7 @@ import {
 
 export const isEstimate = equals(ESTIMATE);
 
-const isPreviousEstimate = equals(PREVIOUS_ESTIMATE);
+export const isPreviousEstimate = equals(PREVIOUS_ESTIMATE);
 
 export const hasSymbols = both(complement(isEstimate), complement(isPreviousEstimate));
 

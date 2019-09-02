@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { prop, pipe, both, map, addIndex, path, is } from 'ramda';
+import { prop, pipe, both, map, addIndex, path, is, not } from 'ramda';
 import { line as d3Line, curveLinear } from 'd3-shape';
 import { select } from 'd3-selection';
-import { getSymbol, getSeriesMethodSymbol, isEstimate, getOpacity } from './utils';
+import {
+  getSymbol,
+  getSeriesMethodSymbol,
+  isEstimate,
+  getOpacity,
+  isPreviousEstimate,
+} from './utils';
 import { SERIES_METHOD, OBS_STATUS } from '../../constants';
 
 class Line extends React.Component {
@@ -67,23 +73,25 @@ class Line extends React.Component {
               />
             )}
             {/* over marker */}
-            <path
-              d={
-                !this.props.hasSymbols
-                  ? getSymbol({ size: 60 })()
-                  : getSeriesMethodSymbol({ method, size: 60 })()
-              }
-              transform={`translate(${x},${y})`}
-              fill="transparent"
-              onMouseOver={event => {
-                select(event.target).attr('fill', this.props.color);
-                this.props.setTooltip({ x, y, d, color: this.props.color });
-              }}
-              onMouseOut={event => {
-                select(event.target).attr('fill', 'transparent');
-                this.props.setTooltip();
-              }}
-            />
+            {not(isPreviousEstimate(this.props.type) && !this.props.isHighlighted) && (
+              <path
+                d={
+                  !this.props.hasSymbols
+                    ? getSymbol({ size: 60 })()
+                    : getSeriesMethodSymbol({ method, size: 60 })()
+                }
+                transform={`translate(${x},${y})`}
+                fill="transparent"
+                onMouseOver={event => {
+                  select(event.target).attr('fill', this.props.color);
+                  this.props.setTooltip({ x, y, d, color: this.props.color });
+                }}
+                onMouseOut={event => {
+                  select(event.target).attr('fill', 'transparent');
+                  this.props.setTooltip();
+                }}
+              />
+            )}
           </React.Fragment>
         );
       }, this.props.data)}
