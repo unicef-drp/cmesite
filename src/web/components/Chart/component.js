@@ -122,10 +122,15 @@ class Chart extends React.Component {
     );
     const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
 
-    const { estimateSeries, mergedSeries } = nextProps;
+    const { estimateSeries, mergedSeries, previousEstimateSeries } = nextProps;
     const includedSeries = prop(INCLUDED, mergedSeries);
     const excludedSeries = prop(EXCLUDED, mergedSeries);
-    const extents = getExtents(estimateSeries, includedSeries, excludedSeries);
+    const extents = getExtents(
+      estimateSeries,
+      previousEstimateSeries,
+      includedSeries,
+      excludedSeries,
+    );
 
     xScale
       .domain(prop('x', extents))
@@ -173,6 +178,7 @@ class Chart extends React.Component {
       theme,
       uncertaintySeries,
       estimateSeries,
+      previousEstimateSeries,
       mergedSeries,
       isCompare,
       seriesNames,
@@ -308,6 +314,7 @@ class Chart extends React.Component {
               {linesFactory(prop(INCLUDED, mergedSeries))}
               {linesFactory(prop(EXCLUDED, mergedSeries))}
               {linesFactory(estimateSeries)}
+              {linesFactory(previousEstimateSeries)}
             </g>
           </g>
         </svg>
@@ -330,6 +337,7 @@ Chart.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   estimateSeries: PropTypes.array,
+  previousEstimateSeries: PropTypes.array,
   uncertaintySeries: PropTypes.array,
   mergedSeries: PropTypes.object,
   isCompare: PropTypes.bool,

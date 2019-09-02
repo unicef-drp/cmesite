@@ -25,6 +25,7 @@ import {
   both,
   toLower,
   propSatisfies,
+  isNil,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
@@ -63,7 +64,7 @@ const initialState = {
   downloadingData: {},
   dimensions: [],
   activeTypes: reduce(
-    (memo, type) => assoc(prop('id', type), prop('value', type), memo),
+    (memo, { id, value, sdmxValue }) => (isNil(sdmxValue) ? memo : assoc(id, value, memo)),
     {},
     TYPES,
   ),

@@ -109,6 +109,7 @@ const DataLegend = ({
   highlightMethod,
   highlightedMethods,
   estimateSeries = [],
+  previousEstimateSeries = [],
   uncertaintySeries = [],
   mergedSeries = {},
   isCompare,
@@ -125,7 +126,6 @@ const DataLegend = ({
           className={classnames(classes.item, { [classes.selectedItem]: isHighlighted })}
           key={id}
           dense
-          //button
           onClick={() => highlightSerie(id)}
         >
           <ListItemIcon>
@@ -228,7 +228,6 @@ const DataLegend = ({
                     })}
                     key={method}
                     dense
-                    //button
                     onClick={() => highlightMethod(method)}
                   >
                     <ListItemIcon>
@@ -252,6 +251,47 @@ const DataLegend = ({
           </ExpansionPanelDetails>
         </ExpansionPanel>
       )}
+
+      {isEmpty(previousEstimateSeries) ? null : (
+        <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            classes={{
+              root: classes.panelSummaryRoot,
+              content: classes.panelSummaryContent,
+              expanded: classes.expanded,
+            }}
+          >
+            <Typography className={classes.typo}>
+              <FormattedMessage {...messages.titlePreviousEstimates} />
+            </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
+            <List className={classes.list}>
+              {addIndex(map)(
+                ({ id, name, isHighlighted, ...serie }, index) => (
+                  <ListItem
+                    className={classnames(classes.item, { [classes.selectedItem]: isHighlighted })}
+                    key={id}
+                    dense
+                    onClick={() => highlightSerie(id)}
+                  >
+                    <ListItemIcon>
+                      <RemoveIcon style={{ color: getColor({ index, theme }), fontSize: 30 }} />
+                    </ListItemIcon>
+                    <ListItemText>
+                      {isCompare
+                        ? join(' ', [...pipe(pick(RELEVANT_DIMENSIONS), values)(serie), name])
+                        : name}
+                    </ListItemText>
+                  </ListItem>
+                ),
+                previousEstimateSeries,
+              )}
+            </List>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      )}
     </React.Fragment>
   );
 };
@@ -260,6 +300,7 @@ DataLegend.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   estimateSeries: PropTypes.array,
+  previousEstimateSeries: PropTypes.array,
   uncertaintySeries: PropTypes.array,
   mergedSeries: PropTypes.object,
   isCompare: PropTypes.bool,

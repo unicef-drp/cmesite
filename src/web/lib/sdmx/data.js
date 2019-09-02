@@ -37,6 +37,7 @@ import {
   propEq,
   cond,
   T,
+  F,
   flip,
   contains,
   both,
@@ -159,7 +160,10 @@ const getName = locale => path(['name', locale]);
 const getType = observation =>
   pipe(
     find(({ sdmxId, sdmxValue }) =>
-      pipe(path([sdmxId, 'valueId']), equals(sdmxValue))(observation),
+      pipe(
+        path([sdmxId, 'valueId']),
+        ifElse(isNil, F, valueId => (isNil(sdmxValue) ? true : equals(sdmxValue, valueId))),
+      )(observation),
     ),
     ifElse(isNil, identity, prop('id')),
   );

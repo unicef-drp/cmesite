@@ -75,7 +75,7 @@ const DataChart = ({
   mode,
   highlightMethod,
   highlightedMethods = {},
-  ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
+  ...series // uncertaintySeries, estimateSeries, previousEstimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
     <DataHeader title={title} changeMode={changeMode} mode={mode} isCompare={isCompare} />

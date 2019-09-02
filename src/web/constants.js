@@ -16,15 +16,21 @@ export const EXC_RATE_INDICATOR_VALUE_REGEXP = /^((?!death).)*$/i;
 export const ESTIMATE = 'ESTIMATE';
 export const INCLUDED = 'IN';
 export const EXCLUDED = 'EX';
+export const PREVIOUS_ESTIMATE = 'PREVIOUS_ESTIMATE';
 
 export const SERIES_NAME = 'SERIES_NAME';
 export const OBS_STATUS = 'OBS_STATUS';
-export const ESTIMATE_TYPE = { sdmxId: SERIES_NAME, sdmxValue: '269', id: ESTIMATE, value: true };
-//export const ESTIMATE_TYPE = { sdmxId: OBS_STATUS, sdmxValue: 'A', id: ESTIMATE, value: true };
+export const ESTIMATE_TYPE = {
+  sdmxId: SERIES_NAME,
+  sdmxValue: 'UN_IGME_2019',
+  id: ESTIMATE,
+  value: true,
+};
 export const TYPES = [
   ESTIMATE_TYPE,
   { sdmxId: OBS_STATUS, sdmxValue: 'IN', id: INCLUDED, value: true },
   { sdmxId: OBS_STATUS, sdmxValue: 'EX', id: EXCLUDED, value: true },
+  { sdmxId: SERIES_NAME, sdmxValue: null, id: PREVIOUS_ESTIMATE },
 ];
 
 export const Z = SERIES_NAME;

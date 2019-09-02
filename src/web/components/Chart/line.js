@@ -69,7 +69,7 @@ class Line extends React.Component {
             {/* over marker */}
             <path
               d={
-                isEstimate(this.props.type)
+                !this.props.hasSymbols
                   ? getSymbol({ size: 60 })()
                   : getSeriesMethodSymbol({ method, size: 60 })()
               }

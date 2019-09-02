@@ -50,6 +50,7 @@ import {
   SEX,
   RELEVANT_DIMENSIONS,
   ESTIMATE,
+  PREVIOUS_ESTIMATE,
   INCLUDED,
   EXCLUDED,
   MAX_SDMX_VALUES,
@@ -175,6 +176,10 @@ export const getCountryOtherSeries = createSelector(
   ),
 );
 export const getCountryAllEstimateSeries = createSelector(getCountrySeries, prop(ESTIMATE));
+export const getCountryAllPreviousEstimateSeries = createSelector(
+  getCountrySeries,
+  prop(PREVIOUS_ESTIMATE),
+);
 export const getCountryAllIncludedSeries = createSelector(getCountrySeries, prop(INCLUDED));
 export const getCountryAllExcludedSeries = createSelector(getCountrySeries, prop(EXCLUDED));
 export const getCountryDatasourcesSerie = createSelector(
