@@ -40,7 +40,11 @@ import {
   lensProp,
   isEmpty,
   pluck,
+  map,
+  join,
+  toLower,
 } from 'ramda';
+import numeral from 'numeral';
 import { filterArtefacts, dataQuery } from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
 import { getSelectedDimensionValue, getToggledCombinations, sortByProps } from '../utils';
@@ -58,6 +62,15 @@ import {
   UNIT_MEASURE,
   SERIES_NAME,
   REF_DATE,
+  ENHANCED_ESTIMATES_FIELDS,
+  ENHANCED_DATASOURCES_FIELDS,
+  SERIES_CATEGORY,
+  SERIES_METHOD,
+  AGE_GROUP_OF_WOMEN,
+  TIME_SINCE_FIRST_BIRTH,
+  INTERVAL,
+  STD_ERR,
+  OBS_STATUS,
 } from '../constants';
 
 export const getData = prop('data');
@@ -175,11 +188,11 @@ export const getCountryOtherSeries = createSelector(
     ),
   ),
 );
-export const getCountryAllEstimateSeries = createSelector(getCountrySeries, prop(ESTIMATE));
 export const getCountryAllPreviousEstimateSeries = createSelector(
   getCountrySeries,
   prop(PREVIOUS_ESTIMATE),
 );
+export const getCountryAllEstimateSeries = createSelector(getCountrySeries, prop(ESTIMATE));
 export const getCountryAllIncludedSeries = createSelector(getCountrySeries, prop(INCLUDED));
 export const getCountryAllExcludedSeries = createSelector(getCountrySeries, prop(EXCLUDED));
 export const getCountryDatasourcesSerie = createSelector(
@@ -190,6 +203,44 @@ export const getCountryDatasourcesSerie = createSelector(
       concat(included, excluded),
     ),
 );
+export const getEnhancedCountryAllEstimateSerie = createSelector(
+  getCountryAllEstimateSeries,
+  pipe(
+    head,
+    propOr([], 'datapoints'),
+    map(datapoint => ({
+      [ENHANCED_ESTIMATES_FIELDS.year]: Math.floor(path([REF_DATE, 'valueName'])(datapoint)),
+      [ENHANCED_ESTIMATES_FIELDS.estimate]: prop('y')(datapoint),
+      [ENHANCED_ESTIMATES_FIELDS.lowerBound]: prop('y0')(datapoint),
+      [ENHANCED_ESTIMATES_FIELDS.upperBound]: prop('y1')(datapoint),
+    })),
+  ),
+);
+
+const format = ifElse(isNil, always(null), n => numeral(n).format('0.0'));
+const mergePropsByKey = (key, props, sep = '') => pipe(pick(props), pluck(key), values, join(sep));
+
+export const getEnhancedCountryDatasourcesSerie = createSelector(
+  getCountryDatasourcesSerie,
+  map(datapoint => ({
+    [ENHANCED_DATASOURCES_FIELDS.name]: path([SERIES_NAME, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.category]: path([SERIES_CATEGORY, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.method]: path([SERIES_METHOD, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.aowTsfb]: mergePropsByKey(
+      'valueId',
+      [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
+      ' ',
+    )(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.interval]: path([INTERVAL, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.refDate]: path([REF_DATE, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.value]: format(prop('y')(datapoint)),
+    [ENHANCED_DATASOURCES_FIELDS.stdErr]: format(path([STD_ERR, 'valueName'])(datapoint)),
+    [ENHANCED_DATASOURCES_FIELDS.obsStatus]: pipe(path([OBS_STATUS, 'valueId']), toLower)(
+      datapoint,
+    ),
+  })),
+);
+
 export const getCompareEstimateSeries = createSelector(
   getData,
   pipe(propOr({}, 'compareSeries'), values),

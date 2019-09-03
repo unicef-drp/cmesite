@@ -7,6 +7,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import DescriptionIcon from '@material-ui/icons/Description';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
@@ -25,9 +26,13 @@ const styles = theme => ({
   unselected: {
     color: theme.palette.secondary.darker,
   },
+  icon: {
+    marginRight: '4px',
+    height: '20px',
+  },
 });
 
-const DataHeader = ({ classes, title, mode, changeMode, isCompare }) => (
+const DataHeader = ({ classes, title, mode, changeMode, isCompare, downloadTable }) => (
   <CardHeader
     className={classes.header}
     title={
@@ -50,6 +55,18 @@ const DataHeader = ({ classes, title, mode, changeMode, isCompare }) => (
                     <FormattedMessage {...messages[m]} />
                   </Button>
                 ))(['chart', 'estimates', 'datasources'])}
+                {(mode === 'estimates' || mode === 'datasources') && (
+                  <Button
+                    className={classes.btn}
+                    variant="contained"
+                    size="small"
+                    onClick={() => downloadTable(mode)}
+                    color="primary"
+                  >
+                    <DescriptionIcon className={classes.icon} />
+                    download table
+                  </Button>
+                )}
               </Grid>
             </Grid>
           </React.Fragment>
@@ -65,6 +82,7 @@ DataHeader.propTypes = {
   mode: PropTypes.string,
   changeMode: PropTypes.func,
   isCompare: PropTypes.bool,
+  downloadTable: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(DataHeader);

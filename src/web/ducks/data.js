@@ -26,6 +26,8 @@ import {
   toLower,
   propSatisfies,
   isNil,
+  values,
+  cond,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
@@ -36,8 +38,17 @@ import {
   getIsExcNoSexIndicatorValueByIndexes,
   getSexDimension,
   getCountryDimension,
+  getEnhancedCountryAllEstimateSerie,
+  getEnhancedCountryDatasourcesSerie,
 } from '../selectors/data';
-import { TYPES, REF_AREA, SEX_TOTAL_VALUE } from '../constants';
+import {
+  TYPES,
+  REF_AREA,
+  SEX_TOTAL_VALUE,
+  ENHANCED_ESTIMATES_FIELDS,
+  ENHANCED_DATASOURCES_FIELDS,
+} from '../constants';
+import { downloadCsv, toCsv } from '../utils';
 
 export const SCOPES = ['selection' /*, 'all'*/];
 //export const FORMATS = ['csv', 'xml'];
@@ -279,6 +290,25 @@ export const downloadData = ({ dataType, format, scope }) => (dispatch, getState
     scope,
   }).then(() => dispatch({ type: TOGGLE_DOWNLOADING_DATA, format, scope }));
 };
+
+export const downloadTable = mode => (_, getState) =>
+  pipe(
+    cond([
+      [
+        equals('datasources'),
+        always([
+          values(ENHANCED_DATASOURCES_FIELDS),
+          getEnhancedCountryDatasourcesSerie(getState()),
+        ]),
+      ],
+      [
+        equals('estimates'),
+        always([values(ENHANCED_ESTIMATES_FIELDS), getEnhancedCountryAllEstimateSerie(getState())]),
+      ],
+    ]),
+    params => toCsv(...params),
+    downloadCsv('data-download.csv'),
+  )(mode);
 
 const actions = {
   changeActiveTab,
