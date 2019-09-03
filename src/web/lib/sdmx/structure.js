@@ -21,8 +21,14 @@ import {
   flatten,
   addIndex,
   test,
+  propEq,
 } from 'ramda';
-import { RELEVANT_DIMENSIONS_DEFAULTS, EXC_RATE_INDICATOR_VALUE_REGEXP } from '../../constants';
+import {
+  RELEVANT_DIMENSIONS_DEFAULTS,
+  EXC_RATE_INDICATOR_VALUE_REGEXP,
+  REF_AREA,
+} from '../../constants';
+import parseHierarchicalCodelist from './parseHierarchicalCodelist';
 
 const getName = locale => path(['name', locale]);
 
@@ -53,7 +59,7 @@ const getConcepts = dimensionIds =>
 
 const getCodelists = pipe(pathOr([], ['data', 'codelists']), indexBy(prop('urn')));
 
-const getValues = (locale, codelists) =>
+const getValues = (locale, codelists, transformers = []) =>
   pipe(
     path(['localRepresentation', 'enumeration']),
     flip(prop)(codelists),
@@ -69,7 +75,9 @@ const getValues = (locale, codelists) =>
           isMapSelected: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)), // default is map compliant
           isToggled: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
           isRate: test(EXC_RATE_INDICATOR_VALUE_REGEXP, getName(locale)(code)),
+          parent: prop('parent')(code),
         })),
+        ...transformers,
       ),
     ),
   );
@@ -91,7 +99,11 @@ const parser = ({ locale, dimensionIds = [] }) => structure => {
               hasId(dimensionIds),
               converge((label, values) => ({ label, values }), [
                 getDimensionName(locale, concepts),
-                getValues(locale, codelists),
+                getValues(
+                  locale,
+                  codelists,
+                  propEq('id', REF_AREA, dimension) ? [parseHierarchicalCodelist] : [],
+                ),
               ]),
               always({}),
             )(dimension),
