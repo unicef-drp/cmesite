@@ -21,14 +21,8 @@ import {
   flatten,
   addIndex,
   test,
-  propEq,
 } from 'ramda';
-import {
-  RELEVANT_DIMENSIONS_DEFAULTS,
-  EXC_RATE_INDICATOR_VALUE_REGEXP,
-  REF_AREA,
-} from '../../constants';
-import parseHierarchicalCodelist from './parseHierarchicalCodelist';
+import { RELEVANT_DIMENSIONS_DEFAULTS, EXC_RATE_INDICATOR_VALUE_REGEXP } from '../../constants';
 
 const getName = locale => path(['name', locale]);
 
@@ -59,7 +53,7 @@ const getConcepts = dimensionIds =>
 
 const getCodelists = pipe(pathOr([], ['data', 'codelists']), indexBy(prop('urn')));
 
-const getValues = (locale, codelists, transformers = []) =>
+const getValues = (locale, codelists) =>
   pipe(
     path(['localRepresentation', 'enumeration']),
     flip(prop)(codelists),
@@ -68,7 +62,8 @@ const getValues = (locale, codelists, transformers = []) =>
       always([]),
       pipe(
         propOr([], 'codes'),
-        map(code => ({
+        addIndex(map)((code, index) => ({
+          index,
           id: prop('id')(code),
           label: getName(locale)(code),
           isSelected: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
@@ -77,7 +72,6 @@ const getValues = (locale, codelists, transformers = []) =>
           isRate: test(EXC_RATE_INDICATOR_VALUE_REGEXP, getName(locale)(code)),
           parent: prop('parent')(code),
         })),
-        ...transformers,
       ),
     ),
   );
@@ -99,11 +93,7 @@ const parser = ({ locale, dimensionIds = [] }) => structure => {
               hasId(dimensionIds),
               converge((label, values) => ({ label, values }), [
                 getDimensionName(locale, concepts),
-                getValues(
-                  locale,
-                  codelists,
-                  propEq('id', REF_AREA, dimension) ? [parseHierarchicalCodelist] : [],
-                ),
+                getValues(locale, codelists),
               ]),
               always({}),
             )(dimension),

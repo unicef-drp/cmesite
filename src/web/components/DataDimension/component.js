@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, addIndex } from 'ramda';
+import { map } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -32,7 +32,7 @@ const styles = theme => ({
 
 const DataDimension = ({ classes, dimension, changeSelection, isSelectionExclusive, dataType }) => (
   <List className={classes.list}>
-    {addIndex(map)(({ id, label, isSelected, isMapSelected, isToggled, isDisabled }, index) => (
+    {map(({ id, label, isSelected, isMapSelected, isToggled, isDisabled, index }) => (
       <ListItem
         key={id}
         dense

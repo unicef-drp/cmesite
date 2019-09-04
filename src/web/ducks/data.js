@@ -26,6 +26,8 @@ import {
   toLower,
   propSatisfies,
   isNil,
+  split,
+  last,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
@@ -37,7 +39,7 @@ import {
   getSexDimension,
   getCountryDimension,
 } from '../selectors/data';
-import { TYPES, REF_AREA, SEX_TOTAL_VALUE } from '../constants';
+import { TYPES, REF_AREA, SEX_TOTAL_VALUE, HIERARCHY_LABEL_TOKEN } from '../constants';
 
 export const SCOPES = ['selection' /*, 'all'*/];
 //export const FORMATS = ['csv', 'xml'];
@@ -220,9 +222,10 @@ export const changeSelection = ({ selectionType, dataType }) => (dimensionIndex,
 };
 
 const changeCountryFromRoute = countryName => (dispatch, getState) => {
+  const formattedCountryName = pipe(split(HIERARCHY_LABEL_TOKEN), last, toLower)(countryName);
   const { index, values } = getCountryDimension(getState());
   const valueIndex = findIndex(
-    propSatisfies(pipe(toLower, equals(toLower(countryName))), 'label'),
+    propSatisfies(pipe(toLower, equals(formattedCountryName)), 'label'),
     values,
   );
   if (both(is(Number), lt(-1))(valueIndex))
