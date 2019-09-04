@@ -27,3 +27,5 @@ const makeComparator = propName =>
   );
 export const sortByProps = props => (list = []) =>
   R.sort(firstTruthy(R.map(makeComparator, props)), list);
+
+export const isNotEmpty = R.pipe(R.either(R.isNil, R.isEmpty), R.not);
