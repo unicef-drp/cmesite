@@ -38,7 +38,7 @@ const DataTabDownload = ({ classes }) => (
           </Button>
         </Grid>
         <Grid item xs={12}>
-          <DataAllDimensions />
+          <DataAllDimensions isRowDisplay />
           <DataDownloadActions dataType={DOWNLOAD} />
         </Grid>
       </Grid>
