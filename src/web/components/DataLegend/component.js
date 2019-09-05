@@ -94,11 +94,14 @@ const styles = theme => ({
       width: '100%',
     },
     '&:hover': {
-      backgroundColor: theme.palette.secondary.dark,
+      background: theme.palette.secondary.dark,
     },
   },
   selectedItem: {
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: 'rgba(50,130,218,.4)',
+    '&:hover': {
+      backgroundColor: 'rgba(50,130,218,.4)',
+    },
   },
 });
 
