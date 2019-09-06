@@ -9,4 +9,8 @@ export default defineMessages({
     id: 'data.yaxis.label',
     defaultMessage: 'Deaths per 1,000',
   },
+  model: {
+    id: 'dataheader.model',
+    defaultMessage: 'Estimation model: ',
+  },
 });

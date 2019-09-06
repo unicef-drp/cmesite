@@ -27,9 +27,11 @@ import {
   and,
   not,
   is,
+  both,
 } from 'ramda';
 import {
   ESTIMATE,
+  PREVIOUS_ESTIMATE,
   EXCLUDED,
   DEFAULT_SYMBOL,
   SERIES_METHOD_SYMBOLS,
@@ -38,7 +40,9 @@ import {
 
 export const isEstimate = equals(ESTIMATE);
 
-export const hasSymbols = complement(isEstimate);
+export const isPreviousEstimate = equals(PREVIOUS_ESTIMATE);
+
+export const hasSymbols = both(complement(isEstimate), complement(isPreviousEstimate));
 
 export const isValidCoord = coord => pipe(prop(coord), is(Number));
 
@@ -71,8 +75,10 @@ export const getColor = ({ index, theme, type, isUncertainty }) => {
   return theme.palette.chartColorScale(index);
 };
 
-export const getOpacity = ({ isHighlighted, hasHighlights }) =>
-  and(not(isHighlighted), hasHighlights) ? 0.25 : 1;
+export const getOpacity = ({ type, isHighlighted, hasHighlights }) => {
+  if (and(isPreviousEstimate(type), not(isHighlighted))) return 0;
+  return and(not(isHighlighted), hasHighlights) ? 0.25 : 1;
+};
 
 export const getExtents = (...series) => {
   const validSeries = reject(isNil, series);

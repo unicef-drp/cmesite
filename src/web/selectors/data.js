@@ -40,8 +40,14 @@ import {
   lensProp,
   isEmpty,
   pluck,
+  prepend,
 } from 'ramda';
-import { filterArtefacts, dataQuery } from '../lib/sdmx';
+import {
+  filterArtefacts,
+  dataQuery,
+  formatHierarchicalCodelist,
+  parseHierarchicalCodelist,
+} from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
 import { getSelectedDimensionValue, getToggledCombinations, sortByProps } from '../utils';
 import {
@@ -50,6 +56,7 @@ import {
   SEX,
   RELEVANT_DIMENSIONS,
   ESTIMATE,
+  PREVIOUS_ESTIMATE,
   INCLUDED,
   EXCLUDED,
   MAX_SDMX_VALUES,
@@ -69,6 +76,16 @@ export const getRawDimensions = createSelector(getData, prop('dimensions'));
 export const getStale = dataType => createSelector(getData, prop(`${dataType}Stale`));
 export const getDimensions = createSelector(getRawDimensions, filterArtefacts(RELEVANT_DIMENSIONS));
 export const getCountryDimension = createSelector(getDimensions, find(propEq('id', REF_AREA)));
+export const getCountryDimensionWithAggregates = unformatted =>
+  createSelector(getCountryDimension, dimension =>
+    assoc(
+      'values',
+      pipe(parseHierarchicalCodelist, ...(unformatted ? [] : [formatHierarchicalCodelist()]))(
+        propOr([], 'values', dimension),
+      ),
+      dimension,
+    ),
+  );
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
 export const getMapIndicatorDimension = createSelector(
   getIndicatorDimension,
@@ -96,6 +113,11 @@ export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,
   useWith(reject, [eqBy(prop('id')), identity]),
+);
+export const getDimensionsWithAggregates = createSelector(
+  getCountryDimensionWithAggregates(true),
+  getOtherDimensions,
+  prepend,
 );
 export const getCountryTitle = createSelector(
   getOtherDimensions,
@@ -175,6 +197,10 @@ export const getCountryOtherSeries = createSelector(
   ),
 );
 export const getCountryAllEstimateSeries = createSelector(getCountrySeries, prop(ESTIMATE));
+export const getCountryAllPreviousEstimateSeries = createSelector(
+  getCountrySeries,
+  prop(PREVIOUS_ESTIMATE),
+);
 export const getCountryAllIncludedSeries = createSelector(getCountrySeries, prop(INCLUDED));
 export const getCountryAllExcludedSeries = createSelector(getCountrySeries, prop(EXCLUDED));
 export const getCountryDatasourcesSerie = createSelector(

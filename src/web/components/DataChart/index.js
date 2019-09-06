@@ -18,6 +18,7 @@ import {
   getCompareSeriesUnit,
   getCountrySeriesUnit,
   getHighlightedMethods,
+  getCountryAllPreviousEstimateSeries,
 } from '../../selectors/data';
 import { toggleActiveType, highlightSerie, highlightMethod } from '../../ducks/data';
 import Component from './component';
@@ -54,6 +55,7 @@ export const DataCountryChart = compose(
       title: getCountryTitle,
       activeTypes: getCountryActiveTypes,
       estimateSeries: getCountryEstimateSeries,
+      previousEstimateSeries: getCountryAllPreviousEstimateSeries,
       uncertaintySeries: getCountryEstimateSeries,
       mergedSeries: getCountryOtherSeries,
       includedSeries: getCountryIncludedSeries,

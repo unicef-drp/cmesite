@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import {
   compose,
   map,
@@ -80,9 +81,12 @@ const style = theme => ({
   },
   resetZoom: {
     position: 'absolute',
-    top: theme.spacing.unit * 4,
+    top: theme.spacing.unit * 5,
     right: theme.spacing.unit * 2,
     textTransform: 'none',
+  },
+  model: {
+    paddingRight: theme.spacing.unit,
   },
 });
 
@@ -116,10 +120,15 @@ class Chart extends React.Component {
     );
     const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
 
-    const { estimateSeries, mergedSeries } = nextProps;
+    const { estimateSeries, mergedSeries, previousEstimateSeries } = nextProps;
     const includedSeries = prop(INCLUDED, mergedSeries);
     const excludedSeries = prop(EXCLUDED, mergedSeries);
-    const extents = getExtents(estimateSeries, includedSeries, excludedSeries);
+    const extents = getExtents(
+      estimateSeries,
+      previousEstimateSeries,
+      includedSeries,
+      excludedSeries,
+    );
 
     xScale
       .domain(prop('x', extents))
@@ -167,12 +176,14 @@ class Chart extends React.Component {
       theme,
       uncertaintySeries,
       estimateSeries,
+      previousEstimateSeries,
       mergedSeries,
       isCompare,
       seriesNames,
       hasHighlights,
       seriesUnit,
       highlightedMethods,
+      model,
     } = this.props;
 
     const { width } = size;
@@ -234,15 +245,30 @@ class Chart extends React.Component {
     return (
       <div>
         {/* div is required for withSize to work properly */}
-        <Typography variant="caption">
-          {
-            /*<FormattedMessage {...messages.yAxisLabel} />*/
-            seriesUnit
-          }
-        </Typography>
+
+        <Grid container alignItems="center">
+          <Grid item xs={6}>
+            <Typography variant="caption">
+              {
+                /*<FormattedMessage {...messages.yAxisLabel} />*/
+                seriesUnit
+              }
+            </Typography>
+          </Grid>
+          {model && (
+            <Grid item xs={6}>
+              <Typography variant="caption" className={classes.model} align="right">
+                <FormattedMessage {...messages.model} />
+                {model}
+              </Typography>
+            </Grid>
+          )}
+        </Grid>
+
         <Button variant="contained" onClick={this.resetZoom} className={classes.resetZoom}>
           <FormattedMessage {...messages.resetZoom} />
         </Button>
+
         <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             {contentWidth < 0 || contentHeight < 0 ? null : (
@@ -286,6 +312,7 @@ class Chart extends React.Component {
               {linesFactory(prop(INCLUDED, mergedSeries))}
               {linesFactory(prop(EXCLUDED, mergedSeries))}
               {linesFactory(estimateSeries)}
+              {linesFactory(previousEstimateSeries)}
             </g>
           </g>
         </svg>
@@ -308,6 +335,7 @@ Chart.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   estimateSeries: PropTypes.array,
+  previousEstimateSeries: PropTypes.array,
   uncertaintySeries: PropTypes.array,
   mergedSeries: PropTypes.object,
   isCompare: PropTypes.bool,
@@ -316,6 +344,7 @@ Chart.propTypes = {
   seriesUnit: PropTypes.string,
   width: PropTypes.string,
   highlightedMethods: PropTypes.object.isRequired,
+  model: PropTypes.string,
 };
 
 Chart.defaultProps = {

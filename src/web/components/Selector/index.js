@@ -1,11 +1,11 @@
-import { isNil, map, addIndex, prop } from 'ramda';
+import { isNil, prop } from 'ramda';
 import { compose, branch, renderNothing, withProps, withHandlers } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import {
-  getCountryDimension,
+  getCountryDimensionWithAggregates,
   getCountryValue,
   getMapIndicatorDimension,
   getMapIndicatorValue,
@@ -29,10 +29,7 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
     withProps(({ dimension }) => ({
       keys,
       isCountry,
-      values: addIndex(map)(
-        ({ id, label }, index) => ({ index, label, value: id }),
-        prop('values')(dimension),
-      ),
+      values: prop('values')(dimension),
     })),
     withHandlers({
       handleValue: ({ dimension, changeSelection, history, changeActiveTab }) => value => {
@@ -46,13 +43,13 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
   );
 
 export const CountrySelector = enhance(
-  { dimension: getCountryDimension, value: getCountryValue },
+  { dimension: getCountryDimensionWithAggregates(), value: getCountryValue },
   { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorPlaceholder' },
   { isCountry: true },
 )(Component);
 
 export const HomeCountrySelector = enhance(
-  { dimension: getCountryDimension },
+  { dimension: getCountryDimensionWithAggregates() },
   { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorPlaceholder' },
   { isCountry: true },
 )(Component);

@@ -11,6 +11,10 @@ export default defineMessages({
   },
   uncertainty: {
     id: 'legend.uncertainty',
-    defaultMessage: 'UN IGME Uncertainty Intervals',
+    defaultMessage: 'UN IGME 2019 uncertainty intervals',
+  },
+  titlePreviousEstimates: {
+    id: 'legend.title.previous.estimates',
+    defaultMessage: 'Previous Estimates',
   },
 });

@@ -27,7 +27,7 @@ import Chart from '../Chart';
 import DataHeader from '../DataHeader';
 import DataLegend from '../DataLegend';
 import { getSymbol } from '../Chart/utils';
-import { EXCLUDED, ESTIMATE, TYPES /*MODEL*/ } from '../../constants';
+import { EXCLUDED, ESTIMATE, TYPES, MODEL } from '../../constants';
 
 const styles = theme => ({
   card: {
@@ -75,16 +75,10 @@ const DataChart = ({
   mode,
   highlightMethod,
   highlightedMethods = {},
-  ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
+  ...series // uncertaintySeries, estimateSeries, previousEstimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
-    <DataHeader
-      title={title}
-      changeMode={changeMode}
-      mode={mode}
-      isCompare={isCompare}
-      model={path(['estimateSeries', 0, 'MODEL'], series)}
-    />
+    <DataHeader title={title} changeMode={changeMode} mode={mode} isCompare={isCompare} />
     <CardContent>
       <Chart
         {...series}
@@ -92,6 +86,7 @@ const DataChart = ({
         highlightedMethods={highlightedMethods}
         isCompare={isCompare}
         seriesUnit={seriesUnit}
+        model={path(['estimateSeries', 0, MODEL], series)}
       />
     </CardContent>
     {activeTypes && (

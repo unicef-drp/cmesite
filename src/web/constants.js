@@ -3,7 +3,7 @@ export const INDICATOR = 'INDICATOR';
 export const SEX = 'SEX';
 export const TIME_PERIOD = 'TIME_PERIOD';
 export const REF_DATE = 'REF_DATE';
-export const MODEL = 'SERIES_NAME'; // should be MODEL
+export const MODEL = 'MODEL';
 export const RELEVANT_DIMENSIONS = [REF_AREA, INDICATOR, SEX];
 export const SEX_TOTAL_VALUE = '_T';
 export const RELEVANT_DIMENSIONS_DEFAULTS = new Set(['AFG', 'MRY0T4', SEX_TOTAL_VALUE]);
@@ -13,18 +13,26 @@ export const EXCLUDED_DOWNLOAD_DIMENSIONS = [TIME_PERIOD];
 export const EXC_NO_SEX_INDICATOR_VALUES = new Set(['MRM0', 'MRY5T14', 'TMM0', 'TMY5T14']);
 export const EXC_RATE_INDICATOR_VALUE_REGEXP = /^((?!death).)*$/i;
 
+export const HIERARCHY_LABEL_TOKEN = ' > ';
+
 export const ESTIMATE = 'ESTIMATE';
 export const INCLUDED = 'IN';
 export const EXCLUDED = 'EX';
+export const PREVIOUS_ESTIMATE = 'PREVIOUS_ESTIMATE';
 
 export const SERIES_NAME = 'SERIES_NAME';
 export const OBS_STATUS = 'OBS_STATUS';
-export const ESTIMATE_TYPE = { sdmxId: SERIES_NAME, sdmxValue: '269', id: ESTIMATE, value: true };
-//export const ESTIMATE_TYPE = { sdmxId: OBS_STATUS, sdmxValue: 'A', id: ESTIMATE, value: true };
+export const ESTIMATE_TYPE = {
+  sdmxId: SERIES_NAME,
+  sdmxValue: 'UN_IGME_2019',
+  id: ESTIMATE,
+  value: true,
+};
 export const TYPES = [
   ESTIMATE_TYPE,
   { sdmxId: OBS_STATUS, sdmxValue: 'IN', id: INCLUDED, value: true },
   { sdmxId: OBS_STATUS, sdmxValue: 'EX', id: EXCLUDED, value: true },
+  { sdmxId: SERIES_NAME, sdmxValue: null, id: PREVIOUS_ESTIMATE },
 ];
 
 export const Z = SERIES_NAME;
