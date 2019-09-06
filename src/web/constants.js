@@ -13,6 +13,8 @@ export const EXCLUDED_DOWNLOAD_DIMENSIONS = [TIME_PERIOD];
 export const EXC_NO_SEX_INDICATOR_VALUES = new Set(['MRM0', 'MRY5T14', 'TMM0', 'TMY5T14']);
 export const EXC_RATE_INDICATOR_VALUE_REGEXP = /^((?!death).)*$/i;
 
+export const HIERARCHY_LABEL_TOKEN = ' > ';
+
 export const ESTIMATE = 'ESTIMATE';
 export const INCLUDED = 'IN';
 export const EXCLUDED = 'EX';

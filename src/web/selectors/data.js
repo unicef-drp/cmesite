@@ -43,9 +43,15 @@ import {
   map,
   join,
   toLower,
+  prepend,
 } from 'ramda';
 import numeral from 'numeral';
-import { filterArtefacts, dataQuery } from '../lib/sdmx';
+import {
+  filterArtefacts,
+  dataQuery,
+  formatHierarchicalCodelist,
+  parseHierarchicalCodelist,
+} from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
 import { getSelectedDimensionValue, getToggledCombinations, sortByProps } from '../utils';
 import {
@@ -83,6 +89,16 @@ export const getRawDimensions = createSelector(getData, prop('dimensions'));
 export const getStale = dataType => createSelector(getData, prop(`${dataType}Stale`));
 export const getDimensions = createSelector(getRawDimensions, filterArtefacts(RELEVANT_DIMENSIONS));
 export const getCountryDimension = createSelector(getDimensions, find(propEq('id', REF_AREA)));
+export const getCountryDimensionWithAggregates = unformatted =>
+  createSelector(getCountryDimension, dimension =>
+    assoc(
+      'values',
+      pipe(parseHierarchicalCodelist, ...(unformatted ? [] : [formatHierarchicalCodelist()]))(
+        propOr([], 'values', dimension),
+      ),
+      dimension,
+    ),
+  );
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
 export const getMapIndicatorDimension = createSelector(
   getIndicatorDimension,
@@ -110,6 +126,11 @@ export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,
   useWith(reject, [eqBy(prop('id')), identity]),
+);
+export const getDimensionsWithAggregates = createSelector(
+  getCountryDimensionWithAggregates(true),
+  getOtherDimensions,
+  prepend,
 );
 export const getCountryTitle = createSelector(
   getOtherDimensions,

@@ -50,3 +50,5 @@ export const toCsv = (fields, data = [], { delimiter = ',', eol = '\r\n' } = {})
     ),
     R.join(eol),
   )(data);
+
+export const isNotEmpty = R.pipe(R.either(R.isNil, R.isEmpty), R.not);

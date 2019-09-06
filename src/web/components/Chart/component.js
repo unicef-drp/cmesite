@@ -86,8 +86,6 @@ const style = theme => ({
     textTransform: 'none',
   },
   model: {
-    textTransform: 'initial',
-    color: theme.palette.primary.main,
     paddingRight: theme.spacing.unit,
   },
 });
@@ -259,7 +257,7 @@ class Chart extends React.Component {
           </Grid>
           {model && (
             <Grid item xs={6}>
-              <Typography variant="subtitle2" className={classes.model} align="right">
+              <Typography variant="caption" className={classes.model} align="right">
                 <FormattedMessage {...messages.model} />
                 {model}
               </Typography>
