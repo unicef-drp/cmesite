@@ -10,6 +10,9 @@ import {
   mockedSdmxData1,
   mockedSdmxData2,
 } from '../../../../mock/data/data';
+import toCsvInputData from '../../../../mock/data/toCsvDataInput';
+import toCsvInputData2 from '../../../../mock/data/toCsvDataInput2';
+import toCsvInputData3 from '../../../../mock/data/toCsvDataInput3';
 
 describe('/web/lib/sdmx/data', () => {
   describe('dataQuery', () => {
@@ -131,6 +134,23 @@ describe('/web/lib/sdmx/data', () => {
         };
         expect(dataParser(options)(mockedSdmxData2)).toMatchSnapshot();
       });
+    });
+  });
+
+  describe('toCsv', () => {
+    it('should match snapshot', () => {
+      const options = { eol: '\r\n', delimiter: ',', excludedArtefactIds: ['TIME_PERIOD'] };
+      expect(toCsv(options)(toCsvInputData)).toMatchSnapshot();
+    });
+
+    it('should match snapshot', () => {
+      const options = { eol: '\r\n', delimiter: ',', excludedArtefactIds: ['TIME_PERIOD'] };
+      expect(toCsv(options)(toCsvInputData2)).toMatchSnapshot();
+    });
+
+    it('should match snapshot', () => {
+      const options = { eol: '\r\n', delimiter: ',', excludedArtefactIds: ['TIME_PERIOD'] };
+      expect(toCsv(options)(toCsvInputData3)).toMatchSnapshot();
     });
   });
 });
