@@ -5,7 +5,6 @@ Object {
   "1959-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "World Fertility Survey 1979 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "54",
@@ -186,7 +185,6 @@ Object {
   "1962-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "World Fertility Survey 1979 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "54",
@@ -367,7 +365,6 @@ Object {
   "1963-09--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Individual survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -548,7 +545,6 @@ Object {
   "1964-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "World Fertility Survey 1979 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "54",
@@ -726,10 +722,9 @@ Object {
     "name": "1964-01",
     "type": "EX",
   },
-  "1964-06--ESTIMATE": Object {
+  "1964-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -901,18 +896,15 @@ Object {
         },
         "x": 1964-06-01T00:00:00.000Z,
         "y": 267.5,
-        "y0": 240,
-        "y1": 300.8,
       },
     },
-    "id": "1964-06--ESTIMATE",
+    "id": "1964-06--PREVIOUS_ESTIMATE",
     "name": "1964-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "1965-06--ESTIMATE": Object {
+  "1965-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -1084,18 +1076,15 @@ Object {
         },
         "x": 1965-06-01T00:00:00.000Z,
         "y": 260.6,
-        "y0": 235.3,
-        "y1": 291.1,
       },
     },
-    "id": "1965-06--ESTIMATE",
+    "id": "1965-06--PREVIOUS_ESTIMATE",
     "name": "1965-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1965-09--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Household survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -1276,7 +1265,6 @@ Object {
   "1966-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "World Fertility Survey 1979 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "54",
@@ -1454,10 +1442,9 @@ Object {
     "name": "1966-01",
     "type": "EX",
   },
-  "1966-06--ESTIMATE": Object {
+  "1966-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -1629,18 +1616,15 @@ Object {
         },
         "x": 1966-06-01T00:00:00.000Z,
         "y": 253.1,
-        "y0": 229.7,
-        "y1": 280.9,
       },
     },
-    "id": "1966-06--ESTIMATE",
+    "id": "1966-06--PREVIOUS_ESTIMATE",
     "name": "1966-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1966-08--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Individual survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -1818,10 +1802,9 @@ Object {
     "name": "1966-08",
     "type": "EX",
   },
-  "1967-06--ESTIMATE": Object {
+  "1967-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -1993,18 +1976,15 @@ Object {
         },
         "x": 1967-06-01T00:00:00.000Z,
         "y": 244.7,
-        "y0": 223.4,
-        "y1": 270,
       },
     },
-    "id": "1967-06--ESTIMATE",
+    "id": "1967-06--PREVIOUS_ESTIMATE",
     "name": "1967-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1968-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "World Fertility Survey 1979 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "54",
@@ -2182,10 +2162,9 @@ Object {
     "name": "1968-01",
     "type": "EX",
   },
-  "1968-06--ESTIMATE": Object {
+  "1968-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -2357,18 +2336,15 @@ Object {
         },
         "x": 1968-06-01T00:00:00.000Z,
         "y": 236.2,
-        "y0": 216.3,
-        "y1": 259.2,
       },
     },
-    "id": "1968-06--ESTIMATE",
+    "id": "1968-06--PREVIOUS_ESTIMATE",
     "name": "1968-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1968-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -2546,10 +2522,9 @@ Object {
     "name": "1968-07",
     "type": "EX",
   },
-  "1969-06--ESTIMATE": Object {
+  "1969-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -2721,18 +2696,15 @@ Object {
         },
         "x": 1969-06-01T00:00:00.000Z,
         "y": 227.3,
-        "y0": 209,
-        "y1": 248.3,
       },
     },
-    "id": "1969-06--ESTIMATE",
+    "id": "1969-06--PREVIOUS_ESTIMATE",
     "name": "1969-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1969-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Individual survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -2913,7 +2885,6 @@ Object {
   "1970-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "World Fertility Survey 1979 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "54",
@@ -3091,10 +3062,9 @@ Object {
     "name": "1970-01",
     "type": "EX",
   },
-  "1970-06--ESTIMATE": Object {
+  "1970-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -3266,18 +3236,15 @@ Object {
         },
         "x": 1970-06-01T00:00:00.000Z,
         "y": 218.7,
-        "y0": 201.6,
-        "y1": 238,
       },
     },
-    "id": "1970-06--ESTIMATE",
+    "id": "1970-06--PREVIOUS_ESTIMATE",
     "name": "1970-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1970-10--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Household survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -3455,10 +3422,9 @@ Object {
     "name": "1970-10",
     "type": "EX",
   },
-  "1971-06--ESTIMATE": Object {
+  "1971-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -3630,18 +3596,15 @@ Object {
         },
         "x": 1971-06-01T00:00:00.000Z,
         "y": 210.3,
-        "y0": 194.3,
-        "y1": 228.4,
       },
     },
-    "id": "1971-06--ESTIMATE",
+    "id": "1971-06--PREVIOUS_ESTIMATE",
     "name": "1971-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1971-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -3822,7 +3785,6 @@ Object {
   "1972-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "World Fertility Survey 1979 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "54",
@@ -4003,7 +3965,6 @@ Object {
   "1972-05--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Individual survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -4181,10 +4142,9 @@ Object {
     "name": "1972-05",
     "type": "EX",
   },
-  "1972-06--ESTIMATE": Object {
+  "1972-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -4356,18 +4316,15 @@ Object {
         },
         "x": 1972-06-01T00:00:00.000Z,
         "y": 202.3,
-        "y0": 187.4,
-        "y1": 219.3,
       },
     },
-    "id": "1972-06--ESTIMATE",
+    "id": "1972-06--PREVIOUS_ESTIMATE",
     "name": "1972-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1972-11--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Household survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -4545,10 +4502,9 @@ Object {
     "name": "1972-11",
     "type": "EX",
   },
-  "1973-06--ESTIMATE": Object {
+  "1973-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -4720,18 +4676,15 @@ Object {
         },
         "x": 1973-06-01T00:00:00.000Z,
         "y": 194.6,
-        "y0": 180.8,
-        "y1": 210.4,
       },
     },
-    "id": "1973-06--ESTIMATE",
+    "id": "1973-06--PREVIOUS_ESTIMATE",
     "name": "1973-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1973-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -4912,7 +4865,6 @@ Object {
   "1974-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -5090,10 +5042,9 @@ Object {
     "name": "1974-01",
     "type": "EX",
   },
-  "1974-06--ESTIMATE": Object {
+  "1974-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -5265,18 +5216,15 @@ Object {
         },
         "x": 1974-06-01T00:00:00.000Z,
         "y": 187.2,
-        "y0": 174.4,
-        "y1": 201.9,
       },
     },
-    "id": "1974-06--ESTIMATE",
+    "id": "1974-06--PREVIOUS_ESTIMATE",
     "name": "1974-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1974-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -5457,7 +5405,6 @@ Object {
   "1974-10--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Household survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -5638,7 +5585,6 @@ Object {
   "1975-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Individual survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -5816,10 +5762,9 @@ Object {
     "name": "1975-01",
     "type": "EX",
   },
-  "1975-06--ESTIMATE": Object {
+  "1975-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -5991,18 +5936,15 @@ Object {
         },
         "x": 1975-06-01T00:00:00.000Z,
         "y": 179.6,
-        "y0": 167.4,
-        "y1": 193.4,
       },
     },
-    "id": "1975-06--ESTIMATE",
+    "id": "1975-06--PREVIOUS_ESTIMATE",
     "name": "1975-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1975-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -6183,7 +6125,6 @@ Object {
   "1976-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -6361,10 +6302,9 @@ Object {
     "name": "1976-01",
     "type": "EX",
   },
-  "1976-06--ESTIMATE": Object {
+  "1976-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -6536,18 +6476,15 @@ Object {
         },
         "x": 1976-06-01T00:00:00.000Z,
         "y": 171.6,
-        "y0": 160.1,
-        "y1": 184.3,
       },
     },
-    "id": "1976-06--ESTIMATE",
+    "id": "1976-06--PREVIOUS_ESTIMATE",
     "name": "1976-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1976-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -6728,7 +6665,6 @@ Object {
   "1976-08--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Household survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -6909,7 +6845,6 @@ Object {
   "1977-03--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "WFS-Individual survey 1979 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "54",
@@ -7087,10 +7022,9 @@ Object {
     "name": "1977-03",
     "type": "EX",
   },
-  "1977-06--ESTIMATE": Object {
+  "1977-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -7262,18 +7196,15 @@ Object {
         },
         "x": 1977-06-01T00:00:00.000Z,
         "y": 163.3,
-        "y0": 152.5,
-        "y1": 175.3,
       },
     },
-    "id": "1977-06--ESTIMATE",
+    "id": "1977-06--PREVIOUS_ESTIMATE",
     "name": "1977-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1977-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -7454,7 +7385,6 @@ Object {
   "1978-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -7635,7 +7565,6 @@ Object {
   "1978-05--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "77",
@@ -7813,10 +7742,9 @@ Object {
     "name": "1978-05",
     "type": "EX",
   },
-  "1978-06--ESTIMATE": Object {
+  "1978-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -7988,18 +7916,15 @@ Object {
         },
         "x": 1978-06-01T00:00:00.000Z,
         "y": 155,
-        "y0": 145.1,
-        "y1": 166.1,
       },
     },
-    "id": "1978-06--ESTIMATE",
+    "id": "1978-06--PREVIOUS_ESTIMATE",
     "name": "1978-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1978-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -8177,10 +8102,9 @@ Object {
     "name": "1978-07",
     "type": "EX",
   },
-  "1979-06--ESTIMATE": Object {
+  "1979-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -8352,18 +8276,15 @@ Object {
         },
         "x": 1979-06-01T00:00:00.000Z,
         "y": 146.9,
-        "y0": 137.8,
-        "y1": 156.9,
       },
     },
-    "id": "1979-06--ESTIMATE",
+    "id": "1979-06--PREVIOUS_ESTIMATE",
     "name": "1979-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1979-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -8544,7 +8465,6 @@ Object {
   "1980-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -8722,10 +8642,9 @@ Object {
     "name": "1980-01",
     "type": "EX",
   },
-  "1980-06--ESTIMATE": Object {
+  "1980-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -8897,18 +8816,15 @@ Object {
         },
         "x": 1980-06-01T00:00:00.000Z,
         "y": 139,
-        "y0": 130.5,
-        "y1": 147.8,
       },
     },
-    "id": "1980-06--ESTIMATE",
+    "id": "1980-06--PREVIOUS_ESTIMATE",
     "name": "1980-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1980-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -9086,10 +9002,9 @@ Object {
     "name": "1980-07",
     "type": "EX",
   },
-  "1981-06--ESTIMATE": Object {
+  "1981-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -9261,18 +9176,15 @@ Object {
         },
         "x": 1981-06-01T00:00:00.000Z,
         "y": 131.2,
-        "y0": 123.5,
-        "y1": 139.5,
       },
     },
-    "id": "1981-06--ESTIMATE",
+    "id": "1981-06--PREVIOUS_ESTIMATE",
     "name": "1981-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1981-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -9453,7 +9365,6 @@ Object {
   "1982-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -9631,10 +9542,9 @@ Object {
     "name": "1982-01",
     "type": "EX",
   },
-  "1982-06--ESTIMATE": Object {
+  "1982-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -9806,18 +9716,15 @@ Object {
         },
         "x": 1982-06-01T00:00:00.000Z,
         "y": 123.8,
-        "y0": 116.7,
-        "y1": 131.6,
       },
     },
-    "id": "1982-06--ESTIMATE",
+    "id": "1982-06--PREVIOUS_ESTIMATE",
     "name": "1982-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1982-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -9995,10 +9902,9 @@ Object {
     "name": "1982-07",
     "type": "EX",
   },
-  "1983-06--ESTIMATE": Object {
+  "1983-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -10170,18 +10076,15 @@ Object {
         },
         "x": 1983-06-01T00:00:00.000Z,
         "y": 117.1,
-        "y0": 110.5,
-        "y1": 124.2,
       },
     },
-    "id": "1983-06--ESTIMATE",
+    "id": "1983-06--PREVIOUS_ESTIMATE",
     "name": "1983-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1983-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -10362,7 +10265,6 @@ Object {
   "1983-11--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "88",
@@ -10543,7 +10445,6 @@ Object {
   "1984-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -10724,7 +10625,6 @@ Object {
   "1984-02--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "77",
@@ -10902,10 +10802,9 @@ Object {
     "name": "1984-02",
     "type": "EX",
   },
-  "1984-06--ESTIMATE": Object {
+  "1984-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -11077,18 +10976,15 @@ Object {
         },
         "x": 1984-06-01T00:00:00.000Z,
         "y": 111.1,
-        "y0": 104.9,
-        "y1": 117.6,
       },
     },
-    "id": "1984-06--ESTIMATE",
+    "id": "1984-06--PREVIOUS_ESTIMATE",
     "name": "1984-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1984-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -11269,7 +11165,6 @@ Object {
   "1984-10--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Census 1994 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "82",
@@ -11450,7 +11345,6 @@ Object {
   "1985-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "108",
@@ -11628,10 +11522,9 @@ Object {
     "name": "1985-01",
     "type": "EX",
   },
-  "1985-06--ESTIMATE": Object {
+  "1985-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -11803,18 +11696,15 @@ Object {
         },
         "x": 1985-06-01T00:00:00.000Z,
         "y": 105.8,
-        "y0": 100,
-        "y1": 112,
       },
     },
-    "id": "1985-06--ESTIMATE",
+    "id": "1985-06--PREVIOUS_ESTIMATE",
     "name": "1985-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1985-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -11995,7 +11885,6 @@ Object {
   "1986-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -12176,7 +12065,6 @@ Object {
   "1986-04--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "77",
@@ -12354,10 +12242,9 @@ Object {
     "name": "1986-04",
     "type": "EX",
   },
-  "1986-06--ESTIMATE": Object {
+  "1986-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -12529,18 +12416,15 @@ Object {
         },
         "x": 1986-06-01T00:00:00.000Z,
         "y": 101.4,
-        "y0": 95.7,
-        "y1": 107.1,
       },
     },
-    "id": "1986-06--ESTIMATE",
+    "id": "1986-06--PREVIOUS_ESTIMATE",
     "name": "1986-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1986-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -12721,7 +12605,6 @@ Object {
   "1986-10--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Census 1994 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "82",
@@ -12902,7 +12785,6 @@ Object {
   "1987-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "88",
@@ -13080,10 +12962,9 @@ Object {
     "name": "1987-01",
     "type": "EX",
   },
-  "1987-06--ESTIMATE": Object {
+  "1987-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -13255,18 +13136,15 @@ Object {
         },
         "x": 1987-06-01T00:00:00.000Z,
         "y": 97.5,
-        "y0": 92.1,
-        "y1": 103,
       },
     },
-    "id": "1987-06--ESTIMATE",
+    "id": "1987-06--PREVIOUS_ESTIMATE",
     "name": "1987-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1987-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -13447,7 +13325,6 @@ Object {
   "1988-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -13628,7 +13505,6 @@ Object {
   "1988-04--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "77",
@@ -13809,7 +13685,6 @@ Object {
   "1988-05--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Census 1994 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "82",
@@ -13987,10 +13862,9 @@ Object {
     "name": "1988-05",
     "type": "EX",
   },
-  "1988-06--ESTIMATE": Object {
+  "1988-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -14162,18 +14036,15 @@ Object {
         },
         "x": 1988-06-01T00:00:00.000Z,
         "y": 94,
-        "y0": 88.9,
-        "y1": 99.5,
       },
     },
-    "id": "1988-06--ESTIMATE",
+    "id": "1988-06--PREVIOUS_ESTIMATE",
     "name": "1988-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1988-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -14354,7 +14225,6 @@ Object {
   "1989-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "108",
@@ -14532,10 +14402,9 @@ Object {
     "name": "1989-01",
     "type": "EX",
   },
-  "1989-06--ESTIMATE": Object {
+  "1989-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -14707,18 +14576,15 @@ Object {
         },
         "x": 1989-06-01T00:00:00.000Z,
         "y": 91,
-        "y0": 86.1,
-        "y1": 96.3,
       },
     },
-    "id": "1989-06--ESTIMATE",
+    "id": "1989-06--PREVIOUS_ESTIMATE",
     "name": "1989-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1989-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -14899,7 +14765,6 @@ Object {
   "1989-09--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "88",
@@ -15080,7 +14945,6 @@ Object {
   "1989-11--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "77",
@@ -15261,7 +15125,6 @@ Object {
   "1990-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1991-1992 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "77",
@@ -15439,10 +15302,9 @@ Object {
     "name": "1990-01",
     "type": "EX",
   },
-  "1990-06--ESTIMATE": Object {
+  "1990-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -15614,18 +15476,15 @@ Object {
         },
         "x": 1990-06-01T00:00:00.000Z,
         "y": 88.5,
-        "y0": 83.7,
-        "y1": 93.5,
       },
     },
-    "id": "1990-06--ESTIMATE",
+    "id": "1990-06--PREVIOUS_ESTIMATE",
     "name": "1990-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1990-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -15806,7 +15665,6 @@ Object {
   "1990-09--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "PAP 2003 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "100",
@@ -15984,10 +15842,9 @@ Object {
     "name": "1990-09",
     "type": "EX",
   },
-  "1991-06--ESTIMATE": Object {
+  "1991-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -16159,18 +16016,15 @@ Object {
         },
         "x": 1991-06-01T00:00:00.000Z,
         "y": 86.2,
-        "y0": 81.5,
-        "y1": 91.2,
       },
     },
-    "id": "1991-06--ESTIMATE",
+    "id": "1991-06--PREVIOUS_ESTIMATE",
     "name": "1991-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1991-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 2013 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "125",
@@ -16351,7 +16205,6 @@ Object {
   "1991-08--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Census 1994 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "82",
@@ -16532,7 +16385,6 @@ Object {
   "1992-02--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "88",
@@ -16710,10 +16562,9 @@ Object {
     "name": "1992-02",
     "type": "EX",
   },
-  "1992-06--ESTIMATE": Object {
+  "1992-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -16885,18 +16736,15 @@ Object {
         },
         "x": 1992-06-01T00:00:00.000Z,
         "y": 84.2,
-        "y0": 79.6,
-        "y1": 89.1,
       },
     },
-    "id": "1992-06--ESTIMATE",
+    "id": "1992-06--PREVIOUS_ESTIMATE",
     "name": "1992-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1992-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -17077,7 +16925,6 @@ Object {
   "1993-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "108",
@@ -17255,10 +17102,9 @@ Object {
     "name": "1993-01",
     "type": "EX",
   },
-  "1993-06--ESTIMATE": Object {
+  "1993-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -17430,18 +17276,15 @@ Object {
         },
         "x": 1993-06-01T00:00:00.000Z,
         "y": 82.5,
-        "y0": 77.9,
-        "y1": 87.4,
       },
     },
-    "id": "1993-06--ESTIMATE",
+    "id": "1993-06--PREVIOUS_ESTIMATE",
     "name": "1993-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1993-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -17622,7 +17465,6 @@ Object {
   "1994-02--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "88",
@@ -17803,7 +17645,6 @@ Object {
   "1994-04--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Census 2004 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "103",
@@ -17981,10 +17822,9 @@ Object {
     "name": "1994-04",
     "type": "EX",
   },
-  "1994-06--ESTIMATE": Object {
+  "1994-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -18156,18 +17996,15 @@ Object {
         },
         "x": 1994-06-01T00:00:00.000Z,
         "y": 81,
-        "y0": 76.4,
-        "y1": 85.8,
       },
     },
-    "id": "1994-06--ESTIMATE",
+    "id": "1994-06--PREVIOUS_ESTIMATE",
     "name": "1994-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1994-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -18345,10 +18182,9 @@ Object {
     "name": "1994-07",
     "type": "EX",
   },
-  "1995-06--ESTIMATE": Object {
+  "1995-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -18520,18 +18356,15 @@ Object {
         },
         "x": 1995-06-01T00:00:00.000Z,
         "y": 79.5,
-        "y0": 74.9,
-        "y1": 84.4,
       },
     },
-    "id": "1995-06--ESTIMATE",
+    "id": "1995-06--PREVIOUS_ESTIMATE",
     "name": "1995-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1995-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 1997 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "88",
@@ -18712,7 +18545,6 @@ Object {
   "1995-09--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "PAP 2003 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "100",
@@ -18893,7 +18725,6 @@ Object {
   "1995-10--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "108",
@@ -19074,7 +18905,6 @@ Object {
   "1996-04--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Census 2004 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "103",
@@ -19252,10 +19082,9 @@ Object {
     "name": "1996-04",
     "type": "EX",
   },
-  "1996-06--ESTIMATE": Object {
+  "1996-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -19427,18 +19256,15 @@ Object {
         },
         "x": 1996-06-01T00:00:00.000Z,
         "y": 78.1,
-        "y0": 73.3,
-        "y1": 83.2,
       },
     },
-    "id": "1996-06--ESTIMATE",
+    "id": "1996-06--PREVIOUS_ESTIMATE",
     "name": "1996-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1996-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 2013 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "125",
@@ -19619,7 +19445,6 @@ Object {
   "1997-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "108",
@@ -19797,10 +19622,9 @@ Object {
     "name": "1997-01",
     "type": "EX",
   },
-  "1997-06--ESTIMATE": Object {
+  "1997-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -19972,18 +19796,15 @@ Object {
         },
         "x": 1997-06-01T00:00:00.000Z,
         "y": 76.4,
-        "y0": 71.5,
-        "y1": 81.8,
       },
     },
-    "id": "1997-06--ESTIMATE",
+    "id": "1997-06--PREVIOUS_ESTIMATE",
     "name": "1997-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1997-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "PAPFAM Family Health Survey 2003 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "100",
@@ -20164,7 +19985,6 @@ Object {
   "1997-11--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "108",
@@ -20345,7 +20165,6 @@ Object {
   "1998-02--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Census 2004 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "103",
@@ -20523,10 +20342,9 @@ Object {
     "name": "1998-02",
     "type": "EX",
   },
-  "1998-06--ESTIMATE": Object {
+  "1998-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -20698,18 +20516,15 @@ Object {
         },
         "x": 1998-06-01T00:00:00.000Z,
         "y": 74.3,
-        "y0": 69.3,
-        "y1": 79.7,
       },
     },
-    "id": "1998-06--ESTIMATE",
+    "id": "1998-06--PREVIOUS_ESTIMATE",
     "name": "1998-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1998-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "PAPFAM Family Health Survey 2003 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "100",
@@ -20887,10 +20702,9 @@ Object {
     "name": "1998-07",
     "type": "EX",
   },
-  "1999-06--ESTIMATE": Object {
+  "1999-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -21062,18 +20876,15 @@ Object {
         },
         "x": 1999-06-01T00:00:00.000Z,
         "y": 71.7,
-        "y0": 66.9,
-        "y1": 77.1,
       },
     },
-    "id": "1999-06--ESTIMATE",
+    "id": "1999-06--PREVIOUS_ESTIMATE",
     "name": "1999-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "1999-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "PAPFAM Family Health Survey 2003 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "100",
@@ -21254,7 +21065,6 @@ Object {
   "1999-10--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "108",
@@ -21432,10 +21242,9 @@ Object {
     "name": "1999-10",
     "type": "EX",
   },
-  "2000-06--ESTIMATE": Object {
+  "2000-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -21607,18 +21416,15 @@ Object {
         },
         "x": 2000-06-01T00:00:00.000Z,
         "y": 68.9,
-        "y0": 64.3,
-        "y1": 74,
       },
     },
-    "id": "2000-06--ESTIMATE",
+    "id": "2000-06--PREVIOUS_ESTIMATE",
     "name": "2000-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "2000-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "PAPFAM Family Health Survey 2003 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "100",
@@ -21799,7 +21605,6 @@ Object {
   "2000-09--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "PAP 2003 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "100",
@@ -21980,7 +21785,6 @@ Object {
   "2001-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "108",
@@ -22158,10 +21962,9 @@ Object {
     "name": "2001-01",
     "type": "EX",
   },
-  "2001-06--ESTIMATE": Object {
+  "2001-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -22333,18 +22136,15 @@ Object {
         },
         "x": 2001-06-01T00:00:00.000Z,
         "y": 66,
-        "y0": 61.5,
-        "y1": 70.8,
       },
     },
-    "id": "2001-06--ESTIMATE",
+    "id": "2001-06--PREVIOUS_ESTIMATE",
     "name": "2001-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "2001-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 2013 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "125",
@@ -22525,7 +22325,6 @@ Object {
   "2001-08--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "108",
@@ -22703,10 +22502,9 @@ Object {
     "name": "2001-08",
     "type": "EX",
   },
-  "2002-06--ESTIMATE": Object {
+  "2002-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -22878,18 +22676,15 @@ Object {
         },
         "x": 2002-06-01T00:00:00.000Z,
         "y": 63,
-        "y0": 58.7,
-        "y1": 67.7,
       },
     },
-    "id": "2002-06--ESTIMATE",
+    "id": "2002-06--PREVIOUS_ESTIMATE",
     "name": "2002-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "2002-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "PAPFAM Family Health Survey 2003 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "100",
@@ -23070,7 +22865,6 @@ Object {
   "2003-04--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Indirect)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "108",
@@ -23248,10 +23042,9 @@ Object {
     "name": "2003-04",
     "type": "EX",
   },
-  "2003-06--ESTIMATE": Object {
+  "2003-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -23423,18 +23216,15 @@ Object {
         },
         "x": 2003-06-01T00:00:00.000Z,
         "y": 60,
-        "y0": 55.9,
-        "y1": 64.7,
       },
     },
-    "id": "2003-06--ESTIMATE",
+    "id": "2003-06--PREVIOUS_ESTIMATE",
     "name": "2003-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "2004-01--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Census 2004 (Household Deaths)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "HD",
     "SERIES_YEAR": "103",
@@ -23612,10 +23402,9 @@ Object {
     "name": "2004-01",
     "type": "EX",
   },
-  "2004-06--ESTIMATE": Object {
+  "2004-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -23787,18 +23576,15 @@ Object {
         },
         "x": 2004-06-01T00:00:00.000Z,
         "y": 57.3,
-        "y0": 53.1,
-        "y1": 61.7,
       },
     },
-    "id": "2004-06--ESTIMATE",
+    "id": "2004-06--PREVIOUS_ESTIMATE",
     "name": "2004-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "2004-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Multiple Indicator Cluster Survey 2006 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "108",
@@ -23976,10 +23762,9 @@ Object {
     "name": "2004-07",
     "type": "EX",
   },
-  "2005-06--ESTIMATE": Object {
+  "2005-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -24151,18 +23936,15 @@ Object {
         },
         "x": 2005-06-01T00:00:00.000Z,
         "y": 54.6,
-        "y0": 50.4,
-        "y1": 59,
       },
     },
-    "id": "2005-06--ESTIMATE",
+    "id": "2005-06--PREVIOUS_ESTIMATE",
     "name": "2005-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "2005-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 2013 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "125",
@@ -24340,10 +24122,9 @@ Object {
     "name": "2005-07",
     "type": "EX",
   },
-  "2006-06--ESTIMATE": Object {
+  "2006-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -24515,18 +24296,15 @@ Object {
         },
         "x": 2006-06-01T00:00:00.000Z,
         "y": 52,
-        "y0": 47.8,
-        "y1": 56.5,
       },
     },
-    "id": "2006-06--ESTIMATE",
+    "id": "2006-06--PREVIOUS_ESTIMATE",
     "name": "2006-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "2007-06--ESTIMATE": Object {
+  "2007-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -24698,18 +24476,15 @@ Object {
         },
         "x": 2007-06-01T00:00:00.000Z,
         "y": 49.6,
-        "y0": 45.1,
-        "y1": 54.1,
       },
     },
-    "id": "2007-06--ESTIMATE",
+    "id": "2007-06--PREVIOUS_ESTIMATE",
     "name": "2007-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "2008-06--ESTIMATE": Object {
+  "2008-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -24881,18 +24656,15 @@ Object {
         },
         "x": 2008-06-01T00:00:00.000Z,
         "y": 47.2,
-        "y0": 42.6,
-        "y1": 52,
       },
     },
-    "id": "2008-06--ESTIMATE",
+    "id": "2008-06--PREVIOUS_ESTIMATE",
     "name": "2008-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "2008-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 2013 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "125",
@@ -25070,10 +24842,9 @@ Object {
     "name": "2008-07",
     "type": "EX",
   },
-  "2009-06--ESTIMATE": Object {
+  "2009-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -25245,18 +25016,15 @@ Object {
         },
         "x": 2009-06-01T00:00:00.000Z,
         "y": 45.2,
-        "y0": 40.4,
-        "y1": 50.2,
       },
     },
-    "id": "2009-06--ESTIMATE",
+    "id": "2009-06--PREVIOUS_ESTIMATE",
     "name": "2009-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "2010-06--ESTIMATE": Object {
+  "2010-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -25428,18 +25196,15 @@ Object {
         },
         "x": 2010-06-01T00:00:00.000Z,
         "y": 43.9,
-        "y0": 38.7,
-        "y1": 49.4,
       },
     },
-    "id": "2010-06--ESTIMATE",
+    "id": "2010-06--PREVIOUS_ESTIMATE",
     "name": "2010-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "2011-06--ESTIMATE": Object {
+  "2011-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -25611,18 +25376,15 @@ Object {
         },
         "x": 2011-06-01T00:00:00.000Z,
         "y": 43.3,
-        "y0": 37.5,
-        "y1": 49.6,
       },
     },
-    "id": "2011-06--ESTIMATE",
+    "id": "2011-06--PREVIOUS_ESTIMATE",
     "name": "2011-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "2011-07--EX": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "Demographic and Health Survey 2013 (Direct)",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "125",
@@ -25800,10 +25562,9 @@ Object {
     "name": "2011-07",
     "type": "EX",
   },
-  "2012-06--ESTIMATE": Object {
+  "2012-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -25975,18 +25736,15 @@ Object {
         },
         "x": 2012-06-01T00:00:00.000Z,
         "y": 43.2,
-        "y0": 36.6,
-        "y1": 50.5,
       },
     },
-    "id": "2012-06--ESTIMATE",
+    "id": "2012-06--PREVIOUS_ESTIMATE",
     "name": "2012-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "2013-06--ESTIMATE": Object {
+  "2013-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -26158,18 +25916,15 @@ Object {
         },
         "x": 2013-06-01T00:00:00.000Z,
         "y": 43.2,
-        "y0": 35.5,
-        "y1": 51.7,
       },
     },
-    "id": "2013-06--ESTIMATE",
+    "id": "2013-06--PREVIOUS_ESTIMATE",
     "name": "2013-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "2014-06--ESTIMATE": Object {
+  "2014-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -26341,18 +26096,15 @@ Object {
         },
         "x": 2014-06-01T00:00:00.000Z,
         "y": 43.2,
-        "y0": 34.4,
-        "y1": 53.2,
       },
     },
-    "id": "2014-06--ESTIMATE",
+    "id": "2014-06--PREVIOUS_ESTIMATE",
     "name": "2014-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "2015-06--ESTIMATE": Object {
+  "2015-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -26524,18 +26276,15 @@ Object {
         },
         "x": 2015-06-01T00:00:00.000Z,
         "y": 43.2,
-        "y0": 33.3,
-        "y1": 54.9,
       },
     },
-    "id": "2015-06--ESTIMATE",
+    "id": "2015-06--PREVIOUS_ESTIMATE",
     "name": "2015-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "2016-06--ESTIMATE": Object {
+  "2016-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -26707,18 +26456,15 @@ Object {
         },
         "x": 2016-06-01T00:00:00.000Z,
         "y": 43.2,
-        "y0": 32.1,
-        "y1": 56.6,
       },
     },
-    "id": "2016-06--ESTIMATE",
+    "id": "2016-06--PREVIOUS_ESTIMATE",
     "name": "2016-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
-  "2017-06--ESTIMATE": Object {
+  "2017-06--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Infant mortality rate",
     "INDICATOR_ID": "MRY0",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Yemen",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -26890,13 +26636,11 @@ Object {
         },
         "x": 2017-06-01T00:00:00.000Z,
         "y": 43.2,
-        "y0": 30.8,
-        "y1": 58.7,
       },
     },
-    "id": "2017-06--ESTIMATE",
+    "id": "2017-06--PREVIOUS_ESTIMATE",
     "name": "2017-06",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
 }
 `;
@@ -26906,7 +26650,6 @@ Object {
   "AFG-MRY0T4-_T-1--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Demographic and Health Survey 2015 (Direct)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "129",
@@ -28415,7 +28158,6 @@ Object {
   "AFG-MRY0T4-_T-11--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "National Risk and Vulnerability Assessment Survey 2007-2008 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "111",
@@ -28596,7 +28338,6 @@ Object {
   "AFG-MRY0T4-_T-11--IN": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "National Risk and Vulnerability Assessment Survey 2007-2008 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "111",
@@ -29441,7 +29182,6 @@ Object {
   "AFG-MRY0T4-_T-12--IN": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Afghanistan Health Survey 2006-2007 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "109",
@@ -30286,7 +30026,6 @@ Object {
   "AFG-MRY0T4-_T-13--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Multiple Indicator Cluster Survey 2003 (Direct)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "100",
@@ -31131,7 +30870,6 @@ Object {
   "AFG-MRY0T4-_T-14--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Multiple Indicator Cluster Survey 2003 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "100",
@@ -32142,7 +31880,6 @@ Object {
   "AFG-MRY0T4-_T-15--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Multiple Indicator Cluster Survey 2000 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "94",
@@ -32987,7 +32724,6 @@ Object {
   "AFG-MRY0T4-_T-16--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Multiple Indicator Cluster Survey 1997 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "88",
@@ -33168,7 +32904,6 @@ Object {
   "AFG-MRY0T4-_T-16--IN": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Multiple Indicator Cluster Survey 1997 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "88",
@@ -34013,7 +33748,6 @@ Object {
   "AFG-MRY0T4-_T-17--IN": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Census 1979 (Household Deaths)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "HD",
     "SERIES_YEAR": "54",
@@ -34194,7 +33928,6 @@ Object {
   "AFG-MRY0T4-_T-18--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "National Demographic and Family Guidance Survey 1972 (Household Deaths)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "HD",
     "SERIES_YEAR": "36",
@@ -34375,7 +34108,6 @@ Object {
   "AFG-MRY0T4-_T-19--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "National Demographic and Family Guidance Survey 1972 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "36",
@@ -34556,7 +34288,6 @@ Object {
   "AFG-MRY0T4-_T-19--IN": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "National Demographic and Family Guidance Survey 1972 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "36",
@@ -35401,7 +35132,6 @@ Object {
   "AFG-MRY0T4-_T-2--IN": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Demographic and Health Survey (NN adjusted) 2015 (Direct)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "129",
@@ -36741,10 +36471,9 @@ Object {
     "name": "Demographic and Health Survey (NN adjusted) 2015 (Direct)",
     "type": "IN",
   },
-  "AFG-MRY0T4-_T-269--ESTIMATE": Object {
+  "AFG-MRY0T4-_T-269--PREVIOUS_ESTIMATE": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "UN IGME estimate",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": undefined,
     "SERIES_YEAR": "134",
@@ -36916,8 +36645,6 @@ Object {
         },
         "x": 1960-06-01T00:00:00.000Z,
         "y": 356.5,
-        "y0": 301.9,
-        "y1": 421.1,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -37084,8 +36811,6 @@ Object {
         },
         "x": 1961-06-01T00:00:00.000Z,
         "y": 350.5,
-        "y0": 301.9,
-        "y1": 408.7,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -37252,8 +36977,6 @@ Object {
         },
         "x": 1962-06-01T00:00:00.000Z,
         "y": 344.8,
-        "y0": 300.2,
-        "y1": 397.8,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -37420,8 +37143,6 @@ Object {
         },
         "x": 1963-06-01T00:00:00.000Z,
         "y": 339.3,
-        "y0": 297.5,
-        "y1": 388.3,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -37588,8 +37309,6 @@ Object {
         },
         "x": 1964-06-01T00:00:00.000Z,
         "y": 334.1,
-        "y0": 293.3,
-        "y1": 379.8,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -37756,8 +37475,6 @@ Object {
         },
         "x": 1965-06-01T00:00:00.000Z,
         "y": 328.5,
-        "y0": 288.9,
-        "y1": 373.5,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -37924,8 +37641,6 @@ Object {
         },
         "x": 1966-06-01T00:00:00.000Z,
         "y": 323,
-        "y0": 284.7,
-        "y1": 366.7,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -38092,8 +37807,6 @@ Object {
         },
         "x": 1967-06-01T00:00:00.000Z,
         "y": 317.5,
-        "y0": 279.9,
-        "y1": 360.9,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -38260,8 +37973,6 @@ Object {
         },
         "x": 1968-06-01T00:00:00.000Z,
         "y": 312.1,
-        "y0": 274.8,
-        "y1": 355.4,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -38428,8 +38139,6 @@ Object {
         },
         "x": 1969-06-01T00:00:00.000Z,
         "y": 306.6,
-        "y0": 269.8,
-        "y1": 350,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -38596,8 +38305,6 @@ Object {
         },
         "x": 1970-06-01T00:00:00.000Z,
         "y": 300.9,
-        "y0": 264.9,
-        "y1": 344.6,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -38764,8 +38471,6 @@ Object {
         },
         "x": 1971-06-01T00:00:00.000Z,
         "y": 295.3,
-        "y0": 260.6,
-        "y1": 338.7,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -38932,8 +38637,6 @@ Object {
         },
         "x": 1972-06-01T00:00:00.000Z,
         "y": 290,
-        "y0": 255.7,
-        "y1": 332.5,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -39100,8 +38803,6 @@ Object {
         },
         "x": 1973-06-01T00:00:00.000Z,
         "y": 283.9,
-        "y0": 250.8,
-        "y1": 326.1,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -39268,8 +38969,6 @@ Object {
         },
         "x": 1974-06-01T00:00:00.000Z,
         "y": 278.2,
-        "y0": 246.3,
-        "y1": 319.8,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -39436,8 +39135,6 @@ Object {
         },
         "x": 1975-06-01T00:00:00.000Z,
         "y": 272.2,
-        "y0": 241.1,
-        "y1": 311.9,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -39604,8 +39301,6 @@ Object {
         },
         "x": 1976-06-01T00:00:00.000Z,
         "y": 266.2,
-        "y0": 236,
-        "y1": 304.8,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -39772,8 +39467,6 @@ Object {
         },
         "x": 1977-06-01T00:00:00.000Z,
         "y": 260.2,
-        "y0": 230.7,
-        "y1": 296.9,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -39940,8 +39633,6 @@ Object {
         },
         "x": 1978-06-01T00:00:00.000Z,
         "y": 254.1,
-        "y0": 225.5,
-        "y1": 289.3,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -40108,8 +39799,6 @@ Object {
         },
         "x": 1979-06-01T00:00:00.000Z,
         "y": 247.7,
-        "y0": 220.1,
-        "y1": 281.3,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -40276,8 +39965,6 @@ Object {
         },
         "x": 1980-06-01T00:00:00.000Z,
         "y": 241.3,
-        "y0": 214.7,
-        "y1": 273.4,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -40444,8 +40131,6 @@ Object {
         },
         "x": 1981-06-01T00:00:00.000Z,
         "y": 234.6,
-        "y0": 209.1,
-        "y1": 265.5,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -40612,8 +40297,6 @@ Object {
         },
         "x": 1982-06-01T00:00:00.000Z,
         "y": 228.1,
-        "y0": 203.6,
-        "y1": 257.7,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -40780,8 +40463,6 @@ Object {
         },
         "x": 1983-06-01T00:00:00.000Z,
         "y": 221.4,
-        "y0": 198.3,
-        "y1": 249.6,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -40948,8 +40629,6 @@ Object {
         },
         "x": 1984-06-01T00:00:00.000Z,
         "y": 214.7,
-        "y0": 192.7,
-        "y1": 241.5,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -41116,8 +40795,6 @@ Object {
         },
         "x": 1985-06-01T00:00:00.000Z,
         "y": 208,
-        "y0": 187.3,
-        "y1": 233.3,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -41284,8 +40961,6 @@ Object {
         },
         "x": 1986-06-01T00:00:00.000Z,
         "y": 201.3,
-        "y0": 181.9,
-        "y1": 225,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -41452,8 +41127,6 @@ Object {
         },
         "x": 1987-06-01T00:00:00.000Z,
         "y": 194.6,
-        "y0": 176.3,
-        "y1": 216.2,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -41620,8 +41293,6 @@ Object {
         },
         "x": 1988-06-01T00:00:00.000Z,
         "y": 188,
-        "y0": 170.8,
-        "y1": 207.8,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -41788,8 +41459,6 @@ Object {
         },
         "x": 1989-06-01T00:00:00.000Z,
         "y": 181.4,
-        "y0": 165.4,
-        "y1": 199.7,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -41956,8 +41625,6 @@ Object {
         },
         "x": 1990-06-01T00:00:00.000Z,
         "y": 175.1,
-        "y0": 159.9,
-        "y1": 191.7,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -42124,8 +41791,6 @@ Object {
         },
         "x": 1991-06-01T00:00:00.000Z,
         "y": 168.9,
-        "y0": 154.6,
-        "y1": 184.2,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -42292,8 +41957,6 @@ Object {
         },
         "x": 1992-06-01T00:00:00.000Z,
         "y": 162.9,
-        "y0": 149.5,
-        "y1": 177.3,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -42460,8 +42123,6 @@ Object {
         },
         "x": 1993-06-01T00:00:00.000Z,
         "y": 157.4,
-        "y0": 144.7,
-        "y1": 170.9,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -42628,8 +42289,6 @@ Object {
         },
         "x": 1994-06-01T00:00:00.000Z,
         "y": 152.4,
-        "y0": 140.1,
-        "y1": 165.2,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -42796,8 +42455,6 @@ Object {
         },
         "x": 1995-06-01T00:00:00.000Z,
         "y": 147.8,
-        "y0": 135.9,
-        "y1": 160,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -42964,8 +42621,6 @@ Object {
         },
         "x": 1996-06-01T00:00:00.000Z,
         "y": 143.5,
-        "y0": 132.2,
-        "y1": 155.2,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -43132,8 +42787,6 @@ Object {
         },
         "x": 1997-06-01T00:00:00.000Z,
         "y": 139.6,
-        "y0": 128.8,
-        "y1": 150.9,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -43300,8 +42953,6 @@ Object {
         },
         "x": 1998-06-01T00:00:00.000Z,
         "y": 135.8,
-        "y0": 125.6,
-        "y1": 146.9,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -43468,8 +43119,6 @@ Object {
         },
         "x": 1999-06-01T00:00:00.000Z,
         "y": 132.3,
-        "y0": 122.5,
-        "y1": 143.2,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -43636,8 +43285,6 @@ Object {
         },
         "x": 2000-06-01T00:00:00.000Z,
         "y": 128.8,
-        "y0": 119.4,
-        "y1": 139.6,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -43804,8 +43451,6 @@ Object {
         },
         "x": 2001-06-01T00:00:00.000Z,
         "y": 125.3,
-        "y0": 116.1,
-        "y1": 136,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -43972,8 +43617,6 @@ Object {
         },
         "x": 2002-06-01T00:00:00.000Z,
         "y": 121.7,
-        "y0": 112.6,
-        "y1": 132.3,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -44140,8 +43783,6 @@ Object {
         },
         "x": 2003-06-01T00:00:00.000Z,
         "y": 117.9,
-        "y0": 109,
-        "y1": 128.2,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -44308,8 +43949,6 @@ Object {
         },
         "x": 2004-06-01T00:00:00.000Z,
         "y": 114.1,
-        "y0": 105.4,
-        "y1": 124,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -44476,8 +44115,6 @@ Object {
         },
         "x": 2005-06-01T00:00:00.000Z,
         "y": 110.1,
-        "y0": 101.7,
-        "y1": 119.6,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -44644,8 +44281,6 @@ Object {
         },
         "x": 2006-06-01T00:00:00.000Z,
         "y": 106.1,
-        "y0": 97.9,
-        "y1": 115.1,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -44812,8 +44447,6 @@ Object {
         },
         "x": 2007-06-01T00:00:00.000Z,
         "y": 102,
-        "y0": 93.9,
-        "y1": 110.9,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -44980,8 +44613,6 @@ Object {
         },
         "x": 2008-06-01T00:00:00.000Z,
         "y": 97.9,
-        "y0": 89.7,
-        "y1": 106.8,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -45148,8 +44779,6 @@ Object {
         },
         "x": 2009-06-01T00:00:00.000Z,
         "y": 93.9,
-        "y0": 85.4,
-        "y1": 103,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -45316,8 +44945,6 @@ Object {
         },
         "x": 2010-06-01T00:00:00.000Z,
         "y": 90,
-        "y0": 81,
-        "y1": 99.6,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -45484,8 +45111,6 @@ Object {
         },
         "x": 2011-06-01T00:00:00.000Z,
         "y": 86.2,
-        "y0": 76.5,
-        "y1": 96.5,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -45652,8 +45277,6 @@ Object {
         },
         "x": 2012-06-01T00:00:00.000Z,
         "y": 82.6,
-        "y0": 71.7,
-        "y1": 93.6,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -45820,8 +45443,6 @@ Object {
         },
         "x": 2013-06-01T00:00:00.000Z,
         "y": 79.2,
-        "y0": 67.1,
-        "y1": 91,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -45988,8 +45609,6 @@ Object {
         },
         "x": 2014-06-01T00:00:00.000Z,
         "y": 76,
-        "y0": 62.8,
-        "y1": 88.7,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -46156,8 +45775,6 @@ Object {
         },
         "x": 2015-06-01T00:00:00.000Z,
         "y": 73.1,
-        "y0": 58.7,
-        "y1": 86.6,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -46324,8 +45941,6 @@ Object {
         },
         "x": 2016-06-01T00:00:00.000Z,
         "y": 70.4,
-        "y0": 55.3,
-        "y1": 85.3,
       },
       Object {
         "AGE_GROUP_OF_WOMEN": Object {
@@ -46492,18 +46107,15 @@ Object {
         },
         "x": 2017-06-01T00:00:00.000Z,
         "y": 67.9,
-        "y0": 52,
-        "y1": 84.5,
       },
     ],
-    "id": "AFG-MRY0T4-_T-269--ESTIMATE",
+    "id": "AFG-MRY0T4-_T-269--PREVIOUS_ESTIMATE",
     "name": "UN IGME estimate",
-    "type": "ESTIMATE",
+    "type": "PREVIOUS_ESTIMATE",
   },
   "AFG-MRY0T4-_T-3--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Afghanistan Health Survey 2015 (Direct)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "129",
@@ -46684,7 +46296,6 @@ Object {
   "AFG-MRY0T4-_T-4--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Afghanistan Living Conditions Survey 2011-2012 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "122",
@@ -47695,7 +47306,6 @@ Object {
   "AFG-MRY0T4-_T-5--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Multiple Indicator Cluster Survey 2010-2011 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "120",
@@ -47876,7 +47486,6 @@ Object {
   "AFG-MRY0T4-_T-5--IN": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Multiple Indicator Cluster Survey 2010-2011 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "120",
@@ -48721,7 +48330,6 @@ Object {
   "AFG-MRY0T4-_T-6--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Multiple Indicator Cluster Survey Excluding South Zone 2010-2011 (Indirect)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "SBH",
     "SERIES_YEAR": "120",
@@ -49732,7 +49340,6 @@ Object {
   "AFG-MRY0T4-_T-7--EX": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Afghanistan Mortality Survey (AMS) Excluding South Zone 2010 (Direct)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "119",
@@ -51739,7 +51346,6 @@ Object {
   "AFG-MRY0T4-_T-8--IN": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Afghanistan Mortality Survey (AMS) Excluding South Zone (Household data (5 year)) 2010 (Household Deaths)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "HD",
     "SERIES_YEAR": "119",
@@ -51920,7 +51526,6 @@ Object {
   "AFG-MRY0T4-_T-9--IN": Object {
     "INDICATOR": "Under-5 mortality rate",
     "INDICATOR_ID": "MRY0T4",
-    "MODEL": "Afghanistan Mortality Survey (AMS) Excluding South Zone (NN adjusted) 2010 (Direct)",
     "REF_AREA": "Afghanistan",
     "SERIES_METHOD": "FBH",
     "SERIES_YEAR": "119",

@@ -80,7 +80,7 @@ describe('/web/lib/sdmx/data', () => {
 
     describe('when called with a MAP data context', () => {
       it('should match the expected result', () => {
-        const expectedTitle = '.MRY0T4._T.269..';
+        const expectedTitle = '.MRY0T4._T.UN_IGME_2019..';
         const queryOptions = {
           dropIds: ['REF_AREA'],
           isExclusive: true,
