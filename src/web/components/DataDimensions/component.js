@@ -45,9 +45,6 @@ const styles = theme => ({
     flexDirection: 'column',
     //borderTop: `1px solid ${theme.palette.secondary.dark}`,
   },
-  big: {
-    height: '300px',
-  },
   typo: {
     color: theme.palette.primary.dark,
     paddingLeft: theme.spacing.unit,
@@ -104,9 +101,7 @@ const DataDimensions = ({
             )}
             <Typography className={classes.typo}>{label}</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails
-            className={classNames(classes.panelDetails, { [classes.big]: isRowDisplay })}
-          >
+          <ExpansionPanelDetails className={classes.panelDetails}>
             <DataDimension
               dimension={dimension}
               changeSelection={changeSelection}
