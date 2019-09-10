@@ -18,30 +18,37 @@ const style = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  noteBar: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const DataTabDownload = ({ classes }) => (
-  <Wrapper classes={{ root: classes.wrapper }}>
-    <Grid container spacing={16}>
-      <Grid item xs={12} container justify="center">
-        <Button
-          variant="contained"
-          color="primary"
-          component={Link}
-          to={`${getPath(routes.home)}#datasets`}
-        >
-          <FormattedMessage {...messages.action} />
-        </Button>
+  <React.Fragment>
+    <Wrapper classes={{ root: classes.wrapper }}>
+      <Grid container spacing={16}>
+        <Grid item xs={12} container justify="center">
+          <Button
+            variant="contained"
+            color="primary"
+            component={Link}
+            to={`${getPath(routes.home)}#datasets`}
+          >
+            <FormattedMessage {...messages.action} />
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <DataAllDimensions isRowDisplay />
+          <DataDownloadActions dataType={DOWNLOAD} />
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <DataAllDimensions />
-        <DataDownloadActions dataType={DOWNLOAD} />
-      </Grid>
-      <Grid item xs={12}>
+    </Wrapper>
+    <div className={classes.noteBar}>
+      <Wrapper>
         <DataNote dataType={DOWNLOAD} />
-      </Grid>
-    </Grid>
-  </Wrapper>
+      </Wrapper>
+    </div>
+  </React.Fragment>
 );
 
 DataTabDownload.propTypes = {
