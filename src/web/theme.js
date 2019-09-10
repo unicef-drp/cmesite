@@ -25,6 +25,8 @@ export default createMuiTheme({
     display1: {
       fontFamily: "'montserrat', sans-serif",
       fontWeight: 600,
+      textTransform: 'uppercase',
+      fontSize: '2rem',
     },
     headline: {
       fontFamily: "'montserrat', sans-serif",
