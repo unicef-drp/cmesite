@@ -5,6 +5,7 @@ exports[`Reports | component render should match snapshot 1`] = `
   classes={
     Object {
       "action": "Reports-action-10",
+      "btnType": "Reports-btnType-13",
       "card": "Reports-card-5",
       "container": "Reports-container-4",
       "content": "Reports-content-7",

@@ -3,10 +3,12 @@ import { compose, branch, renderNothing, withProps } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import {
-  getReports,
+  getReportsByType,
   getFeaturedReports,
   getMethodReports,
+  getReportType,
 } from '../../selectors/wp';
+import { changeReportType } from '../../ducks/wp';
 import Component from './component';
 
 const noReport = branch(({ reports }) => isEmpty(reports), renderNothing);
@@ -25,6 +27,7 @@ export const MethodReports = compose(
 )(Component);
 
 export default compose(
-  connect(createStructuredSelector({ reports: getReports })),
-  noReport,
+  connect(createStructuredSelector({ reports: getReportsByType, reportType: getReportType }), {
+    changeReportType,
+  }),
 )(Component);

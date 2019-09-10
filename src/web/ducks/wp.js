@@ -3,10 +3,13 @@ import wpApi from '../api/wp';
 
 export const LOADING_POSTS = 'CM/WP/LOADING_POSTS';
 export const POSTS_LOADED = 'CM/WP/POSTS_LOADED';
+export const CHANGE_REPORT_TYPE = 'CM/WP/CHANGE_REPORT_TYPE';
 export const types = { LOADING_POSTS, POSTS_LOADED };
 
 const reducer = (state = {}, action = {}) => {
   switch (action.type) {
+    case CHANGE_REPORT_TYPE:
+      return { ...state, reportType: action.reportType };
     case POSTS_LOADED:
       return { ...state, [action.postType]: action.posts };
     default:
@@ -49,6 +52,8 @@ export const loadPosts = postType => dispatch => {
   );
 };
 
-const actions = { loadPosts };
+export const changeReportType = reportType => ({ type: CHANGE_REPORT_TYPE, reportType });
+
+const actions = { loadPosts, changeReportType };
 
 export default { reducer, actions };
