@@ -29,4 +29,24 @@ export default defineMessages({
     id: 'reports.ar',
     defaultMessage: 'Arabic',
   },
+  paper: {
+    id: 'reports.paper',
+    defaultMessage: 'Paper',
+  },
+  software: {
+    id: 'reports.software',
+    defaultMessage: 'Software',
+  },
+  report: {
+    id: 'reports.report',
+    defaultMessage: 'Report',
+  },
+  all: {
+    id: 'reports.all',
+    defaultMessage: 'All',
+  },
+  none: {
+    id: 'reports.none',
+    defaultMessage: 'There is no report for the selected type.',
+  },
 });

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
+import Grid from '@material-ui/core/Grid';
 import DataDimension from '../DataDimension';
 import { isAllDimensionValuesSelected, hasIndeterminateSelection } from '../../utils';
 
@@ -69,45 +70,48 @@ const DataDimensions = ({
   changeAllSelection,
   isSelectionExclusive,
   dataType,
+  isRowDisplay = false,
 }) => (
-  <React.Fragment>
+  <Grid container spacing={isRowDisplay ? 16 : 0}>
     {map(({ label, ...dimension }) => (
-      <ExpansionPanel key={dimension.id} defaultExpanded classes={{ root: classes.panelRoot }}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          classes={{
-            root: classes.panelSummaryRoot,
-            content: classes.panelSummaryContent,
-            expanded: classes.expanded,
-          }}
-        >
-          {isSelectionExclusive ? (
-            <Radio disableRipple disabled classes={{ root: classes.checkbox }} color="primary" />
-          ) : (
-            <Checkbox
-              checked={isAllDimensionValuesSelected(dimension)}
-              indeterminate={hasIndeterminateSelection(dimension)}
-              onClick={event => {
-                event.stopPropagation();
-                changeAllSelection(dimension.index, event.target.checked);
-              }}
-              classes={{ root: classes.checkbox }}
-              color="primary"
+      <Grid item xs={12} sm={isRowDisplay ? 4 : 12} key={dimension.id}>
+        <ExpansionPanel defaultExpanded classes={{ root: classes.panelRoot }}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            classes={{
+              root: classes.panelSummaryRoot,
+              content: classes.panelSummaryContent,
+              expanded: classes.expanded,
+            }}
+          >
+            {isSelectionExclusive ? (
+              <Radio disableRipple disabled classes={{ root: classes.checkbox }} color="primary" />
+            ) : (
+              <Checkbox
+                checked={isAllDimensionValuesSelected(dimension)}
+                indeterminate={hasIndeterminateSelection(dimension)}
+                onClick={event => {
+                  event.stopPropagation();
+                  changeAllSelection(dimension.index, event.target.checked);
+                }}
+                classes={{ root: classes.checkbox }}
+                color="primary"
+              />
+            )}
+            <Typography className={classes.typo}>{label}</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={classes.panelDetails}>
+            <DataDimension
+              dimension={dimension}
+              changeSelection={changeSelection}
+              isSelectionExclusive={isSelectionExclusive}
+              dataType={dataType}
             />
-          )}
-          <Typography className={classes.typo}>{label}</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
-          <DataDimension
-            dimension={dimension}
-            changeSelection={changeSelection}
-            isSelectionExclusive={isSelectionExclusive}
-            dataType={dataType}
-          />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </Grid>
     ))(dimensions)}
-  </React.Fragment>
+  </Grid>
 );
 
 DataDimensions.propTypes = {
@@ -117,6 +121,7 @@ DataDimensions.propTypes = {
   changeAllSelection: PropTypes.func.isRequired,
   isSelectionExclusive: PropTypes.bool,
   dataType: PropTypes.string,
+  isRowDisplay: PropTypes.bool,
 };
 
 export default withStyles(styles)(DataDimensions);

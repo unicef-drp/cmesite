@@ -15,12 +15,14 @@ import {
   path,
   pick,
   isNil,
+  equals,
 } from 'ramda';
 import { createSelector } from 'reselect';
 import { DATASET_TYPES } from '../constants';
 
 export const getWP = prop('wp');
 
+export const getReportType = createSelector(getWP, prop('reportType'));
 export const getSplash = createSelector(getWP, pipe(propOr([], 'splashes'), head));
 export const getNews = createSelector(getWP, pipe(propOr([], 'news'), take(2)));
 const getDatasets = createSelector(getWP, propOr([], 'datasets'));
@@ -45,6 +47,11 @@ export const getMethodReports = createSelector(
   getReports,
   filter(pathEq(['acf', 'ismethod'], true)),
 );
+
+export const getReportsByType = createSelector(getReports, getReportType, (reports, type) => {
+  if (equals('all', type)) return reports;
+  return filter(pathEq(['acf', 'type'], type), reports);
+});
 
 export const getDownload = type =>
   createSelector(getDownloads, find(pathEq(['acf', 'downloadtype'], type)));
