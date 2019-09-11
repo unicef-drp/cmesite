@@ -30,6 +30,8 @@ import {
   cond,
   split,
   last,
+  concat,
+  join,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
@@ -50,6 +52,9 @@ import {
   ENHANCED_ESTIMATES_FIELDS,
   ENHANCED_DATASOURCES_FIELDS,
   HIERARCHY_LABEL_TOKEN,
+  CSV_DL_ESTIMATES_HEADERS,
+  CSV_DL_DATASOURCES_HEADER,
+  CSV_EOL,
 } from '../constants';
 import { downloadCsv, toCsv } from '../utils';
 
@@ -311,6 +316,14 @@ export const downloadTable = mode => (_, getState) =>
       ],
     ]),
     params => toCsv(...params),
+    cond([
+      [always(equals(mode, 'datasources')), concat(CSV_DL_DATASOURCES_HEADER)],
+      [
+        always(equals(mode, 'estimates')),
+        concat(join(CSV_EOL, [...CSV_DL_ESTIMATES_HEADERS, CSV_EOL])),
+      ],
+      //[always(equals(mode, 'estimates')), concat(join(CSV_EOL, append('test', CSV_DL_ESTIMATES_HEADERS)))],
+    ]),
     downloadCsv('data-download.csv'),
   )(mode);
 

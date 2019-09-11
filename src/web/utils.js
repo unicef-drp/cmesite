@@ -1,5 +1,6 @@
 import * as R from 'ramda';
 import FileSaver from 'file-saver';
+import { CSV_DELIMITER, CSV_EOL } from './constants';
 
 const getValues = R.propOr([], 'values');
 
@@ -34,7 +35,7 @@ export const downloadCsv = R.curry((name, csv) => {
   FileSaver.saveAs(blob, name);
 });
 
-export const toCsv = (fields, data = [], { delimiter = ',', eol = '\r\n' } = {}) =>
+export const toCsv = (fields, data = [], { delimiter = CSV_DELIMITER, eol = CSV_EOL } = {}) =>
   R.pipe(
     R.prepend(fields),
     R.map(

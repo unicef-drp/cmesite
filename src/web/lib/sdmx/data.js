@@ -68,6 +68,8 @@ import {
   EXPORT_INDEX_IDS,
   OBS_VALUE,
   MODEL,
+  CSV_DELIMITER,
+  CSV_EOL,
 } from '../../constants';
 
 const getValues = propOr([], 'values');
@@ -140,8 +142,8 @@ const toCsvRow = ({ delimiter, isHeader, excludedArtefactIds }) =>
     ),
   );
 export const toCsv = ({
-  eol = '\r\n',
-  delimiter = ',',
+  eol = CSV_EOL,
+  delimiter = CSV_DELIMITER,
   excludedArtefactIds = EXCLUDED_DOWNLOAD_DIMENSIONS,
 } = {}) =>
   converge(pipe(concat, join(eol)), [

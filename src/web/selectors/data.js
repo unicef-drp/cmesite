@@ -44,6 +44,8 @@ import {
   join,
   toLower,
   prepend,
+  replace,
+  flip,
 } from 'ramda';
 import numeral from 'numeral';
 import {
@@ -77,6 +79,7 @@ import {
   INTERVAL,
   STD_ERR,
   OBS_STATUS,
+  OBS_STATUS_VALUES,
 } from '../constants';
 
 export const getData = prop('data');
@@ -244,7 +247,10 @@ const mergePropsByKey = (key, props, sep = '') => pipe(pick(props), pluck(key), 
 export const getEnhancedCountryDatasourcesSerie = createSelector(
   getCountryDatasourcesSerie,
   map(datapoint => ({
-    [ENHANCED_DATASOURCES_FIELDS.name]: path([SERIES_NAME, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.name]: pipe(
+      path([SERIES_NAME, 'valueName']),
+      replace(/\s(\(direct\)|\(indirect\)|\(household\sdeaths\))/i, ''),
+    )(datapoint),
     [ENHANCED_DATASOURCES_FIELDS.category]: path([SERIES_CATEGORY, 'valueName'])(datapoint),
     [ENHANCED_DATASOURCES_FIELDS.method]: path([SERIES_METHOD, 'valueName'])(datapoint),
     [ENHANCED_DATASOURCES_FIELDS.aowTsfb]: mergePropsByKey(
@@ -256,9 +262,11 @@ export const getEnhancedCountryDatasourcesSerie = createSelector(
     [ENHANCED_DATASOURCES_FIELDS.refDate]: path([REF_DATE, 'valueName'])(datapoint),
     [ENHANCED_DATASOURCES_FIELDS.value]: format(prop('y')(datapoint)),
     [ENHANCED_DATASOURCES_FIELDS.stdErr]: format(path([STD_ERR, 'valueName'])(datapoint)),
-    [ENHANCED_DATASOURCES_FIELDS.obsStatus]: pipe(path([OBS_STATUS, 'valueId']), toLower)(
-      datapoint,
-    ),
+    [ENHANCED_DATASOURCES_FIELDS.obsStatus]: pipe(
+      path([OBS_STATUS, 'valueId']),
+      toLower,
+      flip(prop)(OBS_STATUS_VALUES),
+    )(datapoint),
   })),
 );
 
