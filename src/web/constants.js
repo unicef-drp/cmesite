@@ -139,3 +139,21 @@ export const INDICATOR_MAP_SCALES = {
     range: [MAP_NO_DATA, '#a1d4eb', '#8abbd6 ', '#72a2c0', '#5b89ab', '#447096'],
   },
 };
+
+export const ENHANCED_ESTIMATES_FIELDS = {
+  year: 'Year',
+  estimate: 'Estimate',
+  lowerBound: 'Lower bound',
+  upperBound: 'Upper bound',
+};
+export const ENHANCED_DATASOURCES_FIELDS = {
+  name: 'Name',
+  category: 'Category',
+  method: 'Method',
+  aowTsfb: 'AoW.TSFB',
+  interval: 'Int.',
+  refDate: 'Ref.date',
+  value: 'Value',
+  stdErr: 'Std.err',
+  obsStatus: 'Obs.status',
+};
