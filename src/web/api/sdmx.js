@@ -1,5 +1,4 @@
 import axios from 'axios';
-import FileSaver from 'file-saver';
 import {
   map,
   fromPairs,
@@ -14,6 +13,7 @@ import {
   identity,
 } from 'ramda';
 import { structureParser, dataParser, dataQuery, toCsv } from '../lib/sdmx';
+import { downloadCsv } from '../utils';
 import { RELEVANT_DIMENSIONS, TIME_PERIOD, REF_AREA, END_PERIOD } from '../constants';
 import sdmxStructure from '../../mock/data/sdmxStructure';
 import sdmxData from '../../mock/data/sdmxData';
@@ -112,8 +112,7 @@ const getFileData = ({ dimensions, dataType, /*format,*/ scope }) => {
 
   return axios.get(url, options).then(({ data }) => {
     const csv = toCsv()(configuredDataParser(data, { isRaw: true }));
-    const blob = new Blob([csv], { type: 'application/vnd.sdmx.data+csv; charset=utf-8' });
-    FileSaver.saveAs(blob, `${dataflowQuery('-')}-download.csv`);
+    downloadCsv(`${dataflowQuery('-')}-download.csv`, csv);
     /*const blob = new Blob([data], {
       type: path(['headers', 'content-type'])(response),
     });
