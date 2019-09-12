@@ -68,7 +68,7 @@ export const LOGOS = {
   wbo: 'http://www.worldbank.org',
 };
 
-export const REPORT_TYPES = ['all', 'paper', 'software', 'report'];
+export const REPORT_TYPES = ['all', 'report', 'paper', 'software'];
 
 export const SERIES_CATEGORY = 'SERIES_CATEGORY';
 export const SERIES_TYPE = 'SERIES_TYPE';

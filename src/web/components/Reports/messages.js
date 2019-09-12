@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'reports.title',
-    defaultMessage: 'Reports and papers',
+    defaultMessage: 'Publications and Tools',
   },
   action: {
     id: 'reports.action',
@@ -31,15 +31,15 @@ export default defineMessages({
   },
   paper: {
     id: 'reports.paper',
-    defaultMessage: 'Paper',
+    defaultMessage: 'Journal articles',
   },
   software: {
     id: 'reports.software',
-    defaultMessage: 'Software',
+    defaultMessage: 'Tools',
   },
   report: {
     id: 'reports.report',
-    defaultMessage: 'Report',
+    defaultMessage: 'Reports',
   },
   all: {
     id: 'reports.all',
