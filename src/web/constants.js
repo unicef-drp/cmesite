@@ -167,3 +167,20 @@ export const ENHANCED_DATASOURCES_FIELDS = {
   obsStatus: 'Used in Model',
 };
 export const OBS_STATUS_VALUES = { in: 'Included', ex: 'Excluded' };
+
+export const INDICATOR_DEFINITIONS = {
+  MRY0T4:
+    'Under-five mortality rate (U5MR): the probability of dying between birth and exact age 5, expressed per 1,000 live births',
+  MRY0:
+    'Infant mortality rate (IMR): the probability of dying between birth and exact age 1, expressed per 1,000 live births',
+  MRM0:
+    'Neonatal mortality rate (NMR): the probability of dying within the first 28 days of life, expressed per 1,000 live births',
+  //Child mortality rate age 1-4 : 'Child mortality rate (CMR): the probability of dying between birth and exact age 1, expressed per 1,000 children aged 1 year',
+  MRY5T14:
+    'Mortality rate age 5-14 (10q5): the probability of dying between exact age 5 and exact age 15, expressed per 1,000 children aged 5',
+  TMY0: 'Number of infant deaths',
+  TMM0: 'Number of neonatal deaths',
+  TMY0T4: 'Number of under-five deaths',
+  TMY5T14: 'Number of deaths aged 5 to 14 years',
+  //Child deaths age 1 to 4: 'Number of deaths aged 1 to 4 years',
+};
