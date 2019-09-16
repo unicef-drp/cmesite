@@ -44,6 +44,7 @@ import {
   getCountryDimension,
   getEnhancedCountryAllEstimateSerie,
   getEnhancedCountryDatasourcesSerie,
+  getIndicatorValue,
 } from '../selectors/data';
 import {
   TYPES,
@@ -55,6 +56,7 @@ import {
   CSV_DL_ESTIMATES_HEADERS,
   CSV_DL_DATASOURCES_HEADER,
   CSV_EOL,
+  INDICATOR_DEFINITIONS,
 } from '../constants';
 import { downloadCsv, toCsv } from '../utils';
 
@@ -320,9 +322,16 @@ export const downloadTable = mode => (_, getState) =>
       [always(equals(mode, 'datasources')), concat(CSV_DL_DATASOURCES_HEADER)],
       [
         always(equals(mode, 'estimates')),
-        concat(join(CSV_EOL, [...CSV_DL_ESTIMATES_HEADERS, CSV_EOL])),
+        concat(
+          join(
+            CSV_EOL,
+            concat(CSV_DL_ESTIMATES_HEADERS, [
+              prop(prop('id', getIndicatorValue(getState())), INDICATOR_DEFINITIONS),
+              CSV_EOL,
+            ]),
+          ),
+        ),
       ],
-      //[always(equals(mode, 'estimates')), concat(join(CSV_EOL, append('test', CSV_DL_ESTIMATES_HEADERS)))],
     ]),
     downloadCsv('data-download.csv'),
   )(mode);
