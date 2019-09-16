@@ -17,17 +17,15 @@ import Component from './component';
 export const enhance = (selectors, keys, { isCountry } = {}) =>
   compose(
     withRouter,
-    connect(
-      createStructuredSelector({ countryTypes: getCountryTypes, ...selectors }),
-      (dispatch, { dataType }) =>
-        bindActionCreators(
-          {
-            changeSelection: changeSelection({ dataType, selectionType: 'select' }),
-            changeActiveTab,
-            toggleCountryType,
-          },
-          dispatch,
-        ),
+    connect(createStructuredSelector(selectors), (dispatch, { dataType }) =>
+      bindActionCreators(
+        {
+          changeSelection: changeSelection({ dataType, selectionType: 'select' }),
+          changeActiveTab,
+          toggleCountryType,
+        },
+        dispatch,
+      ),
     ),
     branch(({ dimension }) => isNil(dimension), renderNothing),
     withProps(({ dimension }) => ({
@@ -47,7 +45,11 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
   );
 
 export const CountrySelector = enhance(
-  { dimension: getFilteredCountryDimensionWithAggregates(), value: getCountryValue },
+  {
+    dimension: getFilteredCountryDimensionWithAggregates(),
+    value: getCountryValue,
+    countryTypes: getCountryTypes,
+  },
   { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorPlaceholder' },
   { isCountry: true },
 )(Component);
