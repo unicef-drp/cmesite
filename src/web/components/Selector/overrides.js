@@ -5,6 +5,10 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import { components } from 'react-select';
+import { map, toPairs } from 'ramda';
 
 function inputComponent({ inputRef, ...props }) {
   return <div ref={inputRef} {...props} />;
@@ -107,6 +111,35 @@ export const ValueContainer = props => (
 ValueContainer.propTypes = {
   selectProps: PropTypes.object,
   children: PropTypes.node,
+};
+
+export const IndicatorsContainer = props => (
+  <div className={props.selectProps.classes.indicatorsContainer}>
+    {map(
+      ([id, value]) => (
+        <FormControlLabel
+          key={id}
+          control={
+            <Radio
+              color="primary"
+              checked={value}
+              onClick={() => props.selectProps.toggleCountryType(id)}
+            />
+          }
+          label={props.selectProps.countryMessages[id]}
+        />
+      ),
+      toPairs(props.selectProps.countryTypes),
+    )}
+    <components.IndicatorsContainer {...props} />
+  </div>
+);
+
+IndicatorsContainer.propTypes = {
+  selectProps: PropTypes.object,
+  countryTypes: PropTypes.object,
+  countryMessages: PropTypes.object,
+  toggleCountryType: PropTypes.func,
 };
 
 export const Menu = props => (

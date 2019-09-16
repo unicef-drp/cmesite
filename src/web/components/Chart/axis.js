@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { prop } from 'ramda';
+import { prop, min as Rmin } from 'ramda';
 import { select } from 'd3-selection';
 import * as d3Axis from 'd3-axis';
 
@@ -24,8 +24,10 @@ class Axis extends React.Component {
       .tickSize(this.props.tickSize)
       .tickPadding(this.props.tickPadding);
 
+    const [min, max] = this.props.scale.domain();
+
     if (this.props.tickFormat) axis.tickFormat(this.props.tickFormat);
-    if (this.props.ticks) axis.ticks(this.props.ticks);
+    if (this.props.ticks) axis.ticks(Rmin(Math.abs(max - min), this.props.ticks));
     if (this.props.tickValues) axis.tickValues(this.props.tickValues);
 
     select(this.axisElement).call(axis);

@@ -13,12 +13,16 @@ import {
   SingleCountryValue,
   ValueContainer,
   Menu,
+  IndicatorsContainer,
 } from './overrides';
 
 const styles = theme => ({
   input: {
     display: 'flex',
     padding: 0,
+  },
+  indicatorsContainer: {
+    display: 'flex',
   },
   valueContainer: {
     display: 'flex',
@@ -49,12 +53,22 @@ const styles = theme => ({
   },
 });
 
-const Selector = ({ classes, value, values, handleValue, keys, isCountry }) => (
+const Selector = ({
+  classes,
+  value,
+  values,
+  handleValue,
+  keys,
+  isCountry,
+  toggleCountryType,
+  countryTypes,
+}) => (
   <Paper square elevation={1}>
     <Select
       classes={classes}
       options={values}
       components={{
+        IndicatorsContainer,
         Control,
         Option,
         NoOptionsMessage: Option,
@@ -67,6 +81,12 @@ const Selector = ({ classes, value, values, handleValue, keys, isCountry }) => (
       onChange={handleValue}
       noOptionsMessage={() => <FormattedMessage {...messages[keys.noOptions]} />}
       placeholder={<FormattedMessage {...messages[keys.placeholder]} />}
+      countryTypes={countryTypes}
+      toggleCountryType={toggleCountryType}
+      countryMessages={{
+        COUNTRY: <FormattedMessage {...messages.country} />,
+        REGION: <FormattedMessage {...messages.region} />,
+      }}
     />
   </Paper>
 );
@@ -78,6 +98,8 @@ Selector.propTypes = {
   keys: PropTypes.object,
   handleValue: PropTypes.func,
   isCountry: PropTypes.bool,
+  countryTypes: PropTypes.object,
+  toggleCountryType: PropTypes.func,
 };
 
 export default withStyles(styles)(Selector);

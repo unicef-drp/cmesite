@@ -13,4 +13,12 @@ export default defineMessages({
     id: 'indicatorSelector.noOption',
     defaultMessage: 'No indicator',
   },
+  country: {
+    id: 'indicatorSelector.country',
+    defaultMessage: 'Countries',
+  },
+  region: {
+    id: 'indicatorSelector.region',
+    defaultMessage: 'Regions',
+  },
 });

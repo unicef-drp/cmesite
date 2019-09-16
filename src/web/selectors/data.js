@@ -83,6 +83,7 @@ import {
 } from '../constants';
 
 export const getData = prop('data');
+export const getCountryTypes = createSelector(getData, prop('countryTypes'));
 export const getHighlightedMethods = createSelector(getData, prop('highlightedMethods'));
 export const getActiveTab = createSelector(getData, prop('activeTab'));
 export const getIsLoadingStructure = createSelector(getData, prop('isLoadingStructure'));
@@ -101,6 +102,19 @@ export const getCountryDimensionWithAggregates = unformatted =>
       ),
       dimension,
     ),
+  );
+export const getFilteredCountryDimensionWithAggregates = unformatted =>
+  createSelector(
+    getCountryDimensionWithAggregates(unformatted),
+    getCountryTypes,
+    (dimension, { COUNTRY, REGION } = {}) => {
+      if (and(COUNTRY, REGION)) return dimension;
+      return assoc(
+        'values',
+        filter(({ parent }) => (COUNTRY ? isNil(parent) : parent), propOr([], 'values', dimension)),
+        dimension,
+      );
+    },
   );
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
 export const getMapIndicatorDimension = createSelector(

@@ -5,25 +5,29 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import {
-  getCountryDimensionWithAggregates,
+  getFilteredCountryDimensionWithAggregates,
   getCountryValue,
   getMapIndicatorDimension,
   getMapIndicatorValue,
+  getCountryTypes,
 } from '../../selectors/data';
-import { changeSelection, changeActiveTab } from '../../ducks/data';
+import { changeSelection, changeActiveTab, toggleCountryType } from '../../ducks/data';
 import Component from './component';
 
 export const enhance = (selectors, keys, { isCountry } = {}) =>
   compose(
     withRouter,
-    connect(createStructuredSelector(selectors), (dispatch, { dataType }) =>
-      bindActionCreators(
-        {
-          changeSelection: changeSelection({ dataType, selectionType: 'select' }),
-          changeActiveTab,
-        },
-        dispatch,
-      ),
+    connect(
+      createStructuredSelector({ countryTypes: getCountryTypes, ...selectors }),
+      (dispatch, { dataType }) =>
+        bindActionCreators(
+          {
+            changeSelection: changeSelection({ dataType, selectionType: 'select' }),
+            changeActiveTab,
+            toggleCountryType,
+          },
+          dispatch,
+        ),
     ),
     branch(({ dimension }) => isNil(dimension), renderNothing),
     withProps(({ dimension }) => ({
@@ -43,13 +47,13 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
   );
 
 export const CountrySelector = enhance(
-  { dimension: getCountryDimensionWithAggregates(), value: getCountryValue },
+  { dimension: getFilteredCountryDimensionWithAggregates(), value: getCountryValue },
   { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorPlaceholder' },
   { isCountry: true },
 )(Component);
 
 export const HomeCountrySelector = enhance(
-  { dimension: getCountryDimensionWithAggregates() },
+  { dimension: getFilteredCountryDimensionWithAggregates() },
   { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorPlaceholder' },
   { isCountry: true },
 )(Component);

@@ -77,6 +77,13 @@ export const TOGGLE_ACTIVE_TYPE = 'CM/DATA/TOGGLE_ACTIVE_TYPE';
 export const CHANGE_MAP_INDEX = 'CM/DATA/CHANGE_MAP_INDEX';
 export const HIGHLIGHT_SERIE = 'CM/DATA/HIGHLIGHT_SERIE';
 export const HIGHLIGHT_METHOD = 'CM/DATA/HIGHLIGHT_METHOD';
+export const TOGGLE_COUNTRY_TYPE = 'CM/DATA/TOGGLE_COUNTRY_TYPE';
+
+const activeTypes = reduce(
+  (memo, { id, value, sdmxValue }) => (isNil(sdmxValue) ? memo : assoc(id, value, memo)),
+  {},
+  TYPES,
+);
 
 const initialState = {
   activeTab: 0,
@@ -84,11 +91,7 @@ const initialState = {
   isLoadingData: false,
   downloadingData: {},
   dimensions: [],
-  activeTypes: reduce(
-    (memo, { id, value, sdmxValue }) => (isNil(sdmxValue) ? memo : assoc(id, value, memo)),
-    {},
-    TYPES,
-  ),
+  activeTypes,
   countryStale: true,
   compareStale: true,
   mapStale: true,
@@ -97,6 +100,7 @@ const initialState = {
   mapSeries: {},
   mapIndex: null,
   highlightedMethods: {},
+  countryTypes: { COUNTRY: true, REGION: false },
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -164,6 +168,11 @@ const reducer = (state = initialState, action = {}) => {
       return over(lensPath(['downloadingData', `${action.format}.${action.scope}`]), not, state);
     case TOGGLE_ACTIVE_TYPE:
       return over(lensPath(['activeTypes', action.activeType]), not, state);
+    case TOGGLE_COUNTRY_TYPE:
+      return over(lensPath(['countryTypes', action.countryType]), not, {
+        ...state,
+        countryTypes: { COUNTRY: false, REGION: false },
+      });
     default:
       return state;
   }
@@ -180,6 +189,8 @@ export const highlightMethod = methodId => ({ type: HIGHLIGHT_METHOD, methodId }
 export const changeMapIndex = mapIndex => ({ type: CHANGE_MAP_INDEX, mapIndex });
 
 export const toggleActiveType = activeType => ({ type: TOGGLE_ACTIVE_TYPE, activeType });
+
+export const toggleCountryType = countryType => ({ type: TOGGLE_COUNTRY_TYPE, countryType });
 
 const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
   const { method } = ctx;

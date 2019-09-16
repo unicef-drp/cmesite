@@ -34,6 +34,9 @@ import routes, { getPath } from '../../routes';
 import Wrapper from '../Wrapper';
 import { LOCALES, REPORT_TYPES } from '../../constants';
 
+const HEIGHT = 180;
+const WIDTH = 340;
+
 const style = theme => ({
   reports: {
     paddingTop: theme.spacing.unit * 4,
@@ -51,14 +54,14 @@ const style = theme => ({
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
+    alignItems: 'flex-start',
   },
   card: {
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: theme.palette.primary.light,
     margin: theme.spacing.unit * 2,
-    width: 340,
-    minHeight: 180,
+    width: WIDTH,
   },
   area: {
     display: 'flex',
@@ -72,17 +75,17 @@ const style = theme => ({
   content: {
     backgroundColor: theme.palette.secondary.main,
     border: `1px solid ${theme.palette.primary.light}`,
-    alignSelf: 'stretch',
   },
   secondaryContent: {
     backgroundColor: theme.palette.secondary.dark,
     border: 'none',
   },
   media: {
-    margin: theme.spacing.unit * 2,
-    paddingLeft: '35%',
+    paddingLeft: HEIGHT / 1.4142, // A4 ratio
+    height: HEIGHT,
     width: 0,
-    height: 180,
+    margin: theme.spacing.unit * 2,
+    alignSelf: 'flex-start',
   },
   action: {
     display: 'flex',
@@ -187,7 +190,9 @@ const Reports = ({ classes, reports, isSecondary, reportType, changeReportType }
               {hasFiles ? (
                 content
               ) : (
-                <CardActionArea className={classes.area}>{content}</CardActionArea>
+                <CardActionArea>
+                  <div className={classes.area}>{content}</div>
+                </CardActionArea>
               )}
             </Card>
           );
