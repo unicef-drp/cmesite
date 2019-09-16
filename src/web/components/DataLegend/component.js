@@ -255,7 +255,7 @@ const DataLegend = ({
         </ExpansionPanel>
       )}
 
-      {isEmpty(previousEstimateSeries) ? null : (
+      {/*isEmpty(previousEstimateSeries) ? null : (
         <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
@@ -294,7 +294,7 @@ const DataLegend = ({
             </List>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-      )}
+      )*/}
     </React.Fragment>
   );
 };
