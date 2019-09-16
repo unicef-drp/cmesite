@@ -1,0 +1,2275 @@
+{
+  "data": {
+    "activeTab": 0,
+    "isLoadingStructure": false,
+    "isLoadingData": false,
+    "downloadingData": {},
+    "dimensions": [
+      {
+        "id": "REF_AREA",
+        "index": 0,
+        "position": 0,
+        "label": "Reference Area",
+        "values": [
+          {
+            "index": 0,
+            "id": "AFG",
+            "label": "Afghanistan",
+            "isSelected": true,
+            "isMapSelected": true,
+            "isToggled": true,
+            "isRate": true
+          },
+          {
+            "index": 1,
+            "id": "ALB",
+            "label": "Albania",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 2,
+            "id": "DZA",
+            "label": "Algeria",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 3,
+            "id": "AND",
+            "label": "Andorra",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 4,
+            "id": "AGO",
+            "label": "Angola",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 5,
+            "id": "ATG",
+            "label": "Antigua and Barbuda",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 6,
+            "id": "ARG",
+            "label": "Argentina",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 7,
+            "id": "ARM",
+            "label": "Armenia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 8,
+            "id": "AUS",
+            "label": "Australia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 9,
+            "id": "AUT",
+            "label": "Austria",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 10,
+            "id": "AZE",
+            "label": "Azerbaijan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 11,
+            "id": "BHS",
+            "label": "Bahamas",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 12,
+            "id": "BHR",
+            "label": "Bahrain",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 13,
+            "id": "BGD",
+            "label": "Bangladesh",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 14,
+            "id": "BRB",
+            "label": "Barbados",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 15,
+            "id": "BLR",
+            "label": "Belarus",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 16,
+            "id": "BEL",
+            "label": "Belgium",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 17,
+            "id": "BLZ",
+            "label": "Belize",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 18,
+            "id": "BEN",
+            "label": "Benin",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 19,
+            "id": "BTN",
+            "label": "Bhutan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 20,
+            "id": "BOL",
+            "label": "Bolivia (Plurinational State of)",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 21,
+            "id": "BIH",
+            "label": "Bosnia and Herzegovina",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 22,
+            "id": "BWA",
+            "label": "Botswana",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 23,
+            "id": "BRA",
+            "label": "Brazil",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 24,
+            "id": "BRN",
+            "label": "Brunei Darussalam",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 25,
+            "id": "BGR",
+            "label": "Bulgaria",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 26,
+            "id": "BFA",
+            "label": "Burkina Faso",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 27,
+            "id": "BDI",
+            "label": "Burundi",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 28,
+            "id": "CPV",
+            "label": "Cabo Verde",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 29,
+            "id": "KHM",
+            "label": "Cambodia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 30,
+            "id": "CMR",
+            "label": "Cameroon",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 31,
+            "id": "CAN",
+            "label": "Canada",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 32,
+            "id": "CAF",
+            "label": "Central African Republic",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 33,
+            "id": "TCD",
+            "label": "Chad",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 34,
+            "id": "CHL",
+            "label": "Chile",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 35,
+            "id": "CHN",
+            "label": "China",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 36,
+            "id": "COL",
+            "label": "Colombia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 37,
+            "id": "COM",
+            "label": "Comoros",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 38,
+            "id": "COG",
+            "label": "Congo",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 39,
+            "id": "COK",
+            "label": "Cook Islands",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 40,
+            "id": "CRI",
+            "label": "Costa Rica",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 41,
+            "id": "CIV",
+            "label": "Côte d'Ivoire",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 42,
+            "id": "HRV",
+            "label": "Croatia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 43,
+            "id": "CUB",
+            "label": "Cuba",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 44,
+            "id": "CYP",
+            "label": "Cyprus",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 45,
+            "id": "CZE",
+            "label": "Czech Republic",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 46,
+            "id": "PRK",
+            "label": "Democratic People's Republic of Korea",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 47,
+            "id": "COD",
+            "label": "Democratic Republic of the Congo",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 48,
+            "id": "DNK",
+            "label": "Denmark",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 49,
+            "id": "DJI",
+            "label": "Djibouti",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 50,
+            "id": "DMA",
+            "label": "Dominica",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 51,
+            "id": "DOM",
+            "label": "Dominican Republic",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 52,
+            "id": "ECU",
+            "label": "Ecuador",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 53,
+            "id": "EGY",
+            "label": "Egypt",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 54,
+            "id": "SLV",
+            "label": "El Salvador",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 55,
+            "id": "GNQ",
+            "label": "Equatorial Guinea",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 56,
+            "id": "ERI",
+            "label": "Eritrea",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 57,
+            "id": "EST",
+            "label": "Estonia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 58,
+            "id": "ETH",
+            "label": "Ethiopia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 59,
+            "id": "FJI",
+            "label": "Fiji",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 60,
+            "id": "FIN",
+            "label": "Finland",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 61,
+            "id": "FRA",
+            "label": "France",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 62,
+            "id": "GAB",
+            "label": "Gabon",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 63,
+            "id": "GMB",
+            "label": "Gambia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 64,
+            "id": "GEO",
+            "label": "Georgia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 65,
+            "id": "DEU",
+            "label": "Germany",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 66,
+            "id": "GHA",
+            "label": "Ghana",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 67,
+            "id": "GRC",
+            "label": "Greece",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 68,
+            "id": "GRD",
+            "label": "Grenada",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 69,
+            "id": "GTM",
+            "label": "Guatemala",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 70,
+            "id": "GIN",
+            "label": "Guinea",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 71,
+            "id": "GNB",
+            "label": "Guinea-Bissau",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 72,
+            "id": "GUY",
+            "label": "Guyana",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 73,
+            "id": "HTI",
+            "label": "Haiti",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 74,
+            "id": "HND",
+            "label": "Honduras",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 75,
+            "id": "HUN",
+            "label": "Hungary",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 76,
+            "id": "ISL",
+            "label": "Iceland",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 77,
+            "id": "IND",
+            "label": "India",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 78,
+            "id": "IDN",
+            "label": "Indonesia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 79,
+            "id": "IRN",
+            "label": "Iran (Islamic Republic of)",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 80,
+            "id": "IRQ",
+            "label": "Iraq",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 81,
+            "id": "IRL",
+            "label": "Ireland",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 82,
+            "id": "ISR",
+            "label": "Israel",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 83,
+            "id": "ITA",
+            "label": "Italy",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 84,
+            "id": "JAM",
+            "label": "Jamaica",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 85,
+            "id": "JPN",
+            "label": "Japan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 86,
+            "id": "JOR",
+            "label": "Jordan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 87,
+            "id": "KAZ",
+            "label": "Kazakhstan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 88,
+            "id": "KEN",
+            "label": "Kenya",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 89,
+            "id": "KIR",
+            "label": "Kiribati",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 90,
+            "id": "KWT",
+            "label": "Kuwait",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 91,
+            "id": "KGZ",
+            "label": "Kyrgyzstan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 92,
+            "id": "LAO",
+            "label": "Lao People's Democratic Republic",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 93,
+            "id": "LVA",
+            "label": "Latvia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 94,
+            "id": "LBN",
+            "label": "Lebanon",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 95,
+            "id": "LSO",
+            "label": "Lesotho",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 96,
+            "id": "LBR",
+            "label": "Liberia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 97,
+            "id": "LBY",
+            "label": "Libya",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 98,
+            "id": "LTU",
+            "label": "Lithuania",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 99,
+            "id": "LUX",
+            "label": "Luxembourg",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 100,
+            "id": "MDG",
+            "label": "Madagascar",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 101,
+            "id": "MWI",
+            "label": "Malawi",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 102,
+            "id": "MYS",
+            "label": "Malaysia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 103,
+            "id": "MDV",
+            "label": "Maldives",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 104,
+            "id": "MLI",
+            "label": "Mali",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 105,
+            "id": "MLT",
+            "label": "Malta",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 106,
+            "id": "MHL",
+            "label": "Marshall Islands",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 107,
+            "id": "MRT",
+            "label": "Mauritania",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 108,
+            "id": "MUS",
+            "label": "Mauritius",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 109,
+            "id": "MEX",
+            "label": "Mexico",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 110,
+            "id": "FSM",
+            "label": "Micronesia (Federated States of)",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 111,
+            "id": "MCO",
+            "label": "Monaco",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 112,
+            "id": "MNG",
+            "label": "Mongolia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 113,
+            "id": "MNE",
+            "label": "Montenegro",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 114,
+            "id": "MAR",
+            "label": "Morocco",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 115,
+            "id": "MOZ",
+            "label": "Mozambique",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 116,
+            "id": "MMR",
+            "label": "Myanmar",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 117,
+            "id": "NAM",
+            "label": "Namibia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 118,
+            "id": "NRU",
+            "label": "Nauru",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 119,
+            "id": "NPL",
+            "label": "Nepal",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 120,
+            "id": "NLD",
+            "label": "Netherlands",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 121,
+            "id": "NZL",
+            "label": "New Zealand",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 122,
+            "id": "NIC",
+            "label": "Nicaragua",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 123,
+            "id": "NER",
+            "label": "Niger",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 124,
+            "id": "NGA",
+            "label": "Nigeria",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 125,
+            "id": "NIU",
+            "label": "Niue",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 126,
+            "id": "NOR",
+            "label": "Norway",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 127,
+            "id": "OMN",
+            "label": "Oman",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 128,
+            "id": "PAK",
+            "label": "Pakistan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 129,
+            "id": "PLW",
+            "label": "Palau",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 130,
+            "id": "PAN",
+            "label": "Panama",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 131,
+            "id": "PNG",
+            "label": "Papua New Guinea",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 132,
+            "id": "PRY",
+            "label": "Paraguay",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 133,
+            "id": "PER",
+            "label": "Peru",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 134,
+            "id": "PHL",
+            "label": "Philippines",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 135,
+            "id": "POL",
+            "label": "Poland",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 136,
+            "id": "PRT",
+            "label": "Portugal",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 137,
+            "id": "QAT",
+            "label": "Qatar",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 138,
+            "id": "KOR",
+            "label": "Republic of Korea",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 139,
+            "id": "MDA",
+            "label": "Republic of Moldova",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 140,
+            "id": "ROU",
+            "label": "Romania",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 141,
+            "id": "RUS",
+            "label": "Russian Federation",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 142,
+            "id": "RWA",
+            "label": "Rwanda",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 143,
+            "id": "KNA",
+            "label": "Saint Kitts and Nevis",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 144,
+            "id": "LCA",
+            "label": "Saint Lucia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 145,
+            "id": "VCT",
+            "label": "Saint Vincent and the Grenadines",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 146,
+            "id": "WSM",
+            "label": "Samoa",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 147,
+            "id": "SMR",
+            "label": "San Marino",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 148,
+            "id": "STP",
+            "label": "Sao Tome and Principe",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 149,
+            "id": "SAU",
+            "label": "Saudi Arabia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 150,
+            "id": "SEN",
+            "label": "Senegal",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 151,
+            "id": "SRB",
+            "label": "Serbia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 152,
+            "id": "SYC",
+            "label": "Seychelles",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 153,
+            "id": "SLE",
+            "label": "Sierra Leone",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 154,
+            "id": "SGP",
+            "label": "Singapore",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 155,
+            "id": "SVK",
+            "label": "Slovakia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 156,
+            "id": "SVN",
+            "label": "Slovenia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 157,
+            "id": "SLB",
+            "label": "Solomon Islands",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 158,
+            "id": "SOM",
+            "label": "Somalia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 159,
+            "id": "ZAF",
+            "label": "South Africa",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 160,
+            "id": "SSD",
+            "label": "South Sudan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 161,
+            "id": "ESP",
+            "label": "Spain",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 162,
+            "id": "LKA",
+            "label": "Sri Lanka",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 163,
+            "id": "PSE",
+            "label": "State of Palestine",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 164,
+            "id": "SDN",
+            "label": "Sudan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 165,
+            "id": "SUR",
+            "label": "Suriname",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 166,
+            "id": "SWZ",
+            "label": "Swaziland",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 167,
+            "id": "SWE",
+            "label": "Sweden",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 168,
+            "id": "CHE",
+            "label": "Switzerland",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 169,
+            "id": "SYR",
+            "label": "Syrian Arab Republic",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 170,
+            "id": "TJK",
+            "label": "Tajikistan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 171,
+            "id": "THA",
+            "label": "Thailand",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 172,
+            "id": "MKD",
+            "label": "North Macedonia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 173,
+            "id": "TLS",
+            "label": "Timor-Leste",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 174,
+            "id": "TGO",
+            "label": "Togo",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 175,
+            "id": "TON",
+            "label": "Tonga",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 176,
+            "id": "TTO",
+            "label": "Trinidad and Tobago",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 177,
+            "id": "TUN",
+            "label": "Tunisia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 178,
+            "id": "TUR",
+            "label": "Turkey",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 179,
+            "id": "TKM",
+            "label": "Turkmenistan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 180,
+            "id": "TUV",
+            "label": "Tuvalu",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 181,
+            "id": "UGA",
+            "label": "Uganda",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 182,
+            "id": "UKR",
+            "label": "Ukraine",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 183,
+            "id": "ARE",
+            "label": "United Arab Emirates",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 184,
+            "id": "GBR",
+            "label": "United Kingdom of Great Britain and Northern Ireland",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 185,
+            "id": "TZA",
+            "label": "United Republic of Tanzania",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 186,
+            "id": "USA",
+            "label": "United States of America",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 187,
+            "id": "URY",
+            "label": "Uruguay",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 188,
+            "id": "UZB",
+            "label": "Uzbekistan",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 189,
+            "id": "VUT",
+            "label": "Vanuatu",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 190,
+            "id": "VEN",
+            "label": "Venezuela (Bolivarian Republic of)",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 191,
+            "id": "VNM",
+            "label": "Viet Nam",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 192,
+            "id": "YEM",
+            "label": "Yemen",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 193,
+            "id": "ZMB",
+            "label": "Zambia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 194,
+            "id": "ZWE",
+            "label": "Zimbabwe",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 195,
+            "id": "REGIONS_UNICEF",
+            "label": "UNICEF Regions",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 196,
+            "id": "UNICEF_EAP",
+            "label": "East Asia and Pacific",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 197,
+            "id": "UNICEF_ESA",
+            "label": "Eastern and Southern Africa",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 198,
+            "id": "UNICEF_EECA",
+            "label": "Eastern Europe and Central Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 199,
+            "id": "UNICEF_ECA",
+            "label": "Europe and Central Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 200,
+            "id": "UNICEF_LAC",
+            "label": "Latin America and Caribbean",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 201,
+            "id": "UNICEF_MENA",
+            "label": "Middle East and North Africa",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 202,
+            "id": "UNICEF_NAC",
+            "label": "North America",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 203,
+            "id": "UNICEF_SA",
+            "label": "South Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 204,
+            "id": "UNICEF_SSA",
+            "label": "Sub-Saharan Africa",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 205,
+            "id": "UNICEF_WCA",
+            "label": "West and Central Africa",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 206,
+            "id": "UNICEF_WE",
+            "label": "Western Europe",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_UNICEF"
+          },
+          {
+            "index": 207,
+            "id": "REGIONS_SDG",
+            "label": "SDG Regions",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 208,
+            "id": "UN_AUSNZ",
+            "label": "Australia and New Zealand",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 209,
+            "id": "UN_CENTRALASIA",
+            "label": "Central Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 210,
+            "id": "SDG_SOUTHCENASIA",
+            "label": "Central Asia and Southern Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 211,
+            "id": "UN_EASTASIA",
+            "label": "Eastern Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 212,
+            "id": "SDG_EASOUTASI",
+            "label": "Eastern Asia and South-Eastern Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 213,
+            "id": "UN_EUROPE",
+            "label": "Europe",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 214,
+            "id": "SDG_LLDC_2015",
+            "label": "Landlocked developing countries",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 215,
+            "id": "UN_LATINAME",
+            "label": "Latin America and the Caribbean",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 216,
+            "id": "SDG_LDC_2019",
+            "label": "Least developed countries",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 217,
+            "id": "UN_NORTHAFR",
+            "label": "Northern Africa",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 218,
+            "id": "UN_NORTHAME",
+            "label": "Northern America",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 219,
+            "id": "SDG_NORTHAMEUR",
+            "label": "Northern America and Europe",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 220,
+            "id": "UN_OCEANIA",
+            "label": "Oceania",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 221,
+            "id": "SDG_OCEAN_EXC_AUNZ",
+            "label": "Oceania excluding Australia and New Zealand",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 222,
+            "id": "SDG_SIDS",
+            "label": "Small island developing States",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 223,
+            "id": "UN_SOUTHEASTASIA",
+            "label": "South-Eastern Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 224,
+            "id": "UN_SOUTHASIA",
+            "label": "Southern Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 225,
+            "id": "SDG_SSA",
+            "label": "Sub-Saharan Africa",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 226,
+            "id": "UN_WESTASIA",
+            "label": "Western Asia",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 227,
+            "id": "SDG_WASINAFR",
+            "label": "Western Asia and Northern Africa",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 228,
+            "id": "SDG_NORTHAME_EU_AUS_NZ",
+            "label": "North America, Europe, Australia and New Zealand",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 229,
+            "id": "SDG_SOUTHEASTASIA_OCEANIA_EX_AUS_NZ",
+            "label": "South Eastern Asia and Oceania (excl. Australia and New Zealand)",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true,
+            "parent": "REGIONS_SDG"
+          },
+          {
+            "index": 230,
+            "id": "WORLD",
+            "label": "World",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          }
+        ]
+      },
+      {
+        "id": "INDICATOR",
+        "index": 1,
+        "position": 1,
+        "label": "Indicator",
+        "values": [
+          {
+            "index": 0,
+            "id": "MRY0T4",
+            "label": "Under-5 mortality rate",
+            "isSelected": true,
+            "isMapSelected": true,
+            "isToggled": true,
+            "isRate": true
+          },
+          {
+            "index": 1,
+            "id": "MRY0",
+            "label": "Infant mortality rate",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 2,
+            "id": "MRM0",
+            "label": "Neonatal mortality rate",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 3,
+            "id": "MRY5T14",
+            "label": "Mortality rate age 5 to 14",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 4,
+            "id": "TMY0T4",
+            "label": "Under-5 deaths",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": false
+          },
+          {
+            "index": 5,
+            "id": "TMY0",
+            "label": "Infant deaths",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": false
+          },
+          {
+            "index": 6,
+            "id": "TMM0",
+            "label": "Neonatal deaths",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": false
+          },
+          {
+            "index": 7,
+            "id": "TMY5T14",
+            "label": "Deaths age 5 to 14",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": false
+          },
+          {
+            "index": 8,
+            "id": "MRY1T4",
+            "label": "Mortality Rate age 1 to 4",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 9,
+            "id": "TMY1T4",
+            "label": "Deaths age 1 to 4",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": false
+          }
+        ]
+      },
+      {
+        "id": "SEX",
+        "index": 2,
+        "position": 2,
+        "label": "Sex",
+        "values": [
+          {
+            "index": 0,
+            "id": "F",
+            "label": "Female",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 1,
+            "id": "M",
+            "label": "Male",
+            "isSelected": false,
+            "isMapSelected": false,
+            "isToggled": false,
+            "isRate": true
+          },
+          {
+            "index": 2,
+            "id": "_T",
+            "label": "Total",
+            "isSelected": true,
+            "isMapSelected": true,
+            "isToggled": true,
+            "isRate": true
+          }
+        ]
+      },
+      { "id": "SERIES_NAME", "index": 3, "position": 3 },
+      { "id": "SERIES_YEAR", "index": 4, "position": 4 },
+      { "id": "TIME_PERIOD", "index": 5, "position": 5 }
+    ],
+    "activeTypes": { "ESTIMATE": true, "IN": true, "EX": true },
+    "countryStale": true,
+    "compareStale": true,
+    "mapStale": true,
+    "countrySeries": {},
+    "compareSeries": {},
+    "mapSeries": {},
+    "mapIndex": null,
+    "highlightedMethods": {}
+  }
+}
