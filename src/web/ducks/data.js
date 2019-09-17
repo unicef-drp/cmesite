@@ -57,6 +57,8 @@ import {
   CSV_DL_DATASOURCES_HEADER,
   CSV_EOL,
   INDICATOR_DEFINITIONS,
+  COUNTRY_DEFAULT_VALUE,
+  REGION_DEFAULT_VALUE,
 } from '../constants';
 import { downloadCsv, toCsv } from '../utils';
 
@@ -169,10 +171,15 @@ const reducer = (state = initialState, action = {}) => {
     case TOGGLE_ACTIVE_TYPE:
       return over(lensPath(['activeTypes', action.activeType]), not, state);
     case TOGGLE_COUNTRY_TYPE:
-      return over(lensPath(['countryTypes', action.countryType]), not, {
-        ...state,
-        countryTypes: { COUNTRY: false, REGION: false },
-      });
+      var indexOfRefArea = findIndex(propEq('id', REF_AREA), state.dimensions);
+      var valueId = action.countryType === 'COUNTRY' ? COUNTRY_DEFAULT_VALUE : REGION_DEFAULT_VALUE;
+      return pipe(
+        over(lensPath(['countryTypes', action.countryType]), not),
+        over(
+          lensPath(['dimensions', indexOfRefArea, 'values']),
+          map(value => ({ ...value, isSelected: equals(value.id, valueId) })),
+        ),
+      )({ ...state, countryStale: true, countryTypes: { COUNTRY: false, REGION: false } });
     default:
       return state;
   }
@@ -189,8 +196,6 @@ export const highlightMethod = methodId => ({ type: HIGHLIGHT_METHOD, methodId }
 export const changeMapIndex = mapIndex => ({ type: CHANGE_MAP_INDEX, mapIndex });
 
 export const toggleActiveType = activeType => ({ type: TOGGLE_ACTIVE_TYPE, activeType });
-
-export const toggleCountryType = countryType => ({ type: TOGGLE_COUNTRY_TYPE, countryType });
 
 const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
   const { method } = ctx;
@@ -218,6 +223,11 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
       }
       //throw err;
     });
+};
+
+export const toggleCountryType = countryType => dispatch => {
+  dispatch({ type: TOGGLE_COUNTRY_TYPE, countryType });
+  dispatch(loadData(COUNTRY));
 };
 
 export const changeActiveTab = (activeTab, shouldNotGetData) => (dispatch, getState) => {

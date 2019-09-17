@@ -6,7 +6,13 @@ export const REF_DATE = 'REF_DATE';
 export const MODEL = 'MODEL';
 export const RELEVANT_DIMENSIONS = [REF_AREA, INDICATOR, SEX];
 export const SEX_TOTAL_VALUE = '_T';
-export const RELEVANT_DIMENSIONS_DEFAULTS = new Set(['AFG', 'MRY0T4', SEX_TOTAL_VALUE]);
+export const COUNTRY_DEFAULT_VALUE = 'AFG';
+export const REGION_DEFAULT_VALUE = 'WORLD';
+export const RELEVANT_DIMENSIONS_DEFAULTS = new Set([
+  COUNTRY_DEFAULT_VALUE,
+  'MRY0T4',
+  SEX_TOTAL_VALUE,
+]);
 
 export const EXCLUDED_DOWNLOAD_DIMENSIONS = [TIME_PERIOD];
 
@@ -43,7 +49,7 @@ export const Y1 = 'UPPER_BOUND';
 export const MAX_SDMX_VALUES = 18;
 
 export const SERIES_YEAR = 'SERIES_YEAR';
-export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE', SERIES_YEAR];
+export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE' /*, SERIES_YEAR*/];
 
 export const EMAIL = 'childmortality@unicef.org';
 export const LEGAL_LINK = 'https://www.unicef.org/about/legal.html';

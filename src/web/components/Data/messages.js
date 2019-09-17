@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   country: {
     id: 'data.country',
-    defaultMessage: 'Country data and estimates',
+    defaultMessage: 'Data and estimates',
   },
   compare: {
     id: 'data.compare',
