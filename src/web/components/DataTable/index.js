@@ -1,4 +1,3 @@
-import * as R from 'ramda';
 import { compose, branch, renderComponent } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -11,7 +10,6 @@ import {
 import Estimates from './estimates';
 import Datasources from './datasources';
 import Loader from '../Loader';
-import DataNone from '../DataNone';
 
 export const DataCountryEstimatesTable = compose(
   connect(
@@ -22,7 +20,6 @@ export const DataCountryEstimatesTable = compose(
     }),
   ),
   branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
-  branch(R.pipe(R.prop('series'), R.either(R.isNil, R.isEmpty)), renderComponent(DataNone)),
 )(Estimates);
 
 export const DataCountryDataSourcesTable = compose(
@@ -34,5 +31,4 @@ export const DataCountryDataSourcesTable = compose(
     }),
   ),
   branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
-  branch(R.pipe(R.prop('serie'), R.either(R.isNil, R.isEmpty)), renderComponent(DataNone)),
 )(Datasources);
