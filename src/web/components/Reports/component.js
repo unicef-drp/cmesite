@@ -140,7 +140,7 @@ const Reports = ({ classes, reports, isSecondary, reportType, changeReportType }
           const image = path(['acf', 'image'])(report);
           const files = getFiles(report);
           if (isEmpty(files)) return null;
-          const hasFiles = gt(length(files), 1);
+          const hasFiles = gt(length(files), 0);
           const content = (
             <React.Fragment>
               {or(isNil(image), isNil(prop('url', image))) ? null : (
