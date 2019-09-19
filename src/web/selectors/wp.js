@@ -48,10 +48,14 @@ export const getMethodReports = createSelector(
   filter(pathEq(['acf', 'ismethod'], true)),
 );
 
-export const getReportsByType = createSelector(getReports, getReportType, (reports, type) => {
-  if (equals('all', type)) return reports;
-  return filter(pathEq(['acf', 'type'], type), reports);
-});
+export const getReportsByType = createSelector(
+  getReports,
+  getReportType,
+  (reports, type = 'all') => {
+    if (equals('all', type)) return reports;
+    return filter(pathEq(['acf', 'type'], type), reports);
+  },
+);
 
 export const getDownload = type =>
   createSelector(getDownloads, find(pathEq(['acf', 'downloadtype'], type)));

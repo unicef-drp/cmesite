@@ -140,7 +140,7 @@ const Reports = ({ classes, reports, isSecondary, reportType, changeReportType }
           const image = path(['acf', 'image'])(report);
           const files = getFiles(report);
           if (isEmpty(files)) return null;
-          const hasFiles = gt(length(files), 0);
+          const hasFiles = gt(length(files), 1);
           const content = (
             <React.Fragment>
               {or(isNil(image), isNil(prop('url', image))) ? null : (
@@ -190,7 +190,7 @@ const Reports = ({ classes, reports, isSecondary, reportType, changeReportType }
               {hasFiles ? (
                 content
               ) : (
-                <CardActionArea>
+                <CardActionArea target="_blank" href={path([0, 1, 'url'], files)} download>
                   <div className={classes.area}>{content}</div>
                 </CardActionArea>
               )}
