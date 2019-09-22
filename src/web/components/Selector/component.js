@@ -20,13 +20,19 @@ const styles = theme => ({
   input: {
     display: 'flex',
     padding: 0,
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column-reverse',
+    },
   },
   indicatorsContainer: {
     display: 'flex',
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'space-between',
+      paddingLeft: theme.spacing.unit * 2,
+    },
   },
   valueContainer: {
     display: 'flex',
-    flexWrap: 'wrap',
     flex: 1,
     alignItems: 'center',
     padding: theme.spacing.unit,
@@ -58,9 +64,9 @@ const Selector = ({
   value,
   values,
   handleValue,
+  handleType,
   keys,
   isCountry,
-  toggleCountryType,
   countryTypes,
 }) => (
   <Paper square elevation={1}>
@@ -82,7 +88,7 @@ const Selector = ({
       noOptionsMessage={() => <FormattedMessage {...messages[keys.noOptions]} />}
       placeholder={<FormattedMessage {...messages[keys.placeholder]} />}
       countryTypes={countryTypes}
-      toggleCountryType={toggleCountryType}
+      handleType={handleType}
       countryMessages={{
         COUNTRY: <FormattedMessage {...messages.country} />,
         REGION: <FormattedMessage {...messages.region} />,
@@ -99,7 +105,7 @@ Selector.propTypes = {
   handleValue: PropTypes.func,
   isCountry: PropTypes.bool,
   countryTypes: PropTypes.object,
-  toggleCountryType: PropTypes.func,
+  handleType: PropTypes.func,
 };
 
 export default withStyles(styles)(Selector);

@@ -34,6 +34,9 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
       values: prop('values')(dimension),
     })),
     withHandlers({
+      handleType: ({ toggleCountryType, history }) => type => {
+        toggleCountryType(type, countryName => history.push(`/data/${countryName}`));
+      },
       handleValue: ({ dimension, changeSelection, history, changeActiveTab }) => value => {
         if (isCountry) {
           changeActiveTab(0, true);

@@ -32,6 +32,7 @@ import {
   last,
   concat,
   join,
+  find,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
@@ -225,8 +226,13 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
     });
 };
 
-export const toggleCountryType = countryType => dispatch => {
+export const toggleCountryType = (countryType, historyCallback) => (dispatch, getState) => {
   dispatch({ type: TOGGLE_COUNTRY_TYPE, countryType });
+  const countryId = countryType === 'COUNTRY' ? COUNTRY_DEFAULT_VALUE : REGION_DEFAULT_VALUE;
+  const countryName = pipe(prop('values'), find(propEq('id', countryId)), prop('label'))(
+    getCountryDimension(getState()),
+  );
+  historyCallback(countryName);
   dispatch(loadData(COUNTRY));
 };
 

@@ -123,7 +123,7 @@ export const IndicatorsContainer = props => (
             <Radio
               color="primary"
               checked={value}
-              onClick={() => props.selectProps.toggleCountryType(id)}
+              onClick={() => props.selectProps.handleType(id)}
             />
           }
           label={props.selectProps.countryMessages[id]}
@@ -139,7 +139,7 @@ IndicatorsContainer.propTypes = {
   selectProps: PropTypes.object,
   countryTypes: PropTypes.object,
   countryMessages: PropTypes.object,
-  toggleCountryType: PropTypes.func,
+  handleType: PropTypes.func,
 };
 
 export const Menu = props => (
