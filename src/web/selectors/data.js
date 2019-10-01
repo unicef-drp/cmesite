@@ -46,6 +46,7 @@ import {
   prepend,
   replace,
   flip,
+  reverse,
 } from 'ramda';
 import numeral from 'numeral';
 import {
@@ -241,18 +242,24 @@ export const getCountryDatasourcesSerie = createSelector(
       concat(included, excluded),
     ),
 );
-export const getEnhancedCountryAllEstimateSerie = createSelector(
+export const getCountryAllEstimateSerieDatapoints = createSelector(
   getCountryAllEstimateSeries,
-  pipe(
-    head,
-    propOr([], 'datapoints'),
-    map(datapoint => ({
-      [ENHANCED_ESTIMATES_FIELDS.year]: Math.floor(path([REF_DATE, 'valueName'])(datapoint)),
-      [ENHANCED_ESTIMATES_FIELDS.estimate]: prop('y')(datapoint),
-      [ENHANCED_ESTIMATES_FIELDS.lowerBound]: prop('y0')(datapoint),
-      [ENHANCED_ESTIMATES_FIELDS.upperBound]: prop('y1')(datapoint),
-    })),
-  ),
+  pipe(head, propOr([], 'datapoints'), sortBy(prop('x')), reverse),
+);
+export const getEnhancedCountryAllEstimateSerie = createSelector(
+  getCountryAllEstimateSerieDatapoints,
+  map(datapoint => ({
+    [ENHANCED_ESTIMATES_FIELDS.year]: path([REF_DATE, 'valueName'])(datapoint),
+    [ENHANCED_ESTIMATES_FIELDS.estimate]: prop('y')(datapoint),
+    [ENHANCED_ESTIMATES_FIELDS.lowerBound]: prop('y0')(datapoint),
+    [ENHANCED_ESTIMATES_FIELDS.upperBound]: prop('y1')(datapoint),
+  })),
+);
+
+export const getCountryDatasourcesSerieTitle = createSelector(
+  getCountryValue,
+  getIndicatorValue,
+  useWith((a, b) => `${a} ${b}`, [propOr('', 'label'), propOr('', 'label')]),
 );
 
 const format = ifElse(isNil, always(null), n => numeral(n).format('0.0'));

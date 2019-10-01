@@ -46,6 +46,7 @@ import {
   getEnhancedCountryAllEstimateSerie,
   getEnhancedCountryDatasourcesSerie,
   getIndicatorValue,
+  getCountryDatasourcesSerieTitle,
 } from '../selectors/data';
 import {
   TYPES,
@@ -55,7 +56,6 @@ import {
   ENHANCED_DATASOURCES_FIELDS,
   HIERARCHY_LABEL_TOKEN,
   CSV_DL_ESTIMATES_HEADERS,
-  CSV_DL_DATASOURCES_HEADER,
   CSV_EOL,
   INDICATOR_DEFINITIONS,
   COUNTRY_DEFAULT_VALUE,
@@ -346,14 +346,17 @@ export const downloadTable = mode => (_, getState) =>
     ]),
     params => toCsv(...params),
     cond([
-      [always(equals(mode, 'datasources')), concat(CSV_DL_DATASOURCES_HEADER)],
+      [
+        always(equals(mode, 'datasources')),
+        concat(`${getCountryDatasourcesSerieTitle(getState())}${CSV_EOL}${CSV_EOL}`),
+      ],
       [
         always(equals(mode, 'estimates')),
         concat(
           join(
             CSV_EOL,
             concat(CSV_DL_ESTIMATES_HEADERS, [
-              prop(prop('id', getIndicatorValue(getState())), INDICATOR_DEFINITIONS),
+              `"${prop(prop('id', getIndicatorValue(getState())), INDICATOR_DEFINITIONS)}"`,
               CSV_EOL,
             ]),
           ),

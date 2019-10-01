@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   getCountryTitle,
   getIsLoadingData,
-  getCountryAllEstimateSeries,
+  getCountryAllEstimateSerieDatapoints,
   getCountryDatasourcesSerie,
 } from '../../selectors/data';
 import Estimates from './estimates';
@@ -16,7 +16,7 @@ export const DataCountryEstimatesTable = compose(
     createStructuredSelector({
       isLoadingData: getIsLoadingData,
       title: getCountryTitle,
-      series: getCountryAllEstimateSeries,
+      datapoints: getCountryAllEstimateSerieDatapoints,
     }),
   ),
   branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),

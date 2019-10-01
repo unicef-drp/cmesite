@@ -248,12 +248,7 @@ class Chart extends React.Component {
 
         <Grid container alignItems="center">
           <Grid item xs={6}>
-            <Typography variant="caption">
-              {
-                /*<FormattedMessage {...messages.yAxisLabel} />*/
-                seriesUnit
-              }
-            </Typography>
+            <Typography variant="caption">{seriesUnit}</Typography>
           </Grid>
           {model && (
             <Grid item xs={6}>

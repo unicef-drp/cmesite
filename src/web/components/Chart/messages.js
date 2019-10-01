@@ -5,10 +5,6 @@ export default defineMessages({
     id: 'data.reset.zoom',
     defaultMessage: 'Reset zoom',
   },
-  yAxisLabel: {
-    id: 'data.yaxis.label',
-    defaultMessage: 'Deaths per 1,000',
-  },
   model: {
     id: 'dataheader.model',
     defaultMessage: 'Estimation model: ',
