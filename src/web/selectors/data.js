@@ -81,6 +81,7 @@ import {
   STD_ERR,
   OBS_STATUS,
   OBS_STATUS_VALUES,
+  REGION_DEFAULT_VALUE,
 } from '../constants';
 
 export const getData = prop('data');
@@ -112,7 +113,16 @@ export const getFilteredCountryDimensionWithAggregates = unformatted =>
       if (and(COUNTRY, REGION)) return dimension;
       return assoc(
         'values',
-        filter(({ parent }) => (COUNTRY ? isNil(parent) : parent), propOr([], 'values', dimension)),
+        filter(({ id, parent }) => {
+          // World is a region without children, algo is generic and see it as a country
+          // code below is there to handle the exception
+          if (equals(REGION_DEFAULT_VALUE, id)) return REGION;
+
+          // if country is required then values without parent are returned
+          // because a country is a value without a parent
+          // when a region is hierarchical (except world)
+          return COUNTRY ? isNil(parent) : parent;
+        }, propOr([], 'values', dimension)),
         dimension,
       );
     },
