@@ -13,6 +13,10 @@ export default defineMessages({
     id: 'route.data',
     defaultMessage: 'Data',
   },
+  analysis: {
+    id: 'route.analysis',
+    defaultMessage: 'Analysis',
+  },
   reports: {
     id: 'route.reports',
     defaultMessage: 'Reports',
