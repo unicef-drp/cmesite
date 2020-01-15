@@ -1,7 +1,4 @@
-import { compose, withProps, withStateHandlers } from 'recompose';
-import { createStructuredSelector } from 'reselect';
-import { connect } from 'react-redux';
-import { getMapIndicatorDimension } from '../../selectors/data';
+import { compose, withProps } from 'recompose';
 import Component from './component';
 
 const MOCKS = {
@@ -13,19 +10,17 @@ const MOCKS = {
     an estimated 5.3 million children under age five died in 2018–roughly half of those deaths 
     occurred in sub-Saharan Africa.`,
   indicatorDimension: {
-    values: [{ id: 1, label: 'Under-five Mortality' }, { id: 2, label: 'neonatal Mortality' }],
+    values: [
+      { id: 'MRY0T4', label: 'Under-five Mortality' },
+      { id: 2, label: 'Neonatal Mortality' },
+    ],
   },
 };
 
 export default compose(
-  /*connect(
-    createStructuredSelector({ indicatorDimension: getMapIndicatorDimension }),
-    null,
-  ),*/
   withProps({
     indicatorDimension: MOCKS.indicatorDimension,
     title: MOCKS.title,
     description: MOCKS.description,
   }),
-  withStateHandlers({ mode: 'map' }, { changeMode: () => mode => ({ mode }) }),
 )(Component);

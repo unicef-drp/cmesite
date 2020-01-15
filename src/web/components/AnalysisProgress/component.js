@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import { map, propOr, equals, prop, head } from 'ramda';
+import { getAnalysisData } from '../../api/sdmx';
+import { map, propOr, equals, prop, head, isNil } from 'ramda';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -8,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Wrapper from '../Wrapper';
+import WorldMap from '../Map/component';
 
 const style = theme => ({
   wrapper: {
@@ -36,6 +39,36 @@ const Component = ({ classes, title, description, indicatorDimension }) => {
 
   const [chartType, setChartType] = useState('map');
   const [indicatorValueId, setIndicatorValueId] = useState(prop('id', head(indicatorValues)));
+  const [data, setData] = useState(null);
+
+  useEffect(
+    () => {
+      console.log(indicatorValueId);
+      //if (isNil(indicatorValueId)) return;
+
+      setData(null);
+
+      const CancelToken = axios.CancelToken;
+      const source = CancelToken.source();
+
+      getAnalysisData({ indicatorValueId, source })
+        .then(data => {
+          console.log(data);
+          if (axios.isCancel()) return;
+          setData(data);
+        })
+        .catch(error => {
+          if (axios.isCancel(error)) console.log('Request canceled', error.message);
+          console.log(error.message);
+        });
+
+      // Trigger the abortion in useEffect's cleanup function
+      return () => source.cancel('Operation canceled by the user.');
+    },
+    [indicatorValueId],
+  );
+
+  console.log('render');
 
   return (
     <Wrapper classes={{ root: classes.wrapper }}>
@@ -82,9 +115,8 @@ const Component = ({ classes, title, description, indicatorDimension }) => {
             ),
             chartTypes,
           )}
-          <div>
-            {chartType} - {indicatorValueId}
-          </div>
+          {equals(chartType, 'map') && <WorldMap mapSerie={data} />}
+          {equals(chartType, 'chart') && 'chart'}
         </Grid>
       </Grid>
     </Wrapper>
