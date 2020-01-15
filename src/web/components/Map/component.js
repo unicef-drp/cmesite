@@ -111,6 +111,7 @@ class WorldMap extends React.Component {
                   strokeWidth={0.2}
                   onClick={() => {
                     if (!datapoint) return;
+                    if (!this.props.handleMapClick) return;
                     this.props.handleMapClick(datapoint);
                   }}
                   onMouseOver={event => {
@@ -138,7 +139,7 @@ WorldMap.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   mapSerie: PropTypes.object,
-  handleMapClick: PropTypes.func.isRequired,
+  handleMapClick: PropTypes.func,
 };
 
 export default compose(withStyles(style, { withTheme: true }), withSize())(WorldMap);
