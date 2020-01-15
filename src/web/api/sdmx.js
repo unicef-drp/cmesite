@@ -11,6 +11,7 @@ import {
   ifElse,
   always,
   identity,
+  isNil,
 } from 'ramda';
 import { structureParser, dataParser, dataQuery, toCsv } from '../lib/sdmx';
 import { downloadCsv } from '../utils';
@@ -93,6 +94,22 @@ const getData = ({ dimensions, dataType }) => {
       },
     )
     .then(({ data }) => configuredDataParser(data, parserOptions));
+};
+
+export const getAnalysisData = ({ indicatorValueId, source }) => {
+  return axios
+    .get(
+      endPoint(
+        `/data/${dataflowQuery(
+          ',',
+        )}/.${indicatorValueId}._T.../?dimensionAtObservation=AllDimensions&startPeriod=${2016}&endPeriod=${2018}`,
+      ),
+      {
+        headers: { Accept: prop('json', dataHeaders), 'Accept-Language': 'en' },
+        cancelToken: source.token,
+      },
+    )
+    .then(({ data }) => configuredDataParser(data, { isMap: true }));
 };
 
 const getFileData = ({ dimensions, dataType, /*format,*/ scope }) => {
