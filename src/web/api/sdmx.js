@@ -11,7 +11,6 @@ import {
   ifElse,
   always,
   identity,
-  isNil,
 } from 'ramda';
 import { structureParser, dataParser, dataQuery, toCsv } from '../lib/sdmx';
 import { downloadCsv } from '../utils';
@@ -102,7 +101,7 @@ export const getAnalysisData = ({ indicatorValueId, source }) => {
       endPoint(
         `/data/${dataflowQuery(
           ',',
-        )}/.${indicatorValueId}._T.../?dimensionAtObservation=AllDimensions&startPeriod=${2016}&endPeriod=${2018}`,
+        )}/.${indicatorValueId}._T.UN_IGME_2019../?dimensionAtObservation=AllDimensions&startPeriod=${2015}&endPeriod=${2018}`,
       ),
       {
         headers: { Accept: prop('json', dataHeaders), 'Accept-Language': 'en' },
