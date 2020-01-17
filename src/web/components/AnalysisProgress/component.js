@@ -2,15 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { getAnalysisData } from '../../api/sdmx';
-import { map, propOr, equals, prop, head, isNil } from 'ramda';
+import * as R from 'ramda';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import PlayIcon from '@material-ui/icons/PlayArrow';
+import PauseIcon from '@material-ui/icons/Pause';
+import ResetIcon from '@material-ui/icons/Replay';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Wrapper from '../Wrapper';
 import WorldMap from '../Map/component';
+import Loader from '../Loader';
+import DataNone from '../DataNone';
+import Slider from 'rc-slider'; // rc-tooltip is not working
+import 'rc-slider/assets/index.css';
 
 const style = theme => ({
   wrapper: {
@@ -33,20 +41,44 @@ const style = theme => ({
   },
 });
 
-const Component = ({ classes, title, description, indicatorDimension }) => {
-  const indicatorValues = propOr([], 'values', indicatorDimension);
+/*
+ * 'no indicator value id' handling
+ * title is an aggregation?
+ * getAnalysisData to refine
+ * CONSTANT for analysis: slider marks, period of request...
+ * styles to polish
+ */
+
+const Component = ({ classes, theme, title, description, indicatorDimension }) => {
+  const indicatorValues = R.propOr([], 'values', indicatorDimension);
   const chartTypes = ['map', 'chart'];
 
   const [chartType, setChartType] = useState('map');
-  const [indicatorValueId, setIndicatorValueId] = useState(prop('id', head(indicatorValues)));
-  const [data, setData] = useState(null);
+  const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
+  const [series, setSeries] = useState([]);
+  const [seriesIndex, setSeriesIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const isBlank = R.isEmpty(series);
+  const sliderMarks = R.pipe(
+    R.splitEvery(1),
+    R.addIndex(R.reduce)(
+      (memo, fragment, index) =>
+        R.set(
+          R.lensProp(index),
+          R.pipe(R.head, R.prop('name'), name => new Date(name).getFullYear())(fragment),
+          memo,
+        ),
+      {},
+    ),
+  )(series);
 
   useEffect(
     () => {
-      console.log(indicatorValueId);
       //if (isNil(indicatorValueId)) return;
 
-      setData(null);
+      setSeries([]);
+      setIsLoading(true);
 
       const CancelToken = axios.CancelToken;
       const source = CancelToken.source();
@@ -54,10 +86,12 @@ const Component = ({ classes, title, description, indicatorDimension }) => {
       getAnalysisData({ indicatorValueId, source })
         .then(data => {
           console.log(data);
+          setIsLoading(false);
           if (axios.isCancel()) return;
-          setData(data);
+          R.pipe(R.values, R.sortBy(R.prop('name')), setSeries)(data);
         })
         .catch(error => {
+          setIsLoading(false);
           if (axios.isCancel(error)) console.log('Request canceled', error.message);
           console.log(error.message);
         });
@@ -68,8 +102,6 @@ const Component = ({ classes, title, description, indicatorDimension }) => {
     [indicatorValueId],
   );
 
-  console.log('render');
-
   return (
     <Wrapper classes={{ root: classes.wrapper }}>
       <Grid spacing={32} container>
@@ -78,12 +110,12 @@ const Component = ({ classes, title, description, indicatorDimension }) => {
             {title}
           </Typography>
           <Toolbar disableGutters className={classes.toolbar}>
-            {map(
+            {R.map(
               ({ id, label }) => (
                 <Button
                   size="large"
                   key={id}
-                  color={equals(indicatorValueId, id) ? 'primary' : null}
+                  color={R.equals(indicatorValueId, id) ? 'primary' : null}
                   classes={{ root: classes.button }}
                   onClick={() => setIndicatorValueId(id)}
                 >
@@ -96,27 +128,64 @@ const Component = ({ classes, title, description, indicatorDimension }) => {
           <Divider />
         </Grid>
         <Grid item xs={12} md={4} lg={3}>
-          <Typography variant="body2" paragraph>
-            {description}
-          </Typography>
+          <Typography variant="body2">{description}</Typography>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
-          {map(
-            type => (
-              <Button
-                key={type}
-                size="small"
-                color={equals(chartType, type) ? 'primary' : null}
-                classes={{ root: classes.button }}
-                onClick={() => setChartType(type)}
-              >
-                {type}
-              </Button>
-            ),
-            chartTypes,
-          )}
-          {equals(chartType, 'map') && <WorldMap mapSerie={data} />}
-          {equals(chartType, 'chart') && 'chart'}
+          {isLoading && <Loader />}
+          {!isLoading && isBlank && <DataNone />}
+          {!isLoading &&
+            !isBlank && (
+              <React.Fragment>
+                <Toolbar disableGutters>
+                  {R.map(
+                    type => (
+                      <Button
+                        key={type}
+                        size="small"
+                        color={R.equals(chartType, type) ? 'primary' : null}
+                        classes={{ root: classes.button }}
+                        onClick={() => setChartType(type)}
+                      >
+                        {type}
+                      </Button>
+                    ),
+                    chartTypes,
+                  )}
+                </Toolbar>
+                <Slider
+                  trackStyle={{ backgroundColor: theme.palette.primary.main }}
+                  handleStyle={{ borderColor: theme.palette.primary.main }}
+                  value={seriesIndex}
+                  min={0}
+                  max={R.dec(R.length(series))}
+                  step={1}
+                  onChange={setSeriesIndex}
+                  marks={sliderMarks}
+                />
+                <Toolbar disableGutters>
+                  <IconButton>
+                    <PlayIcon />
+                  </IconButton>
+                  <IconButton>
+                    <PauseIcon />
+                  </IconButton>
+                  <IconButton>
+                    <ResetIcon onClick={() => setSeriesIndex(0)} />
+                  </IconButton>
+                </Toolbar>
+                <Typography variant="title" className={classes.typo} align="right">
+                  year, number of death?
+                  <Typography variant="body2" inline>
+                    unit
+                  </Typography>
+                </Typography>
+                <Typography variant="body2" inline>
+                  unit
+                </Typography>
+                {R.equals(chartType, 'map') && <WorldMap mapSerie={R.nth(seriesIndex, series)} />}
+                {R.equals(chartType, 'chart') && 'chart'}
+              </React.Fragment>
+            )}
         </Grid>
       </Grid>
     </Wrapper>
@@ -125,9 +194,10 @@ const Component = ({ classes, title, description, indicatorDimension }) => {
 
 Component.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   title: PropTypes.string,
   description: PropTypes.string,
   indicatorDimension: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(Component);
+export default withStyles(style, { withTheme: true })(Component);
