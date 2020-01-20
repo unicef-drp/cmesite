@@ -95,13 +95,13 @@ const getData = ({ dimensions, dataType }) => {
     .then(({ data }) => configuredDataParser(data, parserOptions));
 };
 
-export const getAnalysisData = ({ indicatorValueId, source }) => {
+export const getAnalysisData = ({ indicatorValueId, startPeriod, endPeriod, source }) => {
   return axios
     .get(
       endPoint(
         `/data/${dataflowQuery(
           ',',
-        )}/.${indicatorValueId}._T.UN_IGME_2019../?dimensionAtObservation=AllDimensions&startPeriod=${1990}&endPeriod=${2018}`,
+        )}/.${indicatorValueId}._T.UN_IGME_2019../?dimensionAtObservation=AllDimensions&startPeriod=${startPeriod}&endPeriod=${endPeriod}`,
       ),
       {
         headers: { Accept: prop('json', dataHeaders), 'Accept-Language': 'en' },

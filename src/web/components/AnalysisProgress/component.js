@@ -18,19 +18,25 @@ import Wrapper from '../Wrapper';
 import WorldMap from '../Map/component';
 import Loader from '../Loader';
 import DataNone from '../DataNone';
+import { UNIT_MEASURE } from '../../constants';
 import Slider from 'rc-slider'; // rc-tooltip is not working
 import 'rc-slider/assets/index.css';
 
-const DELAY = 1000;
-const MARK_INTERVAL = 1;
+const DELAY = 250;
+const MARK_INTERVAL = 5;
+const START_PERIOD = 1990;
+const END_PERIOD = 2019;
 
 const style = theme => ({
   wrapper: {
-    paddingTop: theme.spacing.unit * 4,
+    paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
   typo: {
     color: theme.palette.primary.main,
+  },
+  name: {
+    color: theme.palette.secondary.darker,
   },
   button: {
     paddingLeft: theme.spacing.unit * 2,
@@ -44,22 +50,24 @@ const style = theme => ({
       justifyContent: 'space-between',
     },
   },
+  info: {
+    display: 'flex',
+    alignItems: 'baseline',
+    justifyContent: 'flex-end',
+  },
   slider: {
-    padding: theme.spacing.unit * 4,
-    paddingLeft: theme.spacing.unit * 8,
-    paddingRight: theme.spacing.unit * 8,
+    padding: theme.spacing.unit * 3,
+    paddingTop: theme.spacing.unit,
   },
 });
 
 /*
- * 'no indicator value id' handling
- * title is an aggregation?
  * getAnalysisData to refine
  * CONSTANT for analysis: slider marks, delay, period of request...
- * styles to polish
+ * bug size aware component??
  */
 
-const Component = ({ classes, theme, title, description, indicatorDimension }) => {
+const Component = ({ classes, theme, /*title,*/ description, indicatorDimension }) => {
   const indicatorValues = R.propOr([], 'values', indicatorDimension);
   const chartTypes = ['map', 'chart'];
 
@@ -71,12 +79,14 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
   const [isRunning, setIsRunning] = useState(false);
 
   const isBlank = R.isEmpty(series);
+  const serie = R.nth(seriesIndex, series);
+  const average = R.pipe(R.propOr([], 'datapoints'), R.values, R.pluck('y'), R.mean)(serie);
   const sliderMarks = R.pipe(
     R.splitEvery(MARK_INTERVAL),
     R.addIndex(R.reduce)(
       (memo, fragment, index) =>
         R.set(
-          R.lensProp(index),
+          R.lensProp(index * MARK_INTERVAL),
           R.pipe(R.head, R.prop('name'), name => new Date(name).getFullYear())(fragment),
           memo,
         ),
@@ -84,34 +94,44 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
     ),
   )(series);
 
-  useInterval(() => setSeriesIndex(R.inc(seriesIndex)), isRunning ? DELAY : null);
+  useInterval(() => {
+    if (R.lt(seriesIndex, R.dec(R.length(series)))) {
+      return setSeriesIndex(R.inc(seriesIndex));
+    }
+    setIsRunning(false);
+    return;
+  }, isRunning ? DELAY : null);
 
   useEffect(
     () => {
-      //if (isNil(indicatorValueId)) return;
-      console.log('useEffect');
+      if (R.isNil(indicatorValueId)) return;
 
-      setSeries([]);
       setIsLoading(true);
+      setSeries([]);
 
       const CancelToken = axios.CancelToken;
       const source = CancelToken.source();
 
-      getAnalysisData({ indicatorValueId, source })
+      getAnalysisData({
+        indicatorValueId,
+        source,
+        startPeriod: START_PERIOD,
+        endPeriod: END_PERIOD,
+      })
         .then(data => {
-          console.log(data);
           setIsLoading(false);
           if (axios.isCancel()) return;
           R.pipe(R.values, R.sortBy(R.prop('name')), setSeries)(data);
         })
         .catch(error => {
           setIsLoading(false);
-          if (axios.isCancel(error)) console.log('Request canceled', error.message);
-          console.log(error.message);
+          // eslint-disable-next-line no-console
+          if (axios.isCancel(error)) console.log('Request canceled');
+          console.log(error.message); // eslint-disable-line no-console
         });
 
       // Trigger the abortion in useEffect's cleanup function
-      return () => source.cancel('Operation canceled by the user.');
+      return () => source.cancel();
     },
     [indicatorValueId],
   );
@@ -120,9 +140,9 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
     <Wrapper classes={{ root: classes.wrapper }}>
       <Grid spacing={32} container>
         <Grid item xs={12}>
-          <Typography variant="title" className={classes.typo}>
+          {/*<Typography variant="title" className={classes.typo}>
             {title}
-          </Typography>
+          </Typography>*/}
           <Toolbar disableGutters className={classes.toolbar}>
             {R.map(
               ({ id, label }) => (
@@ -142,7 +162,9 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
           <Divider />
         </Grid>
         <Grid item xs={12} md={4} lg={3}>
-          <Typography variant="body2">{description}</Typography>
+          <Typography variant="body2" align="justify">
+            {description}
+          </Typography>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
           {isLoading && <Loader />}
@@ -150,7 +172,7 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
           {!isLoading &&
             !isBlank && (
               <React.Fragment>
-                <Toolbar disableGutters variant="dense">
+                <Toolbar disableGutters variant="dense" style={{ marginTop: -12 }}>
                   {R.map(
                     type => (
                       <Button
@@ -189,14 +211,16 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
                     <ResetIcon />
                   </IconButton>
                 </Toolbar>
-                <Toolbar disableGutters variant="dense">
-                  <Typography variant="title" className={classes.typo}>
-                    year
+                <div className={classes.info}>
+                  <Typography variant="title" className={classes.name}>
+                    {new Date(R.prop('name', serie)).getFullYear()},&nbsp;
                   </Typography>
-                  <Typography variant="title">#deaths</Typography>
-                  <Typography variant="body2">unit</Typography>
-                </Toolbar>
-                {R.equals(chartType, 'map') && <WorldMap mapSerie={R.nth(seriesIndex, series)} />}
+                  <Typography variant="title" className={classes.typo}>
+                    {Math.round(average)}&nbsp;
+                  </Typography>
+                  <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
+                </div>
+                {R.equals(chartType, 'map') && <WorldMap mapSerie={serie} />}
                 {R.equals(chartType, 'chart') && 'chart'}
               </React.Fragment>
             )}

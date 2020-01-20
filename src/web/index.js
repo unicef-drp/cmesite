@@ -11,7 +11,7 @@ import ConfigContext from './components/ConfigContext';
 import App from './components/App';
 import { translationMessages } from './i18n';
 import configureStore from './store/configureStore';
-import ducks from './ducks';
+// import ducks from './ducks';
 import wpApi from './api/wp';
 import sdmxApi from './api/sdmx';
 import loadConfig from './config';
