@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { getAnalysisData } from '../../api/sdmx';
 import * as R from 'ramda';
+import useInterval from '../../hooks/useInterval';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -20,9 +21,13 @@ import DataNone from '../DataNone';
 import Slider from 'rc-slider'; // rc-tooltip is not working
 import 'rc-slider/assets/index.css';
 
+const DELAY = 1000;
+const MARK_INTERVAL = 1;
+
 const style = theme => ({
   wrapper: {
     paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 2,
   },
   typo: {
     color: theme.palette.primary.main,
@@ -39,13 +44,18 @@ const style = theme => ({
       justifyContent: 'space-between',
     },
   },
+  slider: {
+    padding: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing.unit * 8,
+    paddingRight: theme.spacing.unit * 8,
+  },
 });
 
 /*
  * 'no indicator value id' handling
  * title is an aggregation?
  * getAnalysisData to refine
- * CONSTANT for analysis: slider marks, period of request...
+ * CONSTANT for analysis: slider marks, delay, period of request...
  * styles to polish
  */
 
@@ -58,10 +68,11 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
   const [series, setSeries] = useState([]);
   const [seriesIndex, setSeriesIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
 
   const isBlank = R.isEmpty(series);
   const sliderMarks = R.pipe(
-    R.splitEvery(1),
+    R.splitEvery(MARK_INTERVAL),
     R.addIndex(R.reduce)(
       (memo, fragment, index) =>
         R.set(
@@ -73,9 +84,12 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
     ),
   )(series);
 
+  useInterval(() => setSeriesIndex(R.inc(seriesIndex)), isRunning ? DELAY : null);
+
   useEffect(
     () => {
       //if (isNil(indicatorValueId)) return;
+      console.log('useEffect');
 
       setSeries([]);
       setIsLoading(true);
@@ -136,7 +150,7 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
           {!isLoading &&
             !isBlank && (
               <React.Fragment>
-                <Toolbar disableGutters>
+                <Toolbar disableGutters variant="dense">
                   {R.map(
                     type => (
                       <Button
@@ -152,36 +166,36 @@ const Component = ({ classes, theme, title, description, indicatorDimension }) =
                     chartTypes,
                   )}
                 </Toolbar>
-                <Slider
-                  trackStyle={{ backgroundColor: theme.palette.primary.main }}
-                  handleStyle={{ borderColor: theme.palette.primary.main }}
-                  value={seriesIndex}
-                  min={0}
-                  max={R.dec(R.length(series))}
-                  step={1}
-                  onChange={setSeriesIndex}
-                  marks={sliderMarks}
-                />
-                <Toolbar disableGutters>
-                  <IconButton>
+                <div className={classes.slider}>
+                  <Slider
+                    trackStyle={{ backgroundColor: theme.palette.primary.main }}
+                    handleStyle={{ borderColor: theme.palette.primary.main }}
+                    value={seriesIndex}
+                    min={0}
+                    max={R.dec(R.length(series))}
+                    step={1}
+                    onChange={setSeriesIndex}
+                    marks={sliderMarks}
+                  />
+                </div>
+                <Toolbar disableGutters variant="dense">
+                  <IconButton onClick={() => setIsRunning(true)}>
                     <PlayIcon />
                   </IconButton>
-                  <IconButton>
+                  <IconButton onClick={() => setIsRunning(false)}>
                     <PauseIcon />
                   </IconButton>
-                  <IconButton>
-                    <ResetIcon onClick={() => setSeriesIndex(0)} />
+                  <IconButton onClick={() => setSeriesIndex(0)}>
+                    <ResetIcon />
                   </IconButton>
                 </Toolbar>
-                <Typography variant="title" className={classes.typo} align="right">
-                  year, number of death?
-                  <Typography variant="body2" inline>
-                    unit
+                <Toolbar disableGutters variant="dense">
+                  <Typography variant="title" className={classes.typo}>
+                    year
                   </Typography>
-                </Typography>
-                <Typography variant="body2" inline>
-                  unit
-                </Typography>
+                  <Typography variant="title">#deaths</Typography>
+                  <Typography variant="body2">unit</Typography>
+                </Toolbar>
                 {R.equals(chartType, 'map') && <WorldMap mapSerie={R.nth(seriesIndex, series)} />}
                 {R.equals(chartType, 'chart') && 'chart'}
               </React.Fragment>
