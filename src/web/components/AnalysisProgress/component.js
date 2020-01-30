@@ -19,6 +19,8 @@ import WorldMap from '../Map/component';
 import Loader from '../Loader';
 import DataNone from '../DataNone';
 import { UNIT_MEASURE } from '../../constants';
+import { Stage } from '../Visualizations/Stage';
+import { ZoomContainer } from '../Visualizations/ZoomContainer';
 import Slider from 'rc-slider'; // rc-tooltip is not working
 import 'rc-slider/assets/index.css';
 
@@ -221,7 +223,13 @@ const Component = ({ classes, theme, /*title,*/ description, indicatorDimension 
                   <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
                 </div>
                 {R.equals(chartType, 'map') && <WorldMap mapSerie={serie} />}
-                {R.equals(chartType, 'chart') && 'chart'}
+                {R.equals(chartType, 'chart') && (
+                  <Stage width="100%" height={400}>
+                    <ZoomContainer>
+                      <text>Hello, World!</text>
+                    </ZoomContainer>
+                  </Stage>
+                )}
               </React.Fragment>
             )}
         </Grid>
