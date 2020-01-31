@@ -1,5 +1,7 @@
-import * as d3 from 'd3';
 import React, { useEffect, useState } from 'react';
+import { select as d3Select } from 'd3-selection';
+import { zoom as d3Zoom, zoomTransform as d3ZoomTransform } from 'd3-zoom';
+import PropTypes from 'prop-types';
 import { useSvg } from './Stage';
 
 export const ZoomContainer = ({ children }) => {
@@ -9,8 +11,8 @@ export const ZoomContainer = ({ children }) => {
   useEffect(
     () => {
       if (!svgElement) return;
-      const selection = d3.select(svgElement);
-      const zoom = d3.zoom().on('zoom', () => setTransform(d3.event.transform));
+      const selection = d3Select(svgElement);
+      const zoom = d3Zoom().on('zoom', () => setTransform(d3ZoomTransform));
       selection.call(zoom);
       return () => selection.on('.zoom', null);
     },
@@ -18,4 +20,8 @@ export const ZoomContainer = ({ children }) => {
   );
 
   return <g transform={`translate(${x}, ${y}) scale(${k})`}>{children}</g>;
+};
+
+ZoomContainer.propTypes = {
+  children: PropTypes.node,
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const Context = React.createContext(null);
 
@@ -11,6 +12,12 @@ export const Stage = ({ width, height, children }) => {
       <Context.Provider value={svg}>{children}</Context.Provider>
     </svg>
   );
+};
+
+Stage.propTypes = {
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  children: PropTypes.node,
 };
 
 export const useSvg = () => React.useContext(Context);
