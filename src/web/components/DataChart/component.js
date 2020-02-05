@@ -26,6 +26,7 @@ import messages from './messages';
 import Chart from '../Chart';
 import DataHeader from '../DataHeader';
 import DataLegend from '../DataLegend';
+import DataCountryNote from '../DataCountryNote';
 import { getSymbol } from '../Chart/utils';
 import { EXCLUDED, ESTIMATE, TYPES, MODEL } from '../../constants';
 
@@ -138,6 +139,7 @@ const DataChart = ({
       highlightMethod={highlightMethod}
       highlightedMethods={highlightedMethods}
     />
+    <DataCountryNote />
   </Card>
 );
 

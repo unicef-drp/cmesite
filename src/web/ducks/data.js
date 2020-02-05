@@ -104,6 +104,7 @@ const initialState = {
   mapIndex: null,
   highlightedMethods: {},
   countryTypes: { COUNTRY: true, REGION: false },
+  countryNotes: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -164,6 +165,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLoadingData: false,
+        countryNotes: action.countryNotes,
         [`${action.dataType}Series`]: action.series,
         [`${action.dataType}Stale`]: action.staled || false,
       };
@@ -308,12 +310,13 @@ export const loadData = dataType => (dispatch, getState) => {
     method: 'getData',
     dimensions: getRawDimensions(getState()),
     dataType,
-  }).then(series =>
+  }).then(({ series, countryNotes }) =>
     dispatch({
       type: DATA_LOADED,
       staled: equals(dataType, HOME),
       dataType: __dataType,
       series,
+      countryNotes,
     }),
   );
 };

@@ -19,8 +19,6 @@ import WorldMap from '../Map/component';
 import Loader from '../Loader';
 import DataNone from '../DataNone';
 import { UNIT_MEASURE } from '../../constants';
-import { Stage } from '../Visualizations/Stage';
-import { ZoomContainer } from '../Visualizations/ZoomContainer';
 import Slider from 'rc-slider'; // rc-tooltip is not working
 import 'rc-slider/assets/index.css';
 
@@ -120,10 +118,10 @@ const Component = ({ classes, theme, /*title,*/ description, indicatorDimension 
         startPeriod: START_PERIOD,
         endPeriod: END_PERIOD,
       })
-        .then(data => {
+        .then(({ series }) => {
           setIsLoading(false);
           if (axios.isCancel()) return;
-          R.pipe(R.values, R.sortBy(R.prop('name')), setSeries)(data);
+          R.pipe(R.values, R.sortBy(R.prop('name')), setSeries)(series);
         })
         .catch(error => {
           setIsLoading(false);
@@ -222,19 +220,8 @@ const Component = ({ classes, theme, /*title,*/ description, indicatorDimension 
                   </Typography>
                   <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
                 </div>
-                {/*R.equals(chartType, 'map') && <WorldMap mapSerie={serie} />*/}
-                <Stage width="100%" height={400}>
-                  <ZoomContainer>
-                    <text>Hello, World!</text>
-                  </ZoomContainer>
-                </Stage>
-                {R.equals(chartType, 'chart') && (
-                  <Stage width="100%" height={400}>
-                    <ZoomContainer>
-                      <text>Hello, World!</text>
-                    </ZoomContainer>
-                  </Stage>
-                )}
+                {R.equals(chartType, 'map') && <WorldMap mapSerie={serie} />}
+                {R.equals(chartType, 'map') && 'chart'}
               </React.Fragment>
             )}
         </Grid>

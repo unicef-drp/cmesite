@@ -15,6 +15,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataHeader from '../DataHeader';
 import DataNone from '../DataNone';
+import DataCountryNote from '../DataCountryNote';
 import {
   SERIES_NAME,
   OBS_STATUS,
@@ -155,6 +156,7 @@ const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
         </Table>
       </CardContent>
     )}
+    <DataCountryNote />
   </Card>
 );
 

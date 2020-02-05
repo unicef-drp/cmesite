@@ -70,6 +70,7 @@ import {
   MODEL,
   CSV_DELIMITER,
   CSV_EOL,
+  COUNTRY_NOTES,
 } from '../../constants';
 
 const getValues = propOr([], 'values');
@@ -272,6 +273,7 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
 const parser = ({ locale, isMap, isRaw }) => data => {
   const dimensions = getArtefacts('dimensions')(data);
   const attributes = getArtefacts('attributes')(data);
+  const countryNotes = pipe(find(propEq('id', COUNTRY_NOTES)), path(['name', locale]))(attributes);
 
   if (isRaw) {
     return pipe(
@@ -283,7 +285,7 @@ const parser = ({ locale, isMap, isRaw }) => data => {
 
   const pivot = isMap ? [TIME_PERIOD] : [...RELEVANT_DIMENSIONS, Z];
 
-  return pipe(
+  const series = pipe(
     getObservations,
     toPairs,
     reduce(reduceObservation(locale, pivot, dimensions, attributes), {}),
@@ -294,6 +296,8 @@ const parser = ({ locale, isMap, isRaw }) => data => {
       ),
     ),
   )(data);
+
+  return { series, countryNotes };
 };
 
 export default parser;

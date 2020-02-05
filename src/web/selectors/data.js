@@ -85,6 +85,7 @@ import {
 } from '../constants';
 
 export const getData = prop('data');
+export const getCountryNotes = createSelector(getData, prop('countryNotes'));
 export const getCountryTypes = createSelector(getData, prop('countryTypes'));
 export const getHighlightedMethods = createSelector(getData, prop('highlightedMethods'));
 export const getActiveTab = createSelector(getData, prop('activeTab'));

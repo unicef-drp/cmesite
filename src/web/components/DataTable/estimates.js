@@ -15,6 +15,7 @@ import numeral from 'numeral';
 import messages from './messages';
 import DataHeader from '../DataHeader';
 import DataNone from '../DataNone';
+import DataCountryNote from '../DataCountryNote';
 import { REF_DATE } from '../../constants';
 
 const styles = theme => ({
@@ -81,6 +82,7 @@ const DataTable = ({ classes, datapoints, title, mode, changeMode, width }) => (
         </Table>
       </CardContent>
     )}
+    <DataCountryNote />
   </Card>
 );
 
