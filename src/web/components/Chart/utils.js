@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import { min as d3Min, max as d3Max } from 'd3-array';
 import {
   symbol,
@@ -7,28 +8,7 @@ import {
   symbolSquare,
   symbolCross,
 } from 'd3-shape';
-import {
-  equals,
-  pipe,
-  prop,
-  props,
-  toLower,
-  complement,
-  last,
-  propOr,
-  min,
-  head,
-  max,
-  reduce,
-  flatten,
-  isEmpty,
-  isNil,
-  reject,
-  and,
-  not,
-  is,
-  both,
-} from 'ramda';
+import * as R from 'ramda';
 import {
   ESTIMATE,
   PREVIOUS_ESTIMATE,
@@ -38,13 +18,19 @@ import {
   MISC_SYMBOL,
 } from '../../constants';
 
-export const isEstimate = equals(ESTIMATE);
+export const isEstimate = R.equals(ESTIMATE);
 
-export const isPreviousEstimate = equals(PREVIOUS_ESTIMATE);
+export const isPreviousEstimate = R.equals(PREVIOUS_ESTIMATE);
 
-export const hasSymbols = both(complement(isEstimate), complement(isPreviousEstimate));
+export const hasSymbols = R.both(R.complement(isEstimate), R.complement(isPreviousEstimate));
 
-export const isValidCoord = coord => pipe(prop(coord), is(Number));
+export const isValidCoord = coord => R.pipe(R.prop(coord), R.is(Number));
+
+export const getTickFormat = R.cond([
+  [R.lte(10 ** 6), n => numeral(n).format('0.00a')],
+  [R.lte(0), n => numeral(n).format('0a')],
+  [R.T, R.always('')],
+]);
 
 const symbols = {
   circle: symbolCircle,
@@ -55,18 +41,18 @@ const symbols = {
 };
 export const getSymbol = ({ size = 30, shape = DEFAULT_SYMBOL } = {}) =>
   symbol()
-    .type(prop(shape, symbols))
+    .type(R.prop(shape, symbols))
     .size(size);
 export const getSeriesMethodSymbol = ({ size, method } = {}) =>
-  getSymbol({ size, shape: propOr(MISC_SYMBOL, method, SERIES_METHOD_SYMBOLS) });
+  getSymbol({ size, shape: R.propOr(MISC_SYMBOL, method, SERIES_METHOD_SYMBOLS) });
 
 export const getSymbolFill = (index, theme, isUncertainty) => type => {
-  if (equals(type, EXCLUDED)) return 'none';
+  if (R.equals(type, EXCLUDED)) return 'none';
   return getColor({ type, index, theme, isUncertainty });
 };
 
 export const getClass = (type, classes) => ({
-  line: isEstimate(type) ? prop('estimate', classes) : prop(toLower(type), classes),
+  line: isEstimate(type) ? R.prop('estimate', classes) : R.prop(R.toLower(type), classes),
 });
 
 export const getColor = ({ index, theme, type, isUncertainty }) => {
@@ -76,29 +62,35 @@ export const getColor = ({ index, theme, type, isUncertainty }) => {
 };
 
 export const getOpacity = ({ type, isHighlighted, hasHighlights }) => {
-  if (and(isPreviousEstimate(type), not(isHighlighted))) return 0;
-  return and(not(isHighlighted), hasHighlights) ? 0.25 : 1;
+  if (R.and(isPreviousEstimate(type), R.not(isHighlighted))) return 0;
+  return R.and(R.not(isHighlighted), hasHighlights) ? 0.25 : 1;
 };
 
 export const getExtents = (...series) => {
-  const validSeries = reject(isNil, series);
-  if (isEmpty(validSeries)) return { x: [], y: [] };
+  const validSeries = R.reject(R.isNil, series);
+  if (R.isEmpty(validSeries)) return { x: [], y: [] };
 
-  return reduce(
+  return R.reduce(
     (extents, serie) => {
-      const datapoints = propOr([], 'datapoints', serie);
+      const datapoints = R.propOr([], 'datapoints', serie);
 
       return {
         x: [
-          min(head(prop('x', extents)), prop('x', head(datapoints))),
-          max(last(prop('x', extents)), prop('x', last(datapoints))),
+          R.min(R.head(R.prop('x', extents)), R.prop('x', R.head(datapoints))),
+          R.max(R.last(R.prop('x', extents)), R.prop('x', R.last(datapoints))),
         ],
         y: [
-          min(head(prop('y', extents)), d3Min(datapoints, pipe(props(['y', 'y0', 'y1']), d3Min))),
-          max(last(prop('y', extents)), d3Max(datapoints, pipe(props(['y', 'y0', 'y1']), d3Max))),
+          R.min(
+            R.head(R.prop('y', extents)),
+            d3Min(datapoints, R.pipe(R.props(['y', 'y0', 'y1']), d3Min)),
+          ),
+          R.max(
+            R.last(R.prop('y', extents)),
+            d3Max(datapoints, R.pipe(R.props(['y', 'y0', 'y1']), d3Max)),
+          ),
         ],
       };
     },
     { x: [Infinity, -Infinity], y: [Infinity, -Infinity] },
-  )(flatten(validSeries));
+  )(R.flatten(validSeries));
 };

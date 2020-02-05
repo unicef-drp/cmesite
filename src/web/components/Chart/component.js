@@ -13,7 +13,6 @@ import {
   isNil,
   always,
   prop,
-  lte,
   indexOf,
   propEq,
   any,
@@ -25,11 +24,10 @@ import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
 // import { timeFormat } from 'd3-time-format';
-import numeral from 'numeral';
 import { withSize } from 'react-sizeme';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { getSymbolFill, getClass, hasSymbols, getColor, getExtents } from './utils';
+import { getSymbolFill, getClass, hasSymbols, getColor, getExtents, getTickFormat } from './utils';
 import Axis from './axis';
 import Line from './line';
 import Area from './area';
@@ -279,7 +277,7 @@ class Chart extends React.Component {
                 scale={yScale}
                 ticks={ticks}
                 tickSize={-contentWidth}
-                tickFormat={ifElse(lte(0), n => numeral(n).format('0a'), always(''))}
+                tickFormat={getTickFormat}
                 classes={classes}
               />
               <Axis
@@ -343,7 +341,7 @@ Chart.propTypes = {
 };
 
 Chart.defaultProps = {
-  margin: { top: 10, right: 10, bottom: 20, left: 30 },
+  margin: { top: 10, right: 10, bottom: 20, left: 35 },
 };
 
 export default compose(withWidth(), withStyles(style, { withTheme: true }), withSize())(Chart);

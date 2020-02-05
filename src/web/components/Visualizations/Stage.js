@@ -15,7 +15,7 @@ export const Stage = ({ width, height, children }) => {
 };
 
 Stage.propTypes = {
-  width: PropTypes.number.isRequired,
+  width: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   children: PropTypes.node,
 };

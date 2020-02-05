@@ -222,7 +222,12 @@ const Component = ({ classes, theme, /*title,*/ description, indicatorDimension 
                   </Typography>
                   <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
                 </div>
-                {R.equals(chartType, 'map') && <WorldMap mapSerie={serie} />}
+                {/*R.equals(chartType, 'map') && <WorldMap mapSerie={serie} />*/}
+                <Stage width="100%" height={400}>
+                  <ZoomContainer>
+                    <text>Hello, World!</text>
+                  </ZoomContainer>
+                </Stage>
                 {R.equals(chartType, 'chart') && (
                   <Stage width="100%" height={400}>
                     <ZoomContainer>

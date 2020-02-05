@@ -5,7 +5,7 @@
   "sdmx": {
     "endpoint": "https://api.data.unicef.org/sdmx/Rest",
     "dataflow": {
-      "id": "CME_DF_2019",
+      "id": "CME_DF_2020a",
       "version": "1.0",
       "agencyId": "UNICEF"
     }
