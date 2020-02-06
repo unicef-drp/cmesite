@@ -6,6 +6,9 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
@@ -39,6 +42,9 @@ const styles = theme => ({
   typo: {
     color: theme.palette.primary.dark,
   },
+  list: {
+    padding: theme.spacing.unit,
+  },
 });
 
 const Component = ({ classes, note }) => (
@@ -55,7 +61,13 @@ const Component = ({ classes, note }) => (
         <FormattedMessage {...messages.note} />
       </Typography>
     </ExpansionPanelSummary>
-    <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>{note}</ExpansionPanelDetails>
+    <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
+      <List className={classes.list}>
+        <ListItem dense>
+          <ListItemText>{note}</ListItemText>
+        </ListItem>
+      </List>
+    </ExpansionPanelDetails>
   </ExpansionPanel>
 );
 
