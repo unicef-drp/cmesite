@@ -82,6 +82,7 @@ import {
   OBS_STATUS,
   OBS_STATUS_VALUES,
   REGION_DEFAULT_VALUE,
+  ANALYSIS_INDICATOR_IDS,
 } from '../constants';
 
 export const getData = prop('data');
@@ -132,6 +133,14 @@ export const getIndicatorDimension = createSelector(getDimensions, find(propEq('
 export const getMapIndicatorDimension = createSelector(
   getIndicatorDimension,
   ifElse(isNil, identity, over(lensProp('values'), filter(propEq('isRate', true)))),
+);
+export const getAnalysisIndicatorDimension = createSelector(
+  getIndicatorDimension,
+  ifElse(
+    isNil,
+    identity,
+    over(lensProp('values'), filter(({ id }) => ANALYSIS_INDICATOR_IDS.has(id))),
+  ),
 );
 export const getSexDimension = createSelector(getDimensions, find(propEq('id', SEX)));
 export const getCountryValue = createSelector(getCountryDimension, getSelectedDimensionValue());

@@ -13,6 +13,7 @@ export const RELEVANT_DIMENSIONS_DEFAULTS = new Set([
   'MRY0T4',
   SEX_TOTAL_VALUE,
 ]);
+export const ANALYSIS_INDICATOR_IDS = new Set(['MRY0T4', 'MRY0', 'MRM0', 'SBR']);
 
 export const COUNTRY_NOTES = 'COUNTRY_NOTES';
 

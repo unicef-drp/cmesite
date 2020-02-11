@@ -1,5 +1,10 @@
-import { compose, withProps } from 'recompose';
+import { connect } from 'react-redux';
+import { compose, lifecycle, withProps, renderComponent, branch } from 'recompose';
+import { createStructuredSelector } from 'reselect';
+import { loadStructure } from '../../ducks/data';
+import { getAnalysisIndicatorDimension, getIsLoadingStructure } from '../../selectors/data';
 import Component from './component';
+import Loader from '../Loader';
 
 const MOCKS = {
   title: 'Progress',
@@ -17,9 +22,21 @@ const MOCKS = {
   },
 };
 
+function componentDidMount() {
+  this.props.loadStructure();
+}
+
 export default compose(
+  connect(
+    createStructuredSelector({
+      indicatorDimension: getAnalysisIndicatorDimension,
+      isLoadingStructure: getIsLoadingStructure,
+    }),
+    { loadStructure },
+  ),
+  lifecycle({ componentDidMount }),
+  branch(({ isLoadingStructure }) => isLoadingStructure, renderComponent(Loader)),
   withProps({
-    indicatorDimension: MOCKS.indicatorDimension,
     title: MOCKS.title,
     description: MOCKS.description,
   }),

@@ -280,7 +280,16 @@ const changeCountryFromRoute = countryName => (dispatch, getState) => {
     dispatch(changeSelection({ selectionType: 'select', dataType: COUNTRY })(index, valueIndex));
 };
 
-export const loadStructure = (dataType, countryName) => (dispatch, getState) => {
+export const loadStructure = () => (dispatch, getState) => {
+  if (not(isEmpty(getRawDimensions(getState())))) return Promise.resolve();
+
+  dispatch({ type: LOADING_STRUCTURE });
+  return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions => {
+    dispatch({ type: STRUCTURE_LOADED, dimensions });
+  });
+};
+
+export const loadStructureAndData = (dataType, countryName) => (dispatch, getState) => {
   if (not(isEmpty(getRawDimensions(getState())))) return dispatch(loadData(dataType));
 
   dispatch({ type: LOADING_STRUCTURE });
@@ -374,6 +383,7 @@ const actions = {
   downloadData,
   toggleActiveType,
   loadStructure,
+  loadStructureAndData,
   changeSelection,
 };
 
