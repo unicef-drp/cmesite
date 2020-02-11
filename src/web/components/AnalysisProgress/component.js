@@ -221,7 +221,7 @@ const Component = ({ classes, theme, /*title,*/ description, indicatorDimension 
                   <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
                 </div>
                 {R.equals(chartType, 'map') && <WorldMap mapSerie={serie} />}
-                {R.equals(chartType, 'map') && 'chart'}
+                {R.equals(chartType, 'chart') && 'chart'}
               </React.Fragment>
             )}
         </Grid>
