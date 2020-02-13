@@ -26,6 +26,7 @@ const DELAY = 250;
 const MARK_INTERVAL = 5;
 const START_PERIOD = 1990;
 const END_PERIOD = 2019;
+const MEAN_ID = 'WORLD';
 
 const style = theme => ({
   wrapper: {
@@ -61,12 +62,6 @@ const style = theme => ({
   },
 });
 
-/*
- * getAnalysisData to refine
- * CONSTANT for analysis: slider marks, delay, period of request...
- * bug size aware component??
- */
-
 const Component = ({ classes, theme, /*title,*/ description, indicatorDimension }) => {
   const indicatorValues = R.propOr([], 'values', indicatorDimension);
   const chartTypes = ['map', 'chart'];
@@ -80,7 +75,7 @@ const Component = ({ classes, theme, /*title,*/ description, indicatorDimension 
 
   const isBlank = R.isEmpty(series);
   const serie = R.nth(seriesIndex, series);
-  const average = R.pipe(R.propOr([], 'datapoints'), R.values, R.pluck('y'), R.mean)(serie);
+  const mean = R.path(['datapoints', MEAN_ID, 'y'])(serie);
   const sliderMarks = R.pipe(
     R.splitEvery(MARK_INTERVAL),
     R.addIndex(R.reduce)(
@@ -216,7 +211,7 @@ const Component = ({ classes, theme, /*title,*/ description, indicatorDimension 
                     {new Date(R.prop('name', serie)).getFullYear()},&nbsp;
                   </Typography>
                   <Typography variant="title" className={classes.typo}>
-                    {Math.round(average)}&nbsp;
+                    {Math.round(mean)}&nbsp;
                   </Typography>
                   <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
                 </div>
