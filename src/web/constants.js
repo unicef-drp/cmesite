@@ -75,6 +75,10 @@ export const SERIES_METHOD_SYMBOLS = {
   SBH: 'circle',
   HD: 'square',
   VR: 'diamond',
+  FPH: 'star',
+  RC: 'octagon',
+  HMIS: 'pentagon',
+  PBS: 'triangleDown',
 };
 
 export const LOGOS = {

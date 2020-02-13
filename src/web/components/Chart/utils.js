@@ -7,6 +7,7 @@ import {
   symbolDiamond,
   symbolSquare,
   symbolCross,
+  symbolStar,
 } from 'd3-shape';
 import * as R from 'ramda';
 import {
@@ -17,6 +18,7 @@ import {
   SERIES_METHOD_SYMBOLS,
   MISC_SYMBOL,
 } from '../../constants';
+import { symbolPentagon, symbolOctagon, symbolTriangleDown } from './symbols';
 
 export const isEstimate = R.equals(ESTIMATE);
 
@@ -38,6 +40,10 @@ const symbols = {
   diamond: symbolDiamond,
   square: symbolSquare,
   cross: symbolCross,
+  star: symbolStar,
+  pentagon: symbolPentagon,
+  octagon: symbolOctagon,
+  triangleDown: symbolTriangleDown,
 };
 export const getSymbol = ({ size = 30, shape = DEFAULT_SYMBOL } = {}) =>
   symbol()
