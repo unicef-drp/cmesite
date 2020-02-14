@@ -29,7 +29,7 @@ const getDatasets = createSelector(getWP, propOr([], 'datasets'));
 export const getReports = createSelector(getWP, propOr([], 'reports'));
 export const getFocuses = createSelector(getWP, propOr([], 'focuses'));
 export const getAbout = createSelector(getWP, pipe(propOr([], 'abouts'), head));
-export const getMethod = createSelector(getWP, pipe(propOr([], 'methods'), head));
+export const getMethods = createSelector(getWP, propOr([], 'methods'));
 export const getDatanotes = createSelector(getWP, propOr([], 'datanotes'));
 export const getDownloads = createSelector(getWP, propOr([], 'downloads'));
 

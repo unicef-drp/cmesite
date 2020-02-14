@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reports | component render should match snapshot 1`] = `
+<Method
+  classes={
+    Object {
+      "btnType": "Method-btnType-6",
+      "container": "Method-container-5",
+      "image": "Method-image-4",
+      "root": "Method-root-2",
+      "typo": "Method-typo-3",
+      "wrapper": "Method-wrapper-1",
+    }
+  }
+/>
+`;

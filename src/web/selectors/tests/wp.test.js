@@ -5,7 +5,7 @@ import {
   getReports,
   getFocuses,
   getAbout,
-  getMethod,
+  getMethods,
   getDatanotes,
   getDatanote,
   getDatasetsUpdatedAt,
@@ -83,14 +83,14 @@ describe('/web/selectors/wp', () => {
     });
   });
 
-  describe('getMethod', () => {
-    it('should obtain undefined when called with an empty state', () =>
-      expect(getMethod(undefined)).toEqual(undefined));
+  describe('getMethods', () => {
+    it('should obtain an empty array when called with an empty state', () =>
+      expect(getMethods(undefined)).toEqual([]));
 
-    it('should obtain the first element of methods when called with a filled state', () => {
-      const methods = ['method1', 'method2'];
+    it('should obtain downloads', () => {
+      const methods = 'methods';
       const state = { wp: { methods } };
-      expect(getMethod(state)).toEqual('method1');
+      expect(getMethods(state)).toEqual('methods');
     });
   });
 
