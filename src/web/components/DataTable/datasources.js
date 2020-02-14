@@ -26,6 +26,7 @@ import {
   SERIES_METHOD,
   REF_DATE,
   STD_ERR,
+  DEFINITION,
 } from '../../constants';
 import { getSeriesMethodSymbol } from '../Chart/utils';
 
@@ -51,7 +52,7 @@ const format = R.ifElse(R.isNil, R.always(null), n => numeral(n).format('0.0'));
 const mergePropsByKey = (key, props, sep = '') =>
   R.pipe(R.pick(props), R.pluck(key), R.values, R.join(sep));
 
-const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
+const DataTable = ({ classes, serie, title, mode, changeMode, isStillBirth, theme }) => (
   <Card className={classes.card} square>
     <DataHeader title={title} changeMode={changeMode} mode={mode} />
     {R.either(R.isNil, R.isEmpty)(serie) ? (
@@ -70,13 +71,19 @@ const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
               <TableCell>
                 <FormattedMessage {...messages.seriesCategory} />
               </TableCell>
-              <TableCell align="center">
-                <Tooltip title={<FormattedMessage {...messages.aowtfsbLabel} />}>
-                  <div>
-                    <FormattedMessage {...messages.aowtfsbId} />
-                  </div>
-                </Tooltip>
-              </TableCell>
+              {isStillBirth ? (
+                <TableCell>
+                  <FormattedMessage {...messages.definition} />
+                </TableCell>
+              ) : (
+                <TableCell align="center">
+                  <Tooltip title={<FormattedMessage {...messages.aowtfsbLabel} />}>
+                    <div>
+                      <FormattedMessage {...messages.aowtfsbId} />
+                    </div>
+                  </Tooltip>
+                </TableCell>
+              )}
               <TableCell>
                 <FormattedMessage {...messages.interval} />
               </TableCell>
@@ -110,23 +117,27 @@ const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
                     />
                   </TableCell>
                   <TableCell>{R.path([SERIES_CATEGORY, 'valueName'], datapoint)}</TableCell>
-                  <TableCell align="center">
-                    <Tooltip
-                      title={mergePropsByKey(
-                        'valueName',
-                        [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
-                        ' ',
-                      )(datapoint)}
-                    >
-                      <div>
-                        {mergePropsByKey(
-                          'valueId',
+                  {isStillBirth ? (
+                    <TableCell align="center">
+                      <Tooltip
+                        title={mergePropsByKey(
+                          'valueName',
                           [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
                           ' ',
                         )(datapoint)}
-                      </div>
-                    </Tooltip>
-                  </TableCell>
+                      >
+                        <div>
+                          {mergePropsByKey(
+                            'valueId',
+                            [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
+                            ' ',
+                          )(datapoint)}
+                        </div>
+                      </Tooltip>
+                    </TableCell>
+                  ) : (
+                    <TableCell>{R.path([DEFINITION, 'valueName'], datapoint)}</TableCell>
+                  )}
                   <TableCell>{R.path([INTERVAL, 'valueName'], datapoint)}</TableCell>
                   <TableCell>
                     <Tooltip title={R.path([SERIES_METHOD, 'valueName'], datapoint)}>
@@ -166,6 +177,7 @@ DataTable.propTypes = {
   changeMode: PropTypes.func.isRequired,
   serie: PropTypes.array,
   title: PropTypes.string,
+  isStillBirth: PropTypes.bool,
   mode: PropTypes.string,
 };
 

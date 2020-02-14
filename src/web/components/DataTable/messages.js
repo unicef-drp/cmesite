@@ -33,6 +33,10 @@ export default defineMessages({
     id: 'datatable.aowtfsbId',
     defaultMessage: 'AoW & TSFB',
   },
+  definition: {
+    id: 'datatable.definition',
+    defaultMessage: 'Definition',
+  },
   aowtfsbLabel: {
     id: 'datatable.aowtfsbLabel',
     defaultMessage: 'Age group of women & Time since 1st birth',

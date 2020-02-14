@@ -83,6 +83,7 @@ import {
   OBS_STATUS_VALUES,
   REGION_DEFAULT_VALUE,
   ANALYSIS_INDICATOR_IDS,
+  STILLBIRTH_INDICATOR_IDS,
 } from '../constants';
 
 export const getData = prop('data');
@@ -149,6 +150,9 @@ export const getSexValue = createSelector(getSexDimension, getSelectedDimensionV
 export const getMapIndicatorValue = createSelector(
   getMapIndicatorDimension,
   getSelectedDimensionValue('isMapSelected'),
+);
+export const getIsStillbirth = createSelector(getIndicatorValue, ({ id }) =>
+  STILLBIRTH_INDICATOR_IDS.has(id),
 );
 export const getIsExcNoSexIndicatorValue = createSelector(getIndicatorValue, value =>
   EXC_NO_SEX_INDICATOR_VALUES.has(prop('id', value)),

@@ -14,6 +14,7 @@ export const RELEVANT_DIMENSIONS_DEFAULTS = new Set([
   SEX_TOTAL_VALUE,
 ]);
 export const ANALYSIS_INDICATOR_IDS = new Set(['MRY0T4', 'MRY0', 'MRM0', 'SBR']);
+export const STILLBIRTH_INDICATOR_IDS = new Set(['SB', 'SBR']);
 
 export const COUNTRY_NOTES = 'COUNTRY_NOTES';
 
@@ -97,6 +98,7 @@ export const TIME_SINCE_FIRST_BIRTH = 'TIME_SINCE_FIRST_BIRTH';
 export const INTERVAL = 'INTERVAL';
 export const STD_ERR = 'STD_ERR';
 export const OBS_VALUE = 'OBS_VALUE';
+export const DEFINITION = 'DEFINITION';
 export const EXPORT_INDEX_IDS = [
   REF_AREA,
   INDICATOR,

@@ -6,6 +6,7 @@ import {
   getIsLoadingData,
   getCountryAllEstimateSerieDatapoints,
   getCountryDatasourcesSerie,
+  getIsStillbirth,
 } from '../../selectors/data';
 import Estimates from './estimates';
 import Datasources from './datasources';
@@ -28,6 +29,7 @@ export const DataCountryDataSourcesTable = compose(
       isLoadingData: getIsLoadingData,
       title: getCountryTitle,
       serie: getCountryDatasourcesSerie,
+      isStillBirth: getIsStillbirth,
     }),
   ),
   branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
