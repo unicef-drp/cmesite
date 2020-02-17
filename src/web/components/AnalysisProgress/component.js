@@ -42,13 +42,15 @@ const style = theme => ({
   button: {
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
+    [theme.breakpoints.down('xs')]: {
+      display: 'block',
+    },
   },
   toolbar: {
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     [theme.breakpoints.down('xs')]: {
-      display: 'flex',
-      justifyContent: 'space-between',
+      display: 'block',
     },
   },
   info: {
@@ -62,7 +64,7 @@ const style = theme => ({
   },
 });
 
-const Component = ({ classes, theme, /*title,*/ description, indicatorDimension }) => {
+const Component = ({ classes, theme, title, description, indicatorDimension }) => {
   const indicatorValues = R.propOr([], 'values', indicatorDimension);
   const chartTypes = ['map', 'chart'];
 
@@ -135,14 +137,13 @@ const Component = ({ classes, theme, /*title,*/ description, indicatorDimension 
     <Wrapper classes={{ root: classes.wrapper }}>
       <Grid spacing={32} container>
         <Grid item xs={12}>
-          {/*<Typography variant="title" className={classes.typo}>
+          <Typography variant="title" className={classes.typo}>
             {title}
-          </Typography>*/}
+          </Typography>
           <Toolbar disableGutters className={classes.toolbar}>
             {R.map(
               ({ id, label }) => (
                 <Button
-                  size="large"
                   key={id}
                   color={R.equals(indicatorValueId, id) ? 'primary' : null}
                   classes={{ root: classes.button }}
