@@ -438,11 +438,15 @@ describe('/web/selectors/data', () => {
     it('should obtain INDICATOR and SEX dimensions when called with a filled state', () => {
       const dimensions = [
         { id: 'REF_AREA', test: 'test' },
-        { id: 'INDICATOR' },
+        { id: 'INDICATOR', values: [] },
         { id: 'SEX' },
         { id: 'SEX', foo: 'bar' },
       ];
-      const otherDimensions = [{ id: 'INDICATOR' }, { id: 'SEX' }, { foo: 'bar', id: 'SEX' }];
+      const otherDimensions = [
+        { id: 'INDICATOR', values: [] },
+        { id: 'SEX' },
+        { foo: 'bar', id: 'SEX' },
+      ];
       const state = { data: { dimensions } };
       expect(getOtherDimensions(state)).toEqual(otherDimensions);
     });
@@ -460,7 +464,7 @@ describe('/web/selectors/data', () => {
       ];
       const dimensions = [
         { id: 'REF_AREA', test: 'test', values },
-        { id: 'INDICATOR' },
+        { id: 'INDICATOR', values: [] },
         { id: 'SEX' },
         { id: 'SEX', foo: 'bar' },
       ];
@@ -480,7 +484,7 @@ describe('/web/selectors/data', () => {
             { children: [], id: 'foo', label: 'bar' },
           ],
         },
-        { id: 'INDICATOR' },
+        { id: 'INDICATOR', values: [] },
         { id: 'SEX' },
         { foo: 'bar', id: 'SEX' },
       ]);

@@ -8,7 +8,6 @@ import {
   useWith,
   reject,
   identity,
-  eqBy,
   find,
   values,
   filter,
@@ -84,6 +83,8 @@ import {
   REGION_DEFAULT_VALUE,
   ANALYSIS_INDICATOR_IDS,
   STILLBIRTH_INDICATOR_IDS,
+  DISPARITY_INDICATOR_IDS,
+  PROGRESS_INDICATOR_IDS,
 } from '../constants';
 
 export const getData = prop('data');
@@ -130,10 +131,31 @@ export const getFilteredCountryDimensionWithAggregates = unformatted =>
       );
     },
   );
+export const getOtherDimensions = createSelector(
+  getDimensions,
+  reduce((memo, dimension) => {
+    // exclude REF_AREA dimension
+    if (equals(dimension.id, REF_AREA)) return memo;
+
+    // filter INDICATOR dimension values
+    if (equals(dimension.id, INDICATOR)) {
+      const filteredValues = reject(
+        ({ id }) => or(DISPARITY_INDICATOR_IDS.has(id), PROGRESS_INDICATOR_IDS.has(id)),
+        dimension.values,
+      );
+      return append({ ...dimension, values: filteredValues }, memo);
+    }
+
+    return append(dimension, memo);
+  }, []),
+);
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
 export const getMapIndicatorDimension = createSelector(
-  getIndicatorDimension,
-  ifElse(isNil, identity, over(lensProp('values'), filter(propEq('isRate', true)))),
+  getOtherDimensions,
+  pipe(
+    find(propEq('id', INDICATOR)),
+    ifElse(isNil, identity, over(lensProp('values'), filter(propEq('isRate', true)))),
+  ),
 );
 export const getAnalysisIndicatorDimension = createSelector(
   getIndicatorDimension,
@@ -164,11 +186,6 @@ export const getIsExcNoSexIndicatorValueByIndexes = (dimensionIndex, valueIndex)
       EXC_NO_SEX_INDICATOR_VALUES.has(valueId),
     ),
   );
-export const getOtherDimensions = createSelector(
-  getCountryDimension,
-  getDimensions,
-  useWith(reject, [eqBy(prop('id')), identity]),
-);
 export const getDimensionsWithAggregates = createSelector(
   getCountryDimensionWithAggregates(true),
   getOtherDimensions,
