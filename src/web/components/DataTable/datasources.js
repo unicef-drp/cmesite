@@ -118,6 +118,8 @@ const DataTable = ({ classes, serie, title, mode, changeMode, isStillBirth, them
                   </TableCell>
                   <TableCell>{R.path([SERIES_CATEGORY, 'valueName'], datapoint)}</TableCell>
                   {isStillBirth ? (
+                    <TableCell>{R.path([DEFINITION, 'valueName'], datapoint)}</TableCell>
+                  ) : (
                     <TableCell align="center">
                       <Tooltip
                         title={mergePropsByKey(
@@ -135,8 +137,6 @@ const DataTable = ({ classes, serie, title, mode, changeMode, isStillBirth, them
                         </div>
                       </Tooltip>
                     </TableCell>
-                  ) : (
-                    <TableCell>{R.path([DEFINITION, 'valueName'], datapoint)}</TableCell>
                   )}
                   <TableCell>{R.path([INTERVAL, 'valueName'], datapoint)}</TableCell>
                   <TableCell>

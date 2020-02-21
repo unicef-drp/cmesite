@@ -273,7 +273,11 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
 const parser = ({ locale, isMap, isRaw }) => data => {
   const dimensions = getArtefacts('dimensions')(data);
   const attributes = getArtefacts('attributes')(data);
-  const countryNotes = pipe(find(propEq('id', COUNTRY_NOTES)), path(['name', locale]))(attributes);
+  const countryNotes = pipe(
+    find(propEq('id', COUNTRY_NOTES)),
+    propOr([], 'values'),
+    map(path(['name', locale])),
+  )(attributes);
 
   if (isRaw) {
     return pipe(

@@ -47,7 +47,7 @@ const styles = theme => ({
   },
 });
 
-const Component = ({ classes, note }) => (
+const Component = ({ classes, notes }) => (
   <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
     <ExpansionPanelSummary
       expandIcon={<ExpandMoreIcon />}
@@ -64,7 +64,7 @@ const Component = ({ classes, note }) => (
     <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
       <List className={classes.list}>
         <ListItem dense>
-          <ListItemText>{note}</ListItemText>
+          <ListItemText>{notes}</ListItemText>
         </ListItem>
       </List>
     </ExpansionPanelDetails>
@@ -73,7 +73,7 @@ const Component = ({ classes, note }) => (
 
 Component.propTypes = {
   classes: PropTypes.object.isRequired,
-  note: PropTypes.string,
+  notes: PropTypes.array,
 };
 
 export default withStyles(styles)(Component);
