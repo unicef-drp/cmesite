@@ -36,7 +36,7 @@ const styles = theme => ({
 
 const EvenTableCell = withStyles({ root: { width: '25%' } })(TableCell);
 
-const format = R.ifElse(R.isNil, R.always(null), n => numeral(n).format('0.00'));
+const format = R.ifElse(R.isNil, R.always(null), n => numeral(n).format('0.[00]'));
 
 const DataTable = ({ classes, datapoints, title, mode, changeMode, width }) => (
   <Card className={classes.card} square>
