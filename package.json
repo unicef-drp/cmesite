@@ -121,7 +121,7 @@
     "prettier": "1.12.1",
     "url-search-params-polyfill": "^3.0.0",
     "webpack": "^3.10.0",
-    "webpack-bundle-analyzer": "^2.10.0",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-server": "2.7.1"
   },
   "lint-staged": {
