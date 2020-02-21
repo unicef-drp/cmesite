@@ -67,7 +67,7 @@ export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE' /*, SERI
 export const EMAIL = 'childmortality@unicef.org';
 export const LEGAL_LINK = 'https://www.unicef.org/about/legal.html';
 export const LOCALES = ['en', 'fr', 'es', 'ru', 'ar'];
-export const END_PERIOD = '2017-06'; // requires data availability to know boundaries of a time dimension
+export const END_PERIOD = '2018-06'; // requires data availability to know boundaries of a time dimension
 
 export const UNIT_MEASURE = 'UNIT_MEASURE';
 export const SERIES_METHOD = 'SERIES_METHOD';
