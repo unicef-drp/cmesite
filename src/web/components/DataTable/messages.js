@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'datatable.value',
     defaultMessage: 'Value',
   },
+  estimate: {
+    id: 'datatable.estimate',
+    defaultMessage: 'Estimate',
+  },
   lower: {
     id: 'datatable.lower',
     defaultMessage: 'Lower bound',

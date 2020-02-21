@@ -53,7 +53,7 @@ const DataTable = ({ classes, datapoints, title, mode, changeMode, width }) => (
               </EvenTableCell>
               <EvenTableCell>
                 <strong>
-                  <FormattedMessage {...messages.value} />
+                  <FormattedMessage {...messages.estimate} />
                 </strong>
               </EvenTableCell>
               <EvenTableCell>
