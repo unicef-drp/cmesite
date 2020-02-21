@@ -60,6 +60,7 @@ import {
   REF_AREA,
   INDICATOR,
   SEX,
+  SERIES_YEAR,
   RELEVANT_DIMENSIONS,
   ESTIMATE,
   PREVIOUS_ESTIMATE,
@@ -279,7 +280,7 @@ export const getCountryDatasourcesSerie = createSelector(
   getCountryAllIncludedSeries,
   getCountryAllExcludedSeries,
   (included = [], excluded = []) =>
-    pipe(pluck('datapoints'), unnest, sortByProps([SERIES_NAME, REF_DATE]))(
+    pipe(pluck('datapoints'), unnest, sortByProps([SERIES_YEAR, REF_DATE]), reverse)(
       concat(included, excluded),
     ),
 );
