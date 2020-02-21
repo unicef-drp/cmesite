@@ -20,6 +20,19 @@ import {
   identity,
   or,
   findIndex,
+  is,
+  lt,
+  both,
+  toLower,
+  propSatisfies,
+  isNil,
+  values,
+  cond,
+  split,
+  last,
+  concat,
+  join,
+  find,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
 import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
@@ -29,8 +42,26 @@ import {
   getCanLoadData,
   getIsExcNoSexIndicatorValueByIndexes,
   getSexDimension,
+  getCountryDimension,
+  getEnhancedCountryAllEstimateSerie,
+  getEnhancedCountryDatasourcesSerie,
+  getIndicatorValue,
+  getCountryDatasourcesSerieTitle,
 } from '../selectors/data';
-import { TYPES, REF_AREA, SEX_TOTAL_VALUE } from '../constants';
+import {
+  TYPES,
+  REF_AREA,
+  SEX_TOTAL_VALUE,
+  ENHANCED_ESTIMATES_FIELDS,
+  ENHANCED_DATASOURCES_FIELDS,
+  HIERARCHY_LABEL_TOKEN,
+  CSV_DL_ESTIMATES_HEADERS,
+  CSV_EOL,
+  INDICATOR_DEFINITIONS,
+  COUNTRY_DEFAULT_VALUE,
+  REGION_DEFAULT_VALUE,
+} from '../constants';
+import { downloadCsv, toCsv } from '../utils';
 
 export const SCOPES = ['selection' /*, 'all'*/];
 //export const FORMATS = ['csv', 'xml'];
@@ -48,6 +79,14 @@ export const TOGGLE_DOWNLOADING_DATA = 'CM/DATA/TOGGLE_DOWNLOADING_DATA';
 export const TOGGLE_ACTIVE_TYPE = 'CM/DATA/TOGGLE_ACTIVE_TYPE';
 export const CHANGE_MAP_INDEX = 'CM/DATA/CHANGE_MAP_INDEX';
 export const HIGHLIGHT_SERIE = 'CM/DATA/HIGHLIGHT_SERIE';
+export const HIGHLIGHT_METHOD = 'CM/DATA/HIGHLIGHT_METHOD';
+export const TOGGLE_COUNTRY_TYPE = 'CM/DATA/TOGGLE_COUNTRY_TYPE';
+
+const activeTypes = reduce(
+  (memo, { id, value, sdmxValue }) => (isNil(sdmxValue) ? memo : assoc(id, value, memo)),
+  {},
+  TYPES,
+);
 
 const initialState = {
   activeTab: 0,
@@ -55,11 +94,7 @@ const initialState = {
   isLoadingData: false,
   downloadingData: {},
   dimensions: [],
-  activeTypes: reduce(
-    (memo, type) => assoc(prop('id', type), prop('value', type), memo),
-    {},
-    TYPES,
-  ),
+  activeTypes,
   countryStale: true,
   compareStale: true,
   mapStale: true,
@@ -67,6 +102,8 @@ const initialState = {
   compareSeries: {},
   mapSeries: {},
   mapIndex: null,
+  highlightedMethods: {},
+  countryTypes: { COUNTRY: true, REGION: false },
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -77,6 +114,8 @@ const reducer = (state = initialState, action = {}) => {
         not,
         state,
       );
+    case HIGHLIGHT_METHOD:
+      return over(lensPath(['highlightedMethods', action.methodId]), not, state);
     case CHANGE_ACTIVE_TAB:
       return { ...state, activeTab: action.activeTab };
     case CHANGE_MAP_INDEX:
@@ -132,6 +171,16 @@ const reducer = (state = initialState, action = {}) => {
       return over(lensPath(['downloadingData', `${action.format}.${action.scope}`]), not, state);
     case TOGGLE_ACTIVE_TYPE:
       return over(lensPath(['activeTypes', action.activeType]), not, state);
+    case TOGGLE_COUNTRY_TYPE:
+      var indexOfRefArea = findIndex(propEq('id', REF_AREA), state.dimensions);
+      var valueId = action.countryType === 'COUNTRY' ? COUNTRY_DEFAULT_VALUE : REGION_DEFAULT_VALUE;
+      return pipe(
+        over(lensPath(['countryTypes', action.countryType]), not),
+        over(
+          lensPath(['dimensions', indexOfRefArea, 'values']),
+          map(value => ({ ...value, isSelected: equals(value.id, valueId) })),
+        ),
+      )({ ...state, countryStale: true, countryTypes: { COUNTRY: false, REGION: false } });
     default:
       return state;
   }
@@ -142,6 +191,8 @@ export const highlightSerie = serieType => serieId => ({
   serieType,
   serieId,
 });
+
+export const highlightMethod = methodId => ({ type: HIGHLIGHT_METHOD, methodId });
 
 export const changeMapIndex = mapIndex => ({ type: CHANGE_MAP_INDEX, mapIndex });
 
@@ -175,6 +226,16 @@ const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
     });
 };
 
+export const toggleCountryType = (countryType, historyCallback) => (dispatch, getState) => {
+  dispatch({ type: TOGGLE_COUNTRY_TYPE, countryType });
+  const countryId = countryType === 'COUNTRY' ? COUNTRY_DEFAULT_VALUE : REGION_DEFAULT_VALUE;
+  const countryName = pipe(prop('values'), find(propEq('id', countryId)), prop('label'))(
+    getCountryDimension(getState()),
+  );
+  historyCallback(countryName);
+  dispatch(loadData(COUNTRY));
+};
+
 export const changeActiveTab = (activeTab, shouldNotGetData) => (dispatch, getState) => {
   dispatch({ type: CHANGE_ACTIVE_TAB, activeTab });
 
@@ -206,12 +267,24 @@ export const changeSelection = ({ selectionType, dataType }) => (dimensionIndex,
   dispatch(loadData(dataType));
 };
 
-export const loadStructure = dataType => (dispatch, getState) => {
+const changeCountryFromRoute = countryName => (dispatch, getState) => {
+  const formattedCountryName = pipe(split(HIERARCHY_LABEL_TOKEN), last, toLower)(countryName);
+  const { index, values } = getCountryDimension(getState());
+  const valueIndex = findIndex(
+    propSatisfies(pipe(toLower, equals(formattedCountryName)), 'label'),
+    values,
+  );
+  if (both(is(Number), lt(-1))(valueIndex))
+    dispatch(changeSelection({ selectionType: 'select', dataType: COUNTRY })(index, valueIndex));
+};
+
+export const loadStructure = (dataType, countryName) => (dispatch, getState) => {
   if (not(isEmpty(getRawDimensions(getState())))) return dispatch(loadData(dataType));
 
   dispatch({ type: LOADING_STRUCTURE });
   return requestSDMX(dispatch, { method: 'getStructure' }).then(dimensions => {
     dispatch({ type: STRUCTURE_LOADED, dimensions });
+    if (countryName) dispatch(changeCountryFromRoute(countryName));
     dispatch(loadData(dataType));
   });
 };
@@ -255,6 +328,43 @@ export const downloadData = ({ dataType, format, scope }) => (dispatch, getState
     scope,
   }).then(() => dispatch({ type: TOGGLE_DOWNLOADING_DATA, format, scope }));
 };
+
+export const downloadTable = mode => (_, getState) =>
+  pipe(
+    cond([
+      [
+        equals('datasources'),
+        always([
+          values(ENHANCED_DATASOURCES_FIELDS),
+          getEnhancedCountryDatasourcesSerie(getState()),
+        ]),
+      ],
+      [
+        equals('estimates'),
+        always([values(ENHANCED_ESTIMATES_FIELDS), getEnhancedCountryAllEstimateSerie(getState())]),
+      ],
+    ]),
+    params => toCsv(...params),
+    cond([
+      [
+        always(equals(mode, 'datasources')),
+        concat(`${getCountryDatasourcesSerieTitle(getState())}${CSV_EOL}${CSV_EOL}`),
+      ],
+      [
+        always(equals(mode, 'estimates')),
+        concat(
+          join(
+            CSV_EOL,
+            concat(CSV_DL_ESTIMATES_HEADERS, [
+              `"${prop(prop('id', getIndicatorValue(getState())), INDICATOR_DEFINITIONS)}"`,
+              CSV_EOL,
+            ]),
+          ),
+        ),
+      ],
+    ]),
+    downloadCsv('data-download.csv'),
+  )(mode);
 
 const actions = {
   changeActiveTab,

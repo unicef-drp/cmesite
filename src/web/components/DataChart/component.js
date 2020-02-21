@@ -13,6 +13,7 @@ import {
   sortBy,
   findIndex,
   propEq,
+  path,
 } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -26,7 +27,7 @@ import Chart from '../Chart';
 import DataHeader from '../DataHeader';
 import DataLegend from '../DataLegend';
 import { getSymbol } from '../Chart/utils';
-import { EXCLUDED, ESTIMATE, TYPES } from '../../constants';
+import { EXCLUDED, ESTIMATE, TYPES, MODEL } from '../../constants';
 
 const styles = theme => ({
   card: {
@@ -72,7 +73,9 @@ const DataChart = ({
   seriesUnit,
   changeMode,
   mode,
-  ...series // uncertaintySeries, estimateSeries, includedSeries, excludedSeries, mergedSeries
+  highlightMethod,
+  highlightedMethods = {},
+  ...series // uncertaintySeries, estimateSeries, previousEstimateSeries, includedSeries, excludedSeries, mergedSeries
 }) => (
   <Card className={classes.card} square>
     <DataHeader title={title} changeMode={changeMode} mode={mode} isCompare={isCompare} />
@@ -80,8 +83,10 @@ const DataChart = ({
       <Chart
         {...series}
         hasHighlights={hasHighlights}
+        highlightedMethods={highlightedMethods}
         isCompare={isCompare}
         seriesUnit={seriesUnit}
+        model={path(['estimateSeries', 0, MODEL], series)}
       />
     </CardContent>
     {activeTypes && (
@@ -130,6 +135,8 @@ const DataChart = ({
       serieNames={serieNames}
       isCompare={isCompare}
       highlightSerie={highlightSerie}
+      highlightMethod={highlightMethod}
+      highlightedMethods={highlightedMethods}
     />
   </Card>
 );
@@ -143,6 +150,8 @@ DataChart.propTypes = {
   isCompare: PropTypes.bool,
   serieNames: PropTypes.array,
   highlightSerie: PropTypes.func.isRequired,
+  highlightMethod: PropTypes.func.isRequired,
+  highlightedMethods: PropTypes.object,
   hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,
   changeMode: PropTypes.func,

@@ -14,23 +14,30 @@ const style = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  noteBar: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const Compare = ({ classes, isActive }) => (
-  <Wrapper classes={{ root: classes.wrapper }}>
-    <Grid container spacing={16}>
-      <Grid item xs={12} md={3}>
-        <DataAllDimensions isSide dataType={COMPARE} />
-        <DataDownloadActions dataType={COMPARE} />
+  <React.Fragment>
+    <Wrapper classes={{ root: classes.wrapper }}>
+      <Grid container spacing={16}>
+        <Grid item xs={12} md={3}>
+          <DataAllDimensions isSide dataType={COMPARE} />
+          <DataDownloadActions dataType={COMPARE} />
+        </Grid>
+        <Grid item xs={12} md={9}>
+          {isActive && <DataCompareChart />}
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={9}>
-        {isActive && <DataCompareChart />}
-      </Grid>
-      <Grid item xs={12}>
+    </Wrapper>
+    <div className={classes.noteBar}>
+      <Wrapper>
         <DataNote dataType={COMPARE} />
-      </Grid>
-    </Grid>
-  </Wrapper>
+      </Wrapper>
+    </div>
+  </React.Fragment>
 );
 
 Compare.propTypes = {

@@ -40,8 +40,21 @@ import {
   lensProp,
   isEmpty,
   pluck,
+  map,
+  join,
+  toLower,
+  prepend,
+  replace,
+  flip,
+  reverse,
 } from 'ramda';
-import { filterArtefacts, dataQuery } from '../lib/sdmx';
+import numeral from 'numeral';
+import {
+  filterArtefacts,
+  dataQuery,
+  formatHierarchicalCodelist,
+  parseHierarchicalCodelist,
+} from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
 import { getSelectedDimensionValue, getToggledCombinations, sortByProps } from '../utils';
 import {
@@ -50,6 +63,7 @@ import {
   SEX,
   RELEVANT_DIMENSIONS,
   ESTIMATE,
+  PREVIOUS_ESTIMATE,
   INCLUDED,
   EXCLUDED,
   MAX_SDMX_VALUES,
@@ -57,9 +71,22 @@ import {
   UNIT_MEASURE,
   SERIES_NAME,
   REF_DATE,
+  ENHANCED_ESTIMATES_FIELDS,
+  ENHANCED_DATASOURCES_FIELDS,
+  SERIES_CATEGORY,
+  SERIES_METHOD,
+  AGE_GROUP_OF_WOMEN,
+  TIME_SINCE_FIRST_BIRTH,
+  INTERVAL,
+  STD_ERR,
+  OBS_STATUS,
+  OBS_STATUS_VALUES,
+  REGION_DEFAULT_VALUE,
 } from '../constants';
 
 export const getData = prop('data');
+export const getCountryTypes = createSelector(getData, prop('countryTypes'));
+export const getHighlightedMethods = createSelector(getData, prop('highlightedMethods'));
 export const getActiveTab = createSelector(getData, prop('activeTab'));
 export const getIsLoadingStructure = createSelector(getData, prop('isLoadingStructure'));
 export const getIsLoadingData = createSelector(getData, prop('isLoadingData'));
@@ -68,6 +95,38 @@ export const getRawDimensions = createSelector(getData, prop('dimensions'));
 export const getStale = dataType => createSelector(getData, prop(`${dataType}Stale`));
 export const getDimensions = createSelector(getRawDimensions, filterArtefacts(RELEVANT_DIMENSIONS));
 export const getCountryDimension = createSelector(getDimensions, find(propEq('id', REF_AREA)));
+export const getCountryDimensionWithAggregates = unformatted =>
+  createSelector(getCountryDimension, dimension =>
+    assoc(
+      'values',
+      pipe(parseHierarchicalCodelist, ...(unformatted ? [] : [formatHierarchicalCodelist()]))(
+        propOr([], 'values', dimension),
+      ),
+      dimension,
+    ),
+  );
+export const getFilteredCountryDimensionWithAggregates = unformatted =>
+  createSelector(
+    getCountryDimensionWithAggregates(unformatted),
+    getCountryTypes,
+    (dimension, { COUNTRY, REGION } = {}) => {
+      if (and(COUNTRY, REGION)) return dimension;
+      return assoc(
+        'values',
+        filter(({ id, parent }) => {
+          // World is a region without children, algo is generic and see it as a country
+          // code below is there to handle the exception
+          if (equals(REGION_DEFAULT_VALUE, id)) return REGION;
+
+          // if country is required then values without parent are returned
+          // because a country is a value without a parent
+          // when a region is hierarchical (except world)
+          return COUNTRY ? isNil(parent) : parent;
+        }, propOr([], 'values', dimension)),
+        dimension,
+      );
+    },
+  );
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
 export const getMapIndicatorDimension = createSelector(
   getIndicatorDimension,
@@ -95,6 +154,11 @@ export const getOtherDimensions = createSelector(
   getCountryDimension,
   getDimensions,
   useWith(reject, [eqBy(prop('id')), identity]),
+);
+export const getDimensionsWithAggregates = createSelector(
+  getCountryDimensionWithAggregates(true),
+  getOtherDimensions,
+  prepend,
 );
 export const getCountryTitle = createSelector(
   getOtherDimensions,
@@ -173,6 +237,10 @@ export const getCountryOtherSeries = createSelector(
     ),
   ),
 );
+export const getCountryAllPreviousEstimateSeries = createSelector(
+  getCountrySeries,
+  prop(PREVIOUS_ESTIMATE),
+);
 export const getCountryAllEstimateSeries = createSelector(getCountrySeries, prop(ESTIMATE));
 export const getCountryAllIncludedSeries = createSelector(getCountrySeries, prop(INCLUDED));
 export const getCountryAllExcludedSeries = createSelector(getCountrySeries, prop(EXCLUDED));
@@ -184,6 +252,55 @@ export const getCountryDatasourcesSerie = createSelector(
       concat(included, excluded),
     ),
 );
+export const getCountryAllEstimateSerieDatapoints = createSelector(
+  getCountryAllEstimateSeries,
+  pipe(head, propOr([], 'datapoints'), sortBy(prop('x')), reverse),
+);
+export const getEnhancedCountryAllEstimateSerie = createSelector(
+  getCountryAllEstimateSerieDatapoints,
+  map(datapoint => ({
+    [ENHANCED_ESTIMATES_FIELDS.year]: path([REF_DATE, 'valueName'])(datapoint),
+    [ENHANCED_ESTIMATES_FIELDS.estimate]: prop('y')(datapoint),
+    [ENHANCED_ESTIMATES_FIELDS.lowerBound]: prop('y0')(datapoint),
+    [ENHANCED_ESTIMATES_FIELDS.upperBound]: prop('y1')(datapoint),
+  })),
+);
+
+export const getCountryDatasourcesSerieTitle = createSelector(
+  getCountryValue,
+  getIndicatorValue,
+  useWith((a, b) => `${a} ${b}`, [propOr('', 'label'), propOr('', 'label')]),
+);
+
+const format = ifElse(isNil, always(null), n => numeral(n).format('0.0'));
+const mergePropsByKey = (key, props, sep = '') => pipe(pick(props), pluck(key), values, join(sep));
+
+export const getEnhancedCountryDatasourcesSerie = createSelector(
+  getCountryDatasourcesSerie,
+  map(datapoint => ({
+    [ENHANCED_DATASOURCES_FIELDS.name]: pipe(
+      path([SERIES_NAME, 'valueName']),
+      replace(/\s(\(direct\)|\(indirect\)|\(household\sdeaths\))/i, ''),
+    )(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.category]: path([SERIES_CATEGORY, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.method]: path([SERIES_METHOD, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.aowTsfb]: mergePropsByKey(
+      'valueId',
+      [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
+      ' ',
+    )(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.interval]: path([INTERVAL, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.refDate]: path([REF_DATE, 'valueName'])(datapoint),
+    [ENHANCED_DATASOURCES_FIELDS.value]: format(prop('y')(datapoint)),
+    [ENHANCED_DATASOURCES_FIELDS.stdErr]: format(path([STD_ERR, 'valueName'])(datapoint)),
+    [ENHANCED_DATASOURCES_FIELDS.obsStatus]: pipe(
+      path([OBS_STATUS, 'valueId']),
+      toLower,
+      flip(prop)(OBS_STATUS_VALUES),
+    )(datapoint),
+  })),
+);
+
 export const getCompareEstimateSeries = createSelector(
   getData,
   pipe(propOr({}, 'compareSeries'), values),

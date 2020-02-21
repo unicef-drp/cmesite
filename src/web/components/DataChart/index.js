@@ -17,10 +17,12 @@ import {
   getCompareHasHighlights,
   getCompareSeriesUnit,
   getCountrySeriesUnit,
+  getHighlightedMethods,
+  getCountryAllPreviousEstimateSeries,
 } from '../../selectors/data';
-import { toggleActiveType, highlightSerie } from '../../ducks/data';
+import { toggleActiveType, highlightSerie, highlightMethod } from '../../ducks/data';
 import Component from './component';
-import DataProgress from '../DataProgress';
+import Loader from '../Loader';
 import DataNone from '../DataNone';
 import { ESTIMATE } from '../../constants';
 import { COUNTRY, COMPARE } from '../../api/sdmx';
@@ -32,9 +34,9 @@ const withData = ({ type, selectors }) =>
         isLoadingData: getIsLoadingData,
         ...selectors,
       }),
-      { toggleActiveType, highlightSerie: highlightSerie(type) },
+      { toggleActiveType, highlightSerie: highlightSerie(type), highlightMethod },
     ),
-    branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
+    branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
     branch(
       ({ estimateSeries, includedSeries, excludedSeries }) =>
         pipe(reject(either(isNil, isEmpty)), isEmpty)([
@@ -53,6 +55,7 @@ export const DataCountryChart = compose(
       title: getCountryTitle,
       activeTypes: getCountryActiveTypes,
       estimateSeries: getCountryEstimateSeries,
+      previousEstimateSeries: getCountryAllPreviousEstimateSeries,
       uncertaintySeries: getCountryEstimateSeries,
       mergedSeries: getCountryOtherSeries,
       includedSeries: getCountryIncludedSeries,
@@ -60,6 +63,7 @@ export const DataCountryChart = compose(
       hasHighlights: getCountryHasHighlights,
       seriesNames: getSeriesNames,
       seriesUnit: getCountrySeriesUnit,
+      highlightedMethods: getHighlightedMethods,
     },
   }),
   withProps(({ activeTypes }) => ({

@@ -3,7 +3,7 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { getIsLoadingStructure, getIsLoadingData } from '../../selectors/data';
 import Component from './component';
-import DataProgress from '../DataProgress';
+import Loader from '../Loader';
 
 const enhance = compose(
   connect(
@@ -12,10 +12,7 @@ const enhance = compose(
       isLoadingData: getIsLoadingData,
     }),
   ),
-  branch(
-    ({ isLoadingStructure }) => isLoadingStructure,
-    renderComponent(DataProgress),
-  ),
+  branch(({ isLoadingStructure }) => isLoadingStructure, renderComponent(Loader)),
 );
 
 export default enhance(Component);

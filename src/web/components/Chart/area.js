@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { prop, pipe, allPass, map, addIndex } from 'ramda';
 import { area as d3Area, curveLinear } from 'd3-shape';
 import { select } from 'd3-selection';
-import { getSymbol, getOpacity } from './utils';
+import { getSymbol, getOpacity, isValidCoord } from './utils';
 
 class Area extends React.Component {
   state = {
-    area: d3Area().defined(allPass([prop('x'), prop('y0'), prop('y1')])),
+    area: d3Area().defined(allPass([prop('x'), isValidCoord('y0'), isValidCoord('y1')])),
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) => {

@@ -9,7 +9,7 @@ import messages from './messages';
 import { HomeCountrySelector, HomeIndicatorSelector } from '../Selector';
 import WorldMap from '../Map';
 import MapSlider from '../MapSlider';
-import DataProgress from '../DataProgress';
+import Loader from '../Loader';
 import { COUNTRY, HOME } from '../../api/sdmx';
 
 const styles = theme => ({
@@ -46,7 +46,7 @@ const Component = ({ classes, isHome, isLoadingData }) => {
   const invariant = (
     <div className={classnames({ [classes.map]: !isHome })}>
       {isLoadingData ? (
-        <DataProgress />
+        <Loader />
       ) : (
         <React.Fragment>
           <WorldMap isHome />

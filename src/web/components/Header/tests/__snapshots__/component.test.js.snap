@@ -4,6 +4,7 @@ exports[`Header | component render should match snapshot 1`] = `
 <Header
   classes={
     Object {
+      "button": "Header-button-7",
       "logo": "Header-logo-2",
       "menubar": "Header-menubar-5",
       "selectedMenu": "Header-selectedMenu-6",

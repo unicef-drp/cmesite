@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'reports.title',
-    defaultMessage: 'Reports and papers',
+    defaultMessage: 'Publications and Tools',
   },
   action: {
     id: 'reports.action',
@@ -28,5 +28,25 @@ export default defineMessages({
   ar: {
     id: 'reports.ar',
     defaultMessage: 'Arabic',
+  },
+  paper: {
+    id: 'reports.paper',
+    defaultMessage: 'Journal articles',
+  },
+  software: {
+    id: 'reports.software',
+    defaultMessage: 'Tools',
+  },
+  report: {
+    id: 'reports.report',
+    defaultMessage: 'Reports',
+  },
+  all: {
+    id: 'reports.all',
+    defaultMessage: 'All',
+  },
+  none: {
+    id: 'reports.none',
+    defaultMessage: 'There is no report for the selected type.',
   },
 });

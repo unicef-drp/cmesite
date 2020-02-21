@@ -1,4 +1,6 @@
 import * as R from 'ramda';
+import FileSaver from 'file-saver';
+import { CSV_DELIMITER, CSV_EOL } from './constants';
 
 const getValues = R.propOr([], 'values');
 
@@ -27,3 +29,27 @@ const makeComparator = propName =>
   );
 export const sortByProps = props => (list = []) =>
   R.sort(firstTruthy(R.map(makeComparator, props)), list);
+
+export const downloadCsv = R.curry((name, csv) => {
+  const blob = new Blob([csv], { type: 'application/vnd.sdmx.data+csv; charset=utf-8' });
+  FileSaver.saveAs(blob, name);
+});
+
+export const toCsv = (fields, data = [], { delimiter = CSV_DELIMITER, eol = CSV_EOL } = {}) =>
+  R.pipe(
+    R.prepend(fields),
+    R.map(
+      R.pipe(
+        R.ifElse(
+          R.is(Array),
+          R.pickAll(R.pipe(R.length, R.times(R.identity))(fields)),
+          R.pickAll(fields),
+        ),
+        R.values,
+        R.join(delimiter),
+      ),
+    ),
+    R.join(eol),
+  )(data);
+
+export const isNotEmpty = R.pipe(R.either(R.isNil, R.isEmpty), R.not);
