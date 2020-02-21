@@ -1,28 +1,25 @@
-import * as R from 'ramda';
 import { compose, branch, renderComponent } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import {
   getCountryTitle,
   getIsLoadingData,
-  getCountryAllEstimateSeries,
+  getCountryAllEstimateSerieDatapoints,
   getCountryDatasourcesSerie,
 } from '../../selectors/data';
 import Estimates from './estimates';
 import Datasources from './datasources';
-import DataProgress from '../DataProgress';
-import DataNone from '../DataNone';
+import Loader from '../Loader';
 
 export const DataCountryEstimatesTable = compose(
   connect(
     createStructuredSelector({
       isLoadingData: getIsLoadingData,
       title: getCountryTitle,
-      series: getCountryAllEstimateSeries,
+      datapoints: getCountryAllEstimateSerieDatapoints,
     }),
   ),
-  branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
-  branch(R.pipe(R.prop('series'), R.either(R.isNil, R.isEmpty)), renderComponent(DataNone)),
+  branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
 )(Estimates);
 
 export const DataCountryDataSourcesTable = compose(
@@ -33,6 +30,5 @@ export const DataCountryDataSourcesTable = compose(
       serie: getCountryDatasourcesSerie,
     }),
   ),
-  branch(({ isLoadingData }) => isLoadingData, renderComponent(DataProgress)),
-  branch(R.pipe(R.prop('serie'), R.either(R.isNil, R.isEmpty)), renderComponent(DataNone)),
+  branch(({ isLoadingData }) => isLoadingData, renderComponent(Loader)),
 )(Datasources);

@@ -42,7 +42,7 @@ const style = theme => ({
   },
 });
 
-const Legend = ({ classes, scale }) => {
+const Legend = ({ classes, scale, andAbove }) => {
   const domain = scale.domain();
   const colors = scale.range();
 
@@ -58,7 +58,11 @@ const Legend = ({ classes, scale }) => {
               classes={{ dense: classes.denseItemText, textDense: classes.denseItemTextText }}
             >
               {equals(n, dec(length(domain))) ? (
-                <FormattedMessage {...messages.max} values={{ max: nth(n, domain) }} />
+                andAbove ? (
+                  <FormattedMessage {...messages.max} values={{ max: nth(n, domain) }} />
+                ) : (
+                  nth(n, domain)
+                )
               ) : (
                 `${nth(n, domain)} - ${dec(nth(inc(n), domain))}`
               )}
@@ -84,6 +88,7 @@ const Legend = ({ classes, scale }) => {
 Legend.propTypes = {
   classes: PropTypes.object.isRequired,
   scale: PropTypes.func.isRequired,
+  andAbove: PropTypes.bool,
 };
 
 export default withStyles(style)(Legend);

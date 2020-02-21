@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, prop } from 'ramda';
+import { map, prop, equals, contains } from 'ramda';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -44,6 +44,10 @@ const style = theme => ({
     border: `1px solid ${theme.palette.secondary.main}`,
     color: `${theme.palette.secondary.main}!important`,
   },
+  button: {
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+  },
 });
 
 class Header extends React.Component {
@@ -83,9 +87,13 @@ class Header extends React.Component {
                     color="inherit"
                     key={prop('name')(route)}
                     component={Link}
-                    to={getPath(route)}
-                    disabled={routeName === prop('path')(route)}
-                    classes={{ disabled: classes.selectedMenu }}
+                    to={route.name === 'data' ? '/data' : getPath(route)}
+                    disabled={
+                      route.name === 'data'
+                        ? contains('data', routeName)
+                        : routeName === getPath(route)
+                    }
+                    classes={{ disabled: classes.selectedMenu, root: classes.button }}
                   >
                     <FormattedMessage {...prop(prop('name')(route))(messages)} />
                   </Button>
@@ -101,8 +109,8 @@ class Header extends React.Component {
                 button
                 key={prop('name')(route)}
                 component={Link}
-                to={getPath(route)}
-                disabled={routeName === prop('path')(route)}
+                to={route.name === 'data' ? '/data' : getPath(route)}
+                disabled={equals(routeName, route.name === 'data' ? '/data' : getPath(route))}
               >
                 <ListItemText>
                   <FormattedMessage {...prop(prop('name')(route))(messages)} />

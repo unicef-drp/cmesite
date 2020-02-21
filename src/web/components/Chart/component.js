@@ -4,7 +4,23 @@ import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { compose, map, addIndex, ifElse, isNil, always, prop, lte, indexOf } from 'ramda';
+import Grid from '@material-ui/core/Grid';
+import {
+  compose,
+  map,
+  addIndex,
+  ifElse,
+  isNil,
+  always,
+  prop,
+  lte,
+  indexOf,
+  propEq,
+  any,
+  pipe,
+  values,
+  identity,
+} from 'ramda';
 import { scaleLinear, scaleTime } from 'd3-scale';
 import { zoom, zoomTransform as d3ZoomTransform, zoomIdentity } from 'd3-zoom';
 import { select } from 'd3-selection';
@@ -18,7 +34,7 @@ import Axis from './axis';
 import Line from './line';
 import Area from './area';
 import Tooltip from './tooltip';
-import { INCLUDED, EXCLUDED } from '../../constants';
+import { INCLUDED, EXCLUDED, SERIES_METHOD } from '../../constants';
 
 const style = theme => ({
   axis: {
@@ -65,9 +81,12 @@ const style = theme => ({
   },
   resetZoom: {
     position: 'absolute',
-    top: theme.spacing.unit * 4,
+    top: theme.spacing.unit * 5,
     right: theme.spacing.unit * 2,
     textTransform: 'none',
+  },
+  model: {
+    paddingRight: theme.spacing.unit,
   },
 });
 
@@ -101,10 +120,15 @@ class Chart extends React.Component {
     );
     const contentHeight = Math.floor(height - nextProps.margin.top - nextProps.margin.bottom);
 
-    const { estimateSeries, mergedSeries } = nextProps;
+    const { estimateSeries, mergedSeries, previousEstimateSeries } = nextProps;
     const includedSeries = prop(INCLUDED, mergedSeries);
     const excludedSeries = prop(EXCLUDED, mergedSeries);
-    const extents = getExtents(estimateSeries, includedSeries, excludedSeries);
+    const extents = getExtents(
+      estimateSeries,
+      previousEstimateSeries,
+      includedSeries,
+      excludedSeries,
+    );
 
     xScale
       .domain(prop('x', extents))
@@ -152,16 +176,20 @@ class Chart extends React.Component {
       theme,
       uncertaintySeries,
       estimateSeries,
+      previousEstimateSeries,
       mergedSeries,
       isCompare,
       seriesNames,
       hasHighlights,
       seriesUnit,
+      highlightedMethods,
+      model,
     } = this.props;
 
     const { width } = size;
     const { height, contentWidth, contentHeight, xScale, yScale } = this.state;
     const ticks = isWidthUp('sm', this.props.width) ? 10 : 8;
+    const hasHighlightedMethods = pipe(values, any(identity))(highlightedMethods);
 
     const areas = uncertaintySeries
       ? map(
@@ -176,7 +204,7 @@ class Chart extends React.Component {
               classes={classes}
               setTooltip={this.setTooltip}
               isHighlighted={isHighlighted}
-              hasHighlights={hasHighlights}
+              hasHighlights={hasHighlights || hasHighlightedMethods}
             />
           ),
           uncertaintySeries,
@@ -186,7 +214,7 @@ class Chart extends React.Component {
     const linesFactory = ifElse(
       isNil,
       always(null),
-      addIndex(map)(({ id, name, datapoints, type, isHighlighted }, index) => (
+      addIndex(map)(({ id, name, datapoints, type, isHighlighted, ...serie }, index) => (
         <Line
           key={id}
           type={type}
@@ -206,8 +234,10 @@ class Chart extends React.Component {
             theme,
           )}
           setTooltip={this.setTooltip}
-          isHighlighted={isHighlighted}
-          hasHighlights={hasHighlights}
+          isHighlighted={
+            isHighlighted || propEq(prop(SERIES_METHOD, serie), true, highlightedMethods)
+          }
+          hasHighlights={hasHighlights || hasHighlightedMethods}
         />
       )),
     );
@@ -215,15 +245,25 @@ class Chart extends React.Component {
     return (
       <div>
         {/* div is required for withSize to work properly */}
-        <Typography variant="caption">
-          {
-            /*<FormattedMessage {...messages.yAxisLabel} />*/
-            seriesUnit
-          }
-        </Typography>
+
+        <Grid container alignItems="center">
+          <Grid item xs={6}>
+            <Typography variant="caption">{seriesUnit}</Typography>
+          </Grid>
+          {model && (
+            <Grid item xs={6}>
+              <Typography variant="caption" className={classes.model} align="right">
+                <FormattedMessage {...messages.model} />
+                {model}
+              </Typography>
+            </Grid>
+          )}
+        </Grid>
+
         <Button variant="contained" onClick={this.resetZoom} className={classes.resetZoom}>
           <FormattedMessage {...messages.resetZoom} />
         </Button>
+
         <svg width={width} height={height} ref={el => (this.chartElement = el)}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             {contentWidth < 0 || contentHeight < 0 ? null : (
@@ -267,6 +307,7 @@ class Chart extends React.Component {
               {linesFactory(prop(INCLUDED, mergedSeries))}
               {linesFactory(prop(EXCLUDED, mergedSeries))}
               {linesFactory(estimateSeries)}
+              {linesFactory(previousEstimateSeries)}
             </g>
           </g>
         </svg>
@@ -289,6 +330,7 @@ Chart.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   estimateSeries: PropTypes.array,
+  previousEstimateSeries: PropTypes.array,
   uncertaintySeries: PropTypes.array,
   mergedSeries: PropTypes.object,
   isCompare: PropTypes.bool,
@@ -296,6 +338,8 @@ Chart.propTypes = {
   hasHighlights: PropTypes.bool,
   seriesUnit: PropTypes.string,
   width: PropTypes.string,
+  highlightedMethods: PropTypes.object.isRequired,
+  model: PropTypes.string,
 };
 
 Chart.defaultProps = {

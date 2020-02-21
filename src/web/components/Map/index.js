@@ -3,7 +3,6 @@ import { createStructuredSelector } from 'reselect';
 import { compose, withHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import routes, { getPath } from '../../routes';
 import { getMapSerie } from '../../selectors/data';
 import { changeSelection, changeActiveTab } from '../../ducks/data';
 import Component from './component';
@@ -19,8 +18,8 @@ const enhance = compose(
   withHandlers({
     handleMapClick: ({ changeSelection, history, changeActiveTab }) => datapoint => {
       changeActiveTab(0, true);
-      history.push(getPath(routes.data));
-      const { index, valueIndex } = prop(REF_AREA, datapoint);
+      const { index, valueIndex, valueName } = prop(REF_AREA, datapoint);
+      history.push(`/data/${valueName}`);
       changeSelection(index, valueIndex);
     },
   }),

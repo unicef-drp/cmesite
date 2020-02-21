@@ -37,6 +37,7 @@ import {
   propEq,
   cond,
   T,
+  F,
   flip,
   contains,
   both,
@@ -66,6 +67,9 @@ import {
   EXCLUDED_DOWNLOAD_DIMENSIONS,
   EXPORT_INDEX_IDS,
   OBS_VALUE,
+  MODEL,
+  CSV_DELIMITER,
+  CSV_EOL,
 } from '../../constants';
 
 const getValues = propOr([], 'values');
@@ -138,8 +142,8 @@ const toCsvRow = ({ delimiter, isHeader, excludedArtefactIds }) =>
     ),
   );
 export const toCsv = ({
-  eol = '\r\n',
-  delimiter = ',',
+  eol = CSV_EOL,
+  delimiter = CSV_DELIMITER,
   excludedArtefactIds = EXCLUDED_DOWNLOAD_DIMENSIONS,
 } = {}) =>
   converge(pipe(concat, join(eol)), [
@@ -158,7 +162,10 @@ const getName = locale => path(['name', locale]);
 const getType = observation =>
   pipe(
     find(({ sdmxId, sdmxValue }) =>
-      pipe(path([sdmxId, 'valueId']), equals(sdmxValue))(observation),
+      pipe(
+        path([sdmxId, 'valueId']),
+        ifElse(isNil, F, valueId => (isNil(sdmxValue) ? true : equals(sdmxValue, valueId))),
+      )(observation),
     ),
     ifElse(isNil, identity, prop('id')),
   );
@@ -253,6 +260,11 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
 
   if (has(UNIT_MEASURE, observation))
     serie = assoc(UNIT_MEASURE, path([UNIT_MEASURE, 'valueName'], observation), serie);
+
+  if (has(INDICATOR, observation))
+    serie = assoc(`${INDICATOR}_ID`, path([INDICATOR, 'valueId'], observation), serie);
+
+  if (has(MODEL, observation)) serie = assoc(MODEL, path([MODEL, 'valueName'], observation), serie);
 
   return assoc(serieKey, serie, acc);
 };

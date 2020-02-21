@@ -13,7 +13,7 @@ const routes = {
     default: true,
   },
   data: {
-    path: '/data',
+    path: '/data/:countryName?',
     exact: true,
     component: Data,
   },

@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
-  getDimensions,
+  getDimensionsWithAggregates,
   getOtherDimensions,
   getIsExcNoSexIndicatorValue,
   getActiveTab,
@@ -59,5 +59,5 @@ const withDimensions = selector =>
     }),
   );
 
-export const DataAllDimensions = withDimensions(getDimensions)(Component);
+export const DataAllDimensions = withDimensions(getDimensionsWithAggregates)(Component);
 export const DataOtherDimensions = withDimensions(getOtherDimensions)(Component);

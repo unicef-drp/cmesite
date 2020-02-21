@@ -26,6 +26,13 @@ const style = theme => ({
   big: {
     height: 100,
   },
+  separator: {
+    border: 'none',
+    backgroundColor: 'rgba(183, 183, 183)',
+    height: '45px',
+    width: '1px',
+    margin: '10px',
+  },
 });
 
 const data = [
@@ -37,7 +44,12 @@ const data = [
 
 const Logos = ({ hasMainLogo, classes, size }) => (
   <React.Fragment>
-    {hasMainLogo && <img src={igmeLogo} className={classes.igmeLogo} />}
+    {hasMainLogo && (
+      <React.Fragment>
+        <img src={igmeLogo} className={classes.igmeLogo} />
+        <hr className={classes.separator} />
+      </React.Fragment>
+    )}
     {map(
       ({ href, logo }) => (
         <a key={href} href={href} target="_blank" rel="noopener noreferrer">

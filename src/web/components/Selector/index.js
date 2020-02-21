@@ -1,17 +1,17 @@
-import { isNil, map, addIndex, prop } from 'ramda';
+import { isNil, prop } from 'ramda';
 import { compose, branch, renderNothing, withProps, withHandlers } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import routes, { getPath } from '../../routes';
 import {
-  getCountryDimension,
+  getFilteredCountryDimensionWithAggregates,
   getCountryValue,
   getMapIndicatorDimension,
   getMapIndicatorValue,
+  getCountryTypes,
 } from '../../selectors/data';
-import { changeSelection, changeActiveTab } from '../../ducks/data';
+import { changeSelection, changeActiveTab, toggleCountryType } from '../../ducks/data';
 import Component from './component';
 
 export const enhance = (selectors, keys, { isCountry } = {}) =>
@@ -22,6 +22,7 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
         {
           changeSelection: changeSelection({ dataType, selectionType: 'select' }),
           changeActiveTab,
+          toggleCountryType,
         },
         dispatch,
       ),
@@ -30,16 +31,16 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
     withProps(({ dimension }) => ({
       keys,
       isCountry,
-      values: addIndex(map)(
-        ({ id, label }, index) => ({ index, label, value: id }),
-        prop('values')(dimension),
-      ),
+      values: prop('values')(dimension),
     })),
     withHandlers({
+      handleType: ({ toggleCountryType, history }) => type => {
+        toggleCountryType(type, countryName => history.push(`/data/${countryName}`));
+      },
       handleValue: ({ dimension, changeSelection, history, changeActiveTab }) => value => {
         if (isCountry) {
           changeActiveTab(0, true);
-          history.push(getPath(routes.data));
+          history.push(`/data/${value.label}`);
         }
         changeSelection(dimension.index, value.index);
       },
@@ -47,13 +48,17 @@ export const enhance = (selectors, keys, { isCountry } = {}) =>
   );
 
 export const CountrySelector = enhance(
-  { dimension: getCountryDimension, value: getCountryValue },
+  {
+    dimension: getFilteredCountryDimensionWithAggregates(),
+    value: getCountryValue,
+    countryTypes: getCountryTypes,
+  },
   { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorPlaceholder' },
   { isCountry: true },
 )(Component);
 
 export const HomeCountrySelector = enhance(
-  { dimension: getCountryDimension },
+  { dimension: getFilteredCountryDimensionWithAggregates() },
   { noOptions: 'countrySelectorPlaceholder', placeholder: 'countrySelectorPlaceholder' },
   { isCountry: true },
 )(Component);

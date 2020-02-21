@@ -20,6 +20,7 @@ import {
   isEmpty,
   indexOf,
   concat,
+  propEq,
 } from 'ramda';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -88,12 +89,19 @@ const styles = theme => ({
   },
   item: {
     width: '50%',
+    cursor: 'pointer',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
+    '&:hover': {
+      background: theme.palette.secondary.dark,
+    },
   },
   selectedItem: {
-    backgroundColor: theme.palette.secondary.darker,
+    backgroundColor: 'rgba(50,130,218,.4)',
+    '&:hover': {
+      backgroundColor: 'rgba(50,130,218,.4)',
+    },
   },
 });
 
@@ -101,7 +109,10 @@ const DataLegend = ({
   classes,
   theme,
   highlightSerie,
+  highlightMethod,
+  highlightedMethods,
   estimateSeries = [],
+  //previousEstimateSeries = [],
   uncertaintySeries = [],
   mergedSeries = {},
   isCompare,
@@ -118,7 +129,6 @@ const DataLegend = ({
           className={classnames(classes.item, { [classes.selectedItem]: isHighlighted })}
           key={id}
           dense
-          button
           onClick={() => highlightSerie(id)}
         >
           <ListItemIcon>
@@ -215,7 +225,14 @@ const DataLegend = ({
             <List className={classes.list}>
               {map(
                 ([method, serie]) => (
-                  <ListItem className={classes.item} key={method} dense>
+                  <ListItem
+                    className={classnames(classes.item, {
+                      [classes.selectedItem]: propEq(method, true, highlightedMethods),
+                    })}
+                    key={method}
+                    dense
+                    onClick={() => highlightMethod(method)}
+                  >
                     <ListItemIcon>
                       <svg width={SIZE / 2} height={SIZE / 2}>
                         <path
@@ -237,6 +254,47 @@ const DataLegend = ({
           </ExpansionPanelDetails>
         </ExpansionPanel>
       )}
+
+      {/*isEmpty(previousEstimateSeries) ? null : (
+        <ExpansionPanel classes={{ expanded: classes.panelExpanded }} elevation={0}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            classes={{
+              root: classes.panelSummaryRoot,
+              content: classes.panelSummaryContent,
+              expanded: classes.expanded,
+            }}
+          >
+            <Typography className={classes.typo}>
+              <FormattedMessage {...messages.titlePreviousEstimates} />
+            </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails classes={{ root: classes.panelDetails }}>
+            <List className={classes.list}>
+              {addIndex(map)(
+                ({ id, name, isHighlighted, ...serie }, index) => (
+                  <ListItem
+                    className={classnames(classes.item, { [classes.selectedItem]: isHighlighted })}
+                    key={id}
+                    dense
+                    onClick={() => highlightSerie(id)}
+                  >
+                    <ListItemIcon>
+                      <RemoveIcon style={{ color: getColor({ index, theme }), fontSize: 30 }} />
+                    </ListItemIcon>
+                    <ListItemText>
+                      {isCompare
+                        ? join(' ', [...pipe(pick(RELEVANT_DIMENSIONS), values)(serie), name])
+                        : name}
+                    </ListItemText>
+                  </ListItem>
+                ),
+                previousEstimateSeries,
+              )}
+            </List>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      )*/}
     </React.Fragment>
   );
 };
@@ -245,11 +303,14 @@ DataLegend.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   estimateSeries: PropTypes.array,
+  //previousEstimateSeries: PropTypes.array,
   uncertaintySeries: PropTypes.array,
   mergedSeries: PropTypes.object,
   isCompare: PropTypes.bool,
   serieNames: PropTypes.array,
   highlightSerie: PropTypes.func.isRequired,
+  highlightMethod: PropTypes.func.isRequired,
+  highlightedMethods: PropTypes.object.isRequired,
   seriesNames: PropTypes.array,
 };
 

@@ -17,32 +17,38 @@ const style = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  noteBar: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const Country = ({ classes, isActive, mode, changeMode }) => (
-  <Wrapper classes={{ root: classes.wrapper }}>
-    <Grid container spacing={16}>
-      <Grid item xs={12}>
-        <CountrySelector dataType={COUNTRY} />
+  <React.Fragment>
+    <Wrapper classes={{ root: classes.wrapper }}>
+      <Grid container spacing={16}>
+        <Grid item xs={12}>
+          <CountrySelector dataType={COUNTRY} />
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <DataOtherDimensions isSide isSelectionExclusive dataType={COUNTRY} />
+          <DataDownloadActions dataType={COUNTRY} />
+        </Grid>
+        <Grid item xs={12} md={9}>
+          {isActive && mode === 'chart' ? (
+            <DataCountryChart changeMode={changeMode} mode={mode} />
+          ) : mode === 'estimates' ? (
+            <DataCountryEstimatesTable changeMode={changeMode} mode={mode} />
+          ) : (
+            <DataCountryDataSourcesTable changeMode={changeMode} mode={mode} />
+          )}
+        </Grid>
+        <Grid item xs={12} />
       </Grid>
-      <Grid item xs={12} md={3}>
-        <DataOtherDimensions isSide isSelectionExclusive dataType={COUNTRY} />
-        <DataDownloadActions dataType={COUNTRY} />
-      </Grid>
-      <Grid item xs={12} md={9}>
-        {isActive && mode === 'chart' ? (
-          <DataCountryChart changeMode={changeMode} mode={mode} />
-        ) : mode === 'estimates' ? (
-          <DataCountryEstimatesTable changeMode={changeMode} mode={mode} />
-        ) : (
-          <DataCountryDataSourcesTable changeMode={changeMode} mode={mode} />
-        )}
-      </Grid>
-      <Grid item xs={12}>
-        {mode === 'chart' && <DataNote dataType={COUNTRY} />}
-      </Grid>
-    </Grid>
-  </Wrapper>
+    </Wrapper>
+    <div className={classes.noteBar}>
+      <Wrapper>{mode === 'chart' && <DataNote dataType={COUNTRY} />}</Wrapper>
+    </div>
+  </React.Fragment>
 );
 
 Country.propTypes = {

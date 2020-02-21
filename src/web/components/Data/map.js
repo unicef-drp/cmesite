@@ -14,23 +14,30 @@ const style = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  noteBar: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
 });
 
 const Map = ({ classes, isActive }) => (
-  <Wrapper classes={{ root: classes.wrapper }}>
-    <Grid container spacing={16}>
-      <Grid item xs={12} md={3}>
-        <DataOtherDimensions isSide isSelectionExclusive dataType={MAP} />
-        <DataDownloadActions dataType={MAP} />
+  <React.Fragment>
+    <Wrapper classes={{ root: classes.wrapper }}>
+      <Grid container spacing={16}>
+        <Grid item xs={12} md={3}>
+          <DataOtherDimensions isSide isSelectionExclusive dataType={MAP} />
+          <DataDownloadActions dataType={MAP} />
+        </Grid>
+        <Grid item xs={12} md={9}>
+          {isActive && <DataMap />}
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={9}>
-        {isActive && <DataMap />}
-      </Grid>
-      <Grid item xs={12}>
+    </Wrapper>
+    <div className={classes.noteBar}>
+      <Wrapper>
         <DataNote dataType={MAP} />
-      </Grid>
-    </Grid>
-  </Wrapper>
+      </Wrapper>
+    </div>
+  </React.Fragment>
 );
 
 Map.propTypes = {

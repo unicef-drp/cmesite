@@ -20,13 +20,12 @@
 ### Wordpress
 
 **1. install and activate plugins**
-* [WordPress REST API (Version 2)](https://github.com/WP-API/WP-API)
-* [Only Rest API by Braad Martin](https://wordpress.org/plugins/only-rest-api/)
-* [ACF to REST](https://wordpress.org/plugins/acf-to-rest-api/)
-* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
-* [Custom Post Type UI](https://wordpress.org/plugins/custom-post-type-ui/)
-* [Tuxedo Big File Uploads](https://wordpress.org/plugins/tuxedo-big-file-uploads/)
-* [WordPress importer](https://wordpress.org/plugins/wordpress-importer/)
+* [Only Rest API by Braad Martin v1.0.0](https://wordpress.org/plugins/only-rest-api/)
+* [ACF to REST API v3.1.0](https://wordpress.org/plugins/acf-to-rest-api/)
+* [Advanced Custom Fields v4.4.12](https://wordpress.org/plugins/advanced-custom-fields/)
+* [Custom Post Type UI v1.6.1](https://wordpress.org/plugins/custom-post-type-ui/)
+* [Tuxedo Big File Uploads v1.0.0](https://wordpress.org/plugins/tuxedo-big-file-uploads/)
+* [WordPress importer v0.6.4](https://wordpress.org/plugins/wordpress-importer/)
 
 **2. export/import advanced custom fields**
 * export Custom Fields > Tools > export (JSON file)
@@ -34,7 +33,7 @@
 
 **3. export/import custom post types**
 * export CPT UI > Tools > Copy (JSON)
-* import CPT UI > Tools > Paste (JSON)
+* import Tools > WordPress run importer > choose file
 
 **4. export/import data**
 * Tools > Export (XML file)

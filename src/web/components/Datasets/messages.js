@@ -7,10 +7,22 @@ export default defineMessages({
   },
   subtitle: {
     id: 'datasets.subtitle',
-    defaultMessage: 'Last update - 18 September 2018',
+    defaultMessage: 'Last update - 19 September 2019',
   },
   updatedAt: {
     id: 'datasets.updatedAt',
     defaultMessage: 'Last update',
+  },
+  estimates: {
+    id: 'datasets.estimates',
+    defaultMessage: 'Estimates',
+  },
+  methods: {
+    id: 'datasets.methods',
+    defaultMessage: 'Methods',
+  },
+  sourcedata: {
+    id: 'datasets.sourcedata',
+    defaultMessage: 'Source data',
   },
 });

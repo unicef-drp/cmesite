@@ -14,6 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import DataHeader from '../DataHeader';
+import DataNone from '../DataNone';
 import {
   SERIES_NAME,
   OBS_STATUS,
@@ -52,104 +53,108 @@ const mergePropsByKey = (key, props, sep = '') =>
 const DataTable = ({ classes, serie, title, mode, changeMode, theme }) => (
   <Card className={classes.card} square>
     <DataHeader title={title} changeMode={changeMode} mode={mode} />
-    <CardContent>
-      <Table padding="none" className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <FormattedMessage {...messages.seriesName} />
-            </TableCell>
-            <TableCell>
-              <FormattedMessage {...messages.obsStatus} />
-            </TableCell>
-            <TableCell>
-              <FormattedMessage {...messages.seriesCategory} />
-            </TableCell>
-            <TableCell align="center">
-              <Tooltip title={<FormattedMessage {...messages.aowtfsbLabel} />}>
-                <div>
-                  <FormattedMessage {...messages.aowtfsbId} />
-                </div>
-              </Tooltip>
-            </TableCell>
-            <TableCell>
-              <FormattedMessage {...messages.interval} />
-            </TableCell>
-            <TableCell>
-              <FormattedMessage {...messages.seriesMethod} />
-            </TableCell>
-            <TableCell>
-              <FormattedMessage {...messages.refDate} />
-            </TableCell>
-            <TableCell>
-              <strong>
-                <FormattedMessage {...messages.value} />
-              </strong>
-            </TableCell>
-            <TableCell>
-              <FormattedMessage {...messages.stdErr} />
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {R.map(
-            datapoint => (
-              <TableRow
-                key={mergePropsByKey('valueId', [SERIES_NAME, OBS_STATUS, REF_DATE])(datapoint)}
-                hover
-              >
-                <TableCell>{R.path([SERIES_NAME, 'valueName'], datapoint)}</TableCell>
-                <TableCell>
-                  <FormattedMessage
-                    {...messages[R.pipe(R.path([OBS_STATUS, 'valueId']), R.toLower)(datapoint)]}
-                  />
-                </TableCell>
-                <TableCell>{R.path([SERIES_CATEGORY, 'valueName'], datapoint)}</TableCell>
-                <TableCell align="center">
-                  <Tooltip
-                    title={mergePropsByKey(
-                      'valueName',
-                      [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
-                      ' ',
-                    )(datapoint)}
-                  >
-                    <div>
-                      {mergePropsByKey(
-                        'valueId',
+    {R.either(R.isNil, R.isEmpty)(serie) ? (
+      <DataNone />
+    ) : (
+      <CardContent>
+        <Table padding="none" className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <FormattedMessage {...messages.seriesName} />
+              </TableCell>
+              <TableCell>
+                <FormattedMessage {...messages.obsStatus} />
+              </TableCell>
+              <TableCell>
+                <FormattedMessage {...messages.seriesCategory} />
+              </TableCell>
+              <TableCell align="center">
+                <Tooltip title={<FormattedMessage {...messages.aowtfsbLabel} />}>
+                  <div>
+                    <FormattedMessage {...messages.aowtfsbId} />
+                  </div>
+                </Tooltip>
+              </TableCell>
+              <TableCell>
+                <FormattedMessage {...messages.interval} />
+              </TableCell>
+              <TableCell>
+                <FormattedMessage {...messages.seriesMethod} />
+              </TableCell>
+              <TableCell>
+                <FormattedMessage {...messages.refDate} />
+              </TableCell>
+              <TableCell>
+                <strong>
+                  <FormattedMessage {...messages.value} />
+                </strong>
+              </TableCell>
+              <TableCell>
+                <FormattedMessage {...messages.stdErr} />
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {R.map(
+              datapoint => (
+                <TableRow
+                  key={mergePropsByKey('valueId', [SERIES_NAME, OBS_STATUS, REF_DATE])(datapoint)}
+                  hover
+                >
+                  <TableCell>{R.path([SERIES_NAME, 'valueName'], datapoint)}</TableCell>
+                  <TableCell>
+                    <FormattedMessage
+                      {...messages[R.pipe(R.path([OBS_STATUS, 'valueId']), R.toLower)(datapoint)]}
+                    />
+                  </TableCell>
+                  <TableCell>{R.path([SERIES_CATEGORY, 'valueName'], datapoint)}</TableCell>
+                  <TableCell align="center">
+                    <Tooltip
+                      title={mergePropsByKey(
+                        'valueName',
                         [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
                         ' ',
                       )(datapoint)}
-                    </div>
-                  </Tooltip>
-                </TableCell>
-                <TableCell>{R.path([INTERVAL, 'valueName'], datapoint)}</TableCell>
-                <TableCell>
-                  <Tooltip title={R.path([SERIES_METHOD, 'valueName'], datapoint)}>
-                    <svg width={SIZE / 2} height={SIZE / 2}>
-                      <path
-                        d={getSeriesMethodSymbol({
-                          size: SIZE * 2,
-                          method: R.path([SERIES_METHOD, 'valueId'], datapoint),
-                        })()}
-                        transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
-                        stroke={theme.palette.secondary.darker}
-                        fill={theme.palette.secondary.darker}
-                      />
-                    </svg>
-                  </Tooltip>
-                </TableCell>
-                <TableCell>{R.path([REF_DATE, 'valueName'], datapoint)}</TableCell>
-                <TableCell>
-                  <strong>{format(R.prop('y', datapoint))}</strong>
-                </TableCell>
-                <TableCell>{format(R.path([STD_ERR, 'valueName'], datapoint))}</TableCell>
-              </TableRow>
-            ),
-            serie,
-          )}
-        </TableBody>
-      </Table>
-    </CardContent>
+                    >
+                      <div>
+                        {mergePropsByKey(
+                          'valueId',
+                          [AGE_GROUP_OF_WOMEN, TIME_SINCE_FIRST_BIRTH],
+                          ' ',
+                        )(datapoint)}
+                      </div>
+                    </Tooltip>
+                  </TableCell>
+                  <TableCell>{R.path([INTERVAL, 'valueName'], datapoint)}</TableCell>
+                  <TableCell>
+                    <Tooltip title={R.path([SERIES_METHOD, 'valueName'], datapoint)}>
+                      <svg width={SIZE / 2} height={SIZE / 2}>
+                        <path
+                          d={getSeriesMethodSymbol({
+                            size: SIZE * 2,
+                            method: R.path([SERIES_METHOD, 'valueId'], datapoint),
+                          })()}
+                          transform={`translate(${SIZE / 4}, ${SIZE / 4})`}
+                          stroke={theme.palette.secondary.darker}
+                          fill={theme.palette.secondary.darker}
+                        />
+                      </svg>
+                    </Tooltip>
+                  </TableCell>
+                  <TableCell>{R.path([REF_DATE, 'valueName'], datapoint)}</TableCell>
+                  <TableCell>
+                    <strong>{format(R.prop('y', datapoint))}</strong>
+                  </TableCell>
+                  <TableCell>{format(R.path([STD_ERR, 'valueName'], datapoint))}</TableCell>
+                </TableRow>
+              ),
+              serie,
+            )}
+          </TableBody>
+        </Table>
+      </CardContent>
+    )}
   </Card>
 );
 
