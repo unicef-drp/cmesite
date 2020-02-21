@@ -924,10 +924,10 @@ describe('/web/selectors/data', () => {
       };
       const state = { data: { countrySeries } };
       expect(getCountryDatasourcesSerie(state)).toEqual([
-        { REF_DATE: 42, SERIES_NAME: 'c', foo: 'bar' },
-        { REF_DATE: 1, SERIES_NAME: 'a' },
-        { REF_DATE: 667, SERIES_NAME: 'z' },
         { REF_DATE: 'foo', peep: 'peep' },
+        { REF_DATE: 667, SERIES_NAME: 'z' },
+        { REF_DATE: 1, SERIES_NAME: 'a' },
+        { REF_DATE: 42, SERIES_NAME: 'c', foo: 'bar' },
       ]);
     });
   });
@@ -1010,6 +1010,17 @@ describe('/web/selectors/data', () => {
       const state = { data: { countrySeries } };
       expect(getEnhancedCountryDatasourcesSerie(state)).toEqual([
         {
+          'Age of Women or Time since first Birth': '1 xxx',
+          'Data Collection Method': 667,
+          Interval: 'bar',
+          'Reference Date': 1998,
+          'Series Category': 'pac',
+          'Series Name': 'foobar',
+          'Standard Error': '-1.0',
+          'Used in Model': 'Included',
+          Value: '12.1',
+        },
+        {
           'Age of Women or Time since first Birth': '1 a',
           'Data Collection Method': 'x',
           Interval: 'foo',
@@ -1030,17 +1041,6 @@ describe('/web/selectors/data', () => {
           'Standard Error': null,
           'Used in Model': 'Excluded',
           Value: null,
-        },
-        {
-          'Age of Women or Time since first Birth': '1 xxx',
-          'Data Collection Method': 667,
-          Interval: 'bar',
-          'Reference Date': 1998,
-          'Series Category': 'pac',
-          'Series Name': 'foobar',
-          'Standard Error': '-1.0',
-          'Used in Model': 'Included',
-          Value: '12.1',
         },
       ]);
     });

@@ -2,7 +2,7 @@
 
 exports[`/web/lib/sdmx/data dataParser when called with a MAP data context should match the snapshot 1`] = `
 Object {
-  "countryNotes": undefined,
+  "countryNotes": Array [],
   "series": Object {
     "1959-01--EX": Object {
       "INDICATOR": "Infant mortality rate",
@@ -26650,7 +26650,7 @@ Object {
 
 exports[`/web/lib/sdmx/data dataParser when called with a default data context should match the snapshot 1`] = `
 Object {
-  "countryNotes": undefined,
+  "countryNotes": Array [],
   "series": Object {
     "AFG-MRY0T4-_T-1--EX": Object {
       "INDICATOR": "Under-5 mortality rate",
