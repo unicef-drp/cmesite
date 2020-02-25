@@ -20,12 +20,13 @@ const style = theme => ({
     bottom: theme.spacing.unit * -3,
     left: '40%',
     textTransform: 'none',
-    width: 300,
+    width: 360,
     [theme.breakpoints.down('xs')]: {
       marginTop: theme.spacing.unit * 2,
       position: 'inherit',
       left: 'inherit',
       bottom: 'inherit',
+      width: 'auto',
     },
   },
   typo: {
