@@ -1021,17 +1021,6 @@ describe('/web/selectors/data', () => {
           Value: '12.1',
         },
         {
-          'Age of Women or Time since first Birth': '1 a',
-          'Data Collection Method': 'x',
-          Interval: 'foo',
-          'Reference Date': undefined,
-          'Series Category': 'peep',
-          'Series Name': 'a',
-          'Standard Error': '0.0',
-          'Used in Model': 'Included',
-          Value: '12.1',
-        },
-        {
           'Age of Women or Time since first Birth': '',
           'Data Collection Method': undefined,
           Interval: undefined,
@@ -1041,6 +1030,17 @@ describe('/web/selectors/data', () => {
           'Standard Error': null,
           'Used in Model': 'Excluded',
           Value: null,
+        },
+        {
+          'Age of Women or Time since first Birth': '1 a',
+          'Data Collection Method': 'x',
+          Interval: 'foo',
+          'Reference Date': undefined,
+          'Series Category': 'peep',
+          'Series Name': 'a',
+          'Standard Error': '0.0',
+          'Used in Model': 'Included',
+          Value: '12.1',
         },
       ]);
     });
