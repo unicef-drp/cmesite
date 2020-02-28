@@ -280,9 +280,12 @@ export const getCountryDatasourcesSerie = createSelector(
   getCountryAllIncludedSeries,
   getCountryAllExcludedSeries,
   (included = [], excluded = []) =>
-    pipe(pluck('datapoints'), unnest, sortByProps([SERIES_YEAR, REF_DATE]), reverse)(
-      concat(included, excluded),
-    ),
+    pipe(
+      pluck('datapoints'),
+      unnest,
+      sortByProps([SERIES_YEAR, SERIES_METHOD, SERIES_NAME, REF_DATE]),
+      reverse,
+    )(concat(included, excluded)),
 );
 export const getCountryAllEstimateSerieDatapoints = createSelector(
   getCountryAllEstimateSeries,
