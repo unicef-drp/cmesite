@@ -319,7 +319,7 @@ export const loadData = dataType => (dispatch, getState) => {
     method: 'getData',
     dimensions: getRawDimensions(getState()),
     dataType,
-  }).then(({ series, countryNotes }) =>
+  }).then(({ series, countryNotes } = {}) =>
     dispatch({
       type: DATA_LOADED,
       staled: equals(dataType, HOME),
