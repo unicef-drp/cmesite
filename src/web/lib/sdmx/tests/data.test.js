@@ -1,4 +1,4 @@
-import dataParser, { dataQuery, toCsv } from '../data';
+import dataParser, { dataQuery, toCsv, getEndPeriod } from '../data';
 import {
   mockedDimensions1,
   mockedDimensions2,
@@ -151,6 +151,55 @@ describe('/web/lib/sdmx/data', () => {
     it('should match snapshot', () => {
       const options = { eol: '\r\n', delimiter: ',', excludedArtefactIds: ['TIME_PERIOD'] };
       expect(toCsv(options)(toCsvInputData3)).toMatchSnapshot();
+    });
+  });
+
+  describe('getEndPeriod', () => {
+    it('should pass', () => {
+      const dimensions1 = [
+        {
+          id: 'TEST',
+          label: 'Test',
+          values: [{ id: 'SBR', label: 'SBR', isToggled: true }],
+        },
+        {
+          id: 'INDICATOR',
+          label: 'Indicator',
+          values: [{ id: 'MRY0T4', label: 'MRY0T4', isToggled: true }],
+        },
+      ];
+      expect(getEndPeriod()(dimensions1)).toEqual(2018);
+
+      const dimensions2 = [
+        {
+          id: 'TEST',
+          label: 'Test',
+          values: [{ id: 'MRY0T4', label: 'MRY0T4', isToggled: true }],
+        },
+        {
+          id: 'INDICATOR',
+          label: 'Indicator',
+          values: [{ id: 'SBR', label: 'SBR', isToggled: true }],
+        },
+      ];
+      expect(getEndPeriod()(dimensions2)).toEqual(2020);
+
+      const dimensions3 = [
+        {
+          id: 'TEST',
+          label: 'Test',
+          values: [{ id: 'MRY0T4', label: 'MRY0T4', isToggled: true }],
+        },
+        {
+          id: 'INDICATOR',
+          label: 'Indicator',
+          values: [
+            { id: 'MRY0T4', label: 'MRY0T4', isToggled: true },
+            { id: 'SBR', label: 'SBR', isToggled: true },
+          ],
+        },
+      ];
+      expect(getEndPeriod()(dimensions3)).toEqual(2020);
     });
   });
 });

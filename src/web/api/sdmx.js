@@ -12,12 +12,9 @@ import {
   always,
   identity,
 } from 'ramda';
-import { structureParser, dataParser, dataQuery, toCsv } from '../lib/sdmx';
+import { structureParser, dataParser, dataQuery, toCsv, getEndPeriod } from '../lib/sdmx';
 import { downloadCsv } from '../utils';
-import { RELEVANT_DIMENSIONS, TIME_PERIOD, REF_AREA, END_PERIOD } from '../constants';
-import sdmxStructure from '../../mock/data/sdmxStructure';
-import sdmxData from '../../mock/data/sdmxData';
-import sdmxDataMap from '../../mock/data/sdmxDataMap';
+import { RELEVANT_DIMENSIONS, TIME_PERIOD, REF_AREA } from '../constants';
 
 export const COUNTRY = 'country';
 export const COMPARE = 'compare';
@@ -74,8 +71,9 @@ const getStructure = () =>
 const getData = ({ dimensions, dataType }) => {
   const __dataType = ifElse(equals(HOME), always(MAP), identity)(dataType);
   const { queryOptions, parserOptions } = prop(__dataType, DATA_CONTEXTS);
+  const endPeriod = getEndPeriod(queryOptions)(dimensions);
   const onlyLatestParams = equals(dataType, HOME)
-    ? `&startPeriod=${END_PERIOD}&endPeriod=${END_PERIOD}`
+    ? `&startPeriod=${endPeriod}-06&endPeriod=${endPeriod}-06`
     : '';
 
   return axios
@@ -142,18 +140,7 @@ const config = config => (globalConfig = { ...globalConfig, ...config });
 const methods = {
   config,
   getStructure,
-  _getStructure: () =>
-    new Promise(resolve => {
-      setTimeout(() => resolve(configuredStructureParser(sdmxStructure)), 100);
-    }),
   getData,
-  _getData: ({ dataType }) => {
-    const data = dataType === MAP ? sdmxDataMap : sdmxData;
-    const { parserOptions } = prop(dataType, DATA_CONTEXTS);
-    return new Promise(resolve => {
-      setTimeout(() => resolve(configuredDataParser(data, parserOptions)), 100);
-    });
-  },
   getFileData,
 };
 

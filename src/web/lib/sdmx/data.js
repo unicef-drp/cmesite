@@ -48,6 +48,8 @@ import {
   omit,
   is,
   indexOf,
+  isEmpty,
+  tap,
 } from 'ramda';
 import {
   RELEVANT_DIMENSIONS,
@@ -71,6 +73,8 @@ import {
   CSV_DELIMITER,
   CSV_EOL,
   COUNTRY_NOTES,
+  END_PERIODS,
+  DEFAULT_END_PERIOD,
 } from '../../constants';
 
 const getValues = propOr([], 'values');
@@ -115,6 +119,17 @@ export const dataQuery = ({
       ),
     ),
     join(dimensionSeparator),
+  );
+
+export const getEndPeriod = ({ valueSeparator = '+', ...queryOptions } = {}) =>
+  pipe(
+    find(propEq('id', INDICATOR)),
+    o => [o],
+    dataQuery({ valueSeparator, ...queryOptions }),
+    split(valueSeparator),
+    flip(pick)(END_PERIODS),
+    values,
+    ifElse(isEmpty, always(DEFAULT_END_PERIOD), o => Math.max(...o)),
   );
 
 const toCsvRow = ({ delimiter, isHeader, excludedArtefactIds }) =>
