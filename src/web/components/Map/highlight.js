@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { prop, isNil, always, ifElse, path, replace, converge } from 'ramda';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { REF_AREA, Z, SERIES_YEAR } from '../../constants';
+import { REF_AREA, Z, REF_DATE, SERIES_YEAR } from '../../constants';
 
 const style = theme => ({
   root: {
@@ -39,6 +39,7 @@ const formatName = converge((year, name) => replace(year, '', name), [
   path([SERIES_YEAR, 'valueName']),
   path([Z, 'valueName']),
 ]);
+const formatYear = n => Math.floor(n);
 
 const Hightlight = ({ classes, datapoint }) => {
   if (isNil(datapoint)) return null;
@@ -66,7 +67,7 @@ const Hightlight = ({ classes, datapoint }) => {
           </Typography>
           &nbsp;
           <Typography variant="caption" className={classes.typo} inline>
-            <em>({path([SERIES_YEAR, 'valueName'], datapoint)})</em>
+            <em>({formatYear(path([REF_DATE, 'valueName'], datapoint))})</em>
           </Typography>
         </Grid>
         <Grid item xs={6}>
