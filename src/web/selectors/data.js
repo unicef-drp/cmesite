@@ -151,7 +151,7 @@ export const getOtherDimensions = createSelector(
   }, []),
 );
 export const getIndicatorDimension = createSelector(getDimensions, find(propEq('id', INDICATOR)));
-export const getMapIndicatorDimension = createSelector(
+export const getRateIndicatorDimension = createSelector(
   getOtherDimensions,
   pipe(
     find(propEq('id', INDICATOR)),
@@ -171,7 +171,7 @@ export const getCountryValue = createSelector(getCountryDimension, getSelectedDi
 export const getIndicatorValue = createSelector(getIndicatorDimension, getSelectedDimensionValue());
 export const getSexValue = createSelector(getSexDimension, getSelectedDimensionValue());
 export const getMapIndicatorValue = createSelector(
-  getMapIndicatorDimension,
+  getRateIndicatorDimension,
   getSelectedDimensionValue('isMapSelected'),
 );
 export const getIsStillbirth = createSelector(getIndicatorValue, ({ id }) =>

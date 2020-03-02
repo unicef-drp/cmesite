@@ -30,7 +30,6 @@ export const EXC_NO_SEX_INDICATOR_VALUES = new Set([
   'SB',
   'SBR',
 ]);
-export const EXC_RATE_INDICATOR_VALUE_REGEXP = /^((?!death).)*$/i;
 
 export const HIERARCHY_LABEL_TOKEN = ' > ';
 

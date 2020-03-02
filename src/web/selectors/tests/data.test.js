@@ -11,7 +11,7 @@ import {
   getCountryDimension,
   getCountryDimensionWithAggregates,
   getIndicatorDimension,
-  getMapIndicatorDimension,
+  getRateIndicatorDimension,
   getSexDimension,
   getCountryValue,
   getIndicatorValue,
@@ -260,9 +260,9 @@ describe('/web/selectors/data', () => {
     });
   });
 
-  describe('getMapIndicatorDimension', () => {
+  describe('getRateIndicatorDimension', () => {
     it('should throw an error when called with an empty state', () =>
-      expect(() => getMapIndicatorDimension(undefined)).toThrow());
+      expect(() => getRateIndicatorDimension(undefined)).toThrow());
 
     it('should obtain undefined when called with a state that does not contain an INDICATOR dimension', () => {
       const dimensions = [
@@ -275,7 +275,7 @@ describe('/web/selectors/data', () => {
         { id: 'SEX' },
       ];
       const state = { data: { dimensions } };
-      expect(getMapIndicatorDimension(state)).toBe(undefined);
+      expect(getRateIndicatorDimension(state)).toBe(undefined);
     });
 
     it('should obtain a filtered version of indicator dimension based on isRate when called with a filled state', () => {
@@ -286,7 +286,7 @@ describe('/web/selectors/data', () => {
       ];
       const dimensions = [{ id: 'INDICATOR', test: 'test', values }];
       const state = { data: { dimensions } };
-      expect(getMapIndicatorDimension(state)).toEqual({
+      expect(getRateIndicatorDimension(state)).toEqual({
         id: 'INDICATOR',
         test: 'test',
         values: [{ id: 'peep', isRate: true }, { id: '667', isRate: true }],

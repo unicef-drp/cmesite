@@ -22,7 +22,7 @@ import {
   addIndex,
   test,
 } from 'ramda';
-import { RELEVANT_DIMENSIONS_DEFAULTS, EXC_RATE_INDICATOR_VALUE_REGEXP } from '../../constants';
+import { RELEVANT_DIMENSIONS_DEFAULTS, RATE_INDICATOR_VALUE_REGEXP } from '../../constants';
 
 const getName = locale => path(['name', locale]);
 
@@ -69,7 +69,7 @@ const getValues = (locale, codelists) =>
           isSelected: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
           isMapSelected: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)), // default is map compliant
           isToggled: RELEVANT_DIMENSIONS_DEFAULTS.has(prop('id')(code)),
-          isRate: test(EXC_RATE_INDICATOR_VALUE_REGEXP, getName(locale)(code)),
+          isRate: test(/rate/, getName(locale)(code)),
           parent: prop('parent')(code),
         })),
       ),

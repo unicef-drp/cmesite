@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import {
   getFilteredCountryDimensionWithAggregates,
   getCountryValue,
-  getMapIndicatorDimension,
+  getRateIndicatorDimension,
   getMapIndicatorValue,
   getCountryTypes,
 } from '../../selectors/data';
@@ -64,6 +64,6 @@ export const HomeCountrySelector = enhance(
 )(Component);
 
 export const HomeIndicatorSelector = enhance(
-  { dimension: getMapIndicatorDimension, value: getMapIndicatorValue },
+  { dimension: getRateIndicatorDimension, value: getMapIndicatorValue },
   { noOptions: 'indicatorSelectorPlaceholder', placeholder: 'indicatorSelectorNoOption' },
 )(Component);
