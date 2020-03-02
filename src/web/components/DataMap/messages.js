@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'map.home.title',
-    defaultMessage: 'Most recent child mortality estimates, 2018',
+    defaultMessage: 'Most recent child mortality estimates',
   },
   country: {
     id: 'map.home.country',

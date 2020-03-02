@@ -6,10 +6,10 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import { prop, isNil, always, ifElse, path } from 'ramda';
+import { prop, isNil, always, ifElse, path, replace, converge } from 'ramda';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { REF_AREA, Z } from '../../constants';
+import { REF_AREA, Z, SERIES_YEAR } from '../../constants';
 
 const style = theme => ({
   root: {
@@ -34,7 +34,11 @@ const style = theme => ({
   },
 });
 
-const format = ifElse(isNil, always(null), n => numeral(n).format('0.0'));
+const formatValue = ifElse(isNil, always(null), n => numeral(n).format('0.0'));
+const formatName = converge((year, name) => replace(year, '', name), [
+  path([SERIES_YEAR, 'valueName']),
+  path([Z, 'valueName']),
+]);
 
 const Hightlight = ({ classes, datapoint }) => {
   if (isNil(datapoint)) return null;
@@ -48,7 +52,7 @@ const Hightlight = ({ classes, datapoint }) => {
       <Grid container spacing={0}>
         <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo}>
-            <strong>{path([Z, 'valueName'], datapoint)}</strong>
+            <strong>{formatName(datapoint)}</strong>
           </Typography>
         </Grid>
         <Grid item xs={6}>
@@ -57,13 +61,17 @@ const Hightlight = ({ classes, datapoint }) => {
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="body2" className={classes.typo}>
-            <strong>{format(prop('y', datapoint))}</strong>
+          <Typography variant="body2" className={classes.typo} inline>
+            <strong>{formatValue(prop('y', datapoint))}</strong>
+          </Typography>
+          &nbsp;
+          <Typography variant="caption" className={classes.typo} inline>
+            <em>({path([SERIES_YEAR, 'valueName'], datapoint)})</em>
           </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo}>
-            ({format(prop('y0', datapoint))} - {format(prop('y1', datapoint))})
+            ({formatValue(prop('y0', datapoint))} - {formatValue(prop('y1', datapoint))})
           </Typography>
         </Grid>
       </Grid>
