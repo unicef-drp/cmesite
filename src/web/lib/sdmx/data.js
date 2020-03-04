@@ -74,6 +74,7 @@ import {
   COUNTRY_NOTES,
   END_PERIODS,
   DEFAULT_END_PERIOD,
+  DEFINITION,
 } from '../../constants';
 
 const getValues = propOr([], 'values');
@@ -278,6 +279,9 @@ const reduceObservation = (locale, pivot, dimensions, attributes) => (acc, pair)
 
   if (has(INDICATOR, observation))
     serie = assoc(`${INDICATOR}_ID`, path([INDICATOR, 'valueId'], observation), serie);
+
+  if (has(DEFINITION, observation))
+    serie = assoc(DEFINITION, path([DEFINITION, 'valueName'], observation), serie);
 
   if (has(MODEL, observation)) serie = assoc(MODEL, path([MODEL, 'valueName'], observation), serie);
 

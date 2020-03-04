@@ -49,6 +49,7 @@ import {
   SERIES_YEAR,
   INCLUDED,
   EXCLUDED,
+  DEFINITION,
 } from '../../constants';
 
 const styles = theme => ({
@@ -170,7 +171,7 @@ const DataLegend = ({
             ) : isUncertainty ? (
               <FormattedMessage {...messages.uncertainty} />
             ) : (
-              name
+              join(' ', [name, ifElse(isNil, always(null), d => `(${d})`)(prop(DEFINITION, serie))])
             )}
           </ListItemText>
         </ListItem>
