@@ -64,7 +64,7 @@ const Legend = ({ classes, scale, andAbove }) => {
                   nth(n, domain)
                 )
               ) : (
-                `${nth(n, domain)} - ${dec(nth(inc(n), domain))}`
+                `${nth(n, domain)} - ${nth(inc(n), domain)}`
               )}
             </ListItemText>
           </ListItem>

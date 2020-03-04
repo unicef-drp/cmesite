@@ -158,13 +158,85 @@ export const MAP_DEFAULT_SCALE = {
 const MAP_NO_DATA = '#9b9b9b';
 export const INDICATOR_MAP_SCALES = {
   MRY0T4: {
-    domain: [0, 10, 20, 30, 40, 50],
+    // Under-five mortality rate
+    domain: [0, 12, 25, 40, 75, 100, 150],
+    range: [
+      MAP_NO_DATA,
+      '#a1d4eb',
+      '#8abbd6 ',
+      '#72a2c0',
+      '#5b89ab',
+      '#447096',
+      '#2c5780',
+      '#153e6b',
+    ],
+    andAbove: true,
+  },
+  MRM0: {
+    // Neonatal mortality rate
+    domain: [0, 5, 15, 20, 30, 40, 50],
+    range: [
+      MAP_NO_DATA,
+      '#a1d4eb',
+      '#8abbd6 ',
+      '#72a2c0',
+      '#5b89ab',
+      '#447096',
+      '#2c5780',
+      '#153e6b',
+    ],
+    andAbove: true,
+  },
+  MRY0: {
+    // Infant mortality rate
+    domain: [0, 5, 12, 25, 40, 75, 100],
+    range: [
+      MAP_NO_DATA,
+      '#a1d4eb',
+      '#8abbd6 ',
+      '#72a2c0',
+      '#5b89ab',
+      '#447096',
+      '#2c5780',
+      '#153e6b',
+    ],
+    andAbove: true,
+  },
+  SBR: {
+    // Stillbirth rate
+    domain: [0, 5, 12, 20, 25, 30],
     range: [MAP_NO_DATA, '#a1d4eb', '#8abbd6 ', '#72a2c0', '#5b89ab', '#447096', '#2c5780'],
     andAbove: true,
   },
   MRY5T14: {
-    domain: [0, 10, 20, 50, 100],
-    range: [MAP_NO_DATA, '#a1d4eb', '#8abbd6 ', '#72a2c0', '#5b89ab', '#447096'],
+    // Mortality rate age 5 to 14
+    domain: [0, 2, 5, 12, 20, 30, 50],
+    range: [
+      MAP_NO_DATA,
+      '#a1d4eb',
+      '#8abbd6 ',
+      '#72a2c0',
+      '#5b89ab',
+      '#447096',
+      '#2c5780',
+      '#153e6b',
+    ],
+    andAbove: true,
+  },
+  MRY1T4: {
+    // Child mortality rate age 1 to 4
+    domain: [0, 5, 12, 20, 30, 50, 100],
+    range: [
+      MAP_NO_DATA,
+      '#a1d4eb',
+      '#8abbd6 ',
+      '#72a2c0',
+      '#5b89ab',
+      '#447096',
+      '#2c5780',
+      '#153e6b',
+    ],
+    andAbove: true,
   },
 };
 
