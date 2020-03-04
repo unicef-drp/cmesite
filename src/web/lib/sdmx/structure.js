@@ -22,7 +22,7 @@ import {
   addIndex,
   test,
 } from 'ramda';
-import { RELEVANT_DIMENSIONS_DEFAULTS, RATE_INDICATOR_VALUE_REGEXP } from '../../constants';
+import { RELEVANT_DIMENSIONS_DEFAULTS } from '../../constants';
 
 const getName = locale => path(['name', locale]);
 

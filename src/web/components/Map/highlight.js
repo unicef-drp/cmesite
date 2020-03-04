@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import numeral from 'numeral';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import { prop, isNil, always, ifElse, path, replace, converge } from 'ramda';
+import { prop, isNil, path } from 'ramda';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { REF_AREA, Z, REF_DATE, SERIES_YEAR } from '../../constants';
+import { getSeriesLabel, getFormatMapYear, getFormatTooltipValue } from '../../lib/formatters';
+import { REF_AREA, REF_DATE } from '../../constants';
 
 const style = theme => ({
   root: {
@@ -34,13 +34,6 @@ const style = theme => ({
   },
 });
 
-const formatValue = ifElse(isNil, always(null), n => numeral(n).format('0.0'));
-const formatName = converge((year, name) => replace(year, '', name), [
-  path([SERIES_YEAR, 'valueName']),
-  path([Z, 'valueName']),
-]);
-const formatYear = n => Math.floor(n);
-
 const Hightlight = ({ classes, datapoint }) => {
   if (isNil(datapoint)) return null;
 
@@ -53,7 +46,7 @@ const Hightlight = ({ classes, datapoint }) => {
       <Grid container spacing={0}>
         <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo}>
-            <strong>{formatName(datapoint)}</strong>
+            <strong>{getSeriesLabel(datapoint)}</strong>
           </Typography>
         </Grid>
         <Grid item xs={6}>
@@ -63,16 +56,17 @@ const Hightlight = ({ classes, datapoint }) => {
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo} inline>
-            <strong>{formatValue(prop('y', datapoint))}</strong>
+            <strong>{getFormatTooltipValue(prop('y', datapoint))}</strong>
           </Typography>
           &nbsp;
           <Typography variant="caption" className={classes.typo} inline>
-            <em>({formatYear(path([REF_DATE, 'valueName'], datapoint))})</em>
+            <em>({getFormatMapYear(path([REF_DATE, 'valueName'], datapoint))})</em>
           </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo}>
-            ({formatValue(prop('y0', datapoint))} - {formatValue(prop('y1', datapoint))})
+            ({getFormatTooltipValue(prop('y0', datapoint))} -{' '}
+            {getFormatTooltipValue(prop('y1', datapoint))})
           </Typography>
         </Grid>
       </Grid>

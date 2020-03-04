@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { path, prop, isNil, always, ifElse, pipe, join, values, pick, pluck } from 'ramda';
-import numeral from 'numeral';
+import { path, prop, join } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { TOOLTIP_SERIES_KEYS, RELEVANT_DIMENSIONS, REF_DATE, SERIES_NAME } from '../../constants';
+import { REF_DATE } from '../../constants';
+import { getFormatTooltipValue, getLineTooltipLabel } from '../../lib/formatters';
 import { FormattedMessage } from 'react-intl';
 import messages from '../DataLegend/messages';
 
@@ -23,15 +23,6 @@ const style = theme => ({
     padding: theme.spacing.unit,
   },
 });
-
-const format = ifElse(isNil, always(null), n => numeral(n).format('0.00'));
-const getLabel = ({ isCompare }) =>
-  pipe(
-    pick(isCompare ? [...RELEVANT_DIMENSIONS, ...TOOLTIP_SERIES_KEYS] : [SERIES_NAME]),
-    values,
-    pluck('valueName'),
-    join(' '),
-  );
 
 const getLeft = ({ x, width, theme }) => {
   const isFlipped = x > width / 2;
@@ -59,14 +50,17 @@ const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare, isU
         {isUncertainty ? (
           <FormattedMessage {...messages.uncertainty} />
         ) : (
-          getLabel({ isCompare })(d)
+          getLineTooltipLabel({ isCompare })(d)
         )}
       </Typography>
       <Typography variant="body2">
         <strong>
           {isUncertainty
-            ? join(' - ', [format(prop('y0', d)), format(prop('y1', d))])
-            : format(prop('y', d))}
+            ? join(' - ', [
+                getFormatTooltipValue(prop('y0', d)),
+                getFormatTooltipValue(prop('y1', d)),
+              ])
+            : getFormatTooltipValue(prop('y', d))}
         </strong>
       </Typography>
       <Typography variant="body2">({path([REF_DATE, 'valueName'], d)})</Typography>

@@ -49,7 +49,6 @@ import {
   is,
   indexOf,
   isEmpty,
-  tap,
 } from 'ramda';
 import {
   RELEVANT_DIMENSIONS,
