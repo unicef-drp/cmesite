@@ -7,7 +7,7 @@ export default defineMessages({
   },
   subtitle: {
     id: 'datasets.subtitle',
-    defaultMessage: 'Last update - 19 September 2019',
+    defaultMessage: 'Last update - 9 April 2020',
   },
   updatedAt: {
     id: 'datasets.updatedAt',
