@@ -6,7 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { REF_DATE } from '../../constants';
-import { getFormatTooltipValue, getLineTooltipLabel } from '../../lib/formatters';
+import { getDefaultFormatValue, getLineTooltipLabel } from '../../lib/formatters';
 import { FormattedMessage } from 'react-intl';
 import messages from '../DataLegend/messages';
 
@@ -57,10 +57,10 @@ const Tooltip = ({ classes, theme, d, x, y, color, width, height, isCompare, isU
         <strong>
           {isUncertainty
             ? join(' - ', [
-                getFormatTooltipValue(prop('y0', d)),
-                getFormatTooltipValue(prop('y1', d)),
+                getDefaultFormatValue(prop('y0', d)),
+                getDefaultFormatValue(prop('y1', d)),
               ])
-            : getFormatTooltipValue(prop('y', d))}
+            : getDefaultFormatValue(prop('y', d))}
         </strong>
       </Typography>
       <Typography variant="body2">({path([REF_DATE, 'valueName'], d)})</Typography>

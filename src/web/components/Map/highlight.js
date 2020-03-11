@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { prop, isNil, path } from 'ramda';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { getSeriesLabel, getFormatMapYear, getFormatTooltipValue } from '../../lib/formatters';
+import { getSeriesLabel, getFormatMapYear, getDefaultFormatValue } from '../../lib/formatters';
 import { REF_AREA, REF_DATE } from '../../constants';
 
 const style = theme => ({
@@ -56,7 +56,7 @@ const Hightlight = ({ classes, datapoint }) => {
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo} inline>
-            <strong>{getFormatTooltipValue(prop('y', datapoint))}</strong>
+            <strong>{getDefaultFormatValue(prop('y', datapoint))}</strong>
           </Typography>
           &nbsp;
           <Typography variant="caption" className={classes.typo} inline>
@@ -65,8 +65,8 @@ const Hightlight = ({ classes, datapoint }) => {
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" className={classes.typo}>
-            ({getFormatTooltipValue(prop('y0', datapoint))} -{' '}
-            {getFormatTooltipValue(prop('y1', datapoint))})
+            ({getDefaultFormatValue(prop('y0', datapoint))} -{' '}
+            {getDefaultFormatValue(prop('y1', datapoint))})
           </Typography>
         </Grid>
       </Grid>

@@ -40,11 +40,20 @@ const styles = theme => ({
       marginLeft: 0,
     },
   },
+  cardContent: {
+    padding: 0,
+    paddingTop: theme.spacing.unit * 2,
+  },
   typo: {
     color: theme.palette.primary.dark,
   },
   table: {
     minWidth: 550,
+  },
+  cellPaddingNone: {
+    '&:last-child': {
+      padding: theme.spacing.unit,
+    },
   },
 });
 
@@ -58,7 +67,7 @@ const DataTable = ({ classes, serie, title, mode, changeMode, isStillBirth, them
     {R.either(R.isNil, R.isEmpty)(serie) ? (
       <DataNone />
     ) : (
-      <CardContent>
+      <CardContent className={classes.cardContent}>
         <Table padding="none" className={classes.table}>
           <TableHead>
             <TableRow>
@@ -98,7 +107,7 @@ const DataTable = ({ classes, serie, title, mode, changeMode, isStillBirth, them
                   <FormattedMessage {...messages.value} />
                 </strong>
               </TableCell>
-              <TableCell>
+              <TableCell classes={{ paddingNone: classes.cellPaddingNone }}>
                 <FormattedMessage {...messages.stdErr} />
               </TableCell>
             </TableRow>

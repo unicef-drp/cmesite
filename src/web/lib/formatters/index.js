@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import numeral from 'numeral';
 import * as C from '../../constants';
 
-export const getFormatTooltipValue = R.ifElse(R.isNil, R.always(null), n =>
+export const getDefaultFormatValue = R.ifElse(R.isNil, R.always(null), n =>
   numeral(n).format('0.[00]'),
 );
 
