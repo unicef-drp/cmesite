@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +10,7 @@ import Wrapper from '../Wrapper';
 import Loader from '../Loader';
 import DataNone from '../DataNone';
 import Toolbar from './toolbar';
+import { INDICATOR_IDS } from '../../constants';
 
 const styles = theme => ({
   wrapper: {
@@ -22,7 +23,12 @@ const styles = theme => ({
 });
 
 const Analysis = ({ classes, type }) => {
+  const initialIndicatorValueId = R.pipe(R.propOr([], type), set => set.values().next().value)(
+    INDICATOR_IDS,
+  );
+  const [indicatorValueId, setIndicatorValueId] = useState(initialIndicatorValueId);
   const [isLoading, indicatorValues] = withIndicatorValues(type);
+
   if (isLoading) return <Loader />;
   if (R.isEmpty(indicatorValues)) return <DataNone />;
 
@@ -41,7 +47,11 @@ const Analysis = ({ classes, type }) => {
           <Typography variant="title" className={classes.title}>
             {title}
           </Typography>
-          <Toolbar indicatorValues={indicatorValues} />
+          <Toolbar
+            values={indicatorValues}
+            valueId={indicatorValueId}
+            setValueId={setIndicatorValueId}
+          />
           <Divider />
         </Grid>
         <Grid item xs={12} md={4} lg={3}>

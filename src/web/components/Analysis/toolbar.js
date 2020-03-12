@@ -22,26 +22,28 @@ const styles = theme => ({
   },
 });
 
-const Toolbar = ({ classes, indicatorValues }) => (
+const Toolbar = ({ classes, values, valueId, setValueId }) => (
   <MUIToolbar disableGutters className={classes.root}>
     {R.map(
       ({ id, label }) => (
         <Button
           key={id}
-          //color={R.equals(indicatorValueId, id) ? 'primary' : null}
+          color={R.equals(valueId, id) ? 'primary' : null}
           classes={{ root: classes.button }}
-          //onClick={() => setIndicatorValueId(id)}
+          onClick={() => setValueId(id)}
         >
           {label}
         </Button>
       ),
-      indicatorValues,
+      values,
     )}
   </MUIToolbar>
 );
 
 Toolbar.propTypes = {
-  indicatorValues: PropTypes.array.isRequired,
+  values: PropTypes.array.isRequired,
+  valueId: PropTypes.string.isRequired,
+  setValueId: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
