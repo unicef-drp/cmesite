@@ -77,7 +77,12 @@ const Component = ({ classes, theme, tabs, activeTab, changeActiveTab, messages 
       onChangeIndex={index => changeActiveTab(index)}
       //animateHeight
     >
-      {addIndex(map)((tab, index) => <tab.component isActive={equals(activeTab, index)} />, tabs)}
+      {addIndex(map)(
+        (tab, index) => (
+          <tab.component key={tab.key} type={tab.key} isActive={equals(activeTab, index)} />
+        ),
+        tabs,
+      )}
     </SwipeableViews>
   </React.Fragment>
 );

@@ -5,13 +5,16 @@ import messages from './messages';
 import { getActiveTab } from '../../selectors/analysis';
 import { changeActiveTab } from '../../ducks/analysis';
 import Tabs from '../../components/Tabs';
-import Progress from '../../components/AnalysisProgress';
-import countryIcon from '../../../assets/country-tab.png';
-import compareIcon from '../../../assets/compare-tab.png';
+import Analysis from '../../components/Analysis';
+// import Progress from '../../components/AnalysisProgress';
+import progressIcon from '../../../assets/progress-tab.png';
+import disparityIcon from '../../../assets/disparity-tab.png';
+import sdgIcon from '../../../assets/sdg-tab.png';
 
 const tabs = [
-  { key: 'progress', icon: countryIcon, component: Progress },
-  { key: 'disparity', icon: compareIcon, component: () => 'disparity' },
+  { key: 'progress', icon: progressIcon, component: Analysis },
+  { key: 'disparity', icon: disparityIcon, component: () => 'disparity' },
+  { key: 'sdg', icon: sdgIcon, component: () => 'sdg' },
 ];
 
 export default compose(
