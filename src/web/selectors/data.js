@@ -158,13 +158,15 @@ export const getRateIndicatorDimension = createSelector(
     ifElse(isNil, identity, over(lensProp('values'), filter(propEq('isRate', true)))),
   ),
 );
-export const getAnalysisIndicatorDimensionValues = type =>
-  createSelector(getIndicatorDimension, indicator => {
+export const getAnalysisIndicatorDimensionValues = createSelector(
+  getIndicatorDimension,
+  (indicator, { type }) => {
     if (isNil(indicator)) return [];
     const ids = propOr([], type, INDICATOR_IDS);
     if (isEmpty(ids)) return [];
     return pipe(propOr([], 'values'), filter(({ id }) => ids.has(id)))(indicator);
-  });
+  },
+);
 export const getSexDimension = createSelector(getDimensions, find(propEq('id', SEX)));
 export const getCountryValue = createSelector(getCountryDimension, getSelectedDimensionValue());
 export const getIndicatorValue = createSelector(getIndicatorDimension, getSelectedDimensionValue());
