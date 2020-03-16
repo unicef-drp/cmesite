@@ -8,6 +8,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { FormattedMessage } from 'react-intl';
 import Wrapper from '../Wrapper';
 import Toolbar from './toolbar';
+import TimeTravel from './timeTravel';
 import messages from '../../pages/Analysis/messages';
 
 const styles = theme => ({
@@ -22,6 +23,8 @@ const styles = theme => ({
 
 const Analysis = ({ classes, type, description, indicatorValues }) => {
   const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
+  const [series, setSeries] = useState([]);
+  const [seriesIndex, setSeriesIndex] = useState(0);
 
   return (
     <Wrapper classes={{ root: classes.wrapper }}>
@@ -43,6 +46,7 @@ const Analysis = ({ classes, type, description, indicatorValues }) => {
           </Typography>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
+          <TimeTravel series={series} seriesIndex={seriesIndex} setSeriesIndex={setSeriesIndex} />
           map
         </Grid>
       </Grid>
