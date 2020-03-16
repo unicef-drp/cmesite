@@ -37,10 +37,10 @@ const styles = theme => ({
 
 const MEAN_ID = 'WORLD';
 
-const Analysis = ({ classes, type, description, indicatorValues, vizTypes }) => {
+const Analysis = ({ classes, type, description, indicatorValues, vizTypes, isActive }) => {
   const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
   const [seriesIndex, setSeriesIndex] = useState(0);
-  const [isLoading, series] = useSeries(indicatorValueId);
+  const [isLoading, series] = useSeries(indicatorValueId, isActive);
   const [vizType, setVizType] = useState(VIZ_MAP);
 
   const isBlank = R.isEmpty(series);
@@ -88,7 +88,7 @@ const Analysis = ({ classes, type, description, indicatorValues, vizTypes }) => 
                   </Typography>
                   <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
                 </div>
-                <WorldMap mapSerie={serie} />
+                {R.equals(VIZ_MAP, vizType) && <WorldMap mapSerie={serie} />}
               </React.Fragment>
             )}
         </Grid>
@@ -100,6 +100,7 @@ const Analysis = ({ classes, type, description, indicatorValues, vizTypes }) => 
 Analysis.propTypes = {
   classes: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
+  isActive: PropTypes.bool,
   description: PropTypes.string.isRequired,
   indicatorValues: PropTypes.array.isRequired,
   vizTypes: PropTypes.array.isRequired,

@@ -6,13 +6,14 @@ import { getAnalysisData } from '../../api/sdmx';
 const START_PERIOD = 1990;
 const END_PERIOD = 2019;
 
-function useSeries(indicatorValueId) {
+function useSeries(indicatorValueId, isActive) {
   const [isLoading, setIsLoading] = useState(false);
   const [series, setSeries] = useState([]);
 
   useEffect(
     () => {
       if (R.isNil(indicatorValueId)) return;
+      if (R.not(isActive)) return;
 
       setIsLoading(true);
       setSeries([]);
@@ -41,7 +42,7 @@ function useSeries(indicatorValueId) {
       // Trigger the abortion in useEffect's cleanup function
       return () => source.cancel();
     },
-    [indicatorValueId],
+    [indicatorValueId, isActive],
   );
 
   return [isLoading, series];
