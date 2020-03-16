@@ -290,3 +290,6 @@ export const INDICATOR_DEFINITIONS = {
   TMY5T14: 'Number of deaths aged 5 to 14 years',
   TMY1T4: 'Number of deaths aged 1 to 4 years',
 };
+
+export const VIZ_MAP = 'map';
+export const VIZ_CHART = 'chart';

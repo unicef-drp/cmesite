@@ -12,11 +12,22 @@ import Analysis from '../../components/Analysis';
 import progressIcon from '../../../assets/progress-tab.png';
 import disparityIcon from '../../../assets/disparity-tab.png';
 import sdgIcon from '../../../assets/sdg-tab.png';
+import { UNIT_MEASURE, VIZ_MAP, VIZ_CHART } from '../../constants';
 
 const tabs = [
-  { key: 'progress', icon: progressIcon, component: Analysis },
-  { key: 'disparity', icon: disparityIcon, component: Analysis },
-  { key: 'sdg', icon: sdgIcon, component: Analysis },
+  { key: 'progress', icon: progressIcon, component: Analysis, otherProps: { vizTypes: [VIZ_MAP] } },
+  {
+    key: 'disparity',
+    icon: disparityIcon,
+    component: Analysis,
+    otherProps: { vizTypes: [VIZ_CHART] },
+  },
+  {
+    key: 'sdg',
+    icon: sdgIcon,
+    component: Analysis,
+    otherProps: { vizTypes: [VIZ_MAP, VIZ_CHART] },
+  },
 ];
 
 function componentDidMount() {

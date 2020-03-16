@@ -12,8 +12,9 @@ import DataNone from '../DataNone';
 import WorldMap from '../Map/component';
 import Toolbar from './toolbar';
 import TimeTravel from './timeTravel';
+import VizSwitch from './vizSwitch';
 import useSeries from './useSeries';
-import { UNIT_MEASURE } from '../../constants';
+import { UNIT_MEASURE, VIZ_MAP } from '../../constants';
 import messages from '../../pages/Analysis/messages';
 
 const styles = theme => ({
@@ -36,14 +37,16 @@ const styles = theme => ({
 
 const MEAN_ID = 'WORLD';
 
-const Analysis = ({ classes, type, description, indicatorValues }) => {
+const Analysis = ({ classes, type, description, indicatorValues, vizTypes }) => {
   const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
   const [seriesIndex, setSeriesIndex] = useState(0);
   const [isLoading, series] = useSeries(indicatorValueId);
+  const [vizType, setVizType] = useState(VIZ_MAP);
 
   const isBlank = R.isEmpty(series);
   const serie = R.nth(seriesIndex, series);
   const mean = R.path(['datapoints', MEAN_ID, 'y'])(serie);
+  const needSwitch = R.gt(R.length(vizTypes), 1);
 
   return (
     <Wrapper classes={{ root: classes.wrapper }}>
@@ -70,6 +73,7 @@ const Analysis = ({ classes, type, description, indicatorValues }) => {
           {!isLoading &&
             !isBlank && (
               <React.Fragment>
+                {needSwitch && <VizSwitch types={vizTypes} type={vizType} setType={setVizType} />}
                 <TimeTravel
                   series={series}
                   seriesIndex={seriesIndex}
@@ -98,6 +102,7 @@ Analysis.propTypes = {
   type: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   indicatorValues: PropTypes.array.isRequired,
+  vizTypes: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(Analysis);

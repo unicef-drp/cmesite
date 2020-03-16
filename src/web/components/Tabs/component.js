@@ -79,7 +79,12 @@ const Component = ({ classes, theme, tabs, activeTab, changeActiveTab, messages 
     >
       {addIndex(map)(
         (tab, index) => (
-          <tab.component key={tab.key} type={tab.key} isActive={equals(activeTab, index)} />
+          <tab.component
+            key={tab.key}
+            type={tab.key}
+            {...tab.otherProps}
+            isActive={equals(activeTab, index)}
+          />
         ),
         tabs,
       )}
