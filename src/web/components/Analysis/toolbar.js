@@ -29,6 +29,7 @@ const Toolbar = ({ classes, values, valueId, setValueId }) => (
         <Button
           key={id}
           color={R.equals(valueId, id) ? 'primary' : null}
+          variant={R.equals(valueId, id) ? 'outlined' : null}
           classes={{ root: classes.button }}
           onClick={() => setValueId(id)}
         >

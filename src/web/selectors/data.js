@@ -160,7 +160,8 @@ export const getRateIndicatorDimension = createSelector(
 );
 export const getAnalysisIndicatorDimensionValues = createSelector(
   getIndicatorDimension,
-  (indicator, { type }) => {
+  (_, ownProps) => prop('type', ownProps),
+  (indicator, type) => {
     if (isNil(indicator)) return [];
     const ids = propOr([], type, INDICATOR_IDS);
     if (isEmpty(ids)) return [];
