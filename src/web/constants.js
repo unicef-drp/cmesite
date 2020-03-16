@@ -19,8 +19,8 @@ export const DISPARITY_INDICATOR_IDS = new Set(['D_MRY0T4', 'D_MRM0']);
 export const PROGRESS_INDICATOR_IDS = new Set(['PR_MRY0T4']);
 
 export const INDICATOR_IDS = {
-  progress: new Set(['MRY0T4', 'MRY0', 'MRM0', 'SBR']),
-  disparity: new Set(['MRY0T4', 'MRY0', 'MRM0', 'SBR']),
+  progress: new Set(['MRY0T4', 'MRM0', 'MRY5T14', 'SBR']),
+  disparity: new Set(['MRY0T4', 'MRM0', 'MRY5T14', 'SBR']),
   sdg: new Set(['MRY0T4', 'MRY0']),
 };
 

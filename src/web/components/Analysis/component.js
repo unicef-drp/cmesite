@@ -7,8 +7,13 @@ import Divider from '@material-ui/core/Divider';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { FormattedMessage } from 'react-intl';
 import Wrapper from '../Wrapper';
+import Loader from '../Loader';
+import DataNone from '../DataNone';
+import WorldMap from '../Map/component';
 import Toolbar from './toolbar';
 import TimeTravel from './timeTravel';
+import useSeries from './useSeries';
+import { UNIT_MEASURE } from '../../constants';
 import messages from '../../pages/Analysis/messages';
 
 const styles = theme => ({
@@ -19,12 +24,26 @@ const styles = theme => ({
   title: {
     color: theme.palette.primary.main,
   },
+  info: {
+    display: 'flex',
+    alignItems: 'baseline',
+    justifyContent: 'flex-end',
+  },
+  infoDate: {
+    color: theme.palette.secondary.darker,
+  },
 });
+
+const MEAN_ID = 'WORLD';
 
 const Analysis = ({ classes, type, description, indicatorValues }) => {
   const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
-  const [series, setSeries] = useState([]);
   const [seriesIndex, setSeriesIndex] = useState(0);
+  const [isLoading, series] = useSeries(indicatorValueId);
+
+  const isBlank = R.isEmpty(series);
+  const serie = R.nth(seriesIndex, series);
+  const mean = R.path(['datapoints', MEAN_ID, 'y'])(serie);
 
   return (
     <Wrapper classes={{ root: classes.wrapper }}>
@@ -46,8 +65,28 @@ const Analysis = ({ classes, type, description, indicatorValues }) => {
           </Typography>
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
-          <TimeTravel series={series} seriesIndex={seriesIndex} setSeriesIndex={setSeriesIndex} />
-          map
+          {isLoading && <Loader />}
+          {!isLoading && isBlank && <DataNone />}
+          {!isLoading &&
+            !isBlank && (
+              <React.Fragment>
+                <TimeTravel
+                  series={series}
+                  seriesIndex={seriesIndex}
+                  setSeriesIndex={setSeriesIndex}
+                />
+                <div className={classes.info}>
+                  <Typography variant="title" className={classes.infoDate}>
+                    {new Date(R.prop('name', serie)).getFullYear()},&nbsp;
+                  </Typography>
+                  <Typography variant="title" className={classes.title}>
+                    {Math.round(mean)}&nbsp;
+                  </Typography>
+                  <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
+                </div>
+                <WorldMap mapSerie={serie} />
+              </React.Fragment>
+            )}
         </Grid>
       </Grid>
     </Wrapper>

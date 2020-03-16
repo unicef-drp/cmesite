@@ -15,8 +15,8 @@ import sdgIcon from '../../../assets/sdg-tab.png';
 
 const tabs = [
   { key: 'progress', icon: progressIcon, component: Analysis },
-  { key: 'disparity', icon: disparityIcon, component: () => 'disparity' },
-  { key: 'sdg', icon: sdgIcon, component: () => 'sdg' },
+  { key: 'disparity', icon: disparityIcon, component: Analysis },
+  { key: 'sdg', icon: sdgIcon, component: Analysis },
 ];
 
 function componentDidMount() {

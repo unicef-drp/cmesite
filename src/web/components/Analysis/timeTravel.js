@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,19 +23,22 @@ const MARK_INTERVAL = 5;
 
 const TimeTravel = ({ classes, theme, seriesIndex, setSeriesIndex, series }) => {
   const [isRunning, setIsRunning] = useState(false);
-
-  const sliderMarks = R.pipe(
-    R.splitEvery(MARK_INTERVAL),
-    R.addIndex(R.reduce)(
-      (memo, fragment, index) =>
-        R.set(
-          R.lensProp(index * MARK_INTERVAL),
-          R.pipe(R.head, R.prop('name'), name => new Date(name).getFullYear())(fragment),
-          memo,
+  const marks = useMemo(
+    () =>
+      R.pipe(
+        R.splitEvery(MARK_INTERVAL),
+        R.addIndex(R.reduce)(
+          (memo, fragment, index) =>
+            R.set(
+              R.lensProp(index * MARK_INTERVAL),
+              R.pipe(R.head, R.prop('name'), name => new Date(name).getFullYear())(fragment),
+              memo,
+            ),
+          {},
         ),
-      {},
-    ),
-  )(series);
+      )(series),
+    [series],
+  );
 
   useInterval(() => {
     if (R.lt(seriesIndex, R.dec(R.length(series)))) {
@@ -44,8 +47,6 @@ const TimeTravel = ({ classes, theme, seriesIndex, setSeriesIndex, series }) => 
     setIsRunning(false);
     return;
   }, isRunning ? DELAY : null);
-
-  if (R.isEmpty(series)) return null;
 
   return (
     <React.Fragment>
@@ -58,7 +59,7 @@ const TimeTravel = ({ classes, theme, seriesIndex, setSeriesIndex, series }) => 
           max={R.dec(R.length(series))}
           step={1}
           onChange={setSeriesIndex}
-          marks={sliderMarks}
+          marks={marks}
         />
       </div>
       <Toolbar disableGutters variant="dense">
