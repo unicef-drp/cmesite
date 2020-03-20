@@ -30,6 +30,7 @@ function useSeries(indicatorValueId, isActive) {
         .then(({ series }) => {
           setIsLoading(false);
           if (axios.isCancel()) return;
+          console.log('series', series);
           R.pipe(R.values, R.sortBy(R.prop('name')), setSeries)(series);
         })
         .catch(error => {

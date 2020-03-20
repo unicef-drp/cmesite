@@ -12,7 +12,7 @@ import Analysis from '../../components/Analysis';
 import progressIcon from '../../../assets/progress-tab.png';
 import disparityIcon from '../../../assets/disparity-tab.png';
 import sdgIcon from '../../../assets/sdg-tab.png';
-import { UNIT_MEASURE, VIZ_MAP, VIZ_CHART } from '../../constants';
+import { VIZ_MAP, VIZ_CHART } from '../../constants';
 
 const tabs = [
   { key: 'progress', icon: progressIcon, component: Analysis, otherProps: { vizTypes: [VIZ_MAP] } },
