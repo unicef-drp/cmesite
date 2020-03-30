@@ -1,20 +1,50 @@
-import { compose, withProps } from 'recompose';
+import { compose, withProps, branch, renderComponent, lifecycle } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import messages from './messages';
 import { getActiveTab } from '../../selectors/analysis';
+import { getIsLoadingStructure } from '../../selectors/data';
+import { loadStructure } from '../../ducks/data';
+import { loadPosts } from '../../ducks/wp';
 import { changeActiveTab } from '../../ducks/analysis';
+import Loader from '../../components/Loader';
 import Tabs from '../../components/Tabs';
-import Progress from '../../components/AnalysisProgress';
-import countryIcon from '../../../assets/country-tab.png';
-import compareIcon from '../../../assets/compare-tab.png';
+import Analysis from '../../components/Analysis';
+import progressIcon from '../../../assets/progress-tab.png';
+import disparityIcon from '../../../assets/disparity-tab.png';
+import sdgIcon from '../../../assets/sdg-tab.png';
+import { VIZ_MAP, VIZ_CHART } from '../../constants';
 
 const tabs = [
-  { key: 'progress', icon: countryIcon, component: Progress },
-  { key: 'disparity', icon: compareIcon, component: () => 'disparity' },
+  { key: 'progress', icon: progressIcon, component: Analysis, otherProps: { vizTypes: [VIZ_MAP] } },
+  {
+    key: 'disparity',
+    icon: disparityIcon,
+    component: Analysis,
+    otherProps: { vizTypes: [VIZ_CHART] },
+  },
+  {
+    key: 'sdg',
+    icon: sdgIcon,
+    component: Analysis,
+    otherProps: { vizTypes: [VIZ_MAP, VIZ_CHART] },
+  },
 ];
 
+function componentDidMount() {
+  this.props.loadStructure();
+  this.props.loadPosts('analysis');
+}
+
 export default compose(
-  connect(createStructuredSelector({ activeTab: getActiveTab }), { changeActiveTab }),
+  connect(
+    createStructuredSelector({
+      isLoadingStructure: getIsLoadingStructure,
+      activeTab: getActiveTab,
+    }),
+    { changeActiveTab, loadStructure, loadPosts },
+  ),
+  lifecycle({ componentDidMount }),
+  branch(({ isLoadingStructure }) => isLoadingStructure, renderComponent(Loader)),
   withProps({ tabs, messages }),
 )(Tabs);

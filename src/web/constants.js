@@ -13,10 +13,16 @@ export const RELEVANT_DIMENSIONS_DEFAULTS = new Set([
   'MRY0T4',
   SEX_TOTAL_VALUE,
 ]);
-export const ANALYSIS_INDICATOR_IDS = new Set(['MRY0T4', 'MRY0', 'MRM0', 'SBR']);
+
 export const STILLBIRTH_INDICATOR_IDS = new Set(['SB', 'SBR']);
 export const DISPARITY_INDICATOR_IDS = new Set(['D_MRY0T4', 'D_MRM0']);
 export const PROGRESS_INDICATOR_IDS = new Set(['PR_MRY0T4']);
+
+export const INDICATOR_IDS = {
+  progress: new Set(['MRY0T4', 'MRM0', 'MRY5T14', 'SBR']),
+  disparity: new Set(['MRY0T4', 'MRM0', 'MRY5T14', 'SBR']),
+  sdg: new Set(['MRY0T4', 'MRY0']),
+};
 
 export const COUNTRY_NOTES = 'COUNTRY_NOTES';
 
@@ -284,3 +290,6 @@ export const INDICATOR_DEFINITIONS = {
   TMY5T14: 'Number of deaths aged 5 to 14 years',
   TMY1T4: 'Number of deaths aged 1 to 4 years',
 };
+
+export const VIZ_MAP = 'map';
+export const VIZ_CHART = 'chart';

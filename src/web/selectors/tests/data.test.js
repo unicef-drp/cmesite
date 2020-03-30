@@ -47,6 +47,7 @@ import {
   getSeriesNames,
   getCountrySeriesUnit,
   getCanLoadData,
+  getAnalysisIndicatorDimensionValues,
 } from '../data';
 import getCanLoadDataMapState from '../../../mock/data/getCanLoadDataMapState.json';
 import getCanLoadDataCompareState from '../../../mock/data/getCanLoadDataCompareState.json';
@@ -1148,5 +1149,21 @@ describe('/web/selectors/data', () => {
     const dataType = 'country';
     const state = getCanLoadDataCountryState;
     expect(getCanLoadData(dataType)(state)).toBeTruthy();
+  });
+
+  describe('getAnalysisIndicatorDimensionValues', () => {
+    const values = [{ id: 'MRY0T4' }, { id: 'MRY0' }];
+    const state = {
+      data: { dimensions: [{ id: 'INDICATOR', values: [{ id: 1 }, ...values, { id: 2 }] }] },
+    };
+    it('should return [] if no indicator', () => {
+      expect(getAnalysisIndicatorDimensionValues(state)).toEqual([]);
+    });
+    it('should return [] if unknown type', () => {
+      expect(getAnalysisIndicatorDimensionValues(state, { type: 'unknown' })).toEqual([]);
+    });
+    it('should pass', () => {
+      expect(getAnalysisIndicatorDimensionValues(state, { type: 'sdg' })).toEqual(values);
+    });
   });
 });
