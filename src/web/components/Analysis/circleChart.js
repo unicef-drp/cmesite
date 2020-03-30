@@ -5,9 +5,7 @@ import cx from 'classnames';
 import { select } from 'd3-selection';
 import { scaleLinear, scaleBand, scaleOrdinal } from 'd3-scale';
 import { axisBottom, axisLeft } from 'd3-axis';
-import { zoom, zoomTransform, zoomIdentity } from 'd3-zoom';
-import { line, curveLinear } from 'd3-shape';
-import { max } from 'd3-array';
+import { zoom, zoomTransform/*, zoomIdentity*/ } from 'd3-zoom';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
@@ -55,7 +53,7 @@ function wrap(text, width) {
 }
 
 const REGION = 'region';
-const COUNTRY = 'country';
+// const COUNTRY = 'country';
 
 const getContentDimensions = (dimensions, margin) => {
   if (R.isNil(dimensions)) return;
@@ -88,7 +86,7 @@ const styles = theme => ({
   },
 });
 
-function CircleChart({ classes, theme, serie }) {
+function CircleChart({ classes, theme/*, serie*/ }) {
   const margin = { top: 10, bottom: 20, left: 80, right: 0 };
   const colorScale = scaleOrdinal([
     '#9BD5A4',
@@ -251,7 +249,7 @@ function CircleChart({ classes, theme, serie }) {
 CircleChart.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  serie: PropTypes.object,
+  // serie: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CircleChart);
