@@ -5,6 +5,7 @@ import messages from './messages';
 import { getActiveTab } from '../../selectors/analysis';
 import { getIsLoadingStructure } from '../../selectors/data';
 import { loadStructure } from '../../ducks/data';
+import { loadPosts } from '../../ducks/wp';
 import { changeActiveTab } from '../../ducks/analysis';
 import Loader from '../../components/Loader';
 import Tabs from '../../components/Tabs';
@@ -32,6 +33,7 @@ const tabs = [
 
 function componentDidMount() {
   this.props.loadStructure();
+  this.props.loadPosts('analysis');
 }
 
 export default compose(
@@ -40,7 +42,7 @@ export default compose(
       isLoadingStructure: getIsLoadingStructure,
       activeTab: getActiveTab,
     }),
-    { changeActiveTab, loadStructure },
+    { changeActiveTab, loadStructure, loadPosts },
   ),
   lifecycle({ componentDidMount }),
   branch(({ isLoadingStructure }) => isLoadingStructure, renderComponent(Loader)),
