@@ -9,4 +9,8 @@ export default defineMessages({
     id: 'analysis.disparity',
     defaultMessage: 'Disparity',
   },
+  sdg: {
+    id: 'analysis.sdg',
+    defaultMessage: 'Progress towards SDG',
+  },
 });

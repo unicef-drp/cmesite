@@ -32,6 +32,11 @@ export const getAbout = createSelector(getWP, pipe(propOr([], 'abouts'), head));
 export const getMethods = createSelector(getWP, propOr([], 'methods'));
 export const getDatanotes = createSelector(getWP, propOr([], 'datanotes'));
 export const getDownloads = createSelector(getWP, propOr([], 'downloads'));
+export const getAnalyses = createSelector(
+  getWP,
+  pipe(propOr([], 'analysis'), groupBy(path(['acf', 'indicator_id']))),
+);
+export const getAnalysis = type => createSelector(getAnalyses, pipe(propOr([], type), head));
 
 export const getDatanote = dataType =>
   createSelector(getDatanotes, find(pipe(pathOr([], ['acf', 'tabs']), contains(dataType))));
