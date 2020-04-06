@@ -49,7 +49,7 @@ const MEAN_ID = 'WORLD';
 const Analysis = ({ classes, type, indicatorValues, vizTypes, isActive }) => {
   const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
   const [seriesIndex, setSeriesIndex] = useState(0);
-  const [isLoading, series] = useSeries(indicatorValueId, isActive);
+  const [isLoading, series] = useSeries(indicatorValueId, isActive, setSeriesIndex);
   const [vizType, setVizType] = useState(R.head(vizTypes));
 
   const analysis = useSelector(getAnalysis(indicatorValueId));

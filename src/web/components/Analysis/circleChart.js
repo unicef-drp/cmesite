@@ -2,15 +2,16 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import cx from 'classnames';
-import { select } from 'd3-selection';
+import { select, mouse } from 'd3-selection';
 import { scaleLinear, scaleBand, scaleOrdinal } from 'd3-scale';
 import { axisBottom, axisLeft } from 'd3-axis';
-import { zoom, zoomTransform/*, zoomIdentity*/ } from 'd3-zoom';
+import { zoom, zoomTransform, zoomIdentity } from 'd3-zoom';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import useResizeObserver from '../../hooks/useResizeObserver';
+import Tooltip from './tooltip';
 import data, { REGIONS } from './data';
 
 function wrap(text, width) {
@@ -23,7 +24,7 @@ function wrap(text, width) {
       word,
       line = [],
       lineNumber = 0,
-      lineHeight = 1.1, // ems
+      lineHeight = 1.15, // ems
       y = text.attr('y'),
       x = text.attr('x'),
       dy = parseFloat(text.attr('dy')),
@@ -34,7 +35,7 @@ function wrap(text, width) {
         .attr('y', y)
         .attr('dy', dy + 'em');
     while ((word = words.pop())) {
-      /* eslint-disable-line no-cond-assign */
+      // eslint-disable-line no-cond-assign
       line.push(word);
       tspan.text(line.join(' '));
       if (tspan.node().getComputedTextLength() > width) {
@@ -45,7 +46,7 @@ function wrap(text, width) {
           .append('tspan')
           .attr('x', x)
           .attr('y', y)
-          .attr('dy', ++lineNumber * lineHeight + dy + 'em')
+          .attr('y', ++lineNumber * lineHeight + dy + 'em')
           .text(word);
       }
     }
@@ -65,9 +66,6 @@ const getContentDimensions = (dimensions, margin) => {
 
 const styles = theme => ({
   resetZoom: {
-    position: 'absolute',
-    top: theme.spacing.unit * 2,
-    right: theme.spacing.unit,
     textTransform: 'none',
   },
   axis: {
@@ -86,8 +84,8 @@ const styles = theme => ({
   },
 });
 
-function CircleChart({ classes, theme/*, serie*/ }) {
-  const margin = { top: 10, bottom: 20, left: 80, right: 0 };
+function CircleChart({ classes, theme /*, serie*/ }) {
+  const margin = { top: 10, bottom: 20, left: 90, right: 0 };
   const colorScale = scaleOrdinal([
     '#9BD5A4',
     '#F2E388',
@@ -106,10 +104,13 @@ function CircleChart({ classes, theme/*, serie*/ }) {
 
   const svgRef = useRef();
   const wrapperRef = useRef();
+  const tooltipRef = useRef();
+  const zoomRef = useRef();
   const dimensions = useResizeObserver(wrapperRef);
   const contentDimensions = getContentDimensions(dimensions, margin);
   const [currentZoom, setCurrentZoom] = useState();
-  const [resetZoom, setResetZoom] = useState(false);
+  const [tooltipPosition, setTooltipPosition] = useState();
+  const [tooltipDatum, setTooltipDatum] = useState();
 
   useEffect(
     () => {
@@ -130,8 +131,24 @@ function CircleChart({ classes, theme/*, serie*/ }) {
 
       if (currentZoom) xScale.domain(currentZoom.rescaleX(xScale).domain());
 
-      // borders
       svgContent
+        .on('mousemove', function() {
+          const spacer = 16;
+          const { width, height } = tooltipRef.current.getBoundingClientRect();
+
+          const [x, y] = mouse(this);
+          const edgeX = R.gt(x + width + spacer, contentDimensions.width);
+          const edgeY = R.gt(y + height + spacer, contentDimensions.height);
+
+          setTooltipPosition({
+            [edgeX ? 'right' : 'left']: edgeX
+              ? contentDimensions.width - x + margin.right
+              : x + margin.left + spacer,
+            [edgeY ? 'bottom' : 'top']: edgeY
+              ? contentDimensions.height - y + margin.bottom
+              : y + margin.top + spacer,
+          });
+        })
         .selectAll('.border-top')
         .data([0])
         .join('line')
@@ -153,7 +170,6 @@ function CircleChart({ classes, theme/*, serie*/ }) {
         .attr('y2', contentDimensions.height)
         .attr('stroke', theme.palette.secondary.darker);
 
-      // threshold
       svgContent
         .selectAll('.threshold')
         .data([threshold])
@@ -166,7 +182,17 @@ function CircleChart({ classes, theme/*, serie*/ }) {
         .attr('stroke-dasharray', '3 3')
         .attr('stroke', theme.palette.secondary.darker);
 
-      // circles
+      svgContent
+        .selectAll('.threshold-text')
+        .data([threshold])
+        .join('text')
+        .attr('class', 'text threshold')
+        .attr('x', d => xScale(d) + 8)
+        .attr('y', () => contentDimensions.height - yScale.step())
+        .text('SDG target')
+        .attr('font-size', '.65em')
+        .attr('fill', theme.palette.secondary.darker);
+
       svgContent
         .selectAll('.circle')
         .data(data)
@@ -179,13 +205,21 @@ function CircleChart({ classes, theme/*, serie*/ }) {
         .attr('r', 12)
         .attr(
           'fill',
-          ({ regionId, areaType }) => (R.equals(areaType, REGION) ? 'none' : colorScale(regionId)),
+          ({ regionId, areaType }) =>
+            R.equals(areaType, REGION) ? 'transparent' : colorScale(regionId),
         )
         .attr('fill-opacity', 0.7)
         .attr('cx', ({ value }) => xScale(value))
-        .attr('cy', ({ regionId }) => yScale(regionId));
+        .attr('cy', ({ regionId }) => yScale(regionId))
+        .on('mouseenter', function(d) {
+          select(this).attr('r', 14);
+          setTooltipDatum(d);
+        })
+        .on('mouseleave', function() {
+          select(this).attr('r', 12);
+          setTooltipDatum(null);
+        });
 
-      // axes
       const xAxis = axisBottom(xScale).tickSizeOuter(0);
       svg
         .select('.x-axis')
@@ -201,28 +235,34 @@ function CircleChart({ classes, theme/*, serie*/ }) {
         .selectAll('.tick text')
         .call(wrap, margin.left - 10);
 
-      // zoom
       const zoomBehavior = zoom()
-        .scaleExtent([1, 6])
+        .scaleExtent([1, 8])
         .on('zoom', () => {
           setCurrentZoom(zoomTransform(svg.node()));
         });
 
+      select(zoomRef.current).on('click', () => {
+        svg
+          .transition()
+          .duration(750)
+          .call(zoomBehavior.transform, zoomIdentity);
+      });
+
       svg.call(zoomBehavior);
     },
-    [resetZoom, currentZoom, data, dimensions],
+    [currentZoom, data, dimensions],
   );
 
   return (
     <div ref={wrapperRef} style={{ height: 400, position: 'relative' }}>
-      <Button
-        variant="contained"
-        size="small"
-        onClick={() => setResetZoom(true)}
-        className={classes.resetZoom}
+      <div
+        ref={zoomRef}
+        style={{ position: 'absolute', bottom: margin.bottom + 8, right: margin.right + 8 }}
       >
-        <FormattedMessage {...messages.resetZoom} />
-      </Button>
+        <Button variant="contained" size="small" className={classes.resetZoom}>
+          <FormattedMessage {...messages.resetZoom} />
+        </Button>
+      </div>
       <svg ref={svgRef} width="100%" height="100%">
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           {R.isNil(contentDimensions) ? null : (
@@ -242,6 +282,9 @@ function CircleChart({ classes, theme/*, serie*/ }) {
           <g className={cx(classes.axis, 'y-axis')} />
         </g>
       </svg>
+      <div ref={tooltipRef} style={{ position: 'absolute', ...tooltipPosition }}>
+        {tooltipDatum && <Tooltip datum={tooltipDatum} />}
+      </div>
     </div>
   );
 }

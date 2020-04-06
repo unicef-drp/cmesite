@@ -24,11 +24,11 @@ function getRandomIntInclusive(min, max) {
 export default R.reduce(
   (memo, { label, min, max, value, id }) => {
     const values = R.times(
-      () => ({
+      index => ({
         value: getRandomIntInclusive(min, max),
         regionId: id,
         areaType: COUNTRY,
-        label: '-',
+        label: `Country${index}`,
       }),
       30,
     );
