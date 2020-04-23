@@ -16,8 +16,9 @@ import Toolbar from './toolbar';
 import TimeTravel from './timeTravel';
 import VizSwitch from './vizSwitch';
 import CircleChart from './circleChart';
+import PackChart from './packChart';
 import useSeries from './useSeries';
-import { UNIT_MEASURE, VIZ_MAP, VIZ_CHART } from '../../constants';
+import { UNIT_MEASURE, VIZ_MAP, VIZ_CIRCLE, VIZ_PACK } from '../../constants';
 import messages from '../../pages/Analysis/messages';
 
 const styles = theme => ({
@@ -74,12 +75,16 @@ const Analysis = ({ classes, type, indicatorValues, vizTypes, isActive, isLatest
           />
           <Divider />
         </Grid>
-        <Grid item xs={12} md={4} lg={3}>
-          <Typography variant="body2" className={classes.description}>
-            <span dangerouslySetInnerHTML={{ __html: R.path(['content', 'rendered'])(analysis) }} />
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={8} lg={9}>
+        {analysis && (
+          <Grid item xs={12} md={4} lg={3}>
+            <Typography variant="body2" className={classes.description}>
+              <span
+                dangerouslySetInnerHTML={{ __html: R.path(['content', 'rendered'])(analysis) }}
+              />
+            </Typography>
+          </Grid>
+        )}
+        <Grid item xs={12} md={analysis ? 8 : 12} lg={analysis ? 9 : 12}>
           {isLoading && <Loader />}
           {!isLoading && isBlank && <DataNone />}
           {!isLoading &&
@@ -103,7 +108,8 @@ const Analysis = ({ classes, type, indicatorValues, vizTypes, isActive, isLatest
                   <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
                 </div>
                 {R.equals(VIZ_MAP, vizType) && <WorldMap mapSerie={serie} />}
-                {R.equals(VIZ_CHART, vizType) && <CircleChart data={serie} />}
+                {R.equals(VIZ_CIRCLE, vizType) && <CircleChart data={serie} />}
+                {R.equals(VIZ_PACK, vizType) && <PackChart data={serie} />}
               </React.Fragment>
             )}
         </Grid>

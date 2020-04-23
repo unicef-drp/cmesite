@@ -294,4 +294,5 @@ export const INDICATOR_DEFINITIONS = {
 };
 
 export const VIZ_MAP = 'map';
-export const VIZ_CHART = 'chart';
+export const VIZ_CIRCLE = 'circle';
+export const VIZ_PACK = 'pack';

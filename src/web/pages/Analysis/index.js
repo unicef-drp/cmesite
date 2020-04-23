@@ -13,7 +13,7 @@ import Analysis from '../../components/Analysis';
 import progressIcon from '../../../assets/progress-tab.png';
 import disparityIcon from '../../../assets/disparity-tab.png';
 import sdgIcon from '../../../assets/sdg-tab.png';
-import { VIZ_MAP, VIZ_CHART } from '../../constants';
+import { VIZ_MAP, VIZ_CIRCLE, VIZ_PACK } from '../../constants';
 
 const tabs = [
   { key: 'progress', icon: progressIcon, component: Analysis, otherProps: { vizTypes: [VIZ_MAP] } },
@@ -21,13 +21,13 @@ const tabs = [
     key: 'disparity',
     icon: disparityIcon,
     component: Analysis,
-    otherProps: { vizTypes: [VIZ_CHART] },
+    otherProps: { vizTypes: [VIZ_CIRCLE] },
   },
   {
     key: 'sdg',
     icon: sdgIcon,
     component: Analysis,
-    otherProps: { vizTypes: [VIZ_MAP, VIZ_CHART], isLatest: true },
+    otherProps: { vizTypes: [VIZ_MAP, VIZ_PACK], isLatest: true },
   },
 ];
 
