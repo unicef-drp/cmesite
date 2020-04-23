@@ -16,12 +16,12 @@ export const RELEVANT_DIMENSIONS_DEFAULTS = new Set([
 
 export const STILLBIRTH_INDICATOR_IDS = new Set(['SB', 'SBR']);
 export const DISPARITY_INDICATOR_IDS = new Set(['D_MRY0T4', 'D_MRM0']);
-export const PROGRESS_INDICATOR_IDS = new Set(['PR_MRY0T4']);
+export const PROGRESS_INDICATOR_IDS = new Set(['PR_MRY0T4', 'PR_MRM0']);
 
 export const INDICATOR_IDS = {
   progress: new Set(['MRY0T4', 'MRM0', 'MRY5T14', 'SBR']),
   disparity: new Set(['MRY0T4', 'MRM0', 'MRY5T14', 'SBR']),
-  sdg: new Set(['MRY0T4', 'MRY0']),
+  sdg: new Set(['PR_MRY0T4', 'PR_MRM0']),
 };
 
 export const COUNTRY_NOTES = 'COUNTRY_NOTES';
@@ -77,6 +77,8 @@ export const LOCALES = ['en', 'fr', 'es', 'ru', 'ar'];
 export const DEFAULT_END_PERIOD = 2018;
 export const END_PERIODS = {
   SBR: 2020,
+  PR_MRY0T4: 2019,
+  PR_MRM0: 2019,
 };
 
 export const UNIT_MEASURE = 'UNIT_MEASURE';

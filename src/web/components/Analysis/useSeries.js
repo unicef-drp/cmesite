@@ -4,9 +4,9 @@ import * as R from 'ramda';
 import { getAnalysisData } from '../../api/sdmx';
 import { END_PERIODS, DEFAULT_END_PERIOD } from '../../constants';
 
-function useSeries(indicatorValueId, isActive, setSeriesIndex) {
-  const startPeriod = 1990;
+function useSeries(indicatorValueId, isActive, isLatest, setSeriesIndex) {
   const endPeriod = R.propOr(DEFAULT_END_PERIOD, indicatorValueId, END_PERIODS);
+  const startPeriod = isLatest ? endPeriod : 1990;
   const [isLoading, setIsLoading] = useState(false);
   const [series, setSeries] = useState([]);
 

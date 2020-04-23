@@ -46,10 +46,10 @@ const styles = theme => ({
 
 const MEAN_ID = 'WORLD';
 
-const Analysis = ({ classes, type, indicatorValues, vizTypes, isActive }) => {
+const Analysis = ({ classes, type, indicatorValues, vizTypes, isActive, isLatest }) => {
   const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
   const [seriesIndex, setSeriesIndex] = useState(0);
-  const [isLoading, series] = useSeries(indicatorValueId, isActive, setSeriesIndex);
+  const [isLoading, series] = useSeries(indicatorValueId, isActive, isLatest, setSeriesIndex);
   const [vizType, setVizType] = useState(R.head(vizTypes));
 
   const analysis = useSelector(getAnalysis(indicatorValueId));
@@ -58,6 +58,7 @@ const Analysis = ({ classes, type, indicatorValues, vizTypes, isActive }) => {
   const serie = R.nth(seriesIndex, series);
   const mean = R.path(['datapoints', MEAN_ID, 'y'])(serie);
   const needSwitch = R.gt(R.length(vizTypes), 1);
+  const needTimeTravel = R.gt(R.length(series), 1);
 
   return (
     <Wrapper classes={{ root: classes.wrapper }}>
@@ -85,11 +86,13 @@ const Analysis = ({ classes, type, indicatorValues, vizTypes, isActive }) => {
             !isBlank && (
               <React.Fragment>
                 {needSwitch && <VizSwitch types={vizTypes} type={vizType} setType={setVizType} />}
-                <TimeTravel
-                  series={series}
-                  seriesIndex={seriesIndex}
-                  setSeriesIndex={setSeriesIndex}
-                />
+                {needTimeTravel && (
+                  <TimeTravel
+                    series={series}
+                    seriesIndex={seriesIndex}
+                    setSeriesIndex={setSeriesIndex}
+                  />
+                )}
                 <div className={classes.info}>
                   <Typography variant="title" className={classes.infoDate}>
                     {new Date(R.prop('name', serie)).getFullYear()},&nbsp;
@@ -113,6 +116,7 @@ Analysis.propTypes = {
   classes: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
+  isLatest: PropTypes.bool,
   indicatorValues: PropTypes.array.isRequired,
   vizTypes: PropTypes.array.isRequired,
 };
