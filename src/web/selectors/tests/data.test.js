@@ -1152,7 +1152,7 @@ describe('/web/selectors/data', () => {
   });
 
   describe('getAnalysisIndicatorDimensionValues', () => {
-    const values = [{ id: 'MRY0T4' }, { id: 'MRY0' }];
+    const values = [{ id: 'PR_MRY0T4' }, { id: 'PR_MRM0' }];
     const state = {
       data: { dimensions: [{ id: 'INDICATOR', values: [{ id: 1 }, ...values, { id: 2 }] }] },
     };
