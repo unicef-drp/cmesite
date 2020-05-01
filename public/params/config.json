@@ -3,7 +3,7 @@
     "endpoint": "https://childmortality.org/wp-json/wp/v2"
   },
   "sdmx": {
-    "endpoint": "https://api.data.unicef.org/sdmx/Rest",
+    "endpoint": "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest",
     "dataflow": {
       "id": "CME_DF_2020a",
       "version": "1.0",

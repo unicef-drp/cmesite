@@ -21,10 +21,11 @@ import {
   flatten,
   addIndex,
   test,
+  tap,
 } from 'ramda';
 import { RELEVANT_DIMENSIONS_DEFAULTS } from '../../constants';
 
-const getName = locale => path(['name', locale]);
+const getName = locale => path(['names', locale]);
 
 const getDimensionName = (locale, concepts) =>
   ifElse(
@@ -52,6 +53,10 @@ const getConcepts = dimensionIds =>
   );
 
 const getCodelists = pipe(pathOr([], ['data', 'codelists']), indexBy(prop('urn')));
+const getCodelistsFusion = pipe(
+  pathOr([], ['data', 'codelists']),
+  indexBy(path(['links', 0, 'urn'])),
+);
 
 const getValues = (locale, codelists) =>
   pipe(
@@ -78,7 +83,7 @@ const getValues = (locale, codelists) =>
 
 const parser = ({ locale, dimensionIds = [] }) => structure => {
   const concepts = getConcepts(dimensionIds)(structure);
-  const codelists = getCodelists(structure);
+  const codelists = getCodelistsFusion(structure);
 
   return pipe(
     getDimensions, // not filtered to preserve index for data query

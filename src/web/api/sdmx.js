@@ -68,6 +68,19 @@ const getStructure = () =>
     })
     .then(({ data }) => configuredStructureParser(data));
 
+const getStructureFusion = () => {
+  const params = join('&', [
+    'references=all',
+    'format=sdmx-json',
+    'detail=structureOnly',
+    'includeMetrics=true',
+  ]);
+  const headers = { headers: { 'Accept-Language': 'en' } };
+  return axios
+    .get(endPoint(`/availableconstraint/${dataflowQuery(',')}/?${params}`), headers)
+    .then(({ data }) => configuredStructureParser(data));
+};
+
 const getData = ({ dimensions, dataType }) => {
   const __dataType = ifElse(equals(HOME), always(MAP), identity)(dataType);
   const { queryOptions, parserOptions } = prop(__dataType, DATA_CONTEXTS);
@@ -139,7 +152,7 @@ const config = config => (globalConfig = { ...globalConfig, ...config });
 
 const methods = {
   config,
-  getStructure,
+  getStructure: getStructureFusion,
   getData,
   getFileData,
 };
