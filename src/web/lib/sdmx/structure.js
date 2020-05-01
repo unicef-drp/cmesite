@@ -21,7 +21,6 @@ import {
   flatten,
   addIndex,
   test,
-  tap,
 } from 'ramda';
 import { RELEVANT_DIMENSIONS_DEFAULTS } from '../../constants';
 
@@ -52,7 +51,7 @@ const getConcepts = dimensionIds =>
     indexBy(path(['links', 0, 'urn'])),
   );
 
-const getCodelists = pipe(pathOr([], ['data', 'codelists']), indexBy(prop('urn')));
+//const getCodelists = pipe(pathOr([], ['data', 'codelists']), indexBy(prop('urn')));
 const getCodelistsFusion = pipe(
   pathOr([], ['data', 'codelists']),
   indexBy(path(['links', 0, 'urn'])),
