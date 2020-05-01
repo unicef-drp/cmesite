@@ -173,7 +173,8 @@ const getObservations = pathOr({}, ['data', 'dataSets', 0, 'observations']);
 
 const getValue = valueIndex => pipe(prop('values'), nth(valueIndex));
 
-const getName = locale => path(['name', locale]);
+//const getName = locale => path(['names', locale]);
+const getName = () => prop('name');
 
 const getType = observation =>
   pipe(
@@ -223,7 +224,10 @@ const parseObservationKey = locale => dimensions =>
 const parseObservationValue = locale => attributes =>
   pipe(
     last,
-    converge(merge, [pipe(head, y => ({ y })), pipe(tail, parseArtefacts(locale)(attributes))]),
+    converge(merge, [
+      pipe(head, y => ({ y: Number(y) })),
+      pipe(tail, parseArtefacts(locale)(attributes)),
+    ]),
   );
 
 const parseObservationPair = (locale, dimensions, attributes) =>
@@ -294,7 +298,7 @@ const parser = ({ locale, isMap, isRaw }) => data => {
   const countryNotes = pipe(
     find(propEq('id', COUNTRY_NOTES)),
     propOr([], 'values'),
-    map(path(['name', locale])),
+    map(getName(locale)),
   )(attributes);
 
   if (isRaw) {
