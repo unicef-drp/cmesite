@@ -1,4 +1,4 @@
-import parse from './parseHierarchicalCodelist';
+import parse from './parseNestedCodelist';
 
 const list = [
   {
@@ -135,7 +135,7 @@ const hierarchy = [
 
 describe('lib', () => {
   describe('sdmx', () => {
-    describe('parseHierarchicalCodelist', () => {
+    describe('parseNestedCodelist', () => {
       it('should parse', () => {
         expect(parse(list)).toEqual(hierarchy);
       });

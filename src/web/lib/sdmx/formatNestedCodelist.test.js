@@ -1,4 +1,4 @@
-import format from './formatHierarchicalCodelist';
+import format from './formatNestedCodelist';
 
 const values = [
   {

@@ -48,12 +48,7 @@ import {
   reverse,
 } from 'ramda';
 import numeral from 'numeral';
-import {
-  filterArtefacts,
-  dataQuery,
-  formatHierarchicalCodelist,
-  parseHierarchicalCodelist,
-} from '../lib/sdmx';
+import { filterArtefacts, dataQuery, formatNestedCodelist, parseNestedCodelist } from '../lib/sdmx';
 import { COUNTRY, COMPARE, MAP, DATA_CONTEXTS } from '../api/sdmx';
 import { getSelectedDimensionValue, getToggledCombinations, sortByProps } from '../utils';
 import {
@@ -104,7 +99,7 @@ export const getCountryDimensionWithAggregates = unformatted =>
   createSelector(getCountryDimension, dimension =>
     assoc(
       'values',
-      pipe(parseHierarchicalCodelist, ...(unformatted ? [] : [formatHierarchicalCodelist()]))(
+      pipe(parseNestedCodelist, ...(unformatted ? [] : [formatNestedCodelist()]))(
         propOr([], 'values', dimension),
       ),
       dimension,
