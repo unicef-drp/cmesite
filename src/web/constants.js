@@ -293,6 +293,8 @@ export const INDICATOR_DEFINITIONS = {
   TMY1T4: 'Number of deaths aged 1 to 4 years',
 };
 
+export const REGION = 'region';
+export const COUNTRY = 'country';
 export const VIZ_MAP = 'map';
 export const VIZ_CIRCLE = 'circle';
 export const VIZ_PACK = 'pack';

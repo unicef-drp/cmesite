@@ -24,7 +24,7 @@ import {
 } from 'ramda';
 import { RELEVANT_DIMENSIONS_DEFAULTS } from '../../constants';
 
-const getName = locale => path(['names', locale]);
+export const getName = locale => path(['names', locale]);
 
 const getDimensionName = (locale, concepts) =>
   ifElse(
