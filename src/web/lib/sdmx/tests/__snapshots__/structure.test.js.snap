@@ -5,7 +5,7 @@ Array [
   Object {
     "id": "REF_AREA",
     "index": 0,
-    "label": "Reference Area",
+    "label": undefined,
     "position": 0,
     "values": Array [
       Object {
@@ -15,7 +15,7 @@ Array [
         "isRate": false,
         "isSelected": true,
         "isToggled": true,
-        "label": "Afghanistan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -25,7 +25,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Albania",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -35,7 +35,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Algeria",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -45,7 +45,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Andorra",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -55,7 +55,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Angola",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -65,7 +65,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Antigua and Barbuda",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -75,7 +75,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Argentina",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -85,7 +85,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Armenia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -95,7 +95,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Australia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -105,7 +105,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Austria",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -115,7 +115,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Azerbaijan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -125,7 +125,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Bahamas",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -135,7 +135,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Bahrain",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -145,7 +145,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Bangladesh",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -155,7 +155,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Barbados",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -165,7 +165,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Belarus",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -175,7 +175,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Belgium",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -185,7 +185,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Belize",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -195,7 +195,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Benin",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -205,7 +205,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Bhutan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -215,7 +215,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Bolivia (Plurinational State of)",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -225,7 +225,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Bosnia and Herzegovina",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -235,7 +235,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Botswana",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -245,7 +245,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Brazil",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -255,7 +255,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Brunei Darussalam",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -265,7 +265,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Bulgaria",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -275,7 +275,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Burkina Faso",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -285,7 +285,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Burundi",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -295,7 +295,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Cabo Verde",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -305,7 +305,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Cambodia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -315,7 +315,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Cameroon",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -325,7 +325,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Canada",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -335,7 +335,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Central African Republic",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -345,7 +345,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Chad",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -355,7 +355,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Chile",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -365,7 +365,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "China",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -375,7 +375,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Colombia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -385,7 +385,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Comoros",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -395,7 +395,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Congo",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -405,7 +405,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Cook Islands",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -415,7 +415,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Costa Rica",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -425,7 +425,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Côte d'Ivoire",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -435,7 +435,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Croatia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -445,7 +445,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Cuba",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -455,7 +455,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Cyprus",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -465,7 +465,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Czech Republic",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -475,7 +475,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Democratic People's Republic of Korea",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -485,7 +485,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Democratic Republic of the Congo",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -495,7 +495,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Denmark",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -505,7 +505,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Djibouti",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -515,7 +515,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Dominica",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -525,7 +525,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Dominican Republic",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -535,7 +535,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Ecuador",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -545,7 +545,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Egypt",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -555,7 +555,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "El Salvador",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -565,7 +565,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Equatorial Guinea",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -575,7 +575,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Eritrea",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -585,7 +585,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Estonia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -595,7 +595,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Ethiopia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -605,7 +605,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Fiji",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -615,7 +615,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Finland",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -625,7 +625,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "France",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -635,7 +635,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Gabon",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -645,7 +645,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Gambia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -655,7 +655,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Georgia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -665,7 +665,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Germany",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -675,7 +675,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Ghana",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -685,7 +685,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Greece",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -695,7 +695,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Grenada",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -705,7 +705,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Guatemala",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -715,7 +715,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Guinea",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -725,7 +725,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Guinea-Bissau",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -735,7 +735,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Guyana",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -745,7 +745,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Haiti",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -755,7 +755,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Honduras",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -765,7 +765,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Hungary",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -775,7 +775,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Iceland",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -785,7 +785,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "India",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -795,7 +795,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Indonesia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -805,7 +805,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Iran (Islamic Republic of)",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -815,7 +815,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Iraq",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -825,7 +825,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Ireland",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -835,7 +835,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Israel",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -845,7 +845,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Italy",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -855,7 +855,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Jamaica",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -865,7 +865,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Japan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -875,7 +875,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Jordan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -885,7 +885,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Kazakhstan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -895,7 +895,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Kenya",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -905,7 +905,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Kiribati",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -915,7 +915,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Kuwait",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -925,7 +925,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Kyrgyzstan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -935,7 +935,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Lao People's Democratic Republic",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -945,7 +945,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Latvia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -955,7 +955,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Lebanon",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -965,7 +965,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Lesotho",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -975,7 +975,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Liberia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -985,7 +985,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Libya",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -995,7 +995,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Lithuania",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1005,7 +1005,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Luxembourg",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1015,7 +1015,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Madagascar",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1025,7 +1025,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Malawi",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1035,7 +1035,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Malaysia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1045,7 +1045,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Maldives",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1055,7 +1055,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Mali",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1065,7 +1065,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Malta",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1075,7 +1075,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Marshall Islands",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1085,7 +1085,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Mauritania",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1095,7 +1095,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Mauritius",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1105,17 +1105,17 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Mexico",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
         "id": "FSM",
         "index": 110,
         "isMapSelected": false,
-        "isRate": true,
+        "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Micronesia (Federated States of)",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1125,7 +1125,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Monaco",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1135,7 +1135,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Mongolia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1145,7 +1145,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Montenegro",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1155,7 +1155,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Morocco",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1165,7 +1165,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Mozambique",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1175,7 +1175,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Myanmar",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1185,7 +1185,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Namibia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1195,7 +1195,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Nauru",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1205,7 +1205,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Nepal",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1215,7 +1215,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Netherlands",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1225,7 +1225,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "New Zealand",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1235,7 +1235,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Nicaragua",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1245,7 +1245,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Niger",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1255,7 +1255,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Nigeria",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1265,7 +1265,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Niue",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1275,7 +1275,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Norway",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1285,7 +1285,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Oman",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1295,7 +1295,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Pakistan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1305,7 +1305,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Palau",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1315,7 +1315,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Panama",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1325,7 +1325,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Papua New Guinea",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1335,7 +1335,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Paraguay",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1345,7 +1345,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Peru",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1355,7 +1355,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Philippines",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1365,7 +1365,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Poland",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1375,7 +1375,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Portugal",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1385,7 +1385,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Qatar",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1395,7 +1395,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Republic of Korea",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1405,7 +1405,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Republic of Moldova",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1415,7 +1415,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Romania",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1425,7 +1425,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Russian Federation",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1435,7 +1435,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Rwanda",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1445,7 +1445,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Saint Kitts and Nevis",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1455,7 +1455,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Saint Lucia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1465,7 +1465,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Saint Vincent and the Grenadines",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1475,7 +1475,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Samoa",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1485,7 +1485,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "San Marino",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1495,7 +1495,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Sao Tome and Principe",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1505,7 +1505,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Saudi Arabia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1515,7 +1515,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Senegal",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1525,7 +1525,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Serbia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1535,7 +1535,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Seychelles",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1545,7 +1545,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Sierra Leone",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1555,7 +1555,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Singapore",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1565,7 +1565,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Slovakia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1575,7 +1575,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Slovenia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1585,7 +1585,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Solomon Islands",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1595,7 +1595,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Somalia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1605,7 +1605,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "South Africa",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1615,7 +1615,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "South Sudan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1625,7 +1625,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Spain",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1635,7 +1635,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Sri Lanka",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1645,7 +1645,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "State of Palestine",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1655,7 +1655,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Sudan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1665,7 +1665,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Suriname",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1675,7 +1675,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Swaziland",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1685,7 +1685,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Sweden",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1695,7 +1695,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Switzerland",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1705,7 +1705,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Syrian Arab Republic",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1715,7 +1715,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Tajikistan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1725,7 +1725,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Thailand",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1735,7 +1735,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "North Macedonia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1745,7 +1745,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Timor-Leste",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1755,7 +1755,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Togo",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1765,7 +1765,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Tonga",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1775,7 +1775,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Trinidad and Tobago",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1785,7 +1785,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Tunisia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1795,7 +1795,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Turkey",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1805,7 +1805,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Turkmenistan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1815,7 +1815,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Tuvalu",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1825,7 +1825,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Uganda",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1835,17 +1835,17 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Ukraine",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
         "id": "ARE",
         "index": 183,
         "isMapSelected": false,
-        "isRate": true,
+        "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "United Arab Emirates",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1855,7 +1855,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "United Kingdom of Great Britain and Northern Ireland",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1865,7 +1865,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "United Republic of Tanzania",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1875,7 +1875,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "United States of America",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1885,7 +1885,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Uruguay",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1895,7 +1895,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Uzbekistan",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1905,7 +1905,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Vanuatu",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1915,7 +1915,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Venezuela (Bolivarian Republic of)",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1925,7 +1925,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Viet Nam",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1935,7 +1935,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Yemen",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1945,7 +1945,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Zambia",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -1955,7 +1955,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Zimbabwe",
+        "label": undefined,
         "parent": undefined,
       },
     ],
@@ -1963,47 +1963,47 @@ Array [
   Object {
     "id": "INDICATOR",
     "index": 1,
-    "label": "Indicator",
+    "label": undefined,
     "position": 1,
     "values": Array [
       Object {
         "id": "MRY0T4",
         "index": 0,
         "isMapSelected": true,
-        "isRate": true,
+        "isRate": false,
         "isSelected": true,
         "isToggled": true,
-        "label": "Under-5 mortality rate",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
         "id": "MRY0",
         "index": 1,
         "isMapSelected": false,
-        "isRate": true,
+        "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Infant mortality rate",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
         "id": "MRM0",
         "index": 2,
         "isMapSelected": false,
-        "isRate": true,
+        "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Neonatal mortality rate",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
         "id": "MRY5T14",
         "index": 3,
         "isMapSelected": false,
-        "isRate": true,
+        "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Mortality rate age 5 to 14",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -2013,7 +2013,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Under-5 deaths",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -2023,7 +2023,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Infant deaths",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -2033,7 +2033,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Neonatal deaths",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -2043,7 +2043,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Deaths age 5 to 14",
+        "label": undefined,
         "parent": undefined,
       },
     ],
@@ -2051,7 +2051,7 @@ Array [
   Object {
     "id": "SEX",
     "index": 2,
-    "label": "Sex",
+    "label": undefined,
     "position": 2,
     "values": Array [
       Object {
@@ -2061,7 +2061,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Female",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -2071,7 +2071,7 @@ Array [
         "isRate": false,
         "isSelected": false,
         "isToggled": false,
-        "label": "Male",
+        "label": undefined,
         "parent": undefined,
       },
       Object {
@@ -2081,7 +2081,7 @@ Array [
         "isRate": false,
         "isSelected": true,
         "isToggled": true,
-        "label": "Total",
+        "label": undefined,
         "parent": undefined,
       },
     ],
