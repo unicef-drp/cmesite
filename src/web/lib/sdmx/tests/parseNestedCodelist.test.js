@@ -1,4 +1,4 @@
-import parse from './parseNestedCodelist';
+import parse from '../parseNestedCodelist';
 
 const list = [
   {
