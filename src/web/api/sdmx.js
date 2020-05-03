@@ -12,7 +12,14 @@ import {
   always,
   identity,
 } from 'ramda';
-import { structureParser, dataParser, dataQuery, toCsv, getEndPeriod } from '../lib/sdmx';
+import {
+  structureParser,
+  dataParser,
+  dataQuery,
+  toCsv,
+  getEndPeriod,
+  parseHierarchicalCodelists,
+} from '../lib/sdmx';
 import { downloadCsv } from '../utils';
 import { RELEVANT_DIMENSIONS, TIME_PERIOD, REF_AREA } from '../constants';
 
@@ -58,7 +65,7 @@ const configuredStructureParser = (structure, config = globalConfig) =>
 const configuredDataParser = (data, parserOptions = {}, config = globalConfig) =>
   dataParser({ locale: config.locale, ...parserOptions })(data);
 
-const getStructure = () =>
+/*const getStructure = () =>
   axios
     .get(endPoint(`/dataflow/${dataflowQuery()}/?references=all`), {
       headers: {
@@ -66,7 +73,7 @@ const getStructure = () =>
         'Accept-Language': 'en',
       },
     })
-    .then(({ data }) => configuredStructureParser(data));
+    .then(({ data }) => configuredStructureParser(data));*/
 
 const getStructureFusion = () => {
   const params = join('&', [
@@ -121,6 +128,16 @@ export const getAnalysisData = ({ indicatorValueId, startPeriod, endPeriod, sour
     )
     .then(({ data }) => configuredDataParser(data, { isMap: true }));
 };
+
+export const getHierarchicalCodelists = ({ source }) =>
+  axios
+    .get(
+      endPoint(
+        '/hierarchicalcodelist/all/CME_REGIONS_HIERARCHY/latest/?format=sdmx-json&detail=full&references=none',
+      ),
+      { cancelToken: source.token },
+    )
+    .then(({ data }) => parseHierarchicalCodelists(globalConfig)(data));
 
 const getFileData = ({ dimensions, dataType, /*format,*/ scope }) => {
   const { queryOptions } = prop(dataType, DATA_CONTEXTS);
