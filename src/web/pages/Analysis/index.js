@@ -1,3 +1,4 @@
+import React from 'react';
 import { compose, withProps, branch, renderComponent, lifecycle } from 'recompose';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -14,6 +15,7 @@ import progressIcon from '../../../assets/progress-tab.png';
 import disparityIcon from '../../../assets/disparity-tab.png';
 import sdgIcon from '../../../assets/sdg-tab.png';
 import { VIZ_MAP, VIZ_CIRCLE, VIZ_PACK } from '../../constants';
+import useHierarchicalCodelists from '../../components/Analysis/useHierarchicalCodelists';
 
 const tabs = [
   { key: 'progress', icon: progressIcon, component: Analysis, otherProps: { vizTypes: [VIZ_MAP] } },
@@ -36,7 +38,7 @@ function componentDidMount() {
   this.props.loadPosts('analysis');
 }
 
-export default compose(
+const ConnectedTabs = compose(
   connect(
     createStructuredSelector({
       isLoadingStructure: getIsLoadingStructure,
@@ -48,3 +50,14 @@ export default compose(
   branch(({ isLoadingStructure }) => isLoadingStructure, renderComponent(Loader)),
   withProps({ tabs, messages }),
 )(Tabs);
+
+export default () => {
+  const [isLoadingHierarchicalCodelists, hierarchicalCodelists] = useHierarchicalCodelists();
+
+  return (
+    <ConnectedTabs
+      isLoadingHierarchicalCodelists={isLoadingHierarchicalCodelists}
+      hierarchicalCodelists={hierarchicalCodelists}
+    />
+  );
+};

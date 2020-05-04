@@ -4,7 +4,7 @@ import * as R from 'ramda';
 import { getAnalysisData } from '../../api/sdmx';
 import { END_PERIODS, DEFAULT_END_PERIOD } from '../../constants';
 
-function useSeries(indicatorValueId, isActive, isLatest, setSeriesIndex) {
+function useSeries(indicatorValueId, isLatest, setSeriesIndex) {
   const endPeriod = R.propOr(DEFAULT_END_PERIOD, indicatorValueId, END_PERIODS);
   const startPeriod = isLatest ? endPeriod : 1990;
   const [isLoading, setIsLoading] = useState(false);
@@ -13,7 +13,6 @@ function useSeries(indicatorValueId, isActive, isLatest, setSeriesIndex) {
   useEffect(
     () => {
       if (R.isNil(indicatorValueId)) return;
-      if (R.not(isActive)) return;
 
       setSeriesIndex(0);
       setIsLoading(true);
@@ -38,7 +37,7 @@ function useSeries(indicatorValueId, isActive, isLatest, setSeriesIndex) {
       // Trigger the abortion in useEffect's cleanup function
       return () => source.cancel();
     },
-    [indicatorValueId, isActive],
+    [indicatorValueId, isLatest],
   );
 
   return [isLoading, series];

@@ -8,7 +8,6 @@ function useHierarchicalCodelists() {
 
   useEffect(() => {
     setIsLoading(true);
-    //setHierarchicalCodelists([]);
 
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();

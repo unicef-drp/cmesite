@@ -75,6 +75,7 @@ const Component = ({ classes, theme, tabs, activeTab, changeActiveTab, messages 
       axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
       index={activeTab}
       onChangeIndex={index => changeActiveTab(index)}
+      disableLazyLoading={false}
       //animateHeight
     >
       {addIndex(map)(

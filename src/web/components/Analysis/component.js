@@ -47,14 +47,23 @@ const styles = theme => ({
 
 const MEAN_ID = 'WORLD';
 
-const Analysis = ({ classes, type, indicatorValues, vizTypes, isActive, isLatest }) => {
+const Analysis = ({
+  classes,
+  type,
+  indicatorValues,
+  vizTypes,
+  isLatest,
+  hierarchicalCodelists,
+  isLoadingHierarchicalCodelists,
+}) => {
   const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
   const [seriesIndex, setSeriesIndex] = useState(0);
-  const [isLoading, series] = useSeries(indicatorValueId, isActive, isLatest, setSeriesIndex);
+  const [isLoadingSeries, series] = useSeries(indicatorValueId, isLatest, setSeriesIndex);
   const [vizType, setVizType] = useState(R.head(vizTypes));
 
   const analysis = useSelector(getAnalysis(indicatorValueId));
 
+  const isLoading = R.or(isLoadingSeries, isLoadingHierarchicalCodelists);
   const isBlank = R.isEmpty(series);
   const serie = R.nth(seriesIndex, series);
   const mean = R.path(['datapoints', MEAN_ID, 'y'])(serie);
@@ -121,10 +130,11 @@ const Analysis = ({ classes, type, indicatorValues, vizTypes, isActive, isLatest
 Analysis.propTypes = {
   classes: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
-  isActive: PropTypes.bool,
   isLatest: PropTypes.bool,
   indicatorValues: PropTypes.array.isRequired,
   vizTypes: PropTypes.array.isRequired,
+  hierarchicalCodelists: PropTypes.object.isRequired,
+  isLoadingHierarchicalCodelists: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Analysis);
