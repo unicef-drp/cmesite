@@ -228,7 +228,7 @@ function CircleChart({ classes, theme, serie, aggregate }) {
   );
 
   return (
-    <div ref={wrapperRef} style={{ height: 400, position: 'relative' }}>
+    <div ref={wrapperRef} style={{ height: 500, position: 'relative' }}>
       <div
         ref={zoomRef}
         style={{ position: 'absolute', bottom: margin.bottom + 8, right: margin.right + 8 }}

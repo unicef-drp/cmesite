@@ -151,7 +151,7 @@ Analysis.propTypes = {
   indicatorValues: PropTypes.array.isRequired,
   vizTypes: PropTypes.array.isRequired,
   hierarchicalCodelists: PropTypes.object.isRequired,
-  isLoadingHierarchicalCodelists: PropTypes.object.isRequired,
+  isLoadingHierarchicalCodelists: PropTypes.bool,
 };
 
 export default withStyles(styles)(Analysis);

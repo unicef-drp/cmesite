@@ -12,7 +12,7 @@ const getCodes = R.reduce(
         { id: region.codeID, areaType: REGION, regionId: region.codeID },
         memo,
       ),
-      region.hierarchicalCodes,
+      R.propOr([], 'hierarchicalCodes', region),
     ),
   {},
 );

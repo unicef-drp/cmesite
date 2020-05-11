@@ -4,7 +4,7 @@ import { getHierarchicalCodelists } from '../../api/sdmx';
 
 function useHierarchicalCodelists() {
   const [isLoading, setIsLoading] = useState(false);
-  const [hierarchicalCodelists, setHierarchicalCodelists] = useState([]);
+  const [hierarchicalCodelists, setHierarchicalCodelists] = useState({});
 
   useEffect(() => {
     setIsLoading(true);
