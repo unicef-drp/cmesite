@@ -77,10 +77,12 @@ const configuredDataParser = (data, parserOptions = {}, config = globalConfig) =
 
 const getStructureFusion = () => {
   const params = join('&', [
-    'references=all',
+    //'references=all',
     'format=sdmx-json',
-    'detail=structureOnly',
-    'includeMetrics=true',
+    //'detail=structureOnly',
+    //'includeMetrics=true',
+    'mode=exact',
+    'references=descendants',
   ]);
   const headers = { headers: { 'Accept-Language': 'en' } };
   return axios

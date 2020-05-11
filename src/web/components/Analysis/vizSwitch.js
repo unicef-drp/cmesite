@@ -37,7 +37,7 @@ const VizSwitch = ({ classes, types, setType, type }) => (
 VizSwitch.propTypes = {
   classes: PropTypes.object.isRequired,
   types: PropTypes.array.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   setType: PropTypes.func.isRequired,
 };
 
