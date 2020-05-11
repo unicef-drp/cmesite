@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import cx from 'classnames';
-import { min, max } from 'd3-array';
+//import { min, max } from 'd3-array';
 import { select, mouse } from 'd3-selection';
 import { scaleLinear, scaleBand, scaleOrdinal } from 'd3-scale';
 import { axisBottom, axisLeft } from 'd3-axis';

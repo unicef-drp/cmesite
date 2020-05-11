@@ -18,7 +18,7 @@ import VizSwitch from './vizSwitch';
 import CircleChart from './circleChart';
 //import PackChart from './packChart';
 import useSeries from './useSeries';
-import { UNIT_MEASURE, VIZ_MAP, VIZ_CIRCLE, VIZ_PACK } from '../../constants';
+import { UNIT_MEASURE, VIZ_MAP, VIZ_CIRCLE /*, VIZ_PACK*/ } from '../../constants';
 import messages from '../../pages/Analysis/messages';
 
 const styles = theme => ({
