@@ -247,10 +247,10 @@ export const changeActiveTab = (activeTab, shouldNotGetData) => (dispatch, getSt
   if (getStale(dataType)(getState())) dispatch(loadData(dataType));
 };
 
-export const changeSelection = ({ selectionType, dataType }) => (dimensionIndex, valueIndex) => (
-  dispatch,
-  getState,
-) => {
+export const changeSelection = ({ selectionType, dataType, shouldNotGetData }) => (
+  dimensionIndex,
+  valueIndex,
+) => (dispatch, getState) => {
   if (equals(selectionType, 'toggle'))
     dispatch({ type: TOGGLE_DIMENSION_VALUE, dimensionIndex, valueIndex });
   else if (equals(selectionType, 'toggleAll'))
@@ -266,6 +266,8 @@ export const changeSelection = ({ selectionType, dataType }) => (dimensionIndex,
       });
     }
   }
+
+  if (shouldNotGetData) return;
   dispatch(loadData(dataType));
 };
 

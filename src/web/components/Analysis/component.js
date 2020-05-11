@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
@@ -61,8 +61,14 @@ const Analysis = ({
   const [seriesIndex, setSeriesIndex] = useState(0);
   const [isLoadingSeries, series] = useSeries(indicatorValueId, isLatest, setSeriesIndex);
   const [vizType, setVizType] = useState(R.head(vizTypes));
-  const [hierarchicalCodelist, setHierarchicalCodelist] = useState(
-    R.head(R.values(R.defaultTo([], hierarchicalCodelists))),
+  const [hierarchicalCodelist, setHierarchicalCodelist] = useState();
+
+  useEffect(
+    () => {
+      if (R.not(hierarchicalCodelist))
+        setHierarchicalCodelist(R.head(R.values(R.defaultTo([], hierarchicalCodelists))));
+    },
+    [hierarchicalCodelists],
   );
 
   const analysis = useSelector(getAnalysis(indicatorValueId));
@@ -121,15 +127,17 @@ const Analysis = ({
                     setSeriesIndex={setSeriesIndex}
                   />
                 )}
-                <div className={classes.info}>
-                  <Typography variant="title" className={classes.infoDate}>
-                    {new Date(R.prop('name', serie)).getFullYear()},&nbsp;
-                  </Typography>
-                  <Typography variant="title" className={classes.title}>
-                    {Math.round(mean)}&nbsp;
-                  </Typography>
-                  <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
-                </div>
+                {R.is(Number, mean) && (
+                  <div className={classes.info}>
+                    <Typography variant="title" className={classes.infoDate}>
+                      {new Date(R.prop('name', serie)).getFullYear()},&nbsp;
+                    </Typography>
+                    <Typography variant="title" className={classes.title}>
+                      {Math.round(mean)}&nbsp;
+                    </Typography>
+                    <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
+                  </div>
+                )}
                 {R.equals(VIZ_MAP, vizType) && <WorldMap mapSerie={serie} />}
                 {R.equals(VIZ_CIRCLE, vizType) && (
                   <CircleChart serie={serie} aggregate={hierarchicalCodelist} />

@@ -15,6 +15,7 @@ const styles = theme => ({
   root: {
     padding: theme.spacing.unit * 3,
     paddingTop: theme.spacing.unit,
+    overflow: 'hidden',
   },
 });
 

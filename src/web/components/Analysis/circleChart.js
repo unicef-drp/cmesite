@@ -70,6 +70,7 @@ function CircleChart({ classes, theme, serie, aggregate }) {
     R.values,
     values => ([Math.floor(min(values)*0.9 / 10) * 10, Math.ceil(max(values)*1.05 / 10) * 10]),
   )(datapoints);*/
+
   // fixed boundaries is nicer to see evolution in time
   const boundaries = [-10, 360];
 
@@ -228,7 +229,10 @@ function CircleChart({ classes, theme, serie, aggregate }) {
   );
 
   return (
-    <div ref={wrapperRef} style={{ height: 500, position: 'relative' }}>
+    <div
+      ref={wrapperRef}
+      style={{ height: R.max(400, R.length(regions) * 48), position: 'relative' }}
+    >
       <div
         ref={zoomRef}
         style={{ position: 'absolute', bottom: margin.bottom + 8, right: margin.right + 8 }}
