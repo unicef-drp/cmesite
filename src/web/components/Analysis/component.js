@@ -16,7 +16,7 @@ import Toolbar from './toolbar';
 import TimeTravel from './timeTravel';
 import VizSwitch from './vizSwitch';
 import CircleChart from './circleChart';
-import PackChart from './packChart';
+//import PackChart from './packChart';
 import useSeries from './useSeries';
 import { UNIT_MEASURE, VIZ_MAP, VIZ_CIRCLE, VIZ_PACK } from '../../constants';
 import messages from '../../pages/Analysis/messages';
@@ -134,7 +134,7 @@ const Analysis = ({
                 {R.equals(VIZ_CIRCLE, vizType) && (
                   <CircleChart serie={serie} aggregate={hierarchicalCodelist} />
                 )}
-                {R.equals(VIZ_PACK, vizType) && <PackChart serie={serie} />}
+                {/*R.equals(VIZ_PACK, vizType) && <PackChart serie={serie} />*/}
               </React.Fragment>
             )}
         </Grid>
