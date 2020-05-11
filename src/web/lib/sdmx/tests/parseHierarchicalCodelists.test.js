@@ -68,12 +68,12 @@ const hierarchicalCodelists = {
     id: 'UNICEF_REP',
     label: 'UNICEF Reporting Regions',
     codes: {
-      UNICEF_EAP: { areaType: 'region', regionId: 'UNICEF_EAP' },
-      AUS: { areaType: 'country', regionId: 'UNICEF_EAP' },
-      BRN: { areaType: 'country', regionId: 'UNICEF_EAP' },
-      UNICEF_ECA: { areaType: 'region', regionId: 'UNICEF_ECA' },
-      ALB: { areaType: 'country', regionId: 'UNICEF_ECA' },
-      ARM: { areaType: 'country', regionId: 'UNICEF_ECA' },
+      UNICEF_EAP: { id: 'UNICEF_EAP', areaType: 'region', regionId: 'UNICEF_EAP' },
+      AUS: { id: 'AUS', areaType: 'country', regionId: 'UNICEF_EAP' },
+      BRN: { id: 'BRN', areaType: 'country', regionId: 'UNICEF_EAP' },
+      UNICEF_ECA: { id: 'UNICEF_ECA', areaType: 'region', regionId: 'UNICEF_ECA' },
+      ALB: { id: 'ALB', areaType: 'country', regionId: 'UNICEF_ECA' },
+      ARM: { id: 'ARM', areaType: 'country', regionId: 'UNICEF_ECA' },
     },
   },
   UNSDG_REGION: {
@@ -81,17 +81,19 @@ const hierarchicalCodelists = {
     label: 'SDG Regions',
     codes: {
       UNSDG_CENTRALASIASOUTHERNASIA: {
+        id: 'UNSDG_CENTRALASIASOUTHERNASIA',
         areaType: 'region',
         regionId: 'UNSDG_CENTRALASIASOUTHERNASIA',
       },
-      AFG: { areaType: 'country', regionId: 'UNSDG_CENTRALASIASOUTHERNASIA' },
-      BGD: { areaType: 'country', regionId: 'UNSDG_CENTRALASIASOUTHERNASIA' },
+      AFG: { id: 'AFG', areaType: 'country', regionId: 'UNSDG_CENTRALASIASOUTHERNASIA' },
+      BGD: { id: 'BGD', areaType: 'country', regionId: 'UNSDG_CENTRALASIASOUTHERNASIA' },
       UNSDG_EASTERNASIASOUTHEASTERNASIA: {
+        id: 'UNSDG_EASTERNASIASOUTHEASTERNASIA',
         areaType: 'region',
         regionId: 'UNSDG_EASTERNASIASOUTHEASTERNASIA',
       },
-      BRN: { areaType: 'country', regionId: 'UNSDG_EASTERNASIASOUTHEASTERNASIA' },
-      CHN: { areaType: 'country', regionId: 'UNSDG_EASTERNASIASOUTHEASTERNASIA' },
+      BRN: { id: 'BRN', areaType: 'country', regionId: 'UNSDG_EASTERNASIASOUTHEASTERNASIA' },
+      CHN: { id: 'CHN', areaType: 'country', regionId: 'UNSDG_EASTERNASIASOUTHEASTERNASIA' },
     },
   },
 };

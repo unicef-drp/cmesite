@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import cx from 'classnames';
+import { min, max } from 'd3-array';
 import { select, mouse } from 'd3-selection';
 import { scaleLinear, scaleBand, scaleOrdinal } from 'd3-scale';
 import { axisBottom, axisLeft } from 'd3-axis';
@@ -12,11 +13,8 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import useResizeObserver from '../../hooks/useResizeObserver';
 import Tooltip from './tooltip';
-import data, { REGIONS } from './data';
+import { REF_AREA, REGION } from '../../constants';
 import { wrapText } from '../../lib/charts';
-
-const REGION = 'region';
-// const COUNTRY = 'country';
 
 const getContentDimensions = (dimensions, margin) => {
   if (R.isNil(dimensions)) return;
@@ -46,7 +44,7 @@ const styles = theme => ({
   },
 });
 
-function CircleChart({ classes, theme /*, serie*/ }) {
+function CircleChart({ classes, theme, serie, aggregate }) {
   const margin = { top: 10, bottom: 20, left: 90, right: 0 };
   const colorScale = scaleOrdinal([
     '#9BD5A4',
@@ -59,10 +57,21 @@ function CircleChart({ classes, theme /*, serie*/ }) {
     '#CAECF8',
     '#4EC0E8',
   ]);
+
   const threshold = 27;
-  const max = 380;
-  const min = -20;
-  const regions = R.pipe(R.filter(R.propEq('areaType', REGION)), R.pluck('regionId'))(data);
+
+  const codes = R.pipe(R.prop('codes'), R.values)(aggregate);
+  const regions = R.pipe(R.filter(R.propEq('areaType', REGION)), R.pluck('regionId'))(codes);
+  const datapoints = R.prop('datapoints', serie);
+
+  /*const boundaries = R.pipe(
+    R.pick(R.keys(R.prop('codes', aggregate))),
+    R.pluck('y'),
+    R.values,
+    values => ([Math.floor(min(values)*0.9 / 10) * 10, Math.ceil(max(values)*1.05 / 10) * 10]),
+  )(datapoints);*/
+  // fixed boundaries is nicer to see evolution in time
+  const boundaries = [-10, 360];
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -82,7 +91,7 @@ function CircleChart({ classes, theme /*, serie*/ }) {
       const contentDimensions = getContentDimensions({ width, height }, margin);
 
       const xScale = scaleLinear()
-        .domain([min, max])
+        .domain(boundaries)
         .range([0, contentDimensions.width]);
 
       const yScale = scaleBand()
@@ -157,25 +166,28 @@ function CircleChart({ classes, theme /*, serie*/ }) {
 
       svgContent
         .selectAll('.circle')
-        .data(data)
+        .data(R.sortBy(R.propEq('areaType', REGION), codes))
         .join('circle')
         .attr('class', 'circle')
         .attr(
           'stroke',
           ({ regionId, areaType }) => (R.equals(areaType, REGION) ? 'black' : colorScale(regionId)),
         )
-        .attr('r', 12)
         .attr(
           'fill',
           ({ regionId, areaType }) =>
             R.equals(areaType, REGION) ? 'transparent' : colorScale(regionId),
         )
+        .attr('r', 12)
         .attr('fill-opacity', 0.7)
-        .attr('cx', ({ value }) => xScale(value))
+        .attr('cx', ({ id }) => xScale(R.path([id, 'y'], datapoints)))
         .attr('cy', ({ regionId }) => yScale(regionId))
-        .on('mouseenter', function(d) {
+        .on('mouseenter', function({ id }) {
           select(this).attr('r', 14);
-          setTooltipDatum(d);
+          setTooltipDatum({
+            value: R.path([id, 'y'], datapoints),
+            label: R.path([id, REF_AREA, 'valueName'], datapoints),
+          });
         })
         .on('mouseleave', function() {
           select(this).attr('r', 12);
@@ -189,7 +201,7 @@ function CircleChart({ classes, theme /*, serie*/ }) {
         .call(xAxis);
 
       const yAxis = axisLeft(yScale)
-        .tickFormat((d, i) => R.pipe(R.nth(i), R.prop('label'))(R.reverse(REGIONS)))
+        .tickFormat(d => R.path([d, REF_AREA, 'valueName'], datapoints))
         .tickSizeOuter(0);
       svg
         .select('.y-axis')
@@ -212,7 +224,7 @@ function CircleChart({ classes, theme /*, serie*/ }) {
 
       svg.call(zoomBehavior);
     },
-    [currentZoom, data, dimensions],
+    [currentZoom, serie, dimensions, aggregate],
   );
 
   return (
@@ -254,7 +266,8 @@ function CircleChart({ classes, theme /*, serie*/ }) {
 CircleChart.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  // serie: PropTypes.object.isRequired,
+  serie: PropTypes.object.isRequired,
+  aggregate: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CircleChart);

@@ -53,6 +53,7 @@ const Analysis = ({
   indicatorValues,
   vizTypes,
   isLatest,
+  hasHierarchies,
   hierarchicalCodelists,
   isLoadingHierarchicalCodelists,
 }) => {
@@ -60,6 +61,9 @@ const Analysis = ({
   const [seriesIndex, setSeriesIndex] = useState(0);
   const [isLoadingSeries, series] = useSeries(indicatorValueId, isLatest, setSeriesIndex);
   const [vizType, setVizType] = useState(R.head(vizTypes));
+  const [hierarchicalCodelist, setHierarchicalCodelist] = useState(
+    R.head(R.values(R.defaultTo([], hierarchicalCodelists))),
+  );
 
   const analysis = useSelector(getAnalysis(indicatorValueId));
 
@@ -67,8 +71,9 @@ const Analysis = ({
   const isBlank = R.isEmpty(series);
   const serie = R.nth(seriesIndex, series);
   const mean = R.path(['datapoints', MEAN_ID, 'y'])(serie);
-  const needSwitch = R.gt(R.length(vizTypes), 1);
+  const needSwitchTypes = R.gt(R.length(vizTypes), 1);
   const needTimeTravel = R.gt(R.length(series), 1);
+  const needHierarchiesSwitch = R.and(hasHierarchies, R.not(R.isEmpty(hierarchicalCodelists)));
 
   return (
     <Wrapper classes={{ root: classes.wrapper }}>
@@ -99,7 +104,16 @@ const Analysis = ({
           {!isLoading &&
             !isBlank && (
               <React.Fragment>
-                {needSwitch && <VizSwitch types={vizTypes} type={vizType} setType={setVizType} />}
+                {needSwitchTypes && (
+                  <VizSwitch types={vizTypes} type={vizType} setType={setVizType} />
+                )}
+                {needHierarchiesSwitch && (
+                  <VizSwitch
+                    types={R.values(hierarchicalCodelists)}
+                    type={hierarchicalCodelist}
+                    setType={setHierarchicalCodelist}
+                  />
+                )}
                 {needTimeTravel && (
                   <TimeTravel
                     series={series}
@@ -117,8 +131,10 @@ const Analysis = ({
                   <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
                 </div>
                 {R.equals(VIZ_MAP, vizType) && <WorldMap mapSerie={serie} />}
-                {R.equals(VIZ_CIRCLE, vizType) && <CircleChart data={serie} />}
-                {R.equals(VIZ_PACK, vizType) && <PackChart data={serie} />}
+                {R.equals(VIZ_CIRCLE, vizType) && (
+                  <CircleChart serie={serie} aggregate={hierarchicalCodelist} />
+                )}
+                {R.equals(VIZ_PACK, vizType) && <PackChart serie={serie} />}
               </React.Fragment>
             )}
         </Grid>
@@ -131,6 +147,7 @@ Analysis.propTypes = {
   classes: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
   isLatest: PropTypes.bool,
+  hasHierarchies: PropTypes.bool,
   indicatorValues: PropTypes.array.isRequired,
   vizTypes: PropTypes.array.isRequired,
   hierarchicalCodelists: PropTypes.object.isRequired,

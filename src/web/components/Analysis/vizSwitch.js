@@ -20,13 +20,13 @@ const VizSwitch = ({ classes, types, setType, type }) => (
     {R.map(
       t => (
         <Button
-          key={t}
+          key={R.propOr(t, 'id', t)}
           size="small"
-          color={R.equals(type, t) ? 'primary' : null}
+          color={R.equals(R.propOr(type, 'id', type), R.propOr(t, 'id', t)) ? 'primary' : null}
           classes={{ root: classes.button }}
           onClick={() => setType(t)}
         >
-          {t}
+          {R.propOr(t, 'label', t)}
         </Button>
       ),
       types,

@@ -23,7 +23,7 @@ const tabs = [
     key: 'disparity',
     icon: disparityIcon,
     component: Analysis,
-    otherProps: { vizTypes: [VIZ_CIRCLE] },
+    otherProps: { vizTypes: [VIZ_CIRCLE], hasHierarchies: true },
   },
   {
     key: 'sdg',
@@ -53,11 +53,5 @@ const ConnectedTabs = compose(
 
 export default () => {
   const [isLoadingHierarchicalCodelists, hierarchicalCodelists] = useHierarchicalCodelists();
-
-  return (
-    <ConnectedTabs
-      isLoadingHierarchicalCodelists={isLoadingHierarchicalCodelists}
-      hierarchicalCodelists={hierarchicalCodelists}
-    />
-  );
+  return <ConnectedTabs commonProps={{ isLoadingHierarchicalCodelists, hierarchicalCodelists }} />;
 };

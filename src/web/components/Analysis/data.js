@@ -1,5 +1,11 @@
 import * as R from 'ramda';
 
+/*
+ * FORMAT DEFINITION:
+ *
+ * [{id, label, value, regionId, areaType},]
+ */
+
 const REGION = 'region';
 const COUNTRY = 'country';
 

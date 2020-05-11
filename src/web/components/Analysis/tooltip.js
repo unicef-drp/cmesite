@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { getDefaultFormatValue } from '../../lib/formatters';
 
 const styles = theme => ({
   content: {
@@ -21,7 +22,7 @@ const Tooltip = ({ classes, datum }) => (
         {datum.label}:&nbsp;
       </Typography>
       <Typography variant="body2" inline>
-        <strong>{datum.value}</strong>
+        <strong>{getDefaultFormatValue(datum.value)}</strong>
       </Typography>
     </CardContent>
   </Card>

@@ -38,7 +38,15 @@ const style = theme => ({
   },
 });
 
-const Component = ({ classes, theme, tabs, activeTab, changeActiveTab, messages }) => (
+const Component = ({
+  classes,
+  theme,
+  tabs,
+  activeTab,
+  changeActiveTab,
+  messages,
+  commonProps = {},
+}) => (
   <React.Fragment>
     <AppBar position="static" color="default">
       <Wrapper classes={{ root: classes.wrapper }}>
@@ -83,6 +91,7 @@ const Component = ({ classes, theme, tabs, activeTab, changeActiveTab, messages 
           <tab.component
             key={tab.key}
             type={tab.key}
+            {...commonProps}
             {...tab.otherProps}
             isActive={equals(activeTab, index)}
           />
@@ -100,6 +109,7 @@ Component.propTypes = {
   changeActiveTab: PropTypes.func.isRequired,
   messages: PropTypes.object.isRequired,
   tabs: PropTypes.array.isRequired,
+  commonProps: PropTypes.object,
 };
 
 export default withStyles(style, { withTheme: true })(Component);

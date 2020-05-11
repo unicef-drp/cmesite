@@ -5,8 +5,13 @@ import { REGION, COUNTRY } from '../../constants';
 const getCodes = R.reduce(
   (memo, region) =>
     R.reduce(
-      (omem, { codeID }) => R.assoc(codeID, { areaType: COUNTRY, regionId: region.codeID }, omem),
-      R.assoc(region.codeID, { areaType: REGION, regionId: region.codeID }, memo),
+      (omem, { codeID }) =>
+        R.assoc(codeID, { id: codeID, areaType: COUNTRY, regionId: region.codeID }, omem),
+      R.assoc(
+        region.codeID,
+        { id: region.codeID, areaType: REGION, regionId: region.codeID },
+        memo,
+      ),
       region.hierarchicalCodes,
     ),
   {},
