@@ -19,8 +19,8 @@ export const DISPARITY_INDICATOR_IDS = new Set(['D_MRY0T4', 'D_MRM0']);
 export const PROGRESS_INDICATOR_IDS = new Set(['PR_MRY0T4', 'PR_MRM0']);
 
 export const INDICATOR_IDS = {
-  progress: new Set(['MRY0T4', 'MRM0', 'MRY5T14', 'SBR']),
-  disparity: new Set(['MRY0T4', 'MRM0', 'MRY5T14', 'SBR']),
+  progress: new Set(['MRY0T4', 'MRM0', 'MRY5T14' /*, 'SBR'*/]),
+  disparity: new Set(['MRY0T4', 'MRM0', 'MRY5T14' /*, 'SBR'*/]),
   sdg: new Set(['PR_MRY0T4', 'PR_MRM0']),
 };
 
@@ -79,6 +79,20 @@ export const END_PERIODS = {
   SBR: 2020,
   PR_MRY0T4: 2019,
   PR_MRM0: 2019,
+};
+
+// circle chart with time travel requires fixed boundaries
+// it's assimilated as legend for map
+export const DEFAULT_ANALYSIS_BOUNDARIES = [-1, 101];
+export const ANALYSIS_BOUNDARIES = {
+  MRY0T4: [-10, 310],
+};
+
+export const DEFAULT_ANALYSIS_TARGET = 25;
+export const ANALYSIS_TARGETS = {
+  MRM0: 12,
+  MRY5T14: null,
+  SBR: null,
 };
 
 export const UNIT_MEASURE = 'UNIT_MEASURE';

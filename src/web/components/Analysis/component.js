@@ -18,7 +18,15 @@ import VizSwitch from './vizSwitch';
 import CircleChart from './circleChart';
 //import PackChart from './packChart';
 import useSeries from './useSeries';
-import { UNIT_MEASURE, VIZ_MAP, VIZ_CIRCLE /*, VIZ_PACK*/ } from '../../constants';
+import {
+  DEFAULT_ANALYSIS_TARGET,
+  ANALYSIS_TARGETS,
+  DEFAULT_ANALYSIS_BOUNDARIES,
+  ANALYSIS_BOUNDARIES,
+  UNIT_MEASURE,
+  VIZ_MAP,
+  VIZ_CIRCLE /*, VIZ_PACK*/,
+} from '../../constants';
 import messages from '../../pages/Analysis/messages';
 
 const styles = theme => ({
@@ -72,6 +80,8 @@ const Analysis = ({
   );
 
   const analysis = useSelector(getAnalysis(indicatorValueId));
+  const boundaries = R.propOr(DEFAULT_ANALYSIS_BOUNDARIES, indicatorValueId, ANALYSIS_BOUNDARIES);
+  const target = R.propOr(DEFAULT_ANALYSIS_TARGET, indicatorValueId, ANALYSIS_TARGETS);
 
   const isLoading = R.or(isLoadingSeries, isLoadingHierarchicalCodelists);
   const isBlank = R.isEmpty(series);
@@ -140,7 +150,12 @@ const Analysis = ({
                 )}
                 {R.equals(VIZ_MAP, vizType) && <WorldMap mapSerie={serie} />}
                 {R.equals(VIZ_CIRCLE, vizType) && (
-                  <CircleChart serie={serie} aggregate={hierarchicalCodelist} />
+                  <CircleChart
+                    serie={serie}
+                    aggregate={hierarchicalCodelist}
+                    boundaries={boundaries}
+                    target={target}
+                  />
                 )}
                 {/*R.equals(VIZ_PACK, vizType) && <PackChart serie={serie} />*/}
               </React.Fragment>

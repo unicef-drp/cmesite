@@ -44,7 +44,7 @@ const styles = theme => ({
   },
 });
 
-function CircleChart({ classes, theme, serie, aggregate }) {
+function CircleChart({ classes, theme, serie, aggregate, boundaries, target }) {
   const margin = { top: 10, bottom: 20, left: 90, right: 0 };
   const colorScale = scaleOrdinal([
     '#9BD5A4',
@@ -58,8 +58,6 @@ function CircleChart({ classes, theme, serie, aggregate }) {
     '#4EC0E8',
   ]);
 
-  const threshold = 27;
-
   const codes = R.pipe(R.prop('codes'), R.values)(aggregate);
   const regions = R.pipe(R.filter(R.propEq('areaType', REGION)), R.pluck('regionId'))(codes);
   const datapoints = R.prop('datapoints', serie);
@@ -70,9 +68,6 @@ function CircleChart({ classes, theme, serie, aggregate }) {
     R.values,
     values => ([Math.floor(min(values)*0.9 / 10) * 10, Math.ceil(max(values)*1.05 / 10) * 10]),
   )(datapoints);*/
-
-  // fixed boundaries is nicer to see evolution in time
-  const boundaries = [-10, 360];
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -142,28 +137,30 @@ function CircleChart({ classes, theme, serie, aggregate }) {
         .attr('y2', contentDimensions.height)
         .attr('stroke', theme.palette.secondary.darker);
 
-      svgContent
-        .selectAll('.threshold')
-        .data([threshold])
-        .join('line')
-        .attr('class', 'line threshold')
-        .attr('x1', xScale)
-        .attr('y1', 0)
-        .attr('x2', xScale)
-        .attr('y2', contentDimensions.height)
-        .attr('stroke-dasharray', '3 3')
-        .attr('stroke', theme.palette.secondary.darker);
+      if (R.not(R.isNil(target))) {
+        svgContent
+          .selectAll('.target')
+          .data([target])
+          .join('line')
+          .attr('class', 'line target')
+          .attr('x1', xScale)
+          .attr('y1', 0)
+          .attr('x2', xScale)
+          .attr('y2', contentDimensions.height)
+          .attr('stroke-dasharray', '3 3')
+          .attr('stroke', theme.palette.secondary.darker);
 
-      svgContent
-        .selectAll('.threshold-text')
-        .data([threshold])
-        .join('text')
-        .attr('class', 'text threshold')
-        .attr('x', d => xScale(d) + 8)
-        .attr('y', () => contentDimensions.height - yScale.step())
-        .text('SDG target')
-        .attr('font-size', '.65em')
-        .attr('fill', theme.palette.secondary.darker);
+        svgContent
+          .selectAll('.target-text')
+          .data([target])
+          .join('text')
+          .attr('class', 'text target')
+          .attr('x', d => xScale(d) + 8)
+          .attr('y', () => contentDimensions.height - yScale.step())
+          .text('SDG target')
+          .attr('font-size', '.65em')
+          .attr('fill', theme.palette.secondary.darker);
+      }
 
       svgContent
         .selectAll('.circle')
@@ -272,6 +269,8 @@ CircleChart.propTypes = {
   theme: PropTypes.object.isRequired,
   serie: PropTypes.object.isRequired,
   aggregate: PropTypes.object.isRequired,
+  boundaries: PropTypes.array.isRequired,
+  target: PropTypes.number,
 };
 
 export default withStyles(styles, { withTheme: true })(CircleChart);
