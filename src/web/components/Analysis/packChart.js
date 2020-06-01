@@ -89,7 +89,6 @@ function PackChart({ classes, theme, serie, aggregate, boundaries, target, indic
   const wrapperRef = useRef();
   const tooltipRef = useRef();
   const dimensions = useResizeObserver(wrapperRef);
-  const contentDimensions = getContentDimensions(dimensions, margin);
   const [tooltipPosition, setTooltipPosition] = useState();
   const [tooltipDatum, setTooltipDatum] = useState();
 
