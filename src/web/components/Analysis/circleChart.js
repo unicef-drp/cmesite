@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import cx from 'classnames';
-//import { min, max } from 'd3-array';
 import { select, mouse } from 'd3-selection';
 import { scaleLinear, scaleBand, scaleOrdinal } from 'd3-scale';
 import { axisBottom, axisLeft } from 'd3-axis';
@@ -61,13 +60,6 @@ function CircleChart({ classes, theme, serie, aggregate, boundaries, target }) {
   const codes = R.pipe(R.prop('codes'), R.values)(aggregate);
   const regions = R.pipe(R.filter(R.propEq('areaType', REGION)), R.pluck('regionId'))(codes);
   const datapoints = R.prop('datapoints', serie);
-
-  /*const boundaries = R.pipe(
-    R.pick(R.keys(R.prop('codes', aggregate))),
-    R.pluck('y'),
-    R.values,
-    values => ([Math.floor(min(values)*0.9 / 10) * 10, Math.ceil(max(values)*1.05 / 10) * 10]),
-  )(datapoints);*/
 
   const svgRef = useRef();
   const wrapperRef = useRef();

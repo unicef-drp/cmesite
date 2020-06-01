@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import { getDefaultFormatValue } from '../../lib/formatters';
 
 const styles = theme => ({
@@ -24,6 +26,11 @@ const Tooltip = ({ classes, datum }) => (
       <Typography variant="body2" inline>
         <strong>{getDefaultFormatValue(datum.value)}</strong>
       </Typography>
+      {datum.year && (
+        <Typography variant="caption">
+          <FormattedMessage {...messages.yearToAchieve} />: {datum.year}
+        </Typography>
+      )}
     </CardContent>
   </Card>
 );

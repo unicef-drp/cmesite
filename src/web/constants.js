@@ -67,6 +67,7 @@ export const Y1 = 'UPPER_BOUND';
 export const MAX_SDMX_VALUES = 18;
 
 export const SERIES_YEAR = 'SERIES_YEAR';
+export const YEAR_TO_ACHIEVE = 'YEAR_TO_ACHIEVE';
 export const TOOLTIP_SERIES_KEYS = [Z, 'SERIES_CATEGORY', 'SERIES_TYPE' /*, SERIES_YEAR*/];
 
 export const EMAIL = 'childmortality@unicef.org';
@@ -84,8 +85,11 @@ export const END_PERIODS = {
 // circle chart with time travel requires fixed boundaries
 // it's assimilated as legend for map
 export const DEFAULT_ANALYSIS_BOUNDARIES = [-1, 101];
+const DEFAULT_ANALYSIS_BOUNDARIES_PROGRESS = [new Date(2014, 0), new Date(2051, 0)];
 export const ANALYSIS_BOUNDARIES = {
   MRY0T4: [-10, 310],
+  PR_MRY0T4: DEFAULT_ANALYSIS_BOUNDARIES_PROGRESS,
+  PR_MRM0: DEFAULT_ANALYSIS_BOUNDARIES_PROGRESS,
 };
 
 export const DEFAULT_ANALYSIS_TARGET = 25;
@@ -94,6 +98,25 @@ export const ANALYSIS_TARGETS = {
   MRY5T14: null,
   SBR: null,
 };
+
+export const DEFAULT_ANALYSIS_PROGRESS_TARGET = {
+  startDate: new Date(2015, 0),
+  endDate: new Date(2019, 0),
+};
+
+// temporary hack to labell and sort UNICEF regions in packed chart
+// should be shipped with SDMX PR_* data
+export const UNICEF_REGIONS = [
+  { id: 'UNICEF_WE', label: 'Western Europe' },
+  { id: 'UNICEF_EECA', label: 'Estern Europe and Central Asia' },
+  { id: 'UNICEF_NA', label: 'North America' },
+  { id: 'UNICEF_LAC', label: 'Latin America and Caribbean' },
+  { id: 'UNICEF_EAP', label: 'East Asia and Pacific' },
+  { id: 'UNICEF_SA', label: 'South Asia' },
+  { id: 'UNICEF_MENA', label: 'Middle East and North Africa' },
+  { id: 'UNICEF_ESA', label: 'Estern and Southern Africa' },
+  { id: 'UNICEF_WCA', label: 'West and Central Africa' },
+];
 
 export const UNIT_MEASURE = 'UNIT_MEASURE';
 export const SERIES_METHOD = 'SERIES_METHOD';
