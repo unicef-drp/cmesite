@@ -92,7 +92,6 @@ const Analysis = ({
     },
     [hierarchicalCodelists],
   );
-  console.log(hierarchicalCodelist);
 
   const analysis = useSelector(getAnalysis(indicatorValueId));
   const boundaries = R.propOr(DEFAULT_ANALYSIS_BOUNDARIES, indicatorValueId, ANALYSIS_BOUNDARIES);
