@@ -29,7 +29,7 @@ const tabs = [
     key: 'sdg',
     icon: sdgIcon,
     component: Analysis,
-    otherProps: { vizTypes: [VIZ_MAP, VIZ_PACK], isLatest: true },
+    otherProps: { vizTypes: [VIZ_PACK, VIZ_MAP], isLatest: true },
   },
 ];
 

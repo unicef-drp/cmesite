@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import { prop, isNil, path } from 'ramda';
+import { prop, isNil, path, none } from 'ramda';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { getSeriesLabel, getFormatMapYear, getDefaultFormatValue } from '../../lib/formatters';
@@ -37,6 +37,10 @@ const style = theme => ({
 const Hightlight = ({ classes, datapoint }) => {
   if (isNil(datapoint)) return null;
 
+  const y0 = prop('y0', datapoint);
+  const y1 = prop('y1', datapoint);
+  const hasUncertainty = none(isNaN, [y0, y1]);
+
   return (
     <Paper className={classes.root} square>
       <Typography variant="body2" className={classes.typo}>
@@ -44,17 +48,19 @@ const Hightlight = ({ classes, datapoint }) => {
       </Typography>
       <Divider />
       <Grid container spacing={0}>
-        <Grid item xs={6}>
+        <Grid item xs={hasUncertainty ? 6 : 12}>
           <Typography variant="body2" className={classes.typo}>
             <strong>{getSeriesLabel(datapoint)}</strong>
           </Typography>
         </Grid>
-        <Grid item xs={6}>
-          <Typography variant="body2" className={classes.typo}>
-            <FormattedMessage {...messages.uncertainty} />
-          </Typography>
-        </Grid>
-        <Grid item xs={6}>
+        {hasUncertainty && (
+          <Grid item xs={6}>
+            <Typography variant="body2" className={classes.typo}>
+              <FormattedMessage {...messages.uncertainty} />
+            </Typography>
+          </Grid>
+        )}
+        <Grid item xs={hasUncertainty ? 6 : 12}>
           <Typography variant="body2" className={classes.typo} inline>
             <strong>{getDefaultFormatValue(prop('y', datapoint))}</strong>
           </Typography>
@@ -63,12 +69,13 @@ const Hightlight = ({ classes, datapoint }) => {
             <em>({getFormatMapYear(path([REF_DATE, 'valueName'], datapoint))})</em>
           </Typography>
         </Grid>
-        <Grid item xs={6}>
-          <Typography variant="body2" className={classes.typo}>
-            ({getDefaultFormatValue(prop('y0', datapoint))} -{' '}
-            {getDefaultFormatValue(prop('y1', datapoint))})
-          </Typography>
-        </Grid>
+        {hasUncertainty && (
+          <Grid item xs={6}>
+            <Typography variant="body2" className={classes.typo}>
+              ({getDefaultFormatValue(y0)} - {getDefaultFormatValue(y1)})
+            </Typography>
+          </Grid>
+        )}
       </Grid>
       <Typography variant="caption">
         <FormattedMessage {...messages.countryDetails} />

@@ -12,8 +12,11 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import useResizeObserver from '../../hooks/useResizeObserver';
 import Tooltip from './tooltip';
-import { REF_AREA, REGION } from '../../constants';
+import { REF_AREA, REGION, COUNTRY } from '../../constants';
 import { wrapText } from '../../lib/charts';
+
+const RADIUS = 6;
+const DIAMETER = RADIUS * 2;
 
 const getContentDimensions = (dimensions, margin) => {
   if (R.isNil(dimensions)) return;
@@ -75,6 +78,7 @@ function CircleChart({ classes, theme, serie, aggregate, boundaries, target }) {
     () => {
       const svg = select(svgRef.current);
       const svgContent = svg.select('.content');
+      const svgLegend = svg.select('.legend');
       const { width, height } = dimensions || wrapperRef.current.getBoundingClientRect();
       const contentDimensions = getContentDimensions({ width, height }, margin);
 
@@ -117,6 +121,38 @@ function CircleChart({ classes, theme, serie, aggregate, boundaries, target }) {
         .attr('x2', contentDimensions.width)
         .attr('y2', 0)
         .attr('stroke', theme.palette.secondary.darker);
+
+      R.addIndex(R.forEach)(
+        (type, index) => {
+          const X = contentDimensions.width - 60;
+          const Y = contentDimensions.height - (20 + index * 3 * RADIUS * 1.5) - 40;
+
+          svgLegend
+            .selectAll(`.legend-circle-${type}`)
+            .data([0])
+            .join('circle')
+            .attr('class', `legend-circle-${type}`)
+            .attr('stroke', R.equals(REGION, type) ? 'black' : theme.palette.secondary.darker)
+            .attr('fill', 'transparent')
+            .attr('r', RADIUS * 1.5)
+            .attr('cx', X)
+            .attr('cy', Y);
+
+          svgLegend
+            .selectAll(`.legend-text-${type}`)
+            .data([0])
+            .join('text')
+            .attr('class', `legend-text-${type}`)
+            .attr('x', X)
+            .attr('y', Y)
+            .attr('dy', 2.5)
+            .attr('dx', 5 + RADIUS * 1.5)
+            .text(type)
+            .attr('font-size', '.65em')
+            .attr('fill', R.equals(REGION, type) ? 'black' : theme.palette.secondary.darker);
+        },
+        [REGION, COUNTRY],
+      );
 
       svgContent
         .selectAll('.border-right')
@@ -168,7 +204,7 @@ function CircleChart({ classes, theme, serie, aggregate, boundaries, target }) {
           ({ regionId, areaType }) =>
             R.equals(areaType, REGION) ? 'transparent' : colorScale(regionId),
         )
-        .attr('r', 12)
+        .attr('r', DIAMETER)
         .attr('fill-opacity', 0.7)
         .attr('cx', ({ id }) => xScale(R.path([id, 'y'], datapoints)))
         .attr('cy', ({ regionId }) => yScale(regionId))
@@ -180,7 +216,7 @@ function CircleChart({ classes, theme, serie, aggregate, boundaries, target }) {
           });
         })
         .on('mouseleave', function() {
-          select(this).attr('r', 12);
+          select(this).attr('r', DIAMETER);
           setTooltipDatum(null);
         });
 
@@ -244,6 +280,7 @@ function CircleChart({ classes, theme, serie, aggregate, boundaries, target }) {
               </clipPath>
             </defs>
           )}
+          <g className="legend" />
           <g className="content" clipPath="url(#clip)" />
           <g className={cx(classes.axis, 'x-axis')} />
           <g className={cx(classes.axis, 'y-axis')} />

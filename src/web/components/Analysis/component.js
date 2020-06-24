@@ -27,6 +27,8 @@ import {
   VIZ_MAP,
   VIZ_CIRCLE,
   VIZ_PACK,
+  DEFAULT_HIERARCHY,
+  DEFAULT_HIERARCHIES,
 } from '../../constants';
 import messages from '../../pages/Analysis/messages';
 
@@ -43,6 +45,11 @@ const styles = theme => ({
       margin: 0,
       textAlign: 'justify',
     },
+  },
+  wrapperInfo: {
+    display: 'flex',
+    alignItems: 'baseline',
+    justifyContent: 'space-between',
   },
   info: {
     display: 'flex',
@@ -75,10 +82,17 @@ const Analysis = ({
   useEffect(
     () => {
       if (R.not(hierarchicalCodelist))
-        setHierarchicalCodelist(R.head(R.values(R.defaultTo([], hierarchicalCodelists))));
+        setHierarchicalCodelist(
+          R.propOr(
+            [],
+            R.propOr(DEFAULT_HIERARCHY, type, DEFAULT_HIERARCHIES),
+            hierarchicalCodelists,
+          ),
+        );
     },
     [hierarchicalCodelists],
   );
+  console.log(hierarchicalCodelist);
 
   const analysis = useSelector(getAnalysis(indicatorValueId));
   const boundaries = R.propOr(DEFAULT_ANALYSIS_BOUNDARIES, indicatorValueId, ANALYSIS_BOUNDARIES);
@@ -91,6 +105,12 @@ const Analysis = ({
   const needSwitchTypes = R.gt(R.length(vizTypes), 1);
   const needTimeTravel = R.gt(R.length(series), 1);
   const needHierarchiesSwitch = R.and(hasHierarchies, R.not(R.isEmpty(hierarchicalCodelists)));
+  const indicatorValue = R.find(R.propEq('id', indicatorValueId), indicatorValues);
+
+  const formattedVizTypes = R.map(
+    id => ({ id, label: <FormattedMessage {...messages[id]} /> }),
+    vizTypes,
+  );
 
   return (
     <Wrapper classes={{ root: classes.wrapper }}>
@@ -122,7 +142,7 @@ const Analysis = ({
             !isBlank && (
               <React.Fragment>
                 {needSwitchTypes && (
-                  <VizSwitch types={vizTypes} type={vizType} setType={setVizType} />
+                  <VizSwitch types={formattedVizTypes} type={vizType} setType={setVizType} />
                 )}
                 {needHierarchiesSwitch && (
                   <VizSwitch
@@ -138,17 +158,24 @@ const Analysis = ({
                     setSeriesIndex={setSeriesIndex}
                   />
                 )}
-                {R.is(Number, mean) && (
-                  <div className={classes.info}>
-                    <Typography variant="title" className={classes.infoDate}>
-                      {new Date(R.prop('name', serie)).getFullYear()},&nbsp;
-                    </Typography>
-                    <Typography variant="title" className={classes.title}>
-                      {Math.round(mean)}&nbsp;
-                    </Typography>
-                    <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
-                  </div>
-                )}
+                <div className={classes.wrapperInfo}>
+                  <Typography variant="body2">
+                    {R.equals(type, 'disparity') && indicatorValue && hierarchicalCodelist
+                      ? `${indicatorValue.label} by ${hierarchicalCodelist.label}`
+                      : null}
+                  </Typography>
+                  {R.is(Number, mean) && (
+                    <div className={classes.info}>
+                      <Typography variant="title" className={classes.infoDate}>
+                        {new Date(R.prop('name', serie)).getFullYear()},&nbsp;
+                      </Typography>
+                      <Typography variant="title" className={classes.title}>
+                        {Math.round(mean)}&nbsp;
+                      </Typography>
+                      <Typography variant="body2">{R.prop(UNIT_MEASURE, serie)}</Typography>
+                    </div>
+                  )}
+                </div>
                 {R.equals(VIZ_MAP, vizType) && <WorldMap mapSerie={serie} />}
                 {R.equals(VIZ_CIRCLE, vizType) && (
                   <CircleChart
@@ -167,6 +194,12 @@ const Analysis = ({
                     indicatorValueId={indicatorValueId}
                   />
                 )}
+                {R.equals(type, 'disparity') &&
+                  indicatorValue && (
+                    <Typography variant="caption" align="center">
+                      {indicatorValue.label} ({R.prop(UNIT_MEASURE, serie)})
+                    </Typography>
+                  )}
               </React.Fragment>
             )}
         </Grid>

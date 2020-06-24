@@ -95,6 +95,7 @@ export const ANALYSIS_BOUNDARIES = {
 export const DEFAULT_ANALYSIS_TARGET = 25;
 export const ANALYSIS_TARGETS = {
   MRM0: 12,
+  PR_MRM0: 12,
   MRY5T14: null,
   SBR: null,
 };
@@ -335,3 +336,8 @@ export const COUNTRY = 'country';
 export const VIZ_MAP = 'map';
 export const VIZ_CIRCLE = 'circle';
 export const VIZ_PACK = 'pack';
+export const DEFAULT_HIERARCHY = 'UNSDG_REGION';
+export const DEFAULT_HIERARCHIES = {
+  disparity: 'WB_INCOME',
+  sdg: DEFAULT_HIERARCHY,
+};

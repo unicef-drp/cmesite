@@ -11,6 +11,18 @@ export default defineMessages({
   },
   sdg: {
     id: 'analysis.sdg',
-    defaultMessage: 'Progress towards SDG',
+    defaultMessage: 'SDG',
+  },
+  map: {
+    id: 'viz.type.map',
+    defaultMessage: 'map',
+  },
+  pack: {
+    id: 'viz.type.chart',
+    defaultMessage: 'chart',
+  },
+  circle: {
+    id: 'viz.type.circle',
+    defaultMessage: 'chart',
   },
 });
