@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { compose, propOr, path, prop } from 'ramda';
+import { compose, propOr, path, prop, pipe } from 'ramda';
 import { select } from 'd3-selection';
 import { geoPath } from 'd3-geo';
 import { scaleThreshold } from 'd3-scale';
@@ -14,8 +14,9 @@ import messages from './messages';
 import worldData from '../../../mock/map/world-geo-v11';
 import Legend from './legend';
 import Highlight from './highlight';
-import { getDatapoint, getColor } from './utils';
+import { getDatapoint, getValue } from './utils';
 import { INDICATOR_MAP_SCALES, INDICATOR, MAP_DEFAULT_SCALE } from '../../constants';
+import { getSeriesLabel, getDefaultFormatValue } from '../../lib/formatters';
 
 const style = theme => ({
   root: {
@@ -77,7 +78,15 @@ class WorldMap extends React.Component {
   setDatapoint = datapoint => this.setState({ datapoint });
 
   render() {
-    const { theme, size, mapSerie, classes, valueAccessor, legendProps = {} } = this.props;
+    const {
+      theme,
+      size,
+      mapSerie,
+      classes,
+      valueAccessor,
+      highlightsProps = {},
+      legendProps = {},
+    } = this.props;
     const { width } = size;
     const height = width / 1.77;
     const datapoints = propOr([], 'datapoints', mapSerie);
@@ -101,7 +110,8 @@ class WorldMap extends React.Component {
           <g>
             {worldData.features.map((d, i) => {
               const datapoint = getDatapoint({ d, datapoints });
-              const color = getColor({ scale, datapoint, valueAccessor });
+              const value = getValue({ datapoint, accessor: valueAccessor, defaultValue: -1 });
+              const color = scale(value);
               return (
                 <path
                   key={`path-${i}`}
@@ -128,7 +138,19 @@ class WorldMap extends React.Component {
           </g>
         </svg>
         <Legend scale={scale} andAbove={andAbove} {...legendProps} />
-        <Highlight datapoint={this.state.datapoint} />
+        <Highlight
+          datapoint={this.state.datapoint}
+          hasDetails={!!this.props.handleMapClick}
+          name={getValue({
+            datapoint: this.state.datapoint,
+            accessor: highlightsProps.nameAccessor || getSeriesLabel,
+          })}
+          valueName={getValue({
+            datapoint: this.state.datapoint,
+            accessor: highlightsProps.valueNameAccessor || pipe(prop('y'), getDefaultFormatValue),
+          })}
+          hasRefDate={highlightsProps.hasRefDate}
+        />
       </div>
     );
   }
@@ -142,6 +164,7 @@ WorldMap.propTypes = {
   handleMapClick: PropTypes.func,
   valueAccessor: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   legendProps: PropTypes.object,
+  highlightsProps: PropTypes.object,
 };
 
 export default compose(withStyles(style, { withTheme: true }), withSize())(WorldMap);

@@ -16,7 +16,6 @@ const style = theme => ({
     position: 'absolute',
     left: 0,
     bottom: theme.spacing.unit * -4,
-    width: 150,
     [theme.breakpoints.down('xs')]: {
       position: 'initial',
       display: 'flex',
@@ -28,9 +27,6 @@ const style = theme => ({
   denseItem: {
     paddingTop: 0,
     paddingBottom: 0,
-    [theme.breakpoints.down('xs')]: {
-      width: 150,
-    },
   },
   denseItemText: {
     paddingLeft: 0,
@@ -60,8 +56,10 @@ const Legend = ({ classes, scale, andAbove, messageKeyPrefix }) => {
               {equals(n, dec(length(domain))) ? (
                 andAbove ? (
                   <FormattedMessage {...messages.max} values={{ max: nth(n, domain) }} />
-                ) : (
+                ) : isNil(messageKeyPrefix) ? (
                   nth(n, domain)
+                ) : (
+                  <FormattedMessage {...messages[`${messageKeyPrefix}${n}`]} />
                 )
               ) : isNil(messageKeyPrefix) ? (
                 `${nth(n, domain)} - ${nth(inc(n), domain)}`

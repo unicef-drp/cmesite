@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { prop, isNil, path, none } from 'ramda';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { getSeriesLabel, getFormatMapYear, getDefaultFormatValue } from '../../lib/formatters';
+import { getFormatMapYear, getDefaultFormatValue } from '../../lib/formatters';
 import { REF_AREA, REF_DATE } from '../../constants';
 
 const style = theme => ({
@@ -34,7 +34,7 @@ const style = theme => ({
   },
 });
 
-const Hightlight = ({ classes, datapoint }) => {
+const Hightlight = ({ classes, datapoint, hasDetails, hasRefDate = true, name, valueName }) => {
   if (isNil(datapoint)) return null;
 
   const y0 = prop('y0', datapoint);
@@ -50,7 +50,7 @@ const Hightlight = ({ classes, datapoint }) => {
       <Grid container spacing={0}>
         <Grid item xs={hasUncertainty ? 6 : 12}>
           <Typography variant="body2" className={classes.typo}>
-            <strong>{getSeriesLabel(datapoint)}</strong>
+            <strong>{name}</strong>
           </Typography>
         </Grid>
         {hasUncertainty && (
@@ -62,12 +62,14 @@ const Hightlight = ({ classes, datapoint }) => {
         )}
         <Grid item xs={hasUncertainty ? 6 : 12}>
           <Typography variant="body2" className={classes.typo} inline>
-            <strong>{getDefaultFormatValue(prop('y', datapoint))}</strong>
+            <strong>{valueName}</strong>
           </Typography>
           &nbsp;
-          <Typography variant="caption" className={classes.typo} inline>
-            <em>({getFormatMapYear(path([REF_DATE, 'valueName'], datapoint))})</em>
-          </Typography>
+          {hasRefDate && (
+            <Typography variant="caption" className={classes.typo} inline>
+              <em>({getFormatMapYear(path([REF_DATE, 'valueName'], datapoint))})</em>
+            </Typography>
+          )}
         </Grid>
         {hasUncertainty && (
           <Grid item xs={6}>
@@ -77,9 +79,11 @@ const Hightlight = ({ classes, datapoint }) => {
           </Grid>
         )}
       </Grid>
-      <Typography variant="caption">
-        <FormattedMessage {...messages.countryDetails} />
-      </Typography>
+      {hasDetails && (
+        <Typography variant="caption">
+          <FormattedMessage {...messages.countryDetails} />
+        </Typography>
+      )}
     </Paper>
   );
 };
@@ -87,6 +91,10 @@ const Hightlight = ({ classes, datapoint }) => {
 Hightlight.propTypes = {
   classes: PropTypes.object.isRequired,
   datapoint: PropTypes.object,
+  hasDetails: PropTypes.bool,
+  hasRefDate: PropTypes.bool,
+  name: PropTypes.string,
+  valueName: PropTypes.string,
 };
 
 export default withStyles(style)(Hightlight);
