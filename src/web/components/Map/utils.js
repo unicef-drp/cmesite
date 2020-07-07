@@ -6,7 +6,6 @@ export const getDatapoint = ({ d, datapoints }) => {
 };
 
 export const getColor = ({ scale, datapoint, valueAccessor }) => {
-  console.log(valueAccessor(datapoint));
   const value = is(Function, valueAccessor)
     ? valueAccessor(datapoint)
     : propOr(-1, defaultTo('y', valueAccessor), datapoint);

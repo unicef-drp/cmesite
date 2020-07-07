@@ -47,7 +47,7 @@ const styles = theme => ({
 });
 
 function CircleChart({ classes, theme, serie, aggregate, boundaries, target }) {
-  const margin = { top: 10, bottom: 20, left: 90, right: 0 };
+  const margin = { top: 10, bottom: 20, left: 140, right: 0 };
   const colorScale = scaleOrdinal([
     '#9BD5A4',
     '#F2E388',

@@ -19,13 +19,13 @@ import { VIZ_MAP, VIZ_CIRCLE, VIZ_PACK, YEAR_TO_ACHIEVE } from '../../constants'
 import useHierarchicalCodelists from '../../components/Analysis/useHierarchicalCodelists';
 
 const tabs = [
-  /*{ key: 'progress', icon: progressIcon, component: Analysis, otherProps: { vizTypes: [VIZ_MAP] } },
+  { key: 'progress', icon: progressIcon, component: Analysis, otherProps: { vizTypes: [VIZ_MAP] } },
   {
     key: 'disparity',
     icon: disparityIcon,
     component: Analysis,
     otherProps: { vizTypes: [VIZ_CIRCLE], hasHierarchies: true },
-  },*/
+  },
   {
     key: 'sdg',
     icon: sdgIcon,
