@@ -14,7 +14,7 @@ import messages from './messages';
 import worldData from '../../../mock/map/world-geo-v11';
 import Legend from './legend';
 import Highlight from './highlight';
-import { getColor, getDatapoint } from './utils';
+import { getDatapoint, getColor } from './utils';
 import { INDICATOR_MAP_SCALES, INDICATOR, MAP_DEFAULT_SCALE } from '../../constants';
 
 const style = theme => ({
@@ -77,7 +77,7 @@ class WorldMap extends React.Component {
   setDatapoint = datapoint => this.setState({ datapoint });
 
   render() {
-    const { theme, size, mapSerie, classes } = this.props;
+    const { theme, size, mapSerie, classes, valueAccessor, legendProps = {} } = this.props;
     const { width } = size;
     const height = width / 1.77;
     const datapoints = propOr([], 'datapoints', mapSerie);
@@ -101,7 +101,7 @@ class WorldMap extends React.Component {
           <g>
             {worldData.features.map((d, i) => {
               const datapoint = getDatapoint({ d, datapoints });
-              const color = getColor({ scale, datapoint });
+              const color = getColor({ scale, datapoint, valueAccessor });
               return (
                 <path
                   key={`path-${i}`}
@@ -127,7 +127,7 @@ class WorldMap extends React.Component {
             })}
           </g>
         </svg>
-        <Legend scale={scale} andAbove={andAbove} />
+        <Legend scale={scale} andAbove={andAbove} {...legendProps} />
         <Highlight datapoint={this.state.datapoint} />
       </div>
     );
@@ -140,6 +140,8 @@ WorldMap.propTypes = {
   theme: PropTypes.object.isRequired,
   mapSerie: PropTypes.object,
   handleMapClick: PropTypes.func,
+  valueAccessor: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  legendProps: PropTypes.object,
 };
 
 export default compose(withStyles(style, { withTheme: true }), withSize())(WorldMap);

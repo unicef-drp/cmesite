@@ -72,6 +72,7 @@ const Analysis = ({
   hasHierarchies,
   hierarchicalCodelists,
   isLoadingHierarchicalCodelists,
+  mapProps = {},
 }) => {
   const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
   const [seriesIndex, setSeriesIndex] = useState(0);
@@ -175,7 +176,7 @@ const Analysis = ({
                     </div>
                   )}
                 </div>
-                {R.equals(VIZ_MAP, vizType) && <WorldMap mapSerie={serie} />}
+                {R.equals(VIZ_MAP, vizType) && <WorldMap mapSerie={serie} {...mapProps} />}
                 {R.equals(VIZ_CIRCLE, vizType) && (
                   <CircleChart
                     serie={serie}
@@ -216,6 +217,7 @@ Analysis.propTypes = {
   vizTypes: PropTypes.array.isRequired,
   hierarchicalCodelists: PropTypes.object.isRequired,
   isLoadingHierarchicalCodelists: PropTypes.bool,
+  mapProps: PropTypes.object,
 };
 
 export default withStyles(styles)(Analysis);

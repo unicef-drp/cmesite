@@ -284,6 +284,16 @@ export const INDICATOR_MAP_SCALES = {
     ],
     andAbove: true,
   },
+  PR_MRY0T4: {
+    // Progress towards SDG in under-five mortality rate
+    domain: [0, 2019, 2030, 2050],
+    range: [MAP_NO_DATA, '#a1d4eb', '#8abbd6 ', '#72a2c0', '#5b89ab'],
+  },
+  PR_MRM0: {
+    // Progress towards SDG in Neonatal Mortality Rate
+    domain: [0, 2019, 2031, 2050],
+    range: [MAP_NO_DATA, '#a1d4eb', '#8abbd6 ', '#72a2c0', '#5b89ab'],
+  },
 };
 
 export const CSV_DELIMITER = ',';

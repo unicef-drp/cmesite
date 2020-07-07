@@ -1,11 +1,15 @@
-import { path, prop } from 'ramda';
+import { path, prop, is, defaultTo, propOr } from 'ramda';
 
 export const getDatapoint = ({ d, datapoints }) => {
   const code = path(['properties', 'code'], d);
   return prop(code, datapoints);
 };
 
-export const getColor = ({ scale, datapoint }) => {
-  const y = prop('y', datapoint);
-  return scale(y ? y : -1);
+export const getColor = ({ scale, datapoint, valueAccessor }) => {
+  console.log(valueAccessor(datapoint));
+  const value = is(Function, valueAccessor)
+    ? valueAccessor(datapoint)
+    : propOr(-1, defaultTo('y', valueAccessor), datapoint);
+
+  return scale(value);
 };

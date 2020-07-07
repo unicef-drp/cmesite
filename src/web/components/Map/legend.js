@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { times, nth, dec, length, inc, equals } from 'ramda';
+import { times, nth, dec, length, inc, equals, isNil } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -42,7 +42,7 @@ const style = theme => ({
   },
 });
 
-const Legend = ({ classes, scale, andAbove }) => {
+const Legend = ({ classes, scale, andAbove, messageKeyPrefix }) => {
   const domain = scale.domain();
   const colors = scale.range();
 
@@ -63,8 +63,10 @@ const Legend = ({ classes, scale, andAbove }) => {
                 ) : (
                   nth(n, domain)
                 )
-              ) : (
+              ) : isNil(messageKeyPrefix) ? (
                 `${nth(n, domain)} - ${nth(inc(n), domain)}`
+              ) : (
+                <FormattedMessage {...messages[`${messageKeyPrefix}${n}`]} />
               )}
             </ListItemText>
           </ListItem>
@@ -89,6 +91,7 @@ Legend.propTypes = {
   classes: PropTypes.object.isRequired,
   scale: PropTypes.func.isRequired,
   andAbove: PropTypes.bool,
+  messageKeyPrefix: PropTypes.string,
 };
 
 export default withStyles(style)(Legend);
