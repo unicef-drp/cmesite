@@ -25,4 +25,8 @@ export default defineMessages({
     id: 'viz.type.circle',
     defaultMessage: 'chart',
   },
+  yearToAchieve: {
+    id: 'year.to.achieve',
+    defaultMessage: 'Year to achieve SDG target',
+  },
 });

@@ -11,7 +11,7 @@ const configureStore = (initialState = {}) => {
     collapsed: true,
     diff: true,
   });
-  const middlewares = [thunk /*, logger*/];
+  const middlewares = [thunk, logger];
   return createStore(
     createRootReducer(),
     initialState,

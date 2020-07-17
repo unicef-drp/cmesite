@@ -130,7 +130,11 @@ const Analysis = ({
             !isBlank && (
               <React.Fragment>
                 {needSwitchTypes && (
-                  <VizSwitch types={formattedVizTypes} type={vizType} setType={setVizType} />
+                  <VizSwitch
+                    types={formattedVizTypes}
+                    type={vizType}
+                    setType={R.pipe(R.prop('id'), setVizType)}
+                  />
                 )}
                 {needHierarchiesSwitch && (
                   <VizSwitch
@@ -186,6 +190,12 @@ const Analysis = ({
                   indicatorValue && (
                     <Typography variant="caption" align="center">
                       {indicatorValue.label} ({R.prop(UNIT_MEASURE, serie)})
+                    </Typography>
+                  )}
+                {R.equals(VIZ_PACK, vizType) &&
+                  R.equals(type, 'sdg') && (
+                    <Typography variant="caption" align="center">
+                      <FormattedMessage {...messages.yearToAchieve} />
                     </Typography>
                   )}
               </React.Fragment>

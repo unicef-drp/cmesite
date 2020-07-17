@@ -71,8 +71,8 @@ function PackChart({ classes, theme, serie, aggregate, boundaries, target, indic
   ]);
 
   const codes = R.pipe(R.prop('codes'), R.values)(aggregate);
-  //const regions = R.pipe(R.filter(R.propEq('areaType', REGION)), R.pluck('regionId'))(codes);
-  const regions = R.reverse(R.pluck('id', UNICEF_REGIONS));
+  const regions = R.pipe(R.filter(R.propEq('areaType', REGION)), R.pluck('regionId'))(codes);
+  //const regions = R.reverse(R.pluck('id', UNICEF_REGIONS));
   const datapoints = R.prop('datapoints', serie);
   const data = R.reject(R.propEq('areaType', REGION), codes);
 
