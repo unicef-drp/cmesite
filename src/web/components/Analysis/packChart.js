@@ -16,6 +16,7 @@ import {
   YEAR_TO_ACHIEVE,
   DEFAULT_ANALYSIS_PROGRESS_TARGET,
   UNICEF_REGIONS,
+  INDICATOR_IDS_TO_SHORTNAMES,
 } from '../../constants';
 import { wrapText } from '../../lib/charts';
 
@@ -200,7 +201,15 @@ function PackChart({ classes, theme, serie, aggregate, boundaries, target, indic
               .attr('text-anchor', 'end')
               .attr('fill', theme.palette.secondary.darker);
           },
-          ['Already achieved', 'SDG target', `(${indicatorValueId} <= ${target})`],
+          [
+            'Already achieved',
+            'SDG target',
+            `(${R.propOr(
+              indicatorValueId,
+              indicatorValueId,
+              INDICATOR_IDS_TO_SHORTNAMES,
+            )} <= ${target})`,
+          ],
         );
       }
 

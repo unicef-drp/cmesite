@@ -37,6 +37,11 @@ export const EXC_NO_SEX_INDICATOR_VALUES = new Set([
   'SBR',
 ]);
 
+export const INDICATOR_IDS_TO_SHORTNAMES = {
+  PR_MRY0T4: 'U5MR',
+  PR_MRM0: 'NMR',
+};
+
 export const HIERARCHY_LABEL_TOKEN = ' > ';
 
 export const ESTIMATE = 'ESTIMATE';
