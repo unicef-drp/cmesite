@@ -21,13 +21,13 @@ import sdgIcon from '../../../assets/sdg-tab.png';
 import { VIZ_MAP, VIZ_CIRCLE, VIZ_PACK, YEAR_TO_ACHIEVE } from '../../constants';
 
 const tabs = [
-  /*{ key: 'progress', icon: progressIcon, component: Analysis, otherProps: { vizTypes: [VIZ_MAP] } },
+  { key: 'progress', icon: progressIcon, component: Analysis, otherProps: { vizTypes: [VIZ_MAP] } },
   {
     key: 'disparity',
     icon: disparityIcon,
     component: Analysis,
     otherProps: { vizTypes: [VIZ_CIRCLE], hasHierarchies: true },
-  },*/
+  },
   {
     key: 'sdg',
     icon: sdgIcon,
