@@ -90,7 +90,7 @@ export const END_PERIODS = {
 // circle chart with time travel requires fixed boundaries
 // it's assimilated as legend for map
 export const DEFAULT_ANALYSIS_BOUNDARIES = [-1, 101];
-const DEFAULT_ANALYSIS_BOUNDARIES_PROGRESS = [new Date(2014, 0), new Date(2051, 0)];
+const DEFAULT_ANALYSIS_BOUNDARIES_PROGRESS = [new Date(1987, 0), new Date(2053, 0)];
 export const ANALYSIS_BOUNDARIES = {
   MRY0T4: [-10, 310],
   PR_MRY0T4: DEFAULT_ANALYSIS_BOUNDARIES_PROGRESS,
@@ -106,7 +106,7 @@ export const ANALYSIS_TARGETS = {
 };
 
 export const DEFAULT_ANALYSIS_PROGRESS_TARGET = {
-  startDate: new Date(2015, 0),
+  startDate: new Date(1990, 0),
   endDate: new Date(2019, 0),
 };
 

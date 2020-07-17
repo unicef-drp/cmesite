@@ -17,6 +17,7 @@ import {
   DEFAULT_ANALYSIS_PROGRESS_TARGET,
   UNICEF_REGIONS,
   INDICATOR_IDS_TO_SHORTNAMES,
+  UNIT_MEASURE,
 } from '../../constants';
 import { wrapText } from '../../lib/charts';
 
@@ -84,7 +85,7 @@ function PackChart({ classes, theme, serie, aggregate, boundaries, target, indic
     values => [min(values), max(values)],
   )(datapoints);
 
-  const legend = [10, 20, 50, 70];
+  const legend = [100, 400000, 900000];
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -114,7 +115,7 @@ function PackChart({ classes, theme, serie, aggregate, boundaries, target, indic
 
       const rScale = scaleLinear()
         .domain(yBoundaries)
-        .range([2, 9]);
+        .range([3, 12]);
 
       const cx = ({ id }) => xScale(R.pipe(getYearToAchieve(id), y => new Date(y, 0))(datapoints));
       const cy = ({ regionId }) => yScale(regionId);
@@ -158,7 +159,7 @@ function PackChart({ classes, theme, serie, aggregate, boundaries, target, indic
           .attr('stroke', theme.palette.secondary.darker)
           .attr('fill', 'white')
           .attr('r', value => rScale(value))
-          .attr('cx', () => contentDimensions.width - 40)
+          .attr('cx', () => contentDimensions.width - 60)
           .attr('cy', () => 20 + index * 2 * rScale(max(legend)));
 
         svgLegend
@@ -166,7 +167,7 @@ function PackChart({ classes, theme, serie, aggregate, boundaries, target, indic
           .data([value])
           .join('text')
           .attr('class', `legend-text-${index}`)
-          .attr('x', () => contentDimensions.width - 40)
+          .attr('x', () => contentDimensions.width - 60)
           .attr('y', () => 20 + index * 2 * rScale(max(legend)))
           .attr('dy', 2.5)
           .attr('dx', 5 + rScale(max(legend)))
@@ -220,7 +221,7 @@ function PackChart({ classes, theme, serie, aggregate, boundaries, target, indic
           'collision',
           forceCollide(12)
             .strength(1)
-            .radius(cr(1.4)),
+            .radius(cr(1.2)),
         )
         .stop();
       for (var i = 0; i < 120; ++i) simulation.tick();
@@ -235,12 +236,14 @@ function PackChart({ classes, theme, serie, aggregate, boundaries, target, indic
         .attr('r', cr(1))
         .attr('cx', R.prop('x'))
         .attr('cy', R.prop('y'))
-        .on('mouseenter', function({ id }) {
+        .on('mouseenter', function({ id, regionId }) {
           //select(this).attr('r', 4);
           setTooltipDatum({
             value: R.path([id, 'y'], datapoints),
             label: R.path([id, REF_AREA, 'valueName'], datapoints),
+            unit: R.path([id, UNIT_MEASURE, 'valueName'], datapoints),
             year: getYearToAchieve(id)(datapoints),
+            color: colorScale(regionId),
           });
         })
         .on('mouseleave', function() {
