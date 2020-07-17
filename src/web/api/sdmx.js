@@ -131,7 +131,7 @@ export const getAnalysisData = ({ indicatorValueId, startPeriod, endPeriod, sour
     .then(({ data }) => configuredDataParser(data, { isMap: true }));
 };
 
-export const getHierarchicalCodelists = ({ source }) =>
+export const getHierarchicalCodelists = ({ source = {} } = {}) =>
   axios
     .get(
       endPoint(

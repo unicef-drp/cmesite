@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
@@ -78,20 +78,8 @@ const Analysis = ({
   const [seriesIndex, setSeriesIndex] = useState(0);
   const [isLoadingSeries, series] = useSeries(indicatorValueId, isLatest, setSeriesIndex);
   const [vizType, setVizType] = useState(R.head(vizTypes));
-  const [hierarchicalCodelist, setHierarchicalCodelist] = useState();
-
-  useEffect(
-    () => {
-      if (R.not(hierarchicalCodelist))
-        setHierarchicalCodelist(
-          R.propOr(
-            [],
-            R.propOr(DEFAULT_HIERARCHY, type, DEFAULT_HIERARCHIES),
-            hierarchicalCodelists,
-          ),
-        );
-    },
-    [hierarchicalCodelists],
+  const [hierarchicalCodelist, setHierarchicalCodelist] = useState(
+    R.propOr([], R.propOr(DEFAULT_HIERARCHY, type, DEFAULT_HIERARCHIES), hierarchicalCodelists),
   );
 
   const analysis = useSelector(getAnalysis(indicatorValueId));

@@ -89,6 +89,11 @@ export const getCountryTypes = createSelector(getData, prop('countryTypes'));
 export const getHighlightedMethods = createSelector(getData, prop('highlightedMethods'));
 export const getActiveTab = createSelector(getData, prop('activeTab'));
 export const getIsLoadingStructure = createSelector(getData, prop('isLoadingStructure'));
+export const getIsLoadingHierarchicalCodelists = createSelector(
+  getData,
+  prop('isLoadingHierarchicalCodelists'),
+);
+export const getHierarchicalCodelists = createSelector(getData, prop('hierarchicalCodelists'));
 export const getIsLoadingData = createSelector(getData, prop('isLoadingData'));
 export const getDownloadingData = createSelector(getData, prop('downloadingData'));
 export const getRawDimensions = createSelector(getData, prop('dimensions'));

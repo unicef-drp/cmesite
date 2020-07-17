@@ -35,7 +35,7 @@ import {
   find,
 } from 'ramda';
 import { startRequest, endRequest, requestError } from './core';
-import sdmxApi, { COUNTRY, COMPARE, MAP, HOME } from '../api/sdmx';
+import sdmxApi, { COUNTRY, COMPARE, MAP, HOME, getHierarchicalCodelists } from '../api/sdmx';
 import {
   getRawDimensions,
   getStale,
@@ -73,6 +73,8 @@ export const TOGGLE_DIMENSION_VALUES = 'CM/DATA/TOGGLE_DIMENSION_VALUES';
 export const SELECT_DIMENSION_VALUE = 'CM/DATA/SELECT_DIMENSION_VALUE';
 export const LOADING_STRUCTURE = 'CM/DATA/LOADING_STRUCTURE';
 export const STRUCTURE_LOADED = 'CM/DATA/STRUCTURE_LOADED';
+export const LOADING_HIERARCHICAL_CODELISTS = 'CM/DATA/LOADING_HIERARCHICAL_CODELISTS';
+export const HIERARCHICAL_CODELISTS_LOADED = 'CM/DATA/HIERARCHICAL_CODELISTS_LOADED';
 export const LOADING_DATA = 'CM/DATA/LOADING_DATA';
 export const DATA_LOADED = 'CM/DATA/DATA_LOADED';
 export const TOGGLE_DOWNLOADING_DATA = 'CM/DATA/TOGGLE_DOWNLOADING_DATA';
@@ -92,6 +94,7 @@ const initialState = {
   activeTab: 0,
   isLoadingStructure: false,
   isLoadingData: false,
+  isLoadingHierarchicalCodelists: false,
   downloadingData: {},
   dimensions: [],
   activeTypes,
@@ -105,6 +108,7 @@ const initialState = {
   highlightedMethods: {},
   countryTypes: { COUNTRY: true, REGION: false },
   countryNotes: null,
+  hierarchicalCodelists: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -183,6 +187,14 @@ const reducer = (state = initialState, action = {}) => {
           map(value => ({ ...value, isSelected: equals(value.id, valueId) })),
         ),
       )({ ...state, countryStale: true, countryTypes: { COUNTRY: false, REGION: false } });
+    case LOADING_HIERARCHICAL_CODELISTS:
+      return { ...state, isLoadingHierarchicalCodelists: true };
+    case HIERARCHICAL_CODELISTS_LOADED:
+      return {
+        ...state,
+        isLoadingHierarchicalCodelists: false,
+        hierarchicalCodelists: action.hierarchicalCodelists,
+      };
     default:
       return state;
   }
@@ -379,6 +391,13 @@ export const downloadTable = mode => (_, getState) =>
     ]),
     downloadCsv('data-download.csv'),
   )(mode);
+
+export const loadHierarchicalCodelists = () => dispatch => {
+  dispatch({ type: LOADING_HIERARCHICAL_CODELISTS });
+  return getHierarchicalCodelists().then(hierarchicalCodelists => {
+    dispatch({ type: HIERARCHICAL_CODELISTS_LOADED, hierarchicalCodelists });
+  });
+};
 
 const actions = {
   changeActiveTab,
