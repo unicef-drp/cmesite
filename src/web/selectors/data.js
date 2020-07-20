@@ -81,6 +81,8 @@ import {
   STILLBIRTH_INDICATOR_IDS,
   DISPARITY_INDICATOR_IDS,
   PROGRESS_INDICATOR_IDS,
+  DEFAULT_HIERARCHY,
+  DEFAULT_HIERARCHIES,
 } from '../constants';
 
 export const getData = prop('data');
@@ -94,6 +96,19 @@ export const getIsLoadingHierarchicalCodelists = createSelector(
   prop('isLoadingHierarchicalCodelists'),
 );
 export const getHierarchicalCodelists = createSelector(getData, prop('hierarchicalCodelists'));
+export const getHierarchicalCodelist = type =>
+  createSelector(getData, getHierarchicalCodelists, (data, hierarchicalCodelists) =>
+    pipe(
+      prop('hierarchicalCodelist'),
+      ifElse(
+        isNil,
+        always(
+          propOr([], propOr(DEFAULT_HIERARCHY, type, DEFAULT_HIERARCHIES), hierarchicalCodelists),
+        ),
+        identity,
+      ),
+    )(data),
+  );
 export const getIsLoadingData = createSelector(getData, prop('isLoadingData'));
 export const getDownloadingData = createSelector(getData, prop('downloadingData'));
 export const getRawDimensions = createSelector(getData, prop('dimensions'));

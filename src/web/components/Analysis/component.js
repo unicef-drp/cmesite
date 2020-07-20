@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import Grid from '@material-ui/core/Grid';
@@ -8,6 +8,12 @@ import Divider from '@material-ui/core/Divider';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { FormattedMessage } from 'react-intl';
 import { getAnalysis } from '../../selectors/wp';
+import { changeHierarchicalCodelist } from '../../ducks/data';
+import {
+  getIsLoadingHierarchicalCodelists,
+  getHierarchicalCodelists,
+  getHierarchicalCodelist,
+} from '../../selectors/data';
 import Wrapper from '../Wrapper';
 import Loader from '../Loader';
 import DataNone from '../DataNone';
@@ -27,8 +33,6 @@ import {
   VIZ_MAP,
   VIZ_CIRCLE,
   VIZ_PACK,
-  DEFAULT_HIERARCHY,
-  DEFAULT_HIERARCHIES,
 } from '../../constants';
 import messages from '../../pages/Analysis/messages';
 
@@ -70,17 +74,20 @@ const Analysis = ({
   vizTypes,
   isLatest,
   hasHierarchies,
-  hierarchicalCodelists,
-  isLoadingHierarchicalCodelists,
   mapProps = {},
 }) => {
+  const dispatch = useDispatch();
+
   const [indicatorValueId, setIndicatorValueId] = useState(R.prop('id', R.head(indicatorValues)));
   const [seriesIndex, setSeriesIndex] = useState(0);
   const [isLoadingSeries, series] = useSeries(indicatorValueId, isLatest, setSeriesIndex);
   const [vizType, setVizType] = useState(R.head(vizTypes));
-  const [hierarchicalCodelist, setHierarchicalCodelist] = useState(
-    R.propOr([], R.propOr(DEFAULT_HIERARCHY, type, DEFAULT_HIERARCHIES), hierarchicalCodelists),
-  );
+
+  const isLoadingHierarchicalCodelists = useSelector(getIsLoadingHierarchicalCodelists);
+  const hierarchicalCodelists = useSelector(getHierarchicalCodelists);
+  const hierarchicalCodelist = useSelector(getHierarchicalCodelist(type));
+  const setHierarchicalCodelist = hierarchicalCodelist =>
+    dispatch(changeHierarchicalCodelist(hierarchicalCodelist));
 
   const analysis = useSelector(getAnalysis(indicatorValueId));
   const boundaries = R.propOr(DEFAULT_ANALYSIS_BOUNDARIES, indicatorValueId, ANALYSIS_BOUNDARIES);

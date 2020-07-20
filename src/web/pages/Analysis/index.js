@@ -4,11 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import messages from './messages';
 import { getActiveTab } from '../../selectors/analysis';
-import {
-  getIsLoadingStructure,
-  getIsLoadingHierarchicalCodelists,
-  getHierarchicalCodelists,
-} from '../../selectors/data';
+import { getIsLoadingStructure } from '../../selectors/data';
 import { loadStructure, loadHierarchicalCodelists } from '../../ducks/data';
 import { loadPosts } from '../../ducks/wp';
 import { changeActiveTab } from '../../ducks/analysis';
@@ -61,17 +57,11 @@ export default compose(
   connect(
     createStructuredSelector({
       isLoadingStructure: getIsLoadingStructure,
-      isLoadingHierarchicalCodelists: getIsLoadingHierarchicalCodelists,
       activeTab: getActiveTab,
-      hierarchicalCodelists: getHierarchicalCodelists,
     }),
     { changeActiveTab, loadStructure, loadHierarchicalCodelists, loadPosts },
   ),
   lifecycle({ componentDidMount }),
   branch(({ isLoadingStructure }) => isLoadingStructure, renderComponent(Loader)),
-  withProps(({ isLoadingHierarchicalCodelists, hierarchicalCodelists }) => ({
-    commonProps: { isLoadingHierarchicalCodelists, hierarchicalCodelists },
-    tabs,
-    messages,
-  })),
+  withProps({ tabs, messages }),
 )(Tabs);

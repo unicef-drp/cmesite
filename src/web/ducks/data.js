@@ -75,6 +75,7 @@ export const LOADING_STRUCTURE = 'CM/DATA/LOADING_STRUCTURE';
 export const STRUCTURE_LOADED = 'CM/DATA/STRUCTURE_LOADED';
 export const LOADING_HIERARCHICAL_CODELISTS = 'CM/DATA/LOADING_HIERARCHICAL_CODELISTS';
 export const HIERARCHICAL_CODELISTS_LOADED = 'CM/DATA/HIERARCHICAL_CODELISTS_LOADED';
+export const CHANGE_HIERARCHICAL_CODELIST = 'CM/DATA/CHANGE_HIERARCHICAL_CODELIST';
 export const LOADING_DATA = 'CM/DATA/LOADING_DATA';
 export const DATA_LOADED = 'CM/DATA/DATA_LOADED';
 export const TOGGLE_DOWNLOADING_DATA = 'CM/DATA/TOGGLE_DOWNLOADING_DATA';
@@ -109,6 +110,7 @@ const initialState = {
   countryTypes: { COUNTRY: true, REGION: false },
   countryNotes: null,
   hierarchicalCodelists: null,
+  hierarchicalCodelist: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -195,6 +197,8 @@ const reducer = (state = initialState, action = {}) => {
         isLoadingHierarchicalCodelists: false,
         hierarchicalCodelists: action.hierarchicalCodelists,
       };
+    case CHANGE_HIERARCHICAL_CODELIST:
+      return { ...state, hierarchicalCodelist: action.hierarchicalCodelist };
     default:
       return state;
   }
@@ -211,6 +215,11 @@ export const highlightMethod = methodId => ({ type: HIGHLIGHT_METHOD, methodId }
 export const changeMapIndex = mapIndex => ({ type: CHANGE_MAP_INDEX, mapIndex });
 
 export const toggleActiveType = activeType => ({ type: TOGGLE_ACTIVE_TYPE, activeType });
+
+export const changeHierarchicalCodelist = hierarchicalCodelist => ({
+  type: CHANGE_HIERARCHICAL_CODELIST,
+  hierarchicalCodelist,
+});
 
 const requestSDMX = (dispatch, ctx, { errorCode } = {}) => {
   const { method } = ctx;
