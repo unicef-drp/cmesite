@@ -38,7 +38,7 @@
     "file-saver": "^2.0.0",
     "fs-extra": "^5.0.0",
     "history": "^4.7.2",
-    "html-webpack-plugin": "2.29.0",
+    "html-webpack-plugin": "5.5.0",
     "ignore-styles": "^5.0.1",
     "jest": "^23.2",
     "numeral": "^2.0.6",
